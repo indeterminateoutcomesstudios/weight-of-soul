@@ -1,18 +1,18 @@
 ! Blurb file created by Inform build 6M62
 
-status "C:\Program Files (x86)\Inform 7\Internal\Miscellany\CblorbModel.html" "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.inform\Build\StatusCblorb.html"
+status "C:\Program Files (x86)\Inform 7\Internal\Miscellany\CblorbModel.html" "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.inform\Build\StatusCblorb.html"
 
 
 ! Identification
 
-project folder "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.inform"
-release to "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.materials\Release"
+project folder "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.inform"
+release to "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.materials\Release"
 
 ! Blorb instructions
 
 storyfile leafname "The Weight of a Soul.gblorb"
-storyfile "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.inform\Build\output.ulx" include
-ifiction "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.inform\Metadata.iFiction" include
+storyfile "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.inform\Build\output.ulx" include
+ifiction "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.inform\Metadata.iFiction" include
 cover "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
 picture 1 "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
 release file "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
@@ -33,16 +33,16 @@ placeholder [BLURB] = "In a world of arcane mysteries, a young doctor's apprenti
 ! Website instructions
 
 placeholder [ENCODEDSTORYFILE] = "The Weight of a Soul.gblorb.js"
-template path "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.materials\Templates"
+template path "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.materials\Templates"
 template path "C:\Users\KeeYong\Documents\Inform\Templates"
 template path "C:\Program Files (x86)\Inform 7\Internal\Templates"
 placeholder [INTERPRETERSCRIPTS] = " "
 interpreter "Quixe" "g"
-base64 "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.inform\Build\output.ulx" to "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.materials\Release\interpreter\The Weight of a Soul.gblorb.js"
+base64 "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.inform\Build\output.ulx" to "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.materials\Release\interpreter\The Weight of a Soul.gblorb.js"
 
 ! Website instructions
 
-template path "C:\Users\KeeYong\Documents\Inform\Projects\The Weight of a Soul.materials\Templates"
+template path "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.materials\Templates"
 template path "C:\Users\KeeYong\Documents\Inform\Templates"
 template path "C:\Program Files (x86)\Inform 7\Internal\Templates"
 css

@@ -6,7 +6,49 @@ The release number is 1.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
-[---TO DO---
+[
+
+
+
+
+!!!!!!!!!!!!
+
+S P O I L E R   W A R N I N G
+
+The source code of The Weight of a Soul is hosted on GitHub for backup purposes.
+
+If you read on, there WILL be massive spoilers.
+
+You have been warned.
+
+!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---TO DO---
 
 - Write Day One
 	- Write Returning to a Break-In
@@ -92,10 +134,13 @@ The can't approach our current location rule response (A) is "You are already in
 
 Book 1.2 - Days and Scenes
 
+Part 1.2.1 - Scene Definitions
+
 ['The Weight of a Soul' uses days to demarcate the acts of the story, here implemented as overarching scenes.]
 
-[PROLOGUE -- COMPLETE
-An opening in medias res, in which Marid and Cavala try and fail to save Reden -- the first victim of Noctis. Characters are introduced, and their capabilities are elaborated upon.]
+Chapter 1.2.1.1 - Prologue
+
+[An opening in medias res, in which Marid and Cavala try and fail to save Reden -- the first victim of Noctis. Characters are introduced, and their capabilities are elaborated upon.]
 
 Prologue is a scene.
 Prologue begins when play begins.
@@ -109,8 +154,9 @@ Walking Home in Darkness is a scene. [Marid goes home after the surgery.]
 Walking Home in Darkness begins when Reden's Surgery ends.
 Walking Home in Darkness ends when the location of Reden is not the Surgery Room.
 
-[DAY ONE
-Doctor Cavala studies the cadaver, while Marid is sent on an errand to inform the next of kin. This chapter introduces the setting of Solphos and the Channelworks District. When Marid returns to the clinic, having completed her errand, she finds Carnicer attacking Doctor Cavala. Her unexpected appearance allows Cavala to gain the upper hand on Carnicer, forcing the mutant to flee. But Cavala is incapacitated in the struggle.]
+Chapter 1.2.1.2 - Day One
+
+[Doctor Cavala studies the cadaver, while Marid is sent on an errand to inform the next of kin. This chapter introduces the setting of Solphos and the Channelworks District. When Marid returns to the clinic, having completed her errand, she finds Carnicer attacking Doctor Cavala. Her unexpected appearance allows Cavala to gain the upper hand on Carnicer, forcing the mutant to flee. But Cavala is incapacitated in the struggle.]
 
 Day One is a scene.
 Day One begins when Prologue ends.
@@ -145,39 +191,44 @@ FIrst Aid on Cavala begins when Averting Cavala's Assassination ends.
 Walking Home in Fear is a scene. [Marid goes home after fixing Doctor Cavala's leg.]
 Walking Home in Fear begins when First Aid on Cavala ends.
 
-[DAY TWO
-A messenger brings a rude awakening: there's been another spate of goblin deaths, and Doctor Arturus, who took in the patients, is dead of the same infection. Quarantine has been enacted by Doctor Serpens. Cavala sets Detective Marid on the scene. She discovers that there seems to be a deliberate pattern to the infection, that certain signs recur, and that Doctor Arturus was murdered. Cavala tells her to rest well and be careful.]
+Chapter 1.2.1.3 - Day Two
+
+[A messenger brings a rude awakening: there's been another spate of goblin deaths, and Doctor Arturus, who took in the patients, is dead of the same infection. Quarantine has been enacted by Doctor Serpens. Cavala sets Detective Marid on the scene. She discovers that there seems to be a deliberate pattern to the infection, that certain signs recur, and that Doctor Arturus was murdered. Cavala tells her to rest well and be careful.]
 
 Day Two is a scene.
 Day Two begins when Day One ends.
 
-[MIDNIGHT
-Carnicer makes a nighttime attempt on Marid's life. Marid flees her room through the window, runs through a condemned block, and outwits Carnicer by leading her into a nest of deadly vermin -- nearly dying herself in the process, and experiencing a strange vision of the hereafter. Help arrives moments after, but by then Carnicer is already dead.]
+Chapter 1.2.1.4 - Midnight
+
+[Carnicer makes a nighttime attempt on Marid's life. Marid flees her room through the window, runs through a condemned block, and outwits Carnicer by leading her into a nest of deadly vermin -- nearly dying herself in the process, and experiencing a strange vision of the hereafter. Help arrives moments after, but by then Carnicer is already dead.]
 
 Midnight is a scene.
 Midnight begins when Day Two ends.
 
-[DAY THREE
-More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. The clues lead her to Arturus's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
+Chapter 1.2.1.5 - Day Three
+
+[More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. The clues lead her to Arturus's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
 
 Day Three is a scene.
 Day Three begins when Midnight ends.
 
-[DAY FOUR
-Marid imprisoned. Justinian reveals himself to be the villain and monologues. Serpens is revealed to be in cahoots. They leaves her in a burning deathtrap, which she escapes; using a discarded animus lantern she navigates her way back to the surface. There Noctis has been unleashed in full force and the streets run black. Marid returns to the Channelworks, defeats Serpens, and confronts Justinian -- making a final choice.]
+Chapter 1.2.1.6 - Day Four
+
+[Marid imprisoned. Justinian reveals himself to be the villain and monologues. Serpens is revealed to be in cahoots. They leaves her in a burning deathtrap, which she escapes; using a discarded animus lantern she navigates her way back to the surface. There Noctis has been unleashed in full force and the streets run black. Marid returns to the Channelworks, defeats Serpens, and confronts Justinian -- making a final choice.]
 
 Day Four is a scene.
 Day Four begins when Day Three ends.
 
-[EPILOGUE
-The result of Marid's final choice plays out. Largely an uninteractive cutscene.]
+Chapter 1.2.1.7 - Epilogue
+
+[The result of Marid's final choice plays out. Largely an uninteractive cutscene.]
 
 Epilogue is a scene.
 Epilogue begins when Day Four ends.
 
-Part 1.2.1 - Status Line
+Part 1.2.2 - Status Line
 
-Chapter 1.2.1.1 - Status Line Variables
+Chapter 1.2.2.1 - Status Line Variables
 
 [We want to show the current day on the right hand status line. We use a variable to store it because a) there can be multiple concurrent scenes, so Inform doesn't know which one is relevant; and b) entering a dialogue changes the status line, and we'd like a foolproof way to restore it.]
 
@@ -193,7 +244,7 @@ When Epilogue begins: now the current day is Epilogue.
 
 The conversational partner text is some text that varies.
 
-Chapter 1.2.1.2 - Constructing the Status Line
+Chapter 1.2.2.2 - Constructing the Status Line
 
 [We use Basic Screen Effects to construct the status line so that we can shift the right hand status line inward when it's too long. "Talking to Doctor Cavala" is a lot longer than 14 characters. We define the tables and rule for constructing the status line here; the actual shifting is dynamically done while starting and ending the dialogue.]
 
@@ -210,7 +261,7 @@ Rule for constructing the status line:
 	otherwise fill status bar with Table of Status Line when Not Engaged in Dialogue;
 	rule succeeds.
 	
-Part 1.2.2 - Skipping Scenes
+Part 1.2.3 - Skipping Scenes
 
 To skip past Reden's Surgery:
 	now Reden is dead;
@@ -337,7 +388,7 @@ Carry out skipping to mechanistry:
 	skip past Zoiro;
 	try looking.
 	
-Part 1.2.3 - Other Debug Commands - Not for release
+Part 1.2.4 - Other Debug Commands - Not for release
 
 Making all rooms visited is an action out of world. Understand "all rooms/-- visited" as making all rooms visited.
 Carry out making all rooms visited: now all rooms are visited; say "Ok, all rooms are now visited."
