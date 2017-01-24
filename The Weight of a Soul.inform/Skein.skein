@@ -9,5 +9,1099 @@
     <played>YES</played>
     <changed>NO</changed>
     <temporary score="0">NO</temporary>
+    <children>
+      <child nodeId="node-2"/>
+    </children>
+  </item>
+  <item nodeId="node-2">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">He was healthy not a day before, or so he said when he stumbled into the clinic just minutes ago. You should have seen the signs -- the recurring shivers, the black stains around his eyes -- but the shadows were long in the hour of night, and in the darkness you couldn't see, you couldn't see...</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-3"/>
+    </children>
+  </item>
+  <item nodeId="node-3">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">The vomiting came first, then the weakness of the knees -- you barely caught him as he keeled over you -- Doctor Cavala pulled him back before you were crushed by his weight. "The surgery room!" she shouted, and together you half-carried half-dragged the goblin to the gurney and strapped him down. You hid behind the protection of your surgical mask, adjusted the lights as you had been drilled. Thoughts flitted across your mind -- flit -- flitting --</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-4"/>
+    </children>
+  </item>
+  <item nodeId="node-4">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"I've never operated on a goblin before," you say, with a hint of panic in your voice. "I did, in a way, on the Collegiate cadavers, but--"</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-5"/>
+    </children>
+  </item>
+  <item nodeId="node-5">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"Steady, girl." Doctor Cavala snaps on her gloves and squeezes your shoulder. "Remember your training. I need your help. Are you with me?"</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-6"/>
+    </children>
+  </item>
+  <item nodeId="node-6">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">You take a deep breath. "I'm with you, Doctor."</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-7"/>
+    </children>
+  </item>
+  <item nodeId="node-7">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"Good." She nods. "Try to keep up."</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-8"/>
+    </children>
+  </item>
+  <item nodeId="node-8">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">T H E&#x000A;&#x000A;&#x000A;                                W E I G H T&#x000A;&#x000A;&#x000A;                                    O F&#x000A;&#x000A;&#x000A;                                     A&#x000A;&#x000A;&#x000A;                                  S O U L</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-9"/>
+    </children>
+  </item>
+  <item nodeId="node-9">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">The Weight of a Soul&#x000A;A study of the ars vitalis by Chin Kee Yong&#x000A;Release 1 / Serial number 170124 / Inform 7 build 6M62 (I6/v6.33 lib 6/12N) SD&#x000A;&#x000A;Surgery Room&#x000A;You are in a cold cylindrical chamber, thrown into sharp focus by hovering surgical lamps. Shelves of vials and medical supplies crowd around you, leaving little room to misstep. A shimmering calomel curtain frames the exit to the south.&#x000A;&#x000A;The patient shudders against his straps on the gurney, black blood streaming from his eyes and mouth, even as Doctor Cavala fights to isolate the infection.&#x000A;&#x000A;"Eyes sharp, Marid," she says. "I'm going to need your help in a moment."&#x000A;&#x000A;"Got it," you reply.&#x000A;&#x000A;(New players should type &gt;HELP.)&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-10"/>
+      <child nodeId="node-95"/>
+    </children>
+  </item>
+  <item nodeId="node-10">
+    <command xml:space="preserve">skip to mechanistry</command>
+    <result xml:space="preserve">Riggertown Mechanistry&#x000A;This building is just as haphazard inside as it is on the outside. Assembly lines run up and down and all around the many levels of this building, weighed down by unfinished, not-quite-manufactured things. At stations along the lines, factory workers are hunched over workbenches, welding disparate parts together within acceptable margins of irregularity.&#x000A;&#x000A;To the north, through a series of raised metal shutters, is the exit.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-11"/>
+    </children>
+  </item>
+  <item nodeId="node-11">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Riggertown, Upper Level&#x000A;This is the more industrial part of Riggertown. The buildings here are scrap-heap spires that twist and turn around each other, with cubby-carts trundling along cables strung between them. Amidst horns honking advertisements, there is a great mess of little people shuffling about, and roads winding in ways wholly inexplicable to your human sensibilities.&#x000A;&#x000A;To the south looms an enormously noisy factory, which signage identifies as the Riggertown Mechanistry. A quieter road leads southwest to the suburbs. You could also descend a series of ladders to Lower Riggertown, or take a footpath north along the Bilious Canal.&#x000A;&#x000A;It's getting dark out. The spires and factories are closing for the day.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-12"/>
+    </children>
+  </item>
+  <item nodeId="node-12">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Following the Canal&#x000A;Glittering waters roar alongside the footpath you stand on, running from north to south in an ever-restless torrent. North lies the Via Terminalis, and beyond it the mouth of the Channelworks; to the south, the path descends by steps and turns, ending in the algae and grime of Upper Riggertown.&#x000A;&#x000A;The exterminators have finished their work. The cordon is gone, and the manhole is shut once more.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-13"/>
+      <child nodeId="node-35"/>
+    </children>
+  </item>
+  <item nodeId="node-13">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Via Terminalis, West Street&#x000A;You are adrift in the bustle of crowds and carriages, a raucous river that runs through the blood-vessel streets. Signage advertises a profusion of shops and services amid the sounds of leather rollers and stitching machines. In the distant mist, the Bilious Canal spills from the Channelworks into the heart of the city.&#x000A;&#x000A;The Via runs from west to southeast, where it bridges the canal. A condemned block is visible to the north. A hanging banner obscures an alley to the southwest, and a footpath follows the canal to the south.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-14"/>
+    </children>
+  </item>
+  <item nodeId="node-14">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Via Terminalis, West End&#x000A;You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.&#x000A;&#x000A;The white cross of Doctor Cavala's clinic is to the west, the dormitory block where you live lies to the north, and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east.&#x000A;&#x000A;Wait a moment.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-15"/>
+    </children>
+  </item>
+  <item nodeId="node-15">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Someone on the street has just drawn her sword and stalked into Doctor Cavala's clinic.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-16"/>
+      <child nodeId="node-19"/>
+    </children>
+  </item>
+  <item nodeId="node-16">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Via Terminalis, West End&#x000A;You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.&#x000A;&#x000A;The white cross of Doctor Cavala's clinic is to the west, the dormitory block where you live lies to the north, and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-17"/>
+    </children>
+  </item>
+  <item nodeId="node-17">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">T O&#x000A;&#x000A;&#x000A;                                    B E&#x000A;&#x000A;&#x000A;                             C O N T I N U E D</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-18"/>
+    </children>
+  </item>
+  <item nodeId="node-18">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">*** Thanks for playing ***&#x000A;&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-19">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">You rush through the door of the&#x000A;&#x000A;Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;And she is there, walking slowly toward the mortuary stairs. Her sword glints in the final rays of sunlight.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-20"/>
+    </children>
+  </item>
+  <item nodeId="node-20">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"Coming!" Doctor Cavala calls. You hear the doctor's chair shift, her footfalls climbing the steps.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-21"/>
+    </children>
+  </item>
+  <item nodeId="node-21">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">The hooded stranger raises her sword.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-22"/>
+    </children>
+  </item>
+  <item nodeId="node-22">
+    <command xml:space="preserve">tackle stranger</command>
+    <result xml:space="preserve">That is either not important or not something you can see.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-23"/>
+    </children>
+  </item>
+  <item nodeId="node-23">
+    <command xml:space="preserve">help</command>
+    <result xml:space="preserve">You stand there, frozen in shock. Your heart hammers in your chest.&#x000A;&#x000A;The assassin turns her head and looks directly at you.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-24"/>
+    </children>
+  </item>
+  <item nodeId="node-24">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">Her face catches the light and she has so</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-25"/>
+    </children>
+  </item>
+  <item nodeId="node-25">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">many</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-26"/>
+    </children>
+  </item>
+  <item nodeId="node-26">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">teeth</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-27"/>
+    </children>
+  </item>
+  <item nodeId="node-27">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">and Doctor Cavala comes up the stairs with a flying tackle that sends the assassin staggering into the waiting chairs. In three steps she is reaching under the counter -- but the assassin is quicker -- her blade faster -- blood spatters the floor -- Doctor Cavala cries out -- a blur of motion -- and there is a flash and thunder echoes from the walls.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-28"/>
+    </children>
+  </item>
+  <item nodeId="node-28">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">The assassin clutches at her face. Doctor Cavala raises the cutter and pulls the trigger again and lightning arcs, misses by inches.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-29"/>
+    </children>
+  </item>
+  <item nodeId="node-29">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">"Get the fuck out of my clinic," she growls.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-30"/>
+    </children>
+  </item>
+  <item nodeId="node-30">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">A rush of wind. The assassin is gone. You whirl around and see only a dark shape disappearing into the coming night.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-31"/>
+    </children>
+  </item>
+  <item nodeId="node-31">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">Doctor Cavala takes a deep breath. Stifles a cry.&#x000A;&#x000A;"Marid," she says. "My leg."</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-32"/>
+    </children>
+  </item>
+  <item nodeId="node-32">
+    <command xml:space="preserve"> </command>
+    <result xml:space="preserve">She's slumped onto the floor, her chest rising and falling. A gash has been torn just above her left knee. Her entire trouser leg is stained red.&#x000A;&#x000A;1) "Doctor...!"&#x000A;2) "Oh Primes..."&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-33"/>
+    </children>
+  </item>
+  <item nodeId="node-33">
+    <command xml:space="preserve">2</command>
+    <result xml:space="preserve">&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-34"/>
+    </children>
+  </item>
+  <item nodeId="node-34">
+    <command xml:space="preserve">l</command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-35">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">You can go north to the Via Terminalis or south to Riggertown.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-36"/>
+    </children>
+  </item>
+  <item nodeId="node-36">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Via Terminalis, West Street&#x000A;You are adrift in the bustle of crowds and carriages, a raucous river that runs through the blood-vessel streets. Signage advertises a profusion of shops and services amid the sounds of leather rollers and stitching machines. In the distant mist, the Bilious Canal spills from the Channelworks into the heart of the city.&#x000A;&#x000A;The Via runs from west to southeast, where it bridges the canal. A condemned block is visible to the north. A hanging banner obscures an alley to the southwest, and a footpath follows the canal to the south.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-37"/>
+    </children>
+  </item>
+  <item nodeId="node-37">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Via Terminalis, West End&#x000A;You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.&#x000A;&#x000A;The white cross of Doctor Cavala's clinic is to the west, the dormitory block where you live lies to the north, and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east.&#x000A;&#x000A;Wait a moment.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-38"/>
+    </children>
+  </item>
+  <item nodeId="node-38">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Someone on the street has just drawn her sword and stalked into Doctor Cavala's clinic.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-39"/>
+    </children>
+  </item>
+  <item nodeId="node-39">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Via Terminalis, West End&#x000A;You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.&#x000A;&#x000A;The white cross of Doctor Cavala's clinic is to the west, the dormitory block where you live lies to the north, and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-40"/>
+    </children>
+  </item>
+  <item nodeId="node-40">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">You rush through the door of the&#x000A;&#x000A;Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;And she is there, walking slowly toward the mortuary stairs. Her sword glints in the final rays of sunlight.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-41"/>
+    </children>
+  </item>
+  <item nodeId="node-41">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"Coming!" Doctor Cavala calls. You hear the doctor's chair shift, her footfalls climbing the steps.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-42"/>
+    </children>
+  </item>
+  <item nodeId="node-42">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">The hooded stranger raises her sword.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-43"/>
+    </children>
+  </item>
+  <item nodeId="node-43">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">You stand there, frozen in shock. Your heart hammers in your chest.&#x000A;&#x000A;The assassin turns her head and looks directly at you.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-44"/>
+    </children>
+  </item>
+  <item nodeId="node-44">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">Her face catches the light and she has so</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-45"/>
+    </children>
+  </item>
+  <item nodeId="node-45">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">many</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-46"/>
+    </children>
+  </item>
+  <item nodeId="node-46">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">teeth</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-47"/>
+    </children>
+  </item>
+  <item nodeId="node-47">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">and Doctor Cavala comes up the stairs with a flying tackle that sends the assassin staggering into the waiting chairs. In three steps she is reaching under the counter -- but the assassin is quicker -- her blade faster -- blood spatters the floor -- Doctor Cavala cries out -- a blur of motion -- and there is a flash and thunder from the walls.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-48"/>
+    </children>
+  </item>
+  <item nodeId="node-48">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">The assassin clutches at her face. Doctor Cavala raises the cutter and pulls the trigger again -- lightning arcs, misses by inches.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-49"/>
+    </children>
+  </item>
+  <item nodeId="node-49">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">"Get the fuck out of my clinic," she growls.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-50"/>
+    </children>
+  </item>
+  <item nodeId="node-50">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">A rush of wind. The assassin is gone. You whirl around and see only a dark shape disappearing into the coming night.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-51"/>
+    </children>
+  </item>
+  <item nodeId="node-51">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">Doctor Cavala takes a deep breath. Stifles a cry.&#x000A;&#x000A;"Marid," she says. "My leg."</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-52"/>
+    </children>
+  </item>
+  <item nodeId="node-52">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She's slumped onto the floor, her chest rising and falling. A gash has been torn above her left knee. Her entire trouser leg is stained red.&#x000A;&#x000A;1) "Doctor...!"&#x000A;2) "Oh Primes..."&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-53"/>
+    </children>
+  </item>
+  <item nodeId="node-53">
+    <command xml:space="preserve">1</command>
+    <result xml:space="preserve">"Doctor...!"&#x000A;&#x000A;"Shut up and help me--"&#x000A;&#x000A;You rush to Doctor Cavala's side. Even from a cursory examination, it's obvious that she needs help, and quickly.&#x000A;&#x000A;"Hurry," she says through gritted teeth. "There's a first aid bag behind the counter--"&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-54"/>
+    </children>
+  </item>
+  <item nodeId="node-54">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">You can't leave Doctor Cavala, not now.&#x000A;&#x000A;Doctor Cavala's breathing is getting faster.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-55"/>
+    </children>
+  </item>
+  <item nodeId="node-55">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-56"/>
+    </children>
+  </item>
+  <item nodeId="node-56">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;Doctor Cavala is starting to look very pale. "Hurry," she whispers.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-57"/>
+    </children>
+  </item>
+  <item nodeId="node-57">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-58"/>
+    </children>
+  </item>
+  <item nodeId="node-58">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;Doctor Cavala is on the verge of passing out.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-59"/>
+    </children>
+  </item>
+  <item nodeId="node-59">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-60"/>
+    </children>
+  </item>
+  <item nodeId="node-60">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;You realize that Doctor Cavala's eyes have closed.&#x000A;&#x000A;When you try to rouse her, she doesn't wake.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-61"/>
+    </children>
+  </item>
+  <item nodeId="node-61">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She never will.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-62"/>
+    </children>
+  </item>
+  <item nodeId="node-62">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-63"/>
+    </children>
+  </item>
+  <item nodeId="node-63">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-64"/>
+    </children>
+  </item>
+  <item nodeId="node-64">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-65"/>
+    </children>
+  </item>
+  <item nodeId="node-65">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-66"/>
+    </children>
+  </item>
+  <item nodeId="node-66">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-67"/>
+    </children>
+  </item>
+  <item nodeId="node-67">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-68"/>
+    </children>
+  </item>
+  <item nodeId="node-68">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;Doctor Cavala's breathing is getting faster.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-69"/>
+    </children>
+  </item>
+  <item nodeId="node-69">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-70"/>
+    </children>
+  </item>
+  <item nodeId="node-70">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;Doctor Cavala is starting to look very pale. "Hurry," she whispers.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-71"/>
+    </children>
+  </item>
+  <item nodeId="node-71">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-72"/>
+    </children>
+  </item>
+  <item nodeId="node-72">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;Doctor Cavala is on the verge of passing out.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-73"/>
+    </children>
+  </item>
+  <item nodeId="node-73">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-74"/>
+    </children>
+  </item>
+  <item nodeId="node-74">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;You realize that Doctor Cavala's eyes have closed.&#x000A;&#x000A;When you try to rouse her, she doesn't wake.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-75"/>
+    </children>
+  </item>
+  <item nodeId="node-75">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She never will.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-76"/>
+    </children>
+  </item>
+  <item nodeId="node-76">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">*** You have failed ***&#x000A;&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-77"/>
+    </children>
+  </item>
+  <item nodeId="node-77">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-78"/>
+    </children>
+  </item>
+  <item nodeId="node-78">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;You realize that Doctor Cavala's eyes have closed.&#x000A;&#x000A;When you try to rouse her, she doesn't wake.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-79"/>
+    </children>
+  </item>
+  <item nodeId="node-79">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She never will.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-80"/>
+    </children>
+  </item>
+  <item nodeId="node-80">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-81"/>
+    </children>
+  </item>
+  <item nodeId="node-81">
+    <command xml:space="preserve">rules</command>
+    <result xml:space="preserve">*** You have failed ***&#x000A;&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-82"/>
+    </children>
+  </item>
+  <item nodeId="node-82">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Please give one of the answers above.&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-83"/>
+    </children>
+  </item>
+  <item nodeId="node-83">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-84"/>
+    </children>
+  </item>
+  <item nodeId="node-84">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-85"/>
+    </children>
+  </item>
+  <item nodeId="node-85">
+    <command xml:space="preserve">l</command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-86"/>
+    </children>
+  </item>
+  <item nodeId="node-86">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">This is no time for inaction.&#x000A;&#x000A;You realize that Doctor Cavala's eyes have closed.&#x000A;&#x000A;When you try to rouse her, she doesn't wake.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-87"/>
+    </children>
+  </item>
+  <item nodeId="node-87">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She never will.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-88"/>
+    </children>
+  </item>
+  <item nodeId="node-88">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">*** You have failed ***&#x000A;&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-89"/>
+    </children>
+  </item>
+  <item nodeId="node-89">
+    <command xml:space="preserve">undo</command>
+    <result xml:space="preserve">Clinic&#x000A;[Previous turn undone.]&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-90"/>
+    </children>
+  </item>
+  <item nodeId="node-90">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;You realize that Doctor Cavala's eyes have closed.&#x000A;&#x000A;When you try to rouse her, she doesn't wake.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-91"/>
+    </children>
+  </item>
+  <item nodeId="node-91">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">She never will.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-92"/>
+    </children>
+  </item>
+  <item nodeId="node-92">
+    <command xml:space="preserve">[enter]</command>
+    <result xml:space="preserve">&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-93"/>
+    </children>
+  </item>
+  <item nodeId="node-93">
+    <command xml:space="preserve"></command>
+    <result xml:space="preserve">Clinic&#x000A;A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes. Further on is the consulting study, home to a desk strewn with notes and diagrams.&#x000A;&#x000A;A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east.&#x000A;&#x000A;A first aid bag is behind the counter.&#x000A;&#x000A;Doctor Cavala is lying on the floor in pain.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-94"/>
+    </children>
+  </item>
+  <item nodeId="node-94">
+    <command xml:space="preserve">z</command>
+    <result xml:space="preserve">*** You have failed ***&#x000A;&#x000A;&#x000A;&#x000A;Would you like to RESTART, RESTORE a saved game, QUIT, or UNDO the last command?&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+  </item>
+  <item nodeId="node-95">
+    <command xml:space="preserve">asdf</command>
+    <result xml:space="preserve">That is either not important or not something you can see.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-96"/>
+    </children>
+  </item>
+  <item nodeId="node-96">
+    <command xml:space="preserve">skip to mechanistry</command>
+    <result xml:space="preserve">Riggertown Mechanistry&#x000A;This building is just as haphazard inside as it is on the outside. Assembly lines run up and down and all around the many levels of this building, weighed down by unfinished, not-quite-manufactured things. At stations along the lines, factory workers are hunched over workbenches, welding disparate parts together within acceptable margins of irregularity.&#x000A;&#x000A;To the north, through a series of raised metal shutters, is the exit.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-97"/>
+    </children>
+  </item>
+  <item nodeId="node-97">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Riggertown, Upper Level&#x000A;This is the more industrial part of Riggertown. The buildings here are scrap-heap spires that twist and turn around each other, with cubby-carts trundling along cables strung between them. Amidst horns honking advertisements, there is a great mess of little people shuffling about, and roads winding in ways wholly inexplicable to your human sensibilities.&#x000A;&#x000A;To the south looms an enormously noisy factory, which signage identifies as the Riggertown Mechanistry. A quieter road leads southwest to the suburbs. You could also descend a series of ladders to Lower Riggertown, or take a footpath north along the Bilious Canal.&#x000A;&#x000A;It's getting dark out. The spires and factories are closing for the day.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-98"/>
+    </children>
+  </item>
+  <item nodeId="node-98">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Following the Canal&#x000A;Glittering waters roar alongside the footpath you stand on, running from north to south in an ever-restless torrent. North lies the Via Terminalis, and beyond it the mouth of the Channelworks; to the south, the path descends by steps and turns, ending in the algae and grime of Upper Riggertown.&#x000A;&#x000A;The exterminators have finished their work. The cordon is gone, and the manhole is shut once more.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-99"/>
+    </children>
+  </item>
+  <item nodeId="node-99">
+    <command xml:space="preserve">n</command>
+    <result xml:space="preserve">Via Terminalis, West Street&#x000A;You are adrift in the bustle of crowds and carriages, a raucous river that runs through the blood-vessel streets. Signage advertises a profusion of shops and services amid the sounds of leather rollers and stitching machines. In the distant mist, the Bilious Canal spills from the Channelworks into the heart of the city.&#x000A;&#x000A;The Via runs from west to southeast, where it bridges the canal. A condemned block is visible to the north. A hanging banner obscures an alley to the southwest, and a footpath follows the canal to the south.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-100"/>
+    </children>
+  </item>
+  <item nodeId="node-100">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Via Terminalis, West End&#x000A;You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.&#x000A;&#x000A;The white cross of Doctor Cavala's clinic is to the west, the dormitory block where you live lies to the north, and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east.&#x000A;&#x000A;Wait a moment.</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
+    <children>
+      <child nodeId="node-101"/>
+    </children>
+  </item>
+  <item nodeId="node-101">
+    <command xml:space="preserve">w</command>
+    <result xml:space="preserve">Someone on the street has just drawn her sword and stalked into Doctor Cavala's clinic.&#x000A;&#x000A;&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>NO</changed>
+    <temporary score="0">YES</temporary>
   </item>
 </Skein>

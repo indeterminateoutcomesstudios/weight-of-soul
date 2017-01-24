@@ -91,7 +91,7 @@ To say wait for any key: wait for any key. [This allows us to write it directly 
 
 This is the rest of the turn rule:
 	follow the scene changing rules;
-	abide by the every turn stage rule;
+	follow the every turn rules;
 	abide by the timed events rule;
 	abide by the advance time rule;
 	abide by the update chronological records rule;
@@ -100,7 +100,7 @@ This is the rest of the turn rule:
 	abide by the notify score changes rule;
 	follow the scene changing rules.
 
-[This is the turn sequence rules minus the part that parses and follows a command, plus the scene changing rules (which apparently do not trigger if you reject the player's command). We use the 'rest of the turn rule' later when we reject the player's command but still want to advance the turn. The scene changing rules are listed twice in case a scene start or end condition changes between the start and end of this rule.]
+[This is the turn sequence rules minus the part that parses and follows a command. We use the 'rest of the turn rule' later when we reject the player's command but still want to advance the turn.]
 
 Part 1.1.4 - Tweaked Approaches Functionality
 
@@ -429,7 +429,7 @@ Instead of looking under something worn by an other living person (called the we
 
 Instead of taking an other living person (this is the new can't take people response rule): say "[regarding the noun]You lack the strength, even if [they] allowed you to."
 
-Instead of attacking, cutting, knocking on, or pushing an other friendly living person (this is the can't hurt friendly people rule): say "That hardly seems called for."
+Instead of attacking, cutting, knocking on, or pushing an other friendly living person (this is the can't hurt friendly people rule): say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."
 Instead of kissing, pulling, rubbing, searching, smelling, swinging, squeezing, touching, or turning an other friendly living person (this is the block actions on friendly people rule): say "[if time is critical]This is not the time.[otherwise]You aren't [italic type]that[roman type] friendly with [the noun]."
 
 Instead of attacking or cutting an other hostile living person (this is the can't hurt hostile people rule): say "You doubt that would end well for you."
@@ -451,7 +451,7 @@ Part 1.3.3 - Recurring Characters
 Chapter 1.3.3.1 - Doctor Cavala
 
 Doctor Cavala is a woman.
-The scent is "Doctor Cavala never wears perfume, owing to the danger of contamination during surgery."
+The scent is "[if time is critical]Doctor Cavala is sweating.[otherwise]Doctor Cavala never wears perfume, owing to the danger of contamination during surgery."
 Understand "dark-skinned" or "physician" or "dr" as Cavala.
 
 Doctor Cavala can be able-bodied or incapacitated. She is able-bodied. [She becomes incapacitated later in the story, and certain descriptions need to reflect that.]
@@ -892,7 +892,7 @@ Rule for printing a parser error when the latest parser error is the I beg your 
 	if the player is engaged in dialogue:
 		say "Please choose a response from the list by typing the corresponding number.";
 	otherwise:
-		abide by the after reading a command rules; [This is notably relevant during Reden's Surgery.]
+		follow the after reading a command rules; [This is notably relevant during Reden's Surgery.]
 		try looking;
 		follow the rest of the turn rule.
 
@@ -2225,7 +2225,7 @@ Part 3.2.2 - Calomel Curtain
 
 The calomel curtain is a scenery door. It is south of the Surgery Room and north of the Clinic. It is open and unopenable.
 The description is "It decontaminates objects that pass through it."
-The scent is "It smells, unsurprisingly, of calomel."
+The scent is "It smells[if time is not critical], unsurprisingly,[end if] of calomel."
 Understand "immaterial" or "field" or "of" or "energy" as the calomel curtain.
 Understand "exit" as the calomel curtain when the location is the Surgery Room.
 
@@ -2676,7 +2676,7 @@ The view of the Via Terminalis is in the Clinic.
 Before entering the view of the Via Terminalis in the Clinic, try going east instead.
 
 Some waiting chairs are an enterable scenery supporter in the Clinic.
-The description is "[if Nine to Five Zombie is happening]The chairs are empty.[otherwise]They're for waiting patients to sit on."
+The description is "They're for waiting patients to sit on."
 Understand "row" or "of" or "chair" or "area" as the waiting chairs.
 Report entering the waiting chairs: say "You sit on one of the chairs."; stop the action.
 Report getting off the waiting chairs: say "You stand up."; stop the action.
@@ -2691,14 +2691,14 @@ Instead of entering the prescription counter, say "That won't accomplish anythin
 The money drawer is a scenery container part of the prescription counter. It is closed and openable.
 Instead of examining the money drawer, say "If you didn't work here, you would never have noticed the faint bevel that demarcates it." 
 Understand "faint" or "bevel" or "drawer for money" as the money drawer.
-Instead of opening the money drawer, say "You are many things, Marid, but you are not a thief."
+Instead of opening the money drawer, say "[if time is critical]This is not the time.[otherwise]You are many things, Marid, but you are not a thief."
 
 The small brass handbell is scenery on the prescription counter.
-The description is "A small brass handbell. You know its sound all too well."
-Understand "bell" or "clapper" as the handbell.
-Instead of listening to or swinging the handbell, say "You have already heard it ring countless times, and you aren't inclined to listen to it again."
-Instead of searching the handbell, say "Inside the bell is its clapper."
-Instead of taking the handbell, say "You see little point in removing it from the counter."
+The description is "A small brass handbell[if time is not critical]. You know its sound all too well[end if]."
+Understand "bell" or "clapper" as the small brass handbell.
+Instead of listening to or swinging the small brass handbell, say "[if time is critical]This is not the time.[otherwise]You have already heard it ring countless times, and you aren't inclined to listen to it again."
+Instead of searching the small brass handbell, say "Inside the bell is its clapper."
+Instead of taking the small brass handbell, say "You see little point in removing it from the counter."
 
 The view of the surgery room is faraway scenery in the Clinic.
 Instead of doing anything when the current action involves the view of the surgery room, say "You can't perceive much of the surgery room from here."
@@ -2706,27 +2706,24 @@ Instead of doing anything when the current action involves the view of the surge
 Chapter 3.3.1.1 - Consulting Study
 
 The consulting study is scenery in the Clinic.
-The description is "[if Nine to Five Zombie is happening]Doctor Cavala is not in her study.[otherwise]Named so because it is used for study and consultation."
+The description is "Named so because it is used for study and consultation."
 Before entering the consulting study, try entering Doctor Cavala's armchair instead.
 
 Doctor Cavala's armchair is an enterable scenery supporter in the Clinic.
-The description is "[if Nine to Five Zombie is happening]Doctor Cavala's armchair is empty.[otherwise]It looks comfortable."
+The description is "It looks comfortable."
 Instead of taking, pushing, pulling, or turning Doctor Cavala's armchair, say "You don't think Doctor Cavala would appreciate that."
-[Doctor Cavala is technically not in her armchair, so we can show her initial appearance. But we want the game to behave in all other respects as though she is.]
-Instead of entering the armchair when Doctor Cavala is in the Clinic, say "Doctor Cavala is already in the armchair."
-Instead of putting anything on the armchair when Doctor Cavala is in the Clinic, say "Doctor Cavala is already in the armchair."
-Report entering the armchair: say "You sit in the armchair."; stop the action.
-Report getting off the armchair: say "You stand up."; stop the action.
+Report entering Doctor Cavala's armchair: say "You sit in the armchair."; stop the action.
+Report getting off Doctor Cavala's armchair: say "You stand up."; stop the action.
 
 The consulting-study desk is a scenery supporter in the Clinic. The printed name is "desk in the consulting study".
 The description is "Doctor Cavala's notes are laid out in neat stacks."
-Understand "desk in the consulting study" or "consulting/study desk" or "consulting study desk" as the desk.
+Understand "desk in the consulting study" or "consulting/study desk" or "consulting study desk" as the consulting-study desk.
 
 There is some plural-named scenery on the desk called Doctor Cavala's notes and diagrams.
 The description is "Studies of human, goblin, and mutant anatomy; musings on possible contagion vectors; comparisons between ailments with similar symptoms."
 Understand "note" or "diagram" or "studies" or "anatomy" or "musings" or "comparisons" or "possible" or "contagion" or "vectors" or "ailments" or "similar" or "symptoms" as the diagrams.
-Instead of searching the diagrams, say "It's all way over your head."
-Instead of looking under or taking the diagrams, say "You shouldn't interfere with Doctor Cavala's work."
+Instead of searching Doctor Cavala's notes and diagrams, say "It's all way over your head."
+Instead of looking under or taking Doctor Cavala's notes and diagrams, say "You shouldn't interfere with Doctor Cavala's work."
 
 Part 3.3.2 - Front Door of the Clinic
 
@@ -2798,6 +2795,10 @@ Rule for writing a paragraph about Doctor Cavala during Walking Home in Darkness
 			say "Doctor Cavala glances at you before returning to her paperwork.";
 	otherwise:
 		say "Doctor Cavala is at her desk, engrossed in paperwork[if the location was the Surgery Room]. As you emerge from the surgery room, she glances up and gives you a nod[end if].";
+		
+[Doctor Cavala is technically not in her armchair, so we can show her initial appearance. But we want the game to behave in all other respects as though she is.]
+Instead of entering Doctor Cavala's armchair while Prologue is happening, say "Doctor Cavala is already in the armchair."
+Instead of putting anything on Doctor Cavala's armchair while Prologue is happening, say "Doctor Cavala is already in the armchair."
 
 Instead of talking to Doctor Cavala during Walking Home in Darkness:
 	if cavala-wh-forgot-quipped has been true for only one turn:
@@ -2840,7 +2841,9 @@ Before reading a command when the player is in the Clinic and 9-5-zombie-cavala-
 	now 9-5-zombie-cavala-prompt is true.
 	
 Before going east in the Clinic during Nine to Five Zombie, say "Perhaps you should take a closer look around the clinic." instead.
-Instead of searching the consulting study during Nine to Five Zombie, say "Doctor Cavala is not in her study."
+Instead of examining the waiting chairs during Nine to Five Zombie, say "The chairs are empty."
+Instead of examining Doctor Cavala's armchair during Nine to Five Zombie, say "Doctor Cavala's armchair is empty."
+Instead of examining or searching the consulting study when Nine to Five Zombie is happening, say "Doctor Cavala is not in her study."
 Instead of searching the prescription counter during Nine to Five Zombie, say "Doctor Cavala is not behind the counter."
 
 Instead of listening to or swinging the handbell during Reden's Autopsy, start a dialogue with Doctor Cavala.
@@ -2855,19 +2858,6 @@ Instead of listening to the clinic door during Returning to a Break-In, say "You
 Instead of closing the clinic door during Returning to a Break-In, say "This is not the time."
 	
 Instead of going to the Clinic when Returning to a Break-In is happening and Carnicer is in the Clinic (this is the Returning to a Break-In cutscene rule):
-	[begin showcase build]
-	clear only the main screen;
-	say "[paragraph break][paragraph break][paragraph break][paragraph break]";
-	center "T O";
-	say paragraph break;
-	center "B E";
-	say paragraph break;
-	center "C O N T I N U E D";
-	wait for any key;
-	clear only the main screen;
-	end the story saying "Thanks for playing";
-	rule fails;
-	[end showcase build]
 	say "You rush through the door of the[paragraph break]";
 	move the player to the Clinic, without printing a room description;
 	say "[bold type]Clinic[roman type][line break]";
@@ -2965,10 +2955,10 @@ To resolve Averting Cavala's Assassination:
 	wait for any key;
 	say "teeth[paragraph break]";
 	wait for any key;
-	say "and Doctor Cavala comes up the stairs with a flying tackle that sends the assassin staggering into the waiting chairs. In three steps she is reaching under the counter -- but the assassin is quicker -- her blade faster -- blood spatters the floor -- Doctor Cavala cries out -- a blur of motion -- and there is a flash and thunder echoes from the walls.[paragraph break]";
+	say "and Doctor Cavala comes up the stairs with a flying tackle that sends the assassin staggering into the waiting chairs. In three steps she is reaching under the counter -- but the assassin is quicker -- her blade faster -- blood spatters the floor -- Doctor Cavala cries out -- a blur of motion -- and there is a flash and thunder from the walls.[paragraph break]";
 	now Doctor Cavala is incapacitated;
 	wait for any key;
-	say "The assassin clutches at her face. Doctor Cavala raises the cutter and pulls the trigger again and lightning arcs, misses by inches.[paragraph break]";
+	say "The assassin clutches at her face. Doctor Cavala raises the cutter and pulls the trigger again -- lightning arcs, misses by inches.[paragraph break]";
 	wait for any key;
 	say "'Get the fuck out of my clinic,' she growls.[paragraph break]";
 	wait for any key;
@@ -2979,22 +2969,14 @@ To resolve Averting Cavala's Assassination:
 'Marid,' she says. 'My leg.'[paragraph break]";
 	now Carnicer is nowhere;
 	wait for any key;
-	say "She's slumped onto the floor, her chest rising and falling. A gash has been torn just above her left knee. Her entire trouser leg is stained red.";
+	say "She's slumped onto the floor, her chest rising and falling. A gash has been torn above her left knee. Her entire trouser leg is stained red.";
 	start a dialogue with Doctor Cavala using dialogue cavala-firstaid-home.
 
 Chapter 3.3.5.4 - First Aid on Cavala
 
-[This is a multi-step procedure similar to Reden's surgery.
+[This is a multi-step procedure similar to Reden's surgery.]
 
-0. Doctor Cavala is already lying on the ground and has checked the wound for debris.
-
-1. Immediately bandage the wound tightly.
-
-2. Apply tourniquet.
-
-3. Raise her leg.
-
-4. Put ice on it.]
+The CSOFAOC [current step of first aid on Cavala] is a number that varies.
 
 Section 3.3.5.4.1 - Cavala First Aid Dialogue
 
@@ -3003,8 +2985,19 @@ Some dialogue branches are defined by the Table of Cavala First Aid Dialogue.
 Table of Cavala First Aid Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-firstaid-home	true	false	""	""	{cavala-firstaid-doctor, cavala-firstaid-ohprimes}
-cavala-firstaid-doctor	true	false	"'Doctor...!'"	""	{}
-cavala-firstaid-ohprimes	true	false	"'Oh Primes...'"	""	{}
+cavala-firstaid-doctor	true	false	"'Doctor...!'"	"'Doctor...!'
+
+'Be quiet and help me--'
+
+[cavala-firstaid-examinewound]"	{}
+cavala-firstaid-ohprimes	true	false	"'Oh Primes...'"	"'Oh Primes...'
+
+[cavala-firstaid-examinewound]"	{}
+
+To say cavala-firstaid-examinewound:
+	say "You rush to Doctor Cavala's side. Even from a cursory examination, it's obvious that she needs help, and quickly.
+
+'Hurry,' she says through gritted teeth. 'There's a first aid bag behind the counter.'";
 
 Section 3.3.5.4.2 - Setting the Scene
 
@@ -3012,15 +3005,75 @@ Rule for writing a paragraph about Doctor Cavala during First Aid on Cavala:
 	say "Doctor Cavala is lying on the floor in pain.";
 	
 Instead of examining Doctor Cavala during First Aid on Cavala: [If for some reason we've never examined Doctor Cavala, this bypasses the suspense-killing initial description of her.]
-	say "Insert description here."
+	if the CSOFAOC is:
+		-- 1:
+			say "She's bleeding heavily.";
 	
 The galvanic cutter is a thing.
-The description is "It looks like Doctor Cavala kept a little something from her days as an army surgeon."
+The description is "It looks like the doctor kept a little something from her days as an army surgeon."
 The scent is "You can still detect the faint smell of ozone."
 Understand "lightning" as the galvanic cutter.
 
-When First Aid on Cavala begins (this is the spawn the galvanic cutter rule):
-	now the galvanic cutter is carried by Doctor Cavala.
+When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule):
+	now the galvanic cutter is carried by Doctor Cavala;
+	now the first aid bag is in the Clinic;
+	now the CSOFAOC is 1.
+	
+Section 3.3.5.4.3 - Step 1, Get the First Aid Bag
+	
+The first aid bag is a closed openable container.
+"A first aid bag is behind the counter."
+[It has no description because we want to show its contents and nothing else.]
+
+Before examining, searching, or looking under the prescription counter when the CSOFAOC is 1:
+	try taking the first aid bag instead.
+
+Instead of examining, opening, searching, or taking the first aid bag when the CSOFAOC is 1 (this is the getting the first aid bag rule):
+	now the first aid bag is carried by the player;
+	now the first aid bag is open;
+	say "You grab the bag and wrest it open. Inside [is-are a list of things in the first aid bag].";
+	now the CSOFAOC is 2.
+
+Section 3.3.5.4.4 - Step 2, Bandage the Wound
+
+An irrelevant first aid tool is a kind of thing.
+Instead of doing anything with an irrelevant first aid tool, say "You don't need that right now."
+
+Section 3.3.5.4.5 - Step 3, Raise the Leg
+
+Section 3.3.5.4.6 - Step 4, Put Ice on It
+
+Section 3.3.5.4.7 - Step 5, Call the Vigiles
+
+Section 3.3.5.4.8 - Cavala Bleeding Out
+
+cavala-firstaid-bleed-timer is a number that varies.
+
+Every turn when First Aid on Cavala is happening and (the CSOFAOC is 1 or the CSOFAOC is 2) (this is the Doctor Cavala bleeding out during first aid rule):
+	increment cavala-firstaid-bleed-timer;
+	if cavala-firstaid-bleed-timer is:
+		-- 3:
+			say "Doctor Cavala's breathing is getting faster.";
+		-- 5:
+			say "Doctor Cavala is starting to look very pale. 'Hurry,' she whispers.";
+		-- 7:
+			say "Doctor Cavala is on the verge of passing out.";
+		-- 9:
+			say "You realize that Doctor Cavala's eyes have closed.
+
+When you try to rouse her, she doesn't wake.[paragraph break]";
+			wait for any key;
+			say "She never will.[paragraph break]";
+			wait for any key;
+			end the story saying "You have failed".
+
+Section 3.3.5.4.9 - What Not to Do during Life-and-Death First Aid
+
+Instead of entering the waiting chairs during First Aid on Cavala, say "This is no time to sit down."
+Instead of entering Doctor Cavala's armchair during First Aid on Cavala, say "This is no time to sit down."
+Instead of going during First Aid on Cavala, say "You can't leave Doctor Cavala, not now."
+
+Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 5, say "No, you still need the first aid bag."
 
 Book 3.4 - Mortuary
 
