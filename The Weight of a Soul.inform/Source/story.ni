@@ -11,7 +11,7 @@ The story creation year is 2017.
 
 
 
-!!!!!!!!!!!!
+
 
 S P O I L E R   W A R N I N G
 
@@ -21,7 +21,7 @@ If you read on, there WILL be massive spoilers.
 
 You have been warned.
 
-!!!!!!!!!!!!
+
 
 
 
@@ -265,7 +265,7 @@ Part 1.2.3 - Skipping Scenes
 
 To skip past Reden's Surgery:
 	now Reden is dead;
-	now all purely surgical necessities are nowhere;
+	now all purely-surgical-necessities are nowhere;
 	now the enabled of cavala-errands2-vision is true;
 	now the surgical mask is nowhere;
 	now the surgical lamps are switched off;
@@ -351,6 +351,17 @@ To skip past Zoiro:
 	now the forewoman is nowhere;
 	follow the scene changing rules.
 	
+To skip past the first Carnicer encounter:
+	if Cavala's Errands has not ended:
+		skip past Zoiro;
+	now the clinic door is open;
+	move the player to the Clinic, without printing a room description;
+	follow the scene changing rules;
+	now Doctor Cavala is in the Clinic;
+	now Doctor Cavala is incapacitated;
+	now Carnicer is nowhere;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing. Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "Reden's surgery has already ended."; stop the action.
 Carry out skipping Reden's surgery:
@@ -387,6 +398,12 @@ Check skipping to mechanistry when Cavala's Errands has ended: say "Returning to
 Carry out skipping to mechanistry:
 	skip past Zoiro;
 	try looking.
+	
+Skipping to first aid is an action applying to nothing. Understand "skip to first aid" as skipping to first aid.
+Check skipping to first aid when Averting Cavala's Assassination has ended: say "First Aid on Cavala has already begun."; stop the action.
+Carry out skipping to first aid:
+	skip past the first Carnicer encounter;
+	say "[cavala-firstaid-examinewound][paragraph break]".
 	
 Part 1.2.4 - Other Debug Commands - Not for release
 
@@ -638,25 +655,25 @@ Part 2.2.1 - Key Items
 
 [This marks items that can't be dropped.]
 
-A key item is a kind of thing.
+A key-item is a kind of thing.
 
-Last check dropping (this is the can't drop key items rule):
-	if the noun is a key item:
+Last check dropping (this is the can't drop key-items rule):
+	if the noun is a key-item:
 		say "It's better to keep [the noun] on your person.";
 		stop the action.
 
-Last check putting something on something (this is the can't put key items on things rule):
-	if the noun is a key item:
+Last check putting something on something (this is the can't put key-items on things rule):
+	if the noun is a key-item:
 		say "It's better to keep [the noun] on your person.";
 		stop the action.
 		
-Last check inserting something into something (this is the can't insert key items into things rule):
-	if the noun is a key item:
+Last check inserting something into something (this is the can't insert key-items into things rule):
+	if the noun is a key-item:
 		say "It's better to keep [the noun] on your person.";
 		stop the action.
 		
-Last check giving something to someone (this is the can't give away key items rule):
-	if the noun is a key item:
+Last check giving something to someone (this is the can't give away key-items rule):
+	if the noun is a key-item:
 		say "It's better to keep [the noun] on your person.";
 		stop the action.
 
@@ -736,7 +753,7 @@ Before examining the animus pendant when time is critical, say "Not now." instea
 
 Part 2.2.5 - Practitioner's Badge
 
-The practitioner's badge is a key item carried by the player. The indefinite article is "your".
+The practitioner's badge is a key-item carried by the player. The indefinite article is "your".
 The description is "This burnished badge bears the symbol of a snake coiling around a staff, certifying you as a qualified apprentice of the [italic type]ars vitalis[roman type]."
 Understand "burnished" or "symbol" or "snake" or "staff" as the practitioner's badge.
 
@@ -748,7 +765,7 @@ Instead of wearing the practitioner's badge, say "[if time is critical]This is n
 
 Part 2.2.6 - Scalpel
 
-The scalpel is a key item carried by the player. The indefinite article is "your".
+The scalpel is a key-item carried by the player. The indefinite article is "your".
 The description is "This elegant blade was a graduation gift from the Physicians['] College. It measures just over twenty centimeters long, and holds a finely graduated orichalcum edge."
 The scent is "You smell the otherworldly tang of orichalcum."
 Understand "elegant" or "blade" or "orichalcum" or "edge" as the scalpel.
@@ -765,7 +782,7 @@ Instead of swinging the scalpel, say "[if time is critical]That won't help you.[
 
 Part 2.2.7 - Purse
 
-The purse is a key item carried by the player. The indefinite article is "your".
+The purse is a key-item carried by the player. The indefinite article is "your".
 The description is "A simple cloth purse. It's slightly worn from age."
 The scent is "Its scent has been leached from the constant proximity to natron-inscribed notes."
 Understand "money" or "cash" or "libra/librae/talent/talents" or "[number] libra/librae/talent/talents" as the purse.
@@ -782,7 +799,7 @@ Instead of searching the purse, say "[if time is critical]This is not the time.[
 
 Part 2.2.8 - Antiseptic Cloth
 
-The antiseptic cloth is a key item carried by the player.
+The antiseptic cloth is a key-item carried by the player.
 The description is "It's for cleaning your scalpel."
 The scent is "It smells sharply of alcohol and calomel."
 
@@ -809,7 +826,7 @@ Instead of knocking on, pushing, rubbing, squeezing, touching, or turning the ma
 
 Part 2.2.10 - Bundle of Documents
 
-The bundle of documents is a key item.
+The bundle of documents is a key-item.
 The description is "Comprehensive documentation of Reden's death. It's filled out in neat longhand and bound with Doctor Cavala's signature."
 The scent is "It smells of ink."
 Understand "sheaf" or "document/documentation" or "paper/papers" or "doctor/doctor's/-- cavala/cavala's/-- signature" or "seal" as the bundle of documents.
@@ -821,7 +838,7 @@ Instead of giving the bundle of documents to Doctor Cavala, say "Doctor Cavala g
 
 Part 2.2.11 - Endoscope
 
-The endoscope is a key item.
+The endoscope is a key-item.
 The description is "An intricate assembly of tiny lenses mounted on adjustable brass rods. It can be used to see inside the internal pathways of the human body, or perhaps other sinuous crevices of a similar nature."
 Understand "intricate" or "assembly" or "tiny" or "lense" or "lenses" or "adjustable" or "brass" or "rod" or "rods" or "scope" or "fragile" or "implement" as the endoscope.
 
@@ -886,17 +903,145 @@ Part 2.3.2 - New Synonyms
 
 Chapter 2.3.2.1 - Blue Lacuna Style Input
 
-[Because why not?]
+Section 2.3.2.1.1 - ">" as a Synonym for Looking
 
-Rule for printing a parser error when the latest parser error is the I beg your pardon error (this is the accept Blue Lacuna style looking rule):
-	if the player is engaged in dialogue:
-		say "Please choose a response from the list by typing the corresponding number.";
-	otherwise:
-		follow the after reading a command rules; [This is notably relevant during Reden's Surgery.]
-		try looking;
-		follow the rest of the turn rule.
+[Parser hack courtesy of matt w. He writes:
+	
+	"What I've done is I've commented out the part of "Reading the Command" that handles "if the line was blank, get a fresh line." Then I use an "After reading a command" rule to handle the case where there's a blank command, by changing the command to what you want. I haven't checked it with undo and "end the story," but it might be safer than trying to hand-roll the turn sequence. Though I daren't ever say that messing with the parser template code is safe."
+
+I use matt w's hack instead of changing the "I beg your pardon" error message so that the game runs all of the appropriate turn sequence code -- including "undo" save states and "end the story" triggers -- which aren't covered by the "rest of the turn rule" in Part 1.1.3.]
+		
+First after reading a command (this is the accept Blue Lacuna style looking rule):
+	if the number of characters in "[the player's command]" is 0:
+		change the text of the player's command to "look". 
+
+Include
+(- 
+[ Keyboard  a_buffer a_table  nw i w w2 x1 x2;
+	sline1 = score; sline2 = turns;
+
+	while (true) {
+		! Save the start of the buffer, in case "oops" needs to restore it
+		for (i=0 : i<64 : i++) oops_workspace->i = a_buffer->i;
+	
+		! In case of an array entry corruption that shouldn't happen, but would be
+		! disastrous if it did:
+		#Ifdef TARGET_ZCODE;
+		a_buffer->0 = INPUT_BUFFER_LEN;
+		a_table->0 = 15;  ! Allow to split input into this many words
+		#Endif; ! TARGET_
+	
+		! Print the prompt, and read in the words and dictionary addresses
+		PrintPrompt();
+		DrawStatusLine();
+		KeyboardPrimitive(a_buffer, a_table);
+	
+		! Set nw to the number of words
+		#Ifdef TARGET_ZCODE; nw = a_table->1; #Ifnot; nw = a_table-->0; #Endif;
+	
+		! If the line was blank, get a fresh line (commented this code out)
+		!if (nw == 0) {
+		!	@push etype; etype = BLANKLINE_PE;
+		!	players_command = 100;
+		!	BeginActivity(PRINTING_A_PARSER_ERROR_ACT);
+		!	if (ForActivity(PRINTING_A_PARSER_ERROR_ACT) == false) {
+		!		PARSER_ERROR_INTERNAL_RM('X', noun); new_line;
+		!	}
+		!	EndActivity(PRINTING_A_PARSER_ERROR_ACT);
+		!	@pull etype;
+		!	continue;
+		!}
+	
+		! Unless the opening word was OOPS, return
+		! Conveniently, a_table-->1 is the first word on both the Z-machine and Glulx
+	
+		w = a_table-->1;
+		if (w == OOPS1__WD or OOPS2__WD or OOPS3__WD) {
+			if (oops_from == 0) { PARSER_COMMAND_INTERNAL_RM('A'); new_line; continue; }
+			if (nw == 1) { PARSER_COMMAND_INTERNAL_RM('B'); new_line; continue; }
+			if (nw > 2) { PARSER_COMMAND_INTERNAL_RM('C'); new_line; continue; }
+		
+			! So now we know: there was a previous mistake, and the player has
+			! attempted to correct a single word of it.
+		
+			for (i=0 : i<INPUT_BUFFER_LEN : i++) buffer2->i = a_buffer->i;
+			#Ifdef TARGET_ZCODE;
+			x1 = a_table->9;  ! Start of word following "oops"
+			x2 = a_table->8;  ! Length of word following "oops"
+			#Ifnot; ! TARGET_GLULX
+			x1 = a_table-->6; ! Start of word following "oops"
+			x2 = a_table-->5; ! Length of word following "oops"
+			#Endif; ! TARGET_
+		
+			! Repair the buffer to the text that was in it before the "oops"
+			! was typed:
+			for (i=0 : i<64 : i++) a_buffer->i = oops_workspace->i;
+			VM_Tokenise(a_buffer,a_table);
+		
+			! Work out the position in the buffer of the word to be corrected:
+			#Ifdef TARGET_ZCODE;
+			w = a_table->(4*oops_from + 1); ! Start of word to go
+			w2 = a_table->(4*oops_from);    ! Length of word to go
+			#Ifnot; ! TARGET_GLULX
+			w = a_table-->(3*oops_from);      ! Start of word to go
+			w2 = a_table-->(3*oops_from - 1); ! Length of word to go
+			#Endif; ! TARGET_
+		
+			! Write spaces over the word to be corrected:
+			for (i=0 : i<w2 : i++) a_buffer->(i+w) = ' ';
+		
+			if (w2 < x2) {
+				! If the replacement is longer than the original, move up...
+				for (i=INPUT_BUFFER_LEN-1 : i>=w+x2 : i-- )
+					a_buffer->i = a_buffer->(i-x2+w2);
+		
+				! ...increasing buffer size accordingly.
+				#Ifdef TARGET_ZCODE;
+				a_buffer->1 = (a_buffer->1) + (x2-w2);
+				#Ifnot; ! TARGET_GLULX
+				a_buffer-->0 = (a_buffer-->0) + (x2-w2);
+				#Endif; ! TARGET_
+			}
+		
+			! Write the correction in:
+			for (i=0 : i<x2 : i++) a_buffer->(i+w) = buffer2->(i+x1);
+		
+			VM_Tokenise(a_buffer, a_table);
+			#Ifdef TARGET_ZCODE; nw = a_table->1; #Ifnot; nw = a_table-->0; #Endif;
+		
+			return nw;
+		}
+
+		! Undo handling
+	
+		if ((w == UNDO1__WD or UNDO2__WD or UNDO3__WD) && (nw==1)) {
+			Perform_Undo();
+			continue;
+		}
+		i = VM_Save_Undo();
+		#ifdef PREVENT_UNDO; undo_flag = 0; #endif;
+		#ifndef PREVENT_UNDO; undo_flag = 2; #endif;
+		if (i == -1) undo_flag = 0;
+		if (i == 0) undo_flag = 1;
+		if (i == 2) {
+			VM_RestoreWindowColours();
+			VM_Style(SUBHEADER_VMSTY);
+			SL_Location(); print "^";
+			! print (name) location, "^";
+			VM_Style(NORMAL_VMSTY);
+			IMMEDIATELY_UNDO_RM('E'); new_line;
+			continue;
+		}
+		return nw;
+	}
+]; 
+-) instead of "Reading the Command" in "Parser.i6t".
+
+Section 2.3.2.1.2 - Contextual Keyword Commands
 
 Understand "[something]" as examining.
+		
+Understand "[any visited room]" as approaching.
 
 Chapter 2.3.2.2 - Upstairs, Downstairs
 
@@ -988,6 +1133,22 @@ A thing can be consultable. A thing is usually not consultable.
 Before consulting something that is not consultable about something (this is the search unconsultable things instead rule): try searching the noun instead.
 
 Part 2.3.3 - New Miscellaneous Actions
+
+Bandaging it with is an action applying to two things.
+Understand "bandage [something]" as bandaging it with.
+Understand "dress [something]" as bandaging it with.
+Understand "bandage [something] with [other things]" as bandaging it with.
+Understand "dress [something] with [other things]" as bandaging it with.
+
+Rule for supplying a missing second noun while bandaging (this is the assume a proper bandage rule): 
+	if the elastic bandage can be touched by the player:
+		now the second noun is the elastic bandage;
+	otherwise:
+		now the second noun is the player.
+	
+Check bandaging it with (this is the block bandaging rule):
+	say "[The noun] [don't] need bandaging.";
+	stop the action.
 
 Bed-making is an action applying to one thing. Understand "make [something]" as bed-making. [As you might have guessed, this is here for the bored player who attempts to 'make bed.']
 Check bed-making: say "That doesn't make any sense."; stop the action.
@@ -1104,15 +1265,11 @@ Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]Th
 
 Part 2.3.4 - New Parser Error Messages
 
-Last rule for printing a parser error (this is the new parser error message rule):
-	if the latest parser error is:
-		-- the can't see any such thing error:
-			say "That is either not important or not something you can see." instead;
-		-- the not a verb I recognise error:
-			say "That is either not important or not something you can see." instead;
-		-- the noun did not make sense in that context error:
-			say "That isn't an area you've visited." instead; [For approaching.]
-	make no decision.
+Rule for printing a parser error when the latest parser error is the can't see any such thing error or the latest parser error is the not a verb I recognise error (this is the new can't see any such thing rule):
+	say "That is either not important or not something you can see." instead.
+	
+Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the approaching a non-visited room rule):
+	say "That isn't an area you've visited." instead.
 	
 Part 2.3.5 - New Action Behavior
 
@@ -2267,13 +2424,15 @@ To say reden-gurney-description:
 
 The description of Reden is "[if Reden is living]Reden, goblin male aged 51, stumbled into the clinic six minutes ago suffering from convulsions and phantom pains. Now his life is in Doctor Cavala's hands -- and yours.[otherwise if Reden's Autopsy is happening]His chest cavity has been dissected, revealing a spiderweb pattern of blackened blood vessels and tissues.[otherwise]Black stains run down his cheeks like tears."
 
+Instead of bandaging Reden with, say "It's a little late for that."
+
 Chapter 3.2.4.1 - Streams of Black Blood
 
 Some streams of black blood are part of Reden.
 The description is "A chilling symptom. It's unlike any affliction you've ever studied."
-Understand "fluid/effluvium" or "stream" or "stain/stains" or "spiderweb" or "pattern" or "blackened" or "vessel/vessels/artery/arteries/arterial" or "tissue/tissues" as the streams.
-Instead of doing anything other than examining or rubbing with the streams, say "The fluid could be contagious. You shouldn't interact carelessly with it."
-Instead of doing anything when the second noun is the streams, say "The fluid could be contagious. You shouldn't interact carelessly with it."
+Understand "fluid/effluvium" or "stream" or "stain/stains" or "spiderweb" or "pattern" or "blackened" or "vessel/vessels/artery/arteries/arterial" or "tissue/tissues" as the streams of black blood.
+Instead of doing anything other than examining or rubbing with the streams of black blood, say "The fluid could be contagious. You shouldn't interact carelessly with it."
+Instead of doing anything when the second noun is the streams of black blood, say "The fluid could be contagious. You shouldn't interact carelessly with it."
 
 Part 3.2.5 - Surgery Room during Prologue
 
@@ -2323,9 +2482,9 @@ Chapter 3.2.5.1 - Reden's Surgical Procedure
 
 The CSORSP [current step of Reden's surgical procedure] is a number that varies. The CSORSP is 1.
 
-A purely surgical necessity is a kind of thing. [These things will be removed from play when Reden's Surgery ends.]
-A purely surgical necessity has some text called the terse appellation.
-Instead of doing anything other than taking or examining when the noun is a purely surgical necessity or the second noun is a purely surgical necessity, say "This is not the time."
+A purely-surgical-necessity is a kind of thing. [These things will be removed from play when Reden's Surgery ends.]
+A purely-surgical-necessity has some text called the terse appellation.
+Instead of doing anything other than taking or examining when the noun is a purely-surgical-necessity or the second noun is a purely-surgical-necessity, say "This is not the time."
 
 The Reden's surgery holding zone is a container. [This holds surgical necessities that are ready to go on stage when Marid examines the appropriate thing.]
 
@@ -2364,16 +2523,16 @@ You glance up at the shelves ringing the surgery room."	{soporific, vivific}	--
 3	"'...massive internal bleeding...' she mutters."	--	--
 4	"'...unnerving. I've never seen anything like it.' Doctor Cavala shakes her head before glancing to you. 'Marid. Did you find the soporific? Give it to me.'"	--	soporific
 
-The soporific inhaler is a purely surgical necessity. The printed name is "inhaler labeled [italic type]aer soporifer[roman type]". The terse appellation is "the soporific".
+The soporific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer soporifer[roman type]". The terse appellation is "the soporific".
 The description is "This must be the soporific Doctor Cavala is looking for."
 Understand "inhaler" or "labeled" or "aer" or "soporifer" as the soporific.
 	
-The vivific inhaler is a purely surgical necessity. The printed name is "inhaler labeled [italic type]aer vivificans[roman type]".
+The vivific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer vivificans[roman type]".
 Understand "labeled" or "aer" or "vivificans" as the vivific.
 
 Understand "inhalers" as the soporific and the vivific.
 
-The phantom-soporific is an undescribed purely surgical necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
+The phantom-soporific is an undescribed purely-surgical-necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
 Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >EXAMINE SHELVES or >SHELVES.)[line break]".
 Understand "soporific" or "sedative" as the phantom-soporific.
 
@@ -2422,7 +2581,7 @@ Doctor Cavala's answer is drowned out by another round of coughing from the pati
 
 'Look behind the gurney,' she says. 'It's right there.'"	--	purely-surgical-stethoscope
 
-The purely-surgical-stethoscope is a privately-named purely surgical necessity. "Hanging on the side of the gurney is an orichalcum stethoscope." The printed name is "stethoscope". The terse appellation is "the stethoscope".
+The purely-surgical-stethoscope is a privately-named purely-surgical-necessity. "Hanging on the side of the gurney is an orichalcum stethoscope." The printed name is "stethoscope". The terse appellation is "the stethoscope".
 The description is "[if the purely-surgical-stethoscope is carried by Doctor Cavala]Doctor Cavala's using it.[otherwise]It looks to be a new design, sleeker than the ones in the Physicians['] College. No wonder you missed it the first time round."
 Understand "stethoscope" or "orichalcum" or "ausculting" or "dish" as the purely-surgical-stethoscope.
 Instead of doing anything other than examining to the purely-surgical-stethoscope when the purely-surgical-stethoscope is carried by Doctor Cavala, say "You can't disturb Doctor Cavala, not now."
@@ -2473,7 +2632,7 @@ There is no mirth in her voice, and for a moment you are at a loss for words."	-
 'He's falling apart,' Doctor Cavala says in a low voice. 'Don't hesitate, Marid. Get me the catholicon.'"	--	--
 14	"Distantly you hear Reden's ragged breathing."	--	catholicon
 
-The catholicon inhaler is a purely surgical necessity. The printed name is "inhaler labeled [italic type]halitus catholiconis[roman type]". The terse appellation is "the catholicon".
+The catholicon inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]halitus catholiconis[roman type]". The terse appellation is "the catholicon".
 The description is "Something is moving inside."
 Understand "labeled" or "halitus" or "catholiconis" as the catholicon.
 
@@ -2545,7 +2704,7 @@ There is a sudden quiet, a moment when the surgical lights flicker and time itse
 	wait for any key;
 	say "Seconds pass. A minute. Finally she stands, silent, her breathing level. She takes off her mask and sets it on the operating table with an air of grim finality.[paragraph break]";
 	now Reden is dead;
-	now all purely surgical necessities are nowhere;
+	now all purely-surgical-necessities are nowhere;
 	start a dialogue with Doctor Cavala using dialogue cavala-redendead;
 	reject the player's command. [Ordinarily we would also follow the 'rest of the turn rule' here, since we overrode the player's action, but the dialogue system already calls that function.]
 	
@@ -2997,7 +3156,9 @@ cavala-firstaid-ohprimes	true	false	"'Oh Primes...'"	"'Oh Primes...'
 To say cavala-firstaid-examinewound:
 	say "You rush to Doctor Cavala's side. Even from a cursory examination, it's obvious that she needs help, and quickly.
 
-'Hurry,' she says through gritted teeth. 'There's a first aid bag behind the counter.'";
+'Hurry,' she says through gritted teeth. 'There's a first aid bag behind the counter...'
+
+(This scene has lethal consequences. You may wish to save the game by typing >SAVE.) ";
 
 Section 3.3.5.4.2 - Setting the Scene
 
@@ -3008,36 +3169,128 @@ Instead of examining Doctor Cavala during First Aid on Cavala: [If for some reas
 	if the CSOFAOC is:
 		-- 1:
 			say "She's bleeding heavily.";
+		-- 2:
+			say "She's bleeding heavily. You need to dress her leg and bandage it.";
 	
 The galvanic cutter is a thing.
 The description is "It looks like the doctor kept a little something from her days as an army surgeon."
 The scent is "You can still detect the faint smell of ozone."
 Understand "lightning" as the galvanic cutter.
 
+Understand "left" or "thigh/knee/leg" or "cut/gash/wound/injury" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala when First Aid on Cavala is happening.
+
 When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule):
 	now the galvanic cutter is carried by Doctor Cavala;
-	now the first aid bag is in the Clinic;
+	now the first aid bag is described;
 	now the CSOFAOC is 1.
 	
 Section 3.3.5.4.3 - Step 1, Get the First Aid Bag
 	
-The first aid bag is a closed openable container.
-"A first aid bag is behind the counter."
+The first aid bag is a closed openable undescribed container in the Clinic. "A first aid bag is behind the counter."
 [It has no description because we want to show its contents and nothing else.]
 
+Instead of inserting something into the first aid bag:
+	if the noun is carried by the player and (the noun is the antiseptic dressing or the noun is the elastic bandage):
+		say "You need that right now.";
+	otherwise:
+		say "That doesn't belong in the first aid bag."
+		
+Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 3, say "No, you still need the first aid bag."
+	
+Instead of doing anything with the first aid bag when Cavala's Errands has not ended (this is the block actions on the first aid bag before First Aid on Cavala rule):
+	if we are examining the first aid bag:
+		say "A bulky cloth bundle. It's behind the presciption counter.";
+	otherwise if we are opening or searching the first aid bag:
+		say "You check the contents of the first aid bag. Good -- everything is still intact. You close the bag.";
+	otherwise:
+		say "You shouldn't meddle with the first aid bag. You never know when it might be needed."
+		
+Instead of doing anything with the first aid bag when First Aid on Cavala has ended (this is the block actions on the first aid bag after First Aid on Cavala rule):
+	if we are examining the first aid bag:
+		say "A bulky cloth bundle. It's behind the presciption counter.";
+	otherwise if we are opening or searching the first aid bag:
+		say "You check the contents of the first aid bag. It looks like there are still enough supplies to last a while. You close the bag.";
+	otherwise:
+		say "You shouldn't meddle with the first aid bag. You never know when it might be needed again."
+		
 Before examining, searching, or looking under the prescription counter when the CSOFAOC is 1:
 	try taking the first aid bag instead.
 
 Instead of examining, opening, searching, or taking the first aid bag when the CSOFAOC is 1 (this is the getting the first aid bag rule):
 	now the first aid bag is carried by the player;
 	now the first aid bag is open;
-	say "You grab the bag and wrest it open. Inside [is-are a list of things in the first aid bag].";
+	say "You grab the bag and wrest it open. Inside are a bellows, an aspirator, a stethoscope, a blood pressure gauge, a pair of scissors, a pair of tweezers, a bar of soap, a roll of tape, five vials (containing saline, laudanum, smelling salts, [italic type]aqua vitae[roman type], and tincture-of-resins)--
+
+There. An antiseptic dressing and an elastic bandage.";
+	now ambience suppression is true;
 	now the CSOFAOC is 2.
 
 Section 3.3.5.4.4 - Step 2, Bandage the Wound
 
-An irrelevant first aid tool is a kind of thing.
-Instead of doing anything with an irrelevant first aid tool, say "You don't need that right now."
+An antiseptic dressing is a key-item in the first aid bag.
+The printed name is "dressing".
+The description is "You need it to dress Doctor Cavala's leg."
+The scent is "The calomel solution is still active."
+Understand "calomel" or "solution" or "gauze" as the antiseptic dressing.
+Instead of dropping the antiseptic dressing, say "No. You can't fumble now."
+
+An elastic bandage is a key-item in the first aid bag.
+The printed name is "bandage".
+The description is "You need it to bandage Doctor Cavala's leg."
+The scent is "It smells a bit musty, but that's the last thing on your mind at the moment."
+Understand "bandages" as the elastic bandage.
+Instead of dropping the elastic bandage, say "No. You can't fumble now."
+
+Some other first aid supplies are a thing in the first aid bag.
+Rule for printing the name of the other first aid supplies when the number of things in the first aid bag is 1: say "first aid supplies".
+Instead of doing anything with the other first aid supplies, say "You don't need that right now."
+Understand "bellows" or "aspirator" or "stethoscope" or "pair" or "blood pressure" or "gauge" or "of" or "scissors" or "tweezers" or "bar" or "soap" or "roll" or "tape" or "vial/vials" or "saline" or "laudanum" or "aqua" or "vitae" or "smelling" or "salt/salts" or "tincture-of-resins" or "tincture" or "resin/resins" as the other first aid supplies.
+
+Before tying something to when the CSOFAOC is 2 (this is the convert tying to bandaging during First Aid on Cavala rule):
+	if Doctor Cavala is the noun, try bandaging Doctor Cavala with the second noun instead;
+	if Doctor Cavala is the second noun, try bandaging Doctor Cavala with the noun instead.
+	
+Before putting something on Doctor Cavala when the CSOFAOC is 2 (this is the convert putting to bandaging during First Aid on Cavala rule):
+	try bandaging Doctor Cavala with the noun instead.
+
+Before bandaging Doctor Cavala with when the CSOFAOC is 2 (this is the bandaging works during First Aid on Cavala rule):
+	if the second noun is the antiseptic dressing or the second noun is the elastic bandage:
+		let L be a list of things;
+		if the antiseptic dressing is not carried:
+			try silently taking the antiseptic dressing;
+			add the antiseptic dressing to L;
+		if the elastic bandage is not carried:
+			try silently taking the elastic bandage;
+			add the elastic bandage to L;
+		say "(first taking [L with definite articles])[command clarification break]";
+		dress and bandage Doctor Cavala's leg;
+		stop the action;
+	otherwise:
+		say "You need a dressing and a bandage."
+
+First every turn when the CSOFAOC is 2 (this is the automatically bandage Doctor Cavala when materials are gathered rule):
+	if the player carries the antiseptic dressing and the player carries the elastic bandage:
+		dress and bandage Doctor Cavala's leg.
+
+To dress and bandage Doctor Cavala's leg:
+	now the antiseptic dressing is nowhere;
+	now the elastic bandage is nowhere;
+	say "'There's no debris.' Doctor Cavala's voice is shaking. 'Remember. Apply pressure--'
+
+She cries out as the dressing touches her wound. You force yourself to ignore her gasps -- press down hard, loop the bandage, wrench it tight. The natron thread glints as it seals itself, seals the bleeding.
+
+'Not bad,' says Doctor Cavala, when she finally has the voice to speak.
+
+[wait for any key]You 'Can you move?' you ask.
+
+Her face twitches.
+
+'I... Primes, it hurts. I think my tendon's gone.'
+
+'You're still bleeding,' you tell her. 'I need to--'
+
+'--raise my leg above chest level,' she finishes. 'I understand. Do it, Marid. Prop it up on the chair.'";
+	now the CSOFAOC is 3.
 
 Section 3.3.5.4.5 - Step 3, Raise the Leg
 
@@ -3050,30 +3303,31 @@ Section 3.3.5.4.8 - Cavala Bleeding Out
 cavala-firstaid-bleed-timer is a number that varies.
 
 Every turn when First Aid on Cavala is happening and (the CSOFAOC is 1 or the CSOFAOC is 2) (this is the Doctor Cavala bleeding out during first aid rule):
-	increment cavala-firstaid-bleed-timer;
-	if cavala-firstaid-bleed-timer is:
-		-- 3:
-			say "Doctor Cavala's breathing is getting faster.";
-		-- 5:
-			say "Doctor Cavala is starting to look very pale. 'Hurry,' she whispers.";
-		-- 7:
-			say "Doctor Cavala is on the verge of passing out.";
-		-- 9:
-			say "You realize that Doctor Cavala's eyes have closed.
-
-When you try to rouse her, she doesn't wake.[paragraph break]";
-			wait for any key;
-			say "She never will.[paragraph break]";
-			wait for any key;
-			end the story saying "You have failed".
+	if ambience suppression is false:
+		increment cavala-firstaid-bleed-timer;
+		if cavala-firstaid-bleed-timer is:
+			-- 3:
+				say "Doctor Cavala's breathing is getting faster.";
+			-- 5:
+				say "Doctor Cavala is starting to look very pale. 'Hurry,' she whispers.";
+			-- 7:
+				say "Doctor Cavala is on the verge of passing out.";
+			-- 9:
+				say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
+				wait for any key;
+				say "When you try to rouse her, she doesn't wake.[paragraph break]";
+				wait for any key;
+				say "She never will.[paragraph break]";
+				wait for any key;
+				end the story saying "You have failed";
+	otherwise:
+		now ambience suppression is false.
 
 Section 3.3.5.4.9 - What Not to Do during Life-and-Death First Aid
 
 Instead of entering the waiting chairs during First Aid on Cavala, say "This is no time to sit down."
 Instead of entering Doctor Cavala's armchair during First Aid on Cavala, say "This is no time to sit down."
 Instead of going during First Aid on Cavala, say "You can't leave Doctor Cavala, not now."
-
-Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 5, say "No, you still need the first aid bag."
 
 Book 3.4 - Mortuary
 
