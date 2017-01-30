@@ -102,7 +102,7 @@ This is the rest of the turn rule:
 
 [This is the turn sequence rules minus the part that parses and follows a command. We use the 'rest of the turn rule' later when we reject the player's command but still want to advance the turn.]
 
-Part 1.1.4 - Tweaked Approaches Functionality
+Part 1.1.4 - Tweaked Extension Functionality
 
 A room can be goto-passable or goto-impassable. A room is usually goto-passable.
 
@@ -120,6 +120,8 @@ The new approach-heading selection rule is listed instead of the approach-headin
 
 [This allows us to make certain rooms impassable for approaching on the fly, which is handy when the player is barred from entering certain rooms by means other than locked doors.]
 
+The unlocking before opening rule is not listed in any rulebook. [I didn't really want to include Locksmith, or this behavior.]
+
 Part 1.1.5 - Room Names
 
 A room has some text called the simple-name.
@@ -131,6 +133,37 @@ Rule for printing the name of a room (called the room in question) while asking 
 The can't approach our current location rule response (A) is "You are already in [if the simple-name of the location is not empty][simple-name of the location][otherwise][the location][end if]."
 
 [The default Inform behavior for printing the names of rooms is weird. This allows us to define an alternate string in certain cases.]
+
+Part 1.1.6 - Debug Messages
+
+[To be commented out in the final build.]
+
+After printing the banner text, say "[line break](This is an unfinished playtest build of [italic type]The Weight of a Soul[roman type]. Type >[bold type]playtest[roman type] to see a special message for playtesters like you.)";
+	
+Understand "* [text]" as a mistake ("Comment recorded.").
+Understand "playtest" as a mistake ("[tester-commands-text]").
+Understand "skip commands" as a mistake ("[skip-commands-text]").
+
+To say tester-commands-text:
+	say "When you start a playthrough, please type >[bold type]transcript on[roman type]. This will save the text of your playthrough to a text file on your computer, which you can send to me once you're done. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
+	say "To leave a comment during your playthrough, type a command that begins with an asterisk (a [bold type]*[roman type] symbol). The game will ignore your command, but it will still be printed to the transcript. You can use this to point out typos, highlight specific problems, or simply comment on something you found noteworthy.[paragraph break]";
+	say "The game includes a skip feature to instantly progress the story to various checkpoints. To see the currently available skip commands, type >[bold type]skip commands[roman type] (mild spoilers).[paragraph break]";
+	say "I would love any feedback regarding your game experience, including feedback about the plot, the prose, the game mechanics, and any bugs you find. Comments, criticism, and suggestions are all welcome. As of this writing, I can be reached at [bold type]chinkeeyong@gmail.com[roman type].[paragraph break]";
+	say "Thanks again for helping me playtest [italic type]The Weight of a Soul[roman type]![paragraph break]";
+	say "-Chin Kee Yong".
+	
+To say skip-commands-text:
+	say "The following commands can be used to skip to various parts of the game:[line break]";
+	say "[line break][italic type]Prologue[roman type]";
+	say "[line break]>[bold type]skip surgery[roman type]";
+	say line break;
+	say "[line break][italic type]Day One[roman type]";
+	say "[line break]>[bold type]skip to day one[roman type]";
+	say "[line break]>[bold type]skip to errands[roman type]";
+	say "[line break]>[bold type]skip to censor[roman type]";
+	say "[line break]>[bold type]skip shanty maze[roman type]";
+	say "[line break]>[bold type]skip to mechanistry[roman type]";
+	say "[line break]>[bold type]skip to first aid[roman type]";
 
 Book 1.2 - Days and Scenes
 
@@ -299,6 +332,7 @@ To skip past the first errand:
 		skip past Nine to Five Zombie;
 	now the Crooked Alley is visited;
 	now Via Terminalis West Street is visited;
+	now Horatio is discovered;
 	now the Condemned Block is visited;
 	now Following the Canal is visited;
 	now exterminators-profession-known is true;
@@ -362,26 +396,30 @@ To skip past the first Carnicer encounter:
 	now Carnicer is nowhere;
 	follow the scene changing rules.
 	
-Skipping Reden's surgery is an action applying to nothing. Understand "skip surgery" as skipping Reden's surgery.
+Skipping Reden's surgery is an action applying to nothing.
+Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "Reden's surgery has already ended."; stop the action.
 Carry out skipping Reden's surgery:
 	skip past Reden's Surgery;
 	say "Surgery skipped.";
 	try looking.
 
-Skipping to Day One is an action applying to nothing. Understand "skip to day one" as skipping to Day One.
+Skipping to Day One is an action applying to nothing.
+Understand "skip to day one" as skipping to Day One.
 Check skipping to Day One when Prologue has ended: say "Day One has already begun."; stop the action.
 Carry out skipping to Day One:
 	skip past Prologue;
 	unveil Day One.
 	
-Skipping to errands is an action applying to nothing. Understand "skip to errands" as skipping to errands.
+Skipping to errands is an action applying to nothing.
+Understand "skip to errands" as skipping to errands.
 Check skipping to errands when Nine to Five Zombie has ended: say "Cavala's Errands has already begun."; stop the action.
 Carry out skipping to errands:
 	skip past Nine to Five Zombie;
 	try looking.
 	
-Skipping to censor is an action applying to nothing. Understand "skip to censor" as skipping to censor.
+Skipping to censor is an action applying to nothing.
+Understand "skip to censor" as skipping to censor.
 Check skipping to censor when the bundle of documents is delivered: say "The bundle of documents has already been delivered."; stop the action.
 Carry out skipping to censor:
 	skip past the first errand;
@@ -393,13 +431,15 @@ Carry out skipping the Shanty Maze:
 	skip past the Shanty Maze;
 	try looking.
 	
-Skipping to mechanistry is an action applying to nothing. Understand "skip to mechanistry" as skipping to mechanistry.
+Skipping to mechanistry is an action applying to nothing.
+Understand "skip to mechanistry" as skipping to mechanistry.
 Check skipping to mechanistry when Cavala's Errands has ended: say "Returning to a Break-In has already begun."; stop the action.
 Carry out skipping to mechanistry:
 	skip past Zoiro;
 	try looking.
 	
-Skipping to first aid is an action applying to nothing. Understand "skip to first aid" as skipping to first aid.
+Skipping to first aid is an action applying to nothing.
+Understand "skip to first aid" as skipping to first aid.
 Check skipping to first aid when Averting Cavala's Assassination has ended: say "First Aid on Cavala has already begun."; stop the action.
 Carry out skipping to first aid:
 	skip past the first Carnicer encounter;
@@ -486,6 +526,21 @@ To say cavala-description:
 		say "She has a look of absolute concentration on her face. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
+		
+Doctor Cavala's leg injury is a thing.
+The description is "[if First Aid on Cavala is happening and Doctor Cavala is wearing the hermetically sealed bandage]You hope the bleeding has subsided.[otherwise if First Aid on Cavala is happening]It's a ragged bloody tear.[otherwise]If Doctor Cavala feels any pain, she doesn't show it."
+The scent is "[if First Aid on Cavala is happening]The scent of blood is thick.[otherwise]You smell the calomel in the dressing."
+Understand "left" or "thigh/knee/tendon" or "cut/gash/wound/tear" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala's leg injury.
+Before bandaging Doctor Cavala's leg injury with: now the noun is Doctor Cavala.
+Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning Doctor Cavala's leg injury, say "[if time is critical]This is not the time.[otherwise]That would worsen her injury."
+
+The hermetically sealed bandage is a wearable thing.
+The description is "Doctor Cavala's knee has been bandaged tightly."
+The scent is "You smell the calomel in the dressing."
+Understand "antiseptic" or "dressing" or "bandages" or "calomel" or "solution" or "gauze" or "natron" or "sigil/sigils" or "fabric" as the hermetically sealed bandage.
+Instead of attacking, cutting, knocking on, pushing, pulling, looking under, rubbing, squeezing, swinging, taking, touching, or turning the hermetically sealed bandage, say "[if time is critical]This is not the time.[otherwise]The bandage shouldn't be disturbed until a more qualified surgeon arrives. [first time](And Doctor Cavala can't exactly operate on herself.) [only][line break]"
+		
+Instead of bandaging Doctor Cavala with when Doctor Cavala is wearing the hermetically sealed bandage: say "Doctor Cavala's wound is already bandaged."
 
 Chapter 1.3.3.2 - Horatio
 
@@ -733,6 +788,7 @@ Instead of examining the pendant (this is the custom pendant description rule):
 		wait for any key;
 		say "You shake your head to clear your thoughts. The past belongs in the past. What matters is that he is with you now, in this pendant.";
 		now animus-flashback-seen is true;
+		now ambience suppression is true;
 	otherwise:
 		say "He's in there somewhere. Sleeping."
 		
@@ -860,7 +916,7 @@ Instead of burning, say "No. No burning."
 Instead of climbing, say "[regarding the noun][They're] not something you can climb."
 Instead of drinking, say "[regarding the noun][They're] not something you can drink."
 Instead of jumping, say "There's no reason to jump on the spot."
-Instead of tasting, say "That can't be hygienic."
+Instead of tasting, say "[if time is critical]This is not the time.[otherwise]That can't be hygienic."
 Instead of tying something to something, say "You can't tie those."
 Instead of waking up, say "This is not a dream."
 Instead of rubbing or swinging, say "Nothing happens."
@@ -1040,8 +1096,6 @@ Include
 Section 2.3.2.1.2 - Contextual Keyword Commands
 
 Understand "[something]" as examining.
-		
-Understand "[any visited room]" as approaching.
 
 Chapter 2.3.2.2 - Upstairs, Downstairs
 
@@ -1061,13 +1115,16 @@ Understand "insert [something preferably held] down [something]" as inserting it
 Understand "jump through/into/in/inside/on/onto/at/to [something]" as entering.
 Understand "kick [something]" as attacking.
 Understand "lick [something]" as tasting.
+Understand "lift [things]" as taking.
 Understand "look behind/beside [something]" as looking under.
 Understand "l behind/beside [something]" as looking under.
 Understand "look for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "l for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "load" as restoring the game.
 Understand "order [something]" as buying.
+Understand "prop up/-- [other things] up/-- on/onto [something]" as putting it on.
 Understand "put [something preferably held] down [something]" as inserting it into.
+Understand "raise [something]" as pulling.
 Understand "ring [something]" as swinging.
 Understand "search [something] for [text]" as consulting it about.
 Understand "search for [text] in [something]" as consulting it about (with nouns reversed).
@@ -1245,9 +1302,9 @@ Check tickling a hostile person: say "You doubt [the noun] will let you do that.
 Understand "bow" or "curtsy" or "curtsey" as a mistake ("[if time is critical]This is not the time.[otherwise]That's a little old-fashioned, don't you think?").
 Understand "cook" or "cook [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You have neither the knowledge nor the inclination.").
 Understand "die" as a mistake ("[if time is critical]No.[otherwise]Entertaining such thoughts is never productive.").
-Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if Day One is happening]You smile.[otherwise]You aren't in the mood.").
+Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if Cavala's Errands is happening]You smile.[otherwise]You aren't in the mood.").
 Understand "dance" or "dance [text]" or "do a dance/jig" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood.").
-Understand "fall down/over/--" or "misstep" or "trip" as a mistake ("[if time is critical]This is not the time.[otherwise]You're more sure-footed than that, Marid.").
+Understand "fall down/over/--" or "misstep" or "trip" or "trip [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You're more sure-footed than that, Marid.").
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
@@ -1259,17 +1316,19 @@ Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "th
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
 Understand "step with care" as a mistake ("[if time is critical]This is not the time.[otherwise]You always do.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
-Understand "take out [text]" as a mistake ("Just indicate what you want to do with that.").
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
 
 Part 2.3.4 - New Parser Error Messages
 
-Rule for printing a parser error when the latest parser error is the can't see any such thing error or the latest parser error is the not a verb I recognise error (this is the new can't see any such thing rule):
+Rule for printing a parser error when the latest parser error is the can't see any such thing error (this is the new can't see any such thing rule):
 	say "That is either not important or not something you can see." instead.
 	
-Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the approaching a non-visited room rule):
-	say "That isn't an area you've visited." instead.
+Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
+	say "That object or command isn't available." instead.
+	
+Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
+	say "That isn't a room you've visited." instead.
 	
 Part 2.3.5 - New Action Behavior
 
@@ -1385,12 +1444,11 @@ Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 
 Understand the commands "ask" and "tell" and "say" and "answer" as something new.
 
-Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" as a mistake ("Use the command TALK TO or T to converse with other characters.").
-Understand "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("Use the command TALK TO or T to converse with other characters.").
+Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.").
 
-Instead of asking someone to try doing something, say "Use the command TALK TO or T to converse with other characters."
-Instead of answering someone that something, say "Use the command TALK TO or T to converse with other characters."
-Instead of saying yes or saying no or saying sorry, say "Use the command TALK TO or T to converse with other characters."
+Instead of asking someone to try doing something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
+Instead of answering someone that something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
+Instead of saying yes or saying no or saying sorry, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
 
 Chapter 2.3.9.3 - Engaged in Dialogue
 
@@ -1522,16 +1580,16 @@ Chapter 2.3.3.1 - How to Play, Useful Commands, About This Game, Credits
 To say about-this-game-text:
 	say "[bold type]About this game[roman type]
 
-[italic type]The Weight of a Soul[roman type] is an interactive fiction game set in the world of Solphos. It takes place some years after my short story [italic type]The Guiding Light[roman type], and is an indirect sequel to it. There are callbacks and references scattered throughout this game for those already familiar with Solphos, but don't worry if you're new to the setting: the game is designed so that anyone can enjoy it regardless of prior experience.
+[italic type]The Weight of a Soul[roman type] is an interactive fiction game set in the world of Solphos. It takes place some years after my short story [italic type]The Guiding Light[roman type], and is an indirect sequel to it. There are callbacks and references scattered throughout this game for those already familiar with the setting, but don't worry if you're new to the whole thing: the game is designed so that anyone can enjoy it regardless of prior experience.
 
-This game was written and compiled in Inform, a design system for interactive fiction using human-readable programming language. Inform 7 was created by Graham Nelson with contributions from countless talented writers and programmers, and this game is deeply indebted to all of their efforts. More information can be found at inform7.com.";
+This game was written and compiled in Inform, a design system for interactive fiction using human-readable programming language. Inform 7 was created by Graham Nelson with contributions from countless talented writers and programmers, and this game is deeply indebted to all of their efforts. More information can be found at [bold type]inform7.com[roman type].";
 
 To say how-to-play-text:
 	say "[bold type]How to play[roman type]
 
 This is a work of interactive fiction. It is a game about solving puzzles and investigating mysteries. You play the part of Marid, a doctor's apprentice, and your actions in the coming days could determine the fate of the Channelworks District.
 
-The > symbol indicates a command prompt. When a > is displayed, you can type commands for Marid to follow, in the form >GO WEST or >OPEN DOOR, and she will go along as far as she is able and willing. A list of commands can be found in the help menu.
+The > symbol indicates a command prompt. When a > is displayed, you can type commands for Marid to follow, in the form >[bold type]go west[roman type] or >[bold type]take lantern[roman type], and she will go along as far as she is able and willing. A list of commands can be found in the help menu.
 
 If you are talking to someone, you will instead be prompted to choose from a list of possible responses, in the form [italic type]'1) Say hello; 2) Say goodbye.'[roman type] In this case, you should choose one of the responses by typing the corresponding number.
 
@@ -1540,21 +1598,21 @@ At other times, there may be no command prompt provided at all, such as during a
 To say useful-commands-text:
 	say "[bold type]A list of useful commands[roman type]
 
-LOOK (L or <no command> for short) provides a description of your surroundings.
+>[bold type]look[roman type] (>[bold type]l[roman type] or a blank command for short) provides a description of your surroundings, including the things around you and the directions you can go in.
 
-INVENTORY (I for short) tells you what items you're wearing or carrying. You can TAKE or DROP things; WEAR or TAKE OFF clothing; PUT items ON or IN containers; and so on.
+>[bold type]inventory[roman type] (>[bold type]i[roman type] for short) tells you what items you're wearing or carrying. You can >[bold type]take[roman type] or >[bold type]drop[roman type] things; >[bold type]wear[roman type] or >[bold type]take off[roman type] clothing; >[bold type]put[roman type] items [bold type]on[roman type] or [bold type]in[roman type] containers; and so on.
 
-EXAMINE <SOMETHING> (X <SOMETHING> or simply <SOMETHING> for short) provides you with a closer look at whatever it is you're examining.
+>[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type] for short) provides you with a closer look at whatever it is you're examining.
 
-GO <DIRECTION> (<DIRECTION> for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus UP, DOWN, INSIDE and OUTSIDE. NORTHWEST can be abbreviated to NW. You can also GO TO a room you've visited before, or ENTER or EXIT things when it makes sense to do so.
+>[bold type]go (direction)[roman type] (>[bold type](direction)[roman type] for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type]. You can also >[bold type]go to[roman type] an area you've visited before, or >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.
 
-TALK TO <SOMEONE> (T <SOMEONE> for short) allows you to interact with someone. You may find it worthwhile to talk to people multiple times, as newly discovered information can open up new conversational options.
+>[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type] for short) allows you to interact with someone. You may find it worthwhile to talk to people multiple times, as newly discovered information can open up new conversational options.
 
-LISTEN, SMELL, and TOUCH allow you to investigate your environment in more detail. You may find it useful to SEARCH things or LOOK UNDER them; PUSH, PULL, or TURN objects; ATTACK, CUT, CLIMB, and more. The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.
+>[bold type]listen[roman type], >[bold type]smell[roman type], and >[bold type]touch[roman type] allow you to investigate your environment in more detail. You may find it useful to >[bold type]search[roman type] things or >[bold type]look under[roman type] them; >[bold type]push[roman type], >[bold type]pull[roman type], or >[bold type]turn[roman type] objects; >[bold type]attack[roman type], >[bold type]cut[roman type], >[bold type]climb[roman type], and more. The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.
 
-HELP opens this menu. COMMANDS (C), JOURNAL (J), CHARACTERS, MAP (M), and HINTS can be used as shortcuts to display those menu pages.
+>[bold type]help[roman type] opens this menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
 
-Lastly, some 'out of world' commands: UNDO takes back your last command, while AGAIN (G) repeats it. SAVE allows you to create a saved game, while RESTORE restores a game you've saved. And QUIT exits the game.";
+Lastly, some 'out of world' commands: >[bold type]undo[roman type] takes back your last command, while >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it. >[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved. And >[bold type]quit[roman type] exits the game.";
 
 To say credits-text:
 	say "[bold type]Acknowledgements[roman type]
@@ -1630,7 +1688,7 @@ To say general-hints-text:
 
 Marid is a capable and perceptive protagonist, and she usually has a good idea of where to go next. The Journal shows your current objective, a list of clues you've found, and Marid's thoughts on the situation. You can also consult Characters to refresh your memory on important personages you've encountered, or Map for a street map of the Channelworks District.
 
-[italic type]The Weight of a Soul[roman type] is a very forgiving game. (It's rated 'Polite' on the Zarfian Cruelty Scale, if you know what that is.) Nevertheless, some sections of it have deadly time limits, and it [italic type]is[roman type] possible for the story to end badly for Marid. It is recommended to SAVE if you find yourself in a dire situation. If you get a game over, UNDO to retrace your steps and try again.";
+[italic type]The Weight of a Soul[roman type] is a very forgiving game. (It's rated 'Polite' on the Zarfian Cruelty Scale, if you know what that is.) Nevertheless, some sections of it have deadly time limits, and it [italic type]is[roman type] possible for the story to end badly for Marid. It is recommended to >[bold type]save[roman type] if you find yourself in a dire situation. If you get a game over, you can >[bold type]undo[roman type] a few times to retrace your steps and try again.";
 
 Section 2.3.3.5.2 - Prologue Hints
 
@@ -1652,15 +1710,37 @@ Section 2.3.3.5.3 - Day One Hints
 
 Table of Day One Hints
 title	subtable	description	toggle
-"How do I deliver the documents to the censor?"	Table of Censor's Nap Hints	--	hint toggle rule
+"How do I deliver the documents?"	Table of Censor's Nap Hints	--	hint toggle rule
+"I'm lost in the Shanty Quarter!"	Table of Shanty Maze Hints	--	hint toggle rule
+"Doctor Cavala needs my help!"	Table of First Aid on Cavala Hints	--	hint toggle rule
 
 Table of Censor's Nap Hints
 hint	used
 "First, you have to get to the basilica."	a number
 "To reach the basilica, follow the Via Terminalis east to the junction, then go south to the grand forum and west to the basilica."
+"The censor isn't in any condition to receive you, though."
 "Try various actions to wake the censor up."
-"The easiest way is to hit him."
+"The easiest way is to >[bold type]hit[roman type] him."
 "There are eight different ways to wake him up, each eliciting a different oath from the censor. See if you can find all of them."
+
+Table of Shanty Maze Hints
+hint	used
+"The Shanty Quarter isn't a welcoming place."	a number
+"Maybe if you >[bold type]go[roman type] in a random direction...?"
+"You seem to be getting somewhere..."
+"...out of the frying pan and into the fire, it would seem."
+"Marid struggles with her fear of fire, but she's strong enough to overcome it."
+"Open your eyes and take another look."
+"Type >[bold type]look[roman type]."
+
+Table of First Aid on Cavala Hints
+hint	used
+"Doctor Cavala is injured, and you need to apply first aid."	a number
+"Marid knows first aid. Examining Doctor Cavala or consulting your journal will show you what to do next."
+"The first step is to >[bold type]take[roman type] the first aid bag."
+"Next, >[bold type]take[roman type] the antiseptic dressing and the elastic bandage."
+"Finally, >[bold type]take[roman type] Doctor Cavala's leg."
+"That wasn't so hard, was it?"
 
 Chapter 2.3.3.6 - Summoning the Help Menu
 
@@ -1712,7 +1792,10 @@ Carry out asking for journal (this is the standard asking for journal rule):
 	try looking.
 	
 Asking for characters is an action out of world.
+Understand "ch" as asking for characters.
+Understand "cast" as asking for characters.
 Understand "characters" as asking for characters.
+Understand "people" as asking for characters.
 Carry out asking for characters (this is the standard asking for characters rule):
 	let the temporary title be the current menu title;
 	now the current menu title is "Characters";
@@ -2221,6 +2304,10 @@ Part 3.1.3 - Ambience
 
 [This part governs random events that sometimes trigger in various areas, to create a sense of liveliness in the Channelworks District. There are a number of backdrop objects which can be placed in rooms to provide them with ambience. The actual ambience text is provided by tables which we shuffle and cycle through in random order.]
 
+An ambience object is a kind of backdrop.
+An ambience object has a table name called the associated table.
+An ambience object has a number called the message index. The message index is usually 1.
+
 The ambience cooldown timer is a number that varies. The ambience cooldown timer is 3.
 
 Ambience suppression is a truth state that varies.
@@ -2229,26 +2316,28 @@ When play begins (this is the shuffle the ambience rule):
 	sort the Table of Day One Upper Perioch ambience in random order;
 	sort the Table of Day One Riggertown ambience in random order.
 
+Every turn (this is the ambience rule):
+	if ambience suppression is false:
+		if an ambience object is in the location:
+			decrement the ambience cooldown timer;
+			if the ambience cooldown timer is 0:
+				now the ambience cooldown timer is a random number from 3 to 4;
+				let the relevant ambience be a random ambience object in the location;
+				let the appropriate index be the message index of the relevant ambience;
+				let the appropriate table be the associated table of the relevant ambience;
+				say the happening in row appropriate index of appropriate table;
+				say line break;
+				increment the appropriate index;
+				if the appropriate index is greater than the number of rows in the appropriate table:
+					now the appropriate index is 1;
+					sort the appropriate table in random order;
+	otherwise:	
+		now ambience suppression is false.
+
 Chapter 3.1.3.1 - Upper Perioch Ambience
 
-Some Upper Perioch ambience is a privately-named backdrop.
-
-The Upper Perioch ambience index is a number that varies. The Upper Perioch ambience index is 1.
-
-Every turn when the Upper Perioch ambience is in the location (this is the Upper Perioch ambience rule):
-	if ambience suppression is false:
-		decrement the ambience cooldown timer;
-		if the ambience cooldown timer is 0:
-			now the ambience cooldown timer is a random number from 3 to 4;
-			if the current day is Day One:
-				say the happening in row Upper Perioch ambience index of the Table of Day One Upper Perioch Ambience;
-				say line break;
-				increment the Upper Perioch ambience index;
-				if the Upper Perioch ambience index is greater than the number of rows in the Table of Day One Upper Perioch Ambience:
-					now the Upper Perioch ambience index is 1;
-					sort the Table of Day One Upper Perioch ambience in random order;
-	otherwise:
-		now ambience suppression is false.
+Some Upper Perioch ambience is a privately-named ambience object.
+The associated table of the Upper Perioch ambience is the Table of Day One Upper Perioch Ambience.
 
 Table of Day One Upper Perioch Ambience
 happening
@@ -2296,26 +2385,8 @@ happening
 
 Chapter 3.1.3.2 - Riggertown Ambience
 
-Some Riggertown ambience is a privately-named backdrop.
-
-The Riggertown ambience index is a number that varies. The Riggertown ambience index is 1.
-
-Ambience suppression is a truth state that varies.
-
-Every turn when the Riggertown ambience is in the location (this is the Riggertown ambience rule):
-	if ambience suppression is false:
-		decrement the ambience cooldown timer;
-		if the ambience cooldown timer is 0:
-			now the ambience cooldown timer is a random number from 3 to 4;
-			if the current day is Day One:
-				say the happening in row Riggertown ambience index of the Table of Day One Riggertown Ambience;
-				say line break;
-				increment the Riggertown ambience index;
-				if the Riggertown ambience index is greater than the number of rows in the Table of Day One Riggertown Ambience:
-					now the Riggertown ambience index is 1;
-					sort the Table of Day One Riggertown ambience in random order;
-	otherwise:
-		now ambience suppression is false.
+Some Riggertown ambience is a privately-named ambience object.
+The associated table of the Riggertown ambience is the Table of Day One Riggertown Ambience.
 
 Table of Day One Riggertown Ambience
 happening
@@ -2356,6 +2427,7 @@ Book 3.2 - Surgery Room
 The Surgery Room is a proper-named room. "You are in a cold cylindrical chamber, [if the surgical lamps are switched on]thrown into sharp focus by hovering[otherwise]devoid of light from the inactive[end if] surgical lamps. Shelves of vials and medical supplies crowd around you, leaving little room to misstep. A shimmering calomel curtain frames the exit to the south."
 
 The simple-name is "the surgery room".
+The sound is "It's quiet."
 The scent is "The room is layered in the scent of antiseptic solution and ozone."
 The exit reminder is "The only exit is south through the calomel curtain."
 
@@ -2473,7 +2545,7 @@ When play begins (this is the print the introduction rule):
 first-message-and-help-text-shown is a truth state that varies.
 
 Before reading a command while first-message-and-help-text-shown is false (this is the print the first surgical procedure message and new player help text rule):
-		say "[happening in row 1 of the Table of Reden's Surgical Procedure][paragraph break](New players should type >HELP.)";
+		say "[happening in row 1 of the Table of Reden's Surgical Procedure][paragraph break](New players should type >[bold type]help[roman type].)";
 		now first-message-and-help-text-shown is true.
 
 Chapter 3.2.5.1 - Reden's Surgical Procedure
@@ -2524,7 +2596,7 @@ You glance up at the shelves ringing the surgery room."	{soporific, vivific}	--
 4	"'...unnerving. I've never seen anything like it.' Doctor Cavala shakes her head before glancing to you. 'Marid. Did you find the soporific? Give it to me.'"	--	soporific
 
 The soporific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer soporifer[roman type]". The terse appellation is "the soporific".
-The description is "This must be the soporific Doctor Cavala is looking for."
+The description is "This must be the soporific Doctor Cavala is looking for.[paragraph break](You can type >[bold type]take soporific[roman type] to retrieve it.)[line break]".
 Understand "inhaler" or "labeled" or "aer" or "soporifer" as the soporific.
 	
 The vivific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer vivificans[roman type]".
@@ -2533,7 +2605,7 @@ Understand "labeled" or "aer" or "vivificans" as the vivific.
 Understand "inhalers" as the soporific and the vivific.
 
 The phantom-soporific is an undescribed purely-surgical-necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
-Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >EXAMINE SHELVES or >SHELVES.)[line break]".
+Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
 Understand "soporific" or "sedative" as the phantom-soporific.
 
 Before examining or searching the shelves of medical supplies when the soporific is in the Reden's surgery holding zone (this is the spawn the soporific and vivific rule):
@@ -2554,7 +2626,7 @@ After taking the soporific (this is the soporific supplied for Reden's surgery r
 	
 Section 3.2.5.1.2 - The Stethoscope
 
-[I decided later on that a legit stethoscope would be given to the player, so this section uses a pair of prop stethoscopes.]
+[I decided that a legit stethoscope might be given to the player later on, so this section uses a pair of prop stethoscopes.]
 
 Table of Reden's Surgical Procedure (continued)
 index	happening	spawned items	item required
@@ -2799,6 +2871,7 @@ Instead of talking to Doctor Cavala during Reden's Surgery:
 		
 Instead of waiting during Reden's Surgery, say "[run paragraph on]".
 Instead of listening to the Surgery Room during Reden's Surgery, say "[run paragraph on]".
+Instead of listening to Doctor Cavala during Reden's Surgery, say "[run paragraph on]".
 
 Instead of switching off the lamps during Reden's Surgery, say "But a surgery is in progress."
 
@@ -2807,7 +2880,7 @@ Instead of going from the Surgery Room during Reden's Surgery, say "Doctor Caval
 Instead of doing anything other than examining to Reden during Reden's Surgery, say "You can't disturb the patient at this critical juncture."
 Instead of doing anything when the second noun is Reden during Reden's Surgery, say "You can't disturb the patient at this critical juncture."
 
-Instead of doing anything other than examining to Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
+Instead of doing anything other than examining or listening to Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
 Instead of doing anything other than giving something to something when the second noun is Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
 
 Book 3.3 - Clinic
@@ -3097,7 +3170,10 @@ The assassin turns her head and looks directly at you.[paragraph break]";
 	resolve Averting Cavala's Assassination.
 
 To distract Carnicer by attacking her:
-	say "You lunge at the assassin and she spins around. ";
+	say "You lunge at the assassin and her hand shoots out. Your momentum is arrested. There is a terrible pressure around your neck.
+
+The assassin has placed the tip of her sword at your throat.[paragraph break]";
+	wait for any key;
 	resolve Averting Cavala's Assassination.
 	
 To distract Carnicer by moving:
@@ -3121,14 +3197,14 @@ To resolve Averting Cavala's Assassination:
 	wait for any key;
 	say "'Get the fuck out of my clinic,' she growls.[paragraph break]";
 	wait for any key;
-	say "A rush of wind. The assassin is gone. You whirl around and see only a dark shape disappearing into the coming night.[paragraph break]";
+	say "A rush of wind. The assassin is gone. You whirl around and see a dark shape disappearing into the night.[paragraph break]";
 	wait for any key;
 	say "Doctor Cavala takes a deep breath. Stifles a cry.
 
 'Marid,' she says. 'My leg.'[paragraph break]";
 	now Carnicer is nowhere;
 	wait for any key;
-	say "She's slumped onto the floor, her chest rising and falling. A gash has been torn above her left knee. Her entire trouser leg is stained red.";
+	say "You find her slumped onto the floor, her chest rising and falling. A gash has been torn above her left knee. Her entire trouser leg is stained red.";
 	start a dialogue with Doctor Cavala using dialogue cavala-firstaid-home.
 
 Chapter 3.3.5.4 - First Aid on Cavala
@@ -3158,7 +3234,7 @@ To say cavala-firstaid-examinewound:
 
 'Hurry,' she says through gritted teeth. 'There's a first aid bag behind the counter...'
 
-(This scene has lethal consequences. You may wish to save the game by typing >SAVE.) ";
+(This scene has lethal consequences. You may wish to save the game by typing >[bold type]save[roman type].) ";
 
 Section 3.3.5.4.2 - Setting the Scene
 
@@ -3171,20 +3247,26 @@ Instead of examining Doctor Cavala during First Aid on Cavala: [If for some reas
 			say "She's bleeding heavily.";
 		-- 2:
 			say "She's bleeding heavily. You need to dress her leg and bandage it.";
+		-- 3:
+			say "The bandage is compressing the wound nicely, but you still need to raise her leg above chest level to halt the bleeding.";
 	
 The galvanic cutter is a thing.
-The description is "It looks like the doctor kept a little something from her days as an army surgeon."
+The description is "It looks like the doctor kept a souvenir of her time in the military."
 The scent is "You can still detect the faint smell of ozone."
 Understand "lightning" as the galvanic cutter.
 
-Understand "left" or "thigh/knee/leg" or "cut/gash/wound/injury" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala when First Aid on Cavala is happening.
-
 When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule):
 	now the galvanic cutter is carried by Doctor Cavala;
+	now Doctor Cavala's leg injury is part of Doctor Cavala;
 	now the first aid bag is described;
 	now the CSOFAOC is 1.
 	
 Section 3.3.5.4.3 - Step 1, Get the First Aid Bag
+
+Instead of talking to Doctor Cavala while the CSOFAOC is 1:
+	say "[one of]'Doctor--'
+
+'Get the first aid bag!' she hisses.[or]She doesn't look to be in any state to talk.[stopping]"
 	
 The first aid bag is a closed openable undescribed container in the Clinic. "A first aid bag is behind the counter."
 [It has no description because we want to show its contents and nothing else.]
@@ -3214,6 +3296,7 @@ Instead of doing anything with the first aid bag when First Aid on Cavala has en
 		say "You shouldn't meddle with the first aid bag. You never know when it might be needed again."
 		
 Before examining, searching, or looking under the prescription counter when the CSOFAOC is 1:
+	say "There it is.[paragraph break]";
 	try taking the first aid bag instead.
 
 Instead of examining, opening, searching, or taking the first aid bag when the CSOFAOC is 1 (this is the getting the first aid bag rule):
@@ -3227,30 +3310,35 @@ There. An antiseptic dressing and an elastic bandage.";
 
 Section 3.3.5.4.4 - Step 2, Bandage the Wound
 
+Instead of talking to Doctor Cavala while the CSOFAOC is 2:
+	say "[one of]'Just hang on,' you tell the doctor. 'I found a dressing and a bandage. I'm going to try to stop the bleeding...'[or]Never mind talking. You need to bandage the doctor before she bleeds out.[stopping]"
+
 An antiseptic dressing is a key-item in the first aid bag.
 The printed name is "dressing".
 The description is "You need it to dress Doctor Cavala's leg."
 The scent is "The calomel solution is still active."
 Understand "calomel" or "solution" or "gauze" as the antiseptic dressing.
-Instead of dropping the antiseptic dressing, say "No. You can't fumble now."
+Instead of dropping the antiseptic dressing when the antiseptic dressing is carried, say "No. You can't fumble now."
 
 An elastic bandage is a key-item in the first aid bag.
 The printed name is "bandage".
 The description is "You need it to bandage Doctor Cavala's leg."
 The scent is "It smells a bit musty, but that's the last thing on your mind at the moment."
-Understand "bandages" as the elastic bandage.
-Instead of dropping the elastic bandage, say "No. You can't fumble now."
+Understand "bandages" or "fabric" as the elastic bandage.
+Instead of dropping the elastic bandage when the antiseptic dressing is carried, say "No. You can't fumble now."
 
 Some other first aid supplies are a thing in the first aid bag.
 Rule for printing the name of the other first aid supplies when the number of things in the first aid bag is 1: say "first aid supplies".
-Instead of doing anything with the other first aid supplies, say "You don't need that right now."
+Instead of doing anything with the other first aid supplies, say "You don't need any of the other things right now."
 Understand "bellows" or "aspirator" or "stethoscope" or "pair" or "blood pressure" or "gauge" or "of" or "scissors" or "tweezers" or "bar" or "soap" or "roll" or "tape" or "vial/vials" or "saline" or "laudanum" or "aqua" or "vitae" or "smelling" or "salt/salts" or "tincture-of-resins" or "tincture" or "resin/resins" as the other first aid supplies.
 
 Before tying something to when the CSOFAOC is 2 (this is the convert tying to bandaging during First Aid on Cavala rule):
 	if Doctor Cavala is the noun, try bandaging Doctor Cavala with the second noun instead;
-	if Doctor Cavala is the second noun, try bandaging Doctor Cavala with the noun instead.
+	if Doctor Cavala's leg injury is the noun, try bandaging Doctor Cavala with the second noun instead;
+	if Doctor Cavala is the second noun, try bandaging Doctor Cavala with the noun instead;
+	if Doctor Cavala's leg injury is the second noun, try bandaging Doctor Cavala with the noun instead.
 	
-Before putting something on Doctor Cavala when the CSOFAOC is 2 (this is the convert putting to bandaging during First Aid on Cavala rule):
+Before putting something on when the CSOFAOC is 2 and (the second noun is Doctor Cavala or the second noun is Doctor Cavala's leg injury) (this is the convert putting to bandaging during First Aid on Cavala rule):
 	try bandaging Doctor Cavala with the noun instead.
 
 Before bandaging Doctor Cavala with when the CSOFAOC is 2 (this is the bandaging works during First Aid on Cavala rule):
@@ -3277,54 +3365,113 @@ To dress and bandage Doctor Cavala's leg:
 	now the elastic bandage is nowhere;
 	say "'There's no debris.' Doctor Cavala's voice is shaking. 'Remember. Apply pressure--'
 
-She cries out as the dressing touches her wound. You force yourself to ignore her gasps -- press down hard, loop the bandage, wrench it tight. The natron thread glints as it seals itself, seals the bleeding.
+She cries out as the dressing touches her wound. You force yourself to ignore her gasps, press down hard, loop the bandage tight. And natron sigils flare on the fabric: the wound is sealed.
 
-'Not bad,' says Doctor Cavala, when she finally has the voice to speak.
+'Not... not bad,' she croaks, when she has the voice to speak.
 
-[wait for any key]You 'Can you move?' you ask.
+[wait for any key]'Can you move?' you ask.
 
-Her face twitches.
+[wait for any key]Her face twitches.
 
-'I... Primes, it hurts. I think my tendon's gone.'
+'Primes, it hurts. I... I think my tendon's gone.'
 
-'You're still bleeding,' you tell her. 'I need to--'
+[wait for any key]'You're still bleeding,' you tell her. 'I need to--'
 
 '--raise my leg above chest level,' she finishes. 'I understand. Do it, Marid. Prop it up on the chair.'";
-	now the CSOFAOC is 3.
+	now the CSOFAOC is 3;
+	now cavala-firstaid-event-timer is 0;
+	now Doctor Cavala is wearing the hermetically sealed bandage.
 
 Section 3.3.5.4.5 - Step 3, Raise the Leg
 
-Section 3.3.5.4.6 - Step 4, Put Ice on It
+Instead of talking to Doctor Cavala while the CSOFAOC is 3:
+	say "[one of]'Are you going to be okay?' you ask.
 
-Section 3.3.5.4.7 - Step 5, Call the Vigiles
+'I'll manage,' Doctor Cavala replies. 'As soon as you raise my leg so that my circulation doesn't kill me.'[or]Doctor Cavala just glares at you.[stopping]";
+	now ambience suppression is true.
+	
+Does the player mean putting Doctor Cavala on the waiting chairs: it is likely.
 
-Section 3.3.5.4.8 - Cavala Bleeding Out
+Before putting something on the waiting chairs when the CSOFAOC is 3 (this is the convert putting to taking for first aid rule):
+	if the noun is Doctor Cavala or the noun is Doctor Cavala's leg injury:
+		try taking Doctor Cavala instead.
 
-cavala-firstaid-bleed-timer is a number that varies.
+Before pushing, pulling, or taking Doctor Cavala's leg injury when the CSOFAOC is 3 (this is the convert injury actions to Doctor Cavala actions for first aid rule):
+	try taking Doctor Cavala instead.
+	
+Before pushing, pulling, or taking Doctor Cavala when the first aid bag is carried and the CSOFAOC is 3 (this is the drop the first aid bag before raising Doctor Cavala's leg for first aid rule):
+	say "(first putting down the first aid bag)[command clarification break]";
+	try silently dropping the first aid bag;
 
-Every turn when First Aid on Cavala is happening and (the CSOFAOC is 1 or the CSOFAOC is 2) (this is the Doctor Cavala bleeding out during first aid rule):
-	if ambience suppression is false:
-		increment cavala-firstaid-bleed-timer;
-		if cavala-firstaid-bleed-timer is:
+Instead of pushing, pulling, or taking Doctor Cavala when the CSOFAOC is 3 (this is the raise Doctor Cavala's leg for first aid rule):
+	now the first aid bag is undescribed;
+	say "Taken--
+
+Doctor Cavala grits her teeth and screws her eyes shut. Her bloodstained trousers stick to your gloves. Her leg feels heavy and fragile in your hands, like a porcelain model that will shatter if you slip.
+
+Seconds pass before her leg finds its place, before you dare loosen your grip and let go--[paragraph break]";
+	wait for any key;
+	say "You let go.[paragraph break]";
+	wait for any key;
+	say "Doctor Cavala breathes a sigh of relief.
+
+You exhale. Something in your expression makes Doctor Cavala chuckle, and her laughter is infectious. The two of you, master and apprentice -- you can't help but start laughing at the terror, the absurdity of the situation.[paragraph break]";
+	wait for any key;
+	say "'The bleeding's stopped,' you say, wiping your gloves on your apron. 'I... I think.'
+
+'Then we've done the best we could,' Doctor Cavala replies. 'You've done well, Marid. Very well. I'm afraid this evening would have gone a lot worse without you...'
+
+That sets the both of you laughing again. She directs you to the stash of brandy under her desk, and you share a drink with her, just a little drink, in the warmth of the lamplight.[paragraph break]";
+	wait for any key;
+	now the CSOFAOC is 4.
+
+Section 3.3.5.4.8 - First Aid Timed Events
+
+cavala-firstaid-event-timer is a number that varies.
+
+Every turn when First Aid on Cavala is happening (this is the First Aid on Cavala timed events rule):
+	increment cavala-firstaid-event-timer;
+	if the CSOFAOC < 3:
+		if cavala-firstaid-event-timer is:
 			-- 3:
-				say "Doctor Cavala's breathing is getting faster.";
+				if ambience suppression is false, say "Doctor Cavala's breathing is getting faster.";
 			-- 5:
-				say "Doctor Cavala is starting to look very pale. 'Hurry,' she whispers.";
+				if ambience suppression is false, say "Doctor Cavala is starting to look very pale. 'Hurry,' she whispers.";
 			-- 7:
-				say "Doctor Cavala is on the verge of passing out.";
+				if ambience suppression is false, say "Doctor Cavala is on the verge of passing out.";
 			-- 9:
-				say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
-				wait for any key;
-				say "When you try to rouse her, she doesn't wake.[paragraph break]";
-				wait for any key;
-				say "She never will.[paragraph break]";
-				wait for any key;
-				end the story saying "You have failed";
+				if ambience suppression is false:
+					say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
+					wait for any key;
+					say "When you try to rouse her, she doesn't wake.[paragraph break]";
+					wait for any key;
+					say "She never will.[paragraph break]";
+					wait for any key;
+					end the story saying "You have failed";
+	otherwise if the CSOFAOC is 3:
+		if cavala-firstaid-event-timer is:
+			-- 3:
+				if ambience suppression is false, say "'It's not going to hurt any less if you dilly-dally,' Doctor Cavala says.";
+			-- 5:
+				if ambience suppression is false, say "'I'm bleeding out here,' Doctor Cavala breathes. 'Come on, Marid.'";
+			-- 7:
+				if ambience suppression is false, say "Doctor Cavala is very quiet. She looks faint.";
+			-- 9:
+				if ambience suppression is false:
+					say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
+					wait for any key;
+					say "When you try to rouse her, she doesn't wake.[paragraph break]";
+					wait for any key;
+					say "She never will.[paragraph break]";
+					wait for any key;
+					end the story saying "You have failed";
 	otherwise:
 		now ambience suppression is false.
+	
 
 Section 3.3.5.4.9 - What Not to Do during Life-and-Death First Aid
 
+Instead of examining the player during First Aid on Cavala, say "You're fine. Doctor Cavala, on the other hand..."
 Instead of entering the waiting chairs during First Aid on Cavala, say "This is no time to sit down."
 Instead of entering Doctor Cavala's armchair during First Aid on Cavala, say "This is no time to sit down."
 Instead of going during First Aid on Cavala, say "You can't leave Doctor Cavala, not now."
@@ -4707,6 +4854,7 @@ Instead of going to the Via Terminalis Bridge when Returning to a Break-In is ha
 		otherwise:
 			say "[path-walked so far]You follow the Via Terminalis southeast, only to discover that the bridge is blocked by a cleaning crew. It seems there's been a spill of dangerous caustic alkali, and you can't cross. ";
 		say "[paragraph break]You have no recourse but to retrace your footsteps.";
+		now ambience suppression is true;
 
 The bridge cleaning crew is a faraway scenery thing.
 The description is "It's almost as though events conspire to make your life difficult."
@@ -7043,7 +7191,7 @@ Book 3.23 - Cadaver Walk
 
 There is a proper-named room in Outdoors called Cadaver Walk. "You[one of][']ve emerged out onto[or] are on[stopping] a bridge, if it can be called that: a haphazard assortment of ropes, planks, chains, warning signs, layers upon layers bound up in incomprehensible knots. Below the lines trail where they have snapped and never been repaired, and the Bilious Canal gobbles them up as they descend.
 
-Riggertown clings tenaciously to the western embankment, while the Shanty Quarter squats to the east."
+Riggertown is to the west, while the Shanty Quarter is to the east."
 It is west of the Shanty Quarter.
 
 The sound is "The hanging lines clink; the wind blows dire."
@@ -7214,8 +7362,9 @@ The sound is "The stick crunches noisily in [if Donti is proper-named]Donti[othe
 Understand "gold" or "biscuit" or "chewed" or "half" as the half-chewed golden stick.
 Instead of doing anything other than listening to or examining with the half-chewed golden stick, say "The stick appears to be in use at the moment."
 
-The little tin post is scenery in Riggertown Lower Level.
+The little tin post is a scenery supporter in Riggertown Lower Level.
 The description is "It's a little tin post just the right height for a goblin to sit on."
+The carrying capacity is 1.
 Instead of entering the little tin post, say "It's too small for you."
 Instead of entering the little tin post when the location of Donti is the location of the little tin post, say "The post is already occupied."
 Instead of putting something on the little tin post when the location of Donti is the location of the little tin post, say "The post is already occupied."
@@ -7272,9 +7421,7 @@ donti-interesting	true	false	"'That's... very interesting.'"	"'That's... very in
 
 'It sure is.' He offers you the half-chewed stick. 'Want some?'
 
-'...I'll pass, thanks.'
-
-He chuckles. 'Suit yourself, girlie. You don't know what you're missing.'"	{donti-name, donti-address, donti-symptoms, donti-bye}
+'...I'll pass, thanks.'"	{donti-name, donti-address, donti-symptoms, donti-bye}
 donti-unhealthy	true	false	"'Is it healthy to be snacking on gold like this?'"	"'Is it healthy to be snacking on gold like this?'
 
 He shrugs. 'You tell me, Doc.'
@@ -7295,7 +7442,7 @@ donti-symptoms	true	true	"'Has anyone in Riggertown come down with a mysterious 
 
 'Eh?' [if Donti is proper-named]Donti[otherwise]The goblin[end if] frowns. 'What kind of illness?'
 
-You briefly elaborate on the symptoms, and a black look comes over his face.
+You briefly elucidate the symptoms, and a black look comes over his face.
 
 'Talk about a nasty business,' he remarks. 'No, I can't say I've ever come across something like that before, and I don't know anyone who has. But I'll keep an eye out, and I'll spread the word for you. You'll know if someone so much as sneezes in this town, so it is.'
 
@@ -7348,6 +7495,11 @@ Instead of talking to Donti (this is the no Donti dialogue left rule):
 	otherwise:
 		continue the action.
 
+Section 3.24.2.1.2 - Despawning Donti
+
+When Cavala's Errands ends:
+	now Donti is nowhere.
+
 Book 3.25 - Reden's Shack
 
 There is a proper-named room called Reden's Shack. "This tiny hovel is visibly shabbier than the rest. The roof is uncomfortably low, and the space just a little too cramped to stand in. A pile of bedding dominates the only room, draped in dirty clothing and empty wine bottles.
@@ -7377,7 +7529,7 @@ Before going from Reden's Shack (this is the leaving Reden's Shack flavor rule):
 Part 3.25.1 - Scenery
 
 An uncomfortably cramped confine is scenery in Reden's Shack.
-The description is "You don't think Reden got many human visitors. Or any visitors, for that matter."
+The description is "You don't think Reden got many human visitors. Or many visitors, for that matter."
 Understand "roof" or "space" or "low" or "reden's" or "shack" or "tiny" or "hovel" or "confines" as the uncomfortably cramped confine.
 Before listening to or smelling the uncomfortably cramped confine, now the noun is the location.
 Before inserting something into the uncomfortably cramped confine, try dropping the noun instead.
@@ -7582,7 +7734,7 @@ forewoman-home	true	false	""	"As the forewoman finishes lecturing one of her wor
 
 'Excuse me,' you say[one of]. 'Are you the forewoman here?'
 
-She turns and grimaces at you. 'What do you want? Make it quick. I'm busy.'[or].
+She turns and grimaces. 'What do you want? Make it quick. I'm busy.'[or].
 
 'You again?' She turns and crosses her arms. 'What do you want [italic type]now?'[roman type][stopping]"	{forewoman-attitude, forewoman-lookingfor, forewoman-nevermind}
 forewoman-attitude	true	true	"'Do you greet everyone like that?'"	"'Do you greet everyone like that?'
@@ -7599,7 +7751,7 @@ She rolls her eyes. 'That's what I thought. Bloody layabout never gets anything 
 
 'Good, good. He'll listen to a doctor's authority. Give him a piece of my mind for me, would you?'
 
-[wait for any key]The forewoman leads you in a circuit around the factory floor. You find yourself before a pair of men who are hard at work assembling animus lanterns. She clears her throat and both of them look up with trepidation."	{zoiro-mechanistry-um, zoiro-mechanistry-hello, zoiro-mechanistry-whichzoiro}
+[wait for any key]The forewoman leads you in a circuit around the factory floor. You find yourself before a pair of men who are hard at work assembling animus lanterns. As she clears her throat, both of them look up with trepidation."	{zoiro-mechanistry-um, zoiro-mechanistry-hello, zoiro-mechanistry-whichzoiro}
 forewoman-message	true	false	"'I have a message for him. From Doctor Cavala.'"	"'I have a message for him. From Doctor Cavala.'
 
 'From Doctor Cavala?'
@@ -7687,13 +7839,13 @@ The goblins look at each other. The atmosphere has grown abruptly heavier.
 
 'Shit,' Zoiro says, after a pause. 'What kind of bad news?'
 
-[wait for any key]'This isn't the best place,' you tell him. 'Is there a smoking room around here? Somewhere where we'll have peace and quiet?'
+[wait for any key]'This isn't the best place,' you tell him. 'Is there a smoking room around here? Somewhere we'll have peace and quiet?'
 
 Zoiro licks his lips nervously. 'The... the smoking room, yeah. Come on. I'll show you. Come on, Koriph -- you too. Let's get this over with.'
 
 [wait for any key]You are brought into a little cubbyhole of a room, past a curtain you have to stoop to go through. The odor of smoke lingers uncomfortably in the air, just on the edge of your nostrils.
 
-[wait for any key]Zoiro sits in an armchair; Koriph sits next to him. You take a seat opposite, going over your words in your mind."	{zoiro-mechanistry-bedirect, zoiro-mechanistry-begentle, zoiro-mechanistry-beprofessional}
+[wait for any key]Zoiro sits in an armchair. Koriph sits next to him. You take a seat opposite, going over your words in your mind."	{zoiro-mechanistry-bedirect, zoiro-mechanistry-begentle, zoiro-mechanistry-beprofessional}
 zoiro-mechanistry-bedirect	true	false	"<Be direct.>"	"'It's about your brother, Reden.'
 
 Zoiro leans forward. 'Why? What happened to him?'
@@ -7708,7 +7860,7 @@ Zoiro leans forward. 'Why? What happened to him?'
 
 'I'm sorry. We couldn't save him.'
 
-[wait for any key]Zoiro falls silent. His mouth opens, but no words emerge. And he chokes -- h[zoiro-mechanistry-followup]"	{zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
+[wait for any key]Zoiro falls silent. His mouth opens, but no words emerge. And he chokes -- h[zoiro-mechanistry-followup]"	{zoiro-mechanistry-sosorry, zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
 zoiro-mechanistry-begentle	true	false	"<Be gentle.>"	"'It's about your brother, Reden.'
 
 Zoiro leans forward. 'Why? What happened to him?'
@@ -7729,7 +7881,7 @@ You take a breath, force yourself to make eye contact.
 
 'I'm sorry,' you whisper. 'I'm so sorry. We couldn't save him.'
 
-[wait for any key]Zoiro falls silent. H[zoiro-mechanistry-followup]"	{zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
+[wait for any key]Zoiro falls silent. H[zoiro-mechanistry-followup]"	{zoiro-mechanistry-sosorry, zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
 zoiro-mechanistry-beprofessional	true	false	"<Be professional.>"	"'It's about your brother, Reden.'
 
 Zoiro leans forward. 'Why? What happened to him?'
@@ -7748,31 +7900,38 @@ Zoiro's eyes widen. 'He -- he wasn't sick at all when I saw him last.'
 
 'I'm sorry,' you whisper. 'He died on the gurney. We couldn't save him.'
 
-[wait for any key]Zoiro falls silent. H[zoiro-mechanistry-followup]"	{zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
+[wait for any key]Zoiro falls silent. H[zoiro-mechanistry-followup]"	{zoiro-mechanistry-sosorry, zoiro-mechanistry-needmoment, zoiro-mechanistry-anyqns, zoiro-mechanistry-saynothing}
 
 To say zoiro-mechanistry-followup:
 	say "e nods, bites his lip, buries his head in his hands.
 
 Koriph puts a hand on his shoulder.[paragraph break]";
 	wait for any key;
-	say "'Well,' says Zoiro at last. 'I... I shouldn't be surprised. It was bound to happen sooner or later. He was a bum. A fucking disgrace. He was going to catch something, living the way he did. But still...'
+	say "'Well,' says Zoiro at last. 'I... I shouldn't be surprised. It was bound to happen sooner or later. He was a bum. A fucking disgrace. He was going to catch something, living the way he did...'
 
 [wait for any key]He hangs his head.
 
-'It pains me so,' he says. 'Knowing that he's gone.' "
+'But it hurts,' he says. 'Knowing that he's gone.' "
 
 Table of Zoiro Mechanistry Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	 choices
-zoiro-mechanistry-saynothing	true	false	"<Say nothing.>"	"You look at your feet.
+zoiro-mechanistry-sosorry	true	true	"'I'm sorry...'"	"'I'm--'
 
-[zoiro-mechanistry-neversaid]"	{zoiro-mechanistry-youokay, zoiro-mechanistry-anyqns}
+You blink back tears.
+
+'I'm so sorry. I'm so, so sorry.'
+
+Zoiro shakes his head. 'Don't beat yourself up, kid. It was... it was his time. Like I said... it was bound to happen.'"	{zoiro-mechanistry-youokay, zoiro-mechanistry-saynothing}
+zoiro-mechanistry-saynothing	true	true	"<Say nothing.>"	"You look at your feet.
+
+[zoiro-mechanistry-neversaid]"	{zoiro-mechanistry-sosorry, zoiro-mechanistry-youokay, zoiro-mechanistry-anyqns}
 zoiro-mechanistry-needmoment	true	false	"'Do you need a moment?'"	"'Do you... do you need a moment?'
 
 Zoiro looks at you.
 
 'Yeah,' he says. 'Yeah, I think I do.'
 
-[wait for any key][zoiro-mechanistry-neversaid]"	{zoiro-mechanistry-youokay, zoiro-mechanistry-anyqns}
+[wait for any key][zoiro-mechanistry-neversaid]"	{zoiro-mechanistry-sosorry, zoiro-mechanistry-youokay, zoiro-mechanistry-anyqns}
 
 To say zoiro-mechanistry-neversaid:
 	say "Silence reigns for the longest of moments. The goblin gazes at his calloused hands, stained black with grease and glue.[paragraph break]";
@@ -7801,11 +7960,11 @@ Zoiro looks down, and is quiet.
 A pause, uncertain.
 
 [wait for any key]'Where is his body now?'"	{zoiro-mechanistry-iusmedici, zoiro-mechanistry-unrecoverable}
-zoiro-mechanistry-iusmedici	true	false	"'We're dissecting his body...'"	"'We're dissecting his body,' you tell him. 'Doctor Cavala has invoked the [italic type]ius medici[roman type]--'
+zoiro-mechanistry-iusmedici	true	false	"'We're dissecting his body...'"	"'We're... we're dissecting his body,' you tell him. 'Doctor Cavala has invoked the [italic type]ius medici[roman type]--'
 
 'The what?'
 
-'The right of the doctor,' you explain. 'The illness that took Reden's life is unlike anything we've encountered before. We don't know how contagious it is, or who else might be at risk. We need to study the cadaver so we can identify the affliction and make sure it doesn't kill anyone else.'
+'The right of the doctor,' you explain. 'The illness that took Reden's life... it's unlike anything we've encountered before. We don't know how contagious it is, or who else might be at risk. We need to study the cadaver so we can make sure it doesn't kill anyone else.'
 
 Zoiro nods slowly.
 
@@ -7852,10 +8011,9 @@ To say zoiro-mechanistry-end:
 	wait for any key;
 	say "He takes Koriph's hand and nods at you in lieu of farewell.
 
-'Come on, Koriph. Let's talk to the forewoman about my compassionate leave...'
+'Come on, Koriph. Let's talk to the forewoman about compassionate leave...'
 
 You get up and make your way back to the Mechanistry floor. Your work here is done. It's time to go. ";
-	now the enabled of bartender-dialogue-drink is true.
 
 zoiro-mechanistry-namesknown is a truth state that varies.
 
@@ -7916,13 +8074,13 @@ Some scrap-metal sculptures are scenery in VII Layabout Row.
 The description is "Twin dragons. One is painted blue, the other green."
 Understand "pair" or "of" or "dragons" or "scrap" or "metal" as the scrap-metal sculptures.
 
-The blue dragon sculpture is scenery in VII Layabout Row.
+The blue dragon is scenery in VII Layabout Row.
 The description is "This one has its mouth open, as though threatening to swallow intruders whole."
-Understand "mouth" or "painted" as the blue dragon sculpture.
+Understand "mouth" or "painted" or "sculpture" as the blue dragon.
 
-The green dragon sculpture is scenery in VII Layabout Row.
+The green dragon is scenery in VII Layabout Row.
 The description is "This one has its claws raised, as though threatening to slice intruders apart."
-Understand "claw/claws" or "painted" as the green dragon sculpture.
+Understand "claw/claws" or "painted" or "sculpture" as the green dragon.
 
 Some entrance steps are scenery in VII Layabout Row.
 The description is "The steps lead up to the front door."
