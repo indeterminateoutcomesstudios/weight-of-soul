@@ -134,9 +134,21 @@ The can't approach our current location rule response (A) is "You are already in
 
 [The default Inform behavior for printing the names of rooms is weird. This allows us to define an alternate string in certain cases.]
 
-Part 1.1.6 - Debug Messages
+Part 1.1.6 - Ending Options
 
-[To be commented out in the final build.]
+When play begins (this is the new final question options rule):
+	choose row 1 in the Table of Final Question Options;
+	now the final question wording entry is ">[bold type]restart[roman type]";
+	choose row 2 in the Table of Final Question Options;
+	now the final question wording entry is ">[bold type]restore[roman type] a saved story";
+	choose row 3 in the Table of Final Question Options;
+	now the final question wording entry is "see some suggestions for >[bold type]amusing[roman type] things to do";
+	choose row 4 in the Table of Final Question Options;
+	now the final question wording entry is ">[bold type]quit[roman type]";
+	choose row 5 in the Table of Final Question Options;
+	now the final question wording entry is ">[bold type]undo[roman type] the last command";
+
+Part 1.1.7 - Debug Messages - Release for testing
 
 After printing the banner text, say "[line break](This is an unfinished playtest build of [italic type]The Weight of a Soul[roman type]. Type >[bold type]playtest[roman type] to see a special message for playtesters like you.)";
 	
@@ -220,6 +232,7 @@ Averting Cavala's Assassination ends when Doctor Cavala is incapacitated.
 
 First Aid on Cavala is a scene. [Marid helps Doctor Cavala fix her leg.]
 FIrst Aid on Cavala begins when Averting Cavala's Assassination ends.
+First Aid on Cavala ends when the CSOFAOC is 4.
 
 Walking Home in Fear is a scene. [Marid goes home after fixing Doctor Cavala's leg.]
 Walking Home in Fear begins when First Aid on Cavala ends.
@@ -294,7 +307,7 @@ Rule for constructing the status line:
 	otherwise fill status bar with Table of Status Line when Not Engaged in Dialogue;
 	rule succeeds.
 	
-Part 1.2.3 - Skipping Scenes
+Part 1.2.3 - Skipping Scenes - Release for testing
 
 To skip past Reden's Surgery:
 	now Reden is dead;
@@ -445,11 +458,6 @@ Carry out skipping to first aid:
 	skip past the first Carnicer encounter;
 	say "[cavala-firstaid-examinewound][paragraph break]".
 	
-Part 1.2.4 - Other Debug Commands - Not for release
-
-Making all rooms visited is an action out of world. Understand "all rooms/-- visited" as making all rooms visited.
-Carry out making all rooms visited: now all rooms are visited; say "Ok, all rooms are now visited."
-
 Book 1.3 - People
 
 Part 1.3.1 - Defining People
@@ -555,7 +563,8 @@ To say horatio-description:
 
 Chapter 1.3.3.3 - Carnicer
 
-Carnicer is an undescribed hostile mutant woman.
+Carnicer is an undescribed hostile improper-named mutant woman.
+The printed name is "assassin".
 Understand "hooded" or "assassin" or "killer" or "butcher" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
@@ -1658,13 +1667,17 @@ Yourself is discovered. The bio-name of yourself is "Servator Marid Orpheia".
 The bio-description of yourself is "A seventeen-year-old graduate of the Physicians['] College, currently apprenticed to Doctor Cavala. You have taken care of yourself ever since your parents died four years ago."
 
 Doctor Cavala is discovered.
-The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vitalis.[roman type] A former army doctor and a physician of commanding skill.[if Doctor Cavala is incapacitated] She is currently injured following a mysterious break-in."
+The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vitalis.[roman type] A former army doctor and a physician of commanding skill[if Doctor Cavala is incapacitated]. She is currently injured following a mysterious break-in[end if]."
 
-When Reden's Surgery ends (this is the discover Reden after he dies rule): now Reden is discovered.
+When Reden's Surgery ends: now Reden is discovered.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
 
 Horatio is discoverable. The bio-name of Horatio is "Vigile Horatio".
-The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours."
+The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been assigned as Doctor Cavala's protector[end if]."
+
+When Returning to a Break-In ends: now Carnicer is discovered.
+The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
+The bio-description of Carnicer is "A mutant assassin who broke into Doctor Cavala's clinic and tried to kill her. Her motives are unknown."
 
 Chapter 2.3.3.4 - Map
 
@@ -1916,6 +1929,10 @@ But enough wallowing in self-pity. Life goes on for the living, as it always has
 I don't know how much more misfortune I can weather, and I sincerely hope not to find out. ";
 		otherwise:
 			say "Who could that be? Don't tell me... ";
+	otherwise if First Aid on Cavala is happening:
+		say "Okay. Okay. I've trained for this. I can do this.
+
+But I have to move fast. "
 
 Chapter 2.3.11.4 - Objectives
 
@@ -1925,7 +1942,7 @@ To say journal-text-objectives:
 	PROLOGUE
 	---]
 	if Reden's Surgery is happening:
-		add "Help Doctor Cavala save Reden's life" to L;
+		add "Help Doctor Cavala save the patient's life" to L;
 	if Walking Home in Darkness is happening:
 		add "Get a good night's sleep" to L;
 	[---
@@ -1958,6 +1975,8 @@ To say journal-text-objectives:
 			add "Report back to Doctor Cavala's clinic" to L;
 		otherwise:
 			add "Investigate the stranger" to L;
+	if First Aid on Cavala is happening:
+		add "Administer first aid to Doctor Cavala" to L;
 	[---
 	END
 	---]
@@ -1976,17 +1995,26 @@ To say journal-text-notes:
 	---]
 	if Cavala's Errands is happening:
 		if the Basilica is unvisited:
-			add "I remember that the basilica is across the Via Terminalis bridge, next to the grand forum. " to L;
+			add "I remember that the basilica is across the Via Terminalis bridge, next to the grand forum." to L;
 		if no rooms in Riggertown are visited:
 			if journal-riggertown-detour-known is true:
 				add "I learned that I can reach Riggertown by detouring through the Shanty Quarter." to L;
 			otherwise:
-				add "I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]. " to L;
+				add "I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]." to L;
 		if journal-zoiro-address-known is true:
 			if the enabled of censor-woken-address is false:
-				add "I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry. " to L;
+				add "I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry." to L;
 			otherwise:
-				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown. " to L;
+				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown." to L;
+	if First Aid on Cavala is happening:
+		add "Doctor Cavala is bleeding heavily. I need to compress the wound, dress and bandage it, and raise it above the level of her heart." to L;
+		if the CSOFAOC is:
+			-- 1:
+				add "The supplies I need should be in the first aid bag behind the counter." to L;
+			-- 2:
+				add "I need the dressing and the bandage from the first aid bag." to L;
+			-- 3:
+				add "I need to prop Doctor Cavala's leg up. That waiting chair will do as a support." to L;
 	[---
 	MUSINGS, MISCELLANEOUS
 	---]
@@ -2003,7 +2031,7 @@ To say journal-text-notes:
 	if Cavala's Errands is happening:
 		if Maze Part One is visited:
 			if Upper Riggertown is visited and we have not examined the advertising horns:
-				add "Just what are those horns in Upper Riggertown honking anyway?... " to L;
+				add "Just what are those horns in Upper Riggertown honking anyway...? " to L;
 		otherwise if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
 				add "Doctor Cavala told me to think about what I saw last night... " to L;
@@ -2014,6 +2042,8 @@ To say journal-text-notes:
 				add "I wonder what those buskers in the grand forum are performing... " to L;
 			if we have not talked to the porter:
 				add "Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
+	if First Aid on Cavala is happening:
+		add "Just who was that hooded stranger...? " to L;
 	[---
 	END
 	---]
@@ -3419,13 +3449,61 @@ You exhale. Something in your expression makes Doctor Cavala chuckle, and her la
 	wait for any key;
 	say "'The bleeding's stopped,' you say, wiping your gloves on your apron. 'I... I think.'
 
-'Then we've done the best we could,' Doctor Cavala replies. 'You've done well, Marid. Very well. I'm afraid this evening would have gone a lot worse without you...'
+'Then we've done the best we could,' Doctor Cavala replies. 'You've done well, Marid. Very well. I'm afraid this evening would have gone rather worse without you--'
 
-That sets the both of you laughing again. She directs you to the stash of brandy under her desk, and you share a drink with her, just a little drink, in the warmth of the lamplight.[paragraph break]";
+She smirks at her own gallows humor, and looks morbidly satisfied.";
+	now the CSOFAOC is 4;
+	start a dialogue with Doctor Cavala using dialogue cavala-firstaid-denouement.
+	
+Section 3.3.5.4.6 - Denouement
+
+Table of Cavala First Aid Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-firstaid-denouement	true	false	""	""	{cavala-firstaid-grin, cavala-firstaid-glad, cavala-firstaid-soworried}
+cavala-firstaid-grin	true	true	"<Grin.>"	"A smile touches your lips. Doctor Cavala's eyes meet yours, and you find yourself laughing with her."	{cavala-firstaid-glad, cavala-firstaid-soworried, cavala-firstaid-yousafe}
+cavala-firstaid-glad	true	true	"'I'm just glad you're all right, Doctor.'"	"'I'm just glad you're all right, Doctor.'
+
+She smiles and squeezes your hand.
+
+'I look Death in the eyes too often to count,' she says. 'It's only fair that I get to spit in his face once in a while.'"	{cavala-firstaid-grin, cavala-firstaid-soworried, cavala-firstaid-yousafe}
+cavala-firstaid-soworried	true	true	"'I was so worried for you...'"	"'I was so worried for you,' you say. 'I thought...'
+
+'I know.' Doctor Cavala's voice is soft. 'I know.'"	{cavala-firstaid-grin, cavala-firstaid-glad, cavala-firstaid-yousafe}
+cavala-firstaid-yousafe	true	false	"'Will you be safe here?'"	""	{}
+
+After reading out cavala-firstaid-yousafe:
+	say "You glance at the clinic door. The [italic type]Luna[roman type] is ascending, painting the Via Terminalis in the colors of moonlight.
+
+'Will you be safe here?' you ask the doctor.
+
+'I don't think my assailant will return soon, if that's what you mean.' She holds up her cutter. 'Rest assured that I am a very good shot.'
+
+'But what about your injury?' you ask. 'Are you going to sleep on the floor? What if you need to relieve yourself? I -- I don't know if I'm comfortable leaving you. Perhaps I should--'[paragraph break]";
 	wait for any key;
-	now the CSOFAOC is 4.
+	now the clinic door is open;
+	now Horatio is in the Clinic;
+	say "Boots clatter on cobble, and lanterns approach. Commands are shouted in the [italic type]lingua libria[roman type]. The clinic door swings open, admitting a bustle of hard-eyed civic guards.[paragraph break]";
+	wait for any key;
+	say "'Hullo!' the point man says. 'Doctor Cavala.' He salutes. 'The neighbors reported a scream, and we responded as soon as we could. What appears to be the problem?'[paragraph break]";
+	wait for any key;
+	say "Hold on a moment.[paragraph break]";
+	wait for any key;
+	say "'...Horatio?' you say.[paragraph break]";
+	wait for any key;
+	say "'Marid?' He turns -- it [italic type]is[roman type] him, the buffoon. 'What are you doing here? Is everything alright?'[paragraph break]";
+	now the conversational partner text is "Talking to Doctor Cavala and Horatio";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	wait for any key;
+	say "You can't help but smile.[paragraph break]";
+	wait for any key;
+	say "'You've arrived with commendable timing,' remarks Doctor Cavala. 'I've just chased a violent hoodlum out of my clinic. Servator Marid here has seen to my injuries. We were just about to inform the authorities, but it seems that won't be necessary...'[paragraph break]";
+	wait for any key;
+	center "* * *";
+	say paragraph break;
+	wait for any key;
+	say "TBA";
 
-Section 3.3.5.4.8 - First Aid Timed Events
+Section 3.3.5.4.7 - First Aid Timed Events
 
 cavala-firstaid-event-timer is a number that varies.
 
@@ -3441,13 +3519,7 @@ Every turn when First Aid on Cavala is happening (this is the First Aid on Caval
 				if ambience suppression is false, say "Doctor Cavala is on the verge of passing out.";
 			-- 9:
 				if ambience suppression is false:
-					say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
-					wait for any key;
-					say "When you try to rouse her, she doesn't wake.[paragraph break]";
-					wait for any key;
-					say "She never will.[paragraph break]";
-					wait for any key;
-					end the story saying "You have failed";
+					knock Doctor Cavala off this fragile mortal coil;
 	otherwise if the CSOFAOC is 3:
 		if cavala-firstaid-event-timer is:
 			-- 3:
@@ -3458,23 +3530,36 @@ Every turn when First Aid on Cavala is happening (this is the First Aid on Caval
 				if ambience suppression is false, say "Doctor Cavala is very quiet. She looks faint.";
 			-- 9:
 				if ambience suppression is false:
-					say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
-					wait for any key;
-					say "When you try to rouse her, she doesn't wake.[paragraph break]";
-					wait for any key;
-					say "She never will.[paragraph break]";
-					wait for any key;
-					end the story saying "You have failed";
+					knock Doctor Cavala off this fragile mortal coil;
 	otherwise:
 		now ambience suppression is false.
-	
 
-Section 3.3.5.4.9 - What Not to Do during Life-and-Death First Aid
+To knock Doctor Cavala off this fragile mortal coil:
+	say "You realize that Doctor Cavala's eyes have closed.[paragraph break]";
+	wait for any key;
+	say "When you try to rouse her, she doesn't wake.[paragraph break]";
+	wait for any key;
+	say "She never will.[paragraph break]";
+	wait for any key;
+	end the story saying "You have failed";
+
+Section 3.3.5.4.8 - What Not to Do during Life-and-Death First Aid
 
 Instead of examining the player during First Aid on Cavala, say "You're fine. Doctor Cavala, on the other hand..."
 Instead of entering the waiting chairs during First Aid on Cavala, say "This is no time to sit down."
 Instead of entering Doctor Cavala's armchair during First Aid on Cavala, say "This is no time to sit down."
 Instead of going during First Aid on Cavala, say "You can't leave Doctor Cavala, not now."
+
+Part 3.3.6 - Clinic during Walking Home in Fear
+
+Chapter 3.3.6.1 - Doctor Cavala during Walking Home in Fear
+
+Rule for writing a paragraph about Doctor Cavala during Walking Home in Fear:
+	say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby."
+
+Chapter 3.3.6.2 - Horatio during Walking Home in Fear
+
+[TBA]
 
 Book 3.4 - Mortuary
 
@@ -4356,6 +4441,8 @@ Instead of giving something to the bartender, say "The bartender shrugs."
 
 Chapter 3.7.7.1 - Bartender Dialogue
 
+Section 3.7.7.1.1 - Generic
+
 Some dialogue branches are defined by the Table of Bartender Dialogue.
 
 Before talking to the bartender when the player is not on the serving counter (this is the sit down before talking to the bartender rule):
@@ -4390,6 +4477,32 @@ The bartender measures out the wine, waters it down, and tosses it with a bag of
 
 Sweet and sad."	{bartender-dialogue-confide, bartender-dialogue-finishdrinksilent}
 bartender-dialogue-confide	true	true	"<Get something off your mind.>"	"Your mind wanders to the things you've seen; the things you've done."	{bartender-dialogue-prologue, bartender-dialogue-finishdrinksilent}
+bartender-dialogue-finishdrink	true	false	"<Finish your drink.>"	"You down the last of your wine.
+
+'Thanks for listening.'
+
+The bartender takes the empty glass, and you feel a little better for having confided in him."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
+bartender-dialogue-finishdrinksilent	true	false	"<Finish your drink in silence.>"	"The bartender takes the empty glass with an understanding nod."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
+bartender-dialogue-tip	true	true	"<Tip the bartender.>"	"You tip the bartender and he bows."	{bartender-dialogue-goodbye}
+bartender-dialogue-nevermind	true	false	"'Actually, never mind.'"	"'Actually, never mind.'
+
+You stand up. The bartender shrugs and goes back to his business."	{}
+bartender-dialogue-goodbye	true	false	"'See you soon.'"	"'See you soon.'
+
+You stand up. The bartender goes back to his business; you suppose you should as well."	{}
+
+The home dialogue branch of the bartender is bartender-dialogue. 
+Before reading out bartender-dialogue-newguy: now the enabled of bartender-dialogue-business is true.
+After reading out bartender-dialogue-goodbye: try silently getting off the serving counter.
+After reading out bartender-dialogue-nevermind: try silently getting off the serving counter.
+		
+Instead of talking to the bartender when the enabled of bartender-dialogue-name is false and the enabled of bartender-dialogue-newguy is false and the enabled of bartender-dialogue-business is false and the enabled of bartender-dialogue-drink is false (this is the no bartender dialogue right now rule):
+	say "You don't need anything from the bartender at present."
+	
+Section 3.7.7.1.2 - Prologue
+
+Table of Bartender Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	 choices
 bartender-dialogue-prologue	true	true	"'I watched a man die[if Prologue is happening]tonight[end if]...'"	"'I watched a man die[if Prologue is happening] tonight[otherwise], you know[end if],' you say quietly. 'It was just [if Day One is happening]yesterday[otherwise]around the corner[end if]. In Doctor Cavala's clinic.'
 
 The bartender is silent as you take another sip.
@@ -4413,20 +4526,9 @@ bartender-dialogue-prologue3-1	true	false	"'...but I keep wondering if we could 
 bartender-dialogue-prologue3-2	true	false	"'...and now I'm beginning to understand what they meant...'"	"'...and now I'm beginning to understand what they meant. There are so many people out there suffering, and only two of us... so maybe it's not our fault if we can't save everyone.
 
 'Maybe that's just the way it is. And I have to accept that.'"	{bartender-dialogue-finishdrink}
-bartender-dialogue-finishdrink	true	false	"<Finish your drink.>"	"You down the last of your wine.
 
-'Thanks for listening.'
-
-The bartender takes the empty glass, and you feel a little better for having confided in him."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
-bartender-dialogue-finishdrinksilent	true	false	"<Finish your drink in silence.>"	"The bartender takes the empty glass with an understanding nod."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
-bartender-dialogue-tip	true	true	"<Tip the bartender.>"	"You tip the bartender and he bows."	{bartender-dialogue-goodbye}
-bartender-dialogue-nevermind	true	false	"'Actually, never mind.'"	"'Actually, never mind.'
-
-You stand up. The bartender shrugs and goes back to his business."	{}
-bartender-dialogue-goodbye	true	false	"'See you soon.'"	"'See you soon.'
-
-You stand up. The bartender goes back to his business; you suppose you should as well."	{}
-
+Section 3.7.7.1.99 - The part I commented out
+	
 [bartender-dialogue-asksomething	true	false	"'I'd like to ask you about something else...'"	"'I'd like to ask you about something else...'
 
 The bartender regards you curiously."	{bartender-dialogue-name, bartender-dialogue-newguy, bartender-dialogue-business, bartender-dialogue-menu2, bartender-dialogue-nevermind}
@@ -4444,35 +4546,6 @@ The bartender gives you a look.
 'It's not for myself,' you say. 'It's for swabbing wounds. We ran out of spirits at the clinic.'
 
 The bartender seems satisfied. He takes his payment, produces a bottle of brandy from the bar, and deposits it into your hands."	{bartender-dialogue-tip, bartender-dialogue-buyfood, bartender-dialogue-buywine, bartender-dialogue-asksomething, bartender-dialogue-goodbye}]
-
-The home dialogue branch of the bartender is bartender-dialogue. 
-Before reading out bartender-dialogue-newguy: now the enabled of bartender-dialogue-business is true.
-[After reading out bartender-dialogue-buybrandy: now the player carries the bottle of brandy.]
-After reading out bartender-dialogue-goodbye: try silently getting off the serving counter.
-After reading out bartender-dialogue-nevermind: try silently getting off the serving counter.
-
-[When a scene (called the new scene) begins (this is the refresh drink-ordering dialogue every day rule):
-	if the new scene is Day One or the new scene is Day Two or the new scene is Day Three:
-		[now the enabled of bartender-dialogue-buyfood is true;]
-		now the enabled of bartender-dialogue-drink is true;
-		now the enabled of bartender-dialogue-tip is true.]
-		
-Instead of talking to the bartender when the enabled of bartender-dialogue-name is false and the enabled of bartender-dialogue-newguy is false and the enabled of bartender-dialogue-business is false and the enabled of bartender-dialogue-drink is false (this is the no bartender dialogue right now rule):
-	say "You don't need anything from the bartender at present."
-
-[Part 3.7.7 - Bottle of Brandy
-
-The bottle of brandy is a thing. The description is "It's the bottle of brandy you bought from the public house."
-
-Instead of closing the bottle of brandy, say "It's already closed."
-Instead of emptying the bottle of brandy into something, say "That would be a waste of good brandy."
-Instead of emptying the bottle of brandy into the bar and kitchen, say "Even if you were planning on drinking the brandy, this liquor is far too strong for you."
-Instead of emptying the bottle of brandy into the antiseptic cloth, say "The cloth is already antiseptic enough."
-Instead of opening the bottle of brandy, say "[if time is critical]This is not the time.[otherwise]You open the bottle of brandy and check its contents. Nothing seems to be out of the ordinary, so you close the bottle again."
-Instead of searching the bottle of brandy, say "The bottle is filled with brandy."
-Instead of smelling the bottle of brandy, say "[if time is critical]This is not the time.[otherwise]It smells very strongly of alcohol."
-Instead of drinking or tasting the bottle of brandy, say "[if time is critical]Bad idea.[otherwise]Even if you were planning on drinking the brandy, this liquor is far too strong for you."
-Instead of swinging the bottle of brandy, say "[if time is critical]This is not the time.[otherwise]You shake the bottle to stir up the brandy."]
 
 Part 3.7.8 - Public House during Nine to Five Zombie
 
