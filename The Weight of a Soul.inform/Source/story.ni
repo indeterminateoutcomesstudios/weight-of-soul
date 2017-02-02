@@ -157,7 +157,7 @@ Understand "playtest" as a mistake ("[tester-commands-text]").
 Understand "skip commands" as a mistake ("[skip-commands-text]").
 
 To say tester-commands-text:
-	say "When you start a playthrough, please type >[bold type]transcript on[roman type]. This will save the text of your playthrough to a text file on your computer, which you can send to me once you're done. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
+	say "When you start a playthrough, please type >[bold type]transcript[roman type]. This will save the text of your playthrough to a text file on your computer, which you can send to me once you're done. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
 	say "To leave a comment during your playthrough, type a command that begins with an asterisk (a [bold type]*[roman type] symbol). The game will ignore your command, but it will still be printed to the transcript. You can use this to point out typos, highlight specific problems, or simply comment on something you found noteworthy.[paragraph break]";
 	say "The game includes a skip feature to instantly progress the story to various checkpoints. To see the currently available skip commands, type >[bold type]skip commands[roman type] (mild spoilers).[paragraph break]";
 	say "I would love any feedback regarding your game experience, including feedback about the plot, the prose, the game mechanics, and any bugs you find. Comments, criticism, and suggestions are all welcome. As of this writing, I can be reached at [bold type]chinkeeyong@gmail.com[roman type].[paragraph break]";
@@ -2007,7 +2007,6 @@ To say journal-text-notes:
 			otherwise:
 				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown." to L;
 	if First Aid on Cavala is happening:
-		add "Doctor Cavala is bleeding heavily. I need to compress the wound, dress and bandage it, and raise it above the level of her heart." to L;
 		if the CSOFAOC is:
 			-- 1:
 				add "The supplies I need should be in the first aid bag behind the counter." to L;
@@ -2042,8 +2041,6 @@ To say journal-text-notes:
 				add "I wonder what those buskers in the grand forum are performing... " to L;
 			if we have not talked to the porter:
 				add "Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
-	if First Aid on Cavala is happening:
-		add "Just who was that hooded stranger...? " to L;
 	[---
 	END
 	---]
@@ -3460,7 +3457,7 @@ Section 3.3.5.4.6 - Denouement
 Table of Cavala First Aid Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-firstaid-denouement	true	false	""	""	{cavala-firstaid-grin, cavala-firstaid-glad, cavala-firstaid-soworried}
-cavala-firstaid-grin	true	true	"<Grin.>"	"A smile touches your lips. Doctor Cavala's eyes meet yours, and you find yourself laughing with her."	{cavala-firstaid-glad, cavala-firstaid-soworried, cavala-firstaid-yousafe}
+cavala-firstaid-grin	true	true	"<Grin.>"	"A smile touches your lips. Doctor Cavala's eyes meet yours, and you find yourself laughing with her all over again."	{cavala-firstaid-glad, cavala-firstaid-soworried, cavala-firstaid-yousafe}
 cavala-firstaid-glad	true	true	"'I'm just glad you're all right, Doctor.'"	"'I'm just glad you're all right, Doctor.'
 
 She smiles and squeezes your hand.
@@ -3469,39 +3466,110 @@ She smiles and squeezes your hand.
 cavala-firstaid-soworried	true	true	"'I was so worried for you...'"	"'I was so worried for you,' you say. 'I thought...'
 
 'I know.' Doctor Cavala's voice is soft. 'I know.'"	{cavala-firstaid-grin, cavala-firstaid-glad, cavala-firstaid-yousafe}
-cavala-firstaid-yousafe	true	false	"'Will you be safe here?'"	""	{}
+cavala-firstaid-yousafe	true	false	"'Will you be safe here?'"	""	{clinic-interviewer-anecdote, clinic-interviewer-otherdoctors, clinic-interviewer-somethingsmells, clinic-interviewer-silent}
 
 After reading out cavala-firstaid-yousafe:
-	say "You glance at the clinic door. The [italic type]Luna[roman type] is ascending, painting the Via Terminalis in the colors of moonlight.
+	say "You glance at the clinic door. The [italic type]Luna[roman type] is ascending, painting the Via Terminalis the colors of moonlight.
 
-'Will you be safe here?' you ask the doctor.
+'Will you be safe here?'
 
-'I don't think my assailant will return soon, if that's what you mean.' She holds up her cutter. 'Rest assured that I am a very good shot.'
+'I don't think she'll be coming back, if that's what you mean.' She holds up her cutter. 'You may rest assured that I'm a very good shot.'
 
-'But what about your injury?' you ask. 'Are you going to sleep on the floor? What if you need to relieve yourself? I -- I don't know if I'm comfortable leaving you. Perhaps I should--'[paragraph break]";
+'But what about your injury?' you ask. 'Are you going to sleep on the floor? What if you need to relieve yourself? I -- I don't know if I'm comfortable leaving you here. Perhaps I should--'[paragraph break]";
 	wait for any key;
 	now the clinic door is open;
 	now Horatio is in the Clinic;
-	say "Boots clatter on cobble, and lanterns approach. Commands are shouted in the [italic type]lingua libria[roman type]. The clinic door swings open, admitting a bustle of hard-eyed civic guards.[paragraph break]";
+	say "Boots clatter on cobble. Lanterns approach. The clinic door swings open, admitting a bustle of hard-eyed civic guards.[paragraph break]";
 	wait for any key;
 	say "'Hullo!' the point man says. 'Doctor Cavala.' He salutes. 'The neighbors reported a scream, and we responded as soon as we could. What appears to be the problem?'[paragraph break]";
 	wait for any key;
-	say "Hold on a moment.[paragraph break]";
+	say "There's something oddly familiar about him...[paragraph break]";
 	wait for any key;
 	say "'...Horatio?' you say.[paragraph break]";
 	wait for any key;
 	say "'Marid?' He turns -- it [italic type]is[roman type] him, the buffoon. 'What are you doing here? Is everything alright?'[paragraph break]";
-	now the conversational partner text is "Talking to Doctor Cavala and Horatio";
-	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	wait for any key;
-	say "You can't help but smile.[paragraph break]";
-	wait for any key;
-	say "'You've arrived with commendable timing,' remarks Doctor Cavala. 'I've just chased a violent hoodlum out of my clinic. Servator Marid here has seen to my injuries. We were just about to inform the authorities, but it seems that won't be necessary...'[paragraph break]";
+	say "'You've arrived with commendable timing,' remarks Doctor Cavala. 'I've just chased a violent hoodlum out of my clinic, and Servator Marid here has seen to my injuries. We were just on the topic of informing the authorities, but it seems that won't be necessary...'[paragraph break]";
 	wait for any key;
 	center "* * *";
 	say paragraph break;
+	say line break;
 	wait for any key;
-	say "TBA";
+	now the conversational partner text is "Talking to the interviewer";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	say "It takes the better part of an hour to sort everything out with the Vigiles. You're interviewed by a bored-looking patrolwoman, and given a steaming mug of tea to wash away the foul taste of the evening's events. An agreement is made: Doctor Cavala will remain under police protection for the time being, with Horatio assigned as a personal assistant-cum-bodyguard.[paragraph break]";
+	wait for any key;
+	say "'...and you're saying you have no idea who the assailant was?' the interviewer is asking. 'Surely you must have made an enemy of [italic type]someone.'[roman type][paragraph break]";
+	wait for any key;
+	say "'I'm telling you, I [italic type]know[roman type] this district.' Doctor Cavala takes another sip from her drinking straw. 'No one is fool enough to antagonize the only [italic type]pro bono[roman type] doctor in the city. Just ask Marid.'[paragraph break]";
+	wait for any key;
+	say "The interviewer shoots you an inquiring look.";
+	
+Some dialogue branches are defined by the Table of Clinic Interviewer Dialogue.
+	
+Table of Clinic Interviewer Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+clinic-interviewer-silent	true	false	"<Remain silent.>"	"You fidget.
+
+Doctor Cavala sighs.
+
+Well, now [italic type]would[roman type] be a good time to say something..."	{clinic-interviewer-anecdote, clinic-interviewer-otherdoctors, clinic-interviewer-somethingsmells}
+clinic-interviewer-anecdote	true	true	"'It's true. I was almost robbed in the Shanty Quarter...'"	"'It's true. I was almost robbed in the Shanty Quarter...'
+
+You describe how you were accosted; how the robbers were terrified once they realized your identity. The interviewer writes furiously in her little black notebook, pursing her lips all the while.
+
+'You see?' Doctor Cavala says. 'Even if I stepped on someone's toes, they wouldn't have the stones to touch me.'
+
+'But clearly,' the interviewer counters, 'someone does.'"	{clinic-interviewer-otherdoctors, clinic-interviewer-somethingsmells}
+clinic-interviewer-otherdoctors	true	true	"'Aren't there other doctors operating in the area?'"	"'Aren't there other doctors operating in the area?' you ask.
+
+Doctor Cavala shakes her head. 'Not [italic type]pro bono.[roman type] Arturus and Justinian do good work, but they operate by appointment only. For the less fortunate -- for the, shall we say, less refined individuals of the district -- I'm the only physician that can be relied on.'
+
+The interviewer cocks an eyebrow. 'And you provide your services to these... individuals?'
+
+'I uphold the oath, Madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
+clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident,' you say. 'It doesn't make any sense. Why attack Doctor Cavala? And why attack now?'
+
+Your question hangs in the air. Doctor Cavala falls silent, lost in thought.
+
+[wait for any key]The interviewer looks between you, unsure of how to proceed.
+
+[wait for any key]It is Doctor Cavala who breaks the silence, with words that prick like pins.
+
+'Do you think it's connected to Reden?' she asks. 'To what happened last night?'"	{clinic-interviewer-yes, clinic-interviewer-no, clinic-interviewer-maybe, clinic-interviewer-idk}
+clinic-interviewer-yes	true	false	"'Yes...'"	"'Yes, actually,' you say. 'It's been on my mind -- first a man dies in our clinic, and then someone tries to kill you? It can't be a coincidence. It's too close to be.'
+
+'Intriguing.' She searches your eyes. 'You didn't see anything today, did you, Marid? Anything that might provide a clue? What you're suggesting...'
+
+Doctor Cavala doesn't finish her sentence. She takes another sip of tea, looking greatly perturbed.
+
+[clinic-interviewer-end] "	{}
+clinic-interviewer-no	true	false	"'No...'"	"'No,' you say. 'They're two separate events. I can't imagine how they would be connected -- or why anyone would want you dead for it. There must be another reason.'
+
+Doctor Cavala doesn't look convinced. 'Perhaps,' she concedes. 'Perhaps. It's too early to be sure...'
+
+She takes another sip of tea, quiet, pensive.
+
+[clinic-interviewer-end] "	{}
+clinic-interviewer-maybe	true	false	"'Maybe...'"	"'Maybe,' you say. 'It's too close to be a coincidence -- but how could they possibly be connected? I can't imagine why anyone would want you dead for that.'
+
+Doctor Cavala furrows her brow. 'I certainly hope it's a coincidence,' she says. 'If the alternative is true...'
+
+She trails off and takes another sip of tea, looking greatly perturbed.
+
+[clinic-interviewer-end] "	{}
+clinic-interviewer-idk	true	false	"'I don't know.'"	"'I don't know.'
+
+Doctor Cavala sighs. 'You may be right, Marid. There are so many questions -- it's too early to be sure of anything. And yet...'
+
+She trails off. She takes another sip of tea, becoming quiet, pensive.
+
+[clinic-interviewer-end]"	{}
+
+To say clinic-interviewer-end:
+	wait for any key;
+	say "Then everyone lived happily ever after. ";
 
 Section 3.3.5.4.7 - First Aid Timed Events
 
@@ -7857,14 +7925,15 @@ After reading out forewoman-badnews: perform the forewoman-Zoiro switcheroo.
 To perform the forewoman-Zoiro switcheroo:
 	say line break;
 	say wait for any key;
+	now the forewoman is nowhere;
+	now the conversational partner text is "Talking to two goblins";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
 	say "'Zoiro!' she says. 'This here lady's got a message for you. Listen up, because she's only going to say it once.'
 
 [wait for any key]You glance at her. She inclines her head, as if to say [italic type]you're on your own now,[roman type] before turning and disappearing into the forest of assembly lines.
 
 You're left with the two goblins, who are more than a little nonplussed. They look at you. You look at them.";
-	now the forewoman is nowhere;
-	now the conversational partner text is "Talking to two goblins";
-	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	
 Chapter 3.27.3.3 - Zoiro Mechanistry Dialogue
 
