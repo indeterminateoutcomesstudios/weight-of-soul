@@ -176,6 +176,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip shanty maze[roman type]";
 	say "[line break]>[bold type]skip to mechanistry[roman type]";
 	say "[line break]>[bold type]skip to first aid[roman type]";
+	say "[line break]>[bold type]skip first aid[roman type]";
 
 Book 1.2 - Days and Scenes
 
@@ -409,6 +410,19 @@ To skip past the first Carnicer encounter:
 	now Carnicer is nowhere;
 	follow the scene changing rules.
 	
+To skip past First Aid on Cavala:
+	if Returning to a Break-In has not ended:
+		skip past the first Carnicer encounter;
+	now the antiseptic dressing is nowhere;
+	now the elastic bandage is nowhere;
+	now Doctor Cavala is wearing the hermetically sealed bandage;
+	now the first aid bag is in the Clinic;
+	now the first aid bag is undescribed;
+	now the CSOFAOC is 4;
+	now Horatio is in the Clinic;
+	now the front door of the clinic is closed;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "Reden's surgery has already ended."; stop the action.
@@ -457,6 +471,13 @@ Check skipping to first aid when Averting Cavala's Assassination has ended: say 
 Carry out skipping to first aid:
 	skip past the first Carnicer encounter;
 	say "[cavala-firstaid-examinewound][paragraph break]".
+	
+Skipping first aid is an action applying to nothing.
+Understand "skip first aid" as skipping first aid.
+Check skipping first aid when First Aid on Cavala has ended: say "First Aid on Cavala has already ended."; stop the action.
+Carry out skipping first aid:
+	skip past First Aid on Cavala;
+	try looking.
 	
 Book 1.3 - People
 
@@ -571,14 +592,11 @@ Understand "stranger" as Carnicer when Averting Cavala's Assassination is happen
 The poisoned blade is carried by Carnicer.
 Understand "sword" as the poisoned blade.
 
-Book 1.4 - When Time is Critical
+Book 1.4 - Scene Flags
 
-[This is used to flag the player at certain tense times so that comedic and relaxed responses don't trigger.]
-
-force-time-critical is a truth state that varies.
+["When time is critical" - This is used to flag the player at certain tense times so that comedic and relaxed responses don't trigger.]
 
 To decide whether time is critical:
-	if force-time-critical is true, decide yes;
 	if Reden's Surgery is happening, decide yes;
 	if the location is the Condemned Block, decide yes;
 	if the location is the Shanty Quarter, decide yes;
@@ -593,6 +611,14 @@ To decide whether time is not critical:
 	if time is critical, decide no;
 	decide yes.
 	
+["It is night" - Self-explanatory.]
+
+To decide whether it is night:
+	if Prologue is happening, decide yes;
+	if Walking Home in Fear is happening, decide yes;
+	if Midnight is happening, decide yes;
+	decide no.
+
 Book 1.5 - Sounds, Scents
 
 [This saves us a lot of instead rules and hopefully cuts down on action-processing time.]
@@ -1345,8 +1371,9 @@ After opening (this is the reveal any newly visible interior even if it contains
 	if the noun is an opaque container and
 		the noun contains nothing and
 		the noun does not enclose the actor:
-		if the action is not silent, say "[We] [open] [the noun]. It's empty.";
-		stop the action.
+		if the action is not silent, say "[We] [open] [the noun]. [They're] empty.";
+	otherwise:
+		continue the action.
 
 Part 2.3.6 - Implicit Actions
 
@@ -1449,6 +1476,13 @@ The null dialogue branch is a dialogue branch. The home dialogue branch of a per
 
 [If a branch has no children, it will end the dialogue upon being read out.]
 
+Look-pending switch is a truth state that varies. [This is switched on when we want to look after ending a dialogue.]
+
+To say look pending:
+	follow the scene changing rules;
+	now look-pending switch is true;
+	wait for any key.
+
 Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 
 Understand the commands "ask" and "tell" and "say" and "answer" as something new.
@@ -1471,7 +1505,7 @@ To read out (current branch - a dialogue branch):
 	carry out the reading out activity with the current branch. [A more convenient and human-readable way to say the same thing.]
 	
 Rule for reading out a dialogue branch (called the current branch):
-	say "[description of the current branch][if the description of the current branch is not empty][line break]";
+	say "[description of the current branch][if the description of the current branch is not empty and look-pending switch is false][line break]";
 	if the one-shot of the current branch is true, now the enabled of the current branch is false;
 			
 Last after reading out a dialogue branch (called the current branch) (this is the end the dialogue after reading out a dialogue branch with no choices rule): [This is separated from the main 'reading out' rule because the 'after reading out' rules may change the conditions of a scene change or what dialogue choices are available.]
@@ -1544,14 +1578,16 @@ To end the dialogue:
 	now right alignment depth is 14;
 	now the command prompt is ">";
 	now the player is not engaged in dialogue;
+	if look-pending switch is true, try looking;
+	now look-pending switch is false;
 	follow the rest of the turn rule.
 
 Chapter 2.3.9.4 - Talking To
 
 Talking to is an action applying to one visible thing.
 Understand "t [something]" as talking to.
-Understand "holler at [something]" as talking to.
 Understand "talk to/with/-- [something]" as talking to.
+Understand "holler at [something]" as talking to.
 Understand "scream at [something]" as talking to.
 Understand "shout at [something]" as talking to.
 Understand "speak to/with/-- [something]" as talking to.
@@ -1932,7 +1968,7 @@ I don't know how much more misfortune I can weather, and I sincerely hope not to
 	otherwise if First Aid on Cavala is happening:
 		say "Okay. Okay. I've trained for this. I can do this.
 
-But I have to move fast. "
+But I have to move fast. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -2061,13 +2097,13 @@ Instead of examining up in Outdoors, try examining the sky.
 Before listening to something that is part of the sky, try listening to the sky instead.
 
 The sky is a faraway backdrop in Outdoors. The indefinite article is "the".
-The description is "[if Prologue is happening or Midnight is happening]Shrouded among the clouds and the constellations, the [italic type]Luna[roman type] presides from its throne.[otherwise]The clouds huddle overhead in suspense."
-The sound is "The [if Prologue is happening or Midnight is happening]night is[otherwise]clouds are[end if] quiet."
+The description is "[if it is night]Shrouded among the clouds and the constellations, the [italic type]Luna[roman type] presides from its throne.[otherwise]The clouds huddle overhead in suspense."
+The sound is "The [if it is night]night is[otherwise]clouds are[end if] quiet."
 The sky has some text called the faraway response. The faraway response of the sky is "The heavens are beyond your reach."
 Understand "heaven" or "heavens" or "day/night/daylight" or "weather" or "overcast" as the sky.
 
 Some clouds are scenery part of the sky. The indefinite article is "the".
-The description is "[if Prologue is happening or Midnight is happening]They are dark shapes in a darker sky.[otherwise]The sun is shy on the best of days here, and today's weather is far from the best."
+The description is "[if it is night]They are dark shapes in a darker sky.[otherwise]The sun is shy on the best of days here, and today's weather is far from the best."
 Understand "dark" or "shapes" as the clouds.
 
 The Luna is scenery part of the sky. The printed name is "[italic type]Luna[roman type]". The indefinite article is "the".
@@ -2081,6 +2117,14 @@ Understand "ouroboros" or "hierophant" or "alembicus" or "major" or "constellati
 Before searching the constellations, try examining the constellations instead.
 
 When Prologue ends (this is the daytime sky scenery after Prologue rule):
+	now the Luna is nowhere;
+	now the constellations are nowhere.
+	
+When Walking Home in Fear begins (this is the nighttime sky scenery during Walking Home in Fear rule):
+	now the Luna is part of the sky;
+	now the constellations are part of the sky.
+	
+When Walking Home in Fear ends (this is the daytime sky scenery after Walking Home in Fear rule):
 	now the Luna is nowhere;
 	now the constellations are nowhere.
 	
@@ -2118,11 +2162,11 @@ Instead of touching the mist, say "There is a slight clamminess in the air."
 Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, or turning the mist, say "The mist is immaterial."
 
 Some various shops are a backdrop.
-The description is "[if Prologue is happening or Midnight is happening]All the shops are closed for the night.[otherwise if time is critical]Shopping is the last thing on your mind at the moment.[otherwise]Signs advertise a variety of goods and services, but none of them catch your eye."
-The sound is "[if Prologue is happening or Midnight is happening]All the shops are closed for the night.[otherwise]You hear the sounds of commerce."
+The description is "[if it is night]All the shops are closed for the night.[otherwise if time is critical]Shopping is the last thing on your mind at the moment.[otherwise]Signs advertise a variety of goods and services, but none of them catch your eye."
+The sound is "[if it is night]All the shops are closed for the night.[otherwise]You hear the sounds of commerce."
 Before smelling the various shops, try smelling the location instead.
 Understand "shop" or "window" or "windows" or "signs/signage" or "advertisement/advertisements" or "goods" or "and" or "services" or "shop door/doors" as the shops.
-Instead of buying, entering, knocking on, or searching the shops, say "[if Prologue is happening or Midnight is happening]All the shops are closed for the night.[otherwise if time is critical]Shopping is the last thing on your mind at the moment.[otherwise]None of the shops are relevant to your situation."
+Instead of buying, entering, knocking on, or searching the shops, say "[if it is night]All the shops are closed for the night.[otherwise if time is critical]Shopping is the last thing on your mind at the moment.[otherwise]None of the shops are relevant to your situation."
 
 The city crowd is a backdrop. The indefinite article is "the".
 The description is "The population of the Channelworks District is only a few thousand, but at times like this it seems much more."
@@ -2332,6 +2376,7 @@ Part 3.1.3 - Ambience
 [This part governs random events that sometimes trigger in various areas, to create a sense of liveliness in the Channelworks District. There are a number of backdrop objects which can be placed in rooms to provide them with ambience. The actual ambience text is provided by tables which we shuffle and cycle through in random order.]
 
 An ambience object is a kind of backdrop.
+An ambience object can be active or inactive. An ambience object is usually active.
 An ambience object has a table name called the associated table.
 An ambience object has a number called the message index. The message index is usually 1.
 
@@ -2345,26 +2390,30 @@ When play begins (this is the shuffle the ambience rule):
 
 Every turn (this is the ambience rule):
 	if ambience suppression is false:
-		if an ambience object is in the location:
+		if an active ambience object is in the location:
 			decrement the ambience cooldown timer;
 			if the ambience cooldown timer is 0:
 				now the ambience cooldown timer is a random number from 3 to 4;
-				let the relevant ambience be a random ambience object in the location;
-				let the appropriate index be the message index of the relevant ambience;
-				let the appropriate table be the associated table of the relevant ambience;
-				say the happening in row appropriate index of appropriate table;
+				let the relevant ambience be a random active ambience object in the location;
+				say the happening in row message index of the relevant ambience of associated table of the relevant ambience;
 				say line break;
-				increment the appropriate index;
-				if the appropriate index is greater than the number of rows in the appropriate table:
-					now the appropriate index is 1;
-					sort the appropriate table in random order;
+				increment the message index of the relevant ambience;
+				if the message index of the relevant ambience is greater than the number of rows in the associated table of the relevant ambience:
+					now the message index of the relevant ambience is 1;
+					sort the associated table of the relevant ambience in random order;
 	otherwise:	
 		now ambience suppression is false.
 
 Chapter 3.1.3.1 - Upper Perioch Ambience
 
-Some Upper Perioch ambience is a privately-named ambience object.
+Some Upper Perioch ambience is a privately-named inactive ambience object.
 The associated table of the Upper Perioch ambience is the Table of Day One Upper Perioch Ambience.
+
+When Day One begins: now the Upper Perioch ambience is active.
+When Walking Home in Fear begins: now the Upper Perioch ambience is inactive.
+When Day Two begins: now the Upper Perioch ambience is active.
+When Midnight begins: now the Upper Perioch ambience is inactive.
+When Day Three begins: now the Upper Perioch ambience is active.
 
 Table of Day One Upper Perioch Ambience
 happening
@@ -3502,7 +3551,7 @@ After reading out cavala-firstaid-yousafe:
 	wait for any key;
 	say "'...and you're saying you have no idea who the assailant was?' the interviewer is asking. 'Surely you must have made an enemy of [italic type]someone.'[roman type][paragraph break]";
 	wait for any key;
-	say "'I'm telling you, I [italic type]know[roman type] this district.' Doctor Cavala takes another sip from her drinking straw. 'No one is fool enough to antagonize the only [italic type]pro bono[roman type] doctor in the city. Just ask Marid.'[paragraph break]";
+	say "'I'm telling you, I know this district.' Doctor Cavala takes another sip from her drinking straw. 'No one is fool enough to antagonize the only [italic type]pro bono[roman type] doctor in the city. Just ask Marid.'[paragraph break]";
 	wait for any key;
 	say "The interviewer shoots you an inquiring look.";
 	
@@ -3524,41 +3573,41 @@ You describe how you were accosted; how the robbers were terrified once they rea
 'But clearly,' the interviewer counters, 'someone does.'"	{clinic-interviewer-otherdoctors, clinic-interviewer-somethingsmells}
 clinic-interviewer-otherdoctors	true	true	"'Aren't there other doctors operating in the area?'"	"'Aren't there other doctors operating in the area?' you ask.
 
-Doctor Cavala shakes her head. 'Not [italic type]pro bono.[roman type] Arturus and Justinian do good work, but they operate by appointment only. For the less fortunate -- for the, shall we say, less refined individuals of the district -- I'm the only physician that can be relied on.'
+Doctor Cavala shakes her head. 'Not [italic type]pro bono.[roman type] Arturus and Justinian do good work, but they operate by appointment only. For the less fortunate -- for the less refined elements in the district -- I'm the only physician that can be relied on.'
 
-The interviewer cocks an eyebrow. 'And you provide your services to these... individuals?'
+The interviewer cocks an eyebrow. 'And you provide your services to these... elements?'
 
 'I uphold the oath, Madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
-clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident,' you say. 'It doesn't make any sense. Why attack Doctor Cavala? And why attack now?'
+clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident. Who would want to attack Doctor Cavala? And why attack now, of all times?'
 
-Your question hangs in the air. Doctor Cavala falls silent, lost in thought.
-
-[wait for any key]The interviewer looks between you, unsure of how to proceed.
+Your questions hang in the air. The doctor falls silent. The interviewer's eyes dart between you.
 
 [wait for any key]It is Doctor Cavala who breaks the silence, with words that prick like pins.
 
-'Do you think it's connected to Reden?' she asks. 'To what happened last night?'"	{clinic-interviewer-yes, clinic-interviewer-no, clinic-interviewer-maybe, clinic-interviewer-idk}
+'Do you think it's connected to Reden?' she asks. 'To what happened last night?'
+
+[wait for any key]You hesitate."	{clinic-interviewer-yes, clinic-interviewer-no, clinic-interviewer-maybe, clinic-interviewer-idk}
 clinic-interviewer-yes	true	false	"'Yes...'"	"'Yes, actually,' you say. 'It's been on my mind -- first a man dies in our clinic, and then someone tries to kill you? It can't be a coincidence. It's too close to be.'
 
 'Intriguing.' She searches your eyes. 'You didn't see anything today, did you, Marid? Anything that might provide a clue? What you're suggesting...'
 
 Doctor Cavala doesn't finish her sentence. She takes another sip of tea, looking greatly perturbed.
 
-[clinic-interviewer-end] "	{}
+[clinic-interviewer-end]"	{}
 clinic-interviewer-no	true	false	"'No...'"	"'No,' you say. 'They're two separate events. I can't imagine how they would be connected -- or why anyone would want you dead for it. There must be another reason.'
 
 Doctor Cavala doesn't look convinced. 'Perhaps,' she concedes. 'Perhaps. It's too early to be sure...'
 
 She takes another sip of tea, quiet, pensive.
 
-[clinic-interviewer-end] "	{}
+[clinic-interviewer-end]"	{}
 clinic-interviewer-maybe	true	false	"'Maybe...'"	"'Maybe,' you say. 'It's too close to be a coincidence -- but how could they possibly be connected? I can't imagine why anyone would want you dead for that.'
 
 Doctor Cavala furrows her brow. 'I certainly hope it's a coincidence,' she says. 'If the alternative is true...'
 
 She trails off and takes another sip of tea, looking greatly perturbed.
 
-[clinic-interviewer-end] "	{}
+[clinic-interviewer-end]"	{}
 clinic-interviewer-idk	true	false	"'I don't know.'"	"'I don't know.'
 
 Doctor Cavala sighs. 'You may be right, Marid. There are so many questions -- it's too early to be sure of anything. And yet...'
@@ -3569,7 +3618,10 @@ She trails off. She takes another sip of tea, becoming quiet, pensive.
 
 To say clinic-interviewer-end:
 	wait for any key;
-	say "Then everyone lived happily ever after. ";
+	say "'Well,' the interviewer says finally. 'This has all been very enlightening, but the hour is growing late. I will recommend another interviewer to join you tomorrow, Doctor. Until then, I must forward your testimonies to the Criminological Tribunal--'[paragraph break]";
+	wait for any key;
+	now the front door of the clinic is closed;
+	say "The guards leave the clinic following a perfunctory sending-off. You are left in the company of Doctor Cavala and Horatio, who have settled down in the waiting area for the long haul.[look pending]";
 
 Section 3.3.5.4.7 - First Aid Timed Events
 
@@ -3672,14 +3724,14 @@ Instead of opening the shelves of organs, say "Formaldehyde is quite toxic. You 
 Instead of removing something from the shelves of organs, say "You can't imagine how that would be useful."
 
 The mortuary slab is a scenery supporter in the Mortuary.
-Instead of examining the mortuary slab, say "It's a dais for cadavers to be laid on. Reden's body and organs are presently occupying it."
-Instead of entering the mortuary slab, say "[if Day One is happening]You shouldn't disturb Doctor Cavala while she's performing the autopsy.[otherwise]There's no need for that."
-Instead of putting something on the mortuary slab, say "Reden's body is already occupying the slab."
+Instead of examining the mortuary slab, say "It's a dais for cadavers to be laid on[if Reden's Autopsy is happening]. Reden's body and organs are presently occupying it[end if]."
+Instead of entering the mortuary slab, say "[if Reden's Autopsy is happening]You shouldn't disturb Doctor Cavala while she's performing the autopsy.[otherwise]There's no need for that."
+Instead of putting something on the mortuary slab when Reden's Autopsy is happening, say "Reden's body is already occupying the slab."
 
 Some labeled niches are a scenery container in the Mortuary.
-The description is "For each niche, a body."
 Understand "niche" as the labeled niches.
 Instead of entering the labeled niches, say "You aren't dead yet, Marid."
+Instead of examining the labeled niches, say "For each niche, a body."
 Instead of inserting something into the labeled niches, say "The niches are reserved for cadavers."
 
 Some embalmed cadavers are a dead mixed-race person in the labeled niches.
@@ -3884,16 +3936,16 @@ After reading out cavala-errands2-footpath:
 
 Book 3.5 - Via Terminalis, West End
 
-Via Terminalis West End is a proper-named room in Outdoors. "You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. [if Prologue is happening]Night has fallen, broken only by the ghostly glow of bound animii in street-lamps and shop windows. Beyond, you see the great spine of the Channelworks District, receding from the lamplight into the beginnings of rain.[otherwise]From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.[end if]
+Via Terminalis West End is a proper-named room in Outdoors. "You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. [if it is night]Night has fallen, broken only by the ghostly glow of bound animii in street-lamps and shop windows. Beyond, you see the great spine of the Channelworks District, receding from the lamplight into the beginnings of rain.[otherwise]From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.[end if]
 
-The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie has not ended];[otherwise],[end if] the dormitory block where you live lies to the north[if Prologue is happening]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
+The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie has not ended];[otherwise],[end if] the dormitory block where you live lies to the north[if it is night]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
 The printed name is "Via Terminalis, West End".
 
 The simple-name is "the West End".
 The sound is "You hear the murmuring of the city all around you."
 The scent is "The smell of ozone mingles with the mist."
-The exit reminder is "You can go west to the clinic[if Nine to Five Zombie has ended],[otherwise] or[end if] north to the dormitory block[if Nine to Five Zombie has ended], south to the crooked alley, or east along the Via Terminalis[end if]."
-The going-in disambiguation is "Do you mean going north (to the dormitory block)[if Nine to Five Zombie has ended], going south (to the crooked alley),[end if] or going west (to the clinic)?"
+The exit reminder is "[if it is night or Nine to Five Zombie is happening]You can go west to the clinic or north to the dormitory block.[otherwise]You can go west to the clinic, north to the dormitory block, south to the crooked alley, or east along the Via Terminalis."
+The going-in disambiguation is "Do you mean going north (to the dormitory block)[unless it is night or Nine to Five Zombie is happening], going south (to the crooked alley),[end if] or going west (to the clinic)?"
 
 Before examining north in the West End, try examining the view of the dormitory instead.
 Before examining south in the West End, try searching the gap between buildings instead.
@@ -3930,16 +3982,17 @@ After going through the gap between buildings while the player is staid: say "Yo
 
 Part 3.5.3 - West End during Prologue
 
-Instead of going to Via Terminalis West Street during Walking Home in Darkness, say "It's dangerous to go out at night."
-Instead of going to the Crooked Alley during Walking Home in Darkness, say "It's dangerous to go out at night."
+Instead of going to Via Terminalis West Street when it is night, say "It's dangerous to go out at night."
+Instead of going to the Crooked Alley when it is night, say "It's dangerous to go out at night."
 
 The burgeoning rain is faraway scenery in Via Terminalis West End. The indefinite article is "the".
 The description is "More than mist, but less than rain."
 The burgeoning rain has some text called the faraway response. The faraway response is "The rain is barely there."
 Understand "beginning/beginnings" or "of" as the burgeoning rain.
 
-When Prologue ends (this is the despawn the burgeoning rain rule):
-	now the burgeoning rain is nowhere.
+When Prologue ends: now the burgeoning rain is nowhere.
+When Walking Home in Fear begins: now the burgeoning rain is in the West End.
+When Day One ends: now the burgeoning rain is nowhere.
 
 Part 3.5.4 - West End during Day One
 
@@ -3979,7 +4032,7 @@ Instead of listening to the clinic building during Returning to a Break-In:
 
 Book 3.6 - Dormitory Block
 
-The Dormitory Block is a proper-named room in Outdoors. "You have walked the grounds of this three-storey estate long enough to know it by heart. Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if Prologue is happening]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
+The Dormitory Block is a proper-named room in Outdoors. "You have walked the grounds of this three-storey estate long enough to know it by heart. Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
 From here, you can go up to your dormitory, visit the public house to the west, or exit the building to the south."
 The Dormitory Block is north of the West End.
@@ -4272,13 +4325,17 @@ Instead of knocking on the char-golem, say "Clank."
 Instead of pushing, pulling, swinging, taking, or turning the char-golem, say "The golem is many times your weight."
 Instead of talking to the char-golem, say "Golems aren't sapient. You'd sooner get a response out of a lamp-post."
 
+The big burlap bag is a thing carried by the Council of Works char-golem.
+The description is "It's just a big burlap bag."
+The scent is "You smell dead pigeons and strychnia."
+
 Some dead pigeons are a scenery thing.
 The description is "Each carcass is contorted strangely, as though frozen in an instant of convulsion."
 The scent is "They are less putrefied than one might expect, perhaps due to the preservative qualities of strychnia."
 Understand "corpse/corpses" or "cadaver/cadavers" or "carcass/carcasses" or "ground" or "dozen/dozens of/--" or "pigeon" as the dead pigeons.
 Instead of attacking the dead pigeons, say "They are already dead."
 Instead of cutting the dead pigeons, say "This is neither the time nor place for a dissection."
-Instead of entering the dead pigeons, say "That seems unnecessary."
+Instead of entering the dead pigeons, say "That seems unnecessary." [Response to "step on pigeons."]
 Instead of knocking on, squeezing, or touching the dead pigeons, say "They are still."
 Instead of rubbing, swinging, taking, or tasting the dead pigeons, say "You can't imagine any reason you would have to do that."
 
@@ -4313,7 +4370,7 @@ When Cavala's Errands ends (this is the despawn the dead pigeons and cleaners ru
 
 Book 3.7 - Public House
 
-There is a proper-named room called the Public House. "Tucked away in the shadow of the domiciles, this cozy establishment offers a retreat from the [if Prologue is happening]melancholy of the night[otherwise]bustle of the day[end if]. Other patrons are scattered at the tables, engaged in drinking and conversation, while in the corner a solitary clockwork musician plays. The door is to the east."
+There is a proper-named room called the Public House. "Tucked away in the shadow of the domiciles, this cozy establishment offers a retreat from the [if it is night]melancholy of the night[otherwise]bustle of the day[end if]. Other patrons are scattered at the tables, engaged in drinking and conversation, while in the corner a solitary clockwork musician plays. The door is to the east."
 
 The simple-name is "the public house".
 The sound is "Music and conversation intermingle with one another."
@@ -4641,6 +4698,11 @@ The high-rise buildings, the plaster walls, and the sky are in Marid's Dormitory
 
 Instead of listening to the plaster walls in Marid's Dormitory, say "[if time is critical]You don't have time for that.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
 
+Some simple furnishings are scenery in Marid's Dormitory.
+The description is "Well, 'comforts' might be an exaggeration. But it's home."
+The scent is "At least the air isn't dusty."
+Understand "comfort/comforts" or "of" or "home" or "furnishing" or "space" or "small" or "corner/corners" or "air" or "dust" as the simple furnishings.
+
 Part 3.8.2 - Dormitory Room Door
 
 The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Dormitory. The printed name is "door to your dormitory room".
@@ -4777,7 +4839,7 @@ Part 3.8.6 - Dormitory Window
 The dormitory window is an open unopenable scenery door. It is north of Marid's Dormitory and south of the Placeholder Chase Area.
 The description is "It's a simple square opening without a pane or a grille. A shadowed rooftop can be seen through it."
 The sound is "[if time is critical]This is not the time.[otherwise]You hear the murmuring of the city."
-The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the abandoned mill from here, a trace of its ash lingers in the air."
+The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the condemned block from here, a trace of its ash lingers in the air."
 Understand "dorm" as the dormitory window.
 Before climbing the dormitory window, try entering the dormitory window instead.
 Instead of searching the dormitory window, say "You can see little except the view of the rooftop."
@@ -6366,7 +6428,7 @@ He gets up and vanishes into one of the side doorways of the basilica, muttering
 
 [wait for any key]After an appreciable wait, he emerges from the doorway flush-faced and triumphant.
 
-[wait for any key]'Seventh on Layabout Row,' he proclaims, Upper Riggertown. Property under the name of Zoiro and Koriph. And his place of employment, which I've taken the liberty to look up, is the Riggertown Mechanistry. Here, let me write it down for you--'
+[wait for any key]'Seventh on Layabout Row,' he proclaims, 'Upper Riggertown. Property under the name of Zoiro and Koriph. And his place of employment, which I've taken the liberty to look up, is the Riggertown Mechanistry. Here, let me write it down for you--'
 
 [wait for any key]He scribbles on a scrap of paper, hands it to you, and sits back down at his desk looking extremely satisfied.
 
