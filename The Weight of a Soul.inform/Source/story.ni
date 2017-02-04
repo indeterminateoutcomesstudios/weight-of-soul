@@ -51,11 +51,7 @@ You have been warned.
 ---TO DO---
 
 - Write Day One
-	- Write Returning to a Break-In
-	- Write journal entries for Returning to a Break-In
-	- Write Cavala post-attack dialogue
 	- Write Walking Home in Fear
-	- Write journal entry for Walking Home in Fear
 	- Write new bartender dialogue
 
 - Write Day Two
@@ -553,6 +549,8 @@ To say cavala-description:
 		say "Right now, she appears to be filling out a census report for Reden's death. ";
 	otherwise if Reden's Autopsy is happening:
 		say "She has a look of absolute concentration on her face. ";
+	otherwise if Walking Home in Fear is happening:
+		say "She's taking her injury rather well. But then again, she [italic type]was[roman type] an army doctor. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -573,14 +571,16 @@ Instead of bandaging Doctor Cavala with when Doctor Cavala is wearing the hermet
 
 Chapter 1.3.3.2 - Horatio
 
-Horatio is a human man.
+Horatio is an undescribed man.
 The description is "[horatio-description]".
 The scent is "Horatio smells like sweat and ozone."
 Understand "vigile" as Horatio.
 
 To say horatio-description:
-	if Day One is happening:
-		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ".
+	if Cavala's Errands is happening:
+		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ";
+	otherwise if Walking Home in Fear is happening:
+		say "He seems to be making himself useful, at least. "
 
 Chapter 1.3.3.3 - Carnicer
 
@@ -1645,9 +1645,9 @@ To say useful-commands-text:
 
 >[bold type]look[roman type] (>[bold type]l[roman type] or a blank command for short) provides a description of your surroundings, including the things around you and the directions you can go in.
 
->[bold type]inventory[roman type] (>[bold type]i[roman type] for short) tells you what items you're wearing or carrying. You can >[bold type]take[roman type] or >[bold type]drop[roman type] things; >[bold type]wear[roman type] or >[bold type]take off[roman type] clothing; >[bold type]put[roman type] items [bold type]on[roman type] or [bold type]in[roman type] containers; and so on.
-
 >[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type] for short) provides you with a closer look at whatever it is you're examining.
+
+>[bold type]inventory[roman type] (>[bold type]i[roman type] for short) tells you what items you're wearing or carrying. You can >[bold type]take[roman type] or >[bold type]drop[roman type] things; >[bold type]wear[roman type] or >[bold type]take off[roman type] clothing; >[bold type]put[roman type] items [bold type]on[roman type] or [bold type]in[roman type] containers; and so on.
 
 >[bold type]go (direction)[roman type] (>[bold type](direction)[roman type] for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type]. You can also >[bold type]go to[roman type] an area you've visited before, or >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.
 
@@ -1669,7 +1669,7 @@ I'd like to thank Lieu, Gu, Wen, Chew, Sean, WY, WH, GA, Marvin, Matthew, and th
 Thanks to Emily Short for writing the various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family for supporting me, to the Inform team for creating an amazing IDE, and to the IF community for creating a truly inspirational body of work. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
-[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at chinkeeyong (at) gmail (dot) com.";
+[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at chinkeeyong (at) gmail (dot) com.";
 
 Chapter 2.3.3.2 - Journal
 
@@ -1709,11 +1709,11 @@ When Reden's Surgery ends: now Reden is discovered.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
 
 Horatio is discoverable. The bio-name of Horatio is "Vigile Horatio".
-The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been assigned as Doctor Cavala's protector[end if]."
+The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been assigned as Doctor Cavala's protector for the time being[end if]."
 
 When Returning to a Break-In ends: now Carnicer is discovered.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
-The bio-description of Carnicer is "A mutant assassin who broke into Doctor Cavala's clinic and tried to kill her. Her motives are unknown."
+The bio-description of Carnicer is "A mutant assassin who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 Chapter 2.3.3.4 - Map
 
@@ -1969,6 +1969,12 @@ I don't know how much more misfortune I can weather, and I sincerely hope not to
 		say "Okay. Okay. I've trained for this. I can do this.
 
 But I have to move fast. ";
+	otherwise if Walking Home in Fear is happening:
+		say "I still can't believe that just happened. What is going on in the Channelworks District?
+
+The assassin is gone now, but I don't believe for a moment that it's over. Something dark is afoot in the city. This can only be the beginning... of what, I don't know.
+
+Whatever it is, Doctor Cavala and Horatio are with me. We'll face it together. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -1980,7 +1986,7 @@ To say journal-text-objectives:
 	if Reden's Surgery is happening:
 		add "Help Doctor Cavala save the patient's life" to L;
 	if Walking Home in Darkness is happening:
-		add "Get a good night's sleep" to L;
+		add "Go home and get some sleep" to L;
 	[---
 	DAY ONE
 	---]
@@ -2013,6 +2019,8 @@ To say journal-text-objectives:
 			add "Investigate the stranger" to L;
 	if First Aid on Cavala is happening:
 		add "Administer first aid to Doctor Cavala" to L;
+	if Walking Home in Fear is happening:
+		add "Go home and get some sleep" to L;
 	[---
 	END
 	---]
@@ -3326,10 +3334,11 @@ Instead of examining Doctor Cavala during First Aid on Cavala: [If for some reas
 		-- 3:
 			say "The bandage is compressing the wound nicely, but you still need to raise her leg above chest level to halt the bleeding.";
 	
-The galvanic cutter is a thing.
+The galvanic cutter is a faraway thing.
 The description is "It looks like the doctor kept a souvenir of her time in the military."
 The scent is "You can still detect the faint smell of ozone."
-Understand "lightning" as the galvanic cutter.
+The galvanic cutter has some text called the faraway response. The faraway response is "It's a cutting tool. You shouldn't be touching it without a good reason."
+Understand "lightning" or "cutting" or "tool" as the galvanic cutter.
 
 When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule):
 	now the galvanic cutter is carried by Doctor Cavala;
@@ -3670,16 +3679,176 @@ Instead of entering the waiting chairs during First Aid on Cavala, say "This is 
 Instead of entering Doctor Cavala's armchair during First Aid on Cavala, say "This is no time to sit down."
 Instead of going during First Aid on Cavala, say "You can't leave Doctor Cavala, not now."
 
-Part 3.3.6 - Clinic during Walking Home in Fear
+Chapter 3.3.5.5 - Clinic during Walking Home in Fear
 
-Chapter 3.3.6.1 - Doctor Cavala during Walking Home in Fear
+Section 3.3.5.5.1 - Makeshift Bed
+
+The makeshift bed is a scenery supporter.
+The description is "Some of the waiting chairs have been furnished with cushions."
+The scent is "The bed smells fresh. Horatio must be replacing the cushions every now and then."
+Understand "cushion/cushions" as the makeshift bed.
+Instead of entering the makeshift bed, say "There's no room beside Doctor Cavala."
+Instead of looking under the makeshift bed, say "It's just the waiting chairs underneath."
+Instead of putting something on the makeshift bed, say "There's no room beside Doctor Cavala."
+Instead of searching the makeshift bed, say "Doctor Cavala is on the makeshift bed."
+Instead of taking the makeshift bed, say "Now isn't the best time to dismantle Doctor Cavala's bed."
+Instead of knocking on, rubbing, or touching the makeshift bed: say "You poke at the cushions[first time].[paragraph break]'Really?' Doctor Cavala says[only]."
+
+When Walking Home in Fear begins (this is the spawn the makeshift bed rule):
+	now the makeshift bed is in the Clinic.
+
+Section 3.3.5.5.2 - Doctor Cavala and Horatio
+
+whf-goodnight-quips is a number that varies.
+[0: Marid has not said goodbye yet. Next quip is "I should be going..."
+1: Marid has said goodbye but not left the clinic.
+2: Marid has left the clinic but not reentered. Next quip is "Back again?"
+3: Marid has reentered the clinic but not left again. If she talks to Horatio and Cavala, she gets special dialogue.
+4: Marid has read special dialogue or left the clinic again. No more dialogue.]
 
 Rule for writing a paragraph about Doctor Cavala during Walking Home in Fear:
-	say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby."
+	if whf-goodnight-quips is 2:
+		say "'Back again?' Doctor Cavala quips.
 
-Chapter 3.3.6.2 - Horatio during Walking Home in Fear
+'Just wondering about something,' you reply.
 
-[TBA]
+'Don't worry about her, Doctor,' Horatio says. 'Marid is like that sometimes.'";
+		now whf-goodnight-quips is 3;
+	otherwise:
+		say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby."
+
+Before going to the West End when Walking Home in Fear is happening:
+	if whf-goodnight-quips < 2:
+		if whf-goodnight-quips is 0, say "'I should be going too,' you say. 'I'll see you tomorrow.'
+
+'Good night, Marid.'
+
+'G'night, Marid.'
+
+'Good night, Doctor, Horatio.'";
+		now whf-goodnight-quips is 2;
+	otherwise if whf-goodnight-quips is 3:
+		now whf-goodnight-quips is 4.
+
+Section 3.3.5.5.3 - Cavala-Horatio Dialogue
+	
+Some dialogue branches are defined by the Table of Cavala-Horatio WHF Dialogue.
+
+Table of Cavala-Horatio WHF Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavalahoratio-whf	true	false	""	"[if whf-goodnight-quips is 3]'I am [italic type]not.'[roman type]
+
+'You are [italic type]too.'[roman type]
+
+'Am not!'
+
+'Are too!'
+
+'Cut that out,' Doctor Cavala says wearily, 'or I'll bodily cart both of you out of my clinic.'
+
+'Sorry,' Horatio mumbles.[otherwise]You approach the makeshift bed; Doctor Cavala and Horatio turn to you."	{cavalahoratio-whf-speakcavala, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-speakcavala	true	false	"<Speak to Doctor Cavala...>"	""	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-speakhoratio	true	false	"<Speak to Horatio...>"	""	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-feelingbetter	true	true	"'Are you feeling better, Doctor?'"	"'Are you feeling better, Doctor?'
+
+She smiles. 'I'm feeling quite well, despite circumstances. Still, I hope to be looked at by a proper surgeon soon -- the Vigiles have already contacted Doctor Arturus's clinic, but you know how careless he can be when it comes to these things. Did you know he hasn't replied to my correspondence [italic type]at all[roman type] today?'
+
+You feel a twinge of sympathy for Doctor Arturus. Doctor Cavala takes a dim view of tardiness, as you know from experience."	{cavalahoratio-whf-aboutclinic, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-aboutclinic	true	true	"'What will happen with the clinic while you're indisposed?'"	"'What will happen with the clinic while you're indisposed?' you ask.
+
+Doctor Cavala lifts a hand. 'I'm obviously not in any condition to operate,' she says wryly. 'But I'm not completely indisposed, not yet. I can still listen to patients, diagnose illnesses. The clinic will remain open for business, I think, until the time comes for my knee operation.'
+
+'I'll help Doctor Cavala where I can,' Horatio adds. 'Since I'll be here and all.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-abouthoratio	true	true	"'How is Horatio doing?'"	"'How is Horatio doing?'
+
+'Your friend, isn't he?' Doctor Cavala quirks an eyebrow. 'He hasn't broken anything, so I suppose that's a plus--'
+
+'--Hey!--'
+
+'--But he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'
+
+'Glad to hear it,' you say.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-fancy	true	true	"'Fancy seeing you here, Horatio.'"	"'Fancy seeing you here, Horatio.'
+
+'It's good to see you too, Marid.' His expression grows grave for a moment. 'When the call came in, I thought... I was worried about you. Now that I'm here, I'm -- I'm just glad you're okay.'
+
+You can't help but smile. 'Thanks, Horatio.'
+
+Even a buffoon like him can be sweet sometimes."	{cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-howdoing	true	true	"'How are you doing?...'"	"'How are you doing?' you ask Horatio. 'I recall you saying you wanted to [']see some [italic type]action[roman type] in the Vigiles...['] '
+
+He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd hoped for. Still--' He nods. 'I feel like I'm making a difference, like I'm doing something worthwhile. How often does one get the chance to say that?'
+
+On the corner of Doctor Cavala's lips, you glimpse the hint of a smile."	{cavalahoratio-whf-fancy, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-nomess	true	true	"'Try not to mess anything up.'"	"You punch Horatio's shoulder. 'Try not to mess anything up.'
+
+He grins. 'I won't.'
+
+'Don't worry,' Doctor Cavala quips. 'If he ever does...'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-goodbye	true	false	"'I should be going[if whf-goodnight-quips is 0]..[no line break][end if].'"	"'I should be going,' you say.[if whf-goodnight-quips is 0] 'I'll see you tomorrow.'[end if]
+
+'Good night, Marid.'
+
+'G'night, Marid[if whf-goodnight-quips is 0].'
+
+'Good night, Doctor, Horatio[end if].'"	{}
+	
+When Walking Home in Fear begins (this is the initialize Clinic dialogue for Walking Home in Fear rule):
+	now the home dialogue branch of Doctor Cavala is cavalahoratio-whf;
+	now the home dialogue branch of Horatio is cavalahoratio-whf.
+	
+After reading out cavalahoratio-whf:
+	if whf-goodnight-quips is 3, now whf-goodnight-quips is 4;
+	now the conversational partner text is "Talking to Doctor Cavala and Horatio";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	
+After reading out cavalahoratio-whf-speakhoratio:
+	now the conversational partner text is "Talking to Horatio";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	if the enabled of cavalahoratio-whf-feelingbetter is false and
+	the enabled of cavalahoratio-whf-aboutclinic is false and
+	the enabled of cavalahoratio-whf-abouthoratio is false:
+		now the enabled of cavalahoratio-whf-speakcavala is false;
+		
+After reading out cavalahoratio-whf-speakcavala:
+	now the conversational partner text is "Talking to Doctor Cavala";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	if the enabled of cavalahoratio-whf-fancy is false and
+	the enabled of cavalahoratio-whf-howdoing is false and
+	the enabled of cavalahoratio-whf-nomess is false:
+		now the enabled of cavalahoratio-whf-speakhoratio is false;
+	
+After reading out cavalahoratio-whf-goodbye:
+	if the enabled of cavalahoratio-whf-feelingbetter is false and
+	the enabled of cavalahoratio-whf-aboutclinic is false and
+	the enabled of cavalahoratio-whf-abouthoratio is false:
+		now the enabled of cavalahoratio-whf-speakcavala is false;
+	if the enabled of cavalahoratio-whf-fancy is false and
+	the enabled of cavalahoratio-whf-howdoing is false and
+	the enabled of cavalahoratio-whf-nomess is false:
+		now the enabled of cavalahoratio-whf-speakhoratio is false;
+	if whf-goodnight-quips is 0, now whf-goodnight-quips is 1.
+	
+Instead of talking to when Walking Home in Fear is happening (this is the no more Cavala-Horatio WHF dialogue rule):
+	if the noun is Doctor Cavala or the noun is Horatio:
+		if the enabled of cavalahoratio-whf-speakcavala is false and the enabled of cavalahoratio-whf-speakhoratio is false:
+			if whf-goodnight-quips is 3:
+				say "'I am [italic type]not.'[roman type]
+
+'You are [italic type]too.'[roman type]
+
+'Am not!'
+
+'Are too!'
+
+'Cut that out,' Doctor Cavala says wearily, 'or I'll bodily cart both of you out of my clinic.'
+
+'Sorry,' Horatio mumbles.";
+				now whf-goodnight-quips is 4;
+			otherwise:
+				say "[one of]'Don't let us keep you,' Doctor Cavala says. 'You should return home before it gets dark.'[or]That's enough conversation for now. You really should be going.[stopping]";
+			stop the action;
+	continue the action.
 
 Book 3.4 - Mortuary
 
@@ -3938,7 +4107,7 @@ Book 3.5 - Via Terminalis, West End
 
 Via Terminalis West End is a proper-named room in Outdoors. "You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. [if it is night]Night has fallen, broken only by the ghostly glow of bound animii in street-lamps and shop windows. Beyond, you see the great spine of the Channelworks District, receding from the lamplight into the beginnings of rain.[otherwise]From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.[end if]
 
-The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie has not ended];[otherwise],[end if] the dormitory block where you live lies to the north[if it is night]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
+The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie is happening];[otherwise if it is night], and[otherwise],[end if] the dormitory block where you live lies to the north[if Prologue is happening]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise if it is night].[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
 The printed name is "Via Terminalis, West End".
 
 The simple-name is "the West End".
@@ -4044,7 +4213,6 @@ The scent is "You smell cooking from the dormitory and the public house."
 The exit reminder is "You can go up to your dormitory, west to the public house, or south to the Via Terminalis."
 The going-in disambiguation is "Do you mean going up (to your dormitory), going west (to the public house), or going south (to the Via Terminalis)?"
 
-Before examining up in the Dormitory Block, try examining the dormitory domiciles instead.
 Before examining inside in the Dormitory Block, try examining the dormitory domiciles instead.
 Before examining west in the Dormitory Block, try examining the view of the public house instead.
 Before examining south in the Dormitory Block, try searching the faded arch instead.
@@ -4311,9 +4479,11 @@ When Prologue ends (this is the despawn Saliunca rule):
 	
 Part 3.6.4 - Dormitory Block during Day One
 
+Chapter 3.6.4.1 - during Nine to Five Zombie
+
 Before going west in Dormitory Block during Nine to Five Zombie, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
-Chapter 3.6.4.1 - Dead Pigeons and Cleaners
+Chapter 3.6.4.2 - Dead Pigeons and Cleaners
 
 The Council of Works char-golem is a thing. "The ground is littered with what must be dozens of dead pigeons. A char-golem is busy sweeping the carcasses into a bag, while a gobliness slouches beside the fountain nearby."
 The description is "An animated golem comprised of cast iron. The stamp on its forehead identifies it as property of the Council of Works."
@@ -4367,6 +4537,31 @@ When Cavala's Errands ends (this is the despawn the dead pigeons and cleaners ru
 	now the dead pigeons are nowhere;
 	now the char-golem is nowhere;
 	now the gobliness is nowhere.
+	
+Chapter 3.6.4.3 - The Single Pigeon
+
+The single pigeon is a creature animal.
+"You notice a single pigeon half-hidden under the stairs. The gobliness and her golem must have missed it."
+The sound is "It's not making any sound."
+Understand "bird" or "half-hidden" or "half" or "hidden" as the single pigeon.
+Instead of doing anything other than listening when the current action involves the single pigeon:
+	say "You take a step closer--[paragraph break]";
+	wait for any key;
+	say "The pigeon twitches.[paragraph break]";
+	wait for any key;
+	say "Before your eyes, the pigeon begins to move, like a delicate clockwork replica that has been wound up again. It rights itself in a flutter of wings and coos, unmistakably alive.[paragraph break]";
+	wait for any key;
+	say "It looks around. It cocks its head in your direction.[paragraph break]";
+	wait for any key;
+	say "And with the slightest impulse, it takes to the air, and disappears into the glittering night sky.[paragraph break]";
+	wait for any key;
+	say "You touch your pendant."
+
+When Walking Home in Fear begins (this is the spawn the single pigeon rule):
+	now the single pigeon is in the Dormitory Block.
+	
+When Walking Home in Fear ends (this is the despawn the single pigeon rule):
+	now the single pigeon is nowhere.
 
 Book 3.7 - Public House
 
@@ -4445,7 +4640,7 @@ Instead of looking under the food, say "It's on the dining tables."
 
 Part 3.7.4 - Serving Counter
 
-The serving counter is a fixed in place supporter in the Public House.
+The serving counter is a fixed in place enterable supporter in the Public House.
 Understand "stool/stools" as the serving counter.
 Instead of examining the serving counter, say "It's the counter where patrons are served their food and drink. A chalkboard displays the menu."
 Instead of looking under the serving counter, say "The bartender is behind the counter."
@@ -4996,13 +5191,10 @@ When Cavala's Errands ends (this is the despawn Horatio and the guards at the en
 Chapter 3.9.3.3 - Horatio during Day One
 
 Horatio is in the West Street.
-
-Rule for writing a paragraph about Horatio during Day One (this is the we already mentioned Horatio with the guards during Day One rule):
-	now Horatio is mentioned.
 	
 Before knocking on, squeezing, or touching Horatio during Day One, try talking to Horatio instead.
 
-Instead of talking to Horatio when Day One is happening and the enabled of horatio-dayone-intro is false, say "You shouldn't. Any more chat and he'll be told off for shirking duty."
+Instead of talking to Horatio when Cavala's Errands is happening and the enabled of horatio-dayone-intro is false, say "You shouldn't. Any more chat and he'll be told off for shirking duty."
 	
 Section 3.9.3.3.1 - Horatio's Day One Dialogue
 
