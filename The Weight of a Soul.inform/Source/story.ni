@@ -50,10 +50,6 @@ You have been warned.
 
 ---TO DO---
 
-- Write Day One
-	- Write Walking Home in Fear
-	- Write new bartender dialogue
-
 - Write Day Two
 - Write Midnight
 - Write Day Three
@@ -143,6 +139,18 @@ When play begins (this is the new final question options rule):
 	now the final question wording entry is ">[bold type]quit[roman type]";
 	choose row 5 in the Table of Final Question Options;
 	now the final question wording entry is ">[bold type]undo[roman type] the last command";
+	
+To to be continued:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][line break]";
+	center "T O";
+	say paragraph break;
+	center "B E";
+	say paragraph break;
+	center "C O N T I N U E D";
+	wait for any key;
+	clear the screen;
+	end the story saying "The end... for now".
 
 Part 1.1.7 - Debug Messages - Release for testing
 
@@ -342,7 +350,7 @@ To skip past the first errand:
 		skip past Nine to Five Zombie;
 	now the Crooked Alley is visited;
 	now Via Terminalis West Street is visited;
-	now Horatio is discovered;
+	add Horatio to the list of discovered characters;
 	now the Condemned Block is visited;
 	now Following the Canal is visited;
 	now exterminators-profession-known is true;
@@ -550,7 +558,7 @@ To say cavala-description:
 	otherwise if Reden's Autopsy is happening:
 		say "She has a look of absolute concentration on her face. ";
 	otherwise if Walking Home in Fear is happening:
-		say "She's taking her injury rather well. But then again, she [italic type]was[roman type] an army doctor. ";
+		say "She's taking her injury rather well -- but then again, she [italic type]was[roman type] an army doctor. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -558,7 +566,7 @@ Doctor Cavala's leg injury is a thing.
 The description is "[if First Aid on Cavala is happening and Doctor Cavala is wearing the hermetically sealed bandage]You hope the bleeding has subsided.[otherwise if First Aid on Cavala is happening]It's a ragged bloody tear.[otherwise]If Doctor Cavala feels any pain, she doesn't show it."
 The scent is "[if First Aid on Cavala is happening]The scent of blood is thick.[otherwise]You smell the calomel in the dressing."
 Understand "left" or "thigh/knee/tendon" or "cut/gash/wound/tear" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala's leg injury.
-Before bandaging Doctor Cavala's leg injury with: now the noun is Doctor Cavala.
+Before bandaging Doctor Cavala's leg injury with, try bandaging Doctor Cavala with the second noun instead.
 Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning Doctor Cavala's leg injury, say "[if time is critical]This is not the time.[otherwise]That would worsen her injury."
 
 The hermetically sealed bandage is a wearable thing.
@@ -580,7 +588,7 @@ To say horatio-description:
 	if Cavala's Errands is happening:
 		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ";
 	otherwise if Walking Home in Fear is happening:
-		say "He seems to be making himself useful, at least. "
+		say "At least he seems to be making himself useful. "
 
 Chapter 1.3.3.3 - Carnicer
 
@@ -956,7 +964,7 @@ Instead of tying something to something, say "You can't tie those."
 Instead of waking up, say "This is not a dream."
 Instead of rubbing or swinging, say "Nothing happens."
 Instead of throwing something at something, say "That won't accomplish anything."
-Instead of sleeping, say "[if time is critical]Sleep is the last thing on your mind right now.[otherwise if Walking Home in Darkness is happening]You would prefer to sleep in the comfort of your dormitory.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
+Instead of sleeping, say "[if time is critical]Sleep is the last thing on your mind right now.[otherwise if Walking Home in Darkness is happening or Walking Home in Fear is happening]You would prefer to sleep in the comfort of your dormitory.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
 After waiting when time is critical, say "This is no time for inaction."
 
 Last before pushing something to: if the noun is not pushable between rooms, try pushing the noun instead.
@@ -1260,6 +1268,8 @@ Carry out brushing your teeth (this is the standard brushing your teeth rule):
 	otherwise if the location is Marid's Dormitory:
 		if Walking Home in Darkness is happening:
 			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
+		otherwise if Walking Home in Fear is happening:
+			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
 		otherwise:
 			say "You've already brushed your teeth.";
 	otherwise:
@@ -1270,7 +1280,7 @@ Carry out combing your hair (this is the standard combing your hair rule):
 	if time is critical:
 		say "This is not the time.";
 	otherwise if the location is Marid's Dormitory:
-		if Walking Home in Darkness is happening:
+		if Walking Home in Darkness is happening or Walking Home in Fear is happening:
 			say "There isn't much point. Your hair will get messed up when you sleep.";
 		otherwise:
 			say "You've already combed your hair.";
@@ -1291,6 +1301,8 @@ Carry out filing your nails (this is the standard filing your nails rule):
 	if time is critical:
 		say "This is not the time.";
 	otherwise if the location is Marid's Dormitory and Walking Home in Darkness is happening:
+		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
+	otherwise if the location is Marid's Dormitory and Walking Home in Fear is happening:
 		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
 	otherwise:
 		say "You've already filed your nails.";
@@ -1337,7 +1349,7 @@ Check tickling a hostile person: say "You doubt [the noun] will let you do that.
 Understand "bow" or "curtsy" or "curtsey" as a mistake ("[if time is critical]This is not the time.[otherwise]That's a little old-fashioned, don't you think?").
 Understand "cook" or "cook [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You have neither the knowledge nor the inclination.").
 Understand "die" as a mistake ("[if time is critical]No.[otherwise]Entertaining such thoughts is never productive.").
-Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if Cavala's Errands is happening]You smile.[otherwise]You aren't in the mood.").
+Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if (Cavala's Errands is happening and Maze Part One is unvisited) or (Walking Home in Fear is happening and the enabled of bartender-dialogue-drink is true)]You smile.[otherwise]You aren't in the mood.").
 Understand "dance" or "dance [text]" or "do a dance/jig" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood.").
 Understand "fall down/over/--" or "misstep" or "trip" or "trip [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You're more sure-footed than that, Marid.").
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
@@ -1347,7 +1359,7 @@ Understand "use [text]" as a mistake ("You'll have to use a more specific verb t
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
 Understand "prime" or "primes" or "oh primes" as a mistake ("[if time is critical]This is not the time.[otherwise]'Vulgar words reveal one's vulgar nature.' Philosopher Scepter.").
-Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("Type >JOURNAL for a reminder of the information you've come across.").
+Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("Type >[bold type]journal[roman type] for a reminder of the information you've come across.").
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
 Understand "step with care" as a mistake ("[if time is critical]This is not the time.[otherwise]You always do.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
@@ -1611,7 +1623,7 @@ Part 2.3.10 - Help Menu
 
 Table of the Help Menu
 title	subtable	description	toggle
-"About This Game"	--	"[about-this-game-text]"	a rule
+"About This Game"	--	"[about-this-game-text]"	--
 "How to Play"	--	"[how-to-play-text]"	--
 "List of Commands"	--	"[useful-commands-text]"	--
 "Journal"	--	"[journal-text]"	--
@@ -1619,8 +1631,9 @@ title	subtable	description	toggle
 "Map"	--	"[map-text]"	--
 "Hints"	Table of the Hint Menu	--	--
 "Credits"	--	"[credits-text]"	--
+"Back"	--	--	quit rule
 
-Chapter 2.3.3.1 - How to Play, Useful Commands, About This Game, Credits
+Chapter 2.3.3.1 - About This Game, How to Play, Useful Commands, Credits
 
 To say about-this-game-text:
 	say "[bold type]About this game[roman type]
@@ -1638,7 +1651,7 @@ The > symbol indicates a command prompt. When a > is displayed, you can type com
 
 If you are talking to someone, you will instead be prompted to choose from a list of possible responses, in the form [italic type]'1) Say hello; 2) Say goodbye.'[roman type] In this case, you should choose one of the responses by typing the corresponding number.
 
-At other times, there may be no command prompt provided at all, such as during a dramatic pause in the text. In these cases, press any key to continue.";
+At other times, there may be no command prompt provided at all, such as during a dramatic pause in the text. When this happens, press any key to continue.";
 
 To say useful-commands-text:
 	say "[bold type]A list of useful commands[roman type]
@@ -1655,7 +1668,7 @@ To say useful-commands-text:
 
 >[bold type]listen[roman type], >[bold type]smell[roman type], and >[bold type]touch[roman type] allow you to investigate your environment in more detail. You may find it useful to >[bold type]search[roman type] things or >[bold type]look under[roman type] them; >[bold type]push[roman type], >[bold type]pull[roman type], or >[bold type]turn[roman type] objects; >[bold type]attack[roman type], >[bold type]cut[roman type], >[bold type]climb[roman type], and more. The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.
 
->[bold type]help[roman type] opens this menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
+>[bold type]help[roman type] opens the help menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
 
 Lastly, some 'out of world' commands: >[bold type]undo[roman type] takes back your last command, while >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it. >[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved. And >[bold type]quit[roman type] exits the game.";
 
@@ -1686,34 +1699,33 @@ Chapter 2.3.3.3 - Characters
 
 [Choosing Characters brings up a list of all the significant characters you've encountered. Each character gets a short bio about them and their relationship with Marid.]
 
-A person can be discoverable, undiscoverable, or discovered. A person is usually undiscoverable. [A person is only listed in Characters if they are discovered.]
-
-Every turn when a discoverable person is in the location (this is the discover nearby characters rule):
-	now all discoverable people in the location are discovered. 
+The list of discovered characters is a list of things that varies.
 
 A person has some text called the bio-name. The bio-name of a person is usually "[printed name in title case]".
 A person has some text called the bio-description. The bio-description of a person is usually "No information available."
 
 To say characters-text:
 	say "You have discovered the following notable characters:";
-	repeat with current character running through discovered people:
+	repeat with current character running through the list of discovered characters:
 		say "[paragraph break][bold type][bio-name of current character][roman type][if current character is yourself] (yourself)[end if][line break][bio-description of current character][run paragraph on]".
 
-Yourself is discovered. The bio-name of yourself is "Servator Marid Orpheia".
+When play begins: add yourself to the list of discovered characters.
+The bio-name of yourself is "Servator Marid Orpheia".
 The bio-description of yourself is "A seventeen-year-old graduate of the Physicians['] College, currently apprenticed to Doctor Cavala. You have taken care of yourself ever since your parents died four years ago."
 
-Doctor Cavala is discovered.
+When play begins: add Doctor Cavala to the list of discovered characters.
 The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vitalis.[roman type] A former army doctor and a physician of commanding skill[if Doctor Cavala is incapacitated]. She is currently injured following a mysterious break-in[end if]."
 
-When Reden's Surgery ends: now Reden is discovered.
+When Reden's Surgery ends: add Reden to the list of discovered characters.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
 
-Horatio is discoverable. The bio-name of Horatio is "Vigile Horatio".
+After going to the West Street: add Horatio to the list of discovered characters; continue the action.
+The bio-name of Horatio is "Vigile Horatio".
 The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been assigned as Doctor Cavala's protector for the time being[end if]."
 
-When Returning to a Break-In ends: now Carnicer is discovered.
+When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
-The bio-description of Carnicer is "A mutant assassin who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
+The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 Chapter 2.3.3.4 - Map
 
@@ -1724,9 +1736,10 @@ Chapter 2.3.3.5 - Hints
 
 Table of the Hint Menu
 title	subtable	description	toggle
-"General Hints"	--	"[general-hints-text]"	a rule
+"General Hints"	--	"[general-hints-text]"	--
 "Prologue"	Table of Prologue Hints	--	--
 "Day One"	Table of Day One Hints	--	--
+"Back"	--	--	quit rule
 
 Section 2.3.3.5.1 - General Hints
 
@@ -1744,6 +1757,7 @@ Section 2.3.3.5.2 - Prologue Hints
 Table of Prologue Hints
 title	subtable	description	toggle
 "How do I save the patient?"	Table of Reden's Surgery Hints	--	hint toggle rule
+"Back"	--	--	quit rule
 
 Table of Reden's Surgery Hints
 hint	used
@@ -1762,6 +1776,7 @@ title	subtable	description	toggle
 "How do I deliver the documents?"	Table of Censor's Nap Hints	--	hint toggle rule
 "I'm lost in the Shanty Quarter!"	Table of Shanty Maze Hints	--	hint toggle rule
 "Doctor Cavala needs my help!"	Table of First Aid on Cavala Hints	--	hint toggle rule
+"Back"	--	--	quit rule
 
 Table of Censor's Nap Hints
 hint	used
@@ -1810,6 +1825,7 @@ Carry out asking for help (this is the standard asking for help rule):
 Asking for commands is an action out of world.
 Understand "c" as asking for commands.
 Understand "commands" as asking for commands.
+Understand "list of/-- commands/verbs" as asking for commands.
 Understand "verbs" as asking for commands.
 Carry out asking for commands (this is the standard asking for commands rule):
 	let the temporary title be the current menu title;
@@ -1970,11 +1986,11 @@ I don't know how much more misfortune I can weather, and I sincerely hope not to
 
 But I have to move fast. ";
 	otherwise if Walking Home in Fear is happening:
-		say "I still can't believe that just happened. What is going on in the Channelworks District?
+		say "I'm still a little shocked at tonight's events. To think that someone would attack Doctor Cavala in her own clinic... it's surreal, and more than a little frightening.
 
-The assassin is gone now, but I don't believe for a moment that it's over. Something dark is afoot in the city. This can only be the beginning... of what, I don't know.
+If there's one good thing that's come out of tonight, it's Horatio. I'm glad he's here. I hope he gets along with Doctor Cavala. I hope he takes good care of her.
 
-Whatever it is, Doctor Cavala and Horatio are with me. We'll face it together. ";
+I don't want to lose anyone else. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -3490,6 +3506,7 @@ Before pushing, pulling, or taking Doctor Cavala when the first aid bag is carri
 
 Instead of pushing, pulling, or taking Doctor Cavala when the CSOFAOC is 3 (this is the raise Doctor Cavala's leg for first aid rule):
 	now the first aid bag is undescribed;
+	now the first aid bag is closed;
 	say "Taken--
 
 Doctor Cavala grits her teeth and screws her eyes shut. Her bloodstained trousers stick to your gloves. Her leg feels heavy and fragile in your hands, like a porcelain model that will shatter if you slip.
@@ -3515,7 +3532,7 @@ Section 3.3.5.4.6 - Denouement
 Table of Cavala First Aid Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-firstaid-denouement	true	false	""	""	{cavala-firstaid-grin, cavala-firstaid-glad, cavala-firstaid-soworried}
-cavala-firstaid-grin	true	true	"<Grin.>"	"A smile touches your lips. Doctor Cavala's eyes meet yours, and you find yourself laughing with her all over again."	{cavala-firstaid-glad, cavala-firstaid-soworried, cavala-firstaid-yousafe}
+cavala-firstaid-grin	true	true	"<Smile.>"	"A smile touches your lips. Doctor Cavala's eyes meet yours, and you find yourself laughing with her all over again."	{cavala-firstaid-glad, cavala-firstaid-soworried, cavala-firstaid-yousafe}
 cavala-firstaid-glad	true	true	"'I'm just glad you're all right, Doctor.'"	"'I'm just glad you're all right, Doctor.'
 
 She smiles and squeezes your hand.
@@ -3556,11 +3573,11 @@ After reading out cavala-firstaid-yousafe:
 	now the conversational partner text is "Talking to the interviewer";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "It takes the better part of an hour to sort everything out with the Vigiles. You're interviewed by a bored-looking patrolwoman, and given a steaming mug of tea to wash away the foul taste of the evening's events. An agreement is made: Doctor Cavala will remain under police protection for the time being, with Horatio assigned as a personal assistant-cum-bodyguard.[paragraph break]";
+	say "It takes the better part of an hour to sort everything out with the Vigiles. You're interviewed by a bored-looking patrolwoman, and given a steaming mug of tea to wash away the foul taste of the evening's events. An agreement is made: Doctor Cavala will remain under official protection for the time being, with Horatio assigned as a personal assistant-cum-bodyguard.[paragraph break]";
 	wait for any key;
 	say "'...and you're saying you have no idea who the assailant was?' the interviewer is asking. 'Surely you must have made an enemy of [italic type]someone.'[roman type][paragraph break]";
 	wait for any key;
-	say "'I'm telling you, I know this district.' Doctor Cavala takes another sip from her drinking straw. 'No one is fool enough to antagonize the only [italic type]pro bono[roman type] doctor in the city. Just ask Marid.'[paragraph break]";
+	say "'I'm telling you, I [italic type]know[roman type] this district.' Doctor Cavala takes another sip from her drinking straw. 'No one is fool enough to antagonize the only [italic type]pro bono[roman type] doctor in the city. Just ask Marid.'[paragraph break]";
 	wait for any key;
 	say "The interviewer shoots you an inquiring look.";
 	
@@ -3589,37 +3606,39 @@ The interviewer cocks an eyebrow. 'And you provide your services to these... ele
 'I uphold the oath, Madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
 clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident. Who would want to attack Doctor Cavala? And why attack now, of all times?'
 
-Your questions hang in the air. The doctor falls silent. The interviewer's eyes dart between you.
+The doctor falls silent. The interviewer's eyes dart between you.
 
 [wait for any key]It is Doctor Cavala who breaks the silence, with words that prick like pins.
 
 'Do you think it's connected to Reden?' she asks. 'To what happened last night?'
 
 [wait for any key]You hesitate."	{clinic-interviewer-yes, clinic-interviewer-no, clinic-interviewer-maybe, clinic-interviewer-idk}
-clinic-interviewer-yes	true	false	"'Yes...'"	"'Yes, actually,' you say. 'It's been on my mind -- first a man dies in our clinic, and then someone tries to kill you? It can't be a coincidence. It's too close to be.'
+clinic-interviewer-yes	true	false	"'Yes...'"	"'...Yes, actually. It's been on my mind -- first a man dies in our clinic, and then someone tries to kill you?' You shake your head. 'It can't be a coincidence. It's too close to be.'
 
 'Intriguing.' She searches your eyes. 'You didn't see anything today, did you, Marid? Anything that might provide a clue? What you're suggesting...'
 
 Doctor Cavala doesn't finish her sentence. She takes another sip of tea, looking greatly perturbed.
 
 [clinic-interviewer-end]"	{}
-clinic-interviewer-no	true	false	"'No...'"	"'No,' you say. 'They're two separate events. I can't imagine how they would be connected -- or why anyone would want you dead for it. There must be another reason.'
+clinic-interviewer-no	true	false	"'No...'"	"'...No,' you say. 'They're two separate events. I can't imagine how they would be connected -- or why anyone would want you dead for it. There must be another reason.'
 
 Doctor Cavala doesn't look convinced. 'Perhaps,' she concedes. 'Perhaps. It's too early to be sure...'
 
 She takes another sip of tea, quiet, pensive.
 
 [clinic-interviewer-end]"	{}
-clinic-interviewer-maybe	true	false	"'Maybe...'"	"'Maybe,' you say. 'It's too close to be a coincidence -- but how could they possibly be connected? I can't imagine why anyone would want you dead for that.'
+clinic-interviewer-maybe	true	false	"'Maybe...'"	"'...Maybe,' you say. 'It's uncomfortably close. I can't imagine it being a coincidence. But if it isn't -- how could the surgery possibly be connected? Why would anyone want you dead for such a thing?'
 
 Doctor Cavala furrows her brow. 'I certainly hope it's a coincidence,' she says. 'If the alternative is true...'
 
-She trails off and takes another sip of tea, looking greatly perturbed.
+She doesn't finish her sentence. She takes another sip of tea, looking greatly perturbed.
 
 [clinic-interviewer-end]"	{}
-clinic-interviewer-idk	true	false	"'I don't know.'"	"'I don't know.'
+clinic-interviewer-idk	true	false	"'I don't know.'"	"'I... I don't know.'
 
-Doctor Cavala sighs. 'You may be right, Marid. There are so many questions -- it's too early to be sure of anything. And yet...'
+You look down, and Doctor Cavala sighs.
+
+'You may be right, Marid. There are so many questions -- it's too early to be sure of anything. And yet...'
 
 She trails off. She takes another sip of tea, becoming quiet, pensive.
 
@@ -3627,10 +3646,10 @@ She trails off. She takes another sip of tea, becoming quiet, pensive.
 
 To say clinic-interviewer-end:
 	wait for any key;
-	say "'Well,' the interviewer says finally. 'This has all been very enlightening, but the hour is growing late. I will recommend another interviewer to join you tomorrow, Doctor. Until then, I must forward your testimonies to the Criminological Tribunal--'[paragraph break]";
+	say "'Well,' the interviewer says finally. 'This has all been very enlightening -- but the hour is growing late, and we are no closer to discovering any answers. I shall recommend a better equipped team to join you tomorrow, Doctor. Until then--'[paragraph break]";
 	wait for any key;
 	now the front door of the clinic is closed;
-	say "The guards leave the clinic following a perfunctory sending-off. You are left in the company of Doctor Cavala and Horatio, who have settled down in the waiting area for the long haul.[look pending]";
+	say "The guards leave the clinic following a perfunctory sending-off. You are left in the company of Doctor Cavala and Horatio, who have settled down in the waiting area for the long haul.[look pending]".
 
 Section 3.3.5.4.7 - First Aid Timed Events
 
@@ -3700,35 +3719,40 @@ When Walking Home in Fear begins (this is the spawn the makeshift bed rule):
 Section 3.3.5.5.2 - Doctor Cavala and Horatio
 
 whf-goodnight-quips is a number that varies.
-[0: Marid has not said goodbye yet. Next quip is "I should be going..."
-1: Marid has said goodbye but not left the clinic.
-2: Marid has left the clinic but not reentered. Next quip is "Back again?"
-3: Marid has reentered the clinic but not left again. If she talks to Horatio and Cavala, she gets special dialogue.
-4: Marid has read special dialogue or left the clinic again. No more dialogue.]
+[0: Yawn.
+1: Marid has not said goodbye yet. Next quip is "I should be going..."
+2: Marid has said goodbye but not left the clinic.
+3: Marid has left the clinic but not reentered. Next quip is "Back again?"
+4: Marid has reentered the clinic but not left again. If she talks to Horatio and Cavala, she gets special dialogue.
+5: Marid has read special dialogue or left the clinic again. No more dialogue.]
 
 Rule for writing a paragraph about Doctor Cavala during Walking Home in Fear:
-	if whf-goodnight-quips is 2:
+	if whf-goodnight-quips is 3:
 		say "'Back again?' Doctor Cavala quips.
 
 'Just wondering about something,' you reply.
 
 'Don't worry about her, Doctor,' Horatio says. 'Marid is like that sometimes.'";
-		now whf-goodnight-quips is 3;
+		now whf-goodnight-quips is 4;
 	otherwise:
-		say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby."
+		say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby.";
+		if whf-goodnight-quips is 0:
+			say line break;
+			say "You catch yourself yawning. Is it night already? You should probably get home before it's too dark out.";
+			now whf-goodnight-quips is 1.
 
 Before going to the West End when Walking Home in Fear is happening:
-	if whf-goodnight-quips < 2:
-		if whf-goodnight-quips is 0, say "'I should be going too,' you say. 'I'll see you tomorrow.'
+	if whf-goodnight-quips < 3:
+		if whf-goodnight-quips is 1, say "'I should be going too,' you say. 'I'll see you tomorrow.'
 
 'Good night, Marid.'
 
 'G'night, Marid.'
 
 'Good night, Doctor, Horatio.'";
-		now whf-goodnight-quips is 2;
-	otherwise if whf-goodnight-quips is 3:
-		now whf-goodnight-quips is 4.
+		now whf-goodnight-quips is 3;
+	otherwise if whf-goodnight-quips is 4:
+		now whf-goodnight-quips is 5.
 
 Section 3.3.5.5.3 - Cavala-Horatio Dialogue
 	
@@ -3736,7 +3760,7 @@ Some dialogue branches are defined by the Table of Cavala-Horatio WHF Dialogue.
 
 Table of Cavala-Horatio WHF Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-cavalahoratio-whf	true	false	""	"[if whf-goodnight-quips is 3]'I am [italic type]not.'[roman type]
+cavalahoratio-whf	true	false	""	"[if whf-goodnight-quips is 4]'I am [italic type]not.'[roman type]
 
 'You are [italic type]too.'[roman type]
 
@@ -3746,17 +3770,17 @@ cavalahoratio-whf	true	false	""	"[if whf-goodnight-quips is 3]'I am [italic type
 
 'Cut that out,' Doctor Cavala says wearily, 'or I'll bodily cart both of you out of my clinic.'
 
-'Sorry,' Horatio mumbles.[otherwise]You approach the makeshift bed; Doctor Cavala and Horatio turn to you."	{cavalahoratio-whf-speakcavala, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+'Sorry,' Horatio mumbles.[otherwise]You approach the makeshift bed, and Doctor Cavala and Horatio turn to you."	{cavalahoratio-whf-speakcavala, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-speakcavala	true	false	"<Speak to Doctor Cavala...>"	""	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-speakhoratio	true	false	"<Speak to Horatio...>"	""	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-feelingbetter	true	true	"'Are you feeling better, Doctor?'"	"'Are you feeling better, Doctor?'
 
-She smiles. 'I'm feeling quite well, despite circumstances. Still, I hope to be looked at by a proper surgeon soon -- the Vigiles have already contacted Doctor Arturus's clinic, but you know how careless he can be when it comes to these things. Did you know he hasn't replied to my correspondence [italic type]at all[roman type] today?'
+The corner of her lip quirks. 'I'm feeling rather well,' she says, 'considering the circumstances. But I do hope to be looked at by a surgeon soon. The Vigiles have already sent for Doctor Arturus, but you know how careless he can be when it comes to these things... Did you know he hasn't replied to my correspondence [italic type]at all[roman type] today?'
 
 You feel a twinge of sympathy for Doctor Arturus. Doctor Cavala takes a dim view of tardiness, as you know from experience."	{cavalahoratio-whf-aboutclinic, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-aboutclinic	true	true	"'What will happen with the clinic while you're indisposed?'"	"'What will happen with the clinic while you're indisposed?' you ask.
 
-Doctor Cavala lifts a hand. 'I'm obviously not in any condition to operate,' she says wryly. 'But I'm not completely indisposed, not yet. I can still listen to patients, diagnose illnesses. The clinic will remain open for business, I think, until the time comes for my knee operation.'
+Doctor Cavala lifts a hand. 'I'm obviously not in any condition to operate,' she says wryly. 'But I'm not [italic type]completely[roman type] indisposed. I can still listen to patients. Diagnose illnesses. The clinic will remain open for business, I think, until the time comes for my knee operation.'
 
 'I'll help Doctor Cavala where I can,' Horatio adds. 'Since I'll be here and all.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-abouthoratio	true	true	"'How is Horatio doing?'"	"'How is Horatio doing?'
@@ -3765,31 +3789,23 @@ cavalahoratio-whf-abouthoratio	true	true	"'How is Horatio doing?'"	"'How is Hora
 
 '--Hey!--'
 
-'--But he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'
-
-'Glad to hear it,' you say.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+'--But he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-fancy	true	true	"'Fancy seeing you here, Horatio.'"	"'Fancy seeing you here, Horatio.'
 
 'It's good to see you too, Marid.' His expression grows grave for a moment. 'When the call came in, I thought... I was worried about you. Now that I'm here, I'm -- I'm just glad you're okay.'
 
-You can't help but smile. 'Thanks, Horatio.'
+You can't help but smile. Even a buffoon like him can be sweet sometimes."	{cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-howdoing	true	true	"'How are you doing?...'"	"'How are you doing?' you ask Horatio. 'I recall you saying you wanted to see some [italic type]action[roman type] in the Vigiles...'
 
-Even a buffoon like him can be sweet sometimes."	{cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
-cavalahoratio-whf-howdoing	true	true	"'How are you doing?...'"	"'How are you doing?' you ask Horatio. 'I recall you saying you wanted to [']see some [italic type]action[roman type] in the Vigiles...['] '
-
-He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd hoped for. Still--' He nods. 'I feel like I'm making a difference, like I'm doing something worthwhile. How often does one get the chance to say that?'
-
-On the corner of Doctor Cavala's lips, you glimpse the hint of a smile."	{cavalahoratio-whf-fancy, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd hoped for. Still--' He nods. 'I feel like I'm making a difference here, like I'm doing something worthwhile. How often does anyone get the chance to say that?'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-nomess	true	true	"'Try not to mess anything up.'"	"You punch Horatio's shoulder. 'Try not to mess anything up.'
 
-He grins. 'I won't.'
-
-'Don't worry,' Doctor Cavala quips. 'If he ever does...'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
-cavalahoratio-whf-goodbye	true	false	"'I should be going[if whf-goodnight-quips is 0]..[no line break][end if].'"	"'I should be going,' you say.[if whf-goodnight-quips is 0] 'I'll see you tomorrow.'[end if]
+He grins. 'I won't.'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+cavalahoratio-whf-goodbye	true	false	"'I should be going[if whf-goodnight-quips is 0]..[no line break][end if].'"	"'I should be going,' you say.[if whf-goodnight-quips is 1] 'I'll see you tomorrow.'[end if]
 
 'Good night, Marid.'
 
-'G'night, Marid[if whf-goodnight-quips is 0].'
+'G'night, Marid[if whf-goodnight-quips is 1].'
 
 'Good night, Doctor, Horatio[end if].'"	{}
 	
@@ -3798,7 +3814,7 @@ When Walking Home in Fear begins (this is the initialize Clinic dialogue for Wal
 	now the home dialogue branch of Horatio is cavalahoratio-whf.
 	
 After reading out cavalahoratio-whf:
-	if whf-goodnight-quips is 3, now whf-goodnight-quips is 4;
+	if whf-goodnight-quips is 4, now whf-goodnight-quips is 5;
 	now the conversational partner text is "Talking to Doctor Cavala and Horatio";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	
@@ -3827,12 +3843,12 @@ After reading out cavalahoratio-whf-goodbye:
 	the enabled of cavalahoratio-whf-howdoing is false and
 	the enabled of cavalahoratio-whf-nomess is false:
 		now the enabled of cavalahoratio-whf-speakhoratio is false;
-	if whf-goodnight-quips is 0, now whf-goodnight-quips is 1.
+	if whf-goodnight-quips is 1, now whf-goodnight-quips is 2.
 	
 Instead of talking to when Walking Home in Fear is happening (this is the no more Cavala-Horatio WHF dialogue rule):
 	if the noun is Doctor Cavala or the noun is Horatio:
 		if the enabled of cavalahoratio-whf-speakcavala is false and the enabled of cavalahoratio-whf-speakhoratio is false:
-			if whf-goodnight-quips is 3:
+			if whf-goodnight-quips is 4:
 				say "'I am [italic type]not.'[roman type]
 
 'You are [italic type]too.'[roman type]
@@ -3844,7 +3860,7 @@ Instead of talking to when Walking Home in Fear is happening (this is the no mor
 'Cut that out,' Doctor Cavala says wearily, 'or I'll bodily cart both of you out of my clinic.'
 
 'Sorry,' Horatio mumbles.";
-				now whf-goodnight-quips is 4;
+				now whf-goodnight-quips is 5;
 			otherwise:
 				say "[one of]'Don't let us keep you,' Doctor Cavala says. 'You should return home before it gets dark.'[or]That's enough conversation for now. You really should be going.[stopping]";
 			stop the action;
@@ -4549,13 +4565,14 @@ Instead of doing anything other than listening when the current action involves 
 	wait for any key;
 	say "The pigeon twitches.[paragraph break]";
 	wait for any key;
-	say "Before your eyes, the pigeon begins to move, like a delicate clockwork replica that has been wound up again. It rights itself in a flutter of wings and coos, unmistakably alive.[paragraph break]";
+	say "Before your eyes, the pigeon begins to move, like a delicate clockwork replica that has been wound up again. It rights itself in a flutter of feathers, and coos, unmistakably alive.[paragraph break]";
 	wait for any key;
 	say "It looks around. It cocks its head in your direction.[paragraph break]";
 	wait for any key;
-	say "And with the slightest impulse, it takes to the air, and disappears into the glittering night sky.[paragraph break]";
+	say "And with no more than a thought, it leaps awing, and disappears into the glittering night sky.[paragraph break]";
 	wait for any key;
-	say "You touch your pendant."
+	say "You touch your pendant.";
+	now the single pigeon is nowhere.
 
 When Walking Home in Fear begins (this is the spawn the single pigeon rule):
 	now the single pigeon is in the Dormitory Block.
@@ -4640,11 +4657,11 @@ Instead of looking under the food, say "It's on the dining tables."
 
 Part 3.7.4 - Serving Counter
 
-The serving counter is a fixed in place enterable supporter in the Public House.
+The serving counter is a enterable scenery supporter in the Public House.
 Understand "stool/stools" as the serving counter.
 Instead of examining the serving counter, say "It's the counter where patrons are served their food and drink. A chalkboard displays the menu."
 Instead of looking under the serving counter, say "The bartender is behind the counter."
-Rule for writing a paragraph about the serving counter: now the serving counter is mentioned; now the chalkboard menu is mentioned. [This is a hack to make the chalkboard menu not be described when looking, but show up when searching the counter.]
+Instead of searching the serving counter, say "A chalkboard menu is on the counter[if a described thing is on the serving counter]. Beside it [is-are a list of described things on the serving counter][end if]."
 
 Report entering the serving counter: say "You sit at the counter."; stop the action.
 Report getting off the serving counter: say "You stand up."; stop the action.
@@ -4664,8 +4681,8 @@ Before getting off the serving counter (this is the get your things before getti
 Rule for issuing the response text of room description heading rule response (B) when the player is on the serving counter (this is the print 'at the serving counter' rule):
 	say " (at the serving counter)".
 	
-The chalkboard menu is on the serving counter.
-The description is "It lists the food and drink on offer. Talk to the bartender if you'd like to buy something."
+The chalkboard menu is undescribed scenery on the serving counter.
+The description is "It lists the food and drink on offer."
 The scent is "It smells of chalk."
 Understand "chalk" as the chalkboard menu.
 Instead of rubbing or touching the chalkboard menu, say "The bartender would be annoyed if you wiped away the chalk."
@@ -4739,7 +4756,7 @@ article	track
 
 Part 3.7.7 - Bartender
 
-[The bartender is an NPC for Marid to confide in and get all weepy with. Originally you were able to buy food and a bottle of brandy from him as well, but they don't presently serve any function for the puzzles or the storytelling, so those sections have been commented out. I may add them in later if there's a good reason.]
+[The bartender is an NPC for Marid to confide in and get all weepy with. Originally you were able to buy food and a bottle of brandy from him as well, but they don't serve any function for the puzzles or the storytelling, so those sections have been commented out. I may add them in later if there's a good reason.]
 
 The bartender is a mutant man in the Public House. "[one of]A smartly-dressed mutant[or]The bartender[stopping] is behind the counter polishing a glass[first time] -- this must be the new bartender[only].[if the location was not the Public House] He gives you a nod as you enter."
 The description is "He looks to be one of the older generation of mutants, with few features that mark him as having once been human. He wears a dignified wooden mask and a tailcoat that has been modified to accommodate additional limbs."
@@ -4765,9 +4782,10 @@ Section 3.7.7.1.1 - Generic
 
 Some dialogue branches are defined by the Table of Bartender Dialogue.
 
-Before talking to the bartender when the player is not on the serving counter (this is the sit down before talking to the bartender rule):
+Instead of talking to the bartender when the player is not on the serving counter (this is the sit down before talking to the bartender rule):
 	try silently entering the serving counter;
-	say "You sit down at the serving counter. [run paragraph on]".
+	say "You sit down at the serving counter. [run paragraph on]";
+	continue the action.
 
 Table of Bartender Dialogue
 dialogue branch	enabled	one-shot	prompt	description	 choices
@@ -4796,7 +4814,7 @@ bartender-dialogue-drink	true	true	"<Order a drink.>"	"'I'd like a glass of spic
 The bartender measures out the wine, waters it down, and tosses it with a bag of spices before handing you the glass. You take your time to nurse the drink: it's sweet, with a pinch of nutmeg and other flavors you don't recognize.
 
 Sweet and sad."	{bartender-dialogue-confide, bartender-dialogue-finishdrinksilent}
-bartender-dialogue-confide	true	true	"<Get something off your mind.>"	"Your mind wanders to the things you've seen; the things you've done."	{bartender-dialogue-prologue, bartender-dialogue-finishdrinksilent}
+bartender-dialogue-confide	true	true	"<Get something off your mind.>"	"Your mind wanders to the things you've seen; the things you've done."	{bartender-dialogue-prologue, bartender-dialogue-dayone, bartender-dialogue-finishdrinksilent}
 bartender-dialogue-finishdrink	true	false	"<Finish your drink.>"	"You down the last of your wine.
 
 'Thanks for listening.'
@@ -4816,14 +4834,14 @@ Before reading out bartender-dialogue-newguy: now the enabled of bartender-dialo
 After reading out bartender-dialogue-goodbye: try silently getting off the serving counter.
 After reading out bartender-dialogue-nevermind: try silently getting off the serving counter.
 		
-Instead of talking to the bartender when the enabled of bartender-dialogue-name is false and the enabled of bartender-dialogue-newguy is false and the enabled of bartender-dialogue-business is false and the enabled of bartender-dialogue-drink is false (this is the no bartender dialogue right now rule):
+First instead of talking to the bartender when the enabled of bartender-dialogue-name is false and the enabled of bartender-dialogue-newguy is false and the enabled of bartender-dialogue-business is false and the enabled of bartender-dialogue-drink is false (this is the no bartender dialogue right now rule):
 	say "You don't need anything from the bartender at present."
 	
 Section 3.7.7.1.2 - Prologue
 
 Table of Bartender Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	 choices
-bartender-dialogue-prologue	true	true	"'I watched a man die[if Prologue is happening]tonight[end if]...'"	"'I watched a man die[if Prologue is happening] tonight[otherwise], you know[end if],' you say quietly. 'It was just [if Day One is happening]yesterday[otherwise]around the corner[end if]. In Doctor Cavala's clinic.'
+bartender-dialogue-prologue	true	true	"'I watched a man die[if Prologue is happening] tonight[end if]...'"	"'I watched a man die[if Prologue is happening] tonight[otherwise], you know[end if],' you say quietly. 'It was just [if Day One is happening]yesterday[otherwise]around the corner[end if]. In Doctor Cavala's clinic.'
 
 The bartender is silent as you take another sip.
 
@@ -4846,6 +4864,66 @@ bartender-dialogue-prologue3-1	true	false	"'...but I keep wondering if we could 
 bartender-dialogue-prologue3-2	true	false	"'...and now I'm beginning to understand what they meant...'"	"'...and now I'm beginning to understand what they meant. There are so many people out there suffering, and only two of us... so maybe it's not our fault if we can't save everyone.
 
 'Maybe that's just the way it is. And I have to accept that.'"	{bartender-dialogue-finishdrink}
+
+Section 3.7.7.1.3 - Day One
+
+When Walking Home in Fear begins (this is the Day One bartender dialogue rule):
+	now the enabled of bartender-dialogue-drink is true;
+	now the enabled of bartender-dialogue-dayone is true.
+
+Table of Bartender Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	 choices
+bartender-dialogue-dayone	false	true	"'Someone almost killed Doctor Cavala [if Day One is happening]tonight[otherwise if Day Two is happening]last night[end if]...'"	"'Someone almost killed Doctor Cavala [if Day One is happening]tonight[otherwise if Day Two is happening]last night[end if].'
+
+The bartender sets down the glass he's polishing. He looks at you.
+
+'It was so close.' you say quietly. 'She didn't know. There was a mutant woman who'd come into the clinic wielding a sword, and... and they fought. There was blood on the floor, blood everywhere, and -- and Doctor Cavala--'
+
+You close your eyes.
+
+'She almost didn't make it.'"	{bartender-dialogue-dayone2-1, bartender-dialogue-dayone2-2}
+bartender-dialogue-dayone2-1	true	false	"'I was so scared...'"	"'I was so scared. I saw the gash that'd been torn in her leg. She was bleeding out. I... I grabbed the first aid bag, and--'
+
+Your voice cracks.
+
+'--I don't know. My hands were moving on their own. It seemed so easy at the time, but-- but--'
+
+You feel the tears welling up, the sting and the panic and the terror engulfing you all over again."	{bartender-dialogue-dayone3-1, bartender-dialogue-dayone3-2}
+bartender-dialogue-dayone2-2	true	false	"'The Vigiles were useless...'"	"'The Vigiles were useless. They didn't even come until everything was over. Doctor Cavala was [italic type]there,[roman type] and she was going to [italic type]die,[roman type] and--'
+
+Your voice cracks.
+
+'--And I had to save her. I took the first aid bag and put my hands on her leg and-- and--'
+
+You feel the tears welling up, the sting and the panic and the terror engulfing you all over again."	{bartender-dialogue-dayone3-1, bartender-dialogue-dayone3-2}
+bartender-dialogue-dayone3-1	true	false	"<Cry.>"	"You cry.
+
+The voices around you hush. People are staring at you. You feel their eyes boring into you. You feel vulnerable, and you feel mortified, and you feel horribly, deeply sick inside.
+
+[wait for any key]But no one says anything. No one ever does.
+
+[wait for any key]You take a deep breath and wipe the tears from your cheeks. You take a fortifying swig from your glass."	{bartender-dialogue-dayone4-1, bartender-dialogue-dayone4-2}
+bartender-dialogue-dayone3-2	true	false	"<Bite your lip.>"	"You bite your lip.
+
+You're shaking. You're gripping your glass so tightly you're afraid it will shatter. There's blood in your mouth, and it's pooling around your tongue, and you feel horribly, deeply sick inside.
+
+[wait for any key]But you don't cry. You won't cry. You [italic type]will not[roman type] cry.
+
+[wait for any key]You take a deep breath and wipe the wetness from your eyes. You take a fortifying swig from your glass."	{bartender-dialogue-dayone4-1, bartender-dialogue-dayone4-2}
+bartender-dialogue-dayone4-1	true	false	"'I'm going to do better next time...'"	"'I'm going to do better next time,' you say. 'I'm going to [italic type]be[roman type] better. I don't know why misfortune keeps following me, but I'm going to be stronger than it the next time, and the next.
+
+'I'm going to overcome this. For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
+
+[wait for any key]You look at your bloodstained gloves.
+
+'I can't allow it to have happened in vain,' you whisper."	{bartender-dialogue-finishdrink}
+bartender-dialogue-dayone4-2	true	false	"'I'm going to find whoever did this...'"	"'I'm going to find whoever did this,' you say. 'I don't know who they are, or what they want, or why they want to spread this death and suffering. But I [italic type]will[roman type] hunt them down. And I [italic type]will[roman type] find them.
+
+'For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
+
+[wait for any key]You look at your bloodstained gloves.
+
+'I can't allow it to have happened in vain,' you whisper."	{bartender-dialogue-finishdrink}
 
 Section 3.7.7.1.99 - The part I commented out
 	
@@ -5071,11 +5149,11 @@ Chapter 3.8.8.1 - Go to Sleep, Marid
 
 sleeping-reminder-shown is a truth state that varies. sleeping-reminder-shown is false.
 
- Before reading a command when the player is in Marid's Dormitory and sleeping-reminder-shown is false (this is the trigger the Prologue sleeping reminder rule):
+ Before reading a command when the player is in Marid's Dormitory and sleeping-reminder-shown is false and Prologue is happening (this is the trigger the Prologue sleeping reminder rule):
 	say "You feel tired. Weary.[paragraph break]";
 	now sleeping-reminder-shown is true.
 
-First instead of sleeping in Marid's Dormitory during Walking Home in Darkness (this is the sleeping in Marid's bed rule):
+First instead of sleeping in Marid's Dormitory during Walking Home in Darkness (this is the Prologue sleeping in Marid's bed rule):
 	say "It's been a long day.
 
 You drape your jacket over the head of your bed and settle beneath the covers. Your room fades away as you will your eyes to close. But still your mind drifts, draws you back into the tides of memory, where you can only watch --[paragraph break]";
@@ -5105,6 +5183,28 @@ To unveil Day One: [This is a phrase so we can refer to it when skipping to Day 
 Part 3.8.9 - Marid's Dormitory during Day One
 
 Instead of listening to Marid's Dormitory during Nine to Five Zombie, say "The bells have stopped ringing."
+
+Chapter 3.8.9.1 - Go to Sleep, Marid (Again)
+
+First instead of sleeping in Marid's Dormitory during Walking Home in Fear (this is the Day One sleeping in Marid's bed rule):
+	say "You change out of your clothes and curl up beneath the sheets. But sleep does not come easily.
+
+You close your eyes and drift in that listless limbo between wakefulness and slumber. A ticking like a clock echoes in your mind, echoes behind your eyelids, like a promise you've forgotten and cannot remember.[paragraph break]";
+	wait for any key;
+	say "You barely notice when the world melts away -- when it dissolves, fades, becomes a haze of images and memories.[paragraph break]";
+	wait for any key;
+	say "Your last thought before you fall asleep is a quiet realization--[paragraph break]";
+	wait for any key;
+	say "the ticking in your mind is the sound of teeth.[paragraph break]";
+	wait for any key;
+	unveil Day Two.
+	
+To unveil Day Two:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
+	center "D A Y   T W O";
+	wait for any key;
+	to be continued.
 
 Book 3.9 - Via Terminalis, West Street
 
