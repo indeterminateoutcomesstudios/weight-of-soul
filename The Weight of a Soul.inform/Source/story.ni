@@ -244,10 +244,50 @@ Walking Home in Fear begins when First Aid on Cavala ends.
 
 Chapter 1.2.1.3 - Day Two
 
-[A messenger brings a rude awakening: there's been another spate of goblin deaths, and Doctor Arturus, who took in the patients, is dead of the same infection. Quarantine has been enacted by Doctor Serpens. Cavala sets Detective Marid on the scene. She discovers that there seems to be a deliberate pattern to the infection, that certain signs recur, and that Doctor Arturus was murdered. Cavala tells her to rest well and be careful.]
+[A messenger brings a rude awakening: there's been another spate of deaths, and Doctor Arturus, who took in the patients, is dead of the same infection. Cavala sets Detective Marid on the scene. She discovers that there seems to be a deliberate pattern to the infection, that certain signs recur, and that Doctor Arturus was murdered. Cavala tells her to rest well and be careful.]
 
 Day Two is a scene.
 Day Two begins when Day One ends.
+
+[This day consists of four individual investigations, each with its own clues.
+
+1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
+- Poisoned the afternoon of Prologue, died that night. Accidentally exposed himself to Noctis. Justinian doesn't know about him.
+- A Channelworks worker fired for alcoholism. Knew the back entrance, tended to wander there drunk. That's how he got poisoned.
+- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where the waitress knows more about Reden's activities. She doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
+- Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
+
+Reden Investigation is a scene.
+Reden Investigation begins when Day Two begins.
+
+[2. Debtor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
+- Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
+- Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
+
+Nacarat Investigation is a scene.
+Nacarat Investigation begins when Day Two begins.
+
+[3. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
+- The doctor died the afternoon of Day One after an argument with Justinian.
+- Noctis was planted inside the doctor's gloves. It entered his skin, dissolved in his bloodstream, and stopped his heart.
+- Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
+
+Arturus Investigation is a scene.
+Arturus Investigation begins when Day Two begins.
+
+[4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
+- Died early Day Two morning. Poisoned the night of Day One. Caused a bunch of large-scale deaths in the Shanty Quarter.
+- Justinian knows about them because they often came to shake down Arturus. He tracked them to their residences and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
+- Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against debtor documents from Arturus's Clinic - they don't match.
+- They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
+- They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
+
+Thugs Investigation is a scene.
+Thugs Investigation begins when Day Two begins.
+
+[We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
+
+Marid internally notes when she doesn't think there are any more clues for each investigation. When all the investigations are done, she notes it's getting late and she should return to Doctor Cavala for a debrief.]
 
 Chapter 1.2.1.4 - Midnight
 
@@ -258,7 +298,7 @@ Midnight begins when Day Two ends.
 
 Chapter 1.2.1.5 - Day Three
 
-[More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. The clues lead her to Arturus's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
+[More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. Quarantine has also been enacted by Doctor Serpens. The clues lead her to Arturus's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
 
 Day Three is a scene.
 Day Three begins when Midnight ends.
@@ -725,7 +765,7 @@ Instead of burning the player, say "No."
 The can't give to yourself rule response (A) is "[if time is critical]This is not the time.[otherwise]If only gifts could be earned so freely."
 Instead of kissing, pushing, pulling, or taking the player, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 Instead of knocking on or touching the player, say "You feel nothing unexpected."
-Instead of rubbing the player, say "[if time is critical]This is not the time.[otherwise]You don't need a shower right now."
+Instead of rubbing the player, say "[if time is critical]This is not the time.[otherwise]You don't get much cleaner."
 Instead of squeezing the player, say "[if time is critical]This is not the time.[otherwise]It isn't [italic type]that[roman type] cold."
 Instead of swinging the player, say "[if time is critical]This is not the time.[otherwise]That would require some sort of pendulum."
 Instead of turning the player, say "[if time is critical]This is not the time.[otherwise]You turn around to little effect."
@@ -734,7 +774,9 @@ Part 2.1.2 - Marid's Tattoos
 
 The alchemical tattoos are part of the player. The indefinite article of the alchemical tattoos is "your". The description of the alchemical tattoos is "Your father gave you these tattoos when you were a young child, as is tradition in some alchemical families. Even now, the flowing, circuitous lines remind you of him." Understand "my" or "marid's" or "face" or "neck" or "tattoo" or "flowing" or "circuitous" or "lines" or "line" as the alchemical tattoos.
 
-Instead of knocking on, looking under, rubbing, searching, or touching the alchemical tattoos, say "[if time is critical]This is not the time.[otherwise]Your feel the faintest tingle of power beneath your skin."
+Instead of knocking on, looking under, searching, or touching the alchemical tattoos, say "[if time is critical]This is not the time.[otherwise]Your feel the faintest tingle of power beneath your skin."
+
+Instead of rubbing the alchemical tattoos, say "[if time is critical]This is not the time.[otherwise]Your face doesn't get much cleaner."
 
 Before doing anything other than examining, knocking on, looking under, rubbing, searching, or touching to the alchemical tattoos: now the noun is the player.
 
@@ -744,8 +786,8 @@ Marid's eyes are a thing that is part of yourself. The printed name of Marid's e
 
 Before searching Marid's eyes, try examining Marid's eyes instead.
 Instead of attacking, burning, cutting, pushing, or pulling Marid's eyes, say "No."
-Instead of knocking on, listening to, looking under, swinging, or tasting Marid's eyes, say "That doesn't make any sense."
-Instead of rubbing, squeezing, or touching Marid's eyes, say "[if time is critical]This is not the time.[otherwise]That's bad for your eyes."
+Instead of listening to, looking under, swinging, or tasting Marid's eyes, say "That doesn't make any sense."
+Instead of knocking on, rubbing, squeezing, or touching Marid's eyes, say "[if time is critical]This is not the time.[otherwise]That's bad for your eyes."
 
 Book 2.2 - Marid's Possessions
 
@@ -1321,7 +1363,7 @@ Check knocking on: say "Nothing happens."; stop the action.
 Scaring is an action applying to one visible thing. Understand "chase away/-- [something]" or "scare away/-- [something]" or "shoo away/-- [something]" or "frighten away-- [something]" as scaring.
 Check scaring when the noun is not a person: say "That is unlikely to elicit a response."; stop the action.
 Check scaring the player: say "[if time is critical]This is not the time.[otherwise]There's no need for that."; stop the action.
-Check scaring a friendly person: say "That hardly seems called for."; stop the action.
+Check scaring a friendly person: say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."; stop the action.
 Check scaring a hostile person: say "That seems unlikely to be effective."; stop the action.
 
 Screaming is an action applying to nothing. Understand "yell" or "holler for/-- the/-- guard/guards/--" or "shout" or "scream" as screaming.
@@ -1333,16 +1375,17 @@ Check singing: say "[if time is critical]This is not the time.[otherwise]You hum
 Swimming is an action applying to nothing. Understand "swim" or "dive" as swimming.
 Check swimming (this is the block swimming rule):
 	if the fosse is in the location:
-		say "Diving into the fosse is both dangerous and illegal.";
+		say "[if time is critical]It's too dangerous to swim.[otherwise]Diving into the fosse is both dangerous and illegal.";
 	otherwise if the Bilious Canal is in the location or the up-close Canal is in the location:
-		say "The Bilious Canal isn't the most appealing venue for a swim.";
+		say "[if time is critical]It's impossible to swim in this current.[otherwise]The Bilious Canal isn't the most appealing venue for a swim.";
 	otherwise:
 		say "You don't see anywhere to swim here.";
 	stop the action.
 	
 Tickling is an action applying to one thing. Understand "tickle [something]" or "fondle [something]" as tickling.
+Check tickling when time is critical: say "This is not the time."; stop the action.
 Check tickling when the noun is not a person: say "That is unlikely to elicit a response."; stop the action.
-Check tickling the player: say "[if time is critical]This is not the time.[otherwise]It's impossible to tickle oneself. The exact reason why is one of the great mysteries of the [italic type]ars vitalis[roman type]."; stop the action.
+Check tickling the player: say "It's impossible to tickle oneself. The exact reason why is one of the great mysteries of the [italic type]ars vitalis[roman type]."; stop the action.
 Check tickling a friendly person: say "You aren't [italic type]that[roman type] friendly with [the noun]."; stop the action.
 Check tickling a hostile person: say "You doubt [the noun] will let you do that."; stop the action.
 
@@ -1357,10 +1400,11 @@ Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
 Understand "use [text]" as a mistake ("You'll have to use a more specific verb than that.").
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
-Understand "pray" or "pray [text]" as a mistake ("[if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
+Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
 Understand "prime" or "primes" or "oh primes" as a mistake ("[if time is critical]This is not the time.[otherwise]'Vulgar words reveal one's vulgar nature.' Philosopher Scepter.").
 Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("Type >[bold type]journal[roman type] for a reminder of the information you've come across.").
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
+Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[otherwise if time is critical]This is not the time.[otherwise]You sigh.").
 Understand "step with care" as a mistake ("[if time is critical]This is not the time.[otherwise]You always do.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
@@ -4033,7 +4077,7 @@ Doctor Cavala frowns. 'According to my file, he has a son in Riggertown by the n
 
 'Is Riggertown that shanty town down the canal?'
 
-'It is. Turn right from the bridge and you'll see it.' She pauses. 'And another thing -- check whether anyone in Riggertown is exhibiting similar symptoms. The cause of the affliction has yet to be determined.'"	 {cavala-errands-documents, cavala-errands-youdoing, cavala-errands-onit}
+'It is. Turn right at the bridge and you'll see it.' She pauses. 'And another thing -- check whether anyone in Riggertown is exhibiting similar symptoms. The cause of the affliction has yet to be determined.'"	 {cavala-errands-documents, cavala-errands-youdoing, cavala-errands-onit}
 cavala-errands-youdoing	true	true	"'What will you be doing?'"	"'What will you be doing?' you ask.
 
 Doctor Cavala inclines her head at the [if the location is the Mortuary]slab[otherwise]stairs to the mortuary[end if]. 'I intend to spend today studying Reden's affliction. It is definitively not in the Alchemical Library. I've already left correspondence for Doctor Arturus, who I expect shall join me in the afternoon; in the meantime, I am compiling post-mortem observations and studying the mechanism by which Reden has died. If all goes well, we should be able to present our findings to the medical community by the end of the week.'"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-onit}
@@ -4066,7 +4110,7 @@ cavala-errands2	true	false	""	"[if the location is the Mortuary]Doctor Cavala pu
 After a moment, she appears from the mortuary.[end if] 'Yes, Marid?'"	{cavala-errands2-documents, cavala-errands2-nextofkin, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-nevermind}
 cavala-errands2-documents	true	false	"'Who do I deliver the documents to again?'"	"'Who do I deliver the documents to again?' you ask.
 
-'Pass them to the censor's office,' she replies. 'It's in the basilica down the street, next to the forum. You can't miss it.'"	{cavala-errands2-nextofkin, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
+'Pass them to the censor's office,' she replies. 'The basilica is across the Via Terminalis bridge, next to the grand forum.'"	{cavala-errands2-nextofkin, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
 cavala-errands2-nextofkin	true	false	"'Who is Reden's next of kin again?'"	"'Who is Reden's next of kin again?' you ask.
 
 'His name is Zoiro,' she replies. 'Reden's son. Either get his address from the censor's office, in the basilica; or ask around Riggertown, down the canal from here.'"	{cavala-errands2-documents, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
@@ -4814,7 +4858,7 @@ bartender-dialogue-drink	true	true	"<Order a drink.>"	"'I'd like a glass of spic
 The bartender measures out the wine, waters it down, and tosses it with a bag of spices before handing you the glass. You take your time to nurse the drink: it's sweet, with a pinch of nutmeg and other flavors you don't recognize.
 
 Sweet and sad."	{bartender-dialogue-confide, bartender-dialogue-finishdrinksilent}
-bartender-dialogue-confide	true	true	"<Get something off your mind.>"	"Your mind wanders to the things you've seen; the things you've done."	{bartender-dialogue-prologue, bartender-dialogue-dayone, bartender-dialogue-finishdrinksilent}
+bartender-dialogue-confide	true	false	"<Get something off your mind.>"	"Your mind wanders to the things you've seen; the things you've done."	{bartender-dialogue-prologue, bartender-dialogue-dayone, bartender-dialogue-finishdrinksilent}
 bartender-dialogue-finishdrink	true	false	"<Finish your drink.>"	"You down the last of your wine.
 
 'Thanks for listening.'
