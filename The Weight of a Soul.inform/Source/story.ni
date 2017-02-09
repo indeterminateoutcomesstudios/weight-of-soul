@@ -602,12 +602,12 @@ To say cavala-description:
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
-Doctor Cavala's leg injury is a thing.
+Doctor Cavala's leg is a thing.
 The description is "[if First Aid on Cavala is happening and Doctor Cavala is wearing the hermetically sealed bandage]You hope the bleeding has subsided.[otherwise if First Aid on Cavala is happening]It's a ragged bloody tear.[otherwise]If Doctor Cavala feels any pain, she doesn't show it."
 The scent is "[if First Aid on Cavala is happening]The scent of blood is thick.[otherwise]You smell the calomel in the dressing."
-Understand "left" or "thigh/knee/tendon" or "cut/gash/wound/tear" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala's leg injury.
-Before bandaging Doctor Cavala's leg injury with, try bandaging Doctor Cavala with the second noun instead.
-Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning Doctor Cavala's leg injury, say "[if time is critical]This is not the time.[otherwise]That would worsen her injury."
+Understand "left" or "thigh/knee/tendon" or "cut/gash/wound/tear/injury" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala's leg.
+Before bandaging Doctor Cavala's leg with, try bandaging Doctor Cavala with the second noun instead.
+Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning Doctor Cavala's leg, say "[if time is critical]This is not the time.[otherwise]That would worsen her injury."
 
 The hermetically sealed bandage is a wearable thing.
 The description is "Doctor Cavala's knee has been bandaged tightly."
@@ -1395,6 +1395,7 @@ Understand "die" as a mistake ("[if time is critical]No.[otherwise]Entertaining 
 Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if (Cavala's Errands is happening and Maze Part One is unvisited) or (Walking Home in Fear is happening and the enabled of bartender-dialogue-drink is true)]You smile.[otherwise]You aren't in the mood.").
 Understand "dance" or "dance [text]" or "do a dance/jig" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood.").
 Understand "fall down/over/--" or "misstep" or "trip" or "trip [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You're more sure-footed than that, Marid.").
+Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be more specific about where you look.").
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
@@ -1413,10 +1414,14 @@ Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]Th
 Part 2.3.4 - New Parser Error Messages
 
 Rule for printing a parser error when the latest parser error is the can't see any such thing error (this is the new can't see any such thing rule):
-	say "That is either not important or not something you can see." instead.
+	say "That is either not important or not something you can see[one of].
+
+(Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.)[or].[stopping]" instead.
 	
 Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
-	say "That object or command isn't available." instead.
+	say "That object or command isn't available[one of].
+
+(Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.)[or].[stopping]" instead.
 	
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
 	say "That isn't a room you've visited." instead.
@@ -1544,6 +1549,8 @@ Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 Understand the commands "ask" and "tell" and "say" and "answer" as something new.
 
 Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.").
+
+Understand "wave hello" or "wave hello [text]" or "wave goodbye" or "wave goodbye [text]" as a mistake ("Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."). [Because OF COURSE wxd tried this]
 
 Instead of asking someone to try doing something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
 Instead of answering someone that something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
@@ -2241,6 +2248,7 @@ The description is "The population of the Channelworks District is only a few th
 The sound is "A hundred voices drown out each other."
 The scent is "Perfumes, colognes, fresh groceries -- all blend together into an eclectic infinity."
 Understand "crowds" or "carriage/carriages/cabriolet/cabriolets" or "man/men/woman/women/person/people" or "human/humans" or "goblin/goblins" or "mutant/mutants" or "and" or "voice/voices" or "bustle/traffic" or "in/-- general" as the city crowd.
+Understand "alchemist/businessman/businessmen/chymist/couple/deist/deists/engineer/faber/fabers/scholar/scholars/schoolgirl/schoolgirls/tourist" or "archon/archons/char-golem/gargoyle/golem/ooze/squid" or "thopter/zeppelin/papers/longhorn" as the city crowd.
 After printing the name of the city crowd while asking which do you mean: say " in general".
 Instead of giving something to the city crowd, say "Society, as a rule, frowns on spontaneous acts of charity."
 Instead of searching the city crowd, say "An impractical proposition, to say the least."
@@ -2416,6 +2424,7 @@ The description is "You feel like a pale, awkward giant among the Riggertown cro
 The sound is "They chatter about sports and the price of iron."
 The scent is "Rust and timber, with notes of volcanic rock."
 Understand "crowds" or "man/men/woman/women/person/people" or "goblin/goblins/gobliness/goblinesses" or "and" or "voice/voices" or "bustle/traffic" or "in/-- general" or "midday" or "little" or "great/-- mess" as the Riggertown crowd.
+Understand "schoolchildren/children/engineer/engineers/drunk/spider/fly/workman/workmen/crate/spit/spitoon/ooze/lass/pigeon/pigeons/housewife/housewives/alchemist/matron/unicycle/house-lizard/lizard/puddle" as the Riggertown crowd.
 After printing the name of the Riggertown crowd while asking which do you mean: say " in general".
 Instead of giving something to the Riggertown crowd, say "Society, as a rule, frowns on spontaneous acts of charity."
 Instead of searching the Riggertown crowd, say "An impractical proposition, to say the least."
@@ -2840,7 +2849,7 @@ index	happening	spawned items	item required
 11	"'What would such a thing even look like?' you protest.
 
 Doctor Cavala moves as if to speak -- but then there is another coughing fit from Reden, and she curses and adjusts the straps. You shake your head and turn back to the shelves."	--	--
-12	"'It's in an inhaler,' she says finally. 'Labeled in the [italic type]lingua libria[roman type]. It cost me a great deal to acquire.'
+12	"'It's in an inhaler,' she says finally. 'Labeled in the old language. It cost me a great deal to acquire.'
 
 There is no mirth in her voice, and for a moment you are at a loss for words."	--	--
 13	"There is another convulsion from the patient, but with less vigor than before. Much less.
@@ -3402,7 +3411,7 @@ Understand "lightning" or "cutting" or "tool" as the galvanic cutter.
 
 When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule):
 	now the galvanic cutter is carried by Doctor Cavala;
-	now Doctor Cavala's leg injury is part of Doctor Cavala;
+	now Doctor Cavala's leg is part of Doctor Cavala;
 	now the first aid bag is described;
 	now the CSOFAOC is 1.
 	
@@ -3415,6 +3424,8 @@ Instead of talking to Doctor Cavala while the CSOFAOC is 1:
 	
 The first aid bag is a closed openable undescribed container in the Clinic. "A first aid bag is behind the counter."
 [It has no description because we want to show its contents and nothing else.]
+
+Does the player mean doing something with the first aid bag when First Aid on Cavala is happening: it is very likely.
 
 Instead of inserting something into the first aid bag:
 	if the noun is carried by the player and (the noun is the antiseptic dressing or the noun is the elastic bandage):
@@ -3464,6 +3475,7 @@ The description is "You need it to dress Doctor Cavala's leg."
 The scent is "The calomel solution is still active."
 Understand "calomel" or "solution" or "gauze" as the antiseptic dressing.
 Instead of dropping the antiseptic dressing when the antiseptic dressing is carried, say "No. You can't fumble now."
+Does the player mean doing something with the antiseptic dressing when First Aid on Cavala is happening: it is very likely.
 
 An elastic bandage is a key-item in the first aid bag.
 The printed name is "bandage".
@@ -3471,6 +3483,7 @@ The description is "You need it to bandage Doctor Cavala's leg."
 The scent is "It smells a bit musty, but that's the last thing on your mind at the moment."
 Understand "bandages" or "fabric" as the elastic bandage.
 Instead of dropping the elastic bandage when the antiseptic dressing is carried, say "No. You can't fumble now."
+Does the player mean doing something with the elastic bandage when First Aid on Cavala is happening: it is very likely.
 
 Some other first aid supplies are a thing in the first aid bag.
 Rule for printing the name of the other first aid supplies when the number of things in the first aid bag is 1: say "first aid supplies".
@@ -3479,11 +3492,11 @@ Understand "bellows" or "aspirator" or "stethoscope" or "pair" or "blood pressur
 
 Before tying something to when the CSOFAOC is 2 (this is the convert tying to bandaging during First Aid on Cavala rule):
 	if Doctor Cavala is the noun, try bandaging Doctor Cavala with the second noun instead;
-	if Doctor Cavala's leg injury is the noun, try bandaging Doctor Cavala with the second noun instead;
+	if Doctor Cavala's leg is the noun, try bandaging Doctor Cavala with the second noun instead;
 	if Doctor Cavala is the second noun, try bandaging Doctor Cavala with the noun instead;
-	if Doctor Cavala's leg injury is the second noun, try bandaging Doctor Cavala with the noun instead.
+	if Doctor Cavala's leg is the second noun, try bandaging Doctor Cavala with the noun instead.
 	
-Before putting something on when the CSOFAOC is 2 and (the second noun is Doctor Cavala or the second noun is Doctor Cavala's leg injury) (this is the convert putting to bandaging during First Aid on Cavala rule):
+Before putting something on when the CSOFAOC is 2 and (the second noun is Doctor Cavala or the second noun is Doctor Cavala's leg) (this is the convert putting to bandaging during First Aid on Cavala rule):
 	try bandaging Doctor Cavala with the noun instead.
 
 Before bandaging Doctor Cavala with when the CSOFAOC is 2 (this is the bandaging works during First Aid on Cavala rule):
@@ -3538,10 +3551,10 @@ Instead of talking to Doctor Cavala while the CSOFAOC is 3:
 Does the player mean putting Doctor Cavala on the waiting chairs: it is likely.
 
 Before putting something on the waiting chairs when the CSOFAOC is 3 (this is the convert putting to taking for first aid rule):
-	if the noun is Doctor Cavala or the noun is Doctor Cavala's leg injury:
+	if the noun is Doctor Cavala or the noun is Doctor Cavala's leg:
 		try taking Doctor Cavala instead.
 
-Before pushing, pulling, or taking Doctor Cavala's leg injury when the CSOFAOC is 3 (this is the convert injury actions to Doctor Cavala actions for first aid rule):
+Before pushing, pulling, or taking Doctor Cavala's leg when the CSOFAOC is 3 (this is the convert injury actions to Doctor Cavala actions for first aid rule):
 	try taking Doctor Cavala instead.
 	
 Before pushing, pulling, or taking Doctor Cavala when the first aid bag is carried and the CSOFAOC is 3 (this is the drop the first aid bag before raising Doctor Cavala's leg for first aid rule):
@@ -4093,7 +4106,9 @@ She nods and presses the bundle of documentation into your hands. 'Remember: fir
 
 'Run along.'
 
-With that, she [if the location is the Mortuary]sits down at the slab[otherwise]returns to the mortuary[end if]."	 {}
+With that, she [if the location is the Mortuary]sits down at the slab[otherwise]returns to the mortuary[end if].
+
+(You can review your current objectives at any time by typing >[bold type]journal[roman type].)"	 {}
 
 After reading out cavala-errands-onit:
 	now the home dialogue branch of Doctor Cavala is cavala-errands2;
@@ -4600,11 +4615,11 @@ When Cavala's Errands ends (this is the despawn the dead pigeons and cleaners ru
 	
 Chapter 3.6.4.3 - The Single Pigeon
 
-The single pigeon is a creature animal.
+The single pigeon is a neuter creature animal.
 "You notice a single pigeon half-hidden under the stairs. The gobliness and her golem must have missed it."
 The sound is "It's not making any sound."
 Understand "bird" or "half-hidden" or "half" or "hidden" as the single pigeon.
-Instead of doing anything other than listening when the current action involves the single pigeon:
+First before doing anything other than listening when the current action involves the single pigeon: [MUST TRIGGER AAAAAAAAA]
 	say "You take a step closer--[paragraph break]";
 	wait for any key;
 	say "The pigeon twitches.[paragraph break]";
@@ -5233,7 +5248,7 @@ Chapter 3.8.9.1 - Go to Sleep, Marid (Again)
 First instead of sleeping in Marid's Dormitory during Walking Home in Fear (this is the Day One sleeping in Marid's bed rule):
 	say "You change out of your clothes and curl up beneath the sheets. But sleep does not come easily.
 
-You close your eyes and drift in that listless limbo between wakefulness and slumber. A ticking like a clock echoes in your mind, echoes behind your eyelids, like a promise you've forgotten and cannot remember.[paragraph break]";
+You close your eyes and drift in that listless limbo between wakefulness and slumber. A ticking like a clock echoes in your mind, behind your eyelids, like a promise you've forgotten and cannot remember.[paragraph break]";
 	wait for any key;
 	say "You barely notice when the world melts away -- when it dissolves, fades, becomes a haze of images and memories.[paragraph break]";
 	wait for any key;
@@ -5540,13 +5555,15 @@ Instead of kissing or squeezing the exterminators, say "[one of]You give the nea
 Instead of giving the purse to the exterminators, say "You don't have nearly enough money on you for a bribe."
 
 exterminators-profession-known is a truth state that varies.
-After examining or talking to the exterminators: now exterminators-profession-known is true; continue the action.
+After examining the exterminators: now exterminators-profession-known is true; continue the action.
 
-Instead of talking to the exterminators, say "[one of]'Excuse me--'
+Instead of talking to the exterminators:
+	say "[one of]'Excuse me--'
 
 'Not now, Miss,' the foremost of the men says gruffly. 'We're investigating reports about a dangerous infestation of acidic slimes. Not to worry, you understand. We'll have this sorted out in a jiffy and be on our way.'[or]'I really need to get to Riggertown,' you say. 'Could you let me through, just this once?'
 
-The foremost exterminator shakes his head. 'I'm afraid not, Miss. We're working with dangerous substances here. For your own safety, I can't let you past the cordon.'[or]You won't be able to persuade the men. Perhaps there's another route elsewhere.[stopping]".
+The foremost exterminator shakes his head. 'I'm afraid not, Miss. We're working with dangerous substances here. For your own safety, I can't let you past the cordon.'[or]You won't be able to persuade the men. Perhaps there's another route elsewhere.[stopping]";
+	now exterminators-profession-known is true.
 
 Some armored coats are worn by the exterminators.
 The description is "Big, bulky garments, styled more in the fashion of the soldier than the alchemist."
@@ -5625,12 +5642,14 @@ Understand "arch" as the bridgeway arches.
 
 Some annotated glyphs of locomotion are part of the bridgeway arches.
 The description is "You know they're glyphs of locomotion because they've been annotated in a more recent hand."
-Understand "electrum" or "filigree" as the annotated glyphs of locomotion.
+Understand "electrum" or "filigree" or "annotation/annotations" or "more" or "recent" or "hand" as the annotated glyphs of locomotion.
 Instead of knocking on, rubbing, or touching the annotated glyphs of locomotion, say "The glyphs thrum with power."
 
 Some cobblestones along the bridge are scenery in the Via Terminalis Bridge. The indefinite article is "the".
 The description is "The stones have been smoothed by decades of traffic."
 Understand "cobblestone" or "cobble/cobbles" or "stone/stones" or "floor" or "ground" as the cobblestones along the bridge.
+Instead of entering the cobblestones along the bridge, say "You're standing on the bridge."
+Instead of looking under the cobblestones along the bridge, say "The Bilious Canal rushes below."
 
 Some statues of the Chorus Metallis are scenery in the Via Terminalis Bridge. The printed name is "statues of the [italic type]Chorus Metallis[roman type]".
 The description is "Plaques identify the statues as personifications of the [italic type]Chorus Metallis:[roman type] Lead, Tin, Iron, Copper, Quicksilver, Silver, and Gold[first time]. You could examine them in closer detail if you wished[only]."
@@ -6209,38 +6228,49 @@ Instead of talking to the newsboy for the first time:
 'Morning, Miss.' He thrusts a newspaper into your hands. 'Compliments of the press.'
 
 'Um, thanks.'";
-	now the player carries the copy of the Libri Liberi.
+	now the player carries the day-one copy of the Libri Liberi.
 
-Chapter 3.17.2.2 - Copy of the Libri Liberi
+Chapter 3.17.2.2 - Day-One Copy of the Libri Liberi
 
-The copy of the Libri Liberi is a thing. The printed name is "copy of [if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The day-one copy of the Libri Liberi is a thing.
+The printed name is "copy of [if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
 The description is "[if time is critical]The newspaper can't help you.[otherwise]The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
 The scent is "[if the current day is Day One]The ink is still fresh.[otherwise]It smells of ink."
-Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the copy of the Libri Liberi.
-Understand "today's" as the copy of the Libri Liberi when the current day is Day One.
-Understand "yesterday's" as the copy of the Libri Liberi when the current day is Day Two.
+Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-one copy of the Libri Liberi.
+Understand "today's" or "today" as the day-one copy of the Libri Liberi when the current day is Day One.
+Understand "yesterday's" or "yesterday" as the day-one copy of the Libri Liberi when the current day is Day Two.
 
-Instead of searching the copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
-Instead of eating the copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
+Instead of searching the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
+Instead of eating the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
 
-Instead of giving the copy of the Libri Liberi to someone when Day One is happening (this is the giving away the newspaper rule):
+Instead of giving the day-one copy of the Libri Liberi to someone when Day One is happening (this is the giving away the day-one newspaper rule):
+	if time is critical:
+		say "This is not the time.";
+		stop the action;
 	if the second noun is a creature:
 		say "There is no response.";
 		stop the action;
 	if the second noun is:
 		-- the newsboy:
 			say "The newsboy takes back the newspaper. 'Thanks for reading, Miss.'";
-			now the copy of the Libri Liberi is nowhere;
+			now the day-one copy of the Libri Liberi is nowhere;
 		-- Doctor Cavala:
-			say "'Today's newspaper? Thank you, Marid.' Doctor Cavala takes the newspaper with a prim nod before returning to her work.";
-			now the copy of the Libri Liberi is nowhere;
+			if Cavala's Errands is happening:
+				say "'Today's newspaper? Thank you, Marid.' Doctor Cavala takes the newspaper with a prim nod before returning to her work.";
+			otherwise:
+				say "She accepts the newspaper, chuckling. 'I suppose any reading material will do when you're bedridden.'";
+			now the day-one copy of the Libri Liberi is nowhere;
 		-- Horatio:
-			say "Horatio is on duty. You'd better not.";
+			if Cavala's Errands is happening:
+				say "Horatio is on duty. You'd better not.";
+			otherwise:
+				say "Horatio takes the newspaper. 'Thanks, Marid.'";
+				now the day-one copy of the Libri Liberi is nowhere;
 		-- the guards on the thoroughfare:
 			say "The guards respectfully decline.";
 		-- the exterminators:
 			say "[The exterminators] accept the newspaper graciously. 'Thank you kindly, Miss, but we still can't let you through.'";
-			now the copy of the Libri Liberi is nowhere;
+			now the day-one copy of the Libri Liberi is nowhere;
 		-- the porter:
 			say "The porter regards you humorlessly.";
 		-- the street buskers:
@@ -6249,44 +6279,51 @@ Instead of giving the copy of the Libri Liberi to someone when Day One is happen
 			say "The children are too busy playing.";
 		-- the censor:
 			say "He accepts the newspaper. 'Hmm! The news! Hmm! Thank you kindly.'";
-			now the copy of the Libri Liberi is nowhere;
+			now the day-one copy of the Libri Liberi is nowhere;
+		-- the forewoman:
+			say "The forewoman doesn't even look at it.";
 		-- otherwise:
 			say "[The second noun] accept[if the second noun is singular-named]s[end if] the newspaper graciously.";
-			now the copy of the Libri Liberi is nowhere.
+			now the day-one copy of the Libri Liberi is nowhere.
 			
-Instead of giving the copy of the Libri Liberi to someone when Day One is not happening (this is the can't give away the newspaper after Day One rule):
-	if the second noun is a creature:
+Instead of giving the day-one copy of the Libri Liberi to someone when Day One is not happening (this is the can't give away the day-one newspaper after Day One rule):
+	if time is critical:
+		say "This is not the time.";
+	otherwise if the second noun is a creature:
 		say "There is no response.";
 	otherwise if the second noun is friendly:
 		say "You don't think [the second noun] would want an outdated newspaper.";
 	otherwise:
 		say "You don't see what that would accomplish.";
 
-newspaper-was-destroyed is a truth state that varies.
+day-one-newspaper-was-destroyed is a truth state that varies.
 
-Instead of attacking or cutting the copy of the Libri Liberi (this is the destroying the newspaper rule):
+Instead of attacking or cutting the day-one copy of the Libri Liberi (this is the destroying the day-one newspaper rule):
 	say "You reduce the newspaper to a collection of scraps, which flutter away in the wind[if the newsboy is in the location]. The newsboy looks horrified[end if].";
 	now the copy of the Libri Liberi is nowhere;
-	now newspaper-was-destroyed is true.
+	now day-one-newspaper-was-destroyed is true.
 
-Instead of dropping the copy of the Libri Liberi (this is the how to drop a newspaper rule):
+Instead of dropping the day-one copy of the Libri Liberi (this is the how to drop a day-one newspaper rule):
 	if the location is in Outdoors:
 		say "The newspaper flutters away in the wind[if the newsboy is in the location]. The newsboy looks saddened[end if].";
 		now the copy of the Libri Liberi is nowhere;
-		now newspaper-was-destroyed is true;
+		now day-one-newspaper-was-destroyed is true;
+	otherwise if time is critical:
+		say "This is not the time.";
 	otherwise if the location is not Marid's Dormitory:
 		say "You shouldn't leave the newspaper lying around here.";
 	otherwise:
 		continue the action.
 
-Instead of talking to the newsboy when newspaper-was-destroyed is true:
+Instead of talking to the newsboy when day-one-newspaper-was-destroyed is true:
 	say "'Sorry, Miss,' he says, flinching. 'Didn't mean to hurt your feelings or nothing. I'm just the newsboy.'
 
 'Um, no, it's fine. Really.'";
-	now newspaper-was-destroyed is false.
+	now day-one-newspaper-was-destroyed is false.
 	
-Instead of going while newspaper-was-destroyed is true:
-	now newspaper-was-destroyed is false.
+After going while day-one-newspaper-was-destroyed is true:
+	now day-one-newspaper-was-destroyed is false;
+	continue the action.
 
 Book 3.18 - Canalside Steps
 
@@ -7102,7 +7139,7 @@ teller-work4	true	false	"<Watch him reveal the rest of the river.>"	"'We have se
 
 [wait for any key]'The Manacles.' A grimace. 'If not for your patient's death, someone would have been imprisoned. Yes, an unpleasant picture is beginning to emerge...'
 
-[wait for any key]The fortune-teller turns over the lower course, revealing it to be another dark and disturbing illustration; but upside-down, so that you can only see a bone-white figure with a skeletal aspect to its depiction.
+[wait for any key]The fortune-teller turns over the lower course, revealing it to be another dark and disturbing illustration; but upside-down, so that you can only see a bone-white figure.
 
 [wait for any key]'Ah!' he declares. 'The Ghost appears, but inverted. The dire message it brings is not heard, and the course of fate is not changed. And that brings us to our final card, the delta--'
 
@@ -8026,6 +8063,9 @@ After reading out donti-stick:
 	
 After reading out donti-address:
 	now journal-zoiro-address-known is true;
+	if Donti is improper-named, now the enabled of donti-name is true.
+	
+After reading out donti-symptoms:
 	if Donti is improper-named, now the enabled of donti-name is true.
 	
 Instead of talking to Donti (this is the no Donti dialogue left rule):
