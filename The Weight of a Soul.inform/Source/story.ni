@@ -161,7 +161,7 @@ Understand "playtest" as a mistake ("[tester-commands-text]").
 Understand "skip commands" as a mistake ("[skip-commands-text]").
 
 To say tester-commands-text:
-	say "When you start a playthrough, please type >[bold type]transcript[roman type]. This will save the text of your playthrough to a text file on your computer, which you can send to me once you're done. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
+	say "When you start a playthrough, please type >[bold type]transcript[roman type]. This will save the text of your playthrough to your browser cache. When you're done, type >[bold type]load[roman type], click 'Edit', copy the text of your transcript, and send it to me. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
 	say "To leave a comment during your playthrough, type a command that begins with an asterisk (a [bold type]*[roman type] symbol). The game will ignore your command, but it will still be printed to the transcript. You can use this to point out typos, highlight specific problems, or simply comment on something you found noteworthy.[paragraph break]";
 	say "The game includes a skip feature to instantly progress the story to various checkpoints. To see the currently available skip commands, type >[bold type]skip commands[roman type] (mild spoilers).[paragraph break]";
 	say "I would love any feedback regarding your game experience, including feedback about the plot, the prose, the game mechanics, and any bugs you find. Comments, criticism, and suggestions are all welcome. As of this writing, I can be reached at [bold type]chinkeeyong@gmail.com[roman type].[paragraph break]";
@@ -1578,6 +1578,8 @@ Last after reading out a dialogue branch (called the current branch) (this is th
 		change the available dialogue choices to have 0 entries;
 		repeat with current child running through the choices of current branch:
 			if the enabled of current child is true, add current child to the available dialogue choices.
+	
+Chapter 2.3.9.4 - Dialogue Command Prompt
 
 To say dialogue-cmd-prompt:
 	if the number of entries in the available dialogue choices is 0:
@@ -1591,19 +1593,20 @@ To say dialogue-cmd-prompt:
 	say "[line break]>".
 	
 After reading a command while the player is engaged in dialogue (this is the reading a command during dialogue rule):
-	if the player's command includes "[number]":
+	if the player's command matches "[number]":
 		let N be the number understood;
 		if N > 0 and N <= the number of entries in the available dialogue choices:
 			read out entry N in the available dialogue choices;
 			reject the player's command;
 			stop;
-	say "Please choose a response from the list by typing the corresponding number.";
-	reject the player's command.
+	otherwise unless the player's command matches "quit/q/save/restore/load/restart":
+		say "Please choose a response from the list by typing the corresponding number.";
+		reject the player's command.
 
 First turn sequence rule (this is the time doesn't pass during dialogue rule):
 	if the player is engaged in dialogue, rule fails.
 
-Chapter 2.3.9.3 - Starting and Ending a Dialogue
+Chapter 2.3.9.5 - Starting and Ending a Dialogue
 
 To start a dialogue with (provided partner - a thing):
 	if the home dialogue branch of the provided partner is not the null dialogue branch:
@@ -1643,9 +1646,9 @@ To end the dialogue:
 	now the player is not engaged in dialogue;
 	if look-pending switch is true, try looking;
 	now look-pending switch is false;
-	follow the rest of the turn rule.
+	[follow the rest of the turn rule.]
 
-Chapter 2.3.9.4 - Talking To
+Chapter 2.3.9.6 - Talking To
 
 Talking to is an action applying to one visible thing.
 Understand "t [something]" as talking to.
@@ -4108,7 +4111,7 @@ She nods and presses the bundle of documentation into your hands. 'Remember: fir
 
 With that, she [if the location is the Mortuary]sits down at the slab[otherwise]returns to the mortuary[end if].
 
-(You can review your current objectives at any time by typing >[bold type]journal[roman type].)"	 {}
+(Type >[bold type]inventory[roman type] or >[bold type]i[roman type] to see what items you're carrying. Type >[bold type]journal[roman type] or >[bold type]j[roman type] to review your current objectives.)"	 {}
 
 After reading out cavala-errands-onit:
 	now the home dialogue branch of Doctor Cavala is cavala-errands2;
@@ -4554,7 +4557,7 @@ When Prologue ends (this is the despawn Saliunca rule):
 	
 Part 3.6.4 - Dormitory Block during Day One
 
-Chapter 3.6.4.1 - during Nine to Five Zombie
+Chapter 3.6.4.1 - During Nine to Five Zombie
 
 Before going west in Dormitory Block during Nine to Five Zombie, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
@@ -4619,7 +4622,8 @@ The single pigeon is a neuter creature animal.
 "You notice a single pigeon half-hidden under the stairs. The gobliness and her golem must have missed it."
 The sound is "It's not making any sound."
 Understand "bird" or "half-hidden" or "half" or "hidden" as the single pigeon.
-First before doing anything other than listening when the current action involves the single pigeon: [MUST TRIGGER AAAAAAAAA]
+
+First before doing anything other than listening when the current action involves the single pigeon:
 	say "You take a step closer--[paragraph break]";
 	wait for any key;
 	say "The pigeon twitches.[paragraph break]";
