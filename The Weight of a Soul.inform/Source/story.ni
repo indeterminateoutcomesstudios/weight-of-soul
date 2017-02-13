@@ -51,6 +51,14 @@ You have been warned.
 ---TO DO---
 
 - Write Day Two
+
+-- Write start of Day Two
+-- Write Reden Investigation
+-- Write Nacarat Investigation
+-- Write Arturus Investigation
+-- Write Thugs Investigation
+-- Write end of Day Two
+
 - Write Midnight
 - Write Day Three
 - Write Day Four
@@ -156,12 +164,17 @@ Part 1.1.7 - Debug Messages - Release for testing
 
 After printing the banner text, say "[line break](This is an unfinished playtest build of [italic type]The Weight of a Soul[roman type]. Type >[bold type]playtest[roman type] to see a special message for playtesters like you.)";
 	
-Understand "* [text]" as a mistake ("Comment recorded.").
 Understand "playtest" as a mistake ("[tester-commands-text]").
 Understand "skip commands" as a mistake ("[skip-commands-text]").
 
+First after reading a command (this is the playtest comments rule):
+	let T be "[the player's command]";
+	if character number 1 in T is "*":
+		say "Comment recorded.";
+		reject the player's command.
+
 To say tester-commands-text:
-	say "When you start a playthrough, please type >[bold type]transcript[roman type]. This will save the text of your playthrough to your browser cache. When you're done, type >[bold type]load[roman type], click 'Edit', copy the text of your transcript, and send it to me. This helps me see what actions you try out, and which parts of the game you get stuck at.[paragraph break]";
+	say "When you start a playthrough, please type >[bold type]transcript[roman type]. This will save the text of your playthrough to your browser cache. When you're done, type >[bold type]load[roman type], click 'Edit', copy the text of your transcript, and send it to me. This helps me see what actions you tried out and which parts of the game you got stuck at.[paragraph break]";
 	say "To leave a comment during your playthrough, type a command that begins with an asterisk (a [bold type]*[roman type] symbol). The game will ignore your command, but it will still be printed to the transcript. You can use this to point out typos, highlight specific problems, or simply comment on something you found noteworthy.[paragraph break]";
 	say "The game includes a skip feature to instantly progress the story to various checkpoints. To see the currently available skip commands, type >[bold type]skip commands[roman type] (mild spoilers).[paragraph break]";
 	say "I would love any feedback regarding your game experience, including feedback about the plot, the prose, the game mechanics, and any bugs you find. Comments, criticism, and suggestions are all welcome. As of this writing, I can be reached at [bold type]chinkeeyong@gmail.com[roman type].[paragraph break]";
@@ -181,6 +194,9 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to mechanistry[roman type]";
 	say "[line break]>[bold type]skip to first aid[roman type]";
 	say "[line break]>[bold type]skip first aid[roman type]";
+	say line break;
+	say "[line break][italic type]Day Two[roman type]";
+	say "[line break]>[bold type]skip to day two[roman type]";
 
 Book 1.2 - Days and Scenes
 
@@ -210,6 +226,7 @@ Chapter 1.2.1.2 - Day One
 
 Day One is a scene.
 Day One begins when Prologue ends.
+Day One ends when Walking Home in Fear ends.
 
 Reden's Autopsy is a scene. [Cavala stays in the mortuary to perform an autopsy on Reden.]
 Reden's Autopsy begins when Day One begins.
@@ -241,6 +258,8 @@ First Aid on Cavala ends when the CSOFAOC is 4.
 
 Walking Home in Fear is a scene. [Marid goes home after fixing Doctor Cavala's leg.]
 Walking Home in Fear begins when First Aid on Cavala ends.
+start-of-day-two is a truth state that varies. [This is a silly hack.]
+Walking Home in Fear ends when start-of-day-two is true.
 
 Chapter 1.2.1.3 - Day Two
 
@@ -248,6 +267,9 @@ Chapter 1.2.1.3 - Day Two
 
 Day Two is a scene.
 Day Two begins when Day One ends.
+
+Bad News from Cavala is a scene. [Cavala tells Marid about the four investigations.]
+Bad News from Cavala begins when Day Two begins.
 
 [This day consists of four individual investigations, each with its own clues.
 
@@ -258,14 +280,14 @@ Day Two begins when Day One ends.
 - Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
 
 Reden Investigation is a scene.
-Reden Investigation begins when Day Two begins.
+Reden Investigation begins when Bad News from Cavala begins.
 
 [2. Debtor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
 - Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
 - Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
 
 Nacarat Investigation is a scene.
-Nacarat Investigation begins when Day Two begins.
+Nacarat Investigation begins when Bad News from Cavala begins.
 
 [3. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
 - The doctor died the afternoon of Day One after an argument with Justinian.
@@ -273,7 +295,7 @@ Nacarat Investigation begins when Day Two begins.
 - Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
 
 Arturus Investigation is a scene.
-Arturus Investigation begins when Day Two begins.
+Arturus Investigation begins when Bad News from Cavala begins.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Died early Day Two morning. Poisoned the night of Day One. Caused a bunch of large-scale deaths in the Shanty Quarter.
@@ -283,7 +305,7 @@ Arturus Investigation begins when Day Two begins.
 - They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
 
 Thugs Investigation is a scene.
-Thugs Investigation begins when Day Two begins.
+Thugs Investigation begins when Bad News from Cavala begins.
 
 [We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
 
@@ -467,6 +489,13 @@ To skip past First Aid on Cavala:
 	now the front door of the clinic is closed;
 	follow the scene changing rules.
 	
+To skip past Day One:
+	if First Aid on Cavala has not ended:
+		skip past First Aid on Cavala;
+	move the player to Marid's Dormitory, without printing a room description;
+	now start-of-day-two is true;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "Reden's surgery has already ended."; stop the action.
@@ -522,6 +551,15 @@ Check skipping first aid when First Aid on Cavala has ended: say "First Aid on C
 Carry out skipping first aid:
 	skip past First Aid on Cavala;
 	try looking.
+	
+Skipping to Day Two is an action applying to nothing.
+Understand "skip to day two" as skipping to day two.
+Check skipping to Day Two when Walking Home in Fear has ended: say "Day Two has already begun."; stop the action.
+Carry out skipping to Day Two:
+	if First Aid on Cavala has not ended:
+		skip past First Aid on Cavala;
+	move the player to Marid's Dormitory, without printing a room description;
+	unveil Day Two.
 	
 Book 1.3 - People
 
@@ -725,11 +763,11 @@ Volume 2 - The Player
 
 Book 2.1 - Marid
 
-The player is female. Understand "servator" or "marid" or "orpheia" as yourself. Understand "marid's" or "my" as a thing when the player has the item described.
+Yourself is female. Understand "servator" or "marid" or "orpheia" or "yourself" as yourself. Understand "marid's" or "my" as a thing when yourself has the item described.
 
-The description of the player is "[marid-description-text]".
-The sound of the player is "[if time is critical]Your heart is pounding.[otherwise]Your breathing seems normal."
-The scent of the player is "[if time is critical]This is not the time.[otherwise]You smell okay."
+The description of yourself is "[marid-description-text]".
+The sound of yourself is "[if time is critical]Your heart is pounding.[otherwise]Your breathing seems normal."
+The scent of yourself is "[if time is critical]This is not the time.[otherwise]You smell okay."
 
 To say marid-description-text:
 	if the location is Maze Part Two:
@@ -1414,9 +1452,7 @@ Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]Th
 Part 2.3.4 - New Parser Error Messages
 
 Rule for printing a parser error when the latest parser error is the can't see any such thing error (this is the new can't see any such thing rule):
-	say "That is either not important or not something you can see[one of].
-
-(Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.)[or].[stopping]" instead.
+	say "That is either not important or not something you can see." instead.
 	
 Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
 	say "That object or command isn't available[one of].
@@ -1548,13 +1584,13 @@ Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 
 Understand the commands "ask" and "tell" and "say" and "answer" as something new.
 
-Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.").
+Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)").
 
-Understand "wave hello" or "wave hello [text]" or "wave goodbye" or "wave goodbye [text]" as a mistake ("Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."). [Because OF COURSE wxd tried this]
+Understand "wave hello" or "wave hello [text]" or "wave goodbye" or "wave goodbye [text]" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"). [Because OF COURSE wxd tried this]
 
-Instead of asking someone to try doing something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
-Instead of answering someone that something, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
-Instead of saying yes or saying no or saying sorry, say "Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters."
+Instead of asking someone to try doing something, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
+Instead of answering someone that something, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
+Instead of saying yes or saying no or saying sorry, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
 
 Chapter 2.3.9.3 - Engaged in Dialogue
 
@@ -1646,7 +1682,7 @@ To end the dialogue:
 	now the player is not engaged in dialogue;
 	if look-pending switch is true, try looking;
 	now look-pending switch is false;
-	[follow the rest of the turn rule.]
+	follow the rest of the turn rule.
 
 Chapter 2.3.9.6 - Talking To
 
@@ -1712,13 +1748,12 @@ To say useful-commands-text:
 
 >[bold type]look[roman type] (>[bold type]l[roman type] or a blank command for short) provides a description of your surroundings, including the things around you and the directions you can go in.
 
->[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type] for short) provides you with a closer look at whatever it is you're examining.
+>[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type] for short) provides you with a closer look at whatever it is you're examining. You can examine practically anything, including yourself.
 
 >[bold type]inventory[roman type] (>[bold type]i[roman type] for short) tells you what items you're wearing or carrying. You can >[bold type]take[roman type] or >[bold type]drop[roman type] things; >[bold type]wear[roman type] or >[bold type]take off[roman type] clothing; >[bold type]put[roman type] items [bold type]on[roman type] or [bold type]in[roman type] containers; and so on.
 
->[bold type]go (direction)[roman type] (>[bold type](direction)[roman type] for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type]. You can also >[bold type]go to[roman type] an area you've visited before, or >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.
-
->[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type] for short) allows you to interact with someone. You may find it worthwhile to talk to people multiple times, as newly discovered information can open up new conversational options.
+>[bold type]go (direction)[roman type] (>[bold type](direction)[roman type] for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type]. You can also >[bold type]go to[roman type] an area you've visited before, or >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.[paragraph break]";
+	say ">[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type] for short) allows you to interact with someone. You may find it worthwhile to talk to people multiple times, as newly discovered information can open up new conversational options.
 
 >[bold type]listen[roman type], >[bold type]smell[roman type], and >[bold type]touch[roman type] allow you to investigate your environment in more detail. You may find it useful to >[bold type]search[roman type] things or >[bold type]look under[roman type] them; >[bold type]push[roman type], >[bold type]pull[roman type], or >[bold type]turn[roman type] objects; >[bold type]attack[roman type], >[bold type]cut[roman type], >[bold type]climb[roman type], and more. The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.
 
@@ -2045,6 +2080,11 @@ But I have to move fast. ";
 If there's one good thing that's come out of tonight, it's Horatio. I'm glad he's here. I hope he gets along with Doctor Cavala. I hope he takes good care of her.
 
 I don't want to lose anyone else. ";
+	[---
+	DAY TWO
+	---]
+	otherwise if Bad News from Cavala is happening:
+		say "I knew something like this was coming. I'd better hurry to the clinic and get the full picture of what's happening. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -2091,6 +2131,11 @@ To say journal-text-objectives:
 		add "Administer first aid to Doctor Cavala" to L;
 	if Walking Home in Fear is happening:
 		add "Go home and get some sleep" to L;
+	[---
+	DAY TWO
+	---]
+	if Bad News from Cavala is happening:
+		add "Report to Doctor Cavala" to L;
 	[---
 	END
 	---]
@@ -2251,7 +2296,6 @@ The description is "The population of the Channelworks District is only a few th
 The sound is "A hundred voices drown out each other."
 The scent is "Perfumes, colognes, fresh groceries -- all blend together into an eclectic infinity."
 Understand "crowds" or "carriage/carriages/cabriolet/cabriolets" or "man/men/woman/women/person/people" or "human/humans" or "goblin/goblins" or "mutant/mutants" or "and" or "voice/voices" or "bustle/traffic" or "in/-- general" as the city crowd.
-Understand "alchemist/businessman/businessmen/chymist/couple/deist/deists/engineer/faber/fabers/scholar/scholars/schoolgirl/schoolgirls/tourist" or "archon/archons/char-golem/gargoyle/golem/ooze/squid" or "thopter/zeppelin/papers/longhorn" as the city crowd.
 After printing the name of the city crowd while asking which do you mean: say " in general".
 Instead of giving something to the city crowd, say "Society, as a rule, frowns on spontaneous acts of charity."
 Instead of searching the city crowd, say "An impractical proposition, to say the least."
@@ -2427,7 +2471,6 @@ The description is "You feel like a pale, awkward giant among the Riggertown cro
 The sound is "They chatter about sports and the price of iron."
 The scent is "Rust and timber, with notes of volcanic rock."
 Understand "crowds" or "man/men/woman/women/person/people" or "goblin/goblins/gobliness/goblinesses" or "and" or "voice/voices" or "bustle/traffic" or "in/-- general" or "midday" or "little" or "great/-- mess" as the Riggertown crowd.
-Understand "schoolchildren/children/engineer/engineers/drunk/spider/fly/workman/workmen/crate/spit/spitoon/ooze/lass/pigeon/pigeons/housewife/housewives/alchemist/matron/unicycle/house-lizard/lizard/puddle" as the Riggertown crowd.
 After printing the name of the Riggertown crowd while asking which do you mean: say " in general".
 Instead of giving something to the Riggertown crowd, say "Society, as a rule, frowns on spontaneous acts of charity."
 Instead of searching the Riggertown crowd, say "An impractical proposition, to say the least."
@@ -2487,7 +2530,7 @@ Every turn (this is the ambience rule):
 Chapter 3.1.3.1 - Upper Perioch Ambience
 
 Some Upper Perioch ambience is a privately-named inactive ambience object.
-The associated table of the Upper Perioch ambience is the Table of Day One Upper Perioch Ambience.
+The associated table is the Table of Day One Upper Perioch Ambience.
 
 When Day One begins: now the Upper Perioch ambience is active.
 When Walking Home in Fear begins: now the Upper Perioch ambience is inactive.
@@ -2542,7 +2585,7 @@ happening
 Chapter 3.1.3.2 - Riggertown Ambience
 
 Some Riggertown ambience is a privately-named ambience object.
-The associated table of the Riggertown ambience is the Table of Day One Riggertown Ambience.
+The associated table is the Table of Day One Riggertown Ambience.
 
 Table of Day One Riggertown Ambience
 happening
@@ -2761,7 +2804,7 @@ Understand "labeled" or "aer" or "vivificans" as the vivific.
 Understand "inhalers" as the soporific and the vivific.
 
 The phantom-soporific is an undescribed purely-surgical-necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
-Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
+Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment. (Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
 Understand "soporific" or "sedative" as the phantom-soporific.
 
 Before examining or searching the shelves of medical supplies when the soporific is in the Reden's surgery holding zone (this is the spawn the soporific and vivific rule):
@@ -3041,7 +3084,7 @@ Instead of doing anything other than giving something to something when the seco
 
 Book 3.3 - Clinic
 
-The Clinic is a proper-named room. "[if time is not critical]Doctor Cavala's clinic is a small, unostentatious affair, neatly organized with little in the way of decoration. [end if]A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes[if time is not critical]; f[otherwise]. F[end if]urther on is the consulting study, home to a desk strewn with notes and diagrams.
+The Clinic is a proper-named room. "[if Cavala's Errands has not ended]Doctor Cavala's clinic is a small, unostentatious affair, neatly organized with little in the way of decoration. [end if]A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes[if  Cavala's Errands has not ended]; f[otherwise]. F[end if]urther on is the consulting study, home to a desk strewn with notes and diagrams.
 
 A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east."
 The scent is "You smell a hint of calomel from the surgery room."
@@ -3407,7 +3450,7 @@ Instead of examining Doctor Cavala during First Aid on Cavala: [If for some reas
 			say "The bandage is compressing the wound nicely, but you still need to raise her leg above chest level to halt the bleeding.";
 	
 The galvanic cutter is a faraway thing.
-The description is "It looks like the doctor kept a souvenir of her time in the military."
+The description is "It looks like the doctor kept a souvenir from her volunteering days."
 The scent is "You can still detect the faint smell of ozone."
 The galvanic cutter has some text called the faraway response. The faraway response is "It's a cutting tool. You shouldn't be touching it without a good reason."
 Understand "lightning" or "cutting" or "tool" as the galvanic cutter.
@@ -3431,12 +3474,13 @@ The first aid bag is a closed openable undescribed container in the Clinic. "A f
 Does the player mean doing something with the first aid bag when First Aid on Cavala is happening: it is very likely.
 
 Instead of inserting something into the first aid bag:
-	if the noun is carried by the player and (the noun is the antiseptic dressing or the noun is the elastic bandage):
+	if the noun is the antiseptic dressing or the noun is the elastic bandage:
 		say "You need that right now.";
 	otherwise:
 		say "That doesn't belong in the first aid bag."
 		
 Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 3, say "No, you still need the first aid bag."
+Instead of emptying the first aid bag into when First Aid on Cavala is happening, say "This is not the time to be making a mess."
 	
 Instead of doing anything with the first aid bag when Cavala's Errands has not ended (this is the block actions on the first aid bag before First Aid on Cavala rule):
 	if we are examining the first aid bag:
@@ -3706,7 +3750,7 @@ She trails off. She takes another sip of tea, becoming quiet, pensive.
 
 To say clinic-interviewer-end:
 	wait for any key;
-	say "'Well,' the interviewer says finally. 'This has all been very enlightening -- but the hour is growing late, and we are no closer to discovering any answers. I shall recommend a better equipped team to join you tomorrow, Doctor. Until then--'[paragraph break]";
+	say "'Well,' the interviewer finally says. 'This has all been very fascinating -- but the hour is growing late, and we are no closer to discovering any answers. I shall recommend a better equipped team to join you tomorrow, Doctor. Until then--'[paragraph break]";
 	wait for any key;
 	now the front door of the clinic is closed;
 	say "The guards leave the clinic following a perfunctory sending-off. You are left in the company of Doctor Cavala and Horatio, who have settled down in the waiting area for the long haul.[look pending]".
@@ -3798,7 +3842,7 @@ Rule for writing a paragraph about Doctor Cavala during Walking Home in Fear:
 		say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby.";
 		if whf-goodnight-quips is 0:
 			say line break;
-			say "You catch yourself yawning. Is it night already? You should probably get home before it's too dark out.";
+			say "You catch yourself yawning. Is it night already? You should get back home before it's too dark out.";
 			now whf-goodnight-quips is 1.
 
 Before going to the West End when Walking Home in Fear is happening:
@@ -3845,11 +3889,11 @@ Doctor Cavala lifts a hand. 'I'm obviously not in any condition to operate,' she
 'I'll help Doctor Cavala where I can,' Horatio adds. 'Since I'll be here and all.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-abouthoratio	true	true	"'How is Horatio doing?'"	"'How is Horatio doing?'
 
-'Your friend, isn't he?' Doctor Cavala quirks an eyebrow. 'He hasn't broken anything, so I suppose that's a plus--'
+'Your friend, isn't he?' Doctor Cavala raises an eyebrow. 'He hasn't broken anything, so I suppose that's a plus--'
 
 '--Hey!--'
 
-'--But he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+'--but he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-fancy	true	true	"'Fancy seeing you here, Horatio.'"	"'Fancy seeing you here, Horatio.'
 
 'It's good to see you too, Marid.' His expression grows grave for a moment. 'When the call came in, I thought... I was worried about you. Now that I'm here, I'm -- I'm just glad you're okay.'
@@ -3861,7 +3905,7 @@ He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd h
 cavalahoratio-whf-nomess	true	true	"'Try not to mess anything up.'"	"You punch Horatio's shoulder. 'Try not to mess anything up.'
 
 He grins. 'I won't.'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
-cavalahoratio-whf-goodbye	true	false	"'I should be going[if whf-goodnight-quips is 0]..[no line break][end if].'"	"'I should be going,' you say.[if whf-goodnight-quips is 1] 'I'll see you tomorrow.'[end if]
+cavalahoratio-whf-goodbye	true	false	"'I should be going[if whf-goodnight-quips is 1]..[no line break][end if].'"	"'I should be going,' you say.[if whf-goodnight-quips is 1] 'I'll see you tomorrow.'[end if]
 
 'Good night, Marid.'
 
@@ -3925,6 +3969,85 @@ Instead of talking to when Walking Home in Fear is happening (this is the no mor
 				say "[one of]'Don't let us keep you,' Doctor Cavala says. 'You should return home before it gets dark.'[or]That's enough conversation for now. You really should be going.[stopping]";
 			stop the action;
 	continue the action.
+	
+Part 3.3.6 - Clinic during Day Two
+
+Chapter 3.3.6.1 - Clinic during Bad News from Cavala
+
+Section 3.3.6.1.1 - Bad News from Cavala Cutscene
+
+When Bad News from Cavala begins: now Doctor Cavala is undescribed.
+When Bad News from Cavala ends: now Doctor Cavala is described.
+
+Every turn when the location is the Clinic and Bad News from Cavala is happening (this is the Bad News from Cavala cutscene rule):
+	say "Doctor Cavala nods at you. 'Marid. Has Horatio told you what's happened?'[paragraph break]";
+	if the enabled of horatio-d2msg-bethere is true:
+		say "'More deaths?'[paragraph break]";
+	otherwise:
+		say "'Not yet,' you say.[paragraph break]";
+	say "'Take a look at this.'[paragraph break]";
+	wait for any key;
+	say "She hands you a newspaper dated today. The paper is still warm, the ink still fresh. The headline reads 'DOCTOR FOUND DEAD IN HIS OWN HOME.'[paragraph break]";
+	wait for any key;
+	say "The front page relates, with chilling matter-of-factness, that Doctor Arturus of the Channelworks District was discovered dead in the Turris Infinita last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the start of a dangerous epidemic...'[paragraph break]";
+	wait for any key;
+	say "Your hands begin to shake.[paragraph break]";
+	say "Doctor Cavala nods grimly. 'Our suspicions have proven true. Reden is the first of many. And more than that -- Doctor Arturus himself is among the casualties.'";
+	now the player carries the day-two copy of the Libri Liberi;
+	start a dialogue with Doctor Cavala using dialogue cavala-badnews-home.
+	
+Section 3.3.6.1.2 - Day-Two Copy of the Libri Liberi
+
+The day-two copy of the Libri Liberi is a thing.
+The printed name is "copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus of the Channelworks District was discovered dead in the Turris Infinita last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the start of a dangerous epidemic...'"
+The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
+Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
+Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
+Understand "yesterday's" or "yesterday" as the day-two copy of the Libri Liberi when the current day is Day Three.
+
+Instead of searching the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
+Instead of eating the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
+
+Instead of giving the day-two copy of the Libri Liberi to someone (this is the can't give away the day-two newspaper rule):
+	if time is critical:
+		say "This is not the time.";
+	otherwise if the second noun is a creature:
+		say "There is no response.";
+	otherwise if Day Two is happening:
+		say "You don't think [the second noun] [are] interested in the news.";
+	otherwise if the second noun is friendly:
+		say "You don't think [the second noun] would want an outdated newspaper.";
+	otherwise:
+		say "You don't see what that would accomplish.";
+		
+Instead of attacking or cutting the day-two copy of the Libri Liberi (this is the destroying the day-two newspaper rule):
+	say "You tear up the newspaper.";
+	now the day-two copy of the Libri Liberi is nowhere.
+	
+Instead of dropping the day-two copy of the Libri Liberi (this is the how to drop a day-two newspaper rule):
+	if the location is in Outdoors:
+		say "The newspaper flutters away in the wind.";
+		now the day-two copy of the Libri Liberi is nowhere;
+	otherwise if time is critical:
+		say "This is not the time.";
+	otherwise if the location is not Marid's Dormitory:
+		say "You shouldn't leave the newspaper lying around here.";
+	otherwise:
+		continue the action.
+	
+Section 3.3.6.1.3 - Cavala's Bad News Dialogue
+		
+Some dialogue branches are defined by the Table of Cavala's Bad News Dialogue.
+
+Table of Cavala's Bad News Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-badnews-home	true	false	""	""	{cavala-badnews-swear, cavala-badnews-howhappen, cavala-badnews-whatdo}
+cavala-badnews-swear	true	false	"'Oh Primes.'"	"'Oh Primes.'
+
+'I know.' Her eyes are hard. 'This week just keeps getting worse.'"	{cavala-badnews-howhappen, cavala-badnews-whatdo}
+cavala-badnews-howhappen	true	false	"'How could this have happened?'"	""	{}
+cavala-badnews-whatdo	true	false	"'What do we do now?'"	""	{}
 
 Book 3.4 - Mortuary
 
@@ -4185,14 +4308,14 @@ Book 3.5 - Via Terminalis, West End
 
 Via Terminalis West End is a proper-named room in Outdoors. "You stand in the terminus of the Via Terminalis, a cul-de-sac of steel spires and buildings aspiring to the heavens. [if it is night]Night has fallen, broken only by the ghostly glow of bound animii in street-lamps and shop windows. Beyond, you see the great spine of the Channelworks District, receding from the lamplight into the beginnings of rain.[otherwise]From here the street-lamps and shop windows line the great spine of the Channelworks District until, shrouded in the mists of the canal, it curves out of sight.[end if]
 
-The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie is happening];[otherwise if it is night], and[otherwise],[end if] the dormitory block where you live lies to the north[if Prologue is happening]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise if it is night].[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
+The white cross of Doctor Cavala's clinic is to the west[if Nine to Five Zombie is happening];[otherwise if it is night or Bad News from Cavala is happening], and[otherwise],[end if] the dormitory block where you live lies to the north[if Prologue is happening]. The rest of the district can wait until tomorrow.[otherwise if Nine to Five Zombie is happening]. The rest of the district will have to wait until after you report for work.[otherwise if it is night or Bad News from Cavala is happening].[otherwise], and a gap between buildings hides an alley entrance to the south. The great Via Terminalis continues to the east."
 The printed name is "Via Terminalis, West End".
 
 The simple-name is "the West End".
 The sound is "You hear the murmuring of the city all around you."
 The scent is "The smell of ozone mingles with the mist."
-The exit reminder is "[if it is night or Nine to Five Zombie is happening]You can go west to the clinic or north to the dormitory block.[otherwise]You can go west to the clinic, north to the dormitory block, south to the crooked alley, or east along the Via Terminalis."
-The going-in disambiguation is "Do you mean going north (to the dormitory block)[unless it is night or Nine to Five Zombie is happening], going south (to the crooked alley),[end if] or going west (to the clinic)?"
+The exit reminder is "[if it is night or Nine to Five Zombie is happening or Bad News from Cavala is happening]You can go west to the clinic or north to the dormitory block.[otherwise]You can go west to the clinic, north to the dormitory block, south to the crooked alley, or east along the Via Terminalis."
+The going-in disambiguation is "Do you mean going north (to the dormitory block)[unless it is night or Nine to Five Zombie is happening or Bad News from Cavala is happening], going south (to the crooked alley),[end if] or going west (to the clinic)?"
 
 Before examining north in the West End, try examining the view of the dormitory instead.
 Before examining south in the West End, try searching the gap between buildings instead.
@@ -4276,10 +4399,24 @@ Before examining inside when the location is the West End and Returning to a Bre
 	
 Instead of listening to the clinic building during Returning to a Break-In:
 	say "You can't hear much."
+	
+Part 3.5.5 - West End during Day Two
+
+Chapter 3.5.4.1 - During Bad News from Cavala
+
+badnewscavala-westend-quipped is a truth state that varies.
+
+First every turn when the location is the West End and badnewscavala-westend-quipped is false and Bad News from Cavala is happening:
+	say "Some pigeons fly overhead.";
+	now badnewscavala-westend-quipped is true;
+	now ambience suppression is true.
+
+Instead of going to Via Terminalis West Street during Bad News from Cavala, say "But the clinic is in the other direction."
+Instead of going to the Crooked Alley during Bad News from Cavala, say "But the clinic is in the other direction."
 
 Book 3.6 - Dormitory Block
 
-The Dormitory Block is a proper-named room in Outdoors. "You have walked the grounds of this three-storey estate long enough to know it by heart. Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
+The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
 From here, you can go up to your dormitory, visit the public house to the west, or exit the building to the south."
 The Dormitory Block is north of the West End.
@@ -4598,7 +4735,7 @@ You look at your feet. 'Thanks for the warning.'[or]You make some small talk, bu
 
 The odd-job gobliness wears a container called a simple apron.
 Instead of examining the simple apron, say "A simple apron, spotty from years of use."
-Understand "stuffed" or "pocket/pockets" as the simple apron.
+Understand "stuffed" or "pocket/pockets" or "spotty/spot/spots" as the simple apron.
 
 Some janitorial tools are a thing in the simple apron.
 The description is "They look to be for cleaning roads and public spaces."
@@ -4635,13 +4772,20 @@ First before doing anything other than listening when the current action involve
 	say "And with no more than a thought, it leaps awing, and disappears into the glittering night sky.[paragraph break]";
 	wait for any key;
 	say "You touch your pendant.";
-	now the single pigeon is nowhere.
+	now the single pigeon is nowhere;
+	stop the action.
 
 When Walking Home in Fear begins (this is the spawn the single pigeon rule):
 	now the single pigeon is in the Dormitory Block.
 	
 When Walking Home in Fear ends (this is the despawn the single pigeon rule):
 	now the single pigeon is nowhere.
+	
+Part 3.6.4 - Dormitory Block during Day Two
+
+Chapter 3.6.4.1 - During Bad News from Cavala
+
+Before going west in Dormitory Block during Bad News from Cavala, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
 Book 3.7 - Public House
 
@@ -4973,20 +5117,20 @@ You're shaking. You're gripping your glass so tightly you're afraid it will shat
 [wait for any key]But you don't cry. You won't cry. You [italic type]will not[roman type] cry.
 
 [wait for any key]You take a deep breath and wipe the wetness from your eyes. You take a fortifying swig from your glass."	{bartender-dialogue-dayone4-1, bartender-dialogue-dayone4-2}
-bartender-dialogue-dayone4-1	true	false	"'I'm going to do better next time...'"	"'I'm going to do better next time,' you say. 'I'm going to [italic type]be[roman type] better. I don't know why misfortune keeps following me, but I'm going to be stronger than it the next time, and the next.
+bartender-dialogue-dayone4-1	true	false	"'I'm going to do better next time...'"	"'I'm going to do better next time,' you whisper. 'I'm going to [italic type]be[roman type] better. I don't know why misfortune keeps following me, but I'm going to be stronger than it the next time, and the next.
 
 'I'm going to overcome this. For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
 
 [wait for any key]You look at your bloodstained gloves.
 
-'I can't allow it to have happened in vain,' you whisper."	{bartender-dialogue-finishdrink}
-bartender-dialogue-dayone4-2	true	false	"'I'm going to find whoever did this...'"	"'I'm going to find whoever did this,' you say. 'I don't know who they are, or what they want, or why they want to spread this death and suffering. But I [italic type]will[roman type] hunt them down. And I [italic type]will[roman type] find them.
+'I can't allow it to have happened in vain.'"	{bartender-dialogue-finishdrink}
+bartender-dialogue-dayone4-2	true	false	"'I'm going to find whoever did this...'"	"'I'm going to find whoever did this,' you whisper. 'I don't know who they are, or what they want, or why they want to spread this death and suffering. But I [italic type]will[roman type] hunt them down. And I [italic type]will[roman type] find them.
 
 'For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
 
 [wait for any key]You look at your bloodstained gloves.
 
-'I can't allow it to have happened in vain,' you whisper."	{bartender-dialogue-finishdrink}
+'I can't allow it to have happened in vain.'"	{bartender-dialogue-finishdrink}
 
 Section 3.7.7.1.99 - The part I commented out
 	
@@ -5043,9 +5187,10 @@ Part 3.8.2 - Dormitory Room Door
 
 The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Dormitory. The printed name is "door to your dormitory room".
 The description is "A simple wooden door."
-Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" as the dormitory room door.
+Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" or "latch" as the dormitory room door.
 Understand "exit" as the dormitory room door when the location is Marid's Dormitory.
 
+Before turning the dormitory room door, try opening the dormitory room door instead.
 Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]What an odd idea.[otherwise]You live alone; there's no need to knock."
 Instead of searching the dormitory room door, say "[if time is critical]You don't have time for that.[otherwise if the location is Marid's Dormitory]You peer around outside, but find nothing of interest.[otherwise]You'd have to go in to take a closer look."
 
@@ -5262,12 +5407,69 @@ You close your eyes and drift in that listless limbo between wakefulness and slu
 	wait for any key;
 	unveil Day Two.
 	
+Part 3.8.10 - Marid's Dormitory during Day Two
+
+Chapter 3.8.9.1 - Rude Awakening
+
 To unveil Day Two:
 	clear the screen;
 	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
 	center "D A Y   T W O";
 	wait for any key;
-	to be continued.
+	clear the screen;
+	now start-of-day-two is true;
+	follow the scene changing rules;
+	say "You are jolted awake by a knocking at the door.[paragraph break]";
+	wait for any key;
+	say "'Marid?' comes Horatio's voice.";
+	start a dialogue with Horatio using dialogue horatio-d2msg-home.
+	
+Some dialogue branches are defined by the Table of Horatio's Day Two Messenger Dialogue.
+
+Table of Horatio's Day Two Messenger Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+horatio-d2msg-home	true	false	""	""	{horatio-d2msg-ignore, horatio-d2msg-answer}
+horatio-d2msg-ignore	true	false	"<Ignore the knocking.>"	"The knocking continues[one of].[or].
+
+'Marid? Are you there?'[or].
+
+You're starting to feel guilty about not answering the door.[or].[stopping]"	{horatio-d2msg-ignore, horatio-d2msg-answer}
+horatio-d2msg-answer	true	false	"<Answer the door.>"	"You clamber out of bed, throw on your jacket, and shuffle up to the door."	{horatio-d2msg-peek, horatio-d2msg-horatio, horatio-d2msg-whatisit, horatio-d2msg-opendoor}
+horatio-d2msg-peek	true	true	"<Look through the peephole.>"	"A peep reveals a Horatio who looks as tired and disheveled as you are."	{horatio-d2msg-horatio, horatio-d2msg-whatisit, horatio-d2msg-opendoor}
+horatio-d2msg-horatio	true	false	"'Horatio?'"	"'Horatio?'
+
+'Marid! So you [italic type]do[roman type] live here.' He sounds relieved. 'Marid, listen. There's been trouble. Doctor Cavala wants you to come down to the clinic as soon as you can.'"	{horatio-d2msg-whatsgoingon, horatio-d2msg-whattrouble, horatio-d2msg-bethere}
+horatio-d2msg-whatisit	true	false	"'What is it?'"	"'What is it?'
+
+'Marid! So you [italic type]do[roman type] live here.' He sounds relieved. 'Marid, listen. There's been trouble. Doctor Cavala wants you to come down to the clinic as soon as you can.'"	{horatio-d2msg-whatsgoingon, horatio-d2msg-whattrouble, horatio-d2msg-bethere}
+horatio-d2msg-opendoor	true	true	"<Open the door.>"	"[if the enabled of horatio-d2msg-peek is true]A twist of the latch reveals a Horatio who looks as tired and disheveled as you are[otherwise]You open the door and come face to face with him[end if].
+
+'Marid! So you [italic type]do[roman type] live here.' He looks relieved. 'Marid, listen. There's been trouble. Doctor Cavala wants you to come down to the clinic as soon as you can.'"	{horatio-d2msg-whatsgoingon, horatio-d2msg-whattrouble, horatio-d2msg-bethere}
+horatio-d2msg-whatsgoingon	true	false	"'What's going on?'"	"You're wide awake now. 'What's going on?'
+
+'We've gotten wind of more deaths in the Channelworks District.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic--'
+
+[wait for any key]'Oh Primes--'
+
+'I know. Come down as soon as you can. The doctor will fill you in.'
+
+[wait for any key]Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
+horatio-d2msg-whattrouble	true	false	"'Trouble? What kind of trouble?'"	"'Trouble?' You're wide awake now. 'What kind of trouble?'
+
+'Big trouble.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]We've gotten wind of more deaths in the Channelworks District, and Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic--'
+
+[wait for any key]'Oh Primes--'
+
+'I know. Come down as soon as you can. The doctor will fill you in.'
+
+[wait for any key]Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
+horatio-d2msg-bethere	true	true	"'I'll be there.'"	"You're wide awake now. 'I'll be there.'
+
+'See you at the clinic.'
+
+Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
+
+After reading out horatio-d2msg-opendoor: now the dormitory room door is open.
 
 Book 3.9 - Via Terminalis, West Street
 
@@ -6071,7 +6273,7 @@ Before going east in the Via Terminalis Junction when the player is cowed by Tur
 Before opening the ornate double doors when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 Before approaching the Turris Infinita when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 
-When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.
+[When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.]
 
 Book 3.17 - Grand Forum
 
@@ -6304,13 +6506,13 @@ day-one-newspaper-was-destroyed is a truth state that varies.
 
 Instead of attacking or cutting the day-one copy of the Libri Liberi (this is the destroying the day-one newspaper rule):
 	say "You reduce the newspaper to a collection of scraps, which flutter away in the wind[if the newsboy is in the location]. The newsboy looks horrified[end if].";
-	now the copy of the Libri Liberi is nowhere;
+	now the day-one copy of the Libri Liberi is nowhere;
 	now day-one-newspaper-was-destroyed is true.
 
 Instead of dropping the day-one copy of the Libri Liberi (this is the how to drop a day-one newspaper rule):
 	if the location is in Outdoors:
 		say "The newspaper flutters away in the wind[if the newsboy is in the location]. The newsboy looks saddened[end if].";
-		now the copy of the Libri Liberi is nowhere;
+		now the day-one copy of the Libri Liberi is nowhere;
 		now day-one-newspaper-was-destroyed is true;
 	otherwise if time is critical:
 		say "This is not the time.";
