@@ -53,9 +53,9 @@ You have been warned.
 - Write Day Two
 
 -- Write start of Day Two
--- Write Reden Investigation
--- Write Nacarat Investigation
 -- Write Arturus Investigation
+-- Write Nacarat Investigation
+-- Write Reden Investigation
 -- Write Thugs Investigation
 -- Write end of Day Two
 
@@ -268,8 +268,17 @@ Chapter 1.2.1.3 - Day Two
 Day Two is a scene.
 Day Two begins when Day One ends.
 
-Bad News from Cavala is a scene. [Cavala tells Marid about the four investigations.]
+Bad News from Cavala is a scene. [Cavala lays the exposition on Marid.]
 Bad News from Cavala begins when Day Two begins.
+Bad News from Cavala ends when the player carries the signum of Doctor Cavala.
+
+Four Investigations is a scene. [The overarching scene for most of Day Two.]
+Four Investigations begins when Bad News from Cavala ends.
+Four Investigations ends when (Reden Investigation has ended and Nacarat Investigation has ended and Arturus Investigation has ended and Thugs Investigation has ended).
+
+A Crucible Game is a scene. [This marks when Doctor Cavala and Horatio are playing crucible.]
+A Crucible Game begins when the main crucible timer is greater than 0.
+A Crucible Game ends when Four Investigations ends.
 
 [This day consists of four individual investigations, each with its own clues.
 
@@ -566,6 +575,7 @@ Book 1.3 - People
 Part 1.3.1 - Defining People
 
 Definition: a person is other if it is not the player.
+Does the player mean doing something with the player: it is unlikely.
 
 A person can be friendly or hostile. A person is usually friendly. [This flag colors Marid's responses when interacting with that person.]
 
@@ -637,6 +647,11 @@ To say cavala-description:
 		say "She has a look of absolute concentration on her face. ";
 	otherwise if Walking Home in Fear is happening:
 		say "She's taking her injury rather well -- but then again, she [italic type]was[roman type] an army doctor. ";
+	otherwise if Four Investigations is happening:
+		if A Crucible Game is happening:
+			say "She's looking at her cards with a cool, unreadable expression. ";
+		otherwise:
+			say "She looks frankly irritated that she's bedridden. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -666,7 +681,12 @@ To say horatio-description:
 	if Cavala's Errands is happening:
 		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ";
 	otherwise if Walking Home in Fear is happening:
-		say "At least he seems to be making himself useful. "
+		say "At least he seems to be making himself useful. ";
+	otherwise if Four Investigations is happening:
+		if A Crucible Game is happening:
+			say "Horatio is contemplating his hand of cards. ";
+		otherwise:
+			say "He looks more bored than anything. ";
 
 Chapter 1.3.3.3 - Carnicer
 
@@ -876,7 +896,7 @@ Part 2.2.3 - Marid's Clothes
 
 Some clothes are worn by the player. The indefinite article of the clothes is "your".
 The description is "Simple garb, but it keeps the wind and moisture out."
-Understand "garb" or "blouse" or "glove" or "gloves" or "apron" or "pants" or "pocket" or "pockets" or "boot" or "boots" or "shoe" or "shoes" or "sock" or "socks" as the clothes.
+Understand "garb" or "blouse" or "glove/gloves" or "apron" or "pants/trousers" or "pocket/pockets" or "boot/boots" or "shoe/shoes" or "sock/socks" as the clothes.
 
 Before smelling the clothes, try smelling the player instead.
 Instead of attacking or burning the clothes, say "[if time is critical]This is not the time.[otherwise]What an odd idea."
@@ -886,6 +906,8 @@ Instead of searching the clothes, say "You have on your person [a list of things
 Instead of taking off the clothes, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire."
 Instead of tying the clothes to something, say "Your clothes are too close-fitting to tie anything with."
 Instead of tying something to the clothes, say "Your clothes are too close-fitting to tie anything with."
+
+Instead of inserting the endoscope into the clothes, say "Your pockets aren't any more interesting up close."
 
 Part 2.2.4 - Animus Pendant
 
@@ -1018,17 +1040,35 @@ Instead of giving the bundle of documents to Doctor Cavala, say "Doctor Cavala g
 Part 2.2.11 - Endoscope
 
 The endoscope is a key-item.
-The description is "An intricate assembly of tiny lenses mounted on adjustable brass rods. It can be used to see inside the internal pathways of the human body, or perhaps other sinuous crevices of a similar nature."
-Understand "intricate" or "assembly" or "tiny" or "lense" or "lenses" or "adjustable" or "brass" or "rod" or "rods" or "scope" or "fragile" or "implement" as the endoscope.
+The description is "An intricate assembly of lenses mounted on adjustable orichalcum rods. It can be inserted into cadavers to examine their internal pathways, and may be useful for inspecting other crevices of a similar nature."
+The scent is "The endoscope is well-oiled."
+Understand "intricate" or "assembly" or "tiny" or "lense/lenses" or "adjustable" or "orichalcum" or "rod/rods" or "scope" or "fragile" or "implement" as the endoscope.
 
 Instead of attacking, cutting, or knocking on the endoscope, say "The endoscope is far too valuable to risk damaging."
+Instead of touching the endoscope, say "The lenses shift at your touch."
 
-Instead of inserting the endoscope into something, say "[The second noun] [are]n't something you can thread the endoscope into."
 Before inserting the endoscope into something when time is critical, say "You don't have time for that." instead.
+Instead of inserting the endoscope into the player, say "That would be highly dangerous and of questionable utility."
+Instead of inserting the endoscope into a living friendly person, say "The endoscope is generally used to examine someone [italic type]after[roman type] they are deceased."
+Instead of inserting the endoscope into a living hostile person, say "You doubt [the second noun] will allow you to do that."
+Instead of inserting the endoscope into a container, say "You find nothing of interest."
+Instead of inserting the endoscope into something, say "[The second noun] [are]n't something you can thread the endoscope into."
 
-Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, insert it into the pathway you wish to examine."
-Instead of setting the endoscope to something, say "To use the endoscope, insert it into the pathway you wish to examine."
-Understand "use [the endoscope]" as a mistake ("To use the endoscope, insert it into the pathway you wish to examine.").
+Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
+Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
+Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine.").
+
+Part 2.2.12 - Signum of Doctor Cavala
+
+The signum of Doctor Cavala is a privately-named key-item.
+The description is "A piece of paper signed and sealed by Doctor Cavala. It declares that Servator Marid Orpheia is formally authorized to act in the signatory's stead, and anyone who disagrees is welcome to take it up with the signatory."
+Understand "signum of/-- doctor/-- cavala/--" or "signed/seal/sealed/signature" or "piece" or "paper" or "glyph" or "inertia" as the signum of Doctor Cavala.
+
+Instead of attacking or cutting the signum of Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Thankfully, the seal makes the paper nigh indestructible."
+
+Instead of looking under the signum of Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]The reverse of the signum is branded with a glyph of inertia."
+
+Instead of giving the signum of Doctor Cavala to Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Doctor Cavala rolls her eyes."
 
 Book 2.3 - Actions
 
@@ -1052,7 +1092,7 @@ Last before pushing something to: if the noun is not pushable between rooms, try
 Last instead of swinging a scenery thing: say "[regarding the noun][They're] not something you can swing."
 Last instead of swinging a fixed in place thing: say "[regarding the noun][They] [are] fixed in place."
 
-Rule for printing a parser error (this is the swear word filter rule):
+First rule for printing a parser error (this is the swear word filter rule):
 	repeat through the Table of Mild Swear Words:
 		if the player's command includes the topic entry:
 			say "Indeed." instead;
@@ -1355,6 +1395,9 @@ Carry out brushing your teeth (this is the standard brushing your teeth rule):
 	otherwise:
 		say "You have nothing with which to brush your teeth."
 		
+Card-playing is an action applying to one thing. Understand "play [something]" as card-playing.
+Check card-playing: say "That doesn't make any sense."; stop the action.
+		
 Combing your hair is an action applying to nothing. Understand "comb my/-- hair" or "brush my/-- hair" as combing your hair. [The logical next step.]
 Carry out combing your hair (this is the standard combing your hair rule):
 	if time is critical:
@@ -1440,11 +1483,11 @@ Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- 
 Understand "use [text]" as a mistake ("You'll have to use a more specific verb than that.").
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
-Understand "prime" or "primes" or "oh primes" as a mistake ("[if time is critical]This is not the time.[otherwise]'Vulgar words reveal one's vulgar nature.' Philosopher Scepter.").
+Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Yup.[otherwise]You mutter an oath under your breath.").
 Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("Type >[bold type]journal[roman type] for a reminder of the information you've come across.").
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
 Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[otherwise if time is critical]This is not the time.[otherwise]You sigh.").
-Understand "step with care" as a mistake ("[if time is critical]This is not the time.[otherwise]You always do.").
+Understand "step with care" as a mistake ("[if the location is Maze Part Four]You can't bring yourself to.[otherwise]Always.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
@@ -1635,7 +1678,7 @@ After reading a command while the player is engaged in dialogue (this is the rea
 			read out entry N in the available dialogue choices;
 			reject the player's command;
 			stop;
-	otherwise unless the player's command matches "quit/q/save/restore/load/restart":
+	unless the player's command matches "quit/q/save/restore/load/restart":
 		say "Please choose a response from the list by typing the corresponding number.";
 		reject the player's command.
 
@@ -1682,6 +1725,7 @@ To end the dialogue:
 	now the player is not engaged in dialogue;
 	if look-pending switch is true, try looking;
 	now look-pending switch is false;
+	now ambience suppression is true;
 	follow the rest of the turn rule.
 
 Chapter 2.3.9.6 - Talking To
@@ -1706,7 +1750,6 @@ Check talking to an other person when the home dialogue branch of the noun is th
 Check talking to an other person when the enabled of the home dialogue branch of the noun is false (this is the can't talk to someone with disabled home dialogue rule): say "[The noun] [have] nothing to say to you." instead.
 
 Carry out talking to something (this is the standard talking to rule):
-	now ambience suppression is true; [Defined in Backdrops - Ambience. We don't want random atmospheric events to come into play.]
 	start a dialogue with the noun.
 
 Part 2.3.10 - Help Menu
@@ -1808,9 +1851,9 @@ The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vit
 When Reden's Surgery ends: add Reden to the list of discovered characters.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
 
-After going to the West Street: add Horatio to the list of discovered characters; continue the action.
+After going to the West Street for the first time: add Horatio to the list of discovered characters; continue the action.
 The bio-name of Horatio is "Vigile Horatio".
-The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been assigned as Doctor Cavala's protector for the time being[end if]."
+The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been temporarily assigned as Doctor Cavala's protector[end if]."
 
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
@@ -2115,7 +2158,7 @@ To say journal-text-objectives:
 				add "Deliver the bundle of documents to the censor in the basilica" to L;
 			if The Censor's Nap is happening:
 				add "[italic type]...and think of a way to wake the censor[roman type]" to L;
-			add "Find Zoiro, Reden's son, in Riggertown" to L;
+			add "Find Zoiro, Reden's brother, in Riggertown" to L;
 			if journal-zoiro-address-known is false:
 				if Maze Part One is unvisited:
 					add "[italic type]...by asking the censor for his address[roman type]" to L;
@@ -2693,7 +2736,7 @@ To say reden-gurney-description:
 		say "Reden lies on the gurney, lifeless and still";
 	now Reden is mentioned.
 
-The description of Reden is "[if Reden is living]Reden, goblin male aged 51, stumbled into the clinic six minutes ago suffering from convulsions and phantom pains. Now his life is in Doctor Cavala's hands -- and yours.[otherwise if Reden's Autopsy is happening]His chest cavity has been dissected, revealing a spiderweb pattern of blackened blood vessels and tissues.[otherwise]Black stains run down his cheeks like tears."
+The description of Reden is "[if Reden is living]Reden, goblin male aged 37, stumbled into the clinic six minutes ago suffering from convulsions and phantom pains. Now his life is in Doctor Cavala's hands -- and yours.[otherwise if Reden's Autopsy is happening]His chest cavity has been dissected, revealing a spiderweb pattern of blackened blood vessels and tissues.[otherwise]Black stains run down his cheeks like tears."
 
 Instead of bandaging Reden with, say "It's a little late for that."
 
@@ -2976,6 +3019,7 @@ There is a sudden quiet, a moment when the surgical lights flicker and time itse
 	say "Seconds pass. A minute. Finally she stands, silent, her breathing level. She takes off her mask and sets it on the operating table with an air of grim finality.[paragraph break]";
 	now Reden is dead;
 	now all purely-surgical-necessities are nowhere;
+	wait for any key;
 	start a dialogue with Doctor Cavala using dialogue cavala-redendead;
 	reject the player's command. [Ordinarily we would also follow the 'rest of the turn rule' here, since we overrode the player's action, but the dialogue system already calls that function.]
 	
@@ -3000,9 +3044,9 @@ cavala-redendead-mask2	true	true	"<Take off your surgical mask.>"	 "You pull off
 You don't meet Doctor Cavala's gaze as you hand the mask to her."	{cavala-redendead-ifonly, cavala-redendead-catholicon, cavala-redendead-sawlight, cavala-redendead-whatnext}
 cavala-redendead-ifonly	true	true	"'If only...'"	"'If only...'
 
-'If only what?' She fixes you with a stern gaze. 'The man is dead, Marid. We are not animologists. Nothing we do will bring him back -- and you of all people should know this.'
+'If only [italic type]what?'[roman type] She fixes you with a stern gaze. 'The man is dead, Marid. We are not animologists. Nothing we do will bring him back -- and you of all people should know this.'
 
-'I know,' you say bitterly. 'I just... wish there was something we could do.'
+'I know,' you say bitterly. 'I... I just wish there was something we could do.'
 
 [if the player is wearing the surgical mask]Doctor Cavala holds out her hand. No words are needed. You pull off your surgical mask and hand it to her, unable to meet her gaze.[otherwise]Doctor Cavala's eyes flicker to the outline of your pendant, under your jacket, but she says nothing."	{cavala-redendead-catholicon, cavala-redendead-sawlight, cavala-redendead-whatnext}
 cavala-redendead-catholicon	false	true	"'The catholicon -- what [roman type]was[italic type] that?'"	"'The catholicon--'
@@ -3011,22 +3055,22 @@ You glance at Reden, half expecting to see white fire in his eyes, and suppress 
 
 'The catholicon, Doctor. What [italic type]was[roman type] that?'
 
-Doctor Cavala takes the empty inhaler out of her pocket. She looks pensively into the glass, and holds it up to the lights where it shines.
+[wait for any key]Doctor Cavala takes the empty inhaler out of her pocket. She looks pensively into the glass, and holds it up to the lights where it shines.
 
 'The catharsis,' she says quietly. 'The purging of the soul. It is the most destructive of all remedies, and the most irreversible once administered. But remember this, Marid: sometimes a thing must be destroyed before it can be built anew.'
 
-She turns to regard the body on the gurney, so frail and gentle in death, and sighs.
+[wait for any key]She turns to regard the body on the gurney, so frail and gentle in death, and sighs.
 
 'It was his only chance,' she says. 'He was going to die either way. But... I'm sorry you had to see that, Marid. I really am.'"	{cavala-redendead-mask2, cavala-redendead-ifonly, cavala-redendead-sawlight, cavala-redendead-whatnext}
 cavala-redendead-sawlight	true	true	"'At the moment he died, I had a strange vision...'"	 "'At the moment he died, I had a strange vision. It was... it was...'
 
 You try to recall the strange sensation you experienced, but it fragments and swims away, and lingers at the edge of your consciousness where you can find no purchase. What words could describe that weightless moment?
 
-'It was...' you flounder, 'it was...'
+[wait for any key]'It was...' you flounder, 'it was...'
 
-Doctor Cavala watches you intently. 'People see many strange things at the moment of death, Marid. Especially when the animus escapes untethered. You studied such reactions in the Physicians['] College, did you not?'
+Doctor Cavala watches you intently. 'Strange sights are not uncommon at the moment of death, Marid. Especially when the animus escapes untethered. You studied such reactions in the Physicians['] College, did you not?'
 
-'This was different,' you insist.
+[wait for any key]'This was different,' you insist.
 
 'It's been a long day,' she replies. 'Take a moment to collect your thoughts. Talk to me again tomorrow when you are certain.'
 
@@ -3433,7 +3477,7 @@ To say cavala-firstaid-examinewound:
 
 'Hurry,' she says through gritted teeth. 'There's a first aid bag behind the counter...'
 
-(This scene has lethal consequences. You may wish to save the game by typing >[bold type]save[roman type].) ";
+[wait for any key](This scene has lethal consequences. You may wish to save the game by typing >[bold type]save[roman type].) ";
 
 Section 3.3.5.4.2 - Setting the Scene
 
@@ -3976,31 +4020,102 @@ Chapter 3.3.6.1 - Clinic during Bad News from Cavala
 
 Section 3.3.6.1.1 - Bad News from Cavala Cutscene
 
-When Bad News from Cavala begins: now Doctor Cavala is undescribed.
-When Bad News from Cavala ends: now Doctor Cavala is described.
-
-Every turn when the location is the Clinic and Bad News from Cavala is happening (this is the Bad News from Cavala cutscene rule):
-	say "Doctor Cavala nods at you. 'Marid. Has Horatio told you what's happened?'[paragraph break]";
+Last after going to the Clinic when Bad News from Cavala is happening (this is the Bad News from Cavala cutscene rule):
+	say "[line break][bold type]Clinic[roman type][line break]";
+	say "Doctor Cavala and Horatio have been busy this morning. You spy fresh cups of tea beside the makeshift bed, and plates with crumbs that Horatio is in the process of tidying. Doctor Cavala, for her part, looks up from a newspaper as you enter.[paragraph break]";
+	say "'Marid. Has Horatio told you what's happened?'[paragraph break]";
+	wait for any key;
 	if the enabled of horatio-d2msg-bethere is true:
 		say "'More deaths?'[paragraph break]";
 	otherwise:
 		say "'Not yet,' you say.[paragraph break]";
-	say "'Take a look at this.'[paragraph break]";
+	say "Horatio passes the newspaper to you. 'Take a look at this.'[paragraph break]";
 	wait for any key;
-	say "She hands you a newspaper dated today. The paper is still warm, the ink still fresh. The headline reads 'DOCTOR FOUND DEAD IN HIS OWN HOME.'[paragraph break]";
+	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, passed away last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
 	wait for any key;
-	say "The front page relates, with chilling matter-of-factness, that Doctor Arturus of the Channelworks District was discovered dead in the Turris Infinita last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the start of a dangerous epidemic...'[paragraph break]";
+	say "Your hands start to shake.[paragraph break]";
 	wait for any key;
-	say "Your hands begin to shake.[paragraph break]";
-	say "Doctor Cavala nods grimly. 'Our suspicions have proven true. Reden is the first of many. And more than that -- Doctor Arturus himself is among the casualties.'";
-	now the player carries the day-two copy of the Libri Liberi;
+	say "Doctor Cavala nods grimly. 'Our suspicions have proven true. Reden is the first of many. More than that -- Doctor Arturus himself is among the casualties.'";
 	start a dialogue with Doctor Cavala using dialogue cavala-badnews-home.
 	
-Section 3.3.6.1.2 - Day-Two Copy of the Libri Liberi
+Section 3.3.6.1.2 - Cavala's Bad News Dialogue
+		
+Some dialogue branches are defined by the Table of Cavala's Bad News Dialogue.
+
+Table of Cavala's Bad News Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-badnews-home	true	false	""	""	{cavala-badnews-swear, cavala-badnews-howhappen, cavala-badnews-whatdo}
+cavala-badnews-swear	true	true	"'Oh Primes.'"	"'Oh Primes.'
+
+'I know.' Her eyes are hard. 'This week just keeps getting worse.'"	{cavala-badnews-howhappen, cavala-badnews-whatdo}
+cavala-badnews-howhappen	true	true	"'How could this have happened?'"	"'How could this have happened?'
+
+She shakes her head. 'Very easily. It is unlikely for a medical practitioner to contract a patient's disease -- not with the proper safeguards in place -- but not inconceivable. And Doctor Arturus... oh, the bloody fool. He should have known better...'"	{cavala-badnews-swear, cavala-badnews-whatdo}
+cavala-badnews-whatdo	true	false	"'What do we do now?'"	"'What do we do now?'
+
+'Good question.'
+
+Doctor Cavala folds her arms. Her expression seethes with disquiet, with the agitation of an invalid accustomed to physical activity.
+
+'Recent events have backed us into a corner,' she says. 'I can't do much of anything, on account of my injury. Horatio's hands are full with matters around the clinic. That only leaves one person to look into the situation--'
+
+[wait for any key]'Myself,' you say.
+
+[wait for any key]'Exactly.' She snaps her fingers. 'Before we can combat the disease, we need data -- data that can only be gathered through firsthand observation. You've proven yourself to be dependable and resourceful, and you have enough medical expertise to make informed judgments. It will have to be you who investigates this series of deaths.'
+
+[wait for any key]You consider her words."	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+cavala-badnews-whyme	true	true	"'Does it [roman type]have[italic type] to be me?'"	"'Does it [italic type]have[roman type] to be me?'
+
+She gives you a withering look.
+
+You sigh. 'Yes, Doctor.'"	{cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+cavala-badnews-wheretostart	true	true	"'Where should I begin?'"	"'Where should I begin?' you ask.
+
+'You could begin by examining Doctor Arturus's body,' Doctor Cavala says. 'He'll be in his clinic -- I suppose it's Doctor Justinian's clinic now. Talk to Doctor Justinian about it, and check his patient records for possible contagion vectors between the deceased.
+
+'It might also be worth asking Zoiro about his brother's associations. See if you can find any correlation between the patients so far. With any luck, we'll uncover the source of the outbreak.'"	{cavala-badnews-whyme, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+cavala-badnews-whattofind	true	true	"'What should I look out for?'"	"'What should I look out for?'
+
+'Our goal is to combat the disease,' Doctor Cavala replies. 'We need to determine the means by which it is transmitted -- whether it is endemic to a particular area, or spread by contact, or something else entirely. Once the transmission method is determined, we can take measures to isolate the disease and find a cure.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+cavala-badnews-aboutarturus	true	true	"'Can you tell me anything about Doctor Arturus?'"	"'Can you tell me anything about Doctor Arturus?'
+
+She sighs. 'Not much, I'm afraid. Doctor Arturus was before my time. I'm familiar with his corpus of work, of course -- even met him once or twice, in a professional capacity -- but he was a reclusive man, and rarely involved in everyday affairs.
+
+'Try asking Doctor Justinian instead. He's had more contact with the man than anyone else.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+cavala-badnews-aboutjustinian	true	true	"'Do you think Doctor Justinian can help?'"	"'Do you think Doctor Justinian can help?' you ask.
+
+Doctor Cavala nods. 'He likely can. At minimum, he can give you a better picture of the events that led to Doctor Arturus's death. Beyond that, he's the only other qualified doctor in the district. He'll be a useful ally if we are to contain the disease.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-onit}
+cavala-badnews-onit	true	false	"'I'm on it, Doctor.'"	"[cavala-badnews-onit-text]"	{}
+
+To say cavala-badnews-onit-text:
+	say "'I'm on it, Doctor.'[paragraph break]";
+	say "She nods. 'Remember: talk to Doctor Justinian in the Turris Infinita. Investigate all the deaths that have occurred so far. If you find a connection, we can isolate the transmission vector and quarantine the disease.'[paragraph break]";
+	wait for any key;
+	say "'Got it.'[paragraph break]";
+	say "She holds up a hand. 'Before you go, I have a couple of things to give you. First -- Horatio, would you fetch me a pen?'[paragraph break]";
+	wait for any key;
+	say "The pen is delivered. Doctor Cavala signs a small piece of paper, then seals it with a sigil-brand and hands it to you.[paragraph break]";
+	say "'This is proof that you're acting on my behalf,' she says. 'If anyone gives you trouble, show this to them. And another thing--'[paragraph break]";
+	wait for any key;
+	say "She has Horatio retrieve a sleek instrument from her desk. It is orichalcum, threaded with tiny magnification lenses, and your eyes widen as he places it in your palm.[paragraph break]";
+	wait for any key;
+	say "'Yes, Marid,' Doctor Cavala says wryly. 'You can borrow my endoscope for this investigation, since you'll be dealing with a lot of dead bodies. Just promise me you'll return it in one piece -- I'd hate to take the cost out of your next paycheck.'[paragraph break]";
+	wait for any key;
+	say "'I-- I understand, Doctor.'[paragraph break]";
+	say "Doctor Cavala squeezes your hand. 'Good luck, Marid. I'm counting on you.'[paragraph break]";
+	wait for any key;
+	say "You step back and put the endoscope in your pocket.[paragraph break]";
+	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the object you wish to examine.) ";
+	now the day-two copy of the Libri Liberi is carried by the player;
+	now the signum of Doctor Cavala is carried by the player;
+	now the endoscope is carried by the player;
+	set pronouns from the endoscope.
+	
+Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
 The day-two copy of the Libri Liberi is a thing.
 The printed name is "copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
-The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus of the Channelworks District was discovered dead in the Turris Infinita last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the start of a dangerous epidemic...'"
+The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, passed away last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
 Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
@@ -4014,10 +4129,8 @@ Instead of giving the day-two copy of the Libri Liberi to someone (this is the c
 		say "This is not the time.";
 	otherwise if the second noun is a creature:
 		say "There is no response.";
-	otherwise if Day Two is happening:
-		say "You don't think [the second noun] [are] interested in the news.";
 	otherwise if the second noun is friendly:
-		say "You don't think [the second noun] would want an outdated newspaper.";
+		say "You don't think [the second noun] [are] interested in the news.";
 	otherwise:
 		say "You don't see what that would accomplish.";
 		
@@ -4035,19 +4148,249 @@ Instead of dropping the day-two copy of the Libri Liberi (this is the how to dro
 		say "You shouldn't leave the newspaper lying around here.";
 	otherwise:
 		continue the action.
-	
-Section 3.3.6.1.3 - Cavala's Bad News Dialogue
 		
-Some dialogue branches are defined by the Table of Cavala's Bad News Dialogue.
+Chapter 3.3.6.2 - Clinic during Four Investigations
 
-Table of Cavala's Bad News Dialogue
+Rule for writing a paragraph about Doctor Cavala during Four Investigations:
+	if A Crucible Game is happening:
+		say "Doctor Cavala and Horatio are playing a game of crucible.";
+	otherwise:
+		say "Doctor Cavala is recuperating in a makeshift bed, with Horatio keeping watch nearby.";
+	
+Section 3.3.6.2.1 - Cavala Dialogue
+
+When Four Investigations begins (this is the initialize Cavala 4inv dialogue rule):
+	now the home dialogue branch of Doctor Cavala is cavala-4inv-home.
+	
+Some dialogue branches are defined by the Table of Cavala 4inv Dialogue.
+
+Table of Cavala 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-cavala-badnews-home	true	false	""	""	{cavala-badnews-swear, cavala-badnews-howhappen, cavala-badnews-whatdo}
-cavala-badnews-swear	true	false	"'Oh Primes.'"	"'Oh Primes.'
+cavala-4inv-home	true	false	""	"You approach Doctor Cavala, and she looks up [if A Crucible Game is happening]from her cards[otherwise]at you[end if].
 
-'I know.' Her eyes are hard. 'This week just keeps getting worse.'"	{cavala-badnews-howhappen, cavala-badnews-whatdo}
-cavala-badnews-howhappen	true	false	"'How could this have happened?'"	""	{}
-cavala-badnews-whatdo	true	false	"'What do we do now?'"	""	{}
+'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-nevermind}
+cavala-4inv-wherebeginagain	true	false	"'Where should I begin my investigation, again?'"	"'Where should I begin my investigation, again?'
+
+'Go to Doctor Arturus's clinic,' she says. 'The doctor's body will be there, along with the bodies of his patients. Ask Doctor Justinian and see if you can find any connection between the deceased.
+
+'It might also be worth asking Zoiro about his brother's associations. If he's mourning, you'll find him in his home.'"	{cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+cavala-4inv-whatlookagain	true	false	"'What should I look out for, again?'"	"'What should I look out for, again?'
+
+'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+cavala-4inv-crucible	false	true	"'Crucible? Really?'"	"'Crucible? Really?'
+
+She raises an eyebrow. 'I'll get to work as soon as you bring me information I can act upon. Until then, it's either crucible or romance novels.'
+
+'Fair enough,' you admit."	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-goodbye}	
+cavala-4inv-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
+
+Doctor Cavala [if A Crucible Game is happening]returns her attention to the card game[otherwise]waves you off nonchalantly[end if]."	{}
+cavala-4inv-goodbye	true	false	"'I'll be back soon.'"	"'I'll be back soon.'
+
+Doctor Cavala nods. 'I'm counting on you, Marid.'
+
+You step back from the makeshift bed."	{}
+
+Section 3.3.6.2.2 - Horatio Dialogue
+
+When Four Investigations begins (this is the initialize Horatio 4inv dialogue rule):
+	now the home dialogue branch of Horatio is horatio-4inv-home.
+	
+Some dialogue branches are defined by the Table of Horatio 4inv Dialogue.
+
+Table of Horatio 4inv Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+horatio-4inv-home	true	false	""	"You approach Horatio, and he [if A Crucible Game is happening]puts down his cards and grins[otherwise]grins a little bashfully[end if].
+
+'Hey, Marid,' he says."	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-crucible, horatio-4inv-seeyou}
+horatio-4inv-sleepwell	true	true	"'You don't look too good. Did you sleep well last night?'"	"'You don't look too good,' you say. 'Did you sleep well last night?'
+
+'Well... no.' He rubs his eyes. 'I couldn't get any shut-eye in the clinic -- too much calomel in the air. Doctor Cavala slept like a baby, though. I don't know how she does it...'
+
+He sighs and looks you over.
+
+'To be honest,' he says, 'you don't look too good yourself. Your tattoos are all in a jumble. I know the doctor has you running errands for her, but -- just watch yourself out there, all right?'
+
+'I will,' you say. 'I promise.'"	{horatio-4inv-thoughts, horatio-4inv-crucible, horatio-4inv-seeyou}
+horatio-4inv-thoughts	true	true	"'What do you think of the situation so far?'"	"'What do you think of the situation so far?'
+
+Horatio's jaw hardens, and he looks contemplative.
+
+'I... I don't really know what to think,' he says. 'You and Doctor Cavala have been at this for a lot longer than I have. All I know that people seem to be dropping like flies all of a sudden. Doctor Arturus is dead -- even Doctor Cavala's got a ruined leg. How can we fix the problem when we don't even know what's going on?'
+
+Both of you are quiet for a moment."	{horatio-4inv-sleepwell, horatio-4inv-crucible, horatio-4inv-seeyou}
+horatio-4inv-crucible	false	true	"'I didn't know you played crucible.'"	"'I didn't know you played crucible.'
+
+He shrugs. 'I picked it up in the Vigiles. It's a way to pass the time in the late-night watches. Want me to teach you?'
+
+You smile. 'Thanks, but I'm a bit busy right now. Perhaps another time.'"	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-seeyou}
+horatio-4inv-seeyou	true	false	"'See you around, Horatio.'"	"'See you around, Horatio.'
+
+'You too, Marid.'
+
+You step back, and Horatio returns to his [if A Crucible Game is happening]card game[otherwise]duties[end if]."	{}
+
+Instead of talking to Horatio when (the home dialogue branch of Horatio is horatio-4inv-home and the enabled of horatio-4inv-sleepwell is false and the enabled of horatio-4inv-thoughts is false and the enabled of horatio-4inv-crucible is false) (this is the no more Horatio 4inv dialogue rule):
+	say "You can't think of anything to bring up at the moment."
+	
+Section 3.3.6.2.3 - Cavala and Horatio Play Crucible
+
+The main crucible timer is a number that varies. The main crucible timer is -1.
+[0-1: nothing
+2: "Let's play a game of crucible"
+3: Horatio deals
+4: Turn sequence. Doctor Cavala goes first
+5: Someone wins
+6: "Again"; goto 2]
+
+The active crucible player is a person that varies. The active crucible player is Doctor Cavala.
+
+Doctor Cavala has a number called trinitates.
+Horatio has a number called trinitates.
+
+The crucible deck is a faraway scenery thing.
+The description is "Crucible is a gambling card game about matching sets of three. It's a common sight at public houses and social gatherings, but you've never quite gotten the hang of the rules."
+The sound is "The cards flick and sift."
+The crucible deck has some text called the faraway response. The faraway response is "As much as you'd like to be playing cards with Doctor Cavala and Horatio, you have more pressing concerns at the moment."
+Understand "card/cards" or "deck" or "game" or "[a number]" or "ace" or "of" or "discs/staves/cups/swords" or "lead/tin/iron/copper/quicksilver/silver/gold" or "mercury/sulfur/natron/astra/sol/azoth/fool" or "hand/materia/residuum" or "trinitas/trinitates" as the crucible deck.
+
+When A Crucible Game begins (this is the spawn the crucible deck rule):
+	now the crucible deck is in the Clinic.
+
+When A Crucible Game ends (this is the despawn the crucible deck rule):
+	now the crucible deck is nowhere.
+	
+After waiting when the location is the Clinic and A Crucible Game is happening:
+	say run paragraph on.
+	
+First every turn when Four Investigations is happening and ambience suppression is false (this is the Four Investigations crucible game rule):
+	if the main crucible timer is not 4, increment the main crucible timer;
+	if the main crucible timer is 7, now the main crucible timer is 3;
+	if the location is not the Clinic, rule succeeds;
+	if the main crucible timer is:
+		-- 1:
+			say "Horatio yawns.";
+		-- 2:
+			say "'I expect we shall be waiting awhile,' Doctor Cavala observes. 'How about a game of crucible, Horatio?'
+
+'Sure, I guess.'
+
+Horatio produces a pack of cards and sits opposite Doctor Cavala.";
+			now the enabled of cavala-4inv-crucible is true;
+			now the enabled of horatio-4inv-crucible is true;
+		-- 3:
+			say "Horatio deals a[one of][or] new[stopping] hand. [one of]Doctor Cavala picks up her cards and looks at them intently.[or]The players pick up their cards.[or]Doctor Cavala scoops up her cards and fans them out.[in random order]";
+			now the active crucible player is Doctor Cavala;
+		-- 4:
+			choose a random row in the Table of the Crucible Deck;
+			let discarded card be the card entry;
+			let drawn card source be "materia";
+			if a random chance of 1 in 3 succeeds:
+				now drawn card source is "residuum";
+			let N be 0;
+			let catalysis be "none";
+			if a random chance of 1 in 3 succeeds:
+				if a random chance of 1 in 4 succeeds and the trinitates of the active crucible player > 0:
+					now catalysis is "dissolve";
+					decrement the trinitates of the active crucible player;
+				otherwise:
+					now catalysis is "conjoin";
+					increment the trinitates of the active crucible player;
+			if the trinitates of the active crucible player is 3:
+				say "'[discarded card].' [The active crucible player] forms a [italic type]trinitas[roman type] and reveals [their] hand. '[one of]Revelation[or]I win[or]Good game[in random order].'[paragraph break]";
+				let the crucible loser be Doctor Cavala;
+				if the active crucible player is Doctor Cavala:
+					now the crucible loser is Horatio;
+				say "[The crucible loser] [one of]groans[or]sighs[or]purses [their] lips[or]grimaces[in random order][one of][or] and sets down [their] cards[or] and forks over the winnings[as decreasingly likely outcomes].";
+				now the main crucible timer is 5;
+				now the trinitates of Doctor Cavala is 0;
+				now the trinitates of Horatio is 0;
+			otherwise:
+				let crucible callout text order be a random number from 1 to 2; [1 = before the description, 2 = after]
+				if crucible callout text order is 1, say "'[discarded card].' ";
+				if catalysis is "conjoin":
+					say "[The active crucible player] forms a [italic type]trinitas[roman type]. ";
+				otherwise if catalysis is "dissolve":
+					say "[The active crucible player] dissolves one of [their] [italic type]trinitates[roman type]. ";
+				otherwise:
+					say "[The active crucible player] [one of]discards a card[or]draws a card from the [italic type][drawn card source][roman type][or]pores over [regarding the active crucible player][their] cards[as decreasingly likely outcomes]. ";
+				if crucible callout text order is 2, say "'[discarded card].' ";
+				say line break;
+			if the active crucible player is Doctor Cavala:
+				now the active crucible player is Horatio;
+			otherwise:
+				now the active crucible player is Doctor Cavala;
+		-- 6:
+			say "'[one of]Another round[or]Shall we play again[or]One more[in random order]?' Doctor Cavala offers.
+
+'[one of]I suppose it wouldn't hurt[or]I don't mind[or]Let's[in random order],' Horatio replies.";
+
+Section 3.3.6.2.4 - Crucible Deck
+
+Table of the Crucible Deck
+card
+"Ace of Discs"
+"Two of Discs"
+"Three of Discs"
+"Four of Discs"
+"Five of Discs"
+"Six of Discs"
+"Seven of Discs"
+"Ace of Staves"
+"Two of Staves"
+"Three of Staves"
+"Four of Staves"
+"Five of Staves"
+"Six of Staves"
+"Seven of Staves"
+"Ace of Cups"
+"Two of Cups"
+"Three of Cups"
+"Four of Cups"
+"Five of Cups"
+"Six of Cups"
+"Seven of Cups"
+"Ace of Swords"
+"Two of Swords"
+"Three of Swords"
+"Four of Swords"
+"Five of Swords"
+"Six of Swords"
+"Seven of Swords"
+"Lead"
+"Lead"
+"Lead"
+"Tin"
+"Tin"
+"Tin"
+"Iron"
+"Iron"
+"Iron"
+"Copper"
+"Copper"
+"Copper"
+"Quicksilver"
+"Quicksilver"
+"Quicksilver"
+"Silver"
+"Silver"
+"Silver"
+"Gold"
+"Gold"
+"Gold"
+"Sulfur"
+"Sulfur"
+"Sulfur"
+"Mercury"
+"Mercury"
+"Mercury"
+"Natron"
+"Natron"
+"Natron"
+"Astra"
+"Sol"
+"The Azoth"
+"The Fool"
 
 Book 3.4 - Mortuary
 
@@ -4172,14 +4515,14 @@ She sighs. 'You're a terrible liar, Marid.'
 
 You redden. 
 
-Doctor Cavala [if the location is the Mortuary]gets to her feet, [end if]wipes off her gloves[if the location is the Mortuary],[end if] and places her hand on your shoulder. 
+[wait for any key]Doctor Cavala [if the location is the Mortuary]gets to her feet, [end if]wipes off her gloves[if the location is the Mortuary],[end if] and places her hand on your shoulder. 
 
 'Don't worry,' she says, more gently. 'It's not an easy thing to go through. I remember the first time I lost a patient. [cavala-errands-introtext]"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-youdoing, cavala-errands-onit}
 cavala-errands-nightmare	true	false	"'I had a terrible nightmare...'"	"'I had a terrible nightmare,' you confide. 'I... I saw him die over and over. I saw the flames again.'
 
-Doctor Cavala sighs. She [if the location is the Mortuary]gets to her feet, [end if]wipes off her gloves[if the location is the Mortuary],[end if] and places her hand on your shoulder.
+Doctor Cavala sighs. She [if the location is the Mortuary]gets to her feet, [end if]wipes off her gloves, places her hand on your shoulder.
 
-'I'm sorry,' she says. 'It's not an easy thing to have gone through -- to have witnessed. Wounds like yours take a long time to heal. [cavala-errands-introtext]"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-youdoing, cavala-errands-onit}
+[wait for any key]'I'm sorry,' she says. 'It's not an easy thing to have gone through -- to have witnessed. Wounds like yours take a long time to heal. [cavala-errands-introtext]"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-youdoing, cavala-errands-onit}
 cavala-errands-rathernot	true	false	"'I'd rather not talk about it.'"	"You look down. 'I'd rather not talk about it.'
 
 Doctor Cavala sighs. She [if the location is the Mortuary]gets to her feet, [end if]wipes off her gloves[if the location is the Mortuary],[end if] and places her hand on your shoulder.
@@ -4187,19 +4530,18 @@ Doctor Cavala sighs. She [if the location is the Mortuary]gets to her feet, [end
 'It's not an easy thing to go through,' she says. 'I remember the first time I lost a patient. [cavala-errands-introtext]"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-youdoing, cavala-errands-onit}
 
 To say cavala-errands-introtext:
-	say "But I promise it will get better.'
-
-You shake your head. 'I'll... I'll be fine, Doctor. Don't worry about me.'
+	say "But I promise it will get better.'[paragraph break]";
+	wait for any key;
+	say "You shake your head. 'I'll... I'll be fine, Doctor. Don't worry about me.'
 
 After a pause, she nods and squeezes your shoulder. 'Good girl.'[paragraph break]";
 	wait for any key;
 	say "Then Doctor Cavala steps back, and her businesslike demeanor returns.[paragraph break]";
 	wait for any key;
-	say "'The order of business today is twofold,' she begins. 'As we are expecting few patients today, you aren't required to be in attendance at the counter. Instead, I need you to run an errand for me.'
-
-'What sort of errand?' you ask.
-
-She purses her lips. 'First, I need you to deliver the documentation of Reden's death to the basilica. Second, I need you to inform Reden's next of kin that he has passed away.' "
+	say "'The order of business today is twofold,' she begins. 'As we are expecting few patients today, you aren't required to be in attendance at the counter. Instead, I need you to run an errand for me.'[paragraph break]";
+	wait for any key;
+	say "'What sort of errand?' you ask.[paragraph break]";
+	say "She purses her lips. 'First, I need you to deliver the documentation of Reden's death to the basilica. Second, I need you to inform Reden's next of kin that he has passed away.' "
 
 Table of Cavala's Errands Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	 choices
@@ -4212,7 +4554,7 @@ You rack your memory. 'The basilica is next to the forum, right? Across the Via 
 'Correct.'"	 {cavala-errands-nextofkin, cavala-errands-youdoing, cavala-errands-onit}
 cavala-errands-nextofkin	true	true	"'Where does Reden's next of kin live?'"	"'Where does Reden's next of kin live?' you ask.
 
-Doctor Cavala frowns. 'According to my file, he has a son in Riggertown by the name of Zoiro, but I don't have an address for you. Your best bet is to look up his name in the census records. Or you could ask around in Riggertown -- I understand the goblin community is quite tightly knit.'
+Doctor Cavala frowns. 'According to my file, he has a brother in Riggertown by the name of Zoiro, but I don't have an address for you. Your best bet is to look up his name in the census records. Or you could ask around in Riggertown -- I understand the goblin community is quite tightly knit.'
 
 'Is Riggertown that shanty town down the canal?'
 
@@ -4224,17 +4566,17 @@ cavala-errands-onit	true	false	"'I'm on it, Doctor.'"	"'I'm on it, Doctor.'
 
 She nods and presses the bundle of documentation into your hands. 'Remember: first, deliver the documents to the basilica; second, look for Zoiro in Riggertown. Report back to me when you're done.'
 
-'Okay.'
+[wait for any key]'Okay.'
 
 'I'll be [if the location is the Mortuary]here[otherwise]in the mortuary[end if] if you need anything.' She pauses. 'Take your time. Consider today a break after yesterday night.'
 
-'Yes, Doctor.'
+[wait for any key]'Yes, Doctor.'
 
 'Run along.'
 
 With that, she [if the location is the Mortuary]sits down at the slab[otherwise]returns to the mortuary[end if].
 
-(Type >[bold type]inventory[roman type] or >[bold type]i[roman type] to see what items you're carrying. Type >[bold type]journal[roman type] or >[bold type]j[roman type] to review your current objectives.)"	 {}
+[wait for any key](Type >[bold type]inventory[roman type] or >[bold type]i[roman type] to see what items you're carrying. Type >[bold type]journal[roman type] or >[bold type]j[roman type] to review your current objectives.)"	 {}
 
 After reading out cavala-errands-onit:
 	now the home dialogue branch of Doctor Cavala is cavala-errands2;
@@ -4254,7 +4596,7 @@ cavala-errands2-documents	true	false	"'Who do I deliver the documents to again?'
 'Pass them to the censor's office,' she replies. 'The basilica is across the Via Terminalis bridge, next to the grand forum.'"	{cavala-errands2-nextofkin, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
 cavala-errands2-nextofkin	true	false	"'Who is Reden's next of kin again?'"	"'Who is Reden's next of kin again?' you ask.
 
-'His name is Zoiro,' she replies. 'Reden's son. Either get his address from the censor's office, in the basilica; or ask around Riggertown, down the canal from here.'"	{cavala-errands2-documents, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
+'His name is Zoiro,' she replies. 'Reden's brother. Either get his address from the censor's office, in the basilica; or ask around Riggertown, down the canal from here.'"	{cavala-errands2-documents, cavala-errands2-footpath, cavala-errands2-footpath2, cavala-errands2-autopsy, cavala-errands2-vision, cavala-errands2-backsoon}
 cavala-errands2-footpath	false	true	"'The footpath along the canal is blocked.'"	"'The footpath along the canal is blocked.'
 
 Doctor Cavala frowns. 'Right; I'd forgotten about that. That means you'll have to take the long way around from the forum -- detouring through Via Mercurii and the Shanty Quarter, then crossing over by Cadaver Walk.'
@@ -4556,7 +4898,7 @@ dialogue branch	enabled	one-shot	prompt	description	 choices
 saliunca-home1	true	false	""	"As you approach, the old woman looks up and smiles.
 
 'Ah, hello, Marid,' she says. 'It is Marid, isn't it?'"	 {saliunca-greet1, saliunca-greet2, saliunca-greet3}
-saliunca-greet1	true	false	"'It's nice to meet you too, Ma'am.'"	"'It's nice to meet you too, Ma'am.'
+saliunca-greet1	true	false	"'It's nice to meet you too, ma'am.'"	"'It's nice to meet you too, ma'am.'
 
 'And so polite!' the old woman laughs. 'Everyone here knows your name, of course; you are the doctor's assistant, are you not? And I hear you live all by yourself in this dormitory, poor girl... but I'm sure you don't need my pity.
 
@@ -4619,20 +4961,24 @@ saliunca-right	true	false	"'I suppose you are right...'"	"You close your eyes.
 
 'I suppose you are right,' you say. 'Forgive me, Saliunca; it hasn't been the best of days for me, and... and I've witnessed death aplenty for one night.'
 
-'Oh, you poor, poor girl,' she murmurs, laying a hand on your arm. 'It's the clinic, isn't it? I can't imagine -- oh, the things Doctor Cavala must have you do. It's no way for a young lady to live, Marid, no way for a lady to live.
+[wait for any key]'Oh, you poor, poor girl,' she murmurs, laying a hand on your arm. 'It's the clinic, isn't it? I can't imagine -- oh, the things Doctor Cavala must have you do. It's no way for a young lady to live, Marid, no way for a lady to live.
 
 'But if it's your choice, your calling--' She squeezes your arm. 'The [italic type]ars vitalis[roman type] is a very noble pursuit, Marid. Very brave. Tending to the sick, saving lives and all that--'
 
-You tense up."	{saliunca-outburst, saliunca-havetogo}
+[wait for any key]You tense up."	{saliunca-outburst, saliunca-havetogo}
 saliunca-wrong	true	false	"'I don't believe that for a second...'"	"'I don't believe that for a second,' you say. 'The pigeons may be pests, but [italic type]poisoning[roman type] them? That's too cruel. There must be some other way.'
 
 'Oh?' Saliunca raises an eyebrow. 'Pray tell.'
 
-'I... I don't...' You shake your head. 'I don't know. But there must be a way. Perhaps you just aren't looking hard enough.'
+'I... I don't...'
+
+[wait for any key]You shake your head.
+
+'I don't know. But there must be a way. Perhaps you just aren't looking hard enough.'
 
 'And suppose I'm right, and there isn't?' She frowns. 'You've got some nerve telling me off, young lady, when all I've heard out of you is talk. Talk won't get you anywhere. Don't tell me you're squeamish about killing a few birds -- or is that what the Physicians['] College taught you?'
 
-You tense up."	{saliunca-outburst, saliunca-havetogo}
+[wait for any key]You tense up."	{saliunca-outburst, saliunca-havetogo}
 saliunca-outburst	true	false	"'What would a hag like [roman type]you[italic type] possibly know about the Art?...'"	"[italic type]What would--[roman type]
 
 [wait for any key]No. You start. You catch yourself.
@@ -4663,7 +5009,7 @@ To say saliunca-killing-text:
 To say saliunca-why-text:
 	say "Saliunca shakes her head sadly. 'Oh, Marid, don't you see? The pigeons are infesting the dormitory! All over the atrium they are, and even in some of the ground-floor domiciles. You never even noticed?'
 
-'I -- I live on the third floor,' you admit.
+[wait for any key]'I -- I live on the third floor,' you admit.
 
 'Then you haven't noticed.' She sighs. 'The pigeons are everywhere, love -- a great nuisance they are making. Stealing food. Leaving their droppings about. And that's why their numbers have to be culled.
 
@@ -5419,8 +5765,7 @@ To unveil Day Two:
 	clear the screen;
 	now start-of-day-two is true;
 	follow the scene changing rules;
-	say "You are jolted awake by a knocking at the door.[paragraph break]";
-	wait for any key;
+	say "A knocking at the door jolts you awake.[paragraph break]";
 	say "'Marid?' comes Horatio's voice.";
 	start a dialogue with Horatio using dialogue horatio-d2msg-home.
 	
@@ -5454,7 +5799,7 @@ horatio-d2msg-whatsgoingon	true	false	"'What's going on?'"	"You're wide awake no
 'I know. Come down as soon as you can. The doctor will fill you in.'
 
 [wait for any key]Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
-horatio-d2msg-whattrouble	true	false	"'Trouble? What kind of trouble?'"	"'Trouble?' You're wide awake now. 'What kind of trouble?'
+horatio-d2msg-whattrouble	true	false	"'Trouble? What kind of trouble?'"	"You're wide awake now. 'Trouble? What kind of trouble?'
 
 'Big trouble.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]We've gotten wind of more deaths in the Channelworks District, and Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic--'
 
@@ -5463,7 +5808,7 @@ horatio-d2msg-whattrouble	true	false	"'Trouble? What kind of trouble?'"	"'Troubl
 'I know. Come down as soon as you can. The doctor will fill you in.'
 
 [wait for any key]Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
-horatio-d2msg-bethere	true	true	"'I'll be there.'"	"You're wide awake now. 'I'll be there.'
+horatio-d2msg-bethere	true	true	"'I'll be there.'"	"'I'll be there.'
 
 'See you at the clinic.'
 
@@ -6068,6 +6413,7 @@ Before entering the view of Doctor Arturus's clinic, try going east instead.
 Some innumerable mirrors are scenery in the Turris Infinita. The indefinite article is "".
 The description is "You see yourself reflected a thousandfold. Your many faces blur together; your tattoos flow into a continuous tapestry."
 Understand "mirror" or "many" or "face/faces" or "continuous" or "tapestry" or "floor/floors" as the innumerable mirrors.
+Before searching the innumerable mirrors, try examining the innumerable mirrors instead.
 Instead of attacking, cutting, or knocking on the innumerable mirrors, say "You would have to pay for the damage to the mirrors."
 Instead of looking under the innumerable mirrors, say "They are fixed in place."
 Instead of touching the innumerable mirrors, say "Your fingerprints stain the glass briefly, then evaporate without a trace."
@@ -6172,7 +6518,7 @@ porter-day1-clinic	true	true	"'I'd like to enter Doctor Arturus's clinic.'"	"'I'
 
 'Um. I don't have one.'
 
-She retracts his hand and gives you a condescending look."	{porter-day1-appointment, porter-day1-visiting, porter-day1-goodbye}
+She retracts her hand and gives you a condescending look."	{porter-day1-appointment, porter-day1-visiting, porter-day1-goodbye}
 porter-day1-appointment	true	false	"'How do I make an appointment?'"	"'How do I make an appointment?'
 
 The porter peers down her nose at you. 'Doctor Arturus entertains serious clients only. Prospective clients must contact him by correspondence at least three days in advance, or else pay an administrative fee of four talents.'
@@ -6273,7 +6619,7 @@ Before going east in the Via Terminalis Junction when the player is cowed by Tur
 Before opening the ornate double doors when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 Before approaching the Turris Infinita when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 
-[When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.]
+When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.
 
 Book 3.17 - Grand Forum
 
@@ -6389,7 +6735,11 @@ Understand "dome/domes/domed" or "perioch" or "city" as the depiction of Kreopol
 
 The depiction of Furopolis is part of the mural of Solphos.
 The description is "The artist has magnified the image of the city so that the forty-nine districts are reproduced. There is the Upper Perioch with its breathtaking spires, and the gold-stained rows of the Lower Perioch; and on the boundary, caught between worlds, you see the tiny Channelworks District and the even tinier forum nestled within."
-Understand "city" or "dome/domes/domed" or "perioch" or "upper" or "lower" or "spire/spires" or "row/rows" or "tiny/tinier" or "channelworks/-- district/districts" or "boundary" or "worlds" or "forum" as the depiction of Furopolis.
+Understand "city" or "dome/domes/domed" or "perioch" or "upper" or "lower" or "spire/spires" or "row/rows" or "tiny/tinier" or "districts" or "boundary" or "worlds" as the depiction of Furopolis.
+
+The depiction of the Channelworks District is part of the mural of Solphos.
+The description is "It is a lovingly detailed miniature of the area you now stand in."
+Understand "forum" or "miniature" as the depiction of the Channelworks District.
 
 The depiction of the Lake District is part of the mural of Solphos.
 The description is "There it is, so small and fragile.[first time] The Lake District, your old home.[only]".
@@ -7009,14 +7359,16 @@ He gets up and vanishes into one of the side doorways of the basilica, muttering
 
 [wait for any key]'Seventh on Layabout Row,' he proclaims, 'Upper Riggertown. Property under the name of Zoiro and Koriph. And his place of employment, which I've taken the liberty to look up, is the Riggertown Mechanistry. Here, let me write it down for you--'
 
-[wait for any key]He scribbles on a scrap of paper, hands it to you, and sits back down at his desk looking extremely satisfied.
+[wait for any key]He scribbles on a scrap of paper, hands it to you, and sits back down at his desk looking eminently satisfied.
 
 'There we go,' he says. 'Now was there anything else you needed?'"	{censor-woken-documents, censor-woken-detour, censor-woken-thanks}
 censor-woken-detour	false	true	"'The footpath from the Via Terminalis to Riggertown is blocked...'"	"'The footpath from the Via Terminalis to Riggertown is blocked,' you say. 'Do you know if there's any other way to get to Riggertown?'
 
-'Hm. Yes, I recall issuing the license. The footpath...' The censor's eyes light up. 'Ah! You could take Cadaver Walk -- by way of the Shanty Quarter. It's just down the Via Mercurii from here...'
+'Hm. Yes, I recall issuing the license. The footpath...' The censor's eyes light up. 'Ah! You could take Cadaver Walk -- by way of the Shanty Quarter. It's just down the Via Mercurii from here--'
 
-He frowns. 'But come to think of it, that's rather a suspect part of town, if you get my meaning. Is it rather... [italic type]urgent[roman type] for you to get to Riggertown?'
+He frowns.
+
+'But come to think of it,' he says, 'that's rather a suspect part of town, if you get my meaning. Is it rather... [italic type]urgent[roman type] for you to get to Riggertown?'
 
 [wait for any key]'Yes,' you say. 'Yes it is.'
 
@@ -7356,13 +7708,15 @@ teller-work4	true	false	"<Watch him reveal the rest of the river.>"	"'We have se
 'The Tempest,' he whispers. 'The future will be filled with change and turmoil. It could be in many years, or it could be tomorrow. And all because of a humble man who drew the wrong attention -- and was silenced.'
 
 A long pause."	{teller-isee, teller-areyousure, teller-drivel}
-teller-past1	true	false	"'I've been having nightmares...'"	"'I've been having nightmares. I've had them ever since my parents died. I thought I got over them, but... I had another one, just last night.'
+teller-past1	true	false	"'I've been having nightmares...'"	"'I've been having nightmares. I've had them for years. I thought I got over them, but... I had another one, just last night.'
 
 The fortune-teller grows sober. 'Dreams,' he says. 'Nightmares. They show us truths that cannot be found in the daylight. If you wish to learn how to conquer them, one pattern will prove most illuminating...'
 
 He casts his hands apart, scattering the top cards of the deck with the sudden motion, and at first you wonder if he's dropped them by accident. But when the loose cards come to rest, they have landed in an deliberate, intricate pattern -- a cross.
 
-[wait for any key]'The corners,' he says, tapping the cards at the end of each of the four arms. 'The spokes,' he continues, moving inward in counter-clockwise fashion. 'And the nexus--' he taps the two cards in the center, one laid perpendicular over the other, and you nod transfixed.
+[wait for any key]'The corners,' he says, tapping the cards at the end of each of the four arms. 'The spokes,' he continues, moving inward in counter-clockwise fashion. 'And the nexus--'
+
+He taps the two cards in the center, one laid perpendicular over the other, and you nod transfixed.
 
 [wait for any key]'The Crossroads.' he says. 'It shows us the paths that lead to our destination. Now we will reveal the cards, one by one, and see what they reveal about you.'
 
@@ -8858,15 +9212,15 @@ Instead of entering or searching the other houses along Layabout Row, say "You d
 
 Some scrap-metal sculptures are scenery in VII Layabout Row.
 The description is "Twin dragons. One is painted blue, the other green."
-Understand "pair" or "of" or "dragons" or "scrap" or "metal" as the scrap-metal sculptures.
+Understand "pair" or "of" or "dragons" or "scrap" or "metal" or "painted" or "sculpture" as the scrap-metal sculptures.
 
 The blue dragon is scenery in VII Layabout Row.
 The description is "This one has its mouth open, as though threatening to swallow intruders whole."
-Understand "mouth" or "painted" or "sculpture" as the blue dragon.
+Understand "mouth" as the blue dragon.
 
 The green dragon is scenery in VII Layabout Row.
 The description is "This one has its claws raised, as though threatening to slice intruders apart."
-Understand "claw/claws" or "painted" or "sculpture" as the green dragon.
+Understand "claw/claws" as the green dragon.
 
 Some entrance steps are scenery in VII Layabout Row.
 The description is "The steps lead up to the front door."
