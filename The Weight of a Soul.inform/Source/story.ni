@@ -126,13 +126,17 @@ Part 1.1.5 - Room Names
 
 A room has some text called the simple-name.
 
-Rule for printing the name of a room (called the room in question) while the player is hurrying: say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][the room in question][end if]".
+Rule for printing the name of a room (called the room in question) while the player is hurrying:
+	say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][printed name of the room in question][end if]";
 
-Rule for printing the name of a room (called the room in question) while asking which do you mean: say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][the room in question][end if]".
+Rule for printing the name of a room (called the room in question) while asking which do you mean:
+	say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][printed name of the room in question][end if]";
 
-The can't approach our current location rule response (A) is "You are already in [if the simple-name of the location is not empty][simple-name of the location][otherwise][the location][end if]."
+The can't approach our current location rule response (A) is "You are already in [if the simple-name of the location is not empty][simple-name of the location][otherwise][printed name of the location][end if]."
 
-[The default Inform behavior for printing the names of rooms is weird. This allows us to define an alternate string in certain cases.]
+[The default Inform behavior for printing the names of rooms is weird. This allows us to define an alternate string in certain cases.
+
+It turns out we call the simple-name most of the time, so I never experienced the recursion case until a baffling bug involving Cadaver Walk and its lack of a simple-name. It turns out that the distinction between [the room in question] and [printed name of the room in question] is extremely fucking important.]
 
 Part 1.1.6 - Ending Options
 
@@ -197,6 +201,7 @@ To say skip-commands-text:
 	say line break;
 	say "[line break][italic type]Day Two[roman type]";
 	say "[line break]>[bold type]skip to day two[roman type]";
+	say "[line break]>[bold type]skip to endoscope[roman type]";
 
 Book 1.2 - Days and Scenes
 
@@ -272,17 +277,22 @@ Bad News from Cavala is a scene. [Cavala lays the exposition on Marid.]
 Bad News from Cavala begins when Day Two begins.
 Bad News from Cavala ends when the player carries the signum of Doctor Cavala.
 
+There is a scene called The Game is Afoot. [Marid makes her way to the Turris Infinita to start her investigations.]
+The Game is Afoot begins when Bad News from Cavala ends.
+
 Four Investigations is a scene. [The overarching scene for most of Day Two.]
-Four Investigations begins when Bad News from Cavala ends.
+Four Investigations begins when The Game is Afoot ends.
 Four Investigations ends when (Reden Investigation has ended and Nacarat Investigation has ended and Arturus Investigation has ended and Thugs Investigation has ended).
+
+All Quiet on the Western Front is a scene. [Doctor Cavala and Horatio stay in the clinic and do absolutely fuck all.]
+All Quiet on the Western Front begins when The Game is Afoot begins.
+All Quiet on the Western Front ends when Four Investigations ends.
 
 A Crucible Game is a scene. [This marks when Doctor Cavala and Horatio are playing crucible.]
 A Crucible Game begins when the main crucible timer is greater than 0.
-A Crucible Game ends when Four Investigations ends.
+A Crucible Game ends when All Quiet on the Western Front ends.
 
-[This day consists of four individual investigations, each with its own clues.
-
-1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
+[1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
 - Poisoned the afternoon of Prologue, died that night. Accidentally exposed himself to Noctis. Justinian doesn't know about him.
 - A Channelworks worker fired for alcoholism. Knew the back entrance, tended to wander there drunk. That's how he got poisoned.
 - A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where the waitress knows more about Reden's activities. She doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
@@ -477,6 +487,7 @@ To skip past Zoiro:
 To skip past the first Carnicer encounter:
 	if Cavala's Errands has not ended:
 		skip past Zoiro;
+	now returning-breakin-riggertown-quip is false;
 	now the clinic door is open;
 	move the player to the Clinic, without printing a room description;
 	follow the scene changing rules;
@@ -505,9 +516,18 @@ To skip past Day One:
 	now start-of-day-two is true;
 	follow the scene changing rules.
 	
+To skip past Bad News from Cavala:
+	if Day One has not ended:
+		skip past Day One;
+	move the player to the Clinic, without printing a room description;
+	now the day-two copy of the Libri Liberi is carried by the player;
+	now the signum of Doctor Cavala is carried by the player;
+	now the endoscope is carried by the player;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
-Check skipping Reden's surgery when Reden's surgery has ended: say "Reden's surgery has already ended."; stop the action.
+Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping Reden's surgery:
 	skip past Reden's Surgery;
 	say "Surgery skipped.";
@@ -515,60 +535,67 @@ Carry out skipping Reden's surgery:
 
 Skipping to Day One is an action applying to nothing.
 Understand "skip to day one" as skipping to Day One.
-Check skipping to Day One when Prologue has ended: say "Day One has already begun."; stop the action.
+Check skipping to Day One when Prologue has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to Day One:
 	skip past Prologue;
 	unveil Day One.
 	
 Skipping to errands is an action applying to nothing.
 Understand "skip to errands" as skipping to errands.
-Check skipping to errands when Nine to Five Zombie has ended: say "Cavala's Errands has already begun."; stop the action.
+Check skipping to errands when Nine to Five Zombie has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to errands:
 	skip past Nine to Five Zombie;
 	try looking.
 	
 Skipping to censor is an action applying to nothing.
 Understand "skip to censor" as skipping to censor.
-Check skipping to censor when the bundle of documents is delivered: say "The bundle of documents has already been delivered."; stop the action.
+Check skipping to censor when the bundle of documents is delivered: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to censor:
 	skip past the first errand;
 	try looking.
 	
 Skipping the Shanty Maze is an action applying to nothing. Understand "skip shanty quarter/-- maze" as skipping the Shanty Maze.
-Check skipping the Shanty Maze when Cadaver Walk is visited: say "Cadaver Walk is already visited."; stop the action.
+Check skipping the Shanty Maze when Cadaver Walk is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping the Shanty Maze:
 	skip past the Shanty Maze;
 	try looking.
 	
 Skipping to mechanistry is an action applying to nothing.
 Understand "skip to mechanistry" as skipping to mechanistry.
-Check skipping to mechanistry when Cavala's Errands has ended: say "Returning to a Break-In has already begun."; stop the action.
+Check skipping to mechanistry when Cavala's Errands has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to mechanistry:
 	skip past Zoiro;
 	try looking.
 	
 Skipping to first aid is an action applying to nothing.
 Understand "skip to first aid" as skipping to first aid.
-Check skipping to first aid when Averting Cavala's Assassination has ended: say "First Aid on Cavala has already begun."; stop the action.
+Check skipping to first aid when Averting Cavala's Assassination has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to first aid:
 	skip past the first Carnicer encounter;
 	say "[cavala-firstaid-examinewound][paragraph break]".
 	
 Skipping first aid is an action applying to nothing.
 Understand "skip first aid" as skipping first aid.
-Check skipping first aid when First Aid on Cavala has ended: say "First Aid on Cavala has already ended."; stop the action.
+Check skipping first aid when First Aid on Cavala has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping first aid:
 	skip past First Aid on Cavala;
 	try looking.
 	
 Skipping to Day Two is an action applying to nothing.
 Understand "skip to day two" as skipping to day two.
-Check skipping to Day Two when Walking Home in Fear has ended: say "Day Two has already begun."; stop the action.
+Check skipping to Day Two when Walking Home in Fear has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to Day Two:
 	if First Aid on Cavala has not ended:
 		skip past First Aid on Cavala;
 	move the player to Marid's Dormitory, without printing a room description;
 	unveil Day Two.
+	
+Skipping to endoscope is an action applying to nothing.
+Understand "skip to endoscope" as skipping to endoscope.
+Check skipping to endoscope when Bad News from Cavala has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to endoscope:
+	skip past Bad News from Cavala;
+	try looking.
 	
 Book 1.3 - People
 
@@ -647,7 +674,7 @@ To say cavala-description:
 		say "She has a look of absolute concentration on her face. ";
 	otherwise if Walking Home in Fear is happening:
 		say "She's taking her injury rather well -- but then again, she [italic type]was[roman type] an army doctor. ";
-	otherwise if Four Investigations is happening:
+	otherwise if All Quiet on the Western Front is happening:
 		if A Crucible Game is happening:
 			say "She's looking at her cards with a cool, unreadable expression. ";
 		otherwise:
@@ -682,7 +709,7 @@ To say horatio-description:
 		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ";
 	otherwise if Walking Home in Fear is happening:
 		say "At least he seems to be making himself useful. ";
-	otherwise if Four Investigations is happening:
+	otherwise if All Quiet on the Western Front is happening:
 		if A Crucible Game is happening:
 			say "Horatio is contemplating his hand of cards. ";
 		otherwise:
@@ -907,6 +934,7 @@ Instead of taking off the clothes, say "[if time is critical]This is not the tim
 Instead of tying the clothes to something, say "Your clothes are too close-fitting to tie anything with."
 Instead of tying something to the clothes, say "Your clothes are too close-fitting to tie anything with."
 
+Instead of inserting something carried by the player into the clothes, say "[The noun] [are] already on your person."
 Instead of inserting the endoscope into the clothes, say "Your pockets aren't any more interesting up close."
 
 Part 2.2.4 - Animus Pendant
@@ -1051,8 +1079,11 @@ Before inserting the endoscope into something when time is critical, say "You do
 Instead of inserting the endoscope into the player, say "That would be highly dangerous and of questionable utility."
 Instead of inserting the endoscope into a living friendly person, say "The endoscope is generally used to examine someone [italic type]after[roman type] they are deceased."
 Instead of inserting the endoscope into a living hostile person, say "You doubt [the second noun] will allow you to do that."
-Instead of inserting the endoscope into a container, say "You find nothing of interest."
-Instead of inserting the endoscope into something, say "[The second noun] [are]n't something you can thread the endoscope into."
+Last instead of inserting the endoscope into a container: try searching the second noun.
+Last instead of inserting the endoscope into a door: try searching the second noun.
+Last instead of inserting the endoscope into something worn by a living friendly person (called the wearer): say "You aren't [italic type]that[roman type] friendly with [the wearer]."
+Last instead of inserting the endoscope into something worn by a living hostile person (called the wearer): say "You doubt [the wearer] will allow you to do that."
+Last instead of inserting the endoscope into something: say "[The second noun] [are]n't something you can thread the endoscope into."
 
 Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
 Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
@@ -1061,8 +1092,11 @@ Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold typ
 Part 2.2.12 - Signum of Doctor Cavala
 
 The signum of Doctor Cavala is a privately-named key-item.
-The description is "A piece of paper signed and sealed by Doctor Cavala. It declares that Servator Marid Orpheia is formally authorized to act in the signatory's stead, and anyone who disagrees is welcome to take it up with the signatory."
+The description is "A piece of paper signed and sealed by Doctor Cavala. It declares that Servator Marid Orpheia is formally authorized to act in the signatory's stead, and that anyone who disagrees is welcome to take it up with the signatory."
 Understand "signum of/-- doctor/-- cavala/--" or "signed/seal/sealed/signature" or "piece" or "paper" or "glyph" or "inertia" as the signum of Doctor Cavala.
+
+Rule for printing the name of the signum of Doctor Cavala while not listing contents:
+		say "signum".
 
 Instead of attacking or cutting the signum of Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Thankfully, the seal makes the paper nigh indestructible."
 
@@ -2052,6 +2086,7 @@ Chapter 2.3.11.1 - Flags
 journal-riggertown-detour-known is a truth state that varies.
 journal-zoiro-address-known is a truth state that varies.
 journal-reden-shack-known is a truth state that varies.
+journal-crucible-witnessed is a truth state that varies.
 
 Chapter 2.3.11.2 - Date
 	
@@ -2128,6 +2163,10 @@ I don't want to lose anyone else. ";
 	---]
 	otherwise if Bad News from Cavala is happening:
 		say "I knew something like this was coming. I'd better hurry to the clinic and get the full picture of what's happening. ";
+	otherwise if The Game is Afoot is happening:
+		say "Doctor Arturus -- I've [italic type]seen[roman type] him. He was [italic type]there[roman type], in his clinic, every time I visited Justinian... and now he's dead. He's gone.
+
+I don't know what to think. All I can do is make my way there and talk to Justinian. Find out what really happened, and why. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -2179,6 +2218,8 @@ To say journal-text-objectives:
 	---]
 	if Bad News from Cavala is happening:
 		add "Report to Doctor Cavala" to L;
+	if The Game is Afoot is happening:
+		add "Go to the Turris Infinita" to L;
 	[---
 	END
 	---]
@@ -2197,25 +2238,30 @@ To say journal-text-notes:
 	---]
 	if Cavala's Errands is happening:
 		if the Basilica is unvisited:
-			add "I remember that the basilica is across the Via Terminalis bridge, next to the grand forum." to L;
+			add "I remember that the basilica is across the Via Terminalis bridge, next to the grand forum. " to L;
 		if no rooms in Riggertown are visited:
 			if journal-riggertown-detour-known is true:
-				add "I learned that I can reach Riggertown by detouring through the Shanty Quarter." to L;
+				add "I learned that I can reach Riggertown by detouring through the Shanty Quarter. " to L;
 			otherwise:
-				add "I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]." to L;
+				add "I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]. " to L;
 		if journal-zoiro-address-known is true:
 			if the enabled of censor-woken-address is false:
-				add "I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry." to L;
+				add "I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry. " to L;
 			otherwise:
-				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown." to L;
+				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown. " to L;
 	if First Aid on Cavala is happening:
 		if the CSOFAOC is:
 			-- 1:
-				add "The supplies I need should be in the first aid bag behind the counter." to L;
+				add "The supplies I need should be in the first aid bag behind the counter. " to L;
 			-- 2:
-				add "I need the dressing and the bandage from the first aid bag." to L;
+				add "I need the dressing and the bandage from the first aid bag. " to L;
 			-- 3:
-				add "I need to prop Doctor Cavala's leg up. That waiting chair will do as a support." to L;
+				add "I need to prop Doctor Cavala's leg up. That waiting chair will do as a support. " to L;
+	[---
+	CLUES, DAY TWO
+	---]
+	if The Game is Afoot is happening:
+		add "I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
 	[---
 	MUSINGS, MISCELLANEOUS
 	---]
@@ -2243,6 +2289,12 @@ To say journal-text-notes:
 				add "I wonder what those buskers in the grand forum are performing... " to L;
 			if we have not talked to the porter:
 				add "Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
+	[---
+	MUSINGS, DAY TWO
+	---]
+	if All Quiet on the Western Front is happening:
+		if journal-crucible-witnessed is false:
+			add "I hope Doctor Cavala and Horatio will be all right at the clinic... " to L;
 	[---
 	END
 	---]
@@ -2552,6 +2604,7 @@ Ambience suppression is a truth state that varies.
 
 When play begins (this is the shuffle the ambience rule):
 	sort the Table of Day One Upper Perioch ambience in random order;
+	sort the Table of Day Two Upper Perioch ambience in random order;
 	sort the Table of Day One Riggertown ambience in random order.
 
 Every turn (this is the ambience rule):
@@ -2576,9 +2629,15 @@ Some Upper Perioch ambience is a privately-named inactive ambience object.
 The associated table is the Table of Day One Upper Perioch Ambience.
 
 When Day One begins: now the Upper Perioch ambience is active.
+
 When Walking Home in Fear begins: now the Upper Perioch ambience is inactive.
-When Day Two begins: now the Upper Perioch ambience is active.
+
+When Day Two begins:
+	now the Upper Perioch ambience is active;
+	now the associated table of the Upper Perioch ambience is the Table of Day Two Upper Perioch Ambience.
+
 When Midnight begins: now the Upper Perioch ambience is inactive.
+
 When Day Three begins: now the Upper Perioch ambience is active.
 
 Table of Day One Upper Perioch Ambience
@@ -2624,6 +2683,50 @@ happening
 "Some stray papers flutter down the street."
 "A door slams somewhere in the city."
 "Someone yells at someone else in the crowd."
+
+Table of Day Two Upper Perioch Ambience
+happening
+"A carriage roars down the street, pulled by a smoke-belching mechanical longhorn."
+"A carriage with drawn blinds trundles past."
+"A clockwork cabriolet drives past."
+"A luxury carriage glides past."
+"A prison carriage rolls past. Through the window is nothing but darkness."
+"A pair of cabriolets hurtle past without warning, and are gone."
+"An inkblot ooze burbles down the street, trailing a dark and viscous stain along the cobbles."
+"Some schoolgirls walk past, not meeting your eye."
+"A pair of arguing businessmen walk past."
+"You step out of the way of a stockade longhorn and its cartful of goods."
+"Some civic guards lead a prisoner down the street in chains."
+"A fight breaks out down the street. The culprits are quickly accosted and taken into custody."
+"A funeral procession passes by."
+"A dozen goblins meander down the street, completely silent."
+"A chymist brushes through the crowd, fixated on her watch, and disappears from sight."
+"A harried-looking alchemist runs past."
+"Two ladies in dark coats walk past discussing a business deal."
+"A drunk staggers out of an alley and down the road."
+"Someone in the crowd bumps into you, but he disappears before you can get a better look."
+"A chanting procession of Deists passes by."
+"A patrol golem thump-thump-thumps down the street."
+"For a moment, inexplicably, there is the smell of rotting meat. Then it is gone."
+"An engineer wanders down the street muttering to himself."
+"A pair of little boys walk past."
+"Some animologists drift by, engrossed in a macabre discussion."
+"A group of fabers walks past, on their way to some great work or other."
+"A snakelike mutant slithers through the crowd, and is gone."
+"A mutant in work clothes tromps past."
+"A gargoyle swoops between rooftops overhead, and is gone as quickly as it came."
+"A gobliness in mourning clothes brushes past you."
+"A flock of birds passes overhead."
+"A little glass thopter whizzes down the street and vanishes into a side alley."
+"In the distance, a zeppelin floats by."
+"The wind picks up, tousling your hair and chilling your fingers."
+"A woman with a painted face walks past."
+"A shrill bell sounds momentarily in the distance."
+"The bells of Miller's Gate strike the hour."
+"The sounds of a distant pipe organ echo in the street."
+"A particularly vicious breeze whips at your cheeks."
+"A woman runs past in tears. She's gone before you can see her face."
+"A man nearly trips over a pothole, but he catches himself in time."
 
 Chapter 3.1.3.2 - Riggertown Ambience
 
@@ -4021,7 +4124,7 @@ Chapter 3.3.6.1 - Clinic during Bad News from Cavala
 Section 3.3.6.1.1 - Bad News from Cavala Cutscene
 
 Last after going to the Clinic when Bad News from Cavala is happening (this is the Bad News from Cavala cutscene rule):
-	say "[line break][bold type]Clinic[roman type][line break]";
+	say "[path-walked so far][line break][bold type]Clinic[roman type][line break]";
 	say "Doctor Cavala and Horatio have been busy this morning. You spy fresh cups of tea beside the makeshift bed, and plates with crumbs that Horatio is in the process of tidying. Doctor Cavala, for her part, looks up from a newspaper as you enter.[paragraph break]";
 	say "'Marid. Has Horatio told you what's happened?'[paragraph break]";
 	wait for any key;
@@ -4053,17 +4156,17 @@ cavala-badnews-howhappen	true	true	"'How could this have happened?'"	"'How could
 She shakes her head. 'Very easily. It is unlikely for a medical practitioner to contract a patient's disease -- not with the proper safeguards in place -- but not inconceivable. And Doctor Arturus... oh, the bloody fool. He should have known better...'"	{cavala-badnews-swear, cavala-badnews-whatdo}
 cavala-badnews-whatdo	true	false	"'What do we do now?'"	"'What do we do now?'
 
-'Good question.'
+'That, Marid, is a very good question.'
 
 Doctor Cavala folds her arms. Her expression seethes with disquiet, with the agitation of an invalid accustomed to physical activity.
 
-'Recent events have backed us into a corner,' she says. 'I can't do much of anything, on account of my injury. Horatio's hands are full with matters around the clinic. That only leaves one person to look into the situation--'
+'Recent events have backed us into a corner,' she says. 'I can't do much of anything, on account of my injury. Horatio's hands are full with matters around the clinic. That leaves only one person to look into the situation--'
 
 [wait for any key]'Myself,' you say.
 
-[wait for any key]'Exactly.' She snaps her fingers. 'Before we can combat the disease, we need data -- data that can only be gathered through firsthand observation. You've proven yourself to be dependable and resourceful, and you have enough medical expertise to make informed judgments. It will have to be you who investigates this series of deaths.'
+[wait for any key]'Exactly.' She snaps her fingers. 'Before we can combat the disease, we need data -- data that can only be gathered through firsthand observation. You've proven yourself to be dependable and resourceful; you have enough medical expertise to make informed judgments. It will have to be you who investigates this series of deaths.'
 
-[wait for any key]You consider her words."	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+[wait for any key]You consider her words carefully."	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-whyme	true	true	"'Does it [roman type]have[italic type] to be me?'"	"'Does it [italic type]have[roman type] to be me?'
 
 She gives you a withering look.
@@ -4084,7 +4187,7 @@ She sighs. 'Not much, I'm afraid. Doctor Arturus was before my time. I'm familia
 'Try asking Doctor Justinian instead. He's had more contact with the man than anyone else.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-aboutjustinian	true	true	"'Do you think Doctor Justinian can help?'"	"'Do you think Doctor Justinian can help?' you ask.
 
-Doctor Cavala nods. 'He likely can. At minimum, he can give you a better picture of the events that led to Doctor Arturus's death. Beyond that, he's the only other qualified doctor in the district. He'll be a useful ally if we are to contain the disease.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-onit}
+Doctor Cavala nods. 'He likely can. At minimum, he can give you a better picture of the events that led to Doctor Arturus's death. Beyond that, he's now the only other qualified doctor in the district. He'll be a useful ally if we are to contain the disease.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-onit}
 cavala-badnews-onit	true	false	"'I'm on it, Doctor.'"	"[cavala-badnews-onit-text]"	{}
 
 To say cavala-badnews-onit-text:
@@ -4095,17 +4198,18 @@ To say cavala-badnews-onit-text:
 	say "She holds up a hand. 'Before you go, I have a couple of things to give you. First -- Horatio, would you fetch me a pen?'[paragraph break]";
 	wait for any key;
 	say "The pen is delivered. Doctor Cavala signs a small piece of paper, then seals it with a sigil-brand and hands it to you.[paragraph break]";
-	say "'This is proof that you're acting on my behalf,' she says. 'If anyone gives you trouble, show this to them. And another thing--'[paragraph break]";
+	wait for any key;
+	say "'This is my signum,' she says. 'It's proof that you're acting on my behalf, for anyone who asks. And another thing--'[paragraph break]";
 	wait for any key;
 	say "She has Horatio retrieve a sleek instrument from her desk. It is orichalcum, threaded with tiny magnification lenses, and your eyes widen as he places it in your palm.[paragraph break]";
 	wait for any key;
-	say "'Yes, Marid,' Doctor Cavala says wryly. 'You can borrow my endoscope for this investigation, since you'll be dealing with a lot of dead bodies. Just promise me you'll return it in one piece -- I'd hate to take the cost out of your next paycheck.'[paragraph break]";
+	say "'Yes, Marid.' A wry smile. 'Since you'll be dealing with a lot of dead bodies, you can borrow my endoscope for this investigation. Just promise me you'll return it in one piece -- I'd hate to take the cost out of your next paycheck.'[paragraph break]";
 	wait for any key;
 	say "'I-- I understand, Doctor.'[paragraph break]";
-	say "Doctor Cavala squeezes your hand. 'Good luck, Marid. I'm counting on you.'[paragraph break]";
+	say "She squeezes your hand. 'Good luck, Marid. I'm counting on you.'[paragraph break]";
 	wait for any key;
 	say "You step back and put the endoscope in your pocket.[paragraph break]";
-	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the object you wish to examine.) ";
+	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the object you wish to inspect.) ";
 	now the day-two copy of the Libri Liberi is carried by the player;
 	now the signum of Doctor Cavala is carried by the player;
 	now the endoscope is carried by the player;
@@ -4149,9 +4253,9 @@ Instead of dropping the day-two copy of the Libri Liberi (this is the how to dro
 	otherwise:
 		continue the action.
 		
-Chapter 3.3.6.2 - Clinic during Four Investigations
+Chapter 3.3.6.2 - Clinic during All Quiet on the Western Front
 
-Rule for writing a paragraph about Doctor Cavala during Four Investigations:
+Rule for writing a paragraph about Doctor Cavala during All Quiet on the Western Front:
 	if A Crucible Game is happening:
 		say "Doctor Cavala and Horatio are playing a game of crucible.";
 	otherwise:
@@ -4159,7 +4263,7 @@ Rule for writing a paragraph about Doctor Cavala during Four Investigations:
 	
 Section 3.3.6.2.1 - Cavala Dialogue
 
-When Four Investigations begins (this is the initialize Cavala 4inv dialogue rule):
+When All Quiet on the Western Front begins (this is the initialize Cavala 4inv dialogue rule):
 	now the home dialogue branch of Doctor Cavala is cavala-4inv-home.
 	
 Some dialogue branches are defined by the Table of Cavala 4inv Dialogue.
@@ -4193,7 +4297,7 @@ You step back from the makeshift bed."	{}
 
 Section 3.3.6.2.2 - Horatio Dialogue
 
-When Four Investigations begins (this is the initialize Horatio 4inv dialogue rule):
+When All Quiet on the Western Front begins (this is the initialize Horatio 4inv dialogue rule):
 	now the home dialogue branch of Horatio is horatio-4inv-home.
 	
 Some dialogue branches are defined by the Table of Horatio 4inv Dialogue.
@@ -4263,10 +4367,18 @@ When A Crucible Game ends (this is the despawn the crucible deck rule):
 After waiting when the location is the Clinic and A Crucible Game is happening:
 	say run paragraph on.
 	
-First every turn when Four Investigations is happening and ambience suppression is false (this is the Four Investigations crucible game rule):
+Every turn when the location is the Clinic and A Crucible Game is happening and journal-crucible-witnessed is false:
+	now journal-crucible-witnessed is true.
+	
+First every turn when All Quiet on the Western Front is happening and ambience suppression is false (this is the Four Investigations crucible game rule):
 	if the main crucible timer is not 4, increment the main crucible timer;
-	if the main crucible timer is 7, now the main crucible timer is 3;
-	if the location is not the Clinic, rule succeeds;
+	if the main crucible timer is:
+		-- 2:
+			now the enabled of cavala-4inv-crucible is true;
+			now the enabled of horatio-4inv-crucible is true;
+		-- 7:
+			now the main crucible timer is 3;
+	if the location is not the Clinic, make no decision;
 	if the main crucible timer is:
 		-- 1:
 			say "Horatio yawns.";
@@ -4276,8 +4388,6 @@ First every turn when Four Investigations is happening and ambience suppression 
 'Sure, I guess.'
 
 Horatio produces a pack of cards and sits opposite Doctor Cavala.";
-			now the enabled of cavala-4inv-crucible is true;
-			now the enabled of horatio-4inv-crucible is true;
 		-- 3:
 			say "Horatio deals a[one of][or] new[stopping] hand. [one of]Doctor Cavala picks up her cards and looks at them intently.[or]The players pick up their cards.[or]Doctor Cavala scoops up her cards and fans them out.[in random order]";
 			now the active crucible player is Doctor Cavala;
@@ -4756,6 +4866,10 @@ First every turn when the location is the West End and badnewscavala-westend-qui
 Instead of going to Via Terminalis West Street during Bad News from Cavala, say "But the clinic is in the other direction."
 Instead of going to the Crooked Alley during Bad News from Cavala, say "But the clinic is in the other direction."
 
+Before approaching a room during Bad News from Cavala:
+	if the noun is not Marid's Dormitory and the noun is not West End and the noun is not West Street and the noun is not Clinic:
+		say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
+
 Book 3.6 - Dormitory Block
 
 The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
@@ -4833,8 +4947,10 @@ The sound is "You hear the hush of the water flowing into itself."
 Understand "fountain" or "atrium fountain" or "neoclassical" or "sculpture" or "concentric" or "basin/basins" or "water" as the atrium-fountain.
 Instead of examining the atrium-fountain, say "A neoclassical sculpture of concentric basins. An image of Mercury takes pride of place, with sword aloft in one hand and water-spout chalice in the other."
 Instead of drinking the atrium-fountain, say "The water isn't potable."
-Instead of searching the atrium-fountain, say "There is nothing in the water."
+Instead of searching the atrium-fountain, say "Nothing out of the ordinary is in the water."
 Instead of taking or touching the atrium-fountain, say "You splash your face with a little water."
+Instead of inserting the endoscope into the atrium-fountain, say "Nothing out of the ordinary is in the water."
+Instead of inserting something that is not the endoscope into the atrium-fountain, say "There's a fine for littering in the fountain."
 
 Report entering the atrium-fountain: say "You sit at the base of the fountain."; stop the action.
 Report getting off the atrium-fountain: say "You stand up."; stop the action.
@@ -5269,15 +5385,22 @@ Instead of singing in the Public House, say "You hum along to the song."
 Instead of switching on the clockwork musician, say "It's already on."
 Instead of talking to the clockwork musician, say "You won't get a response; it's little more than a fancy music box."
 Instead of opening, pulling, squeezing, switching off, taking, or turning the clockwork musician, say "You don't think you should interfere with the property of the public house."
+Instead of inserting something into the clockwork musician, say "You don't think you should interfere with the property of the public house."
 Instead of setting the clockwork musician to something, say "You don't think you should interfere with the property of the public house."
 
 The clockwork musician track number is a number that varies.
 The clockwork musician track time is a number that varies.
 
-When a scene begins (this is the initialize the clockwork musician every scene rule): 
+When play begins (this is the initialize the clockwork musician rule): 
 	sort the Table of the Clockwork Musician's Repertoire in random order;
 	now the clockwork musician track number is 1;
 	now the clockwork musician track time is a random number from 1 to 6.
+	
+When Day One begins:
+	follow the initialize the clockwork musician rule.
+	
+When Day Two begins:
+	follow the initialize the clockwork musician rule.
 
 Every turn when the location is the Public House (this is the clockwork musician playing rule):
 	choose row clockwork musician track number in the Table of the Clockwork Musician's Repertoire;
@@ -5302,10 +5425,25 @@ Table of the Clockwork Musician's Repertoire
 article	track
 "the "	"[italic type]Planetaria[roman type] Overture"
 "the "	"[italic type]Symphony of the Primes[roman type]"
+"the"	"[italic type]Sonata Aquifera[roman type]"
+"the"	"[italic type]Hunter's March[roman type]"
+"the"	"[italic type]Verse of the Queen[roman type]"
+"an "	"instrumental cover of [italic type]Amesha, Amesha[roman type]"
+"an"	"instrumental cover of the [italic type]Cantata Caelestia[roman type]"
+""	"Tristitas's [italic type]Concerto IX[roman type]"
 ""	"[italic type]Dance, Aurora[roman type]"
 ""	"[italic type]Trismegistus[roman type]"
-"an "	"instrumental cover of [italic type]Amesha, Amesha[roman type]"
+""	"[italic type]Seasons' End[roman type]"
+""	"[italic type]Magis Quam Amor[roman type]"
+""	"[italic type]Alydia[roman type]"
+""	"[italic type]Three Nights and a Day[roman type]"
+""	"[italic type]Sutor's Lament[roman type]"
+""	"[italic type]In Nomine[roman type]"
+""	"[italic type]Volo[roman type]"
+""	"[italic type]Fireflies[roman type]"
+""	"[italic type]Ode to Levitus[roman type]"
 "a "	"song you can't remember the name of"
+"a "	"song you don't know"
 
 Part 3.7.7 - Bartender
 
@@ -5533,12 +5671,13 @@ Part 3.8.2 - Dormitory Room Door
 
 The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Dormitory. The printed name is "door to your dormitory room".
 The description is "A simple wooden door."
-Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" or "latch" as the dormitory room door.
+Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" or "latch" or "peephole" as the dormitory room door.
 Understand "exit" as the dormitory room door when the location is Marid's Dormitory.
 
 Before turning the dormitory room door, try opening the dormitory room door instead.
 Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]What an odd idea.[otherwise]You live alone; there's no need to knock."
 Instead of searching the dormitory room door, say "[if time is critical]You don't have time for that.[otherwise if the location is Marid's Dormitory]You peer around outside, but find nothing of interest.[otherwise]You'd have to go in to take a closer look."
+Instead of inserting the endoscope into the dormitory room door, say "You could just use the peephole."
 
 Part 3.8.3 - Dressing Table
 
@@ -5548,6 +5687,7 @@ The dressing table is a scenery supporter in Marid's Dormitory.
 The description is "You have little need for vanity, and so use the dressing table as a writing desk. A mirror and some delicate drawers are the only concession to its original purpose."
 Understand "vanity" or "writing" or "desk" as the dressing table.
 Before examining the dressing table when time is critical, try searching the dressing table instead.
+Before inserting the endoscope into the dressing table, try searching the delicate drawers instead.
 
 Instead of searching the dressing table, say "On the dressing table [is-are a list of things that are not the player on the dressing table]. The drawers of the dressing table [if the delicate drawers are open]contain [a list of things in the delicate drawers][otherwise]are closed[end if]."
 
@@ -5593,10 +5733,10 @@ The description is "[if time is critical]It isn't relevant right now.[otherwise]
 Understand "marid's" or "my" or "spare" as the folded clothing.
 
 Instead of looking under or searching the folded clothing, say "There is nothing in the folded clothing."
+Instead of inserting the endoscope into the folded clothing, say "There is nothing in the folded clothing."
 Instead of taking the folded clothing, say "[if time is critical]That will only slow you down.[otherwise]You don't need a change of clothes right now."
 Instead of pulling, pushing, or turning the folded clothing, say "That won't accomplish anything."
 Instead of rubbing or smelling the folded clothing, say "[if time is critical]This is not the time.[otherwise]It's freshly laundered."
-
 Before going from Marid's Dormitory when the delicate drawers are open and time is not critical (this is the Marid is OCD enough to close her drawers rule):
 	say "(first closing the drawers)";
 	now the delicate drawers are closed;
@@ -5641,9 +5781,9 @@ Instead of searching the cold closet, say "[if time is critical]This is not the 
 Instead of touching the cold closet, say "[if time is critical]This is not the time.[otherwise]It's cold to the touch."
 
 Instead of opening the flameless stove, say "[if time is critical]That won't help you right now.[otherwise]You don't need to cook anything at the moment.[end if]".
-Instead of inserting something into the flameless stove, say "What a strange notion."
+Instead of inserting something into the flameless stove, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 Instead of opening the cold closet, say "[if time is critical]That won't help you right now.[otherwise]You aren't hungry.[end if]".
-Instead of inserting something into the cold closet, say "What a strange notion."
+Instead of inserting something into the cold closet, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 
 Part 3.8.5 - Marid's Bed
 
@@ -5654,6 +5794,7 @@ Understand "my" or "marid's" or "bed" or "bedding" or "mattress" as Marid's bed.
 
 Instead of bed-making Marid's bed, say "[if time is critical]This is not the time.[otherwise if Walking Home in Darkness is happening]It's usual to make one's bed [italic type]after[roman type] one has slept in it.[otherwise]Your bed is already made."
 Instead of entering Marid's bed, try sleeping.
+Instead of inserting the endoscope into Marid's bed, say "Nothing is in the bedding. You'd know if there was."
 Instead of pushing, pulling, or turning Marid's bed, say "[if time is critical]You can't possibly move any of the furniture in time.[otherwise]There's no need to rearrange the furniture."
 Instead of knocking on or touching Marid's bed, say "[if time is critical]This is not the time.[otherwise]The mattress is soft and springy."
 Instead of searching or looking under Marid's bed, say "[if time is critical]There is nowhere to hide.[otherwise]There is nothing but dust under the bed."
@@ -5972,6 +6113,17 @@ When Returning to a Break-In begins (this is the spawn the bridge cleaning crew 
 When Returning to a Break-In ends (this is the despawn the bridge cleaning crew rule):
 	now the Via Terminalis Bridge is goto-passable;
 	now the bridge cleaning crew is nowhere.
+	
+Part 3.9.4 - West Street during Day Two
+
+Chapter 3.9.4.1 - Hubbub during The Game is Afoot
+
+weststreet-gameafoot-quipped is a truth state that varies.
+
+First every turn when the location is the West Street and The Game is Afoot is happening and weststreet-gameafoot-quipped is false:
+	say "'That poor doctor!' you overhear someone in the crowd say. 'What is the world coming to?...'";
+	now weststreet-gameafoot-quipped is true;
+	now ambience suppression is true.
 
 Book 3.10 - Crooked Alley
 
@@ -6003,6 +6155,7 @@ Instead of taking the rubbish, say "You've no use for any of it."
 Some smoking vents are scenery in the Crooked Alley. The description is "The south wall of the alley is lined with fume-spewing vents." Understand "south/-- wall" or "fume/smoke" or "spewing" or "fume-spewing" or "underground" or "distillery/distilleries" as the smoking vents.
 Instead of opening or entering the smoking vents, say "You don't think that will be very productive."
 Instead of searching the smoking vents, say "You can't see much through the smoke."
+Instead of inserting the endoscope into the smoking vents, say "You can't see much through the smoke."
 Instead of smelling the smoking vents, say "Breathing in the smoke makes you feel ill, and you stop for fear of poisoning yourself."
 Instead of listening to the smoking vents, say "You hear bubbling, hissing, clanking."
 
@@ -6277,6 +6430,7 @@ The description is "This device of whirling rings directs carriage traffic aroun
 The sound is "It thrums with every revolution."
 Understand "device" or "ring/rings" or "light/lights" as the armillary sphere.
 Instead of attacking or cutting the armillary sphere, say "That would only get you arrested."
+Instead of inserting something into the armillary sphere, say "You'd be arrested for obstructing traffic if you did that."
 Instead of climbing, pushing, pulling, rubbing, squeezing, swinging, touching, or turning the armillary sphere, say "The rings of the sphere are moving too fast for you to touch safely."
 Instead of looking under the armillary sphere, say "The armillary sphere is in the center of the inscribed rotunda."
 
@@ -6346,12 +6500,12 @@ Instead of pushing, pulling, swinging, taking, or turning the selenite sentinels
 Instead of searching the selenite sentinels, say "You can see the animic light pulsing within the crystal."
 Instead of talking to the selenite sentinels, say "There is no response."
 
-The fosse is scenery in the Channelworks Concourse.
+The fosse is faraway scenery in the Channelworks Concourse.
 The description is "An immense water-filled moat bars access to the Channelworks."
-Before listening to the fosse, try listening to the hydra-like channels instead.
+The fosse has some text called the faraway response. The faraway response is "The water is out of reach."
 Understand "moat" as the fosse.
 Before entering the fosse, try swimming instead.
-Instead of doing anything other than entering, examining, or listening to the fosse, say "The water is out of reach."
+Before listening to the fosse, try listening to the hydra-like channels instead.
 Instead of inserting something into the fosse, say "If you did that, you'd never get [regarding the noun][them] back."
 Instead of throwing something at the fosse, say "If you did that, you'd never get [regarding the noun][them] back."
 
@@ -6446,7 +6600,7 @@ The sound is "[if the ornate double doors are closed]The doors block all sound.[
 The scent is "[if the ornate double doors are closed]The doors block all scent.[otherwise if the location is the Turris Infinita]The smell of the city reaches you.[otherwise]The air within is impossibly clean."
 Understand "door" as the ornate double doors.
 Understand "exit" as the ornate double doors when the location is the Turris Infinita.
-Instead of searching the ornate double doors, say "[if the ornate double doors are closed]The doors block all sound from the outside world.[otherwise if the location is the Turris Infinita]You see the Via Terminalis.[otherwise]The tower is lined with mirrors."
+Instead of searching the ornate double doors, say "[if the ornate double doors are closed]The doors are closed and impenetrable.[otherwise if the location is the Turris Infinita]You see the Via Terminalis.[otherwise]The tower is lined with mirrors."
 
 After deciding the scope of the player while the location is the Turris Infinita:
 	if the ornate double doors are open:
@@ -6605,7 +6759,7 @@ To piss off the porter:
 		
 To evict the player from the Turris Infinita:
 	now the player is blacklisted by Turris Infinita security;
-	say "'Guards!' she calls. 'Show our guest to the door.'
+	say "'Guards!' she calls. 'Show our guest out.'
 
 Two gargoyles land to your left and right with a thud. They grab your arms and escort you out the doors, which slam behind you.";
 	now the player is in the Via Terminalis Junction;
@@ -6618,6 +6772,8 @@ Instead of opening the ornate double doors when the player is blacklisted by Tur
 Before going east in the Via Terminalis Junction when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 Before opening the ornate double doors when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
 Before approaching the Turris Infinita when the player is cowed by Turris Infinita security, say "You don't really want to repeat that experience." instead.
+
+Part 3.16.6 - Turris Infinita during Day Two
 
 When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.
 
@@ -6967,7 +7123,7 @@ Understand "bar/bars/barred" or "horn/horns" or "crescent shaped/-- window" as t
 Instead of entering the crescent-shaped window, say "The window is barred."
 Instead of cutting the crescent-shaped window, say "You scratch at the bars for a few minutes, but find them too thick and too closely spaced to saw through efficiently."
 Instead of searching the crescent-shaped window, say "Through the window you see only darkness."
-Before inserting something into the crescent-shaped window, try entering the crescent-shaped window instead.
+Instead of inserting something that is not the endoscope into the crescent-shaped window, say "The window is barred."
 
 Part 3.18.3 - Graffiti and Crescent Keyhole
 
@@ -6992,7 +7148,11 @@ Rule for printing the name of the crescent keyhole when steps-keyhole-known is f
 Understand "crescent" or "in the/-- graffiti" or "inscribed" or "among/-- stars" as the crescent keyhole.
 Understand "keyhole" or "irregular/irregularly" or "shaped" or "slot" or "hole" as the crescent keyhole when steps-keyhole-known is true.
 Before examining, looking under, knocking on, rubbing, searching, smelling, or touching the crescent keyhole, try searching the aspirated graffiti instead.
-Instead of inserting something carried by the player into the crescent keyhole when steps-keyhole-known is true, say "[The noun] doesn't fit into the hole."
+Instead of inserting something carried by the player into the crescent keyhole when steps-keyhole-known is true:
+	if the noun is the endoscope:
+		say "You find the keyhole to be filled with complex interlocking teeth.";
+	otherwise:
+		say "[The noun] doesn't fit into the hole."
 
 Book 3.19 - Miller's Gate
 
@@ -7071,6 +7231,7 @@ Instead of attacking the docked airships, say "You'd be arrested on the spot if 
 Instead of cutting the docked airships, say "While your scalpel could probably saw through the docking lines, that doesn't strike you as the wisest idea in the long term."
 Instead of looking under the docked airships, say "The airships are tethered to the docks."
 Instead of searching the docked airships, say "None of the airships catch your eye."
+Instead of inserting the endoscope into the docked airships, say "Those are private craft. You'd be arrested without the proper papers."
 
 Some tram-lines are scenery in Miller's Gate.
 The description is "Trams fly past on the luminifers, trailing sparks as they go."
@@ -7088,6 +7249,7 @@ Understand "luminifer/luminifers" or "spark/sparks" or "beam of/--" or "light" a
 Instead of cutting the luminiferous rails, say "You don't see what that would accomplish besides irrevocably damaging your scalpel."
 Instead of looking under the luminiferous rails, say "Complex glyphs are inscribed along the ground under the luminifers."
 Instead of searching the luminiferous rails, say "The light is blinding."
+Instead of inserting something into the luminiferous rails, say "That would destroy [the noun], along with most of your hand."
 Instead of attacking, knocking on, pushing, pulling, rubbing, swinging, touching, or turning the luminiferous rails, say "You would prefer to keep all ten of your fingers."
 
 Some glyphs along the rails are scenery in Miller's Gate.
@@ -7915,7 +8077,7 @@ When Cavala's Errands ends (this is the despawn the fortune-teller and his table
 
 Book 3.22 - Shanty Quarter
 
-There is a proper-named room in Outdoors called the Shanty Quarter. "No words can describe this place. It is claustrophobic, oppressive, a place where light does not reach. The air is heavy with the stench of offal and waste, and other things better left unimagined -- and you are hemmed in by ropes, walled off by concrete, entombed with the walking dead.
+There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "No words can describe this place. It is claustrophobic, oppressive, a place where light does not reach. The air is heavy with the stench of offal and waste, and other things better left unimagined -- and you are hemmed in by ropes, walled off by concrete, entombed with the walking dead.
 
 The Via Mercurii is somewhere to the north; Cadaver Walk is somewhere to the west[if Rats' Run is visited]. Rats' Run is somewhere below you, under the manholes and the rickety beams[end if]."
 It is south of the Via Mercurii.
@@ -7930,9 +8092,6 @@ Part 3.22.1 - Scenery
 The nightmarish architecture, the slum-dwellers, and the offal are in the Shanty Quarter.
 
 Part 3.22.2 - Shanty Quarter during Day One
-
-When Day One ends:
-	now the Shanty Quarter is goto-passable.
 
 Chapter 3.22.2.1 - Shanty Maze
 
@@ -7955,7 +8114,6 @@ Is there really no other way?";
 			say "With a deep breath, you press onward.";
 			now the player is in Maze Part One;
 			now the Shanty Quarter is visited;
-			now the Shanty Quarter is goto-impassable;
 			wait for any key;
 			say "You instinctively take a step back, only to bump into a wall. You turn around and see a labyrinth of crawlspaces and ladders and rag curtains.
 
@@ -8322,6 +8480,20 @@ Instead of going in Maze Part Four (this is the exiting the Shanty Maze rule):
 			say "You are not going to sink to your knees again.";
 	otherwise:
 		say "There is nothing for you there."
+		
+Part 3.22.3 - Shanty Quarter during Day Two
+
+When Day Two begins:
+	now the Shanty Quarter is goto-passable.
+	
+shantyquarter-daytwo-quipped is a truth state that varies.
+
+Before going to the Shanty Quarter when Day Two is happening and shantyquarter-daytwo-quipped is false:
+	if the player is hurrying and the final destination is not the Shanty Quarter:
+		say "Through the Shanty Quarter?[paragraph break]";
+	say "You take a deep breath.[paragraph break]";
+	wait for any key;
+	now shantyquarter-daytwo-quipped is true.
 
 Book 3.23 - Cadaver Walk
 
@@ -8476,7 +8648,7 @@ Instead of climbing the view of Reden's shack, say "That strikes you as highly u
 
 Part 3.24.2 - Riggertown Lower Level during Day One
 
-Instead of entering, knocking on, or searching the sheet-metal shacks when Cavala's Errands in happening: say "It's embarrassing to go door to door. There must be some other way."
+Instead of entering, knocking on, or searching the sheet-metal shacks when Cavala's Errands is happening: say "It's embarrassing to go door to door. There must be some other way."
 
 Chapter 3.24.2.1 - Donti
 
@@ -8660,10 +8832,10 @@ Before going to Reden's Shack (this is the entering Reden's Shack flavor rule):
 		now journal-reden-shack-known is true;
 		now the view of Reden's shack is in Riggertown Lower Level;
 	otherwise:
-		say "You duck into the shack...";
+		if the player is staid, say "You duck into the shack...";
 		
 Before going from Reden's Shack (this is the leaving Reden's Shack flavor rule):
-	say "You emerge from the shack...";
+	if the player is staid, say "You emerge from the shack...";
 	
 Part 3.25.1 - Scenery
 
@@ -8683,6 +8855,7 @@ The scent is "The smell isn't pleasant."
 Understand "bed" or "blanket/blankets" as the pile of bedding.
 Before searching the pile of bedding when nothing is on the pile of bedding, try looking under the pile of bedding instead.
 Instead of pushing, pulling, looking under, rubbing, swinging, touching, or turning the pile of bedding, say "You poke through the bedding, but find nothing except more bedding."
+Instead of inserting the endoscope into the pile of bedding, say "You poke through the bedding, but find nothing except more bedding."
 Instead of bed-making the pile of bedding, say "There's a time and place to be fastidious about cleanliness. This isn't it."
 Instead of entering the pile of bedding, say "You aren't comfortable getting into in a dead man's bed."
 Instead of taking the pile of bedding, say "You'd look like an fool lugging all these blankets around."
@@ -8693,6 +8866,7 @@ The scent is "The odor is unmistakably that of the Bilious Canal."
 Understand "crumpled" as the dirty clothing.
 Before removing the dirty clothing from something, try taking the dirty clothing instead.
 Instead of pushing, pulling, looking under, searching, swinging, or turning the dirty clothing, say "You find nothing in the clothing, or the bedding."
+Instead of inserting the endoscope into the dirty clothing, say "You find nothing in the clothing, or the bedding."
 Instead of rubbing the dirty clothing, say "You aren't about to do a dead man's laundry."
 Instead of taking the dirty clothing, say "You can't imagine any reason to take the clothing with you."
 
@@ -8704,6 +8878,7 @@ Before removing the empty wine bottles from something, try taking the empty wine
 Instead of drinking or opening the empty wine bottles, say "All of the bottles are empty. Besides, you aren't sure you'd want to drink any."
 Instead of closing the empty wine bottles, say "You don't see any bottle caps."
 Instead of inserting something into the empty wine bottles, say "That seems entirely unwise."
+Instead of inserting the endoscope into the empty wine bottles, say "You see some reddish wine stains around the base of the bottles, but nothing out of the ordinary."
 Instead of searching the empty wine bottles, say "Nothing about these bottles seems out of the ordinary."
 Instead of taking the empty wine bottles, say "You don't need any of these bottles."
 
@@ -8766,9 +8941,9 @@ When Returning to a Break-In begins:
 	now returning-breakin-riggertown-quip is true.
 
 First every turn when the location is Riggertown Upper Level and returning-breakin-riggertown-quip is true (this is the Returning to a Break-In Riggertown Upper Level quip rule):
-	now ambience suppression is true;
 	say "It's getting dark out. The spires and factories are closing for the day.";
-	now returning-breakin-riggertown-quip is false.
+	now returning-breakin-riggertown-quip is false;
+	now ambience suppression is true;
 
 Book 3.27 - Riggertown Mechanistry
 
