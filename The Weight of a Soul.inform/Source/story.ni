@@ -77,7 +77,7 @@ Use MAX_NUM_STATIC_STRINGS of 40000.
 Use MAX_PROP_TABLE_SIZE of 400000.
 Use MAX_STATIC_DATA of 960000.
 Use MAX_SYMBOLS of 40000.
-Release along with a "NoSidebar" website and an interpreter.
+Release along with a "Marid" website and the "SpookyQuixe" interpreter.
 
 Part 1.1.2 - Extensions
 
@@ -1848,7 +1848,7 @@ I'd like to thank Lieu, Gu, Wen, Chew, Sean, WY, WH, GA, Marvin, Matthew, and th
 Thanks to Emily Short for writing the various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family for supporting me, to the Inform team for creating an amazing IDE, and to the IF community for creating a truly inspirational body of work. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
-[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at chinkeeyong (at) gmail (dot) com.";
+[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
 
 Chapter 2.3.3.2 - Journal
 
@@ -3551,7 +3551,8 @@ To resolve Averting Cavala's Assassination:
 	now Carnicer is nowhere;
 	wait for any key;
 	say "You find her slumped onto the floor, her chest rising and falling. A gash has been torn above her left knee. Her entire trouser leg is stained red.";
-	start a dialogue with Doctor Cavala using dialogue cavala-firstaid-home.
+	start a dialogue with Doctor Cavala using dialogue cavala-firstaid-home;
+	follow the scene changing rules.
 
 Chapter 3.3.5.4 - First Aid on Cavala
 
@@ -5903,6 +5904,8 @@ To unveil Day Two:
 	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
 	center "D A Y   T W O";
 	wait for any key;
+	to be continued;
+	stop;
 	clear the screen;
 	now start-of-day-two is true;
 	follow the scene changing rules;

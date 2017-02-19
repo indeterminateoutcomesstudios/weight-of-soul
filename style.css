@@ -4,10 +4,12 @@ Standard CSS file for use with Standard.html and Standard-Source.html.
 
 */
 
+@import url('https://fonts.googleapis.com/css?family=Libre Baskerville');
+@import url('https://fonts.googleapis.com/css?family=Oxygen Mono');
 
 body
 {
-	font-family: Georgia, Palatino, "Times New Roman", Times, serif;
+	font-family: Libre Baskerville, Georgia, Palatino, "Times New Roman", Times, serif;
 	font-size: 100%;
 	-webkit-text-size-adjust: none;
 }
@@ -24,6 +26,7 @@ source paragraphs.
 
 p
 {
+	color: #FFF;
 	font-size: 1em;
 	line-height: 1.4;
 }
@@ -38,19 +41,19 @@ Best color schemes are likely to vary depending on cover art.
 a
 {
 	text-decoration: none;
-	color: #369;
+	color: #336;
 }
 
 a:visited
 {
 	text-decoration: none;
-	color: #006;
+	color: #336;
 }
 
 a:hover
 {
 	text-decoration: none;
-	color: #33C;
+	color: #669;
 }
 
 .coverimage
@@ -395,10 +398,13 @@ p.indent9
 /*
 Styles for play.html
 */
+}
+
 .play .coverimage
 {
 	position: fixed;
 }
+
 .play .links
 {
 	margin-top: 200px;
@@ -408,7 +414,7 @@ Styles for play.html
 .interpretercredit
 {
 	bottom: 1em;
-	right: 2em;
+	right: 2.5em;
 	text-align: right;
 	font-size: 80%;
 	position: absolute;
@@ -416,7 +422,7 @@ Styles for play.html
 
 #gameport
 {
-	background: white;
+	color: #FFF;
 	bottom: 0px;
 	left: 0px;
 	line-height: 1.4;
