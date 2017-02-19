@@ -38,7 +38,7 @@
      can change that, but don't touch the position or margin. */
   position: absolute;
   margin: 0px;
-  background: black;
+  background: #000;
 }
 
 .BufferWindow {
