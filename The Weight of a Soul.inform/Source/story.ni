@@ -48,16 +48,19 @@ You have been warned.
 
 
 
----TO DO---
+]
 
-- Write Day Two
+Volume 1 - Preamble
 
--- Write start of Day Two
--- Write Arturus Investigation
--- Write Nacarat Investigation
--- Write Reden Investigation
--- Write Thugs Investigation
--- Write end of Day Two
+[---TO DO---
+
+- Write the Turris Infinita and new areas
+- Write Arturus Investigation
+- Write Nacarat Investigation
+- Write Reden Investigation
+- Write the new Shanty Quarter and surrounding areas
+- Write Thugs Investigation
+- Write end of Day Two
 
 - Write Midnight
 - Write Day Three
@@ -66,14 +69,13 @@ You have been warned.
 
 - Implement the Map]
 
-Volume 1 - Preamble
-
 Book 1.1 - Miscellany
 
 Part 1.1.1 - Use Options
 
 Use American dialect and the serial comma.
 Use MAX_NUM_STATIC_STRINGS of 40000.
+Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
 Use MAX_STATIC_DATA of 960000.
 Use MAX_SYMBOLS of 40000.
@@ -113,7 +115,7 @@ This is the new approach-heading selection rule:
 	if approach-heading is not a direction:
 		now approach-heading is the best route from the location to the noun through visited rooms, using even locked doors;
 		if approach-heading is a direction:
-			say "You can't think how to get there from here.";
+			say "You can't go back that way.";
 			rule fails.
 			
 The new approach-heading selection rule is listed instead of the approach-heading selection rule in the approach-finding rules.
@@ -724,6 +726,11 @@ Understand "stranger" as Carnicer when Averting Cavala's Assassination is happen
 
 The poisoned blade is carried by Carnicer.
 Understand "sword" as the poisoned blade.
+
+Chapter 1.3.3.4 - Justinian
+
+Justinian is a human man.
+Understand "doctor" or "justin" or "volontis" as Justinian.
 
 Book 1.4 - Scene Flags
 
@@ -1845,7 +1852,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, Chew, Sean, WY, WH, GA, Marvin, Matthew, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-Thanks to Emily Short for writing the various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family for supporting me, to the Inform team for creating an amazing IDE, and to the IF community for creating a truly inspirational body of work. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family for supporting me, to the Inform team for creating an amazing IDE, and to the IF community for creating a truly inspirational body of work. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -2950,7 +2957,7 @@ Understand "labeled" or "aer" or "vivificans" as the vivific.
 Understand "inhalers" as the soporific and the vivific.
 
 The phantom-soporific is an undescribed purely-surgical-necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
-Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment. (Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
+Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
 Understand "soporific" or "sedative" as the phantom-soporific.
 
 Before examining or searching the shelves of medical supplies when the soporific is in the Reden's surgery holding zone (this is the spawn the soporific and vivific rule):
@@ -4204,7 +4211,7 @@ To say cavala-badnews-onit-text:
 	wait for any key;
 	say "She has Horatio retrieve a sleek instrument from her desk. It is orichalcum, threaded with tiny magnification lenses, and your eyes widen as he places it in your palm.[paragraph break]";
 	wait for any key;
-	say "'Yes, Marid.' A wry smile. 'Since you'll be dealing with a lot of dead bodies, you can borrow my endoscope for this investigation. Just promise me you'll return it in one piece -- I'd hate to take the cost out of your next paycheck.'[paragraph break]";
+	say "'Yes, Marid.' She smiles wryly. 'Since you'll be dealing with a lot of dead bodies, you can borrow my endoscope for this investigation. Just promise me you'll return it in one piece -- I'd hate to take the cost out of your next paycheck.'[paragraph break]";
 	wait for any key;
 	say "'I-- I understand, Doctor.'[paragraph break]";
 	say "She squeezes your hand. 'Good luck, Marid. I'm counting on you.'[paragraph break]";
@@ -4276,9 +4283,9 @@ cavala-4inv-home	true	false	""	"You approach Doctor Cavala, and she looks up [if
 'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-nevermind}
 cavala-4inv-wherebeginagain	true	false	"'Where should I begin my investigation, again?'"	"'Where should I begin my investigation, again?'
 
-'Go to Doctor Arturus's clinic,' she says. 'The doctor's body will be there, along with the bodies of his patients. Ask Doctor Justinian and see if you can find any connection between the deceased.
+'Go to Doctor Arturus's clinic,' she says. 'The doctor's body will be there, along with the bodies of his patients. Talk to Doctor Justinian and see if you can find any connection between the deceased.
 
-'It might also be worth asking Zoiro about his brother's associations. If he's mourning, you'll find him in his home.'"	{cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+'It might also be worth asking Zoiro about his brother's associations. There may be a lead on the source of the affliction we've missed.'"	{cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-whatlookagain	true	false	"'What should I look out for, again?'"	"'What should I look out for, again?'
 
 'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-crucible, cavala-4inv-goodbye}
@@ -4286,7 +4293,7 @@ cavala-4inv-crucible	false	true	"'Crucible? Really?'"	"'Crucible? Really?'
 
 She raises an eyebrow. 'I'll get to work as soon as you bring me information I can act upon. Until then, it's either crucible or romance novels.'
 
-'Fair enough,' you admit."	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-goodbye}	
+'...Fair enough.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-goodbye}	
 cavala-4inv-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
 
 Doctor Cavala [if A Crucible Game is happening]returns her attention to the card game[otherwise]waves you off nonchalantly[end if]."	{}
@@ -4321,9 +4328,7 @@ horatio-4inv-thoughts	true	true	"'What do you think of the situation so far?'"	"
 
 Horatio's jaw hardens, and he looks contemplative.
 
-'I... I don't really know what to think,' he says. 'You and Doctor Cavala have been at this for a lot longer than I have. All I know that people seem to be dropping like flies all of a sudden. Doctor Arturus is dead -- even Doctor Cavala's got a ruined leg. How can we fix the problem when we don't even know what's going on?'
-
-Both of you are quiet for a moment."	{horatio-4inv-sleepwell, horatio-4inv-crucible, horatio-4inv-seeyou}
+'I... I don't really know what to think,' he says. 'You and Doctor Cavala have been at this for a lot longer than I have. All I know that people seem to be dropping like flies all of a sudden. Doctor Arturus is dead -- even Doctor Cavala's got a ruined leg. How can we fix the problem when we don't even know what's going on?'"	{horatio-4inv-sleepwell, horatio-4inv-crucible, horatio-4inv-seeyou}
 horatio-4inv-crucible	false	true	"'I didn't know you played crucible.'"	"'I didn't know you played crucible.'
 
 He shrugs. 'I picked it up in the Vigiles. It's a way to pass the time in the late-night watches. Want me to teach you?'
@@ -4875,15 +4880,15 @@ Book 3.6 - Dormitory Block
 
 The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
-From here, you can go up to your dormitory, visit the public house to the west, or exit the building to the south."
+From here, you can go up to your dormitory[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], visit the public house to the west,[end unless] or exit the building to the south."
 The Dormitory Block is north of the West End.
 Understand "dorm" as the Dormitory Block.
 
 The simple-name is "the dormitory block".
 The sound is "You hear the flowing of the fountain, the bustle of the public house."
 The scent is "You smell cooking from the dormitory and the public house."
-The exit reminder is "You can go up to your dormitory, west to the public house, or south to the Via Terminalis."
-The going-in disambiguation is "Do you mean going up (to your dormitory), going west (to the public house), or going south (to the Via Terminalis)?"
+The exit reminder is "You can go up to your dormitory[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], west to the public house,[end unless] or south to the Via Terminalis."
+The going-in disambiguation is "Do you mean going up (to your dormitory)[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], going west (to the public house),[end unless] or going south (to the Via Terminalis)?"
 
 Before examining inside in the Dormitory Block, try examining the dormitory domiciles instead.
 Before examining west in the Dormitory Block, try examining the view of the public house instead.
@@ -5749,6 +5754,7 @@ Part 3.8.4 - Kitchenette
 
 The kitchenette is scenery in Marid's Dormitory.
 The description is "[if time is critical]You see nothing that will help you.[otherwise]You are a more diligent disciple of the [italic type]ars vitalis[roman type] than the [italic type]ars coquinae,[roman type] and so the hooks here are bare. Nevertheless, the kitchenette is equipped with a stove and a cold closet."
+Understand "kitchen" as the kitchenette.
 Instead of entering the kitchenette, say "There is no space to sit there."
 Instead of searching the kitchenette, say "A stove and a cold closet are the only things of note."
 
@@ -5904,8 +5910,8 @@ To unveil Day Two:
 	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
 	center "D A Y   T W O";
 	wait for any key;
-	to be continued;
-	stop;
+	[to be continued;
+	stop;]
 	clear the screen;
 	now start-of-day-two is true;
 	follow the scene changing rules;
@@ -6250,7 +6256,7 @@ Instead of throwing something at the canalside manhole when the exterminators ar
 
 Part 3.12.2 - Following the Canal during Day One
 
-Chapter 3.12.2.1 - Exterminators and the Cordon
+Chapter 3.12.2.1 - Exterminators and the Work Cordon
 
 Some exterminators are a hostile mixed-race man in Following the Canal. "[if exterminators-profession-known is false]Some civic work appears to be[otherwise]An extermination is[end if] in progress here[first time], much to your dismay[only]. Men in work coats guard an open manhole, and the way to Riggertown is completely cordoned off."
 The printed name is "[if exterminators-profession-known is true]exterminators[otherwise]workmen".
@@ -6287,10 +6293,12 @@ The description is "The demijohns are labeled VOLATILE ALKALI - DANGER - CAUSTIC
 The scent is "Even from here, the scent of ammonia is unmistakable."
 Understand "equipment" or "demijohn/demijohns" or "hose/hoses" or "substance/substances" or "ammonia" or "caustic" or "volatile" or "alkali" as the dangerous alchemical apparatus.
 
-The cordon is scenery in Following the Canal.
+The work cordon is privately-named scenery in Following the Canal.
+The printed name is "cordon".
 The description is "It doesn't look like you'll be getting through it."
-Before smelling the cordon, try smelling the dangerous alchemical apparatus instead.
-Before climbing or entering the cordon, try going south instead.
+Understand "cordon" as the work cordon.
+Before smelling the work cordon, try smelling the dangerous alchemical apparatus instead.
+Before climbing or entering the work cordon, try going south instead.
 
 Chapter 3.12.2.2 - Blocked Passage and Set Flags
 
@@ -6307,7 +6315,7 @@ Chapter 3.12.2.3 - Despawning the Exterminators
 
 When Cavala's Errands ends (this is the despawn the exterminators and close the manhole rule):
 	now the exterminators are nowhere;
-	now the cordon is nowhere;
+	now the work cordon is nowhere;
 	now the canalside manhole is not faraway;
 	now the canalside manhole is closed;
 	now the canalside manhole is described;
@@ -6437,6 +6445,22 @@ Instead of inserting something into the armillary sphere, say "You'd be arrested
 Instead of climbing, pushing, pulling, rubbing, squeezing, swinging, touching, or turning the armillary sphere, say "The rings of the sphere are moving too fast for you to touch safely."
 Instead of looking under the armillary sphere, say "The armillary sphere is in the center of the inscribed rotunda."
 
+Part 3.14.2 - Junction during Day Two
+
+Chapter 3.14.2.1 - The Black Banner
+
+The trailing black banner is a fixed in place faraway thing.
+"Above the Turris Infinita, a black banner casts its trailing shadow over the road."
+The description is "A black banner is traditionally put up when the head of the house has died."
+The sound is "It flaps disconsolately."
+Understand "shadow" as the trailing black banner.
+
+When Day Two begins (this is the spawn the black banner rule):
+	now the trailing black banner is in the Junction.
+	
+When Day Two ends (this is the despawn the black banner rule):
+	now the trailing black banner is nowhere.
+	
 Book 3.15 - Channelworks Concourse
 
 The Channelworks Concourse is a proper-named room in Outdoors. "You stand before the fortress through which all waterways flow. Enormous colonnades line the concourse, flanked by selenite sentinels; hydra-like channels snake in patterns and merge into bas-reliefs of dizzying scale. Before the fosse, the statue of Reason bears aloft the Azoth.
@@ -6542,7 +6566,7 @@ Instead of going north in the Channelworks Concourse when the partition bridge i
 
 Book 3.16 - Turris Infinita
 
-There is a proper-named room called the Turris Infinita. "Mirrors cover every surface in this avant-garde tower, from the floors to the doors to the chandeliers. The porter's desk is framed in lights, while watchful gargoyles above gaze into infinity.
+There is a proper-named room called the Turris Infinita. "[if the Turris is in mourning]The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds.[otherwise]Mirrors cover every surface in this avant-garde tower, from the floors to the doors to the chandeliers. The porter's desk is framed in lights, while watchful gargoyles above gaze into infinity.[end if]
 
 A hydraulic lift provides access to the upstairs domiciles. Doctor Arturus's clinic is east, and the exit is to the west."
 
@@ -6581,8 +6605,9 @@ The elaborate crystal chandeliers have some text called the faraway response. Th
 Understand "chandelier" or "invisible" or "alchemical" or "line/lines" as the elaborate crystal chandeliers.
 
 The porter's desk is scenery in the Turris Infinita. The indefinite article is "the".
-The description is "It's difficult to imagine how anyone could work in that glare."
+The description is "[if the Turris is in mourning]The mourning-light has done nothing to improve the porter's complexion.[otherwise]It's difficult to imagine how anyone could work in that glare."
 Understand "light/lights" or "chair" or "glare" as the porter's desk.
+Understand "mourning" or "mourning-light" as the porter's desk when Day Two is happening.
 Instead of pushing, pulling, swinging, taking, or turning the porter's desk, say "That is fixed in place."
 Instead of entering, searching, or looking under the porter's desk, say "There's only one chair, and the porter's sitting in it."
 
@@ -6632,20 +6657,22 @@ Instead of opening, closing, switching on, or switching off the lift, say "The l
 Part 3.16.4 - Porter
 
 The porter is a hostile woman in the Turris Infinita. "[porter-initial-appearance]".
-The description is "A hawkish woman all in white. The glare on her spectacles makes it difficult to look at her directly."
+The description is "A hawkish woman all in white. [if the Turris is in mourning]Her flashing spectacles make[otherwise]The glare on her spectacles makes[end if] it difficult to look at her directly."
 The scent is "She smells as nondescript as the rest of the entrance hall. There isn't even a hint of perfume."
-Understand "spectacle/spectacles" as the porter.
 Instead of attacking or cutting the porter, say "You don't think that would end well for you."
 Instead of giving the bundle of documents to the porter, say "Those aren't appointment papers, and it would be inconvenient if you turned them over to the basilica with the seal broken."
 Instead of giving the purse to the porter, say "You doubt your bribe will impress her, considering where she works."
 
 Some reflective spectacles are worn by the porter.
 The description is "The spectacles magnify her mirthless expression."
-Understand "glasses/eyeglasses" as the spectacles.
+Understand "glasses/eyeglasses" or "spectacle/specs" or "flashing" as the spectacles.
 
 To say porter-initial-appearance:
 	if the location was not the Turris Infinita:
-		say "[one of]The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?' [or]'Welcome to--' The porter breaks off. 'Oh. It's you again.' [or]The porter regards you coolly and silently. [stopping]";
+		if the Turris Infinita was not visited:
+			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?' ";
+		otherwise:
+			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.' [or]The porter regards you coolly and silently. [stopping]";
 	otherwise:
 		say "The porter regards you coolly and silently. ".
 		
@@ -6778,7 +6805,120 @@ Before approaching the Turris Infinita when the player is cowed by Turris Infini
 
 Part 3.16.6 - Turris Infinita during Day Two
 
-When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule): now the player is cleared by Turris Infinita security.
+When Day Two begins (this is the un-blacklist the player in the Turris Infinita rule):
+	now the player is cleared by Turris Infinita security.
+
+To decide whether the Turris is in mourning: [This affects descriptions.]
+	if Day Two is happening, decide yes;
+	decide no.
+
+Chapter 3.16.6.1 - The Game is Afoot Cutscene
+
+Section 3.16.6.1.1 - Beginning the Cutscene
+
+After approaching the Turris Infinita when The Game is Afoot is happening:
+	say path-walked so far;
+	say line break;
+	perform the Game Afoot cutscene.
+
+Last after going to the Turris Infinita when The Game is Afoot is happening and the player is staid:
+	perform the Game Afoot cutscene.
+
+To perform the Game Afoot cutscene:
+	say "[line break][bold type]Turris Infinita[roman type][line break]";
+	say "The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds. You find yourself treading softly, lightly -- as though if you took a wrong step, the whole glass tower would come crashing down.[paragraph break]";
+	say "As you enter the foyer, two gargoyles land to your left and right. They move to seize your arms.[paragraph break]";
+	wait for any key;
+	if the player has been blacklisted by Turris Infinita security:
+		now the enabled of porter-afoot-apology is true;
+		start a dialogue with the porter using dialogue porter-afoot-bhome;
+	otherwise:
+		now the enabled of porter-afoot-whyclosed is true;
+		start a dialogue with the porter using dialogue porter-afoot-home.
+
+Section 3.16.6.1.1 - Argument with the Porter
+
+Some dialogue branches are defined by the Table of Porter Game Afoot Dialogue.
+
+Table of Porter Game Afoot Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+porter-afoot-home	true	false	""	"'I am sorry to inform you that the Turris Infinita is now [italic type]closed.[roman type]' The porter regards you humorlessly. 'There is to be no trespassing -- no idle journalism--'
+
+[wait for any key]Her lower lip curls.
+
+'No [italic type]gawking.[roman type] Do I make myself clear?'"	{porter-afoot-charmed, porter-afoot-whyclosed, porter-afoot-business}
+porter-afoot-bhome	true	false	""	"[italic type]'You,'[roman type] the porter hisses. 'I should have known you would come back.'"	{porter-afoot-charmed, porter-afoot-apology, porter-afoot-business}
+porter-afoot-charmed	true	true	"'I'm charmed.'"	"'I'm charmed.'
+
+A hollow smile. 'I'm glad we could come to an understanding. Now, unless you have a good reason I shouldn't evict you this moment--'"	{porter-afoot-whyclosed, porter-afoot-apology, porter-afoot-business}
+porter-afoot-whyclosed	false	true	"'Why is the Turris Infinita closed?'"	"'Why is the Turris Infinita closed?'
+
+The porter folds her arms. 'I don't owe you an explanation. You, on the other hand...'"	{porter-afoot-charmed, porter-afoot-business}
+porter-afoot-apology	false	true	"'I apologize for my conduct yesterday. I'm sorry.'"	"'I apologize for my conduct yesterday. I'm sorry.'
+
+'Oh?' She wrinkles her nose. 'How very [italic type]contrite[roman type] of you. Do you expect a pardon? I'm afraid none is forthcoming.'"	{porter-afoot-business, porter-afoot-actuallyfuckyou}
+porter-afoot-business	true	false	"'I'm here on business.'"	"'I'm here on business.'
+
+She rolls her eyes. 'You and every dullard that comes through these doors. Do I look as though I give a whit about your business? Which part of [']no trespassing['] do you not comprehend?'"	{porter-afoot-showsignum, porter-afoot-actuallyfuckyou}
+porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
+
+The porter's gaze falls on the slip of paper in your hand. The corner of her mouth twitches.
+
+[wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and do inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
+
+[wait for any key]Your face flushes. 'You--'
+
+[Justinian's glorious entrance]"	{justinian-afoot-well}
+porter-afoot-actuallyfuckyou	false	false	"'You know what? Screw you.' <Trash her desk.>"	"'You know what? Screw you.'
+
+'Wha--'
+
+You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots -- all tumble in a sloshing splattering mess. The floor is carpeted in a remarkable stygian shade of ink.
+
+[wait for any key]The gargoyles wrench your arms behind your back. The porter gives you a slowly erupting volcano of a glare.
+
+[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking pile of--'[roman type]
+
+[Justinian's glorious entrance]"	{justinian-afoot-well}
+
+After reading out porter-afoot-charmed:
+	now the enabled of porter-afoot-actuallyfuckyou is true.
+
+Section 3.16.6.1.1 - Justinian's Glorious Entrance
+
+To say Justinian's glorious entrance:
+	wait for any key;
+	say "There is the rustle of a curtain being drawn open. The report of surgical boots on glass.[paragraph break]";
+	wait for any key;
+	say "'What's going on here?' a smoky voice demands.[paragraph break]";
+	wait for any key;
+	say "You turn, and a young man with auburn hair is striding purposefully from the arch of Doctor Arturus's clinic. His coat is immaculately tailored. There is an intensity in his expression, his visage.[paragraph break]";
+	wait for any key;
+	say "Your heart skips a beat.[paragraph break]";
+	say "'D-- Doctor Justinian,' you say.[paragraph break]";
+	wait for any key;
+	say "'Marid?' He frowns. '[italic type]Excubitores![roman type] Unhand this woman. She is a guest.'[paragraph break]";
+	say "The gargoyles release you and vanish into the rafters. The porter looks accusingly at him.[paragraph break]";
+	wait for any key;
+	say "'Doctor Justinian,' she says. 'This is most irregular--'[paragraph break]";
+	say "'Regulations be damned,' he replies. 'This is my [italic type]friend,[roman type] porter. I don't care what she's done. We'll have words about this later.'[paragraph break]";
+	wait for any key;
+	say "'But--'[paragraph break]";
+	say "He holds up a hand, and the porter falls silent.[paragraph break]";
+	wait for any key;
+	say "'Good,' he says.[paragraph break]";
+	wait for any key;
+	say "He turns to you, and his voice loses its edge, grows gentle.
+
+'Marid,' he says. 'I thought you might be coming. Are you well?' ";
+
+Section 3.16.6.1.1 - Justinian's Dialogue
+
+Some dialogue branches are defined by the Table of Justinian Game Afoot Dialogue.
+
+Table of Justinian Game Afoot Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+justinian-afoot-well	true	false	"'I'm quite well, thank you.'"	""	{}
 
 Book 3.17 - Grand Forum
 
@@ -6944,6 +7084,9 @@ Instead of talking to the newsboy for the first time:
 
 'Um, thanks.'";
 	now the player carries the day-one copy of the Libri Liberi.
+	
+When Day One ends (this is the despawn the newsboy rule):
+	now the newsboy is nowhere.
 
 Chapter 3.17.2.2 - Day-One Copy of the Libri Liberi
 
@@ -7581,6 +7724,12 @@ Instead of attacking or cutting the note with Zoiro's address (this is the destr
 Instead of dropping the note with Zoiro's address (this is the dropping the note with Zoiro's address rule):
 	say "The note flutters away in the wind.";
 	now the note with Zoiro's address is nowhere.
+	
+Chapter 3.20.2.5 - Despawning the Censor and his Desk
+
+When Day One ends (this is the despawn the censor and his desk rule):
+	now the censor is nowhere;
+	now the censor's desk is nowhere.
 
 Book 3.21 - Via Mercurii
 
