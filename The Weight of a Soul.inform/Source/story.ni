@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 1.
+The release number is 230217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -77,7 +77,7 @@ Use American dialect and the serial comma.
 Use MAX_NUM_STATIC_STRINGS of 40000.
 Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
-Use MAX_STATIC_DATA of 960000.
+Use MAX_STATIC_DATA of 1440000.
 Use MAX_SYMBOLS of 40000.
 Release along with a "Marid" website and the "SpookyQuixe" interpreter.
 
@@ -200,10 +200,10 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to mechanistry[roman type]";
 	say "[line break]>[bold type]skip to first aid[roman type]";
 	say "[line break]>[bold type]skip first aid[roman type]";
-	say line break;
+	[say line break;
 	say "[line break][italic type]Day Two[roman type]";
 	say "[line break]>[bold type]skip to day two[roman type]";
-	say "[line break]>[bold type]skip to endoscope[roman type]";
+	say "[line break]>[bold type]skip to endoscope[roman type]";]
 
 Book 1.2 - Days and Scenes
 
@@ -625,7 +625,7 @@ First before examining or talking to a mutant person when mutant-tutorial-shown 
 		
 Part 1.3.2 - People Block Responses
 
-The sound of a person is usually "[regarding the item described][They] [are]n't saying anything."
+The sound of a person is usually "[regarding the item described][They] [are][if the item described is dead] silent.[otherwise]n't saying anything."
 		
 Instead of eating someone, say "What a strange notion."
 Instead of drinking, switching on, switching off, or wearing someone (this is the can't do that to a person rule): say "That doesn't make any sense."
@@ -1332,6 +1332,7 @@ Understand "raise [something]" as pulling.
 Understand "ring [something]" as swinging.
 Understand "search [something] for [text]" as consulting it about.
 Understand "search for [text] in [something]" as consulting it about (with nouns reversed).
+Understand "see [something]" as examining.
 Understand "shake [something]" as swinging.
 Understand "shuffle [something]" as swinging.
 Understand "sit at [something]" as entering.
@@ -1345,7 +1346,6 @@ Understand "tear [something]" as attacking.
 Understand "thread [something preferably held] into [something]" as inserting it into.
 Understand "unravel [something]" as opening.
 Understand "untie [something]" as opening.
-Understand "watch" as waiting.
 
 Before attacking, cutting, kissing, knocking on, pushing, pulling, rubbing, searching, smelling, swinging, squeezing, touching, or turning something worn by an other living person (called the wearer) (this is the redirect actions from other people's clothing to the wearer rule): now the noun is the wearer.
 
@@ -1516,16 +1516,17 @@ Understand "cook" or "cook [text]" as a mistake ("[if time is critical]This is n
 Understand "die" as a mistake ("[if time is critical]No.[otherwise]Entertaining such thoughts is never productive.").
 Understand "chuckle" or "grin" or "laugh" or "smile" as a mistake ("[if time is critical]This is not the time.[otherwise if (Cavala's Errands is happening and Maze Part One is unvisited) or (Walking Home in Fear is happening and the enabled of bartender-dialogue-drink is true)]You smile.[otherwise]You aren't in the mood.").
 Understand "dance" or "dance [text]" or "do a dance/jig" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood.").
+Understand "go behind [text]" or "go in front [text]" as a mistake ("(You don't need to be specific about where you're standing. Just >[bold type]examine[roman type] or >[bold type]search[roman type] what you'd like to interact with.)").
 Understand "fall down/over/--" or "misstep" or "trip" or "trip [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You're more sure-footed than that, Marid.").
 Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be more specific about where you look.").
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
-Understand "use [text]" as a mistake ("You'll have to use a more specific verb than that.").
+Understand "use [text]" as a mistake ("(You'll have to use a more specific verb than that.)").
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
 Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Yup.[otherwise]You mutter an oath under your breath.").
-Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("Type >[bold type]journal[roman type] for a reminder of the information you've come across.").
+Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("(Type >[bold type]journal[roman type] for a reminder of the information you've come across.)").
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
 Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[otherwise if time is critical]This is not the time.[otherwise]You sigh.").
 Understand "step with care" as a mistake ("[if the location is Maze Part Four]You can't bring yourself to.[otherwise]Always.").
@@ -1555,6 +1556,10 @@ After opening (this is the reveal any newly visible interior even if it contains
 		if the action is not silent, say "[We] [open] [the noun]. [They're] empty.";
 	otherwise:
 		continue the action.
+		
+Does the player mean entering something:
+	if the noun is not a door and the noun is not enterable, it is unlikely;
+	make no decision.
 
 Part 2.3.6 - Implicit Actions
 
@@ -1666,15 +1671,14 @@ To say look pending:
 
 Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 
-Understand the commands "ask" and "tell" and "say" and "answer" as something new.
+Understand the commands "ask" and "tell" and "say" and "answer" and "yes" and "no" and "sorry" as something new.
 
-Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)").
+Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" or "yes" or "no" or "sorry" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)").
 
 Understand "wave hello" or "wave hello [text]" or "wave goodbye" or "wave goodbye [text]" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"). [Because OF COURSE wxd tried this]
 
 Instead of asking someone to try doing something, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
 Instead of answering someone that something, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
-Instead of saying yes or saying no or saying sorry, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
 
 Chapter 2.3.9.3 - Engaged in Dialogue
 
@@ -1830,29 +1834,37 @@ At other times, there may be no command prompt provided at all, such as during a
 To say useful-commands-text:
 	say "[bold type]A list of useful commands[roman type]
 
->[bold type]look[roman type] (>[bold type]l[roman type] or a blank command for short) provides a description of your surroundings, including the things around you and the directions you can go in.
+>[bold type]look[roman type] (>[bold type]l[roman type] or a blank command) provides a description of your surroundings.
 
->[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type] for short) provides you with a closer look at whatever it is you're examining. You can examine practically anything, including yourself.
+>[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type]) provides you with a closer look at whatever it is you're examining. You can examine practically anything, including yourself.
 
->[bold type]inventory[roman type] (>[bold type]i[roman type] for short) tells you what items you're wearing or carrying. You can >[bold type]take[roman type] or >[bold type]drop[roman type] things; >[bold type]wear[roman type] or >[bold type]take off[roman type] clothing; >[bold type]put[roman type] items [bold type]on[roman type] or [bold type]in[roman type] containers; and so on.
+>[bold type]inventory[roman type] (>[bold type]i[roman type]) tells you what items you're wearing or carrying.
 
->[bold type]go (direction)[roman type] (>[bold type](direction)[roman type] for short) allows you to navigate your surroundings. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type]. You can also >[bold type]go to[roman type] an area you've visited before, or >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.[paragraph break]";
-	say ">[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type] for short) allows you to interact with someone. You may find it worthwhile to talk to people multiple times, as newly discovered information can open up new conversational options.
+>[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type]) allows you to interact with someone.
 
->[bold type]listen[roman type], >[bold type]smell[roman type], and >[bold type]touch[roman type] allow you to investigate your environment in more detail. You may find it useful to >[bold type]search[roman type] things or >[bold type]look under[roman type] them; >[bold type]push[roman type], >[bold type]pull[roman type], or >[bold type]turn[roman type] objects; >[bold type]attack[roman type], >[bold type]cut[roman type], >[bold type]climb[roman type], and more. The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.
+>[bold type]take[roman type], >[bold type]drop[roman type], >[bold type]open[roman type], and >[bold type]close[roman type] allow you to manipulate things around you. You can also >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.[paragraph break]";
+	say ">[bold type]go (direction)[roman type] (>[bold type](direction)[roman type]) allows you to navigate the world. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type].
+
+>[bold type]sleep[roman type] advances the story at the end of each in-game day.
+
+>[bold type]go to[roman type] lets you quickly travel to an area you've visited before.
 
 >[bold type]help[roman type] opens the help menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
 
-Lastly, some 'out of world' commands: >[bold type]undo[roman type] takes back your last command, while >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it. >[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved. And >[bold type]quit[roman type] exits the game.";
+>[bold type]undo[roman type] takes back your last command. >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it.
+
+>[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved. >[bold type]quit[roman type] exits the game.
+
+The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.";
 
 To say credits-text:
 	say "[bold type]Acknowledgements[roman type]
 
 [italic type]The Weight of a Soul[roman type] was written by Chin Kee Yong a.k.a. CKY, a Singaporean artist, writer, game designer, and coffee addict. It is my first serious foray into interactive fiction.
 
-I'd like to thank Lieu, Gu, Wen, Chew, Sean, WY, WH, GA, Marvin, Matthew, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
+I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family for supporting me, to the Inform team for creating an amazing IDE, and to the IF community for creating a truly inspirational body of work. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -2799,7 +2811,7 @@ Instead of taking the surgical lamps, say "The lamps seems to be tethered in pla
 
 Some shelves of medical supplies are a scenery supporter in the Surgery Room. 
 Understand "vials" or "and" or "shelf" as the shelves of medical supplies.
-Instead of examining or searching the shelves of medical supplies, say "[if something is on the shelves of medical supplies]Nestled among the medical supplies, you spy [a list of things on the shelves of medical supplies].[otherwise]You spy nothing useful on the shelves, well-stocked though they are."
+Instead of examining or searching the shelves of medical supplies, say "[if a described thing is on the shelves of medical supplies]Nestled among the medical supplies, you spy [a list of described things on the shelves of medical supplies].[otherwise]You spy nothing useful on the shelves, well-stocked though they are."
 Instead of entering the shelves of medical supplies, say "There's no need; you can reach all the shelves quite easily."
 
 Part 3.2.2 - Calomel Curtain
@@ -2818,10 +2830,10 @@ After going through the calomel curtain while the player is staid: say "A wave o
 
 Part 3.2.3 - Gurney
 
-The gurney is a fixed in place enterable supporter in the Surgery Room. "[if Reden is on the gurney][reden-gurney-description].[otherwise if something is on the gurney]On the gurney [is-are a list of things on the gurney].[otherwise]The gurney in the center of the room is empty."
+The gurney is a fixed in place enterable supporter in the Surgery Room. "[if Reden is on the gurney][reden-gurney-description].[otherwise if a described thing is on the gurney]On the gurney [is-are a list of described things on the gurney].[otherwise]The gurney in the center of the room is empty."
 Understand "sober" or "mechanical" or "bed" or "drawer" or "drawers" or "side" or "of" as the gurney.
 
-Instead of examining the gurney, say "It's a sober mechanical bed with various devices and surgical implements attached.[if Reden is on the gurney] [reden-gurney-description].[otherwise if something is on the gurney][line break]On the gurney [is-are a list of things on the gurney]."
+Instead of examining the gurney, say "It's a sober mechanical bed with various devices and surgical implements attached.[if Reden is on the gurney] [reden-gurney-description].[otherwise if a described thing is on the gurney][line break]On the gurney [is-are a list of described things on the gurney]."
 
 The attached surgical implements are part of the gurney. Understand "devices" or "device" or "implement" or "strap" or "straps" or "hook" as the implements. Instead of doing anything with the implements, say "You don't think anything useful will result from fiddling with the gurney devices."
 
@@ -2835,6 +2847,7 @@ Part 3.2.4 - Reden
 
 Reden is a goblin man on the gurney. 
 The scent is "[if Reden is living]He reeks.[otherwise if Reden is on the gurney]He's going to have to be embalmed soon.[otherwise]He smells of embalming fluid."
+The sound is "[if Reden is living]Hacking, gurgling, wheezing.[otherwise]He is silent."
 Understand "patient" as Reden.
 Understand "chest" or "cavity" or "autopsy" as Reden when Reden's Autopsy is happening.
 
@@ -2850,11 +2863,9 @@ The description of Reden is "[if Reden is living]Reden, goblin male aged 37, stu
 
 Instead of bandaging Reden with, say "It's a little late for that."
 
-Chapter 3.2.4.1 - Streams of Black Blood
-
 Some streams of black blood are part of Reden.
 The description is "A chilling symptom. It's unlike any affliction you've ever studied."
-Understand "fluid/effluvium" or "stream" or "stain/stains" or "spiderweb" or "pattern" or "blackened" or "vessel/vessels/artery/arteries/arterial" or "tissue/tissues" as the streams of black blood.
+Understand "fluid/effluvium" or "stream" or "stain/stains" or "spiderweb" or "pattern" or "blackened" or "vessel/vessels/artery/arteries/arterial" or "tissue/tissues" or "drop/drops/droplet/droplets" as the streams of black blood.
 Instead of doing anything other than examining or rubbing with the streams of black blood, say "The fluid could be contagious. You shouldn't interact carelessly with it."
 Instead of doing anything when the second noun is the streams of black blood, say "The fluid could be contagious. You shouldn't interact carelessly with it."
 
@@ -2908,7 +2919,13 @@ The CSORSP [current step of Reden's surgical procedure] is a number that varies.
 
 A purely-surgical-necessity is a kind of thing. [These things will be removed from play when Reden's Surgery ends.]
 A purely-surgical-necessity has some text called the terse appellation.
-Instead of doing anything other than taking or examining when the noun is a purely-surgical-necessity or the second noun is a purely-surgical-necessity, say "This is not the time."
+Instead of doing anything when the noun is a purely-surgical-necessity or the second noun is a purely-surgical-necessity:
+	if the action name part of the current action is:
+		-- the examining action: continue the action;
+		-- the pulling action: continue the action;
+		-- the removing it from action: continue the action;
+		-- the taking action: continue the action;
+	say "You don't have time for that."
 
 The Reden's surgery holding zone is a container. [This holds surgical necessities that are ready to go on stage when Marid examines the appropriate thing.]
 
@@ -2928,6 +2945,36 @@ To advance Reden's surgical procedure:
 	if there is a spawned items entry:
 		repeat with current item running through the spawned items entry:
 			now the current item is in the Reden's surgery holding zone.
+			
+Report asking for help during Reden's Surgery (this is the show message after help menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
+		
+Report asking for commands during Reden's Surgery (this is the show message after commands menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
+		
+Report asking for journal during Reden's Surgery (this is the show message after journal menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
+		
+Report asking for characters during Reden's Surgery (this is the show message after characters menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
+		
+Report asking for map during Reden's Surgery (this is the show message after map menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
+		
+Report asking for hints during Reden's Surgery (this is the show message after hints menu rule):
+	choose row CSORSP in the Table of Reden's Surgical Procedure;
+	if there is no item required entry:
+		say "[happening entry][paragraph break]";
 
 Table of Reden's Surgical Procedure
 index	happening	spawned items	item required
@@ -2944,7 +2991,7 @@ index	happening	spawned items	item required
 2	"A convulsion -- Doctor Cavala takes a step back as the gurney creaks. 'We need to sedate the patient,' she says, 'or we'll never get anything done. Marid, get the soporific from the shelves. I'm going to take a look at his eyes...'
 
 You glance up at the shelves ringing the surgery room."	{soporific, vivific}	--
-3	"'...massive internal bleeding...' she mutters."	--	--
+3	"'...massive internal bleeding...' she mutters.[if the current action is looking][paragraph break](Not sure what to do? Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)"	--	--
 4	"'...unnerving. I've never seen anything like it.' Doctor Cavala shakes her head before glancing to you. 'Marid. Did you find the soporific? Give it to me.'"	--	soporific
 
 The soporific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer soporifer[roman type]". The terse appellation is "the soporific".
@@ -2956,8 +3003,8 @@ Understand "labeled" or "aer" or "vivificans" as the vivific.
 
 Understand "inhalers" as the soporific and the vivific.
 
-The phantom-soporific is an undescribed purely-surgical-necessity in the Surgery Room. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
-Instead of doing anything with the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
+The phantom-soporific is an undescribed purely-surgical-necessity. It is on the shelves of medical supplies. The printed name is "soporific". [This is a bone for new players, after playtesting revealed several attempts to interact with the soporific followed by confusion.]
+Instead of doing anything when the current action involves the phantom-soporific, say "You can't see anything like that at the moment.[paragraph break](Some things are hidden until you discover them. Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
 Understand "soporific" or "sedative" as the phantom-soporific.
 
 Before examining or searching the shelves of medical supplies when the soporific is in the Reden's surgery holding zone (this is the spawn the soporific and vivific rule):
@@ -3010,6 +3057,10 @@ The description is "[if the purely-surgical-stethoscope is carried by Doctor Cav
 Understand "stethoscope" or "orichalcum" or "ausculting" or "dish" as the purely-surgical-stethoscope.
 Instead of doing anything other than examining to the purely-surgical-stethoscope when the purely-surgical-stethoscope is carried by Doctor Cavala, say "You can't disturb Doctor Cavala, not now."
 
+The phantom-stethoscope is an undescribed purely-surgical-necessity. It is on the gurney. The printed name is "stethoscope".
+Instead of doing anything when the current action involves the phantom-stethoscope, say "You can't see anything like that at the moment.[paragraph break](Some things are hidden until you discover them. Try typing >[bold type]examine gurney[roman type] or >[bold type]gurney[roman type].)[line break]".
+Understand "stethoscope" or "orichalcum" or "ausculting" or "dish" as the phantom-stethoscope.
+
 Instead of examining, looking under, or searching the gurney when the purely-surgical-stethoscope is in the Reden's surgery holding zone (this is the spawn the stethoscope rule):
 	say "You look behind the gurney and there it is -- a stethoscope reclining snakelike on its hook.";
 	now the purely-surgical-stethoscope is in the Surgery Room;
@@ -3058,7 +3109,11 @@ There is no mirth in her voice, and for a moment you are at a loss for words."	-
 
 The catholicon inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]halitus catholiconis[roman type]". The terse appellation is "the catholicon".
 The description is "Something is moving inside."
-Understand "labeled" or "halitus" or "catholiconis" as the catholicon.
+Understand "labeled" or "halitus" or "catholiconis" or "breath of/--" as the catholicon.
+
+The phantom-catholicon is an undescribed purely-surgical-necessity. It is on the shelves of medical supplies. The printed name is "catholicon".
+Instead of doing anything when the current action involves the phantom-catholicon, say "You can't see anything like that at the moment.[paragraph break](Some things are hidden until you discover them. Try typing >[bold type]examine shelves[roman type] or >[bold type]shelves[roman type].)[line break]".
+Understand "breath of/--" or "catholicon" as the phantom-catholicon.
 
 The catholiconometer is a number that varies. [You get a series of messages before actually finding the catholicon. This number keeps track of how many times you've searched.]
 
@@ -3106,6 +3161,8 @@ happening
 "[regarding the item required in row CSORSP of the Table of Reden's Surgical Procedure]'I need [them] [italic type]now[roman type], Marid,' Doctor Cavala hisses."
 "Reden suddenly coughs, and Doctor Cavala narrowly avoids a fusillade of black droplets."
 "Doctor Cavala curses as she fumbles with the gurney mechanisms."
+"The seconds slip away."
+"'Marid, I need [the terse appellation of the item required in row CSORSP of the Table of Reden's Surgical Procedure].'"
 	
 Chapter 3.2.5.2 - Reden's Screwed
 
@@ -3230,7 +3287,7 @@ Instead of switching off the lamps during Reden's Surgery, say "But a surgery is
 
 Instead of going from the Surgery Room during Reden's Surgery, say "Doctor Cavala has not given up hope, and neither should you."
 
-Instead of doing anything other than examining to Reden during Reden's Surgery, say "You can't disturb the patient at this critical juncture."
+Instead of doing anything other than examining or listening to Reden during Reden's Surgery, say "You can't disturb the patient at this critical juncture."
 Instead of doing anything when the second noun is Reden during Reden's Surgery, say "You can't disturb the patient at this critical juncture."
 
 Instead of doing anything other than examining or listening to Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
@@ -3286,7 +3343,8 @@ Instead of searching the small brass handbell, say "Inside the bell is its clapp
 Instead of taking the small brass handbell, say "You see little point in removing it from the counter."
 
 The view of the surgery room is faraway scenery in the Clinic.
-Instead of doing anything when the current action involves the view of the surgery room, say "You can't perceive much of the surgery room from here."
+Before entering the view of the surgery room, try going north instead.
+Instead of doing anything when the current action is not entering and the current action involves the view of the surgery room, say "You can't perceive much of the surgery room from here."
 
 Chapter 3.3.1.1 - Consulting Study
 
@@ -4140,11 +4198,11 @@ Last after going to the Clinic when Bad News from Cavala is happening (this is t
 		say "'More deaths?'[paragraph break]";
 	otherwise:
 		say "'Not yet,' you say.[paragraph break]";
-	say "Horatio passes the newspaper to you. 'Take a look at this.'[paragraph break]";
+	say "She passes the newspaper to you. 'Take a look at this.'[paragraph break]";
 	wait for any key;
 	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, passed away last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
 	wait for any key;
-	say "Your hands start to shake.[paragraph break]";
+	say "A chill creeps up your spine.[paragraph break]";
 	wait for any key;
 	say "Doctor Cavala nods grimly. 'Our suspicions have proven true. Reden is the first of many. More than that -- Doctor Arturus himself is among the casualties.'";
 	start a dialogue with Doctor Cavala using dialogue cavala-badnews-home.
@@ -4983,11 +5041,6 @@ Instead of attacking, burning, cutting, knocking on, pulling, or pushing Saliunc
 Instead of talking to Saliunca when Saliunca is hostile, say "You have nothing more to say to her."
 Instead of touching Saliunca when Saliunca is hostile, say "You are loath to touch her."
 
-Instead of talking to Saliunca when Saliunca is improper-named:
-	now the printed name of Saliunca is "Saliunca";
-	now Saliunca is proper-named;
-	continue the action.
-
 Saliunca is carrying a wicker basket.
 Instead of examining the wicker basket, say "It's an ordinary wicker basket."
 Instead of attacking, taking, pushing, pulling, squeezing, or turning the wicker basket when Saliunca is friendly, say "That hardly seems called for."
@@ -5138,6 +5191,28 @@ To say saliunca-why-text:
 'For some peace, Marid, for some peace. You understand, don't you?' "
 
 The home dialogue branch of Saliunca is saliunca-home1.
+
+After reading out saliunca-greet1:
+	now the printed name of Saliunca is "Saliunca";
+	now Saliunca is proper-named;
+	now the conversational partner text is "Talking to Saliunca";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	
+After reading out saliunca-greet2:
+	now the printed name of Saliunca is "Saliunca";
+	now Saliunca is proper-named;
+	now the conversational partner text is "Talking to Saliunca";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	
+After reading out saliunca-greet3:
+	now the printed name of Saliunca is "Saliunca";
+	now Saliunca is proper-named;
+	now the conversational partner text is "Talking to Saliunca";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+
 After reading out saliunca-rush: now the home dialogue branch of Saliunca is saliunca-home2.
 After reading out saliunca-seeingyou: now the home dialogue branch of Saliunca is saliunca-home2.
 After reading out saliunca-thenkilling: now the enabled of saliunca-butkilling is false.
@@ -6455,6 +6530,8 @@ The description is "A black banner is traditionally put up when the head of the 
 The sound is "It flaps disconsolately."
 Understand "shadow" as the trailing black banner.
 
+After writing a paragraph about the trailing black banner: now ambience suppression is true.
+
 When Day Two begins (this is the spawn the black banner rule):
 	now the trailing black banner is in the Junction.
 	
@@ -6856,20 +6933,18 @@ porter-afoot-whyclosed	false	true	"'Why is the Turris Infinita closed?'"	"'Why i
 The porter folds her arms. 'I don't owe you an explanation. You, on the other hand...'"	{porter-afoot-charmed, porter-afoot-business}
 porter-afoot-apology	false	true	"'I apologize for my conduct yesterday. I'm sorry.'"	"'I apologize for my conduct yesterday. I'm sorry.'
 
-'Oh?' She wrinkles her nose. 'How very [italic type]contrite[roman type] of you. Do you expect a pardon? I'm afraid none is forthcoming.'"	{porter-afoot-business, porter-afoot-actuallyfuckyou}
-porter-afoot-business	true	false	"'I'm here on business.'"	"'I'm here on business.'
+'Oh?' She wrinkles her nose. 'How very [italic type]contrite[roman type] of you. Do you expect a pardon? I'm afraid none is forthcoming.'"	{porter-afoot-charmed, porter-afoot-business, porter-afoot-actuallyfuckyou}
+porter-afoot-business	true	false	"'I'm here on business.'"	"'I'm here on business,' you say pointedly.
 
-She rolls her eyes. 'You and every dullard that comes through these doors. Do I look as though I give a whit about your business? Which part of [']no trespassing['] do you not comprehend?'"	{porter-afoot-showsignum, porter-afoot-actuallyfuckyou}
-porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
+She rolls her eyes. 'You and every dullard that comes through these doors. Do I look as though I give a whit about your business? Which part of [']no trespassing['] do you not comprehend?'"	{porter-afoot-unreasonable, porter-afoot-showsignum}
+porter-afoot-unreasonable	true	false	"'You're being completely unreasonable!'"	"'You're being completely unreasonable!'
 
-The porter's gaze falls on the slip of paper in your hand. The corner of her mouth twitches.
+The porter laughs. 'Unreasonable? Oh, that's rich! As if you had any inkling -- a mud-soaked vagrant like you--'
 
-[wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and do inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
+She leans back at her desk, and flashes you the most infuriating smirk.
 
-[wait for any key]Your face flushes. 'You--'
-
-[Justinian's glorious entrance]"	{justinian-afoot-well}
-porter-afoot-actuallyfuckyou	false	false	"'You know what? Screw you.' <Trash her desk.>"	"'You know what? Screw you.'
+'I have no obligation,' she tells you, 'to provide you [italic type]anything[roman type].'"	{porter-afoot-showsignum, porter-afoot-actuallyfuckyou}
+porter-afoot-actuallyfuckyou	true	false	"'You know what? Screw you.' <Trash her desk.>"	"'You know what? [italic type]Screw you.'[roman type]
 
 'Wha--'
 
@@ -6879,28 +6954,35 @@ You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots 
 
 [italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking pile of--'[roman type]
 
-[Justinian's glorious entrance]"	{justinian-afoot-well}
+[Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
+porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
 
-After reading out porter-afoot-charmed:
-	now the enabled of porter-afoot-actuallyfuckyou is true.
+The porter's gaze falls on the slip of paper in your hand. The corner of her mouth twitches.
+
+[wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and do inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
+
+[wait for any key]Your face flushes. 'You--'
+
+[Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 
 Section 3.16.6.1.1 - Justinian's Glorious Entrance
 
 To say Justinian's glorious entrance:
 	wait for any key;
-	say "There is the rustle of a curtain being drawn open. The report of surgical boots on glass.[paragraph break]";
+	say "A curtain rattles open. Surgical boots click on glass.[paragraph break]";
 	wait for any key;
 	say "'What's going on here?' a smoky voice demands.[paragraph break]";
 	wait for any key;
-	say "You turn, and a young man with auburn hair is striding purposefully from the arch of Doctor Arturus's clinic. His coat is immaculately tailored. There is an intensity in his expression, his visage.[paragraph break]";
+	say "You turn, and a young man with auburn hair is striding purposefully from the arch of Doctor Arturus's clinic. His coat ripples with natron filigree. There is an intensity in his expression, his visage.[paragraph break]";
 	wait for any key;
 	say "Your heart skips a beat.[paragraph break]";
 	say "'D-- Doctor Justinian,' you say.[paragraph break]";
 	wait for any key;
-	say "'Marid?' He frowns. '[italic type]Excubitores![roman type] Unhand this woman. She is a guest.'[paragraph break]";
+	say "'Marid?' He furrows his brow. '[italic type]Excubitores![roman type] Unhand this woman. She is a guest.'[paragraph break]";
 	say "The gargoyles release you and vanish into the rafters. The porter looks accusingly at him.[paragraph break]";
 	wait for any key;
-	say "'Doctor Justinian,' she says. 'This is most irregular--'[paragraph break]";
+	say "'Doctor Justinian,' she says. 'This is [italic type]exceedingly[roman type] irregular--'[paragraph break]";
+	wait for any key;
 	say "'Regulations be damned,' he replies. 'This is my [italic type]friend,[roman type] porter. I don't care what she's done. We'll have words about this later.'[paragraph break]";
 	wait for any key;
 	say "'But--'[paragraph break]";
@@ -6908,9 +6990,9 @@ To say Justinian's glorious entrance:
 	wait for any key;
 	say "'Good,' he says.[paragraph break]";
 	wait for any key;
-	say "He turns to you, and his voice loses its edge, grows gentle.
-
-'Marid,' he says. 'I thought you might be coming. Are you well?' ";
+	say "He turns to you, and his voice loses its edge, grows gentle.[paragraph break]";
+	wait for any key;
+	say "'Marid,' he says. 'I thought you might be coming.' ";
 
 Section 3.16.6.1.1 - Justinian's Dialogue
 
@@ -6918,7 +7000,17 @@ Some dialogue branches are defined by the Table of Justinian Game Afoot Dialogue
 
 Table of Justinian Game Afoot Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-justinian-afoot-well	true	false	"'I'm quite well, thank you.'"	""	{}
+justinian-afoot-thanks	true	false	"'Thanks for that.'"	"'Thanks for that,' you say lamely.
+
+He smiles. 'It's the least I can do. Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'"	{}
+justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"	"'I-It's good to see you,' you stutter. 'Doctor Justinian.'
+
+Oh Primes, are you [italic type]blushing?[roman type] You're making a fool of yourself--
+
+He smiles. 'It's just Justinian, remember? Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'"	{}
+justinian-afoot-flirt	true	false	"'I wouldn't miss a chance to see you, Doctor Justinian.'"	"[italic type]I wo--[roman type]
+
+No! No no no! That's much too forward."	{justinian-afoot-thanks, justinian-afoot-goodtosee}
 
 Book 3.17 - Grand Forum
 
@@ -7185,7 +7277,9 @@ After going while day-one-newspaper-was-destroyed is true:
 
 Book 3.18 - Canalside Steps
 
-The Canalside Steps are a proper-named room in Outdoors. "The mist of the Bilious Canal slicks this cramped and winding stairway, and the rusted railings are battered with white spray. The bustle of the bridge reverberates cascading down the steps until they sink beneath the dark rushing water."
+The Canalside Steps are a proper-named room in Outdoors. "The mist of the Bilious Canal slicks this cramped and winding stairway, and the rusted railings are battered with white spray. The bustle of the bridge reverberates cascading down the steps until they sink beneath the dark rushing water.
+
+Among the moss and graffiti of the east embankment, a mysterious iron door is set into the stone. The only other way lies back up to the Via Terminalis bridge."
 They are below Via Terminalis Bridge and south of Via Terminalis Bridge.
 Understand "stairway" as the Canalside Steps.
 
@@ -7251,13 +7345,13 @@ Before touching the ancient embankment, try touching the aspirated graffiti inst
 
 Part 3.18.2 - Mysterious Iron Door
 
-The mysterious iron door is a door. "Among the moss and graffiti of the east embankment, a mysterious iron door is set into the stone."
+The mysterious iron door is a scenery door.
 The description is "An iron door flush with the embankment. It is dirty, but without rust, and unmarked except for a crescent-shaped window. There is no handle."
 The sound is "You hear nothing beyond the door."
 The scent is "There is a hint of incense from the window."
 It is east of the Canalside Steps and west of the Sewer Enclave.
 It is better left open.
-Instead of opening or closing the mysterious iron door, say "The door has no handle."
+Instead of opening or closing the mysterious iron door, say "The door has no handle[if the player carries the bundle of documents]. In any case, you don't think the basilica is this way[paragraph break]."
 Instead of cutting the mysterious iron door, say "The iron is thick and sturdy, and you give up after a few minutes of scratching the surface."
 Instead of attacking, pushing, or pulling the mysterious iron door, say "The door doesn't budge."
 Instead of looking under the mysterious iron door, say "The gap under the door is too small to look through."
