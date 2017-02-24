@@ -74,6 +74,7 @@ Book 1.1 - Miscellany
 Part 1.1.1 - Use Options
 
 Use American dialect and the serial comma.
+Use MAX_DICT_ENTRIES of 4000.
 Use MAX_NUM_STATIC_STRINGS of 40000.
 Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
@@ -281,6 +282,7 @@ Bad News from Cavala ends when the player carries the signum of Doctor Cavala.
 
 There is a scene called The Game is Afoot. [Marid makes her way to the Turris Infinita to start her investigations.]
 The Game is Afoot begins when Bad News from Cavala ends.
+The Game is Afoot ends when the player is in Arturus's Clinic.
 
 Four Investigations is a scene. [The overarching scene for most of Day Two.]
 Four Investigations begins when The Game is Afoot ends.
@@ -291,7 +293,7 @@ All Quiet on the Western Front begins when The Game is Afoot begins.
 All Quiet on the Western Front ends when Four Investigations ends.
 
 A Crucible Game is a scene. [This marks when Doctor Cavala and Horatio are playing crucible.]
-A Crucible Game begins when the main crucible timer is greater than 0.
+A Crucible Game begins when the main crucible timer is greater than 1.
 A Crucible Game ends when All Quiet on the Western Front ends.
 
 [1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
@@ -308,7 +310,7 @@ Reden Investigation begins when Bad News from Cavala begins.
 - Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
 
 Nacarat Investigation is a scene.
-Nacarat Investigation begins when Bad News from Cavala begins.
+Nacarat Investigation begins when Four Investigations begins.
 
 [3. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
 - The doctor died the afternoon of Day One after an argument with Justinian.
@@ -316,7 +318,7 @@ Nacarat Investigation begins when Bad News from Cavala begins.
 - Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
 
 Arturus Investigation is a scene.
-Arturus Investigation begins when Bad News from Cavala begins.
+Arturus Investigation begins when Four Investigations begins.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Died early Day Two morning. Poisoned the night of Day One. Caused a bunch of large-scale deaths in the Shanty Quarter.
@@ -326,7 +328,7 @@ Arturus Investigation begins when Bad News from Cavala begins.
 - They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
 
 Thugs Investigation is a scene.
-Thugs Investigation begins when Bad News from Cavala begins.
+Thugs Investigation begins when Four Investigations begins.
 
 [We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
 
@@ -1140,9 +1142,9 @@ First rule for printing a parser error (this is the swear word filter rule):
 	repeat through the Table of Severe Swear Words:
 		if the player's command includes the topic entry:
 			if time is critical:
-				say "If you feel frustrated, type >HELP for hints." instead;
+				say "If you feel frustrated, type >[bold type]help[roman type] for hints." instead;
 			otherwise:
-				say "[one of]Language, Marid.[or]'Vulgar words reveal one's vulgar nature.' Philosopher Scepter.[or]If you feel frustrated, type >HELP for hints.[stopping]" instead;
+				say "[one of]Language, Marid.[or]'Vulgar words reveal one's vulgar nature.' Philosopher Scepter.[or]If you feel frustrated, type >[bold type]help[roman type] for hints.[stopping]" instead;
 	make no decision.
 	
 Table of Mild Swear Words
@@ -1511,6 +1513,7 @@ Check tickling the player: say "It's impossible to tickle oneself. The exact rea
 Check tickling a friendly person: say "You aren't [italic type]that[roman type] friendly with [the noun]."; stop the action.
 Check tickling a hostile person: say "You doubt [the noun] will let you do that."; stop the action.
 
+Understand "blush" as a mistake ("[if time is critical]This is not the time.[otherwise]Absolutely not.").
 Understand "bow" or "curtsy" or "curtsey" as a mistake ("[if time is critical]This is not the time.[otherwise]That's a little old-fashioned, don't you think?").
 Understand "cook" or "cook [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You have neither the knowledge nor the inclination.").
 Understand "die" as a mistake ("[if time is critical]No.[otherwise]Entertaining such thoughts is never productive.").
@@ -1537,7 +1540,10 @@ Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]Th
 Part 2.3.4 - New Parser Error Messages
 
 Rule for printing a parser error when the latest parser error is the can't see any such thing error (this is the new can't see any such thing rule):
-	say "That is either not important or not something you can see." instead.
+	if the player's command includes "go/walk/run":
+		say "You can only go in compass directions, or up, down, in, or out." instead;
+	otherwise:
+		say "That is either not important or not something you can see." instead.
 	
 Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
 	say "That object or command isn't available[one of].
@@ -1545,7 +1551,10 @@ Rule for printing a parser error when the latest parser error is the not a verb 
 (Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.)[or].[stopping]" instead.
 	
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
-	say "That isn't a room you've visited." instead.
+	if the player's command includes "go/revisit/return":
+		say "That isn't a room you've visited." instead;
+	otherwise:
+		say "That is either not important or not something you can see." instead.
 	
 Part 2.3.5 - New Action Behavior
 
@@ -2853,7 +2862,7 @@ Understand "chest" or "cavity" or "autopsy" as Reden when Reden's Autopsy is hap
 
 To say reden-gurney-description:
 	if Reden is living:
-		say "The patient shudders against his straps on the gurney, black blood streaming from his eyes and mouth, even as Doctor Cavala fights to isolate the infection";
+		say "The patient[first time] -- Reden was his name? -- he[only] shudders against his straps on the gurney, black blood streaming from his eyes and mouth, even as Doctor Cavala fights to isolate the infection";
 		now Doctor Cavala is mentioned;
 	otherwise:
 		say "Reden lies on the gurney, lifeless and still";
@@ -2874,6 +2883,8 @@ Part 3.2.5 - Surgery Room during Prologue
 Doctor Cavala is in the Surgery Room.
 
 When play begins (this is the print the introduction rule):
+	clear the screen;
+	say paragraph break;
 	say "Too fast. It all happened too fast.[run paragraph on]";
 	wait for any key;
 	say "[paragraph break]He was healthy not a day before, or so he said when he stumbled into the clinic just minutes ago. You should have seen the signs -- the recurring shivers, the black stains around his eyes -- but the shadows were long in the hour of night, and in the darkness you couldn't see, you couldn't see...[run paragraph on]";
@@ -3248,11 +3259,11 @@ cavala-redendead-whatnext	true	false	"'What happens next?'"	"'What happens next?
 
 You sigh and pull off your mask. 'But what happens next?'
 
-[end if]'It's a unique situation, to be sure.' Doctor Cavala [if the player is wearing the surgical mask]takes the mask from you and [end if]begins to pace around the gurney. 'For any other disease, our course would be straightforward. Log the death. Inform the family. Check for symptoms. Do our best to contain the contagion. Easier said than done, but at least it would be straightforward.
+[wait for any key][end if]'It's a unique situation, to be sure.' Doctor Cavala [if the player is wearing the surgical mask]takes the mask from you and [end if]begins to pace around the gurney. 'For any other disease, our course would be straightforward. Log the death. Inform the family. Check for symptoms. Do our best to contain the contagion. Easier said than done, but at least it would be straightforward.
 
-'Now Reden has died of an illness I cannot identify. And I've seen a lot of illnesses, Marid.' She studies her gloved hands, stained black with blood.  'In the morning I will reference the [italic type]Alchemical Library of Fluids[roman type] and contact my colleagues for help... but we must be prepared for the possibility that we are dealing with an unknown affliction.
+[wait for any key]'Now Reden has died of an illness I cannot identify. And I've seen a lot of illnesses, Marid.' She studies her gloved hands, stained black with blood.  'In the morning I will reference the [italic type]Alchemical Library of Fluids[roman type] and contact my colleagues for help... but we must be prepared for the possibility that we are dealing with an unknown affliction.
 
-'For now, we proceed with caution.' She gives you a curt nod. 'After you clean up the surgery room, Marid, you may retire for the night. You've been a good assistant. As for myself... I will begin on the paperwork, and on the task of moving the body to the mortuary.'"	{cavala-redendead-goodbye, cavala-redendead-help}
+[wait for any key]'For now, we proceed with caution.' She gives you a curt nod. 'After you clean up the surgery room, Marid, you may retire for the night. You've been a good assistant. As for myself... I will begin on the paperwork, and on the task of moving the body to the mortuary.'"	{cavala-redendead-goodbye, cavala-redendead-help}
 cavala-redendead-goodbye	true	false	"'Yes, Doctor.'"	"'Yes, Doctor.'
 
 'See that it's done.'
@@ -4487,7 +4498,7 @@ Horatio produces a pack of cards and sits opposite Doctor Cavala.";
 				otherwise if catalysis is "dissolve":
 					say "[The active crucible player] dissolves one of [their] [italic type]trinitates[roman type]. ";
 				otherwise:
-					say "[The active crucible player] [one of]discards a card[or]draws a card from the [italic type][drawn card source][roman type][or]pores over [regarding the active crucible player][their] cards[as decreasingly likely outcomes]. ";
+					say "[The active crucible player] [one of]discards a card[or]draws a card from the [italic type][drawn card source][roman type][or]examines [regarding the active crucible player][their] cards[as decreasingly likely outcomes]. ";
 				if crucible callout text order is 2, say "'[discarded card].' ";
 				say line break;
 			if the active crucible player is Doctor Cavala:
@@ -6652,6 +6663,7 @@ The sound is "It's quiet. You could hear a pin drop."
 The scent is "The air is cold and sterile."
 The exit reminder is "You can take the lift up to the domiciles, go east to Doctor Arturus's clinic, or leave to the west."
 The going-in disambiguation is "Do you mean going up (to the domiciles) or going east (to Doctor Arturus's clinic)?"
+Understand "foyer" as the Turris Infinita.
 
 Before examining west in the Turris Infinita, try examining the ornate double doors instead.
 Before examining outside in the Turris Infinita, try examining the ornate double doors instead.
@@ -6868,9 +6880,11 @@ To evict the player from the Turris Infinita:
 	now the player is blacklisted by Turris Infinita security;
 	say "'Guards!' she calls. 'Show our guest out.'
 
-Two gargoyles land to your left and right with a thud. They grab your arms and escort you out the doors, which slam behind you.";
-	now the player is in the Via Terminalis Junction;
-	now the ornate double doors are closed.
+Two gargoyles land to your left and right with a thud. They grab your arms and escort you out the doors, which slam behind you.[line break]";
+	move the player to the Via Terminalis Junction, without printing a room description;
+	now the ornate double doors are closed;
+	wait for any key;
+	try looking.
 	
 Instead of opening the ornate double doors when the player is blacklisted by Turris Infinita security (this is the blacklisted by Turris Infinita security during Day One rule):
 	say "You have barely made it two steps in before the gargoyles recognize you and throw you out again.";
@@ -6933,7 +6947,7 @@ porter-afoot-whyclosed	false	true	"'Why is the Turris Infinita closed?'"	"'Why i
 The porter folds her arms. 'I don't owe you an explanation. You, on the other hand...'"	{porter-afoot-charmed, porter-afoot-business}
 porter-afoot-apology	false	true	"'I apologize for my conduct yesterday. I'm sorry.'"	"'I apologize for my conduct yesterday. I'm sorry.'
 
-'Oh?' She wrinkles her nose. 'How very [italic type]contrite[roman type] of you. Do you expect a pardon? I'm afraid none is forthcoming.'"	{porter-afoot-charmed, porter-afoot-business, porter-afoot-actuallyfuckyou}
+'Oh?' She wrinkles her nose. 'How very [italic type]contrite[roman type] of you. Do you expect a pardon? I'm afraid none is forthcoming.'"	{porter-afoot-charmed, porter-afoot-business}
 porter-afoot-business	true	false	"'I'm here on business.'"	"'I'm here on business,' you say pointedly.
 
 She rolls her eyes. 'You and every dullard that comes through these doors. Do I look as though I give a whit about your business? Which part of [']no trespassing['] do you not comprehend?'"	{porter-afoot-unreasonable, porter-afoot-showsignum}
@@ -6993,6 +7007,9 @@ To say Justinian's glorious entrance:
 	say "He turns to you, and his voice loses its edge, grows gentle.[paragraph break]";
 	wait for any key;
 	say "'Marid,' he says. 'I thought you might be coming.' ";
+	now the conversational partner text is "Talking to Justinian";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
 
 Section 3.16.6.1.1 - Justinian's Dialogue
 
@@ -7002,15 +7019,102 @@ Table of Justinian Game Afoot Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-afoot-thanks	true	false	"'Thanks for that.'"	"'Thanks for that,' you say lamely.
 
-He smiles. 'It's the least I can do. Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'"	{}
-justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"	"'I-It's good to see you,' you stutter. 'Doctor Justinian.'
+He smiles. 'It's the least I can do. Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
+justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"	"'I-- It's good to see you,' you stutter. 'Doctor Justinian.'
 
 Oh Primes, are you [italic type]blushing?[roman type] You're making a fool of yourself--
 
-He smiles. 'It's just Justinian, remember? Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'"	{}
+He smiles. 'It's just Justinian, remember? Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
 justinian-afoot-flirt	true	false	"'I wouldn't miss a chance to see you, Doctor Justinian.'"	"[italic type]I wo--[roman type]
 
-No! No no no! That's much too forward."	{justinian-afoot-thanks, justinian-afoot-goodtosee}
+No! No no no! That's much too forward. You wouldn't be caught dead saying that."	{justinian-afoot-thanks, justinian-afoot-goodtosee}
+
+To say justinian-afoot-toclinic:
+	move the player to Arturus's Clinic, without printing a room description;
+	wait for any key;
+	center "* * *";
+	say paragraph break;
+	say line break;
+	wait for any key;
+	redraw status line;
+	say "[bold type]Arturus's Clinic[roman type][line break]";
+	say "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work. But you can't bring yourself to focus on your surroundings -- not when Justinian's hand feels so warm around yours, and demands so much of your attention.[paragraph break]";
+	say "You know, intellectually, that it is normal for girls to develop crushes. That doesn't stop you from wanting to bury yourself in a hole right now. Why do you have to be so [italic type]awkward?[roman type][paragraph break]";
+	wait for any key;
+	say "Justinian leads you to a coffee table and gestures to one of the armchairs. 'Please,' he says. 'Take a seat.'[paragraph break]";
+	wait for any key;
+	say "You sit down, and he sits opposite you. His eyes -- those eyes! -- they study you. Troubled. Concerned.[paragraph break]";
+	wait for any key;
+	say "'This is about Doctor Arturus's death, I take it?' ";
+
+Table of Justinian Game Afoot Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+justinian-afoot-sorryabout	true	true	"'I'm so sorry you have to go through this, Justinian.'"	"'I-- I'm so sorry you have to go through this, Justinian.'
+
+He lowers his eyes. 'I appreciate it, Marid. Doctor Arturus -- I haven't always been on the best of terms with him. But he was like a father to me.'"	{justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
+justinian-afoot-cantbelieve	true	true	"'I can't believe something like this is happening.'"	"'I can't believe something like this is happening.'
+
+'I know what you mean.' Justinian shakes his head. 'Everything is happening so quickly -- and it's spiraling out of control. I imagine things will only get worse in the coming days...'"	{justinian-afoot-sorryabout, justinian-afoot-cavalasentme}
+justinian-afoot-cavalasentme	true	false	"'Doctor Cavala sent me. We're investigating the disease that killed Doctor Arturus...'"	"'Doctor Cavala sent me,' you say. 'We're -- we're investigating the disease that killed Doctor Arturus. Now that we three are the only medical professionals in the district, we -- we have to work together. If we're going to get through this.'
+
+Why are you blushing at a time like this? What is [italic type]wrong[roman type] with you?
+
+[wait for any key]Justinian leans forward and clasps his hands. 'Marid,' he says. 'I wish I could be of more help, but I'm afraid last night took its toll on me -- I'm as clueless as you are. I don't know what I can provide that you don't already know...'
+
+[wait for any key]You try to compose your thoughts."	{justinian-afoot-encourage, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-encourage	true	true	"'I believe in you, Justinian.'"	"[italic type]I--[roman type]
+
+You can already feel the blood rising in your cheeks. Justinian-- you-- no. No!
+
+You can't say it. You just can't."	{justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-discovery	true	true	"'Can you tell me about how you discovered the body?'"	"'Can you... can you tell me about how you discovered the body?'
+
+He shakes his head. 'It's all a blur. Doctor Arturus had been studying his patients late into the night. I was instructed not to disturb him. It was only when he didn't turn up for work this morning that I thought...'
+
+'...You thought something might have happened?'
+
+'Exactly.' Justinian looks at his hands. 'When I called on him in his domicile, the disease had taken him.'"	{justinian-afoot-cautious, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
+
+Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-disease	true	true	"'What are your thoughts on the disease?'"	"'What are your thoughts on... on the disease?'
+
+A serious cast comes over Justinian's features, and he pauses before speaking.
+
+'I know only that it is dangerous, Marid. It has killed dozens in mere days -- not even Doctor Arturus was safe, and he was the most cautious man I ever knew. If you plan to investigate this -- you must be careful, Marid. Very careful.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-assassin	true	true	"'There was an attempt on Doctor Cavala's life. Do you have any idea why?'"	"'There was... there was an attempt on Doctor Cavala's life. Do you have any idea why?'
+
+'Hmm?'
+
+You relate your recollection of last night's events, and Justinian purses his lips.
+
+'I -- I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
+justinian-afoot-cautious	false	true	"'Was Doctor Arturus a cautious man? Doctor Cavala didn't give me that impression.'"	"'Was Doctor Arturus a cautious man?' you ask. 'Doctor Cavala... didn't give me that impression.'
+
+Justinian looks almost disappointed for a moment, and the look in his eyes breaks your heart.
+
+'Doctor Cavala doesn't know him like I do,' he says, quietly. 'Doctor Arturus was cautious -- perhaps too cautious.'"	{justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-lookaround	true	false	"'I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'"	"'I'll... I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'
+
+You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it[roman type] -- and then Justinian grabs your wrist and you react in an entirely unladylike fashion but his attention is focused completely on you.
+
+'Marid,' he says.
+
+[wait for any key]'J-Justinian--'
+
+'Be careful.' His voice is trembling. 'I don't want anything to happen to you. If -- if it's too dangerous -- you can just go back to Doctor Cavala. No one will begrudge you for it.'
+
+[wait for any key]His words wrench at your heartstrings. For a moment you have the urge to hug him and forget about everything -- forget about blood, forget about tears, forget about the dying and the dead.
+
+[wait for any key]But when you close your eyes, you know you'd never forgive yourself. Not now, and not for the rest of your life.
+
+[wait for any key]'I'll -- I'll be careful,' you tell him. 'Thanks, Justinian. I appreciate it.'
+
+[wait for any key]He reluctantly lets go.
+
+You turn and make your way into the frigid light.[line break][look pending]"	{}
+
+After reading out justinian-afoot-disease: now the enabled of justinian-afoot-cautious is true.
 
 Book 3.17 - Grand Forum
 
@@ -9673,6 +9777,26 @@ Part 3.28.3 - VII Layabout Row during Day One
 Instead of knocking on the front door while Cavala's Errands is happening:
 	say "There is no response. Zoiro must not be home at the moment.";
 
+Book 3.29 - Arturus's Clinic
+
+There is a proper-named room called Arturus's Clinic.
+The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy.
+
+An arch to the west leads back to the Turris Infinita foyer."
+
+Understand "doctor" or "arturus'" as Arturus's Clinic.
+The simple-name is "Doctor Arturus's clinic".
+
+Part 3.29.1 - Scenery
+
+The calomel arch is an open unopenable scenery door.
+It is east of the Turris Infinita and west of Arturus's Clinic.
+Understand "archway" as the calomel arch.
+
+Part 3.29.2 - Arturus's Clinic during Day Two
+
+Justinian is in Arturus's Clinic.
+
 Book of the Rest
 
 The Sewer Enclave is a room. 
@@ -9688,8 +9812,3 @@ Arturus's Domicile is a proper-named room.
 It is above the Turris Infinita.
 Understand "doctor" or "arturus'" as Arturus's Domicile.
 The simple-name is "Doctor Arturus's domicile".
-
-There is a proper-named room called Arturus's Clinic.
-It is east of the Turris Infinita.
-Understand "doctor" or "arturus'" as Arturus's Clinic.
-The simple-name is "Doctor Arturus's clinic".
