@@ -204,7 +204,8 @@ To say skip-commands-text:
 	[say line break;
 	say "[line break][italic type]Day Two[roman type]";
 	say "[line break]>[bold type]skip to day two[roman type]";
-	say "[line break]>[bold type]skip to endoscope[roman type]";]
+	say "[line break]>[bold type]skip to endoscope[roman type]";
+	say "[line break]>[bold type]skip to turris[roman type]";]
 
 Book 1.2 - Days and Scenes
 
@@ -309,7 +310,7 @@ Reden Investigation is a scene.
 Reden Investigation begins when Bad News from Cavala begins.
 
 [2. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
-- The doctor died the afternoon of Day One after an argument with Justinian.
+- The doctor was poisoned Day One afternoon after an argument with Justinian and died the evening of Day One.
 - Noctis was planted inside the doctor's gloves. It entered his skin, dissolved in his bloodstream, and stopped his heart.
 - Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
 
@@ -324,7 +325,7 @@ Nacarat Investigation is a scene.
 Nacarat Investigation begins when Meeting the Patients ends.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
-- Died early Day Two morning. Poisoned the night of Day One. Caused a bunch of large-scale deaths in the Shanty Quarter.
+- Poisoned the night of Prologue. Died early Day One morning.
 - Justinian knows about them because they often came to shake down Arturus. He tracked them to their residences and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
 - Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against debtor documents from Arturus's Clinic - they don't match.
 - They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
@@ -645,13 +646,13 @@ Part 1.3.2 - People Block Responses
 
 The sound of a person is usually "[regarding the item described][They] [are][if the item described is dead] silent.[otherwise]n't saying anything."
 		
-Instead of eating someone, say "What a strange notion."
 Instead of drinking, switching on, switching off, or wearing someone (this is the can't do that to a person rule): say "That doesn't make any sense."
 Instead of setting someone to something (this is the can't set people rule): say "That doesn't make any sense."
 
 Instead of looking under something carried by an other living person (called the carrier), say "[regarding the noun][They're] what [the carrier] [are] carrying."
 Instead of looking under something worn by an other living person (called the wearer), say "[regarding the noun][They're] what [the wearer] [are] wearing."
 
+Instead of eating a living person, say "What a strange notion."
 Instead of taking an other living person (this is the new can't take people response rule): say "[regarding the noun]You lack the strength, even if [they] allowed you to."
 
 Instead of attacking, cutting, knocking on, or pushing an other friendly living person (this is the can't hurt friendly people rule): say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."
@@ -661,6 +662,7 @@ Instead of attacking or cutting an other hostile living person (this is the can'
 Instead of knocking on, pulling, pushing, smelling, squeezing, touching, or turning an other hostile living person (this is the can't provoke hostile people rule): say "You doubt that would go over well with [the noun]."
 Instead of kissing, rubbing, or searching an other hostile living person (this is the block actions on hostile people rule), say "You doubt [the noun] will let you do that."
 
+Instead of eating a dead person, say "What a revolting notion."
 Instead of giving something to a dead person, say "You won't get much of a response."
 Instead of pushing, pulling, or turning a dead person, say "That won't accomplish anything."
 Instead of swinging or taking a dead person, say "You lack the strength."
@@ -755,7 +757,10 @@ The scent is "You can't get distracted by his cologne, not now."
 Understand "doctor" or "justin" or "volontis" as Justinian.
 
 To say justinian-description:
-	say "You can't look at him for too long, or you'll start fantasizing. ";
+	if Four Investigations is happening:
+		say "His eyes are dark sunsets. ";
+	otherwise:
+		say "You shouldn't look at him. You'll start fantasizing. ";
 	
 Instead of kissing, rubbing, or touching Justinian:
 	say "[one of]No. No! No. Yes -- [italic type]No![roman type][or]Absolutely not.[stopping]";
@@ -1958,7 +1963,7 @@ The bio-description of Doctor Arturus is "A reclusive doctor in his waning years
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
-The bio-description of Justinian is "A driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it. Now that Doctor Arturus is dead, he's the sole master of the Turris Infinita clinic."
+The bio-description of Justinian is "Doctor Arturus's protégé, a driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it."
 
 Chapter 2.3.3.4 - Map
 
@@ -2155,6 +2160,10 @@ journal-zoiro-address-known is a truth state that varies.
 journal-reden-shack-known is a truth state that varies.
 journal-crucible-witnessed is a truth state that varies.
 
+clue-arturus-cavalacorrespondence is a truth state that varies.
+clue-arturus-discovery-justinian is a truth state that varies.
+clue-patientrecords-justinian is a truth state that varies.
+
 Chapter 2.3.11.2 - Date
 	
 To say journal-text-date:
@@ -2346,27 +2355,38 @@ To say journal-text-notes:
 		if Arturus Investigation is happening:
 			add "[italic type]Doctor Arturus[roman type]" to L;
 			add "- I should ask the Vigiles for their professional opinion." to L;
-			add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
+			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
 			add "- I should examine Doctor Arturus's body, in the Turris Infinita clinic." to L;
 			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
+			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night and this morning." to L;
 			add "" to L;
 		if Meeting the Patients is happening:
 			add "[italic type]Doctor Arturus's patients[roman type]" to L;
-			add "- I should find out more about the patients Doctor Arturus had been receiving in his clinic." to L;
+			add "- I should ask the Vigiles for their professional opinion." to L;
+			add "- I should examine the bodies of the patients, in the Turris Infinita clinic." to L;
+			add "- I should find out the identities of Doctor Arturus's patients." to L;
+			add "- I should look up Doctor Arturus's patient records." to L;
+			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
 		if Nacarat Investigation is happening:
 			add "[italic type]Debtor Nacarat[roman type]" to L;
+			add "- I should ask the Vigiles for their professional opinion." to L;
 			add "- I should examine Debtor Nacarat's body, in the Turris Infinita clinic." to L;
 			add "- I should find out more about the circumstances of Debtor Nacarat's death." to L;
 			add "- I should look for connections between Debtor Nacarat and the other victims." to L;
+			add "- I should look up Doctor Arturus's patient records." to L;
+			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
 		if Thugs Investigation is happening:
 			add "[italic type]Sal and Piper[roman type]" to L;
+			add "- I should ask the Vigiles for their professional opinion." to L;
 			add "- I should examine Sal's body, in the Turris Infinita clinic." to L;
 			add "- I should examine Piper's body, in the Turris Infinita clinic." to L;
 			add "- I should find out more about the circumstances of Sal's death." to L;
 			add "- I should find out more about the circumstances of Piper's death." to L;
 			add "- I should look for connections between Sal, Piper, and the other victims." to L;
+			add "- I should look up Doctor Arturus's patient records." to L;
+			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
 		add "[italic type]Miscellaneous[roman type]" to L;
 	[---
@@ -4290,7 +4310,7 @@ Last after going to the Clinic when Bad News from Cavala is happening (this is t
 		say "'Not yet,' you say.[paragraph break]";
 	say "She passes the newspaper to you. 'Take a look at this.'[paragraph break]";
 	wait for any key;
-	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, passed away last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
+	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
 	wait for any key;
 	say "A chill creeps up your spine.[paragraph break]";
 	wait for any key;
@@ -4375,7 +4395,7 @@ Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
 The day-two copy of the Libri Liberi is a thing.
 The printed name is "copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
-The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, passed away last afternoon. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'".
+The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
 Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
@@ -7045,7 +7065,7 @@ You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots 
 
 [wait for any key]The gargoyles wrench your arms behind your back. The porter gives you a slowly erupting volcano of a glare.
 
-[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking pile of--'[roman type]
+[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking piece of--'[roman type]
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
@@ -7098,12 +7118,12 @@ Table of Justinian Game Afoot Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-afoot-thanks	true	false	"'Thanks for that.'"	"'Thanks for that,' you say lamely.
 
-He smiles. 'It's the least I can do. Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
+'It's the least I can do.' He smiles. 'Come with me. We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
 justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"	"'I-- It's good to see you,' you stutter. 'Doctor Justinian.'
 
 Oh Primes, are you [italic type]blushing?[roman type] You're making a fool of yourself--
 
-He smiles. 'It's just Justinian, remember? Come with me.' He takes your hand. 'We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
+'It's just Justinian, remember?' He smiles. 'Come with me. We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
 justinian-afoot-flirt	true	false	"'I wouldn't miss a chance to see you, Doctor Justinian.'"	"[italic type]I wo--[roman type]
 
 No! No no no! That's much too forward. You wouldn't be caught dead saying that."	{justinian-afoot-thanks, justinian-afoot-goodtosee}
@@ -7148,38 +7168,43 @@ You can already feel the blood rising in your cheeks. Justinian-- you-- no. No!
 You can't say it. You just can't."	{justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-discovery	true	true	"'Can you tell me about how you discovered the body?'"	"'Can you... can you tell me about how you discovered the body?'
 
-He shakes his head. 'It's all a blur. Doctor Arturus had been studying his patients late into the night. I was instructed not to disturb him. It was only when he didn't turn up for work this morning that I thought...'
+He shakes his head. 'It's all a blur. Doctor Arturus had cloistered himself in the back of the clinic. I was instructed not to disturb him -- he seemed fine when I left in the evening. It was only when he didn't turn up for work this morning that I thought...'
 
 '...You thought something might have happened?'
 
-'Exactly.' Justinian looks at his hands. 'When I called on him in his domicile -- the disease had taken him.'"	{justinian-afoot-cautious, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+'Exactly.' Justinian looks at his hands. 'When I called on him in his domicile -- the disease had taken him.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+justinian-afoot-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"You squirm in your seat. 'Do you know where the patient records are kept?'
+
+He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was a control freak. He liked to have every record on hand.'
+
+You make a mental note."	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-disease	true	true	"'What are your thoughts on the disease?'"	"'What are your thoughts on... on the disease?'
 
 A serious cast comes over Justinian's features, and he pauses before speaking.
 
-'I know only that it is dangerous, Marid. It has killed dozens in mere days -- not even Doctor Arturus was safe, and he was the most cautious man I ever knew. If you plan to investigate this -- you must be careful, Marid. Very careful.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+'I know only that it is dangerous, Marid. It has killed dozens in mere days -- not even Doctor Arturus was safe, and he was the most cautious man I ever knew. If you plan to investigate this -- you must be careful, Marid. Very careful.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-assassin	true	true	"'There was an attempt on Doctor Cavala's life. Do you have any idea why?'"	"'There was... there was an attempt on Doctor Cavala's life. Do you have any idea why?'
 
 'Hmm?'
 
 You relate your recollection of last night's events, and Justinian purses his lips.
 
-'I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
+'I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
 justinian-afoot-cautious	false	true	"'Was Doctor Arturus a cautious man? Doctor Cavala didn't give me that impression.'"	"'Was Doctor Arturus a cautious man?' you ask. 'Doctor Cavala... didn't give me that impression.'
 
 Justinian looks almost disappointed for a moment, and the look in his eyes breaks your heart.
 
-'Doctor Cavala doesn't know him like I do,' he says, quietly. 'Doctor Arturus was cautious -- perhaps too cautious.'"	{justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+'Doctor Cavala didn't know him like I do,' he says, quietly. 'Doctor Arturus was cautious -- perhaps too cautious.'"	{justinian-afoot-patientrecords, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-lookaround	true	false	"'I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'"	"'I'll... I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'
 
 You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it[roman type] -- and then Justinian grabs your wrist and you react in an entirely unladylike fashion but his attention is focused completely on you.
 
 'Marid,' he says.
 
-[wait for any key]'J-Justinian--'
+[wait for any key]'J-Justinian?'
 
 'Be careful.' His voice is trembling. 'I don't want anything to happen to you. If -- if it's too dangerous -- you can just go back to Doctor Cavala. No one will begrudge you for it.'
 
@@ -7187,12 +7212,15 @@ You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it
 
 [wait for any key]But when you close your eyes, you know you'd never forgive yourself. Not for the rest of your life.
 
-[wait for any key]'I'll be careful,' you tell him. 'Thanks, Justinian. I... I appreciate it.'
+[wait for any key]'I'll be careful,' you tell him. 'Thanks, Justinian. I appreciate it.'
 
 [wait for any key]He reluctantly lets go.
 
 [wait for any key]You turn and make your way into the frigid light.[line break][look pending]"	{}
 
+After reading out justinian-afoot-discovery: now clue-arturus-discovery-justinian is true.
+After reading out justinian-afoot-patients: now the enabled of justinian-afoot-patients is false; now the enabled of justinian-afoot-patientrecords is true; now the enabled of justinian-4inv-patientrecords is true.
+After reading out justinian-afoot-patientrecords: now the enabled of justinian-4inv-patientrecords is false; now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
 After reading out justinian-afoot-disease: now the enabled of justinian-afoot-cautious is true.
 
 Book 3.17 - Grand Forum
@@ -9920,25 +9948,147 @@ After going through the calomel arch when the player is staid: say "A chill wash
 
 Part 3.29.2 - Dead Bodies
 
-Doctor Arturus is a dead man in Arturus's Clinic.
+Chapter 3.29.2.1 - General
 
-Debtor Nacarat is a dead man in Arturus's Clinic.
+Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
+The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Debtor Nacarat, Sal, and Piper.[otherwise]You recognize Doctor Arturus's body, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman."
+The sound is "You hear nothing unexpected, and indeed it would be rather troubling if you did."
+The scent is "The bodies don't smell at all. The clinic's environment must be too sterile for bloat to set in."
+Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" as the tarpaulin-covered bodies.
+Instead of giving something to the tarpaulin-covered bodies, say "You won't get much of a response."
+Instead of knocking on or touching the tarpaulin-covered bodies, say "The bodies are all cold."
+Instead of kissing, pushing, pulling, squeezing, taking, or turning the tarpaulin-covered bodies, say "You shouldn't unduly disturb the bodies."
+Instead of searching the tarpaulin-covered bodies, say "You will have to specify which one to search."
+Instead of waking the tarpaulin-covered bodies, say "If only."
 
-Sal is a dead man in Arturus's Clinic.
+Some forensic tarpaulins are scenery in Arturus's Clinic.
+The description is "If you had to guess, they're for ensuring that the bodies aren't disturbed or contaminated."
+Before listening to the forensic tarpaulins, try listening to the tarpaulin-covered bodies instead.
+Before smelling the forensic tarpaulins, try smelling the tarpaulin-covered bodies instead.
+Understand "tarpaulin" or "sheet/sheets" as the forensic tarpaulins.
+Before looking under or searching the forensic tarpaulins, try examining the tarpaulin-covered bodies instead.
+Instead of entering the forensic tarpaulins, say "The notion is entirely distasteful."
 
-Piper is a dead woman in Arturus's Clinic.
+Chapter 3.29.2.2 - Doctor Arturus
+
+Doctor Arturus is a dead undescribed man in Arturus's Clinic.
+Understand "arturus's" or "victim" as Doctor Arturus.
+
+Chapter 3.29.2.3 - Debtor Nacarat
+
+Debtor Nacarat is a dead undescribed improper-named man in Arturus's Clinic.
+The printed name is "man dressed in finery".
+Understand "dressed" or "in" or "finery" or "nacarat's" or "victim" as Debtor Nacarat.
+
+Chapter 3.29.2.4 - Sal
+
+Sal is a dead undescribed improper-named man in Arturus's Clinic.
+The printed name is "man built like a fighter".
+Understand "built" or "like" or "fighter" or "salio" or "salio's/sal's" or "victim" as Sal.
+
+Chapter 3.29.2.5 - Piper
+
+Piper is a dead undescribed improper-named woman in Arturus's Clinic.
+The printed name is "reedy young woman".
+Understand "reedy" or "young" or "piper's" or "victim" as Piper.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
+
+Rule for writing a paragraph about Justinian when Four Investigations is happening:
+	say "Some Vigiles investigators and an examiner are huddled around a group of tarpaulin-covered bodies. Beside them, Justinian sits at a coffee table, brooding.";
+	now the Vigiles investigators are mentioned;
+	now the Vigiles examiner is mentioned;
+	now Justinian is mentioned.
+	
+Before doing anything when the location is Arturus's Clinic and Meeting the Patients is happening:
+	if the current action involves Doctor Arturus or the current action involves Debtor Nacarat or the current action involves Sal or the current action involves Piper:
+		try talking to the Vigiles examiner instead.
 
 Chapter 3.29.3.1 - Vigiles and the Examiner
 
 Some Vigiles investigators are women in Arturus's Clinic.
+The description is "A pair of women in formal coats."
+The sound is "They're discussing causes of death."
+Understand "investigator/detective/detectives" or "pair" or "of" or "team" as the Vigiles investigators.
 
-The Vigiles examiner is a man in Arturus's Clinic.
+Some formal coats are worn by the Vigiles investigators.
+The description is "Long, thin, and black, like a pair of chocolate stovepipes."
+Understand "coat" or "stovepipe/stovepipes" or "black" or "long" or "thin" or "chocolate" as the formal coats.
 
-Chapter 3.29.3.2 - Justinian
+The Vigiles examiner is a mutant man in Arturus's Clinic.
+The description is "The Vigiles examiner appears to be the one in charge of the team. He looks mostly human except for his remarkable quivering mustache."
+The sound is "He's puttering about and making observations about the deceased."
+Understand "coroner" or "medical" or "locu" as the Vigiles examiner.
+
+The old-fashioned monocle is worn by the Vigiles examiner.
+The description is "Old-fashioned, but effective."
+
+The mustache of cilia is part of the Vigiles examiner.
+The description is "[one of]Are those hairs or cilia? It's not polite to ask.[or]It's probably cilia.[stopping]"
+Understand "hair/hairs/cilium" or "quivering" or "remarkable" as the tentacular mustache.
+
+Before showing the signum of Doctor Cavala to the Vigiles investigators, try talking to the Vigiles examiner instead.
+Before showing the signum of Doctor Cavala to the Vigiles examiner, try talking to the Vigiles examiner instead.
+Before talking to the Vigiles investigators, try talking to the Vigiles examiner instead.
+
+Section 3.29.3.1.1 - Vigiles Examiner Dialogue
+
+Some dialogue branches are defined by the Table of Vigiles Examiner Dialogue.
+dialogue branch	enabled	one-shot	prompt	description	choices
+examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner adjusts his monocle and looks you over.
+
+'Examiner Locu,' he says. 'Channelworks Division. And who might you be?'
+
+'My name is Servator Marid Orpheia,' you say. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
+
+'The [italic type]ius medici[roman type].' He nods. 'Very well, Servator -- these bodies are at your disposal, so long as you do not damage them. We are considering the imposition of quarantine, and they may be used as evidence in the tribunal.'"	{}
+
+The home dialogue branch of the Vigiles examiner is examiner-home.
+
+Chapter 3.29.3.2 - Justinian during Four Investigations
 
 Justinian is in Arturus's Clinic.
+
+Section 3.29.3.1.1 - In Which Justinian is Mostly Unhelpful
+
+Some dialogue branches are defined by the Table of Justinian 4inv Dialogue.
+
+Table of Justinian 4inv Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+justinian-4inv-home	true	false	""	"Justinian brightens up as you approach him.
+
+'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
+justinian-4inv-discovery	true	false	"'Can you tell me again about how you discovered the body?'"	"'Can you tell me again about... about how you discovered the body?'
+
+He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-goodbye}
+justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
+
+Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
+
+He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was a control freak. He liked to have every record on hand.'
+
+You make a mental note."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
+
+'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on... on the disease, again?'
+
+Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-goodbye}
+justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
+
+You scurry away in a fluster of embarassment."	{}
+justinian-4inv-goodbye	true	false	"'I'll keep investigating.'"	"'I'll keep investigating.'
+
+He nods. 'Be careful, Marid.'
+
+You scurry away before you start blushing."	{}
+
+The home dialogue branch of Justinian is justinian-4inv-home.
+After reading out justinian-4inv-patients: now the enabled of justinian-4inv-patientrecords is true.
+After reading out justinian-4inv-patientrecords: now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
+After reading out justinian-4inv-discovery: now clue-arturus-discovery-justinian is true.
+
 
 Book of the Rest
 
