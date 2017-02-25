@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 230217.
+The release number is 250217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -284,9 +284,12 @@ There is a scene called The Game is Afoot. [Marid makes her way to the Turris In
 The Game is Afoot begins when Bad News from Cavala ends.
 The Game is Afoot ends when the player is in Arturus's Clinic.
 
+Meeting the Patients is a scene. [Marid goes to learn about Nacarat and the Thugs.]
+Meeting the Patients begins when Four Investigations begins.
+
 Four Investigations is a scene. [The overarching scene for most of Day Two.]
 Four Investigations begins when The Game is Afoot ends.
-Four Investigations ends when (Reden Investigation has ended and Nacarat Investigation has ended and Arturus Investigation has ended and Thugs Investigation has ended).
+Four Investigations ends when (Reden Investigation has ended and Arturus Investigation has ended and Nacarat Investigation has ended and Thugs Investigation has ended).
 
 All Quiet on the Western Front is a scene. [Doctor Cavala and Horatio stay in the clinic and do absolutely fuck all.]
 All Quiet on the Western Front begins when The Game is Afoot begins.
@@ -305,20 +308,20 @@ A Crucible Game ends when All Quiet on the Western Front ends.
 Reden Investigation is a scene.
 Reden Investigation begins when Bad News from Cavala begins.
 
-[2. Debtor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
-- Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
-- Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
-
-Nacarat Investigation is a scene.
-Nacarat Investigation begins when Four Investigations begins.
-
-[3. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
+[2. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
 - The doctor died the afternoon of Day One after an argument with Justinian.
 - Noctis was planted inside the doctor's gloves. It entered his skin, dissolved in his bloodstream, and stopped his heart.
 - Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
 
 Arturus Investigation is a scene.
 Arturus Investigation begins when Four Investigations begins.
+
+[3. Debtor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
+- Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
+- Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
+
+Nacarat Investigation is a scene.
+Nacarat Investigation begins when Meeting the Patients ends.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Died early Day Two morning. Poisoned the night of Day One. Caused a bunch of large-scale deaths in the Shanty Quarter.
@@ -328,7 +331,7 @@ Arturus Investigation begins when Four Investigations begins.
 - They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
 
 Thugs Investigation is a scene.
-Thugs Investigation begins when Four Investigations begins.
+Thugs Investigation begins when Meeting the Patients ends.
 
 [We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
 
@@ -529,6 +532,12 @@ To skip past Bad News from Cavala:
 	now the endoscope is carried by the player;
 	follow the scene changing rules.
 	
+To skip past The Game is Afoot:
+	if Bad News from Cavala has not ended:
+		skip past Bad News from Cavala;
+	move the player to Arturus's Clinic, without printing a room description;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -599,6 +608,13 @@ Understand "skip to endoscope" as skipping to endoscope.
 Check skipping to endoscope when Bad News from Cavala has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to endoscope:
 	skip past Bad News from Cavala;
+	try looking.
+	
+Skipping to Turris is an action applying to nothing.
+Understand "skip to turris" as skipping to Turris.
+Check skipping to turris when The Game is Afoot has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to turris:
+	skip past The Game is Afoot;
 	try looking.
 	
 Book 1.3 - People
@@ -718,6 +734,8 @@ To say horatio-description:
 			say "Horatio is contemplating his hand of cards. ";
 		otherwise:
 			say "He looks more bored than anything. ";
+	otherwise:
+		say "He looks bemused, as though at a loss.";
 
 Chapter 1.3.3.3 - Carnicer
 
@@ -732,7 +750,21 @@ Understand "sword" as the poisoned blade.
 Chapter 1.3.3.4 - Justinian
 
 Justinian is a human man.
+The description is "[justinian-description]".
+The scent is "You can't get distracted by his cologne, not now."
 Understand "doctor" or "justin" or "volontis" as Justinian.
+
+To say justinian-description:
+	say "You can't look at him for too long, or you'll start fantasizing. ";
+	
+Instead of kissing, rubbing, or touching Justinian:
+	say "[one of]No. No! No. Yes -- [italic type]No![roman type][or]Absolutely not.[stopping]";
+	
+Instead of attacking, cutting, or pushing Justinian:
+	say "[one of]What? No! Why would you even consider that?[or]Absolutely not.[stopping]";
+
+Instead of knocking on, pulling, searching, swinging, squeezing, taking, or turning Justinian:
+	say "[one of]No. No! That would -- that would be much too forward.[or]You can't bring yourself to.[stopping]";
 
 Book 1.4 - Scene Flags
 
@@ -1851,7 +1883,7 @@ To say useful-commands-text:
 
 >[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type]) allows you to interact with someone.
 
->[bold type]take[roman type], >[bold type]drop[roman type], >[bold type]open[roman type], and >[bold type]close[roman type] allow you to manipulate things around you. You can also >[bold type]enter[roman type] or >[bold type]exit[roman type] things where it makes sense to do so.[paragraph break]";
+>[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can also >[bold type]enter (something)[roman type] or >[bold type]exit[roman type].[paragraph break]";
 	say ">[bold type]go (direction)[roman type] (>[bold type](direction)[roman type]) allows you to navigate the world. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type].
 
 >[bold type]sleep[roman type] advances the story at the end of each in-game day.
@@ -1920,6 +1952,13 @@ The bio-description of Horatio is "A guardsman of the Channelworks District, and
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
 The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
+
+When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
+The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease; now he is dead of the same contagion."
+
+When The Game is Afoot ends: add Justinian to the list of discovered characters.
+The bio-name of Justinian is "Doctor Justinian Volontis".
+The bio-description of Justinian is "A driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it. Now that Doctor Arturus is dead, he's the sole master of the Turris Infinita clinic."
 
 Chapter 2.3.3.4 - Map
 
@@ -2195,6 +2234,8 @@ I don't want to lose anyone else. ";
 		say "Doctor Arturus -- I've [italic type]seen[roman type] him. He was [italic type]there[roman type], in his clinic, every time I visited Justinian... and now he's dead. He's gone.
 
 I don't know what to think. All I can do is make my way there and talk to Justinian. Find out what really happened, and why. ";
+	otherwise if Four Investigations is happening:
+		say "I've made my choice. I have a job to do -- and I'm going to finish it. ";
 
 Chapter 2.3.11.4 - Objectives
 
@@ -2204,50 +2245,57 @@ To say journal-text-objectives:
 	PROLOGUE
 	---]
 	if Reden's Surgery is happening:
-		add "Help Doctor Cavala save the patient's life" to L;
+		add "- Help Doctor Cavala save the patient's life" to L;
 	if Walking Home in Darkness is happening:
-		add "Go home and get some sleep" to L;
+		add "- Go home and get some sleep" to L;
 	[---
 	DAY ONE
 	---]
 	if Nine to Five Zombie is happening:
 		if 9-5-zombie-cavala-prompt is false:
-			add "Report for work at Doctor Cavala's clinic" to L;
+			add "- Report for work at Doctor Cavala's clinic" to L;
 		otherwise if the location is not the Mortuary:
-			add "Find Doctor Cavala" to L;
+			add "- Find Doctor Cavala" to L;
 		otherwise:
-			add "Report to Doctor Cavala" to L;
+			add "- Report to Doctor Cavala" to L;
 	if Cavala's Errands is happening:
 		if the location is in the Shanty Maze:
-			add "Find a way out of the Shanty Quarter" to L;
+			add "- Find a way out of the Shanty Quarter" to L;
 		otherwise:
 			if the bundle of documents is undelivered:
-				add "Deliver the bundle of documents to the censor in the basilica" to L;
+				add "- Deliver the bundle of documents to the censor in the basilica" to L;
 			if The Censor's Nap is happening:
-				add "[italic type]...and think of a way to wake the censor[roman type]" to L;
-			add "Find Zoiro, Reden's brother, in Riggertown" to L;
+				add "[italic type]   ...and think of a way to wake the censor[roman type]" to L;
+			add "- Find Zoiro, Reden's brother, in Riggertown" to L;
 			if journal-zoiro-address-known is false:
 				if Maze Part One is unvisited:
-					add "[italic type]...by asking the censor for his address[roman type]" to L;
-				add "[italic type]...by asking around Riggertown[roman type]" to L;
+					add "[italic type]   ...by asking the censor for his address[roman type]" to L;
+				add "[italic type]   ...by asking around Riggertown[roman type]" to L;
 			if Following the Canal is visited and journal-riggertown-detour-known is false and no rooms in Riggertown are visited:
-				add "[italic type]...and find another route around the blocked path to Riggertown[roman type]" to L;
+				add "[italic type]   ...and find another route around the blocked path to Riggertown[roman type]" to L;
 	if Returning to a Break-In is happening:
 		if Carnicer is in the West End:
-			add "Report back to Doctor Cavala's clinic" to L;
+			add "- Report back to Doctor Cavala's clinic" to L;
 		otherwise:
-			add "Investigate the stranger" to L;
+			add "- Investigate the stranger" to L;
 	if First Aid on Cavala is happening:
-		add "Administer first aid to Doctor Cavala" to L;
+		add "- Administer first aid to Doctor Cavala" to L;
 	if Walking Home in Fear is happening:
-		add "Go home and get some sleep" to L;
+		add "- Go home and get some sleep" to L;
 	[---
 	DAY TWO
 	---]
 	if Bad News from Cavala is happening:
-		add "Report to Doctor Cavala" to L;
+		add "- Report to Doctor Cavala" to L;
 	if The Game is Afoot is happening:
-		add "Go to the Turris Infinita" to L;
+		add "- Go to the Turris Infinita" to L;
+	if Four Investigations is happening:
+		add "- Identify the transmission vector of the disease" to L;
+		if Reden Investigation is happening, add "[italic type]   ...by investigating the death of Reden[roman type]" to L;
+		if Arturus Investigation is happening, add "[italic type]   ...by investigating the death of Doctor Arturus[roman type]" to L;
+		if Meeting the Patients is happening, add "[italic type]   ...by investigating the deaths of Doctor Arturus's patients[roman type]" to L;
+		if Nacarat Investigation is happening, add "[italic type]   ...by investigating the death of Debtor Nacarat[roman type]" to L;
+		if Thugs Investigation is happening, add "[italic type]   ...by investigating the deaths of Sal and Piper[roman type]" to L;
 	[---
 	END
 	---]
@@ -2255,7 +2303,7 @@ To say journal-text-objectives:
 		say "[line break]I have no particular objective at the moment.";
 	otherwise:
 		repeat with current objective running through L:
-			say "[line break]- [current objective]";
+			say "[line break][current objective]";
 
 Chapter 2.3.11.5 - Notes
 
@@ -2266,70 +2314,101 @@ To say journal-text-notes:
 	---]
 	if Cavala's Errands is happening:
 		if the Basilica is unvisited:
-			add "I remember that the basilica is across the Via Terminalis bridge, next to the grand forum. " to L;
+			add "- I remember that the basilica is across the Via Terminalis bridge, next to the grand forum. " to L;
 		if no rooms in Riggertown are visited:
 			if journal-riggertown-detour-known is true:
-				add "I learned that I can reach Riggertown by detouring through the Shanty Quarter. " to L;
+				add "- I learned that I can reach Riggertown by detouring through the Shanty Quarter. " to L;
 			otherwise:
-				add "I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]. " to L;
+				add "- I remember that Riggertown is down the canal from the Via Terminalis[if Following the Canal is visited], but the footpath is currently blocked[end if]. " to L;
 		if journal-zoiro-address-known is true:
 			if the enabled of censor-woken-address is false:
-				add "I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry. " to L;
+				add "- I learned that Zoiro lives on Layabout Row, in Upper Riggertown, and works at the Riggertown Mechanistry. " to L;
 			otherwise:
-				add "I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown. " to L;
+				add "- I learned that Zoiro works at the Riggertown Mechanistry, in Upper Riggertown. " to L;
 	if First Aid on Cavala is happening:
 		if the CSOFAOC is:
 			-- 1:
-				add "The supplies I need should be in the first aid bag behind the counter. " to L;
+				add "- The supplies I need should be in the first aid bag behind the counter. " to L;
 			-- 2:
-				add "I need the dressing and the bandage from the first aid bag. " to L;
+				add "- I need the dressing and the bandage from the first aid bag. " to L;
 			-- 3:
-				add "I need to prop Doctor Cavala's leg up. That waiting chair will do as a support. " to L;
+				add "- I need to prop Doctor Cavala's leg up. That waiting chair will do as a support. " to L;
 	[---
 	CLUES, DAY TWO
 	---]
 	if The Game is Afoot is happening:
-		add "I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
+		add "- I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
+	if Four Investigations is happening:
+		if Reden Investigation is happening:
+			add "[italic type]Reden[roman type]" to L;
+			add "- I should go to Riggertown and ask Zoiro about his brother's activities." to L;
+			add "" to L;
+		if Arturus Investigation is happening:
+			add "[italic type]Doctor Arturus[roman type]" to L;
+			add "- I should ask the Vigiles for their professional opinion." to L;
+			add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
+			add "- I should examine Doctor Arturus's body, in the Turris Infinita clinic." to L;
+			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
+			add "" to L;
+		if Meeting the Patients is happening:
+			add "[italic type]Doctor Arturus's patients[roman type]" to L;
+			add "- I should find out more about the patients Doctor Arturus had been receiving in his clinic." to L;
+			add "" to L;
+		if Nacarat Investigation is happening:
+			add "[italic type]Debtor Nacarat[roman type]" to L;
+			add "- I should examine Debtor Nacarat's body, in the Turris Infinita clinic." to L;
+			add "- I should find out more about the circumstances of Debtor Nacarat's death." to L;
+			add "- I should look for connections between Debtor Nacarat and the other victims." to L;
+			add "" to L;
+		if Thugs Investigation is happening:
+			add "[italic type]Sal and Piper[roman type]" to L;
+			add "- I should examine Sal's body, in the Turris Infinita clinic." to L;
+			add "- I should examine Piper's body, in the Turris Infinita clinic." to L;
+			add "- I should find out more about the circumstances of Sal's death." to L;
+			add "- I should find out more about the circumstances of Piper's death." to L;
+			add "- I should look for connections between Sal, Piper, and the other victims." to L;
+			add "" to L;
+		add "[italic type]Miscellaneous[roman type]" to L;
 	[---
 	MUSINGS, MISCELLANEOUS
 	---]
 	if time is not critical and the enabled of bartender-dialogue-drink is true:
-		add "I'm in the mood for a drink... " to L;
+		add "- I'm in the mood for a drink... " to L;
 	[---
 	MUSINGS, PROLOGUE
 	---]
 	if Walking Home in Darkness is happening and the Dormitory Block is visited and Saliunca is friendly:
-		add "There's something strange about [if we have talked to Saliunca]Saliunca[otherwise]that old woman in the atrium[end if]... " to L;
+		add "- There's something strange about [if we have talked to Saliunca]Saliunca[otherwise]that old woman in the atrium[end if]... " to L;
 	[---
 	MUSINGS, DAY ONE
 	---]
 	if Cavala's Errands is happening:
 		if Maze Part One is visited:
 			if Upper Riggertown is visited and we have not examined the advertising horns:
-				add "Just what are those horns in Upper Riggertown honking anyway...? " to L;
+				add "- Just what are those horns in Upper Riggertown honking anyway...? " to L;
 		otherwise if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
-				add "Doctor Cavala told me to think about what I saw last night... " to L;
-			add "This district is so much larger than the Lake District... " to L;
+				add "- Doctor Cavala told me to think about what I saw last night... " to L;
+			add "- This district is so much larger than the Lake District... " to L;
 			if the enabled of horatio-dayone-intro is true:
-				add "I haven't spoken with Horatio in a while. I wonder how he's getting on... " to L;
+				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on... " to L;
 			if the Grand Forum is visited and we have not examined the street buskers:
-				add "I wonder what those buskers in the grand forum are performing... " to L;
+				add "- I wonder what those buskers in the grand forum are performing... " to L;
 			if we have not talked to the porter:
-				add "Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
+				add "- Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
 	[---
 	MUSINGS, DAY TWO
 	---]
 	if All Quiet on the Western Front is happening:
 		if journal-crucible-witnessed is false:
-			add "I hope Doctor Cavala and Horatio will be all right at the clinic... " to L;
+			add "- I hope Doctor Cavala and Horatio will be all right at the clinic... " to L;
 	[---
 	END
 	---]
 	if the number of entries in L is not 0:
 		say "[paragraph break][bold type]Marid's notes:[roman type][line break]";
 		repeat with current note running through L:
-			say "[line break]- [current note]";
+			say "[line break][current note]";
 
 
 Volume 3 - The Channelworks District
@@ -2862,7 +2941,7 @@ Understand "chest" or "cavity" or "autopsy" as Reden when Reden's Autopsy is hap
 
 To say reden-gurney-description:
 	if Reden is living:
-		say "The patient[first time] -- Reden was his name? -- he[only] shudders against his straps on the gurney, black blood streaming from his eyes and mouth, even as Doctor Cavala fights to isolate the infection";
+		say "The patient[first time], Reden -- he[only] shudders against his straps on the gurney, black blood streaming from his eyes and mouth, even as Doctor Cavala fights to isolate the infection";
 		now Doctor Cavala is mentioned;
 	otherwise:
 		say "Reden lies on the gurney, lifeless and still";
@@ -6937,7 +7016,7 @@ porter-afoot-home	true	false	""	"'I am sorry to inform you that the Turris Infin
 
 [wait for any key]Her lower lip curls.
 
-'No [italic type]gawking.[roman type] Do I make myself clear?'"	{porter-afoot-charmed, porter-afoot-whyclosed, porter-afoot-business}
+'No [italic type]gawking.[roman type]'"	{porter-afoot-charmed, porter-afoot-whyclosed, porter-afoot-business}
 porter-afoot-bhome	true	false	""	"[italic type]'You,'[roman type] the porter hisses. 'I should have known you would come back.'"	{porter-afoot-charmed, porter-afoot-apology, porter-afoot-business}
 porter-afoot-charmed	true	true	"'I'm charmed.'"	"'I'm charmed.'
 
@@ -6973,7 +7052,7 @@ porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Presen
 
 The porter's gaze falls on the slip of paper in your hand. The corner of her mouth twitches.
 
-[wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and do inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
+[wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and [italic type]do[roman type] inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
 
 [wait for any key]Your face flushes. 'You--'
 
@@ -7073,7 +7152,7 @@ He shakes his head. 'It's all a blur. Doctor Arturus had been studying his patie
 
 '...You thought something might have happened?'
 
-'Exactly.' Justinian looks at his hands. 'When I called on him in his domicile, the disease had taken him.'"	{justinian-afoot-cautious, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+'Exactly.' Justinian looks at his hands. 'When I called on him in his domicile -- the disease had taken him.'"	{justinian-afoot-cautious, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
 Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
@@ -7088,7 +7167,7 @@ justinian-afoot-assassin	true	true	"'There was an attempt on Doctor Cavala's lif
 
 You relate your recollection of last night's events, and Justinian purses his lips.
 
-'I -- I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
+'I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
 justinian-afoot-cautious	false	true	"'Was Doctor Arturus a cautious man? Doctor Cavala didn't give me that impression.'"	"'Was Doctor Arturus a cautious man?' you ask. 'Doctor Cavala... didn't give me that impression.'
 
 Justinian looks almost disappointed for a moment, and the look in his eyes breaks your heart.
@@ -7106,13 +7185,13 @@ You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it
 
 [wait for any key]His words wrench at your heartstrings. For a moment you have the urge to hug him and forget about everything -- forget about blood, forget about tears, forget about the dying and the dead.
 
-[wait for any key]But when you close your eyes, you know you'd never forgive yourself. Not now, and not for the rest of your life.
+[wait for any key]But when you close your eyes, you know you'd never forgive yourself. Not for the rest of your life.
 
-[wait for any key]'I'll -- I'll be careful,' you tell him. 'Thanks, Justinian. I appreciate it.'
+[wait for any key]'I'll be careful,' you tell him. 'Thanks, Justinian. I... I appreciate it.'
 
 [wait for any key]He reluctantly lets go.
 
-You turn and make your way into the frigid light.[line break][look pending]"	{}
+[wait for any key]You turn and make your way into the frigid light.[line break][look pending]"	{}
 
 After reading out justinian-afoot-disease: now the enabled of justinian-afoot-cautious is true.
 
@@ -9783,17 +9862,81 @@ There is a proper-named room called Arturus's Clinic.
 The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy.
 
 An arch to the west leads back to the Turris Infinita foyer."
-
 Understand "doctor" or "arturus'" as Arturus's Clinic.
+
 The simple-name is "Doctor Arturus's clinic".
+The sound is "It's quiet."
+The scent is "There is an antiseptic quality to the air."
+The exit reminder is "The Turris Infinita foyer is to the west."
+
+Before examining west in the Turris Infinita, try examining the view of the foyer instead.
+Before examining outside in the Turris Infinita, try examining the view of the foyer instead.
+
+Before going outside in the Turris Infinita, try going west instead.
 
 Part 3.29.1 - Scenery
 
+The view of the foyer is faraway scenery in Arturus's Clinic. The indefinite article is "the".
+The description is "It's darker, there."
+The sound is "There is no sound."
+Understand "turris" or "infinita" as the view of the foyer.
+Before entering the view of the foyer, try going west instead.
+
+Some chrome fixtures are scenery in Arturus's Clinic.
+The description is "Racks of gleaming equipment; gurneys that bristle with instrumentation. But none of them are relevant to you."
+Understand "gleaming" or "equipment" or "gurney/gurneys" or "instrument/instruments/instrumentation" or "fixture" as the chrome fixtures.
+Instead of entering the chrome fixtures, say "You have better things to do than that."
+Instead of looking under, searching, or taking the chrome fixtures, say "As well-equipped as Doctor Arturus's clinic is, its fixtures are irrelevant to your interests."
+
+Some surgically placed spotlights are faraway scenery in Arturus's Clinic.
+The description is "The lighting is cold and clean."
+The surgically placed spotlights have some text called the faraway response. The faraway response is "The spotlights are out of reach."
+Understand "spotlight/light/lights" as the surgically placed spotlights.
+
+The dizzyingly intricate sigil-work is scenery in Arturus's Clinic. The indefinite article is "some".
+The description is "The sigils encircle the fixtures and link them with exquisite precision."
+Understand "sigil/sigils" or "marble" as the dizzyingly intricate sigil-work.
+Instead of touching the dizzyingly intricate sigil-work, say "You feel the tingling potential in the marble."
+Instead of attacking, cutting, or rubbing the dizzyingly intricate sigil-work, say "That might get you thrown out of the Turris Infinita[if the player has been blacklisted by Turris Infinita security] again[end if]."
+
+The melancholy space is faraway scenery in Arturus's Clinic.
+The description is "You could get lost in the emptiness here."
+The sound is "It's too quiet."
+The melancholy space has some text called the faraway response. The faraway response is "That doesn't make any sense."
+Before smelling the melancholy space, try smelling the location instead.
+Understand "empty/emptiness" or "upscale" or "clinic" or "muted" or "elegance" as the melancholy space.
+Before inserting something into the melancholy space, try dropping the noun instead.
+Before putting something on the melancholy space, try dropping the noun instead.
+Before searching the melancholy space, try looking instead.
+Instead of entering the melancholy space, say "You're standing in it."
+
 The calomel arch is an open unopenable scenery door.
 It is east of the Turris Infinita and west of Arturus's Clinic.
+The description is "The arch is austere and forbidding."
 Understand "archway" as the calomel arch.
+Instead of knocking on or touching the calomel arch, say "It's cold to the touch."
 
-Part 3.29.2 - Arturus's Clinic during Day Two
+After going through the calomel arch when the player is staid: say "A chill washes over you as you step through the arch."; continue the action.
+
+Part 3.29.2 - Dead Bodies
+
+Doctor Arturus is a dead man in Arturus's Clinic.
+
+Debtor Nacarat is a dead man in Arturus's Clinic.
+
+Sal is a dead man in Arturus's Clinic.
+
+Piper is a dead woman in Arturus's Clinic.
+
+Part 3.29.3 - Arturus's Clinic during Day Two
+
+Chapter 3.29.3.1 - Vigiles and the Examiner
+
+Some Vigiles investigators are women in Arturus's Clinic.
+
+The Vigiles examiner is a man in Arturus's Clinic.
+
+Chapter 3.29.3.2 - Justinian
 
 Justinian is in Arturus's Clinic.
 
