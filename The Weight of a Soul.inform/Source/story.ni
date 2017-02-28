@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 250217.
+The release number is 280217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,12 +54,27 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write the Turris Infinita and new areas
 - Write Arturus Investigation
+- Write the examiner's dialogue
+- Write Arturus's body
+- Write Arturus's Domicile
+
 - Write Nacarat Investigation
+- Write Nacarat's body
+
+- Write the Shanty Quarter
+- Write the Crow's Nest
+
 - Write Reden Investigation
-- Write the new Shanty Quarter and surrounding areas
+- Write Zoiro's dialogue
+- Put the coupon in Reden's Shack
+
 - Write Thugs Investigation
+- Write Sal's body
+- Write Piper's body
+- Write Sal's Domicile
+- Write Piper's Domicile
+
 - Write end of Day Two
 
 - Write Midnight
@@ -279,7 +294,7 @@ Day Two begins when Day One ends.
 
 Bad News from Cavala is a scene. [Cavala lays the exposition on Marid.]
 Bad News from Cavala begins when Day Two begins.
-Bad News from Cavala ends when the player carries the signum of Doctor Cavala.
+Bad News from Cavala ends when the player carries Doctor Cavala's signum.
 
 There is a scene called The Game is Afoot. [Marid makes her way to the Turris Infinita to start her investigations.]
 The Game is Afoot begins when Bad News from Cavala ends.
@@ -529,7 +544,7 @@ To skip past Bad News from Cavala:
 		skip past Day One;
 	move the player to the Clinic, without printing a room description;
 	now the day-two copy of the Libri Liberi is carried by the player;
-	now the signum of Doctor Cavala is carried by the player;
+	now Doctor Cavala's signum is carried by the player;
 	now the endoscope is carried by the player;
 	follow the scene changing rules.
 	
@@ -1135,20 +1150,17 @@ Instead of pushing, pulling, turning, searching, switching on, switching off, or
 Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
 Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine.").
 
-Part 2.2.12 - Signum of Doctor Cavala
+Part 2.2.12 - Doctor Cavala's Signum
 
-The signum of Doctor Cavala is a privately-named key-item.
+Doctor Cavala's signum is a key-item.
 The description is "A piece of paper signed and sealed by Doctor Cavala. It declares that Servator Marid Orpheia is formally authorized to act in the signatory's stead, and that anyone who disagrees is welcome to take it up with the signatory."
-Understand "signum of/-- doctor/-- cavala/--" or "signed/seal/sealed/signature" or "piece" or "paper" or "glyph" or "inertia" as the signum of Doctor Cavala.
+Understand "if" or "signed/seal/sealed/signature" or "piece" or "paper" or "glyph" or "inertia" as Doctor Cavala's signum.
 
-Rule for printing the name of the signum of Doctor Cavala while not listing contents:
-		say "signum".
+Instead of attacking or cutting Doctor Cavala's signum, say "[if time is critical]This is not the time.[otherwise]Thankfully, the seal makes the paper nigh indestructible."
 
-Instead of attacking or cutting the signum of Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Thankfully, the seal makes the paper nigh indestructible."
+Instead of looking under Doctor Cavala's signum, say "[if time is critical]This is not the time.[otherwise]The reverse of the signum is branded with a glyph of inertia."
 
-Instead of looking under the signum of Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]The reverse of the signum is branded with a glyph of inertia."
-
-Instead of giving the signum of Doctor Cavala to Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Doctor Cavala rolls her eyes."
+Instead of giving Doctor Cavala's signum to Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Doctor Cavala rolls her eyes."
 
 Book 2.3 - Actions
 
@@ -1354,6 +1366,7 @@ Understand "fall asleep" as sleeping.
 Understand "find [text] in [something]" as consulting it about (with nouns reversed).
 Understand "get inside [something]" as entering.
 Understand "go back/-- to sleep" as sleeping.
+Understand "go to [something]" as entering.
 Understand "insert [something preferably held] down [something]" as inserting it into.
 Understand "jump through/into/in/inside/on/onto/at/to [something]" as entering.
 Understand "kick [something]" as attacking.
@@ -1515,7 +1528,7 @@ Carry out going home:
 	if Marid's Dormitory is visited:
 		try approaching Marid's Dormitory;
 	otherwise:
-		say "That isn't an area you've visited.";
+		say "That isn't a room you've visited[if the player has not tried going].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
 
 Knocking on is an action applying to one thing. Understand "knock on/-- [something]" or "tap [something]" as knocking on.
 Check knocking on an openable door: say "There is no response."; stop the action.
@@ -1580,7 +1593,7 @@ Rule for printing a parser error when the latest parser error is the can't see a
 	if the player's command includes "go/walk/run":
 		say "You can only go in compass directions, or up, down, in, or out." instead;
 	otherwise:
-		say "That is either not important or not something you can see." instead.
+		say "That is either not important or not something you can see[if the current action has not been looking].[paragraph break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)[otherwise]." instead.
 	
 Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
 	say "That object or command isn't available[one of].
@@ -1589,9 +1602,9 @@ Rule for printing a parser error when the latest parser error is the not a verb 
 	
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
 	if the player's command includes "go/revisit/return":
-		say "That isn't a room you've visited." instead;
+		say "That isn't a room you've visited[if the player has not tried going].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise]." instead;
 	otherwise:
-		say "That is either not important or not something you can see." instead.
+		say "That is either not important or not something you can see[if the current action has not been looking].[paragraph break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)[otherwise]." instead.
 	
 Part 2.3.5 - New Action Behavior
 
@@ -2925,7 +2938,7 @@ Instead of entering the shelves of medical supplies, say "There's no need; you c
 Part 3.2.2 - Calomel Curtain
 
 The calomel curtain is a scenery door. It is south of the Surgery Room and north of the Clinic. It is open and unopenable.
-The description is "It decontaminates objects that pass through it."
+The description is "It decontaminates objects that pass through it[if the player has not tried going].[paragraph break](Type >[bold type]go south[roman type] to leave the surgery room.)[otherwise]."
 The scent is "It smells[if time is not critical], unsurprisingly,[end if] of calomel."
 Understand "immaterial" or "field" or "of" or "energy" as the calomel curtain.
 Understand "exit" as the calomel curtain when the location is the Surgery Room.
@@ -4312,7 +4325,7 @@ Last after going to the Clinic when Bad News from Cavala is happening (this is t
 	wait for any key;
 	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
 	wait for any key;
-	say "A chill creeps up your spine.[paragraph break]";
+	say "A chill grips your spine.[paragraph break]";
 	wait for any key;
 	say "Doctor Cavala nods grimly. 'Our suspicions have proven true. Reden is the first of many. More than that -- Doctor Arturus himself is among the casualties.'";
 	start a dialogue with Doctor Cavala using dialogue cavala-badnews-home.
@@ -4340,10 +4353,10 @@ Doctor Cavala folds her arms. Her expression seethes with disquiet, with the agi
 
 [wait for any key]'Myself,' you say.
 
-[wait for any key]'Exactly.' She snaps her fingers. 'Before we can combat the disease, we need data -- data that can only be gathered through firsthand observation. You've proven yourself to be dependable and resourceful; you have enough medical expertise to make informed judgments. It will have to be you who investigates this series of deaths.'
+[wait for any key]'Exactly.' She snaps her fingers. 'Before we can combat the disease, we need data -- data that can only be gathered through firsthand observation. You've proven yourself to be dependable and resourceful. You have enough medical expertise to make informed judgments. It will have to be you who investigates this series of deaths.'
 
 [wait for any key]You consider her words carefully."	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
-cavala-badnews-whyme	true	true	"'Does it [roman type]have[italic type] to be me?'"	"'Does it [italic type]have[roman type] to be me?'
+cavala-badnews-whyme	true	false	"'Does it [roman type]have[italic type] to be me?'"	"'Does it [italic type]have[roman type] to be me?'
 
 She gives you a withering look.
 
@@ -4352,18 +4365,18 @@ cavala-badnews-wheretostart	true	true	"'Where should I begin?'"	"'Where should I
 
 'You could begin by examining Doctor Arturus's body,' Doctor Cavala says. 'He'll be in his clinic -- I suppose it's Doctor Justinian's clinic now. Talk to Doctor Justinian about it, and check his patient records for possible contagion vectors between the deceased.
 
-'It might also be worth asking Zoiro about his brother's associations. See if you can find any correlation between the patients so far. With any luck, we'll uncover the source of the outbreak.'"	{cavala-badnews-whyme, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+'It might also be worth asking Zoiro about his brother's associations. See if you can find any correlation between the patients so far. With any luck, we'll uncover the source of the outbreak.'"	{cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-whattofind	true	true	"'What should I look out for?'"	"'What should I look out for?'
 
-'Our goal is to combat the disease,' Doctor Cavala replies. 'We need to determine the means by which it is transmitted -- whether it is endemic to a particular area, or spread by contact, or something else entirely. Once the transmission method is determined, we can take measures to isolate the disease and find a cure.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+'Our goal is to combat the disease,' Doctor Cavala replies. 'We need to determine the means by which it is transmitted -- whether it is endemic to a particular area, or spread by contact, or something else entirely. Once the transmission method is determined, we can take measures to isolate the disease and find a cure.'"	{cavala-badnews-wheretostart, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-aboutarturus	true	true	"'Can you tell me anything about Doctor Arturus?'"	"'Can you tell me anything about Doctor Arturus?'
 
-She sighs. 'Not much, I'm afraid. Doctor Arturus was before my time. I'm familiar with his corpus of work, of course -- even met him once or twice, in a professional capacity -- but he was a reclusive man, and rarely involved in everyday affairs.
+She sighs. 'Not much, I'm afraid. Doctor Arturus was from before my time. I'm familiar with his corpus of work, of course -- even met him once or twice, in a professional capacity -- but he was a reclusive man, and rarely involved in everyday affairs.
 
-'Try asking Doctor Justinian instead. He's had more contact with the man than anyone else.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutjustinian, cavala-badnews-onit}
+'Try asking Doctor Justinian instead. He's had more contact with the man than anyone else.'"	{cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-aboutjustinian	true	true	"'Do you think Doctor Justinian can help?'"	"'Do you think Doctor Justinian can help?' you ask.
 
-Doctor Cavala nods. 'He likely can. At minimum, he can give you a better picture of the events that led to Doctor Arturus's death. Beyond that, he's now the only other qualified doctor in the district. He'll be a useful ally if we are to contain the disease.'"	{cavala-badnews-whyme, cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-onit}
+Doctor Cavala nods. 'He likely can. At minimum, he can give you a better picture of the events that led to Doctor Arturus's death. Beyond that, he's now the only other qualified doctor in the district. He'll be a useful ally if we are to contain the disease.'"	{cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-onit}
 cavala-badnews-onit	true	false	"'I'm on it, Doctor.'"	"[cavala-badnews-onit-text]"	{}
 
 To say cavala-badnews-onit-text:
@@ -4387,7 +4400,7 @@ To say cavala-badnews-onit-text:
 	say "You step back and put the endoscope in your pocket.[paragraph break]";
 	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the object you wish to inspect.) ";
 	now the day-two copy of the Libri Liberi is carried by the player;
-	now the signum of Doctor Cavala is carried by the player;
+	now Doctor Cavala's signum is carried by the player;
 	now the endoscope is carried by the player;
 	set pronouns from the endoscope.
 	
@@ -7178,7 +7191,7 @@ justinian-afoot-patients	true	true	"'Can you tell me anything about Doctor Artur
 Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"You squirm in your seat. 'Do you know where the patient records are kept?'
 
-He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was a control freak. He liked to have every record on hand.'
+He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'
 
 You make a mental note."	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-disease	true	true	"'What are your thoughts on the disease?'"	"'What are your thoughts on... on the disease?'
@@ -7192,19 +7205,19 @@ justinian-afoot-assassin	true	true	"'There was an attempt on Doctor Cavala's lif
 
 You relate your recollection of last night's events, and Justinian purses his lips.
 
-'I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her business with the district's underworld... I wouldn't be surprised if it came back to haunt her.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
+'I don't know what that's all about,' he says. 'It sounds like Doctor Cavala is the one you should ask. Considering her involvement with the district's underworld... I wouldn't be surprised if some unfinished business came back to haunt her.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-lookaround}
 justinian-afoot-cautious	false	true	"'Was Doctor Arturus a cautious man? Doctor Cavala didn't give me that impression.'"	"'Was Doctor Arturus a cautious man?' you ask. 'Doctor Cavala... didn't give me that impression.'
 
 Justinian looks almost disappointed for a moment, and the look in his eyes breaks your heart.
 
-'Doctor Cavala didn't know him like I do,' he says, quietly. 'Doctor Arturus was cautious -- perhaps too cautious.'"	{justinian-afoot-patientrecords, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+'Doctor Cavala didn't know him like I did,' he says, quietly. 'Doctor Arturus was cautious -- perhaps too cautious.'"	{justinian-afoot-patientrecords, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-lookaround	true	false	"'I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'"	"'I'll... I'll look around the clinic. Perhaps I'll find something the Vigiles have missed.'
 
 You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it[roman type] -- and then Justinian grabs your wrist and you react in an entirely unladylike fashion but his attention is focused completely on you.
 
 'Marid,' he says.
 
-[wait for any key]'J-Justinian?'
+[wait for any key]'J-- Justinian?'
 
 'Be careful.' His voice is trembling. 'I don't want anything to happen to you. If -- if it's too dangerous -- you can just go back to Doctor Cavala. No one will begrudge you for it.'
 
@@ -9948,7 +9961,7 @@ After going through the calomel arch when the player is staid: say "A chill wash
 
 Part 3.29.2 - Dead Bodies
 
-Chapter 3.29.2.1 - General
+Chapter 3.29.2.1 - In General
 
 Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
 The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Debtor Nacarat, Sal, and Piper.[otherwise]You recognize Doctor Arturus's body, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman."
@@ -10007,7 +10020,7 @@ Before doing anything when the location is Arturus's Clinic and Meeting the Pati
 Chapter 3.29.3.1 - Vigiles and the Examiner
 
 Some Vigiles investigators are women in Arturus's Clinic.
-The description is "A pair of women in formal coats."
+The description is "A pair of women in formal coats. You recognize them by their slightly uncomfortable military bearing."
 The sound is "They're discussing causes of death."
 Understand "investigator/detective/detectives" or "pair" or "of" or "team" as the Vigiles investigators.
 
@@ -10016,32 +10029,34 @@ The description is "Long, thin, and black, like a pair of chocolate stovepipes."
 Understand "coat" or "stovepipe/stovepipes" or "black" or "long" or "thin" or "chocolate" as the formal coats.
 
 The Vigiles examiner is a mutant man in Arturus's Clinic.
-The description is "The Vigiles examiner appears to be the one in charge of the team. He looks mostly human except for his remarkable quivering mustache."
+The description is "The Vigiles examiner appears to be the one in charge of the team. He looks surprisingly human, if you discount his quivering mustache."
 The sound is "He's puttering about and making observations about the deceased."
-Understand "coroner" or "medical" or "locu" as the Vigiles examiner.
+Understand "coroner" or "medical" or "velox" as the Vigiles examiner.
 
 The old-fashioned monocle is worn by the Vigiles examiner.
 The description is "Old-fashioned, but effective."
 
 The mustache of cilia is part of the Vigiles examiner.
-The description is "[one of]Are those hairs or cilia? It's not polite to ask.[or]It's probably cilia.[stopping]"
-Understand "hair/hairs/cilium" or "quivering" or "remarkable" as the tentacular mustache.
+The description is "[one of]Are those hairs or cilia? It's not polite to ask[or]It's probably cilia[stopping]."
+Understand "hair/hairs/cilium" or "quivering" as the mustache of cilia.
 
-Before showing the signum of Doctor Cavala to the Vigiles investigators, try talking to the Vigiles examiner instead.
-Before showing the signum of Doctor Cavala to the Vigiles examiner, try talking to the Vigiles examiner instead.
+Before showing Doctor Cavala's signum to the Vigiles investigators, try talking to the Vigiles examiner instead.
+Before showing Doctor Cavala's signum to the Vigiles examiner, try talking to the Vigiles examiner instead.
 Before talking to the Vigiles investigators, try talking to the Vigiles examiner instead.
 
 Section 3.29.3.1.1 - Vigiles Examiner Dialogue
 
 Some dialogue branches are defined by the Table of Vigiles Examiner Dialogue.
+
+Table of Vigiles Examiner Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner adjusts his monocle and looks you over.
 
-'Examiner Locu,' he says. 'Channelworks Division. And who might you be?'
+'Examiner Velox,' he says. 'Channelworks Division. And who might you be?'
 
-'My name is Servator Marid Orpheia,' you say. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
+[wait for any key]'My name is Servator Marid Orpheia,' you say. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
 
-'The [italic type]ius medici[roman type].' He nods. 'Very well, Servator -- these bodies are at your disposal, so long as you do not damage them. We are considering the imposition of quarantine, and they may be used as evidence in the tribunal.'"	{}
+'The [italic type]ius medici?'[roman type] He nods. 'Very well, Servator. These bodies are at your disposal, so long as you do not damage them -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{}
 
 The home dialogue branch of the Vigiles examiner is examiner-home.
 
@@ -10066,7 +10081,7 @@ justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturu
 Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
-He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was a control freak. He liked to have every record on hand.'
+He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'
 
 You make a mental note."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
@@ -10088,7 +10103,6 @@ The home dialogue branch of Justinian is justinian-4inv-home.
 After reading out justinian-4inv-patients: now the enabled of justinian-4inv-patientrecords is true.
 After reading out justinian-4inv-patientrecords: now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
 After reading out justinian-4inv-discovery: now clue-arturus-discovery-justinian is true.
-
 
 Book of the Rest
 
