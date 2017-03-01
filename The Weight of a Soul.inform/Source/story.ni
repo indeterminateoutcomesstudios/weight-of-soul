@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 280217.
+The release number is 010317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -302,6 +302,7 @@ The Game is Afoot ends when the player is in Arturus's Clinic.
 
 Meeting the Patients is a scene. [Marid goes to learn about Nacarat and the Thugs.]
 Meeting the Patients begins when Four Investigations begins.
+Meeting the Patients ends when Doctor Arturus is in Arturus's Clinic
 
 Four Investigations is a scene. [The overarching scene for most of Day Two.]
 Four Investigations begins when The Game is Afoot ends.
@@ -332,7 +333,7 @@ Reden Investigation begins when Bad News from Cavala begins.
 Arturus Investigation is a scene.
 Arturus Investigation begins when Four Investigations begins.
 
-[3. Debtor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
+[3. Creditor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
 - Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
 - Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
 
@@ -342,7 +343,7 @@ Nacarat Investigation begins when Meeting the Patients ends.
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Poisoned the night of Prologue. Died early Day One morning.
 - Justinian knows about them because they often came to shake down Arturus. He tracked them to their residences and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
-- Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against debtor documents from Arturus's Clinic - they don't match.
+- Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against Creditor documents from Arturus's Clinic - they don't match.
 - They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
 - They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
 
@@ -1946,7 +1947,7 @@ Chapter 2.3.3.3 - Characters
 The list of discovered characters is a list of things that varies.
 
 A person has some text called the bio-name. The bio-name of a person is usually "[printed name in title case]".
-A person has some text called the bio-description. The bio-description of a person is usually "No information available."
+A person has some text called the bio-description. The bio-description of a person is usually "".
 
 To say characters-text:
 	say "You have discovered the following notable characters:";
@@ -1972,11 +1973,18 @@ The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???
 The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
-The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease; now he is dead of the same contagion."
+The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease, and now he is dead of the same contagion."
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
 The bio-description of Justinian is "Doctor Arturus's protégé, a driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it."
+
+When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
+The bio-description of Creditor Nacarat is "A victim of the mysterious disease. He was a financial-sector businessman, according to the Vigiles."
+
+When Meeting the Patients ends: add Sal to the list of discovered characters.
+The bio-name of Sal is "Sal and Piper".
+The bio-description of Sal is "Victims of the mysterious disease. A notorious pair of thugs in the Shanty Quarter, according to the Vigiles."
 
 Chapter 2.3.3.4 - Map
 
@@ -2316,7 +2324,7 @@ To say journal-text-objectives:
 		if Reden Investigation is happening, add "[italic type]   ...by investigating the death of Reden[roman type]" to L;
 		if Arturus Investigation is happening, add "[italic type]   ...by investigating the death of Doctor Arturus[roman type]" to L;
 		if Meeting the Patients is happening, add "[italic type]   ...by investigating the deaths of Doctor Arturus's patients[roman type]" to L;
-		if Nacarat Investigation is happening, add "[italic type]   ...by investigating the death of Debtor Nacarat[roman type]" to L;
+		if Nacarat Investigation is happening, add "[italic type]   ...by investigating the death of Creditor Nacarat[roman type]" to L;
 		if Thugs Investigation is happening, add "[italic type]   ...by investigating the deaths of Sal and Piper[roman type]" to L;
 	[---
 	END
@@ -2369,24 +2377,30 @@ To say journal-text-notes:
 			add "[italic type]Doctor Arturus[roman type]" to L;
 			add "- I should ask the Vigiles for their professional opinion." to L;
 			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
-			add "- I should examine Doctor Arturus's body, in the Turris Infinita clinic." to L;
+			if 4inv-vigiles-permission is false:
+				add "- I should get permission from the Vigiles to examine Doctor Arturus's body." to L;
+			otherwise:
+				add "- I should examine Doctor Arturus's body, in the Turris Infinita clinic." to L;
 			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
 			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night and this morning." to L;
 			add "" to L;
 		if Meeting the Patients is happening:
 			add "[italic type]Doctor Arturus's patients[roman type]" to L;
 			add "- I should ask the Vigiles for their professional opinion." to L;
-			add "- I should examine the bodies of the patients, in the Turris Infinita clinic." to L;
+			if 4inv-vigiles-permission is false:
+				add "- I should get permission from the Vigiles to examine the bodies of the patients." to L;
+			otherwise:
+				add "- I should examine the bodies of the patients, in the Turris Infinita clinic." to L;
 			add "- I should find out the identities of Doctor Arturus's patients." to L;
 			add "- I should look up Doctor Arturus's patient records." to L;
 			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
 		if Nacarat Investigation is happening:
-			add "[italic type]Debtor Nacarat[roman type]" to L;
+			add "[italic type]Creditor Nacarat[roman type]" to L;
 			add "- I should ask the Vigiles for their professional opinion." to L;
-			add "- I should examine Debtor Nacarat's body, in the Turris Infinita clinic." to L;
-			add "- I should find out more about the circumstances of Debtor Nacarat's death." to L;
-			add "- I should look for connections between Debtor Nacarat and the other victims." to L;
+			add "- I should examine Creditor Nacarat's body, in the Turris Infinita clinic." to L;
+			add "- I should find out more about the circumstances of Creditor Nacarat's death." to L;
+			add "- I should look for connections between Creditor Nacarat and the other victims." to L;
 			add "- I should look up Doctor Arturus's patient records." to L;
 			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
@@ -5156,8 +5170,9 @@ Chapter 3.6.3.1 - Saliunca and the Pigeons
 Section 3.6.3.1.1 - Saliunca and her Props
 
 Saliunca is an improper-named woman in the Dormitory Block. "[A Saliunca] sits at the base of the fountain, feeding pigeons that wing down from the sky above."
-The indefinite article is "an". The printed name is "old woman".
+The indefinite article is "an".
 The description is "[if Saliunca is hostile]You don't want to look at her.[otherwise]You recognize her as a fellow dormitory resident, having passed by her once or twice in the washhouse. She is feeding the pigeons breadcrumbs from the basket in her lap."
+Rule for printing the name of Saliunca when Saliunca is improper-named: say "old woman".
 Understand "old" or "lady" or "resident" or "fellow" or "dormitory resident" as Saliunca.
 
 Instead of attacking, burning, cutting, knocking on, pulling, or pushing Saliunca when Saliunca is hostile, say "No... that would only get you in trouble."
@@ -5316,21 +5331,18 @@ To say saliunca-why-text:
 The home dialogue branch of Saliunca is saliunca-home1.
 
 After reading out saliunca-greet1:
-	now the printed name of Saliunca is "Saliunca";
 	now Saliunca is proper-named;
 	now the conversational partner text is "Talking to Saliunca";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
 	
 After reading out saliunca-greet2:
-	now the printed name of Saliunca is "Saliunca";
 	now Saliunca is proper-named;
 	now the conversational partner text is "Talking to Saliunca";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
 	
 After reading out saliunca-greet3:
-	now the printed name of Saliunca is "Saliunca";
 	now Saliunca is proper-named;
 	now the conversational partner text is "Talking to Saliunca";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
@@ -7078,7 +7090,7 @@ You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots 
 
 [wait for any key]The gargoyles wrench your arms behind your back. The porter gives you a slowly erupting volcano of a glare.
 
-[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking piece of--'[roman type]
+[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking--'[roman type]
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
@@ -7129,9 +7141,9 @@ Some dialogue branches are defined by the Table of Justinian Game Afoot Dialogue
 
 Table of Justinian Game Afoot Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-justinian-afoot-thanks	true	false	"'Thanks for that.'"	"'Thanks for that,' you say lamely.
+justinian-afoot-thanks	true	false	"'Thanks for that.'"	"'Thanks... thanks for that,' you say lamely.
 
-'It's the least I can do.' He smiles. 'Come with me. We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
+'It's the least I can do.' He nods. 'Come with me. We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
 justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"	"'I-- It's good to see you,' you stutter. 'Doctor Justinian.'
 
 Oh Primes, are you [italic type]blushing?[roman type] You're making a fool of yourself--
@@ -9964,13 +9976,26 @@ Part 3.29.2 - Dead Bodies
 Chapter 3.29.2.1 - In General
 
 Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
-The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Debtor Nacarat, Sal, and Piper.[otherwise]You recognize Doctor Arturus's body, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman."
+The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper.[otherwise]You can't see much of the bodies beneath the tarpaulins."
 The sound is "You hear nothing unexpected, and indeed it would be rather troubling if you did."
-The scent is "The bodies don't smell at all. The clinic's environment must be too sterile for bloat to set in."
-Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" as the tarpaulin-covered bodies.
+The scent is "There's no smell at all. The clinic's environment must be too sterile for bloat to set in."
+Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" or "slab" as the tarpaulin-covered bodies.
+Understand "doctor/-- arturus/arturus's" or "body/corpse/cadaver/victim" as the tarpaulin-covered bodies when Meeting the Patients is happening.
+
+Instead of doing anything when the current action involves the tarpaulin-covered bodies and 4inv-vigiles-permission is false:
+	if the current action is examining, continue the action;
+	if the current action is listening, continue the action;
+	if the current action is smelling, continue the action;
+	if the home dialogue branch of Examiner Velox is examiner-home:
+		start a dialogue with Examiner Velox using dialogue examiner-confront;
+		now Examiner Velox is proper-named;
+	otherwise:
+		say "The investigators stop you.";
+
 Instead of giving something to the tarpaulin-covered bodies, say "You won't get much of a response."
 Instead of knocking on or touching the tarpaulin-covered bodies, say "The bodies are all cold."
 Instead of kissing, pushing, pulling, squeezing, taking, or turning the tarpaulin-covered bodies, say "You shouldn't unduly disturb the bodies."
+Instead of looking under the tarpaulin-covered bodies, say "The bodies are lying on a slab."
 Instead of searching the tarpaulin-covered bodies, say "You will have to specify which one to search."
 Instead of waking the tarpaulin-covered bodies, say "If only."
 
@@ -9982,45 +10007,48 @@ Understand "tarpaulin" or "sheet/sheets" as the forensic tarpaulins.
 Before looking under or searching the forensic tarpaulins, try examining the tarpaulin-covered bodies instead.
 Instead of entering the forensic tarpaulins, say "The notion is entirely distasteful."
 
+Instead of doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
+	if the current action is examining, continue the action;
+	if the current action is listening, continue the action;
+	if the current action is smelling, continue the action;
+	if the home dialogue branch of Examiner Velox is examiner-home:
+		start a dialogue with Examiner Velox using dialogue examiner-confront;
+		now Examiner Velox is proper-named;
+	otherwise:
+		say "The investigators stop you.";
+
 Chapter 3.29.2.2 - Doctor Arturus
 
-Doctor Arturus is a dead undescribed man in Arturus's Clinic.
+Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
 
-Chapter 3.29.2.3 - Debtor Nacarat
+Chapter 3.29.2.3 - Creditor Nacarat
 
-Debtor Nacarat is a dead undescribed improper-named man in Arturus's Clinic.
-The printed name is "man dressed in finery".
-Understand "dressed" or "in" or "finery" or "nacarat's" or "victim" as Debtor Nacarat.
+Creditor Nacarat is a dead undescribed man.
+Understand "nacarat's" or "victim" as Creditor Nacarat.
 
 Chapter 3.29.2.4 - Sal
 
-Sal is a dead undescribed improper-named man in Arturus's Clinic.
-The printed name is "man built like a fighter".
-Understand "built" or "like" or "fighter" or "salio" or "salio's/sal's" or "victim" as Sal.
+Sal is a dead undescribed man.
+Understand "salio" or "salio's/sal's" or "victim" as Sal.
 
 Chapter 3.29.2.5 - Piper
 
-Piper is a dead undescribed improper-named woman in Arturus's Clinic.
-The printed name is "reedy young woman".
-Understand "reedy" or "young" or "piper's" or "victim" as Piper.
+Piper is a dead undescribed woman.
+Understand "piper's" or "victim" as Piper.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
 Rule for writing a paragraph about Justinian when Four Investigations is happening:
 	say "Some Vigiles investigators and an examiner are huddled around a group of tarpaulin-covered bodies. Beside them, Justinian sits at a coffee table, brooding.";
 	now the Vigiles investigators are mentioned;
-	now the Vigiles examiner is mentioned;
+	now Examiner Velox is mentioned;
 	now Justinian is mentioned.
-	
-Before doing anything when the location is Arturus's Clinic and Meeting the Patients is happening:
-	if the current action involves Doctor Arturus or the current action involves Debtor Nacarat or the current action involves Sal or the current action involves Piper:
-		try talking to the Vigiles examiner instead.
 
-Chapter 3.29.3.1 - Vigiles and the Examiner
+Chapter 3.29.3.1 - Vigiles and Examiner Velox
 
 Some Vigiles investigators are women in Arturus's Clinic.
-The description is "A pair of women in formal coats. You recognize them by their slightly uncomfortable military bearing."
+The description is "A pair of women in formal coats. You recognize them by their military bearing."
 The sound is "They're discussing causes of death."
 Understand "investigator/detective/detectives" or "pair" or "of" or "team" as the Vigiles investigators.
 
@@ -10028,21 +10056,21 @@ Some formal coats are worn by the Vigiles investigators.
 The description is "Long, thin, and black, like a pair of chocolate stovepipes."
 Understand "coat" or "stovepipe/stovepipes" or "black" or "long" or "thin" or "chocolate" as the formal coats.
 
-The Vigiles examiner is a mutant man in Arturus's Clinic.
-The description is "The Vigiles examiner appears to be the one in charge of the team. He looks surprisingly human, if you discount his quivering mustache."
+Examiner Velox is an improper-named mutant man in Arturus's Clinic.
+The indefinite article is "a".
+The description is "[one of][The Examiner Velox] appears to be the one in charge of the team. He looks surprisingly human, if you discount his quivering mustache[or]The examiner and his team are keeping watch over the bodies[stopping]."
 The sound is "He's puttering about and making observations about the deceased."
-Understand "coroner" or "medical" or "velox" as the Vigiles examiner.
+Rule for printing the name of Examiner Velox when Examiner Velox is improper-named: say "Vigiles examiner".
+Understand "coroner" or "medical" or "vigiles" or "examiner" as Examiner Velox.
 
-The old-fashioned monocle is worn by the Vigiles examiner.
-The description is "Old-fashioned, but effective."
-
-The mustache of cilia is part of the Vigiles examiner.
+The mustache of cilia is part of Examiner Velox.
 The description is "[one of]Are those hairs or cilia? It's not polite to ask[or]It's probably cilia[stopping]."
-Understand "hair/hairs/cilium" or "quivering" as the mustache of cilia.
+Understand "hair/hairs/cilium" or "quivering" or "moustache" as the mustache of cilia.
 
-Before showing Doctor Cavala's signum to the Vigiles investigators, try talking to the Vigiles examiner instead.
-Before showing Doctor Cavala's signum to the Vigiles examiner, try talking to the Vigiles examiner instead.
-Before talking to the Vigiles investigators, try talking to the Vigiles examiner instead.
+Before showing Doctor Cavala's signum to the Vigiles investigators, try talking to Examiner Velox instead.
+Before showing Doctor Cavala's signum to Examiner Velox, try talking to Examiner Velox instead.
+Before talking to the Vigiles investigators, try talking to Examiner Velox instead.
+Before talking to Examiner Velox for the first time: now Examiner Velox is proper-named; continue the action.
 
 Section 3.29.3.1.1 - Vigiles Examiner Dialogue
 
@@ -10050,15 +10078,116 @@ Some dialogue branches are defined by the Table of Vigiles Examiner Dialogue.
 
 Table of Vigiles Examiner Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner adjusts his monocle and looks you over.
+examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner's mustache twitches as he looks you over.
 
 'Examiner Velox,' he says. 'Channelworks Division. And who might you be?'
 
-[wait for any key]'My name is Servator Marid Orpheia,' you say. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
+[wait for any key]'My name is Servator Marid Orpheia,' you reply. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
 
-'The [italic type]ius medici?'[roman type] He nods. 'Very well, Servator. These bodies are at your disposal, so long as you do not damage them -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{}
+[wait for any key]'The [italic type]ius medici?'[roman type] He nods. 'Very well, Servator. You may inspect these bodies at your own risk. Do not damage them, however -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{examiner-quarantine, examiner-tribunal, examiner-agree, examiner-refuse}
+examiner-confront	true	false	""	"As you approach the bodies, the examiner places an arresting hand on your shoulder.
 
-The home dialogue branch of the Vigiles examiner is examiner-home.
+'Examiner Velox,' he says. 'Channelworks Division. And who might you be?'
+
+[wait for any key]'My name is Servator Marid Orpheia,' you reply. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
+
+'The [italic type]ius medici?'[roman type] He pauses, then nods. 'Very well, Servator. You may inspect these bodies at your own risk. Do not damage them, however -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{examiner-quarantine, examiner-tribunal, examiner-agree, examiner-refuse}
+examiner-quarantine	true	true	"'Quarantine?'"	"'Quarantine?'
+
+'Indeed.' His mustache bristles vigorously. 'If there is even a possibility that Doctor Justinian's fears ring true, it is imperative that the spread of the disease be contained -- if not within the Turris, then within the Channelworks District.'"	{examiner-redentoo, examiner-mentionedtribunal, examiner-agree, examiner-refuse}
+examiner-iequarantine	true	true	"'You mean quarantine?'"	"'You mean quarantine?'
+
+'Indeed.' His mustache bristles. 'If there is even a possibility that Doctor Justinian's fears ring true, it is imperative that the spread of the disease be contained -- if not within the Turris, then within the Channelworks District.'"	{examiner-redentoo, examiner-agree, examiner-refuse}
+examiner-redentoo	true	false	"'The disease isn't confined to the Turris.'"	"'The disease isn't confined to the Turris.'
+
+He frowns. 'Then the situation is worse than I had imagined. We [italic type]must[roman type] quarantine the district in the name of the public good.'"	{examiner-mentionedtribunal, examiner-agree, examiner-refuse}
+examiner-tribunal	true	true	"'Tribunal?'"	"'Tribunal?'
+
+Examiner Velox taps the pin on his coat. 'We are here on behalf of the district councils. At this very moment, a hearing is under way regarding measures to be taken against the disease.'"	{examiner-iequarantine, examiner-agree, examiner-refuse}
+examiner-mentionedtribunal	true	true	"'You mentioned a tribunal?'"	"You mentioned a tribunal?'
+
+Examiner Velox flashes his badge. 'We are here on behalf of the district councils. At this very moment, a hearing is under way regarding measures to be taken against the disease.'"	{examiner-agree, examiner-refuse}
+examiner-refuse	true	false	"'I can't promise that I won't damage the bodies...'"	"'I can't promise that I won't damage the bodies,' you say. 'What if I need to perform a dissection for more information?'
+
+He shrugs. 'In that case, I cannot promise that you will be allowed to examine the bodies in the first place.'"	{examiner-justinianvouch, examiner-justphoto, examiner-fineagree, examiner-illbeback}
+examiner-justinianvouch	true	true	"'Doctor Justinian will vouch for me.'"	"'Doctor Justinian will... will vouch for me.'
+
+Examiner Velox inclines his head. 'You must understand, Servator, that this is a district-level matter. I respect Doctor Justinian's opinion of you, but even his authority does not stretch that far.'"	{examiner-justphoto, examiner-fineagree, examiner-illbeback}
+examiner-justphoto	true	true	"'Can't you just take a negative or something?'"	"'Can't you just take a negative or something?'
+
+He shakes his head. 'The Channelworks Division is not well funded -- as it stands, my department can barely keep the lights on. I'm afraid a man-portable [italic type]camera obscura[roman type] is out of the question.'"	{examiner-justinianvouch, examiner-fineagree, examiner-illbeback}
+examiner-illbeback	true	false	"'Fine. I'll be back later.'"	"'Fine,' you say. 'I'll be back later.'
+
+'As you wish. I will be here if you change your mind.'
+
+You step back, and Examiner Velox returns to inspecting the victims."	{}
+
+The home dialogue branch of Examiner Velox is examiner-home.
+
+After reading out examiner-quarantine: now the enabled of examiner-iequarantine is false.
+After reading out examiner-iequarantine: now the enabled of examiner-quarantine is false.
+After reading out examiner-tribunal: now the enabled of examiner-mentionedtribunal is false.
+After reading out examiner-mentionedtribunal: now the enabled of examiner-tribunal is false.
+
+Section 3.29.3.1.2 - Vigiles Permission and the Examiner's Exposition
+
+4inv-vigiles-permission is a truth state that varies.
+
+After reading out examiner-illbeback: now the home dialogue branch of Examiner Velox is examiner-home2.
+
+Table of Vigiles Examiner Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+examiner-home2	true	false	""	"You approach the team of Vigiles.
+
+'You're back,' Examiner Velox observes. 'Have you changed your mind about needing to damage the bodies?'"	{examiner-justinianvouch, examiner-justphoto, examiner-fineagree, examiner-illbeback2}
+examiner-illbeback2	true	false	"'No. I haven't.'"	"'No,' you say. 'I haven't.'
+
+You step back. He shakes his head and returns to inspecting the victims."	{}
+examiner-agree	true	false	"'I'll do my best to avoid damaging the bodies.'"	"'I'll do my best to avoid damaging the bodies.'
+
+He nods. 'Excellent. To business, then. If you'll follow me...'
+
+[examiner-exposition]"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-fineagree	true	false	"'Fine. I'll do as you ask.'"	"'Fine. I'll do as you ask.'
+
+He nods. 'I'm glad you came around. To business, then. If you'll follow me...'
+
+[examiner-exposition]"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+
+To say examiner-exposition:
+	now 4inv-vigiles-permission is true;
+	now Doctor Arturus is in Arturus's Clinic;
+	now Creditor Nacarat is in Arturus's Clinic;
+	now Sal is in Arturus's Clinic;
+	now Piper is in Arturus's Clinic;
+	now the home dialogue branch of Examiner Velox is examiner-home3;
+	wait for any key;
+	say "You follow him to the slab where the tarpaulin has been laid out. He draws it back -- you recognize Doctor Arturus, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman. All have black stains around their mouths and eyes.[paragraph break]";
+	wait for any key;
+	say "Here are the four victims of the disease,' Examiner Velox says. 'We've made some preliminary investigations into their identities. Looking for identification on the bodies, cross-referencing against our records, [italic type]et cetera...'[roman type][paragraph break]";
+	wait for any key;
+	say "'What can you tell me?'
+
+'The man on the left is Doctor Arturus -- I see you're already familiar with him. Very good. The one beside him, the well-dressed man, is Creditor Nacarat of the Furopolis Securities Exchange. He's rather well-known in certain circles of society -- he has been implicated in some fraud allegations, but nothing concrete.'[paragraph break]";
+	wait for any key;
+	say "'What about the other two?' you ask.
+
+'Ah.' Examiner Velox furrows his mustache. 'They are more of an enigma. They carry no identification; they are not in our records. We believe they were unregistered criminals hiding in the Shanty Quarter. According to our contacts, they match the description of Sal and Piper, a villainous duo of some notoriety. They were underworld enforcers, and not particularly well liked.'[paragraph break]";
+	wait for any key;
+	say "You consider the facts laid before you. ";
+
+Section 3.29.3.1.3 - Individual Discussions
+
+Table of Vigiles Examiner Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Velox looks up from the bodies.
+
+'Servator,' he says. 'What can I do for you?'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
+examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-ask	true	false	"'Regarding Creditor Nacarat...'"	"'Regarding Creditor Nacarat...'"	{examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thanksbye	true	false	"'That will be all, thank you.'"	"'That will be all, thank you.'"	{}
+examiner-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'"	{}
 
 Chapter 3.29.3.2 - Justinian during Four Investigations
 
