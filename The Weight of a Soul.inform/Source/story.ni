@@ -9975,14 +9975,14 @@ Part 3.29.2 - Dead Bodies
 
 Chapter 3.29.2.1 - In General
 
-Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
+Some tarpaulin-covered bodies are privately-named scenery in Arturus's Clinic.
 The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper.[otherwise]You can't see much of the bodies beneath the tarpaulins."
 The sound is "You hear nothing unexpected, and indeed it would be rather troubling if you did."
 The scent is "There's no smell at all. The clinic's environment must be too sterile for bloat to set in."
-Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" or "slab" as the tarpaulin-covered bodies.
+Understand "covered" or "tarpaulin covered" or "tarpaulin-covered" or "corpses/cadavers/victims/bodies" or "slab" as the tarpaulin-covered bodies.
 Understand "doctor/-- arturus/arturus's" or "body/corpse/cadaver/victim" as the tarpaulin-covered bodies when Meeting the Patients is happening.
 
-Instead of doing anything when the current action involves the tarpaulin-covered bodies and 4inv-vigiles-permission is false:
+Before doing anything when the current action involves the tarpaulin-covered bodies and 4inv-vigiles-permission is false:
 	if the current action is examining, continue the action;
 	if the current action is listening, continue the action;
 	if the current action is smelling, continue the action;
@@ -9992,9 +9992,10 @@ Instead of doing anything when the current action involves the tarpaulin-covered
 	otherwise:
 		say "The investigators stop you.";
 
+Instead of attacking or cutting the tarpaulin-covered bodies, say "You agreed not to damage the bodies. You shouldn't push your luck."
 Instead of giving something to the tarpaulin-covered bodies, say "You won't get much of a response."
 Instead of knocking on or touching the tarpaulin-covered bodies, say "The bodies are all cold."
-Instead of kissing, pushing, pulling, squeezing, taking, or turning the tarpaulin-covered bodies, say "You shouldn't unduly disturb the bodies."
+Instead of pushing, pulling, squeezing, taking, or turning the tarpaulin-covered bodies, say "You shouldn't unduly disturb the bodies."
 Instead of looking under the tarpaulin-covered bodies, say "The bodies are lying on a slab."
 Instead of searching the tarpaulin-covered bodies, say "You will have to specify which one to search."
 Instead of waking the tarpaulin-covered bodies, say "If only."
@@ -10007,7 +10008,7 @@ Understand "tarpaulin" or "sheet/sheets" as the forensic tarpaulins.
 Before looking under or searching the forensic tarpaulins, try examining the tarpaulin-covered bodies instead.
 Instead of entering the forensic tarpaulins, say "The notion is entirely distasteful."
 
-Instead of doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
+Before doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
 	if the current action is examining, continue the action;
 	if the current action is listening, continue the action;
 	if the current action is smelling, continue the action;
@@ -10064,8 +10065,8 @@ Rule for printing the name of Examiner Velox when Examiner Velox is improper-nam
 Understand "coroner" or "medical" or "vigiles" or "examiner" as Examiner Velox.
 
 The mustache of cilia is part of Examiner Velox.
-The description is "[one of]Are those hairs or cilia? It's not polite to ask[or]It's probably cilia[stopping]."
-Understand "hair/hairs/cilium" or "quivering" or "moustache" as the mustache of cilia.
+The description is "[one of]Are those hairs or cilia? It's not polite to ask[or]They're probably cilia[stopping]."
+Understand "hair/hairs/cilium/ciliolate" or "quivering" or "moustache" as the mustache of cilia.
 
 Before showing Doctor Cavala's signum to the Vigiles investigators, try talking to Examiner Velox instead.
 Before showing Doctor Cavala's signum to Examiner Velox, try talking to Examiner Velox instead.
@@ -10078,7 +10079,7 @@ Some dialogue branches are defined by the Table of Vigiles Examiner Dialogue.
 
 Table of Vigiles Examiner Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner's mustache twitches as he looks you over.
+examiner-home	true	false	""	"You approach the team of Vigiles, signum in hand. The examiner's cilia twitch as he looks you over.
 
 'Examiner Velox,' he says. 'Channelworks Division. And who might you be?'
 
@@ -10107,7 +10108,7 @@ Examiner Velox taps the pin on his coat. 'We are here on behalf of the district 
 examiner-mentionedtribunal	true	true	"'You mentioned a tribunal?'"	"You mentioned a tribunal?'
 
 Examiner Velox flashes his badge. 'We are here on behalf of the district councils. At this very moment, a hearing is under way regarding measures to be taken against the disease.'"	{examiner-agree, examiner-refuse}
-examiner-refuse	true	false	"'I can't promise that I won't damage the bodies...'"	"'I can't promise that I won't damage the bodies,' you say. 'What if I need to perform a dissection for more information?'
+examiner-refuse	true	false	"'I can't promise that I won't damage the bodies...'"	"'I can't promise that I won't damage the bodies. What if I need to perform a dissection for more information?'
 
 He shrugs. 'In that case, I cannot promise that you will be allowed to examine the bodies in the first place.'"	{examiner-justinianvouch, examiner-justphoto, examiner-fineagree, examiner-illbeback}
 examiner-justinianvouch	true	true	"'Doctor Justinian will vouch for me.'"	"'Doctor Justinian will... will vouch for me.'
@@ -10147,12 +10148,12 @@ examiner-agree	true	false	"'I'll do my best to avoid damaging the bodies.'"	"'I'
 
 He nods. 'Excellent. To business, then. If you'll follow me...'
 
-[examiner-exposition]"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+[examiner-exposition]"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-fineagree	true	false	"'Fine. I'll do as you ask.'"	"'Fine. I'll do as you ask.'
 
 He nods. 'I'm glad you came around. To business, then. If you'll follow me...'
 
-[examiner-exposition]"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+[examiner-exposition]"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 
 To say examiner-exposition:
 	now 4inv-vigiles-permission is true;
@@ -10162,9 +10163,9 @@ To say examiner-exposition:
 	now Piper is in Arturus's Clinic;
 	now the home dialogue branch of Examiner Velox is examiner-home3;
 	wait for any key;
-	say "You follow him to the slab where the tarpaulin has been laid out. He draws it back -- you recognize Doctor Arturus, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman. All have black stains around their mouths and eyes.[paragraph break]";
+	say "You follow him to the slab, where he draws back the tarpaulin. You recognize Doctor Arturus, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman. All have black stains around their mouths and eyes.[paragraph break]";
 	wait for any key;
-	say "Here are the four victims of the disease,' Examiner Velox says. 'We've made some preliminary investigations into their identities. Looking for identification on the bodies, cross-referencing against our records, [italic type]et cetera...'[roman type][paragraph break]";
+	say "'Here are the four victims of the disease,' Examiner Velox says. 'We've made some preliminary investigations into their identities. Looking for identification on the bodies, cross-referencing against our records, [italic type]et cetera...'[roman type][paragraph break]";
 	wait for any key;
 	say "'What can you tell me?'
 
@@ -10182,12 +10183,36 @@ Table of Vigiles Examiner Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Velox looks up from the bodies.
 
-'Servator,' he says. 'What can I do for you?'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
-examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+'Servator,' he says. 'What can I do for you?'"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
+examiner-causeofdeath	true	true	"'They are all dead of the disease?'"	"'They are all dead of the disease?'
+
+Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'
+
+You recall Reden's autopsy. 'So the direct cause of death would be heart failure?'
+
+He nods. 'That is probable, yes.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-found, examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-found	true	false	"'What was the state his body was found in[if examiner-arturus-found-asked is true], again[end if]?'"	"'What was the state his body was found in[if examiner-arturus-found-asked is true], again[end if]?'
+
+'Doctor Justinian notified the Vigiles at five in the morning,' Examiner Velox replies. 'When we arrived at quarter-past five, we found Doctor Arturus's body already laid out here on the slab. Doctor Justinian testified that he had found Doctor Arturus motionless in his domicile, and moved him here in an attempt to revive him.'"	{examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-timeofdeath	true	false	"What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'"	"'What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'
+
+His mustache squirms. 'The ambient temperature in the Turris Infinita makes the precise time difficult to ascertain. Complicating matters is the fact that Doctor Justinian moved the body, interfering with the natural processes of [italic type]rigor mortis[roman type] and [italic type]livor mortis[roman type]. All we can gather is that he died after dark yesterday -- sometime between eight and twelve hours ago.'"	{examiner-arturus-found, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-nacarat-ask	true	false	"'Regarding Creditor Nacarat...'"	"'Regarding Creditor Nacarat...'"	{examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
-examiner-thanksbye	true	false	"'That will be all, thank you.'"	"'That will be all, thank you.'"	{}
-examiner-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'"	{}
+examiner-thanksbye	true	false	"'That will be all, thank you.'"	"'That will be all, thank you.'
+
+You step back, and Examiner Velox returns to his work."	{}
+examiner-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
+
+You step back, and Examiner Velox returns to his work."	{}
+
+examiner-arturus-found-asked is a truth state that varies.
+examiner-arturus-timeofdeath-asked is a truth state that varies.
+After reading out examiner-arturus-found:
+	now examiner-arturus-found-asked is true;
+	if the enabled of justinian-4inv-movedbody has not been true, now the enabled of justinian-4inv-movedbody is true.
+After reading out examiner-arturus-timeofdeath: now examiner-arturus-timeofdeath-asked is true.
 
 Chapter 3.29.3.2 - Justinian during Four Investigations
 
@@ -10201,24 +10226,29 @@ Table of Justinian 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-4inv-home	true	false	""	"Justinian brightens up as you approach him.
 
-'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
+'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
 justinian-4inv-discovery	true	false	"'Can you tell me again about how you discovered the body?'"	"'Can you tell me again about... about how you discovered the body?'
 
-He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-goodbye}
+He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'
 
-You make a mental note."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+You make a mental note."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
-'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on... on the disease, again?'
 
-Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-goodbye}
+Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-goodbye}
+justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
+
+Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'
+
+He trails off, and does not continue."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
