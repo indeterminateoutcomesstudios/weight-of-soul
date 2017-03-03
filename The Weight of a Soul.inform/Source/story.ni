@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 010317.
+The release number is 030317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -89,6 +89,7 @@ Book 1.1 - Miscellany
 Part 1.1.1 - Use Options
 
 Use American dialect and the serial comma.
+Use MAX_ARRAYS of 20000.
 Use MAX_DICT_ENTRIES of 4000.
 Use MAX_NUM_STATIC_STRINGS of 40000.
 Use MAX_OBJECTS of 1280.
@@ -334,14 +335,14 @@ Arturus Investigation is a scene.
 Arturus Investigation begins when Four Investigations begins.
 
 [3. Creditor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
-- Justinian poisoned his wine during a "meeting" with Arturus on the Prologue night. He was discovered dead the morning of Day One. Caused a large spate of deaths in the Upper Perioch.
+- Justinian poisoned his wine during a "meeting" with Arturus the morning of Prologue. Admitted Prologue day. Died Prologue night.
 - Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
 
 Nacarat Investigation is a scene.
 Nacarat Investigation begins when Meeting the Patients ends.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
-- Poisoned the night of Prologue. Died early Day One morning.
+- Poisoned the night before Prologue. Admitted Prologue day. Died Prologue night.
 - Justinian knows about them because they often came to shake down Arturus. He tracked them to their residences and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
 - Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against Creditor documents from Arturus's Clinic - they don't match.
 - They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
@@ -1147,9 +1148,9 @@ Last instead of inserting the endoscope into something worn by a living friendly
 Last instead of inserting the endoscope into something worn by a living hostile person (called the wearer): say "You doubt [the wearer] will allow you to do that."
 Last instead of inserting the endoscope into something: say "[The second noun] [are]n't something you can thread the endoscope into."
 
-Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
-Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine."
-Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the pathway you wish to examine.").
+Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect."
+Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect."
+Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect.").
 
 Part 2.2.12 - Doctor Cavala's Signum
 
@@ -2372,48 +2373,48 @@ To say journal-text-notes:
 		if Reden Investigation is happening:
 			add "[italic type]Reden[roman type]" to L;
 			add "- I should go to Riggertown and ask Zoiro about his brother's activities." to L;
+			add "- I remember that Reden died on the night of the Third, two days ago." to L;
 			add "" to L;
 		if Arturus Investigation is happening:
 			add "[italic type]Doctor Arturus[roman type]" to L;
-			add "- I should ask the Vigiles for their professional opinion." to L;
+			if examiner-arturus-found-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
 			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
 			if 4inv-vigiles-permission is false:
 				add "- I should get permission from the Vigiles to examine Doctor Arturus's body." to L;
 			otherwise:
-				add "- I should examine Doctor Arturus's body, in the Turris Infinita clinic." to L;
+				add "- I should examine Doctor Arturus's body." to L;
 			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
-			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night and this morning." to L;
+			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L;
+			if examiner-arturus-notable-asked is true, add "- I learned that Doctor Arturus may have been infected through his gloves." to L;
 			add "" to L;
 		if Meeting the Patients is happening:
 			add "[italic type]Doctor Arturus's patients[roman type]" to L;
-			add "- I should ask the Vigiles for their professional opinion." to L;
-			if 4inv-vigiles-permission is false:
-				add "- I should get permission from the Vigiles to examine the bodies of the patients." to L;
-			otherwise:
-				add "- I should examine the bodies of the patients, in the Turris Infinita clinic." to L;
+			add "- I should ask the Vigile examiner about his findings." to L;
+			add "- I should get permission from the Vigiles to examine the bodies of the patients." to L;
 			add "- I should find out the identities of Doctor Arturus's patients." to L;
 			add "- I should look up Doctor Arturus's patient records." to L;
 			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
 			add "" to L;
 		if Nacarat Investigation is happening:
 			add "[italic type]Creditor Nacarat[roman type]" to L;
-			add "- I should ask the Vigiles for their professional opinion." to L;
-			add "- I should examine Creditor Nacarat's body, in the Turris Infinita clinic." to L;
+			if examiner-nacarat-notable-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
+			add "- I should examine Creditor Nacarat's body." to L;
 			add "- I should find out more about the circumstances of Creditor Nacarat's death." to L;
-			add "- I should look for connections between Creditor Nacarat and the other victims." to L;
 			add "- I should look up Doctor Arturus's patient records." to L;
 			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
+			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L;
+			if examiner-nacarat-notable-asked is true, add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L;
 			add "" to L;
 		if Thugs Investigation is happening:
 			add "[italic type]Sal and Piper[roman type]" to L;
-			add "- I should ask the Vigiles for their professional opinion." to L;
-			add "- I should examine Sal's body, in the Turris Infinita clinic." to L;
-			add "- I should examine Piper's body, in the Turris Infinita clinic." to L;
+			if examiner-thugs-notable-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
+			add "- I should examine Sal's body." to L;
+			add "- I should examine Piper's body." to L;
 			add "- I should find out more about the circumstances of Sal's death." to L;
 			add "- I should find out more about the circumstances of Piper's death." to L;
-			add "- I should look for connections between Sal, Piper, and the other victims." to L;
 			add "- I should look up Doctor Arturus's patient records." to L;
 			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
+			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L;
 			add "" to L;
 		add "[italic type]Miscellaneous[roman type]" to L;
 	[---
@@ -2591,6 +2592,7 @@ The scent is "There is a powerful odor of algae and corrosion."
 Before entering the up-close Canal, try swimming instead.
 Instead of cutting the up-close Canal, say "You dip your scalpel in the current and watch the flow divide in two."
 Instead of knocking on, rubbing or touching the up-close Canal, say "Your gloves would be ruined if you did that."
+Instead of inserting the endoscope into the up-close Canal, say "The endoscope would be ruined if you did that."
 Instead of inserting something into the up-close Canal, say "You would never see [regarding the noun][them] again if you did that."
 Instead of searching or looking under the up-close Canal, say "The water is moving too quickly for you to see anything."
 Instead of drinking the up-close Canal, say "To call the canal water potable would be quite the exaggeration."
@@ -4412,7 +4414,7 @@ To say cavala-badnews-onit-text:
 	say "She squeezes your hand. 'Good luck, Marid. I'm counting on you.'[paragraph break]";
 	wait for any key;
 	say "You step back and put the endoscope in your pocket.[paragraph break]";
-	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]insert[roman type] it [bold type]into[roman type] the object you wish to inspect.) ";
+	say "(The endoscope can be used to look inside narrow pathways. To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect.) ";
 	now the day-two copy of the Libri Liberi is carried by the player;
 	now Doctor Cavala's signum is carried by the player;
 	now the endoscope is carried by the player;
@@ -6660,7 +6662,7 @@ Part 3.14.2 - Junction during Day Two
 Chapter 3.14.2.1 - The Black Banner
 
 The trailing black banner is a fixed in place faraway thing.
-"Above the Turris Infinita, a black banner casts its trailing shadow over the road."
+"Above the Turris Infinita, a black banner casts its trailing shadow across the sky."
 The description is "A black banner is traditionally put up when the head of the house has died."
 The sound is "It flaps disconsolately."
 Understand "shadow" as the trailing black banner.
@@ -9971,6 +9973,11 @@ Instead of knocking on or touching the calomel arch, say "It's cold to the touch
 
 After going through the calomel arch when the player is staid: say "A chill washes over you as you step through the arch."; continue the action.
 
+The coffee table is a scenery supporter in Arturus's Clinic.
+The description is "It's hard to focus on the coffee table when Justinian is sitting at it."
+Instead of entering the coffee table, try talking to Justinian instead.
+Instead of putting something on the coffee table, say "No! Justinian's right there. That would be so awkward."
+
 Part 3.29.2 - Dead Bodies
 
 Chapter 3.29.2.1 - In General
@@ -9979,7 +9986,7 @@ Some tarpaulin-covered bodies are privately-named scenery in Arturus's Clinic.
 The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper.[otherwise]You can't see much of the bodies beneath the tarpaulins."
 The sound is "You hear nothing unexpected, and indeed it would be rather troubling if you did."
 The scent is "There's no smell at all. The clinic's environment must be too sterile for bloat to set in."
-Understand "covered" or "tarpaulin covered" or "tarpaulin-covered" or "corpses/cadavers/victims/bodies" or "slab" as the tarpaulin-covered bodies.
+Understand "covered" or "tarpaulin covered" or "tarpaulin-covered" or "corpses/cadavers/victims/bodies" or "dead" or "slab" as the tarpaulin-covered bodies.
 Understand "doctor/-- arturus/arturus's" or "body/corpse/cadaver/victim" as the tarpaulin-covered bodies when Meeting the Patients is happening.
 
 Before doing anything when the current action involves the tarpaulin-covered bodies and 4inv-vigiles-permission is false:
@@ -10022,21 +10029,38 @@ Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
+Instead of attacking or cutting Doctor Arturus, say "You agreed not to damage the bodies. You shouldn't push your luck."
+Instead of looking under Doctor Arturus, say "The bodies are lying on a slab."
+
+Instead of examining Doctor Arturus:
+	say "[first time]You approach the body.
+
+[wait for any key]The first time you saw Doctor Arturus's face was in [italic type]De historia medica[roman type], your first-year College textbook. You still remember it -- sharp, black and white, with a jaw like a the edge of a knife. You were nervous, when you moved to the Channelworks District, to meet the pathological specialist in the flesh.
+
+[wait for any key]But the man who you met that day was smaller, somehow. His features, so arresting in his youth, had crinkled under the burden of years. He did not look you in the eye when he shook your hand.
+
+[wait for any key]'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices nowadays...'[only]";
 
 Chapter 3.29.2.3 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
 Understand "nacarat's" or "victim" as Creditor Nacarat.
+Instead of attacking or cutting Creditor Nacarat, say "You agreed not to damage the bodies. You shouldn't push your luck."
+Instead of looking under Creditor Nacarat, say "The bodies are lying on a slab."
 
 Chapter 3.29.2.4 - Sal
 
 Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
+Instead of attacking or cutting Sal, say "You agreed not to damage the bodies. You shouldn't push your luck."
+Instead of looking under Sal, say "The bodies are lying on a slab."
 
 Chapter 3.29.2.5 - Piper
 
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
+Instead of attacking or cutting Piper, say "You agreed not to damage the bodies. You shouldn't push your luck."
+Instead of looking under Piper, say "The bodies are lying on a slab."
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
@@ -10157,21 +10181,21 @@ He nods. 'I'm glad you came around. To business, then. If you'll follow me...'
 
 To say examiner-exposition:
 	now 4inv-vigiles-permission is true;
-	now Doctor Arturus is in Arturus's Clinic;
-	now Creditor Nacarat is in Arturus's Clinic;
-	now Sal is in Arturus's Clinic;
 	now Piper is in Arturus's Clinic;
+	now Sal is in Arturus's Clinic;
+	now Creditor Nacarat is in Arturus's Clinic;
+	now Doctor Arturus is in Arturus's Clinic;
 	now the home dialogue branch of Examiner Velox is examiner-home3;
 	wait for any key;
 	say "You follow him to the slab, where he draws back the tarpaulin. You recognize Doctor Arturus, but there are three others: a man dressed in finery, a man built like a fighter, and a reedy young woman. All have black stains around their mouths and eyes.[paragraph break]";
 	wait for any key;
 	say "'Here are the four victims of the disease,' Examiner Velox says. 'We've made some preliminary investigations into their identities. Looking for identification on the bodies, cross-referencing against our records, [italic type]et cetera...'[roman type][paragraph break]";
 	wait for any key;
-	say "'What can you tell me?'
+	say "'What have you found?' you ask.
 
 'The man on the left is Doctor Arturus -- I see you're already familiar with him. Very good. The one beside him, the well-dressed man, is Creditor Nacarat of the Furopolis Securities Exchange. He's rather well-known in certain circles of society -- he has been implicated in some fraud allegations, but nothing concrete.'[paragraph break]";
 	wait for any key;
-	say "'What about the other two?' you ask.
+	say "'What about the other two?'
 
 'Ah.' Examiner Velox furrows his mustache. 'They are more of an enigma. They carry no identification; they are not in our records. We believe they were unregistered criminals hiding in the Shanty Quarter. According to our contacts, they match the description of Sal and Piper, a villainous duo of some notoriety. They were underworld enforcers, and not particularly well liked.'[paragraph break]";
 	wait for any key;
@@ -10184,22 +10208,52 @@ dialogue branch	enabled	one-shot	prompt	description	choices
 examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Velox looks up from the bodies.
 
 'Servator,' he says. 'What can I do for you?'"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
-examiner-causeofdeath	true	true	"'They are all dead of the disease?'"	"'They are all dead of the disease?'
+examiner-causeofdeath	true	true	"'The victims all died of the same disease?'"	"'The victims all died of the same disease?'
 
 Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'
 
 You recall Reden's autopsy. 'So the direct cause of death would be heart failure?'
 
 He nods. 'That is probable, yes.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-found, examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-id	true	true	"'You're certain about his identity?'"	"'You're certain about his identity?'
+
+Examiner Velox's mustache wriggles. 'You and Doctor Justinian have both identified the body. We have detected no illusions, if that is what you are asking. The body on the slab is, without a doubt, that of Doctor Arturus.'"	{examiner-arturus-found, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-found	true	false	"'What was the state his body was found in[if examiner-arturus-found-asked is true], again[end if]?'"	"'What was the state his body was found in[if examiner-arturus-found-asked is true], again[end if]?'
 
-'Doctor Justinian notified the Vigiles at five in the morning,' Examiner Velox replies. 'When we arrived at quarter-past five, we found Doctor Arturus's body already laid out here on the slab. Doctor Justinian testified that he had found Doctor Arturus motionless in his domicile, and moved him here in an attempt to revive him.'"	{examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-arturus-timeofdeath	true	false	"What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'"	"'What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'
+'Doctor Justinian notified the Vigiles at five in the morning,' Examiner Velox replies. 'When we arrived at quarter-past five, we found Doctor Arturus's body already laid out here on the slab. Doctor Justinian testified that he had found Doctor Arturus motionless in his domicile, and moved him here in an attempt to revive him.'"	{examiner-arturus-id, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-timeofdeath	true	false	"'What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'"	"'What was the time of death[if examiner-arturus-timeofdeath-asked is true], again[end if]?'
 
-His mustache squirms. 'The ambient temperature in the Turris Infinita makes the precise time difficult to ascertain. Complicating matters is the fact that Doctor Justinian moved the body, interfering with the natural processes of [italic type]rigor mortis[roman type] and [italic type]livor mortis[roman type]. All we can gather is that he died after dark yesterday -- sometime between eight and twelve hours ago.'"	{examiner-arturus-found, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-nacarat-ask	true	false	"'Regarding Creditor Nacarat...'"	"'Regarding Creditor Nacarat...'"	{examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+His mustache squirms. 'The varying temperatures in the Turris Infinita make the precise time difficult to ascertain. Complicating matters is the fact that Doctor Justinian moved the body, interfering with the natural processes of [italic type]rigor mortis[roman type] and [italic type]livor mortis[roman type]. All we can gather is that he died last night -- sometime between eight and twelve hours ago.'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-arturus-notable	true	false	"'Is there anything I should be aware of[if examiner-arturus-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-arturus-notable-asked is true], again[end if]?'
+
+'We believe that he was infected through his gloves,' Examiner Velox replies. 'They are stained with black effluvium both within and without. If you are concerned with the method of transmission, you might examine them further[one of].'[paragraph break]Through his [italic type]gloves?[roman type] That shouldn't be possible...[or].'[stopping]"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-ask	true	false	"'Regarding Creditor Nacarat...'"	"'Regarding Creditor Nacarat...'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-id	true	false	"'Who was he again?'"	"'Who was he again?'
+
+'Creditor Nacarat was a businessman with the Furopolis Securities Exchange,' the examiner says. 'We are acquainted with him from investigating allegations of fraud.'"	{examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-timeofdeath	true	false	"'What was the time of death[if examiner-nacarat-timeofdeath-asked is true], again[end if]?'"	"'What was the time of death[if examiner-nacarat-timeofdeath-asked is true], again[end if]?'
+
+'By my estimation,' he replies, 'and assuming his body has remained in the clinic the whole time -- he died [if examiner-thugs-timeofdeath-asked is true]around the same time as Sal and Piper. A[otherwise]a[end if] little over thirty hours ago, on the night of the Third[if examiner-thugs-timeofdeath-asked is false].'[paragraph break][italic type]The night Reden died,[roman type] you mentally append.[otherwise].'"	{examiner-nacarat-id, examiner-nacarat-circum, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-circum	true	false	"'What do you know about the circumstances of his death[if examiner-nacarat-circum-asked is true], again[end if]?'"	"'What do you know about the circumstances of his death[if examiner-nacarat-circum-asked is true], again[end if]?'
+
+He shrugs. 'Creditor Nacarat was a patient here before he died. All the signs suggest he died here, together with Sal and Piper.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-nacarat-notable	true	false	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'
+
+A twitch of the mustache. 'There is a glyph of recording in the inner lining of his jacket. It holds an intriguing, if fragmented, phonographic transcription -- we found nothing relevant in it, but it may be worth listening to regardless.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thugs-id	true	false	"'Who were they again?'"	"'Who were they again?'
+
+'We believe Sal and Piper to have been criminals operating out of the Shanty Quarter,' he replies. 'They were notorious underworld enforcers, according to our contacts.'"	{examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thugs-timeofdeath	true	false	"'What were the times of death[if examiner-thugs-timeofdeath-asked is true], again[end if]?'"	"'What were the times of death[if examiner-thugs-timeofdeath-asked is true], again[end if]?'
+
+'Both of them died around the same time,' Examiner Velox replies, 'though the precise time is uncertain. I am given to believe that they died [if examiner-nacarat-timeofdeath-asked is true]around the same time as Creditor Nacarat -- [end if]around thirty hours ago, on the night of the Third[if examiner-nacarat-timeofdeath-asked is false].'[paragraph break][italic type]The night Reden died,[roman type] you mentally append.[otherwise].'"	{examiner-thugs-id, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thugs-circum	true	false	"'What do you know about the circumstances of their deaths[if examiner-thugs-circum-asked is true], again[end if]?'"	"'What do you know about the circumstances of their deaths[if examiner-thugs-circum-asked is true], again[end if]?'
+
+'As they were patients in the clinic,' he replies, 'they likely died here, together with Creditor Nacarat. The signs they exhibit corroborate that.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thugs-notable	true	false	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'
+
+'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions -- although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thanksbye	true	false	"'That will be all, thank you.'"	"'That will be all, thank you.'
 
 You step back, and Examiner Velox returns to his work."	{}
@@ -10209,10 +10263,26 @@ You step back, and Examiner Velox returns to his work."	{}
 
 examiner-arturus-found-asked is a truth state that varies.
 examiner-arturus-timeofdeath-asked is a truth state that varies.
+examiner-arturus-notable-asked is a truth state that varies.
 After reading out examiner-arturus-found:
 	now examiner-arturus-found-asked is true;
 	if the enabled of justinian-4inv-movedbody has not been true, now the enabled of justinian-4inv-movedbody is true.
 After reading out examiner-arturus-timeofdeath: now examiner-arturus-timeofdeath-asked is true.
+After reading out examiner-arturus-notable: now examiner-arturus-notable-asked is true.
+
+examiner-nacarat-timeofdeath-asked is a truth state that varies.
+examiner-nacarat-circum-asked is a truth state that varies.
+examiner-nacarat-notable-asked is a truth state that varies.
+After reading out examiner-nacarat-timeofdeath: now examiner-nacarat-timeofdeath-asked is true.
+After reading out examiner-nacarat-circum: now examiner-nacarat-circum-asked is true.
+After reading out examiner-nacarat-notable: now examiner-nacarat-notable-asked is true.
+
+examiner-thugs-timeofdeath-asked is a truth state that varies.
+examiner-thugs-circum-asked is a truth state that varies.
+examiner-thugs-notable-asked is a truth state that varies.
+After reading out examiner-thugs-timeofdeath: now examiner-thugs-timeofdeath-asked is true.
+After reading out examiner-thugs-circum: now examiner-thugs-circum-asked is true.
+After reading out examiner-thugs-notable: now examiner-thugs-notable-asked is true.
 
 Chapter 3.29.3.2 - Justinian during Four Investigations
 
@@ -10246,9 +10316,7 @@ justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?
 Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
 
-Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'
-
-He trails off, and does not continue."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
+Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
