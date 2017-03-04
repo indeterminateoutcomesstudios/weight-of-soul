@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 030317.
+The release number is 040317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -55,7 +55,6 @@ Volume 1 - Preamble
 [---TO DO---
 
 - Write Arturus Investigation
-- Write the examiner's dialogue
 - Write Arturus's body
 - Write Arturus's Domicile
 
@@ -221,7 +220,7 @@ To say skip-commands-text:
 	say "[line break][italic type]Day Two[roman type]";
 	say "[line break]>[bold type]skip to day two[roman type]";
 	say "[line break]>[bold type]skip to endoscope[roman type]";
-	say "[line break]>[bold type]skip to turris[roman type]";]
+	say "[line break]>[bold type]skip to bodies[roman type]";]
 
 Book 1.2 - Days and Scenes
 
@@ -405,17 +404,25 @@ Chapter 1.2.2.2 - Constructing the Status Line
 
 [We use Basic Screen Effects to construct the status line so that we can shift the right hand status line inward when it's too long. "Talking to Doctor Cavala" is a lot longer than 14 characters. We define the tables and rule for constructing the status line here; the actual shifting is dynamically done while starting and ending the dialogue.]
 
-Table of Status Line when Not Engaged in Dialogue
+Table of Normal Status
 left	central	right
 " [location]"	""	"[if the current day is Prologue or the current day is Epilogue][otherwise][current day]"
 
-Table of Status Line when Engaged in Dialogue
+Table of Dialogue Status
 left	central	right
 " [location]"	""	"[conversational partner text]"
 
+Table of Endoscopy Status
+left	central	right
+" [location]"	""	"[endoscopic subject text]"
+
 Rule for constructing the status line:
-	if the player is engaged in dialogue, fill status bar with Table of Status Line when Engaged in Dialogue;
-	otherwise fill status bar with Table of Status Line when Not Engaged in Dialogue;
+	if the player is engaged in dialogue:
+		fill status bar with Table of Dialogue Status;
+	otherwise if the player is engaged in endoscopy:
+		fill status bar with Table of Endoscopy Status;
+	otherwise:
+		fill status bar with Table of Normal Status;
 	rule succeeds.
 	
 Part 1.2.3 - Skipping Scenes - Release for testing
@@ -444,7 +451,7 @@ To skip past Nine to Five Zombie:
 		skip past Prologue;
 		now Reden is on the mortuary slab;
 		follow the scene changing rules;
-	now Marid's Dormitory is visited;
+	now Marid's Room is visited;
 	now 9-5-zombie-cavala-prompt is true;
 	move the player to the Mortuary, without printing a room description;
 	now the home dialogue branch of Doctor Cavala is cavala-errands2;
@@ -537,7 +544,7 @@ To skip past First Aid on Cavala:
 To skip past Day One:
 	if First Aid on Cavala has not ended:
 		skip past First Aid on Cavala;
-	move the player to Marid's Dormitory, without printing a room description;
+	move the player to Marid's Room, without printing a room description;
 	now start-of-day-two is true;
 	follow the scene changing rules.
 	
@@ -550,10 +557,19 @@ To skip past Bad News from Cavala:
 	now the endoscope is carried by the player;
 	follow the scene changing rules.
 	
-To skip past The Game is Afoot:
+To skip past Meeting the Patients:
 	if Bad News from Cavala has not ended:
 		skip past Bad News from Cavala;
 	move the player to Arturus's Clinic, without printing a room description;
+	follow the scene changing rules;
+	now Examiner Velox is proper-named;
+	now 4inv-vigiles-permission is true;
+	now the dried black blood is in Arturus's Clinic;
+	now Piper is in Arturus's Clinic;
+	now Sal is in Arturus's Clinic;
+	now Creditor Nacarat is in Arturus's Clinic;
+	now Doctor Arturus is in Arturus's Clinic;
+	now the home dialogue branch of Examiner Velox is examiner-home3;
 	follow the scene changing rules.
 	
 Skipping Reden's surgery is an action applying to nothing.
@@ -618,7 +634,7 @@ Check skipping to Day Two when Walking Home in Fear has ended: say "You have alr
 Carry out skipping to Day Two:
 	if First Aid on Cavala has not ended:
 		skip past First Aid on Cavala;
-	move the player to Marid's Dormitory, without printing a room description;
+	move the player to Marid's Room, without printing a room description;
 	unveil Day Two.
 	
 Skipping to endoscope is an action applying to nothing.
@@ -628,11 +644,11 @@ Carry out skipping to endoscope:
 	skip past Bad News from Cavala;
 	try looking.
 	
-Skipping to Turris is an action applying to nothing.
-Understand "skip to turris" as skipping to Turris.
-Check skipping to turris when The Game is Afoot has ended: say "You have already passed that checkpoint."; stop the action.
-Carry out skipping to turris:
-	skip past The Game is Afoot;
+Skipping to bodies is an action applying to nothing.
+Understand "skip to bodies" as skipping to bodies.
+Check skipping to bodies when Meeting the Patients has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to bodies:
+	skip past Meeting the Patients;
 	try looking.
 	
 Book 1.3 - People
@@ -680,6 +696,7 @@ Instead of knocking on, pulling, pushing, smelling, squeezing, touching, or turn
 Instead of kissing, rubbing, or searching an other hostile living person (this is the block actions on hostile people rule), say "You doubt [the noun] will let you do that."
 
 Instead of eating a dead person, say "What a revolting notion."
+Instead of eating something that is part of a dead person, say "What a revolting notion."
 Instead of giving something to a dead person, say "You won't get much of a response."
 Instead of pushing, pulling, or turning a dead person, say "That won't accomplish anything."
 Instead of swinging or taking a dead person, say "You lack the strength."
@@ -869,22 +886,22 @@ Last instead of doing something (this is the can't generally interact with faraw
 		
 The can't reach inside rooms rule response (A) is "That's too far away."
 
+
 Volume 2 - The Player
 
 Book 2.1 - Marid
 
 Yourself is female. Understand "servator" or "marid" or "orpheia" or "yourself" as yourself. Understand "marid's" or "my" as a thing when yourself has the item described.
 
-The description of yourself is "[marid-description-text]".
 The sound of yourself is "[if time is critical]Your heart is pounding.[otherwise]Your breathing seems normal."
 The scent of yourself is "[if time is critical]This is not the time.[otherwise]You smell okay."
 
-To say marid-description-text:
+Instead of examining the player:
 	if the location is Maze Part Two:
 		say "Fortunately, the knife didn't penetrate your jacket. You're unhurt. ";
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
-	say "[paragraph break][inventory-text][run paragraph on]".
+	say "[paragraph break][inventory-text]".
 
 Instead of taking inventory (this is the custom inventory rule): say inventory-text.
 
@@ -930,7 +947,7 @@ Before doing anything other than examining, knocking on, looking under, rubbing,
 
 Part 2.1.3 - Marid's Eyes
 
-Marid's eyes are a thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
+Marid's eyes are a thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if time is critical]This is not the time.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
 
 Before searching Marid's eyes, try examining Marid's eyes instead.
 Instead of attacking, burning, cutting, pushing, or pulling Marid's eyes, say "No."
@@ -993,7 +1010,7 @@ Instead of attacking or burning the clothes, say "[if time is critical]This is n
 Instead of looking under the clothes, say "[if time is critical]This is not the time.[otherwise]That's what you're wearing."
 Instead of pulling the clothes, say "[if time is critical]This is not the time.[otherwise]Your clothes are already close-fitting enough."
 Instead of searching the clothes, say "You have on your person [a list of things carried by the player]."
-Instead of taking off the clothes, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire."
+Instead of taking off the clothes, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire."
 Instead of tying the clothes to something, say "Your clothes are too close-fitting to tie anything with."
 Instead of tying something to the clothes, say "Your clothes are too close-fitting to tie anything with."
 
@@ -1136,6 +1153,7 @@ The scent is "The endoscope is well-oiled."
 Understand "intricate" or "assembly" or "tiny" or "lense/lenses" or "adjustable" or "orichalcum" or "rod/rods" or "scope" or "fragile" or "implement" as the endoscope.
 
 Instead of attacking, cutting, or knocking on the endoscope, say "The endoscope is far too valuable to risk damaging."
+Instead of rubbing the endoscope, say "[if time is critical]This is not the time.[otherwise]You polish the endoscope with the antiseptic cloth."
 Instead of touching the endoscope, say "The lenses shift at your touch."
 
 Before inserting the endoscope into something when time is critical, say "You don't have time for that." instead.
@@ -1144,6 +1162,7 @@ Instead of inserting the endoscope into a living friendly person, say "The endos
 Instead of inserting the endoscope into a living hostile person, say "You doubt [the second noun] will allow you to do that."
 Last instead of inserting the endoscope into a container: try searching the second noun.
 Last instead of inserting the endoscope into a door: try searching the second noun.
+Last instead of inserting the endoscope into a dead person: try searching the second noun.
 Last instead of inserting the endoscope into something worn by a living friendly person (called the wearer): say "You aren't [italic type]that[roman type] friendly with [the wearer]."
 Last instead of inserting the endoscope into something worn by a living hostile person (called the wearer): say "You doubt [the wearer] will allow you to do that."
 Last instead of inserting the endoscope into something: say "[The second noun] [are]n't something you can thread the endoscope into."
@@ -1151,6 +1170,27 @@ Last instead of inserting the endoscope into something: say "[The second noun] [
 Instead of pushing, pulling, turning, searching, switching on, switching off, or squeezing the endoscope, say "To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect."
 Instead of setting the endoscope to something, say "To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect."
 Understand "use [the endoscope]" as a mistake ("To use the endoscope, >[bold type]put[roman type] it [bold type]in[roman type] the object you wish to inspect.").
+
+Endoscope-inspecting is an action applying to one visible thing.
+Understand "endoscope [something]" as endoscope-inspecting.
+Understand "inspect [something]" as endoscope-inspecting.
+Check endoscope-inspecting:
+	if the endoscope is carried:
+		try inserting the endoscope into the noun instead;
+	otherwise:
+		try examining the noun instead.
+
+Specific endoscope-inspecting is an action applying to one visible thing and one thing.
+Understand "look at/-- [something] with/using/through [the endoscope]" as specific endoscope-inspecting.
+Understand "examine [something] with/using/through [the endoscope]" as specific endoscope-inspecting.
+Understand "read [something] with/using/through [the endoscope]" as specific endoscope-inspecting.
+Understand "see [something] with/using/through [the endoscope]" as specific endoscope-inspecting.
+Understand "study [something] with/using/through [the endoscope]" as specific endoscope-inspecting.
+Check specific endoscope-inspecting:
+	if the endoscope is carried:
+		try inserting the endoscope into the noun instead;
+	otherwise:
+		say "You need to be holding the endoscope to do that.";
 
 Part 2.2.12 - Doctor Cavala's Signum
 
@@ -1480,7 +1520,7 @@ Brushing your teeth is an action applying to nothing. Understand "brush my/-- te
 Carry out brushing your teeth (this is the standard brushing your teeth rule):
 	if time is critical:
 		say "This is not the time.";
-	otherwise if the location is Marid's Dormitory:
+	otherwise if the location is Marid's Room:
 		if Walking Home in Darkness is happening:
 			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
 		otherwise if Walking Home in Fear is happening:
@@ -1497,7 +1537,7 @@ Combing your hair is an action applying to nothing. Understand "comb my/-- hair"
 Carry out combing your hair (this is the standard combing your hair rule):
 	if time is critical:
 		say "This is not the time.";
-	otherwise if the location is Marid's Dormitory:
+	otherwise if the location is Marid's Room:
 		if Walking Home in Darkness is happening or Walking Home in Fear is happening:
 			say "There isn't much point. Your hair will get messed up when you sleep.";
 		otherwise:
@@ -1518,17 +1558,17 @@ Filing your nails is an action applying to nothing. Understand "cut my/-- nails"
 Carry out filing your nails (this is the standard filing your nails rule):
 	if time is critical:
 		say "This is not the time.";
-	otherwise if the location is Marid's Dormitory and Walking Home in Darkness is happening:
+	otherwise if the location is Marid's Room and Walking Home in Darkness is happening:
 		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
-	otherwise if the location is Marid's Dormitory and Walking Home in Fear is happening:
+	otherwise if the location is Marid's Room and Walking Home in Fear is happening:
 		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
 	otherwise:
 		say "You've already filed your nails.";
 
 Going home is an action applying to nothing. Understand "go back/-- home" as going home.
 Carry out going home:
-	if Marid's Dormitory is visited:
-		try approaching Marid's Dormitory;
+	if Marid's Room is visited:
+		try approaching Marid's Room;
 	otherwise:
 		say "That isn't a room you've visited[if the player has not tried going].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
 
@@ -1537,7 +1577,7 @@ Check knocking on an openable door: say "There is no response."; stop the action
 Check knocking on: say "Nothing happens."; stop the action.
 
 Scaring is an action applying to one visible thing. Understand "chase away/-- [something]" or "scare away/-- [something]" or "shoo away/-- [something]" or "frighten away-- [something]" as scaring.
-Check scaring when the noun is not a person: say "That is unlikely to elicit a response."; stop the action.
+Check scaring when the noun is not a living person: say "That is unlikely to elicit a response."; stop the action.
 Check scaring the player: say "[if time is critical]This is not the time.[otherwise]There's no need for that."; stop the action.
 Check scaring a friendly person: say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."; stop the action.
 Check scaring a hostile person: say "That seems unlikely to be effective."; stop the action.
@@ -1560,7 +1600,7 @@ Check swimming (this is the block swimming rule):
 	
 Tickling is an action applying to one thing. Understand "tickle [something]" or "fondle [something]" as tickling.
 Check tickling when time is critical: say "This is not the time."; stop the action.
-Check tickling when the noun is not a person: say "That is unlikely to elicit a response."; stop the action.
+Check tickling when the noun is not a living person: say "That is unlikely to elicit a response."; stop the action.
 Check tickling the player: say "It's impossible to tickle oneself. The exact reason why is one of the great mysteries of the [italic type]ars vitalis[roman type]."; stop the action.
 Check tickling a friendly person: say "You aren't [italic type]that[roman type] friendly with [the noun]."; stop the action.
 Check tickling a hostile person: say "You doubt [the noun] will let you do that."; stop the action.
@@ -1694,7 +1734,10 @@ Listing exits is an action out of world. Understand "exits" as listing exits.
 Instead of going nowhere, try listing exits instead.
 
 Report listing exits (this is the report listing exits rule):
-	say "[exit reminder of the location][line break]".
+	if the player is engaged in endoscopy:
+		say "[exit reminder of the endoscopic location][line break]";
+	otherwise:
+		say "[exit reminder of the location][line break]".
 	
 A room has some text called the going-in disambiguation.
 
@@ -1853,12 +1896,127 @@ Check talking to the player (this is the can't talk to yourself rule): say "You 
 
 Check talking to an other person when the home dialogue branch of the noun is the null dialogue branch (this is the can't talk to someone with no home dialogue rule): say "[The noun] [have] nothing to say to you." instead.
 
-Check talking to an other person when the enabled of the home dialogue branch of the noun is false (this is the can't talk to someone with disabled home dialogue rule): say "[The noun] [have] nothing to say to you." instead.
+Check talking to an other person when the enabled of the home dialogue branch of the noun is false (this is the can't talk to someone with disabled home dialogue rule):
+	if the noun is living:
+		say "[The noun] [have] nothing to say to you." instead;
+	otherwise:
+		say "There is no response." instead.
 
 Carry out talking to something (this is the standard talking to rule):
 	start a dialogue with the noun.
 
-Part 2.3.10 - Help Menu
+Part 2.3.10 - Endoscopy
+
+[This is a minigame where we "transport" the player's perspective inside the pathway they inspect. We clear the screen and shift perspective to the endoscope-viewpoint. You can "look," "go," or "examine" a thing in the endoscopic room. Any other action ends the endoscopy.]
+
+Chapter 2.3.10.1 - Definitions
+
+Yourself can be engaged in endoscopy. Yourself is not engaged in endoscopy.
+
+The endoscopic location is a room that varies.
+
+The endoscopic subject text is some text that varies.
+
+Chapter 2.3.10.2 - Endoscopic Actions
+
+After deciding the scope of the player while the player is engaged in endoscopy:
+	place the endoscopic location in scope.
+
+Does the player mean doing something with a thing enclosed by the endoscopic location when the player is engaged in endoscopy: it is very likely.
+Rule for clarifying the parser's choice of something when the player is engaged in endoscopy: do nothing.
+	
+Last before doing anything when the player is engaged in endoscopy (this is the endoscopic actions rule):
+	if we are looking:
+		say "[bold type][printed name of the endoscopic location in title case][roman type][line break][run paragraph on with special look spacing]";
+		if set to abbreviated room descriptions:
+			do nothing;
+		otherwise if set to sometimes abbreviated room descriptions and abbreviated form allowed is true and the endoscopic location is visited:
+			do nothing;
+		otherwise:
+			say "[description of the endoscopic location][line break]";
+		if the endoscopic location is a room, now the endoscopic location is visited;
+		stop the action;
+	[A caveat for looking: this is a short-form hack that doesn't describe the locale, so we have to describe all the scenery in the room description. I could make it describe the locale if I wanted to but that is a lot of effort and code for no real gain.]
+	otherwise if we are going:
+		if the noun is outside:
+			now the noun is up;
+		otherwise if the noun is inside:
+			now the noun is down;
+		if the room the noun from the endoscopic location is a room:
+			if the noun is up:
+				say "You withdraw...[paragraph break]";
+			otherwise if the noun is down:
+				say "You descend...[paragraph break]";
+			now the endoscopic location is the room the noun from the endoscopic location;
+			update backdrop positions;
+			surreptitiously reckon darkness;
+			try looking;
+		otherwise if the noun is up:
+			end the endoscopy, followed by looking;
+			stop the action;
+		otherwise if the noun is down:
+			say "You cannot go any further.";
+			stop the action;
+		otherwise:
+			say "You can only go up or down.";
+			stop the action;
+	otherwise if we are descending:
+		continue the action;
+	otherwise if we are exiting:
+		try going up;
+		stop the action;
+	otherwise if we are doing something with a thing (called the curiosity) enclosed by the endoscopic location:
+		if we are searching:
+			try examining the noun;
+			stop the action;
+		if we are examining:
+			continue the action;
+		otherwise:
+			say "You can only examine [regarding the curiosity][them].";
+			stop the action;
+	otherwise if we are examining down or examining inside:
+		say "You see only darkness.";
+		stop the action;
+	otherwise if we are examining a direction:
+		say "The endoscope is not articulated enough to do that.";
+		stop the action;
+	otherwise if we are waiting:
+		say "You adjust the lenses.";
+		stop the action;
+	otherwise:
+		end the endoscopy;
+		continue the action.
+		
+[Since the before stage doesn't run for out of world actions, this still allows saving, loading, asking for help, and so on.]
+
+Chapter 2.3.10.3 - Starting and Ending an Endoscopy
+
+endoscopy-tutorial-quipped is a truth state that varies.
+
+To start an endoscopy on (victim name - some text) via (the aperture - some text) to (destination - a room):
+	say "You insert the endoscope into [the aperture]...[paragraph break]";
+	wait for any key;
+	now the player is engaged in endoscopy;
+	now the endoscopic location is the destination;
+	now the endoscopic subject text is "Examining [victim name]";
+	if the number of characters in the endoscopic subject text is greater than 14, now right alignment depth is the number of characters in the endoscopic subject text;
+	clear the screen;
+	redraw status line;
+	say line break;
+	try looking.
+	
+To end the endoscopy, followed by looking:
+	say "You withdraw upward...[paragraph break]";
+	wait for any key;
+	now the player is not engaged in endoscopy;
+	now right alignment depth is 14;
+	clear the screen;
+	redraw status line;
+	say line break;
+	say "You wipe down the endoscope and put it in your pocket.[paragraph break]";
+	if followed by looking, try looking.
+
+Part 2.3.11 - Help Menu
 
 Table of the Help Menu
 title	subtable	description	toggle
@@ -1872,7 +2030,7 @@ title	subtable	description	toggle
 "Credits"	--	"[credits-text]"	--
 "Back"	--	--	quit rule
 
-Chapter 2.3.3.1 - About This Game, How to Play, Useful Commands, Credits
+Chapter 2.3.11.1 - About This Game, How to Play, Useful Commands, Credits
 
 To say about-this-game-text:
 	say "[bold type]About this game[roman type]
@@ -1930,7 +2088,7 @@ Thanks to Emily Short for various extensions that do backstage heavy lifting for
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
 
-Chapter 2.3.3.2 - Journal
+Chapter 2.3.11.2 - Journal
 
 [The Journal shows the current quest objectives and clues that have been discovered. We show quest objectives by referencing the scenes that are happening, and clues by checking against specific flags.]
 
@@ -1941,7 +2099,7 @@ To say journal-text:
 
 [bold type]Current objectives:[roman type][line break][journal-text-objectives][journal-text-notes]";
 
-Chapter 2.3.3.3 - Characters
+Chapter 2.3.11.3 - Characters
 
 [Choosing Characters brings up a list of all the significant characters you've encountered. Each character gets a short bio about them and their relationship with Marid.]
 
@@ -1987,12 +2145,12 @@ When Meeting the Patients ends: add Sal to the list of discovered characters.
 The bio-name of Sal is "Sal and Piper".
 The bio-description of Sal is "Victims of the mysterious disease. A notorious pair of thugs in the Shanty Quarter, according to the Vigiles."
 
-Chapter 2.3.3.4 - Map
+Chapter 2.3.11.4 - Map
 
 To say map-text:
 	say "Sorry, this feature is not yet implemented."
 
-Chapter 2.3.3.5 - Hints
+Chapter 2.3.11.5 - Hints
 
 Table of the Hint Menu
 title	subtable	description	toggle
@@ -2001,7 +2159,7 @@ title	subtable	description	toggle
 "Day One"	Table of Day One Hints	--	--
 "Back"	--	--	quit rule
 
-Section 2.3.3.5.1 - General Hints
+Section 2.3.11.5.1 - General Hints
 
 To say general-hints-text:
 	say "[bold type]General hints for play[roman type]
@@ -2012,7 +2170,7 @@ Marid is a capable and perceptive protagonist, and she usually has a good idea o
 
 [italic type]The Weight of a Soul[roman type] is a very forgiving game. (It's rated 'Polite' on the Zarfian Cruelty Scale, if you know what that is.) Nevertheless, some sections of it have deadly time limits, and it [italic type]is[roman type] possible for the story to end badly for Marid. It is recommended to >[bold type]save[roman type] if you find yourself in a dire situation. If you get a game over, you can >[bold type]undo[roman type] a few times to retrace your steps and try again.";
 
-Section 2.3.3.5.2 - Prologue Hints
+Section 2.3.11.5.2 - Prologue Hints
 
 Table of Prologue Hints
 title	subtable	description	toggle
@@ -2029,7 +2187,7 @@ hint	used
 "The breath of catholicon is on the shelves of medical supplies, but only appears after you examine the shelves several times."
 "It's impossible to keep Reden from dying. However, if you see the sequence all the way through, you unlock a special dialogue option in the conversation with Doctor Cavala that follows."
 
-Section 2.3.3.5.3 - Day One Hints
+Section 2.3.11.5.3 - Day One Hints
 
 Table of Day One Hints
 title	subtable	description	toggle
@@ -2066,7 +2224,7 @@ hint	used
 "Finally, >[bold type]take[roman type] Doctor Cavala's leg."
 "That wasn't so hard, was it?"
 
-Chapter 2.3.3.6 - Summoning the Help Menu
+Chapter 2.3.11.6 - Summoning the Help Menu
 
 Asking for help is an action out of world.
 Understand "about" as asking for help.
@@ -2080,6 +2238,7 @@ Carry out asking for help (this is the standard asking for help rule):
 	now the current menu title is "Help";
 	carry out the displaying activity;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for commands is an action out of world.
@@ -2098,6 +2257,7 @@ Carry out asking for commands (this is the standard asking for commands rule):
 	pause the game;
 	now the current menu title is temporary title;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for journal is an action out of world.
@@ -2114,6 +2274,7 @@ Carry out asking for journal (this is the standard asking for journal rule):
 	pause the game;
 	now the current menu title is temporary title;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for characters is an action out of world.
@@ -2132,6 +2293,7 @@ Carry out asking for characters (this is the standard asking for characters rule
 	pause the game;
 	now the current menu title is temporary title;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for map is an action out of world.
@@ -2152,6 +2314,7 @@ Carry out asking for map (this is the standard asking for map rule):
 	pause the game;
 	now the current menu title is temporary title;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for hints is an action out of world.
@@ -2163,6 +2326,7 @@ Carry out asking for hints (this is the standard asking for hints rule):
 	now the current menu title is "Hints";
 	carry out the displaying activity;
 	clear the screen;
+	say line break;
 	try looking.
 	
 Asking for commands is menu-summoning. Asking for journal is menu-summoning. Asking for characters is menu-summoning. Asking for map is menu-summoning.
@@ -2173,20 +2337,22 @@ Rule for constructing the status line while menu-summoning (this is the construc
 	otherwise fill status bar with Table of Shallow Menu Status;
 	rule succeeds.
 	
-Part 2.3.11 - Journal Text
+Part 2.3.12 - Journal Text
 
-Chapter 2.3.11.1 - Flags
+Chapter 2.3.12.1 - Flags
 
 journal-riggertown-detour-known is a truth state that varies.
 journal-zoiro-address-known is a truth state that varies.
 journal-reden-shack-known is a truth state that varies.
 journal-crucible-witnessed is a truth state that varies.
 
-clue-arturus-cavalacorrespondence is a truth state that varies.
-clue-arturus-discovery-justinian is a truth state that varies.
 clue-patientrecords-justinian is a truth state that varies.
 
-Chapter 2.3.11.2 - Date
+clue-arturus-cavalacorrespondence is a truth state that varies.
+clue-arturus-discovery-justinian is a truth state that varies.
+clue-arturus-gloves is a truth state that varies.
+
+Chapter 2.3.12.2 - Date
 	
 To say journal-text-date:
 	if the current day is:
@@ -2209,7 +2375,7 @@ To say journal-text-date:
 		say "Aquaria";
 	say ", Auritum IV".
 
-Chapter 2.3.11.3 - Entry
+Chapter 2.3.12.3 - Entry
 	
 To say journal-text-entry:
 	[---
@@ -2268,7 +2434,7 @@ I don't know what to think. All I can do is make my way there and talk to Justin
 	otherwise if Four Investigations is happening:
 		say "I've made my choice. I have a job to do -- and I'm going to finish it. ";
 
-Chapter 2.3.11.4 - Objectives
+Chapter 2.3.12.4 - Objectives
 
 To say journal-text-objectives:
 	let L be a list of texts;
@@ -2336,7 +2502,7 @@ To say journal-text-objectives:
 		repeat with current objective running through L:
 			say "[line break][current objective]";
 
-Chapter 2.3.11.5 - Notes
+Chapter 2.3.12.5 - Notes
 
 To say journal-text-notes:
 	let L be a list of texts;
@@ -2377,43 +2543,52 @@ To say journal-text-notes:
 			add "" to L;
 		if Arturus Investigation is happening:
 			add "[italic type]Doctor Arturus[roman type]" to L;
-			if examiner-arturus-found-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
+			if examiner-arturus-found-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
 			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
 			if 4inv-vigiles-permission is false:
 				add "- I should get permission from the Vigiles to examine Doctor Arturus's body." to L;
-			otherwise:
+			otherwise if clue-arturus-gloves is false:
 				add "- I should examine Doctor Arturus's body." to L;
 			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
 			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L;
-			if examiner-arturus-notable-asked is true, add "- I learned that Doctor Arturus may have been infected through his gloves." to L;
+			if clue-arturus-gloves is true:
+				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he was wearing them." to L;
+			otherwise if examiner-arturus-notable-asked is true:
+				add "- I learned that Doctor Arturus may have been infected through his gloves." to L;
 			add "" to L;
 		if Meeting the Patients is happening:
 			add "[italic type]Doctor Arturus's patients[roman type]" to L;
-			add "- I should ask the Vigile examiner about his findings." to L;
+			add "- I should ask the Vigiles examiner about his findings." to L;
 			add "- I should get permission from the Vigiles to examine the bodies of the patients." to L;
 			add "- I should find out the identities of Doctor Arturus's patients." to L;
-			add "- I should look up Doctor Arturus's patient records." to L;
-			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
+			if clue-patientrecords-justinian is false:
+				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
+			otherwise:
+				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
 			add "" to L;
 		if Nacarat Investigation is happening:
 			add "[italic type]Creditor Nacarat[roman type]" to L;
-			if examiner-nacarat-notable-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
+			if examiner-nacarat-notable-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
 			add "- I should examine Creditor Nacarat's body." to L;
 			add "- I should find out more about the circumstances of Creditor Nacarat's death." to L;
-			add "- I should look up Doctor Arturus's patient records." to L;
-			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
+			if clue-patientrecords-justinian is false:
+				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
+			otherwise:
+				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
 			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L;
 			if examiner-nacarat-notable-asked is true, add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L;
 			add "" to L;
 		if Thugs Investigation is happening:
 			add "[italic type]Sal and Piper[roman type]" to L;
-			if examiner-thugs-notable-asked is false, add "- I should ask the Vigile examiner about his findings." to L;
+			if examiner-thugs-notable-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
 			add "- I should examine Sal's body." to L;
 			add "- I should examine Piper's body." to L;
 			add "- I should find out more about the circumstances of Sal's death." to L;
 			add "- I should find out more about the circumstances of Piper's death." to L;
-			add "- I should look up Doctor Arturus's patient records." to L;
-			if clue-patientrecords-justinian is true, add "- Justinian told me that the patient records are likely in Doctor Arturus's domicile." to L;
+			if clue-patientrecords-justinian is false:
+				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
+			otherwise:
+				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
 			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L;
 			add "" to L;
 		add "[italic type]Miscellaneous[roman type]" to L;
@@ -3549,6 +3724,9 @@ topic	description
 "donti"	"There's no reference to Donti here."
 "zoiro"	"Zoiro has come in for the common cold now and then."
 "koriph"	"It seems Koriph receives regular treatment here for an imbalance of phlegm. His file records a visit every month."
+"creditor" or "nacarat"	"There's no patient record for Creditor Nacarat."
+"sal" or "salio"	"You find that a man named Salio has come in for brawl-related injuries before, but he was thrown out by Doctor Cavala for disorderly conduct."
+"piper"	"There are records of someone named Piper with a recurring phlegmatic infection, but she stopped coming to this clinic a few months ago."
 "inhaler/inhalers" or "aer" or "halitus"	"There are a few inhalers here, mainly for treating asthma and hay fever."
 "soporific" or "aer/-- soporifer" or "vivific" or "aer/-- vivificans"	"The more powerful medications are reserved for the surgery room."
 "catholicon" or "breath of catholicon" or "halitus/-- catholiconis"	"You doubt you will see another inhaler of the [italic type]halitus catholiconis[roman type] in your lifetime, let alone in these pigeonholes."
@@ -4453,7 +4631,7 @@ Instead of dropping the day-two copy of the Libri Liberi (this is the how to dro
 		now the day-two copy of the Libri Liberi is nowhere;
 	otherwise if time is critical:
 		say "This is not the time.";
-	otherwise if the location is not Marid's Dormitory:
+	otherwise if the location is not Marid's Room:
 		say "You shouldn't leave the newspaper lying around here.";
 	otherwise:
 		continue the action.
@@ -5070,14 +5248,14 @@ Instead of going to Via Terminalis West Street during Bad News from Cavala, say 
 Instead of going to the Crooked Alley during Bad News from Cavala, say "But the clinic is in the other direction."
 
 Before approaching a room during Bad News from Cavala:
-	if the noun is not Marid's Dormitory and the noun is not West End and the noun is not West Street and the noun is not Clinic:
+	if the noun is not Marid's Room and the noun is not West End and the noun is not West Street and the noun is not Clinic:
 		say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
 Book 3.6 - Dormitory Block
 
 The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
-From here, you can go up to your dormitory[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], visit the public house to the west,[end unless] or exit the building to the south."
+From here, you can go up to your dormitory room[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], visit the public house to the west,[end unless] or exit the building to the south."
 The Dormitory Block is north of the West End.
 Understand "dorm" as the Dormitory Block.
 
@@ -5620,7 +5798,7 @@ When Day One begins:
 When Day Two begins:
 	follow the initialize the clockwork musician rule.
 
-Every turn when the location is the Public House (this is the clockwork musician playing rule):
+First every turn when the location is the Public House and ambience suppression is false (this is the clockwork musician playing rule):
 	choose row clockwork musician track number in the Table of the Clockwork Musician's Repertoire;
 	if the location was not the Public House:
 		say "The clockwork musician is currently playing [article entry][track entry].";
@@ -5823,14 +6001,14 @@ bartender-dialogue-dayone4-1	true	false	"'I'm going to do better next time...'"	
 
 'I'm going to overcome this. For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
 
-[wait for any key]You look at your bloodstained gloves.
+[wait for any key][if Day One is happening]You look at your bloodstained gloves[otherwise]You touch your pendant[end if].
 
 'I can't allow it to have happened in vain.'"	{bartender-dialogue-finishdrink}
 bartender-dialogue-dayone4-2	true	false	"'I'm going to find whoever did this...'"	"'I'm going to find whoever did this,' you whisper. 'I don't know who they are, or what they want, or why they want to spread this death and suffering. But I [italic type]will[roman type] hunt them down. And I [italic type]will[roman type] find them.
 
 'For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
 
-[wait for any key]You look at your bloodstained gloves.
+[wait for any key][if Day One is happening]You look at your bloodstained gloves[otherwise]You touch your pendant[end if].
 
 'I can't allow it to have happened in vain.'"	{bartender-dialogue-finishdrink}
 
@@ -5858,50 +6036,50 @@ Part 3.7.8 - Public House during Nine to Five Zombie
 
 Instead of approaching the Public House when Nine to Five Zombie is happening, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting."
 
-Book 3.8 - Marid's Dormitory
+Book 3.8 - Marid's Room
 
-Marid's Dormitory is a proper-named room. "[if time is not critical]Though this space of yours is small, you have done your best to furnish it with the comforts of home. [end if]In one corner is a dressing table, piled with stationery and assorted toiletries, and in another is the kitchenette. The only door leads back downstairs to the atrium."
-Understand "my" or "own" or "house/home/room/dorm/domicile" as Marid's Dormitory. 
+Marid's Room is a proper-named room. "[if time is not critical]Though this space of yours is small, you have done your best to furnish it with the comforts of home. [end if]In one corner is a dressing table, piled with stationery and assorted toiletries, and in another is the kitchenette. The only door leads back downstairs to the atrium."
+Understand "my" or "own" or "house/home/dormitory/dorm/domicile" as Marid's Room. 
 
-The simple-name is "your dormitory".
+The simple-name is "your dormitory room".
 The sound is "[if time is critical]Your heartbeat hammers in your ears.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
 The scent is "[if time is critical]You take a deep breath.[otherwise]Your room smells clean enough."
 The exit reminder is "[if time is critical]You're not going to be escaping through a wall.[otherwise]You can take the stairs down to the atrium."
 
-Before examining north in Marid's Dormitory, try searching the dormitory window instead.
-Before examining down in Marid's Dormitory, try searching the dormitory window instead.
-Before examining outside in Marid's Dormitory, try searching the dormitory window instead.
+Before examining north in Marid's Room, try searching the dormitory window instead.
+Before examining down in Marid's Room, try searching the dormitory window instead.
+Before examining outside in Marid's Room, try searching the dormitory window instead.
 
-Before going outside in Marid's Dormitory, try going down instead.
+Before going outside in Marid's Room, try going down instead.
 	
 Part 3.8.1 - Scenery
 
-The high-rise buildings, the plaster walls, and the sky are in Marid's Dormitory.
+The high-rise buildings, the plaster walls, and the sky are in Marid's Room.
 
-Instead of listening to the plaster walls in Marid's Dormitory, say "[if time is critical]You don't have time for that.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
+Instead of listening to the plaster walls in Marid's Room, say "[if time is critical]You don't have time for that.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
 
-Some simple furnishings are scenery in Marid's Dormitory.
+Some simple furnishings are scenery in Marid's Room.
 The description is "Well, 'comforts' might be an exaggeration. But it's home."
 The scent is "At least the air isn't dusty."
 Understand "comfort/comforts" or "of" or "home" or "furnishing" or "space" or "small" or "corner/corners" or "air" or "dust" as the simple furnishings.
 
 Part 3.8.2 - Dormitory Room Door
 
-The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Dormitory. The printed name is "door to your dormitory room".
+The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Room. The printed name is "door to your dormitory room".
 The description is "A simple wooden door."
 Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" or "latch" or "peephole" as the dormitory room door.
-Understand "exit" as the dormitory room door when the location is Marid's Dormitory.
+Understand "exit" as the dormitory room door when the location is Marid's Room.
 
 Before turning the dormitory room door, try opening the dormitory room door instead.
-Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Dormitory]What an odd idea.[otherwise]You live alone; there's no need to knock."
-Instead of searching the dormitory room door, say "[if time is critical]You don't have time for that.[otherwise if the location is Marid's Dormitory]You peer around outside, but find nothing of interest.[otherwise]You'd have to go in to take a closer look."
+Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Room]What an odd idea.[otherwise]You live alone; there's no need to knock."
+Instead of searching the dormitory room door, say "[if time is critical]You don't have time for that.[otherwise if the location is Marid's Room]You peer around outside, but find nothing of interest.[otherwise]You'd have to go in to take a closer look."
 Instead of inserting the endoscope into the dormitory room door, say "You could just use the peephole."
 
 Part 3.8.3 - Dressing Table
 
 [The dressing table is for color. I may put other relevant things on the dressing table, such as a letter opener or something, if a puzzle requires it.]
 
-The dressing table is a scenery supporter in Marid's Dormitory.
+The dressing table is a scenery supporter in Marid's Room.
 The description is "You have little need for vanity, and so use the dressing table as a writing desk. A mirror and some delicate drawers are the only concession to its original purpose."
 Understand "vanity" or "writing" or "desk" as the dressing table.
 Before examining the dressing table when time is critical, try searching the dressing table instead.
@@ -5955,7 +6133,7 @@ Instead of inserting the endoscope into the folded clothing, say "There is nothi
 Instead of taking the folded clothing, say "[if time is critical]That will only slow you down.[otherwise]You don't need a change of clothes right now."
 Instead of pulling, pushing, or turning the folded clothing, say "That won't accomplish anything."
 Instead of rubbing or smelling the folded clothing, say "[if time is critical]This is not the time.[otherwise]It's freshly laundered."
-Before going from Marid's Dormitory when the delicate drawers are open and time is not critical (this is the Marid is OCD enough to close her drawers rule):
+Before going from Marid's Room when the delicate drawers are open and time is not critical (this is the Marid is OCD enough to close her drawers rule):
 	say "(first closing the drawers)";
 	now the delicate drawers are closed;
 	continue the action.
@@ -5964,13 +6142,13 @@ Part 3.8.4 - Kitchenette
 
 [The kitchenette is here mainly for color, because it makes sense that the dormitory domicile would come with facilities for cooking. The stove and cold closet help with worldbuilding and hint at Marid's pyrophobia. I have no plans to use them as part of a puzzle right now, but that may change. If they end up being umimportant, I should put something in the cold closet, like medication or something, so it doesn't seem like Marid has a random empty fridge.]
 
-The kitchenette is scenery in Marid's Dormitory.
+The kitchenette is scenery in Marid's Room.
 The description is "[if time is critical]You see nothing that will help you.[otherwise]You are a more diligent disciple of the [italic type]ars vitalis[roman type] than the [italic type]ars coquinae,[roman type] and so the hooks here are bare. Nevertheless, the kitchenette is equipped with a stove and a cold closet."
 Understand "kitchen" as the kitchenette.
 Instead of entering the kitchenette, say "There is no space to sit there."
 Instead of searching the kitchenette, say "A stove and a cold closet are the only things of note."
 
-The kitchen hooks are scenery in Marid's Dormitory.
+The kitchen hooks are scenery in Marid's Room.
 The description is "[if time is critical]Those won't help you right now.[otherwise]They remind you of the ribs of some small animal. A rat, perhaps."
 Understand "hook" as the kitchen hooks.
 Instead of putting something on the kitchen hooks, say "[The noun] won't fit on the hooks."
@@ -6006,7 +6184,7 @@ Instead of inserting something into the cold closet, say "[if time is critical]T
 
 Part 3.8.5 - Marid's Bed
 
-Marid's bed is a privately-named enterable fixed in place supporter in Marid's Dormitory. "[if time is critical]Moonlight streams through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
+Marid's bed is a privately-named enterable fixed in place supporter in Marid's Room. "[if time is critical]Moonlight streams through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
 The printed name is "your bed".
 The description is "[if time is critical]You could easily climb out the window using your bed as a step.[otherwise]It looks warm and inviting."
 Understand "my" or "marid's" or "bed" or "bedding" or "mattress" as Marid's bed.
@@ -6023,7 +6201,7 @@ Part 3.8.6 - Dormitory Window
 
 [Eventually, Marid is going to have to abscond through this window for Midnight.]
 
-The dormitory window is an open unopenable scenery door. It is north of Marid's Dormitory and south of the Placeholder Chase Area.
+The dormitory window is an open unopenable scenery door. It is north of Marid's Room and south of the Placeholder Chase Area.
 The description is "It's a simple square opening without a pane or a grille. A shadowed rooftop can be seen through it."
 The sound is "[if time is critical]This is not the time.[otherwise]You hear the murmuring of the city."
 The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the condemned block from here, a trace of its ash lingers in the air."
@@ -6034,17 +6212,17 @@ Instead of knocking on or touching the dormitory window, say "There's no pane or
 
 Before going through the dormitory window when Midnight is not happening, say "[if Midnight has not happened]There might one day be an extraordinary situation when you would consider braving the fall. Today is not that day.[otherwise]The memories are still fresh. You have no desire to relive them." instead.
 
-The view of the shadowed rooftop is faraway scenery in Marid's Dormitory.
+The view of the shadowed rooftop is faraway scenery in Marid's Room.
 The description is "It might be the roof of one of the condemned buildings north of here."
 Understand "roof" or "condemned" or "condemned building" as the rooftop view.
 Before entering the rooftop view, try entering the dormitory window instead.
 
 Part 3.8.7 - Housekeeping
 
-[Before going from Marid's Dormitory while time is not critical (this is the tidy up the house before going rule):
+[Before going from Marid's Room while time is not critical (this is the tidy up the house before going rule):
 	tidy up the house.
 	
-Before sleeping in Marid's Dormitory while time is not critical (this is the tidy up the house before sleeping rule):
+Before sleeping in Marid's Room while time is not critical (this is the tidy up the house before sleeping rule):
 	tidy up the house.
 	
 To tidy up the house:
@@ -6057,17 +6235,17 @@ To tidy up the house:
 		add the cold closet to L;
 	if L is not empty and the player is staid, say "(first closing [L with definite articles])[command clarification break]".]
 
-Part 3.8.8 - Marid's Dormitory during Prologue
+Part 3.8.8 - Marid's Room during Prologue
 
 Chapter 3.8.8.1 - Go to Sleep, Marid
 
 sleeping-reminder-shown is a truth state that varies. sleeping-reminder-shown is false.
 
- Before reading a command when the player is in Marid's Dormitory and sleeping-reminder-shown is false and Prologue is happening (this is the trigger the Prologue sleeping reminder rule):
+ Before reading a command when the player is in Marid's Room and sleeping-reminder-shown is false and Prologue is happening (this is the trigger the Prologue sleeping reminder rule):
 	say "You feel tired. Weary.[paragraph break]";
 	now sleeping-reminder-shown is true.
 
-First instead of sleeping in Marid's Dormitory during Walking Home in Darkness (this is the Prologue sleeping in Marid's bed rule):
+First instead of sleeping in Marid's Room during Walking Home in Darkness (this is the Prologue sleeping in Marid's bed rule):
 	say "It's been a long day.
 
 You drape your jacket over the head of your bed and settle beneath the covers. Your room fades away as you will your eyes to close. But still your mind drifts, draws you back into the tides of memory, where you can only watch --[paragraph break]";
@@ -6090,17 +6268,17 @@ To unveil Day One: [This is a phrase so we can refer to it when skipping to Day 
 	follow the scene changing rules;
 	say "You wake in a cold sweat. The bells of Miller's Gate are ringing.";
 	now Marid's bed is undescribed;
-	now yourself is in Marid's Dormitory;
+	now yourself is in Marid's Room;
 	now Marid's bed is described;
 	say "Far off, the bells continue to ring: four, five, six, seven. Seven in the morning. You're lucky you haven't overslept. You quickly get dressed and run through your morning routine -- Doctor Cavala will be waiting for you at the clinic."
 	
-Part 3.8.9 - Marid's Dormitory during Day One
+Part 3.8.9 - Marid's Room during Day One
 
-Instead of listening to Marid's Dormitory during Nine to Five Zombie, say "The bells have stopped ringing."
+Instead of listening to Marid's Room during Nine to Five Zombie, say "The bells have stopped ringing."
 
 Chapter 3.8.9.1 - Go to Sleep, Marid (Again)
 
-First instead of sleeping in Marid's Dormitory during Walking Home in Fear (this is the Day One sleeping in Marid's bed rule):
+First instead of sleeping in Marid's Room during Walking Home in Fear (this is the Day One sleeping in Marid's bed rule):
 	say "You change out of your clothes and curl up beneath the sheets. But sleep does not come easily.
 
 You close your eyes and drift in that listless limbo between wakefulness and slumber. A ticking like a clock echoes in your mind, behind your eyelids, like a promise you've forgotten and cannot remember.[paragraph break]";
@@ -6113,7 +6291,7 @@ You close your eyes and drift in that listless limbo between wakefulness and slu
 	wait for any key;
 	unveil Day Two.
 	
-Part 3.8.10 - Marid's Dormitory during Day Two
+Part 3.8.10 - Marid's Room during Day Two
 
 Chapter 3.8.9.1 - Rude Awakening
 
@@ -7498,7 +7676,7 @@ Instead of dropping the day-one copy of the Libri Liberi (this is the how to dro
 		now day-one-newspaper-was-destroyed is true;
 	otherwise if time is critical:
 		say "This is not the time.";
-	otherwise if the location is not Marid's Dormitory:
+	otherwise if the location is not Marid's Room:
 		say "You shouldn't leave the newspaper lying around here.";
 	otherwise:
 		continue the action.
@@ -7747,8 +7925,6 @@ Part 3.19.2 - You Can't Just Leave Town
 Instead of going east in Miller's Gate (this is the can't just leave town rule):
 	if Cavala's Errands is happening:
 		say "You can't just leave town. You have an errand to finish.";
-	otherwise if Returning to a Break-In is happening:
-		say "You can't just leave town. You still have to report back to Doctor Cavala.";
 	otherwise:
 		say "You have no reason to leave town.";
 
@@ -9982,11 +10158,11 @@ Part 3.29.2 - Dead Bodies
 
 Chapter 3.29.2.1 - In General
 
-Some tarpaulin-covered bodies are privately-named scenery in Arturus's Clinic.
-The description is "[if Meeting the Patients has ended]Beneath the tarpaulins are the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper.[otherwise]You can't see much of the bodies beneath the tarpaulins."
-The sound is "You hear nothing unexpected, and indeed it would be rather troubling if you did."
-The scent is "There's no smell at all. The clinic's environment must be too sterile for bloat to set in."
-Understand "covered" or "tarpaulin covered" or "tarpaulin-covered" or "corpses/cadavers/victims/bodies" or "dead" or "slab" as the tarpaulin-covered bodies.
+Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
+The description is "[if Meeting the Patients has ended]Not a pretty sight.[otherwise]You can't see much of the bodies beneath the tarpaulins."
+The sound is "You hear nothing unexpected[first time], and indeed it would be rather troubling if you did[only]."
+The scent is "There's no smell at all[first time]. The clinic's environment must be too sterile for bloat to set in[only]."
+Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" or "dead" or "slab" as the tarpaulin-covered bodies.
 Understand "doctor/-- arturus/arturus's" or "body/corpse/cadaver/victim" as the tarpaulin-covered bodies when Meeting the Patients is happening.
 
 Before doing anything when the current action involves the tarpaulin-covered bodies and 4inv-vigiles-permission is false:
@@ -9996,8 +10172,10 @@ Before doing anything when the current action involves the tarpaulin-covered bod
 	if the home dialogue branch of Examiner Velox is examiner-home:
 		start a dialogue with Examiner Velox using dialogue examiner-confront;
 		now Examiner Velox is proper-named;
+		stop the action;
 	otherwise:
 		say "The investigators stop you.";
+		stop the action.
 
 Instead of attacking or cutting the tarpaulin-covered bodies, say "You agreed not to damage the bodies. You shouldn't push your luck."
 Instead of giving something to the tarpaulin-covered bodies, say "You won't get much of a response."
@@ -10014,6 +10192,12 @@ Before smelling the forensic tarpaulins, try smelling the tarpaulin-covered bodi
 Understand "tarpaulin" or "sheet/sheets" as the forensic tarpaulins.
 Before looking under or searching the forensic tarpaulins, try examining the tarpaulin-covered bodies instead.
 Instead of entering the forensic tarpaulins, say "The notion is entirely distasteful."
+Instead of pushing, pulling, squeezing, taking, or turning the forensic tarpaulins, say "You shouldn't unduly disturb the bodies."
+
+The dried black blood is a scenery thing. The indefinite article is "some".
+The description is "You know these symptoms all too well, now."
+Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink" as the dried black blood.
+Instead of doing anything other than examining or listening with the dried black blood, say "That could be dangerous. You shouldn't."
 
 Before doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
 	if the current action is examining, continue the action;
@@ -10022,50 +10206,188 @@ Before doing anything when the current action involves the forensic tarpaulins a
 	if the home dialogue branch of Examiner Velox is examiner-home:
 		start a dialogue with Examiner Velox using dialogue examiner-confront;
 		now Examiner Velox is proper-named;
+		stop the action;
 	otherwise:
 		say "The investigators stop you.";
+		stop the action.
 
 Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
-Instead of attacking or cutting Doctor Arturus, say "You agreed not to damage the bodies. You shouldn't push your luck."
-Instead of looking under Doctor Arturus, say "The bodies are lying on a slab."
 
+Does the player mean doing something with Doctor Arturus: it is likely.
+Does the player mean doing something with something that is enclosed by Doctor Arturus:
+	if the noun part of the current action was Doctor Arturus or
+	the noun part of the current action was enclosed by Doctor Arturus or
+	the second noun part of the current action was Doctor Arturus or
+	the second noun part of the current action was enclosed by Doctor Arturus:
+		it is very likely.
+
+Before listening to Doctor Arturus, try listening to the tarpaulin-covered bodies instead.
+Before smelling Doctor Arturus, try smelling the tarpaulin-covered bodies instead.
+Before attacking or cutting Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
+Instead of looking under Doctor Arturus, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
+Instead of touching Doctor Arturus, say "He is cold to the touch."
+Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Doctor Arturus, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
+
+Before attacking or cutting something that is part of Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
+Before smelling something that is part of Doctor Arturus, try smelling Doctor Arturus instead.
+Before touching something that is part of Doctor Arturus, try touching Doctor Arturus instead.
+Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Doctor Arturus, try pushing Doctor Arturus instead.
+
+arturus-examined-quip is a truth state that varies.
 Instead of examining Doctor Arturus:
-	say "[first time]You approach the body.
+	if arturus-examined-quip is false:
+		say "You approach the body.[paragraph break]";
+		say "The first time you saw Doctor Arturus's face was in [italic type]De historia medica[roman type], your first-year College textbook. You still remember it -- sharp, black and white, with a jaw like a the edge of a knife. You were nervous, when you moved to the Channelworks District, to meet the famed pathologist in the flesh.[paragraph break]";
+		wait for any key;
+		say "But the man who you met that day was smaller, somehow. His features, so arresting in his youth, had crinkled under the burden of years. He did not look you in the eye when he shook your hand.[paragraph break]";
+		wait for any key;
+		say "'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices, nowadays...'[paragraph break]";
+		wait for any key;
+	say "The body laid before you is gaunt, almost pitiful. The sleeves of his natron coat are completely soaked in eerie black stains. His glasses are stained opaque, and his mouth is frozen open in horror.[paragraph break]";
+	if arturus-examined-quip is false, wait for any key;
+	say "You could examine Doctor Arturus's head, his torso, his arms, or his legs.";
+	now arturus-examined-quip is true;
 
-[wait for any key]The first time you saw Doctor Arturus's face was in [italic type]De historia medica[roman type], your first-year College textbook. You still remember it -- sharp, black and white, with a jaw like a the edge of a knife. You were nervous, when you moved to the Channelworks District, to meet the pathological specialist in the flesh.
+Instead of searching Doctor Arturus, say "You could examine Doctor Arturus's head, his torso, his arms, or his legs."
 
-[wait for any key]But the man who you met that day was smaller, somehow. His features, so arresting in his youth, had crinkled under the burden of years. He did not look you in the eye when he shook your hand.
+Section 3.29.2.2.1 - Head
 
-[wait for any key]'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices nowadays...'[only]";
+Doctor Arturus's head is part of Doctor Arturus.
+The description is "Death has not been kind to Doctor Arturus. The black blood from his eyes and mouth has seeped into his wrinkles, crisscrossing his face with a spiderweb of decay.
+
+His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside."
+Understand "spiderweb/web" or "decay" or "wrinkle/wrinkles" or "face" as Doctor Arturus's head.
+Before inserting the endoscope into Doctor Arturus's head, try inserting the endoscope into Doctor Arturus instead.
+
+Doctor Arturus's eyes are a plural-named fixed in place thing part of Doctor Arturus.
+The description is "Doctor Arturus's eyes are open."
+Understand "eye" as Doctor Arturus's eyes.
+Instead of opening Doctor Arturus's eyes, say "Doctor Arturus's eyes are already open."
+Before rubbing or touching Doctor Arturus's eyes, try touching the dried black blood instead.
+
+Doctor Arturus's mouth is part of Doctor Arturus.
+The description is "You could put your endoscope in and look around inside."
+Before searching Doctor Arturus's mouth, try inserting the endoscope into Doctor Arturus instead.
+Before inserting the endoscope into Doctor Arturus's mouth, try inserting the endoscope into Doctor Arturus instead.
+
+Doctor Arturus's glasses are a plural-named thing worn by Doctor Arturus.
+The description is "Black blood covers his glasses."
+Understand "stained" or "opaque" as Doctor Arturus's glasses.
+Before rubbing or touching Doctor Arturus's glasses, try touching the dried black blood instead.
+Before looking under or searching Doctor Arturus's glasses, try examining Doctor Arturus's eyes instead.
+Instead of taking Doctor Arturus's glasses, say "You don't think you ought to carry a pair of potentially biohazardous glasses around."
+
+Section 3.29.2.2.2 - Torso
+
+Doctor Arturus's torso is part of Doctor Arturus.
+The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] slides. You don't notice anything out of the ordinary about it, though."
+Instead of knocking on, looking under, rubbing, searching, squeezing, or touching Doctor Arturus's torso, say "You pat him down but find nothing of interest."
+
+Doctor Arturus's natron coat is a thing worn by Doctor Arturus.
+The description is "You'd think those were inkstains if you didn't know better."
+Understand "shroud" or "button-up" as Doctor Arturus's natron coat.
+Instead of knocking on, looking under, rubbing, searching, squeezing, taking off, or touching Doctor Arturus's natron coat, try searching Doctor Arturus's torso instead.
+
+Some old-fashioned buttons are part of Doctor Arturus's natron coat.
+The description is "Beady bloodstained buttons."
+Understand "button" as the old-fashioned buttons.
+Instead of doing anything other than examining with the old-fashioned buttons, say "The buttons don't seem pertinent to the investigation."
+
+Section 3.29.2.2.3 - Arms
+
+Doctor Arturus's arms are a plural-named thing part of Doctor Arturus.
+The description is "Doctor Arturus's sleeves are streaked with black blood. Like a living thing it seems to have crept up from his hands, twisting and squirming and crawling up his arms. His gloves are almost completely black[if clue-arturus-gloves is false].
+
+But something's not right here. If his gloves were the rubber-natron surgical standard, like yours are, skin contact shouldn't have been possible. You should take a closer look[end if]."
+Understand "streak/streaks" or "arm" or "sleeve/sleeves" as Doctor Arturus's arms.
+Before knocking on, pushing, pulling, rubbing, squeezing, touching, or taking Doctor Arturus's arms, try touching the dried black blood instead.
+
+Doctor Arturus's gloves are a plural-named thing part of Doctor Arturus.
+Understand "glove" or "hand/hands" or "sigil/sigils" or "rubber/rubber-natron" or "natron" as Doctor Arturus's gloves.
+
+Instead of examining Doctor Arturus's gloves:
+	if clue-arturus-gloves is false:
+		say "You get a loupe and a pair of tweezers, and carefully -- very carefully -- you inspect Doctor Arturus's bloodstained gloves.[paragraph break]";
+		say "Your heart hammers in your ears. Your breath condenses on the tarpaulins.[paragraph break]";
+		wait for any key;
+		say "[italic type]There! Is that--[roman type][paragraph break]";
+		wait for any key;
+		say "No. Nothing.[paragraph break]";
+		wait for any key;
+		say "There's nothing at all. The gloves are perfectly sealed. Brand new, in fact -- if you brush away the blood, you can see the sigils glowing softly on the rubber.[paragraph break]";
+		wait for any key;
+		say "That means there are two possibilities. Either this disease can somehow be transmitted [italic type]through[roman type] an alchemically-sealed waterproof barrier -- which is in defiance of everything you learned in school, and besides you and Doctor Cavala are still alive, so that can't be right --[paragraph break]";
+		wait for any key;
+		say "Or there's something else at work here. Something more insidious.[paragraph break]";
+		wait for any key;
+		say "You carefully decontaminate the equipment you borrowed and return it to the clinic. You're going to have to keep investigating.[paragraph break]";
+		now clue-arturus-gloves is true;
+	otherwise:
+		say "Although the gloves are coated in blood, they're brand new. You can still see the sigils glowing on the rubber."
+
+Before knocking on, pushing, rubbing, squeezing, or touching Doctor Arturus's gloves, try touching the dried black blood instead.
+Instead of looking under, pulling, searching, taking, or taking off Doctor Arturus's gloves, say "[one of]You get a pair of tweezers and carefully pull off one of the gloves. His hands are shriveled -- gnarled, black things, like dead tree branches. They have been utterly ruined by the disease.[paragraph break]You replace the glove and decontaminate the tweezers, suppressing a shudder.[or]The other hand doesn't look any better.[or]You've already inspected both hands and found them to be ruined by the disease.[stopping]".
+Instead of swinging Doctor Arturus's gloves, say "Very funny." [">shake hand"]
+
+Section 3.29.2.2.4 - Legs
+
+Doctor Arturus's legs are a plural-named thing part of Doctor Arturus.
+The description is "Doctor Arturus is wearing formal trousers and rubber boots -- relatively spotless, in comparison with his sleeves[first time]. You go through his pockets and find his wallet, some pens, the keys to the clinic... curious, but ultimately irrelevant to the investigation[only]."
+Understand "trousers" or "formal" or "rubber/-- boot/boots" as Doctor Arturus's legs.
+
+Doctor Arturus's pockets are a plural-named thing part of Doctor Arturus.
+Understand "pocket" or "wallet" or "pen/pens" or "key/keys to/-- the/-- clinic/--" or "contents" as Doctor Arturus's pockets.
+Instead of doing anything with Doctor Arturus's pockets, say "The contents of Doctor Arturus's pockets don't seem pertinent to the investigation."
+
+Section 3.29.2.2.5 - Endoscopy
+
+Instead of inserting the endoscope into Doctor Arturus:
+	start an endoscopy on "Doctor Arturus" via "Doctor Arturus's mouth" to arturus-endoscopy-mouth.
+	
+arturus-endoscopy-mouth is a privately-named room.
+The printed name is "Mouth".
+The description is "A cavern ringed with tombstones. The cavity glistens black -- the capillaries are visible behind the membranes, diseased and withered and creeping. It is almost impossible to distinguish blood from shadow.
+
+Light streams in from outside. The pharynx lies further in."
+Before searching or entering the view of Doctor Arturus's pharynx in arturus-endoscopy-mouth, try going down instead.
+
+Doctor Arturus's teeth are plural-named scenery in arturus-endoscopy-mouth.
+The description is "At this scale, Doctor Arturus's teeth are colossal bone plinths."
+Understand "tombstone/tombstones" or "tooth" or "colossal" or "bone" or "plinth/plinths" as Doctor Arturus's teeth.
+
+Doctor Arturus's oral cavity is scenery in arturus-endoscopy-mouth.
+The description is "The walls are streaked ebon where the diseased blood has set."
+Understand "cavern" or "capillary/capillaries/membrane/membranes/vessel/vessels" or "blood" or "shadow" or "wall/walls" or "black/ebon" or "diseased" as Doctor Arturus's oral cavity.
+
+The view of Doctor Arturus's pharynx is a backdrop. It is in arturus-endoscopy-mouth.
+The description is "A black arch, infested with blacker capillaries."
+Understand "arch" as the view of Doctor Arturus's pharynx.
 
 Chapter 3.29.2.3 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
 Understand "nacarat's" or "victim" as Creditor Nacarat.
-Instead of attacking or cutting Creditor Nacarat, say "You agreed not to damage the bodies. You shouldn't push your luck."
-Instead of looking under Creditor Nacarat, say "The bodies are lying on a slab."
+Does the player mean doing something with Creditor Nacarat: it is likely.
 
 Chapter 3.29.2.4 - Sal
 
 Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
-Instead of attacking or cutting Sal, say "You agreed not to damage the bodies. You shouldn't push your luck."
-Instead of looking under Sal, say "The bodies are lying on a slab."
+Does the player mean doing something with Sal: it is likely.
 
 Chapter 3.29.2.5 - Piper
 
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
-Instead of attacking or cutting Piper, say "You agreed not to damage the bodies. You shouldn't push your luck."
-Instead of looking under Piper, say "The bodies are lying on a slab."
+Does the player mean doing something with Piper: it is likely.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
 Rule for writing a paragraph about Justinian when Four Investigations is happening:
-	say "Some Vigiles investigators and an examiner are huddled around a group of tarpaulin-covered bodies. Beside them, Justinian sits at a coffee table, brooding.";
+	say "[An Examiner Velox] and his investigators are huddled around [if Meeting the Patients has ended]the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper[otherwise]a group of tarpaulin-covered bodies[end if]. Beside them, Justinian sits at a coffee table, brooding.";
 	now the Vigiles investigators are mentioned;
 	now Examiner Velox is mentioned;
 	now Justinian is mentioned.
@@ -10116,7 +10438,7 @@ examiner-confront	true	false	""	"As you approach the bodies, the examiner places
 
 [wait for any key]'My name is Servator Marid Orpheia,' you reply. 'I'm here on behalf of Doctor Cavala. I need to study the bodies so we can develop a cure for the affliction.'
 
-'The [italic type]ius medici?'[roman type] He pauses, then nods. 'Very well, Servator. You may inspect these bodies at your own risk. Do not damage them, however -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{examiner-quarantine, examiner-tribunal, examiner-agree, examiner-refuse}
+[wait for any key]'The [italic type]ius medici?'[roman type] He pauses, then nods. 'Very well, Servator. You may inspect these bodies at your own risk. Do not damage them, however -- we are considering the possibility of quarantine, and they may be used as evidence in the tribunal.'"	{examiner-quarantine, examiner-tribunal, examiner-agree, examiner-refuse}
 examiner-quarantine	true	true	"'Quarantine?'"	"'Quarantine?'
 
 'Indeed.' His mustache bristles vigorously. 'If there is even a possibility that Doctor Justinian's fears ring true, it is imperative that the spread of the disease be contained -- if not within the Turris, then within the Channelworks District.'"	{examiner-redentoo, examiner-mentionedtribunal, examiner-agree, examiner-refuse}
@@ -10181,6 +10503,7 @@ He nods. 'I'm glad you came around. To business, then. If you'll follow me...'
 
 To say examiner-exposition:
 	now 4inv-vigiles-permission is true;
+	now the dried black blood is in Arturus's Clinic;
 	now Piper is in Arturus's Clinic;
 	now Sal is in Arturus's Clinic;
 	now Creditor Nacarat is in Arturus's Clinic;
@@ -10227,7 +10550,7 @@ examiner-arturus-timeofdeath	true	false	"'What was the time of death[if examiner
 His mustache squirms. 'The varying temperatures in the Turris Infinita make the precise time difficult to ascertain. Complicating matters is the fact that Doctor Justinian moved the body, interfering with the natural processes of [italic type]rigor mortis[roman type] and [italic type]livor mortis[roman type]. All we can gather is that he died last night -- sometime between eight and twelve hours ago.'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-notable	true	false	"'Is there anything I should be aware of[if examiner-arturus-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-arturus-notable-asked is true], again[end if]?'
 
-'We believe that he was infected through his gloves,' Examiner Velox replies. 'They are stained with black effluvium both within and without. If you are concerned with the method of transmission, you might examine them further[one of].'[paragraph break]Through his [italic type]gloves?[roman type] That shouldn't be possible...[or].'[stopping]"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+'We believe that he was infected through his gloves,' Examiner Velox replies. 'They are stained with black effluvium both within and without. If you are concerned with the method of transmission, you might examine them further[if examiner-arturus-notable-asked is false and clue-arturus-gloves is false].'[paragraph break]Through his [italic type]gloves?[roman type] That shouldn't be possible...[otherwise].'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-nacarat-ask	true	false	"'Regarding Creditor Nacarat...'"	"'Regarding Creditor Nacarat...'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-nacarat-id	true	false	"'Who was he again?'"	"'Who was he again?'
 
@@ -10254,7 +10577,9 @@ examiner-thugs-circum	true	false	"'What do you know about the circumstances of t
 examiner-thugs-notable	true	false	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'
 
 'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions -- although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
-examiner-thanksbye	true	false	"'That will be all, thank you.'"	"'That will be all, thank you.'
+examiner-thanksbye	true	false	"'I'll keep investigating.'"	"'I'll keep investigating.'
+
+'Very well. I will be here if you have any further questions.'
 
 You step back, and Examiner Velox returns to his work."	{}
 examiner-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
