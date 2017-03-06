@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 040317.
+The release number is 060317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -444,6 +444,7 @@ To skip past Prologue:
 	now Via Terminalis West End is visited;
 	now the Dormitory Block is visited;
 	now the Public House is visited;
+	now mutant-tutorial-shown is true;
 	follow the scene changing rules.
 	
 To skip past Nine to Five Zombie:
@@ -1917,12 +1918,19 @@ The endoscopic location is a room that varies.
 
 The endoscopic subject text is some text that varies.
 
+The endoscopic-endoscope is a privately-named backdrop.
+The printed name is "light from your endoscope".
+The description is "A circle of feeble illumination."
+Understand "ring/circle" or "of/from" or "your/my" or "light/lens-light/illumination" or "lens/lenses" or "endoscope/scope" as the endoscopic-endoscope.
+
 Chapter 2.3.10.2 - Endoscopic Actions
 
 After deciding the scope of the player while the player is engaged in endoscopy:
-	place the endoscopic location in scope.
+	place the endoscopic location in scope;
+	place the endoscopic-endoscope in scope.
 
 Does the player mean doing something with a thing enclosed by the endoscopic location when the player is engaged in endoscopy: it is very likely.
+Does the player mean doing something with the endoscopic-endoscope when the player is engaged in endoscopy: it is very likely.
 Rule for clarifying the parser's choice of something when the player is engaged in endoscopy: do nothing.
 	
 Last before doing anything when the player is engaged in endoscopy (this is the endoscopic actions rule):
@@ -1939,7 +1947,8 @@ Last before doing anything when the player is engaged in endoscopy (this is the 
 	[A caveat for looking: this is a short-form hack that doesn't describe the locale, so we have to describe all the scenery in the room description. I could make it describe the locale if I wanted to but that is a lot of effort and code for no real gain.]
 	otherwise if we are going:
 		if the noun is outside:
-			now the noun is up;
+			end the endoscopy, followed by looking;
+			stop the action;
 		otherwise if the noun is inside:
 			now the noun is down;
 		if the room the noun from the endoscopic location is a room:
@@ -1947,10 +1956,14 @@ Last before doing anything when the player is engaged in endoscopy (this is the 
 				say "You withdraw...[paragraph break]";
 			otherwise if the noun is down:
 				say "You descend...[paragraph break]";
+			wait for any key;
+			clear only the main screen;
+			say line break;
 			now the endoscopic location is the room the noun from the endoscopic location;
 			update backdrop positions;
 			surreptitiously reckon darkness;
 			try looking;
+			stop the action;
 		otherwise if the noun is up:
 			end the endoscopy, followed by looking;
 			stop the action;
@@ -1963,16 +1976,34 @@ Last before doing anything when the player is engaged in endoscopy (this is the 
 	otherwise if we are descending:
 		continue the action;
 	otherwise if we are exiting:
-		try going up;
+		end the endoscopy, followed by looking;
 		stop the action;
 	otherwise if we are doing something with a thing (called the curiosity) enclosed by the endoscopic location:
-		if we are searching:
+		if we are searching or looking under:
 			try examining the noun;
 			stop the action;
-		if we are examining:
+		otherwise if we are examining:
 			continue the action;
 		otherwise:
 			say "You can only examine [regarding the curiosity][them].";
+			stop the action;
+	otherwise if the current action involves the endoscopic-endoscope:
+		if we are searching or looking under:
+			try examining the noun;
+			stop the action;
+		otherwise if we are examining:
+			continue the action;
+		otherwise if we are pulling or taking:
+			try going up;
+			stop the action;
+		otherwise if we are pushing or dropping:
+			try going down;
+			stop the action;
+		otherwise if we are opening, closing, knocking on, squeezing, swinging, touching, tickling, or turning:
+			say "You adjust the lenses.";
+			stop the action;
+		otherwise:
+			say "You cannot do that.";
 			stop the action;
 	otherwise if we are examining down or examining inside:
 		say "You see only darkness.";
@@ -2536,6 +2567,10 @@ To say journal-text-notes:
 	if The Game is Afoot is happening:
 		add "- I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
 	if Four Investigations is happening:
+		let L2 be a list of texts;	
+		if clue-arturus-animus is true, add "- I learned that the disease is bloodborne and attacks the animus, or the soul." to L2;
+		if L2 is not {}, add "" to L2;
+		add L2 to L;
 		if Reden Investigation is happening:
 			add "[italic type]Reden[roman type]" to L;
 			add "- I should go to Riggertown and ask Zoiro about his brother's activities." to L;
@@ -2547,8 +2582,10 @@ To say journal-text-notes:
 			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
 			if 4inv-vigiles-permission is false:
 				add "- I should get permission from the Vigiles to examine Doctor Arturus's body." to L;
-			otherwise if clue-arturus-gloves is false:
+			otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
 				add "- I should examine Doctor Arturus's body." to L;
+			otherwise if clue-arturus-gloves is false or clue-arturus-animus is false:
+				add "- I should examine Doctor Arturus's body further." to L;
 			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
 			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L;
 			if clue-arturus-gloves is true:
@@ -7383,9 +7420,9 @@ justinian-afoot-patients	true	true	"'Can you tell me anything about Doctor Artur
 Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"You squirm in your seat. 'Do you know where the patient records are kept?'
 
-He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'
+He pauses in thought.
 
-You make a mental note."	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
+'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-disease	true	true	"'What are your thoughts on the disease?'"	"'What are your thoughts on... on the disease?'
 
 A serious cast comes over Justinian's features, and he pauses before speaking.
@@ -10090,7 +10127,7 @@ Instead of knocking on the front door while Cavala's Errands is happening:
 Book 3.29 - Arturus's Clinic
 
 There is a proper-named room called Arturus's Clinic.
-The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy.
+The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work[first time]. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy[only].
 
 An arch to the west leads back to the Turris Infinita foyer."
 Understand "doctor" or "arturus'" as Arturus's Clinic.
@@ -10196,7 +10233,7 @@ Instead of pushing, pulling, squeezing, taking, or turning the forensic tarpauli
 
 The dried black blood is a scenery thing. The indefinite article is "some".
 The description is "You know these symptoms all too well, now."
-Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink" as the dried black blood.
+Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink/bloodstain/bloodstains" as the dried black blood.
 Instead of doing anything other than examining or listening with the dried black blood, say "That could be dangerous. You shouldn't."
 
 Before doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
@@ -10240,11 +10277,11 @@ arturus-examined-quip is a truth state that varies.
 Instead of examining Doctor Arturus:
 	if arturus-examined-quip is false:
 		say "You approach the body.[paragraph break]";
-		say "The first time you saw Doctor Arturus's face was in [italic type]De historia medica[roman type], your first-year College textbook. You still remember it -- sharp, black and white, with a jaw like a the edge of a knife. You were nervous, when you moved to the Channelworks District, to meet the famed pathologist in the flesh.[paragraph break]";
+		say "The first time you saw Doctor Arturus's face was in [italic type]De historia medica[roman type], your first-year medical textbook. You still remember it -- sharp, black and white, with a jaw like a the edge of a knife. You were nervous, when you moved to the Channelworks District, to meet the famed pathologist in the flesh.[paragraph break]";
 		wait for any key;
 		say "But the man who you met that day was smaller, somehow. His features, so arresting in his youth, had crinkled under the burden of years. He did not look you in the eye when he shook your hand.[paragraph break]";
 		wait for any key;
-		say "'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices, nowadays...'[paragraph break]";
+		say "'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices these days...'[paragraph break]";
 		wait for any key;
 	say "The body laid before you is gaunt, almost pitiful. The sleeves of his natron coat are completely soaked in eerie black stains. His glasses are stained opaque, and his mouth is frozen open in horror.[paragraph break]";
 	if arturus-examined-quip is false, wait for any key;
@@ -10256,9 +10293,9 @@ Instead of searching Doctor Arturus, say "You could examine Doctor Arturus's hea
 Section 3.29.2.2.1 - Head
 
 Doctor Arturus's head is part of Doctor Arturus.
-The description is "Death has not been kind to Doctor Arturus. The black blood from his eyes and mouth has seeped into his wrinkles, crisscrossing his face with a spiderweb of decay.
+The description is "Death has not been kind to Doctor Arturus. The black blood from his eyes and mouth has seeped into his wrinkles, crisscrossing his face with a spiderweb of decay[if clue-arturus-animus is false].
 
-His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside."
+His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside[end if]."
 Understand "spiderweb/web" or "decay" or "wrinkle/wrinkles" or "face" as Doctor Arturus's head.
 Before inserting the endoscope into Doctor Arturus's head, try inserting the endoscope into Doctor Arturus instead.
 
@@ -10283,7 +10320,7 @@ Instead of taking Doctor Arturus's glasses, say "You don't think you ought to ca
 Section 3.29.2.2.2 - Torso
 
 Doctor Arturus's torso is part of Doctor Arturus.
-The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] slides. You don't notice anything out of the ordinary about it, though."
+The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] pictures. Your eyes are drawn  to his ruined sleeves, which cling to his skin like grotesque pelagic rays."
 Instead of knocking on, looking under, rubbing, searching, squeezing, or touching Doctor Arturus's torso, say "You pat him down but find nothing of interest."
 
 Doctor Arturus's natron coat is a thing worn by Doctor Arturus.
@@ -10299,11 +10336,14 @@ Instead of doing anything other than examining with the old-fashioned buttons, s
 Section 3.29.2.2.3 - Arms
 
 Doctor Arturus's arms are a plural-named thing part of Doctor Arturus.
-The description is "Doctor Arturus's sleeves are streaked with black blood. Like a living thing it seems to have crept up from his hands, twisting and squirming and crawling up his arms. His gloves are almost completely black[if clue-arturus-gloves is false].
+The description is "Doctor Arturus's sleeves are streaked with black blood. Like a living thing, it seems to have oozed up from his hands, twisting and squirming and crawling up his forearms. His gloves are almost completely black[if clue-arturus-gloves is false].
 
 But something's not right here. If his gloves were the rubber-natron surgical standard, like yours are, skin contact shouldn't have been possible. You should take a closer look[end if]."
-Understand "streak/streaks" or "arm" or "sleeve/sleeves" as Doctor Arturus's arms.
+Understand "streak/streaks" or "arm/forearm/forearms" or "sleeve/sleeves" or "skin" or "grotesque" or "pelagic" or "ray/rays" as Doctor Arturus's arms.
 Before knocking on, pushing, pulling, rubbing, squeezing, touching, or taking Doctor Arturus's arms, try touching the dried black blood instead.
+
+Before examining Doctor Arturus's arms when the current action was examining Doctor Arturus's arms and clue-arturus-gloves is false:
+	try examining Doctor Arturus's gloves instead.
 
 Doctor Arturus's gloves are a plural-named thing part of Doctor Arturus.
 Understand "glove" or "hand/hands" or "sigil/sigils" or "rubber/rubber-natron" or "natron" as Doctor Arturus's gloves.
@@ -10315,7 +10355,7 @@ Instead of examining Doctor Arturus's gloves:
 		wait for any key;
 		say "[italic type]There! Is that--[roman type][paragraph break]";
 		wait for any key;
-		say "No. Nothing.[paragraph break]";
+		say "Nothing.[paragraph break]";
 		wait for any key;
 		say "There's nothing at all. The gloves are perfectly sealed. Brand new, in fact -- if you brush away the blood, you can see the sigils glowing softly on the rubber.[paragraph break]";
 		wait for any key;
@@ -10335,24 +10375,21 @@ Instead of swinging Doctor Arturus's gloves, say "Very funny." [">shake hand"]
 Section 3.29.2.2.4 - Legs
 
 Doctor Arturus's legs are a plural-named thing part of Doctor Arturus.
-The description is "Doctor Arturus is wearing formal trousers and rubber boots -- relatively spotless, in comparison with his sleeves[first time]. You go through his pockets and find his wallet, some pens, the keys to the clinic... curious, but ultimately irrelevant to the investigation[only]."
+The description is "Doctor Arturus is wearing formal trousers and rubber boots -- relatively dignified, in comparison with the rest of his body."
 Understand "trousers" or "formal" or "rubber/-- boot/boots" as Doctor Arturus's legs.
 
-Doctor Arturus's pockets are a plural-named thing part of Doctor Arturus.
-Understand "pocket" or "wallet" or "pen/pens" or "key/keys to/-- the/-- clinic/--" or "contents" as Doctor Arturus's pockets.
-Instead of doing anything with Doctor Arturus's pockets, say "The contents of Doctor Arturus's pockets don't seem pertinent to the investigation."
-
-Section 3.29.2.2.5 - Endoscopy
+Chapter 3.29.2.3 - Arturus Endoscopy
 
 Instead of inserting the endoscope into Doctor Arturus:
 	start an endoscopy on "Doctor Arturus" via "Doctor Arturus's mouth" to arturus-endoscopy-mouth.
+	
+Section 3.29.2.3.1 - Mouth
 	
 arturus-endoscopy-mouth is a privately-named room.
 The printed name is "Mouth".
 The description is "A cavern ringed with tombstones. The cavity glistens black -- the capillaries are visible behind the membranes, diseased and withered and creeping. It is almost impossible to distinguish blood from shadow.
 
 Light streams in from outside. The pharynx lies further in."
-Before searching or entering the view of Doctor Arturus's pharynx in arturus-endoscopy-mouth, try going down instead.
 
 Doctor Arturus's teeth are plural-named scenery in arturus-endoscopy-mouth.
 The description is "At this scale, Doctor Arturus's teeth are colossal bone plinths."
@@ -10362,27 +10399,117 @@ Doctor Arturus's oral cavity is scenery in arturus-endoscopy-mouth.
 The description is "The walls are streaked ebon where the diseased blood has set."
 Understand "cavern" or "capillary/capillaries/membrane/membranes/vessel/vessels" or "blood" or "shadow" or "wall/walls" or "black/ebon" or "diseased" as Doctor Arturus's oral cavity.
 
-The view of Doctor Arturus's pharynx is a backdrop. It is in arturus-endoscopy-mouth.
+The view of Doctor Arturus's pharynx is scenery in arturus-endoscopy-mouth.
 The description is "A black arch, infested with blacker capillaries."
 Understand "arch" as the view of Doctor Arturus's pharynx.
+Before searching or entering the view of Doctor Arturus's pharynx, try going down instead.
 
-Chapter 3.29.2.3 - Creditor Nacarat
+Section 3.29.2.3.2 - Pharynx
+
+arturus-endoscopy-pharynx is a privately-named room. It is below arturus-endoscopy-mouth.
+The printed name is "Pharynx".
+The description is "A tunnel splitting, twisting darkly. Fleshy folds press inward, tight bundles of muscles and cartilage frozen in black ivy.
+
+The esophagus is blocked by the epiglottis. You can only descend through the larynx."
+
+Doctor Arturus's pharyngeal folds are plural-named scenery in arturus-endoscopy-pharynx.
+The description is "The scutiform cartilage. The smuggler's fossa. The ventricular folds."
+Understand "fleshy" or "muscle/muscles" or "bundle/bundles" or "of" or "tight" or "and" or "cartilage" or "black" or "ivy" or "scutiform" or "smuggler's" or "fossa" or "ventricular" or "fold/tunnel" as the pharyngeal folds.
+
+Doctor Arturus's epiglottis is scenery in arturus-endoscopy-pharynx.
+The description is "The epiglottis is frozen in [italic type]rigor mortis,[roman type] and will not move."
+Understand "esophagus/oesophagus" as Doctor Arturus's epiglottis.
+
+The view of Doctor Arturus's larynx is scenery in arturus-endoscopy-pharynx.
+The description is "Darkness."
+Before searching or entering the view of Doctor Arturus's larynx, try going down instead.
+
+Section 3.29.2.3.3 - Trachea
+
+arturus-endoscopy-trachea is a privately-named room. It is below arturus-endoscopy-pharynx.
+The printed name is "Trachea".
+The description is "It is almost completely dark, save the small ring of light from your lens. Your world is a hollow pit with no beginning and no end.
+
+Below are the lungs."
+
+Doctor Arturus's trachea is scenery in arturus-endoscopy-trachea.
+The description is "There is no life, no breath."
+Understand "hollow" or "pit" or "darkness" as Doctor Arturus's trachea.
+
+The view of Doctor Arturus's lungs is scenery in arturus-endoscopy-trachea.
+The description is "Somewhere beneath are the bronchi, the bronchioles."
+Understand "bronchus/bronchi/bronchiole/bronchioles" as the view of Doctor Arturus's lungs.
+Before searching or entering the view of Doctor Arturus's lungs, try going down instead.
+
+Section 3.29.2.3.3 - Lungs
+
+arturus-endoscopy-lungs is a privately-named room. It is below arturus-endoscopy-trachea.
+The printed name is "Lungs".
+The description is "The terminus of the respiratory system. A thousand dead ends, holes, alveoli -- they greet you like blood-choked eye sockets[one of].
+
+[wait for any key]Something is wrong here.
+
+[wait for any key]The pattern of decay isn't consistent with an airborne pathogen. If the disease were transmitted by air or aether, it would attack from the alveoli inward. Here, it looks like the infection spread [italic type]outward,[roman type] from the blood vessels into the lungs.
+
+[wait for any key][or].
+
+[stopping]Further on, you see the cast-off tethers of Doctor Arturus's animus still lingering in the aetheric weave[if clue-arturus-animus is false]. But the skeins are fragmented, somehow. Different from the textbooks[end if]."
+
+Doctor Arturus's alveoli are plural-named scenery in arturus-endoscopy-lungs.
+The description is "Black blood has burst from the capillaries, choking the airways."
+Understand "alveole/capillary/capillaries/lung/lungs/vessel/vessels/socket/sockets/hole/holes/end/ends/airway/airways" or "blood" or "blood-choked" or "dead" or "eye/eyes/eyesocket/eyesockets/eye-socket/eye-sockets" as Doctor Arturus's alveoli.
+
+Some skeins of Doctor Arturus's animus are scenery in arturus-endoscopy-lungs. The indefinite article is "the".
+Understand "cast-off" or "tether/tethers/soul/skein/fragment/fragments" or "fragmented" or "aetheric/etheric/animic/auroral" or "weave" or "seat" as the skeins of Doctor Arturus's animus.
+
+clue-arturus-animus is a truth state that varies.
+
+Instead of examining the skeins of Doctor Arturus's animus:
+	if clue-arturus-animus is false:
+		say "The animus, colloquially known as the soul, is bound to a person's body by aetheric skeins. When the body dies, the skeins are loosened, and the animus drifts apart from the corpus. Every first-year medical student knows that.
+
+Here, the animic skeins were not loosened. They were ripped apart.
+
+[wait for any key]You can see auroral fragments flickering in the halo of your lens-light. They shine weakly, painfully, unable to fade away.
+
+[wait for any key]What are you looking at here? What kind of disease attacks the [italic type]soul?[roman type]
+
+[wait for any key]No answers will be found here. You will have to look elsewhere.[line break]";
+		now clue-arturus-animus is true;
+	otherwise:
+		say "The fragments shine weakly, painfully, unable to fade away."
+		
+Before going up when the endoscopic location is arturus-endoscopy-lungs, try going out instead.
+
+Chapter 3.29.2.4 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
 Understand "nacarat's" or "victim" as Creditor Nacarat.
 Does the player mean doing something with Creditor Nacarat: it is likely.
 
-Chapter 3.29.2.4 - Sal
+Chapter 3.29.2.5 - Nacarat Endoscopy
+
+
+
+Chapter 3.29.2.6 - Sal
 
 Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
 Does the player mean doing something with Sal: it is likely.
 
-Chapter 3.29.2.5 - Piper
+Chapter 3.29.2.7 - Sal Endoscopy
+
+
+
+Chapter 3.29.2.8 - Piper
 
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
 Does the player mean doing something with Piper: it is likely.
+
+Chapter 3.29.2.9 - Piper Endoscopy
+
+
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
@@ -10533,11 +10660,7 @@ examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Vel
 'Servator,' he says. 'What can I do for you?'"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
 examiner-causeofdeath	true	true	"'The victims all died of the same disease?'"	"'The victims all died of the same disease?'
 
-Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'
-
-You recall Reden's autopsy. 'So the direct cause of death would be heart failure?'
-
-He nods. 'That is probable, yes.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-id	true	true	"'You're certain about his identity?'"	"'You're certain about his identity?'
 
@@ -10576,7 +10699,7 @@ examiner-thugs-circum	true	false	"'What do you know about the circumstances of t
 'As they were patients in the clinic,' he replies, 'they likely died here, together with Creditor Nacarat. The signs they exhibit corroborate that.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-notable	true	false	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'
 
-'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions -- although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions... although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thanksbye	true	false	"'I'll keep investigating.'"	"'I'll keep investigating.'
 
 'Very well. I will be here if you have any further questions.'
@@ -10630,9 +10753,9 @@ justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturu
 Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
-He pauses in thought. 'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'
+He pauses in thought.
 
-You make a mental note."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
 'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
