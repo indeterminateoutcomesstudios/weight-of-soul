@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 060317.
+The release number is 070317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -10479,13 +10479,38 @@ Here, the animic skeins were not loosened. They were ripped apart.
 	otherwise:
 		say "The fragments shine weakly, painfully, unable to fade away."
 		
-Before going up when the endoscopic location is arturus-endoscopy-lungs, try going out instead.
+Before going up when the endoscopic location is arturus-endoscopy-lungs, try going outside instead.
 
 Chapter 3.29.2.4 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
 Understand "nacarat's" or "victim" as Creditor Nacarat.
+
 Does the player mean doing something with Creditor Nacarat: it is likely.
+Does the player mean doing something with something that is enclosed by Creditor Nacarat:
+	if the noun part of the current action was Creditor Nacarat or
+	the noun part of the current action was enclosed by Creditor Nacarat or
+	the second noun part of the current action was Creditor Nacarat or
+	the second noun part of the current action was enclosed by Creditor Nacarat:
+		it is very likely.
+
+Before listening to Creditor Nacarat, try listening to the tarpaulin-covered bodies instead.
+Before smelling Creditor Nacarat, try smelling the tarpaulin-covered bodies instead.
+Before attacking or cutting Creditor Nacarat, try attacking the tarpaulin-covered bodies instead.
+Instead of looking under Creditor Nacarat, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
+Instead of touching Creditor Nacarat, say "He is cold to the touch."
+Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Creditor Nacarat, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
+
+Before attacking or cutting something that is part of Creditor Nacarat, try attacking the tarpaulin-covered bodies instead.
+Before smelling something that is part of Creditor Nacarat, try smelling Creditor Nacarat instead.
+Before touching something that is part of Creditor Nacarat, try touching Creditor Nacarat instead.
+Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Creditor Nacarat, try pushing Creditor Nacarat instead.
+
+nacarat-examined-quip is a truth state that varies.
+Instead of examining Creditor Nacarat:
+	say "";
+
+Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
 Chapter 3.29.2.5 - Nacarat Endoscopy
 
@@ -10495,7 +10520,28 @@ Chapter 3.29.2.6 - Sal
 
 Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
+
 Does the player mean doing something with Sal: it is likely.
+Does the player mean doing something with something that is enclosed by Sal:
+	if the noun part of the current action was Sal or
+	the noun part of the current action was enclosed by Sal or
+	the second noun part of the current action was Sal or
+	the second noun part of the current action was enclosed by Sal:
+		it is very likely.
+
+Before listening to Sal, try listening to the tarpaulin-covered bodies instead.
+Before smelling Sal, try smelling the tarpaulin-covered bodies instead.
+Before attacking or cutting Sal, try attacking the tarpaulin-covered bodies instead.
+Instead of looking under Sal, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
+Instead of touching Sal, say "He is cold to the touch."
+Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Sal, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
+
+Before attacking or cutting something that is part of Sal, try attacking the tarpaulin-covered bodies instead.
+Before smelling something that is part of Sal, try smelling Sal instead.
+Before touching something that is part of Sal, try touching Sal instead.
+Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Sal, try pushing Sal instead.
+
+Instead of searching Sal, say "You could examine Sal's head, his torso, his arms, or his legs."
 
 Chapter 3.29.2.7 - Sal Endoscopy
 
@@ -10505,7 +10551,28 @@ Chapter 3.29.2.8 - Piper
 
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
+
 Does the player mean doing something with Piper: it is likely.
+Does the player mean doing something with something that is enclosed by Piper:
+	if the noun part of the current action was Piper or
+	the noun part of the current action was enclosed by Piper or
+	the second noun part of the current action was Piper or
+	the second noun part of the current action was enclosed by Piper:
+		it is very likely.
+
+Before listening to Piper, try listening to the tarpaulin-covered bodies instead.
+Before smelling Piper, try smelling the tarpaulin-covered bodies instead.
+Before attacking or cutting Piper, try attacking the tarpaulin-covered bodies instead.
+Instead of looking under Piper, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
+Instead of touching Piper, say "She is cold to the touch."
+Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Piper, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move her at all."
+
+Before attacking or cutting something that is part of Piper, try attacking the tarpaulin-covered bodies instead.
+Before smelling something that is part of Piper, try smelling Piper instead.
+Before touching something that is part of Piper, try touching Piper instead.
+Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Piper, try pushing Piper instead.
+
+Instead of searching Piper, say "You could examine Piper's head, her torso, her arms, or her legs."
 
 Chapter 3.29.2.9 - Piper Endoscopy
 
