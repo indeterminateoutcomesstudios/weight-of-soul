@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 070317.
+The release number is 080317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -1638,7 +1638,7 @@ Rule for printing a parser error when the latest parser error is the can't see a
 	otherwise:
 		say "That is either not important or not something you can see[if the current action has not been looking].[paragraph break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)[otherwise]." instead.
 	
-Rule for printing a parser error when the latest parser error is the not a verb I recognise error (this is the new not a verb I recognise rule):
+Rule for printing a parser error when the latest parser error is the not a verb I recognise error or the latest parser error is the didn't understand that number error (this is the new not a verb I recognise rule):
 	say "That object or command isn't available[one of].
 
 (Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.)[or].[stopping]" instead.
@@ -2103,7 +2103,9 @@ To say useful-commands-text:
 
 >[bold type]undo[roman type] takes back your last command. >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it.
 
->[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved. >[bold type]quit[roman type] exits the game.
+>[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved.
+
+>[bold type]quit[roman type] exits the game.
 
 The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.";
 
@@ -2613,7 +2615,12 @@ To say journal-text-notes:
 			otherwise:
 				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
 			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L;
-			if examiner-nacarat-notable-asked is true, add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L;
+			if clue-nacarat-pocketbook is true:
+				add "- I learned that Creditor Nacarat might have hired Sal and Piper recently." to L;
+			if clue-nacarat-recording is true:
+				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged." to L;
+			otherwise if examiner-nacarat-notable-asked is true:
+				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L;
 			add "" to L;
 		if Thugs Investigation is happening:
 			add "[italic type]Sal and Piper[roman type]" to L;
@@ -4274,7 +4281,7 @@ Doctor Cavala shakes her head. 'Not [italic type]pro bono.[roman type] Arturus a
 
 The interviewer cocks an eyebrow. 'And you provide your services to these... elements?'
 
-'I uphold the oath, Madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
+'I uphold the oath, madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
 clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident. Who would want to attack Doctor Cavala? And why attack now, of all times?'
 
 The doctor falls silent. The interviewer's eyes dart between you.
@@ -6463,11 +6470,11 @@ The guard points southeast. 'Cross the bridge and you'll see it.'
 
 'What about Riggertown? How do I get there?'
 
-'Well, the footpath is closed at the moment, Miss, so I'd advise waiting until tomorrow if you have business in Riggertown.' He scratches his chin. 'The only other way is through the Shanty Quarter, and that's no place for a lady like you to be. No offense, of course.'
+'Well, the footpath is closed at the moment, miss, so I'd advise waiting until tomorrow if you have business in Riggertown.' He scratches his chin. 'The only other way is through the Shanty Quarter, and that's no place for a lady like you to be. No offense, of course.'
 
 'I see,' you say. 'You've been a big help.'[or]'Have you seen anything interesting lately?' you ask one of the guards.
 
-'Not that I can tell,' she replies. 'But don't worry, Miss. You'll be safe with us around.'[or]You shouldn't bother the guards too much. They have a job to do, after all.[stopping]".
+'Not that I can tell,' she replies. 'But don't worry, miss. You'll be safe with us around.'[or]You shouldn't bother the guards too much. They have a job to do, after all.[stopping]".
 
 Chapter 3.9.3.2 - Despawning the Guards on the Thoroughfare
 
@@ -6691,7 +6698,7 @@ The description is "[one of]Upon closer examination, t[or]T[stopping]he men are 
 Before smelling the exterminators, try smelling the dangerous alchemical apparatus instead.
 Understand "exterminator" or "in work/-- coat/coats" or "workman/workmen" or "civic" or "work" as the exterminators.
 Instead of attacking or cutting the exterminators, say "That seems more likely to land you in prison than in Riggertown."
-Instead of kissing or squeezing the exterminators, say "[one of]You give the nearest of the men a peck on the cheek, but he remains unmoved. 'I'm flattered, Miss,' he says, 'but I can't let you through.'[or]You've already tried that.[stopping]".
+Instead of kissing or squeezing the exterminators, say "[one of]You give the nearest of the men a peck on the cheek, but he remains unmoved. 'I'm flattered, miss,' he says, 'but I can't let you through.'[or]You've already tried that.[stopping]".
 Instead of giving the purse to the exterminators, say "You don't have nearly enough money on you for a bribe."
 
 exterminators-profession-known is a truth state that varies.
@@ -6700,9 +6707,9 @@ After examining the exterminators: now exterminators-profession-known is true; c
 Instead of talking to the exterminators:
 	say "[one of]'Excuse me--'
 
-'Not now, Miss,' the foremost of the men says gruffly. 'We're investigating reports about a dangerous infestation of acidic slimes. Not to worry, you understand. We'll have this sorted out in a jiffy and be on our way.'[or]'I really need to get to Riggertown,' you say. 'Could you let me through, just this once?'
+'Not now, miss,' the foremost of the men says gruffly. 'We're investigating reports about a dangerous infestation of acidic slimes. Not to worry, you understand. We'll have this sorted out in a jiffy and be on our way.'[or]'I really need to get to Riggertown,' you say. 'Could you let me through, just this once?'
 
-The foremost exterminator shakes his head. 'I'm afraid not, Miss. We're working with dangerous substances here. For your own safety, I can't let you past the cordon.'[or]You won't be able to persuade the men. Perhaps there's another route elsewhere.[stopping]";
+The foremost exterminator shakes his head. 'I'm afraid not, miss. We're working with dangerous substances here. For your own safety, I can't let you past the cordon.'[or]You won't be able to persuade the men. Perhaps there's another route elsewhere.[stopping]";
 	now exterminators-profession-known is true.
 
 Some armored coats are worn by the exterminators.
@@ -7048,7 +7055,7 @@ The security gargoyles have some text called the faraway response. The faraway r
 Understand "gargoyle" or "sigiled" or "mask/masks" or "lifelike" or "wing/wings" as the security gargoyles.
 Instead of talking to the security gargoyles, say "[one of]'Hello?' you offer.
 
-There is no response, save an exasperated sigh from the porter. 'If you require assistance, Miss, you should approach [italic type]me.[roman type] Not the gargoyles.'[or]These gargoyles don't seem like the kind for conversation.[stopping]".
+There is no response, save an exasperated sigh from the porter. 'If you require assistance, miss, you should approach [italic type]me.[roman type] Not the gargoyles.'[or]These gargoyles don't seem like the kind for conversation.[stopping]".
 
 Part 3.16.2 - Ornate Double Doors
 
@@ -7625,7 +7632,7 @@ The description is "It's a very nifty cap."
 Instead of talking to the newsboy for the first time:
 	say "'Good morning,' you say.
 
-'Morning, Miss.' He thrusts a newspaper into your hands. 'Compliments of the press.'
+'Morning, miss.' He thrusts a newspaper into your hands. 'Compliments of the press.'
 
 'Um, thanks.'";
 	now the player carries the day-one copy of the Libri Liberi.
@@ -7655,7 +7662,7 @@ Instead of giving the day-one copy of the Libri Liberi to someone when Day One i
 		stop the action;
 	if the second noun is:
 		-- the newsboy:
-			say "The newsboy takes back the newspaper. 'Thanks for reading, Miss.'";
+			say "The newsboy takes back the newspaper. 'Thanks for reading, miss.'";
 			now the day-one copy of the Libri Liberi is nowhere;
 		-- Doctor Cavala:
 			if Cavala's Errands is happening:
@@ -7672,7 +7679,7 @@ Instead of giving the day-one copy of the Libri Liberi to someone when Day One i
 		-- the guards on the thoroughfare:
 			say "The guards respectfully decline.";
 		-- the exterminators:
-			say "[The exterminators] accept the newspaper graciously. 'Thank you kindly, Miss, but we still can't let you through.'";
+			say "[The exterminators] accept the newspaper graciously. 'Thank you kindly, miss, but we still can't let you through.'";
 			now the day-one copy of the Libri Liberi is nowhere;
 		-- the porter:
 			say "The porter regards you humorlessly.";
@@ -7719,7 +7726,7 @@ Instead of dropping the day-one copy of the Libri Liberi (this is the how to dro
 		continue the action.
 
 Instead of talking to the newsboy when day-one-newspaper-was-destroyed is true:
-	say "'Sorry, Miss,' he says, flinching. 'Didn't mean to hurt your feelings or nothing. I'm just the newsboy.'
+	say "'Sorry, miss,' he says, flinching. 'Didn't mean to hurt your feelings or nothing. I'm just the newsboy.'
 
 'Um, no, it's fine. Really.'";
 	now day-one-newspaper-was-destroyed is false.
@@ -8185,10 +8192,10 @@ dialogue branch	enabled	one-shot	prompt	description	choices
 censor-woken	true	false	""	""	{censor-woken-clearthroat, censor-woken-sorry}
 censor-woken-clearthroat	true	false	"<Clear your throat.>"	"You put your hands on your hips and clear your throat.
 
-The censor sighs. 'Of course. Of course. Right then.' He adjusts his collar and puffs out his chest. 'Censor Provis at your service, Miss. What can I do for you today?'"	{censor-woken-documents, censor-woken-address, censor-woken-detour}
+The censor sighs. 'Of course. Of course. Right then.' He adjusts his collar and puffs out his chest. 'Censor Provis at your service, miss. What can I do for you today?'"	{censor-woken-documents, censor-woken-address, censor-woken-detour}
 censor-woken-sorry	true	false	"'Sorry...'"	"'Sorry,' you say, a little sheepishly. 'It's just that you were asleep at your desk, and...'
 
-The censor turns red. 'Of course, of course. Let's not speak of that. Entirely understandable. On to business.' He adjusts his collar and puffs out his chest. 'Censor Provis at your service, Miss. What can I do for you today?'"	{censor-woken-documents, censor-woken-address, censor-woken-detour}
+The censor turns red. 'Of course, of course. Let's not speak of that. Entirely understandable. On to business.' He adjusts his collar and puffs out his chest. 'Censor Provis at your service, miss. What can I do for you today?'"	{censor-woken-documents, censor-woken-address, censor-woken-detour}
 censor-woken-documents	true	true	"'I have documents from Doctor Cavala's clinic...'"	"'I have documents from Doctor Cavala's clinic regarding the death of a Channelworks District citizen,' you say. 'A middle-aged goblin man by the name of Reden.'
 
 You hand the bundle of documents to the censor, who regards it with an appraising eye.
@@ -8201,7 +8208,7 @@ You hand the bundle of documents to the censor, who regards it with an appraisin
 
 [wait for any key]He puts a big red stamp on the bundle and files it away in a clattering of drawers, muttering to himself all the while. At last he pats the desk and nods with an air of self-importance.
 
-'Very good, Miss,' he says. 'Thank you for bringing this to our attention. Now was there anything else you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
+'Very good, miss,' he says. 'Thank you for bringing this to our attention. Now was there anything else you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
 censor-woken-address	true	true	"'I need the address of a Channelworks District citizen...'"	"'I need the address of a Channelworks District citizen. His name is Zoiro.'
 
 The censor furrows his brow. 'Right then,' he says. 'Just a moment. Wait here, if you please.'
@@ -8228,12 +8235,12 @@ He frowns.
 'Well...' He shrugs. 'If you run into any trouble, holler for the guards. Now was there anything else you needed?'"	{censor-woken-documents, censor-woken-address, censor-woken-thanks}
 censor-woken-thanks	false	false	"'Nothing, thank you.'"	"'Nothing, thank you.'
 
-The censor beams. 'Have a good day, Miss. Per radium sophia.'
+The censor beams. 'Have a good day, miss. Per radium sophia.'
 
 You step away from the censor's desk."	{}
 censor-woken-returning	true	false	""	"You approach the censor's desk, and he looks up like a startled animal.
 
-'Yes, Miss?' he says. 'Was there something you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
+'Yes, miss?' he says. 'Was there something you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
 
 The home dialogue branch of the censor is censor-woken-returning.
 
@@ -10151,7 +10158,7 @@ Understand "turris" or "infinita" as the view of the foyer.
 Before entering the view of the foyer, try going west instead.
 
 Some chrome fixtures are scenery in Arturus's Clinic.
-The description is "Racks of gleaming equipment; gurneys that bristle with instrumentation. But none of them are relevant to you."
+The description is "Racks of gleaming equipment; gurneys that bristle with instrumentation. But none of them are useful at the moment."
 Understand "gleaming" or "equipment" or "gurney/gurneys" or "instrument/instruments/instrumentation" or "fixture" as the chrome fixtures.
 Instead of entering the chrome fixtures, say "You have better things to do than that."
 Instead of looking under, searching, or taking the chrome fixtures, say "As well-equipped as Doctor Arturus's clinic is, its fixtures are irrelevant to your interests."
@@ -10233,7 +10240,7 @@ Instead of pushing, pulling, squeezing, taking, or turning the forensic tarpauli
 
 The dried black blood is a scenery thing. The indefinite article is "some".
 The description is "You know these symptoms all too well, now."
-Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink/bloodstain/bloodstains" as the dried black blood.
+Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink/bloodstain/bloodstains/trail/trails" as the dried black blood.
 Instead of doing anything other than examining or listening with the dried black blood, say "That could be dangerous. You shouldn't."
 
 Before doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
@@ -10253,19 +10260,22 @@ Chapter 3.29.2.2 - Doctor Arturus
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
 
-Does the player mean doing something with Doctor Arturus: it is likely.
+Does the player mean doing something with Doctor Arturus: it is very likely.
 Does the player mean doing something with something that is enclosed by Doctor Arturus:
 	if the noun part of the current action was Doctor Arturus or
 	the noun part of the current action was enclosed by Doctor Arturus or
 	the second noun part of the current action was Doctor Arturus or
 	the second noun part of the current action was enclosed by Doctor Arturus:
-		it is very likely.
+		it is likely.
+		
+Rule for clarifying the parser's choice of Doctor Arturus: do nothing.
+Rule for clarifying the parser's choice of something enclosed by Doctor Arturus: do nothing.
 
 Before listening to Doctor Arturus, try listening to the tarpaulin-covered bodies instead.
 Before smelling Doctor Arturus, try smelling the tarpaulin-covered bodies instead.
 Before attacking or cutting Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
 Instead of looking under Doctor Arturus, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
-Instead of touching Doctor Arturus, say "He is cold to the touch."
+Instead of rubbing or touching Doctor Arturus, say "He is cold to the touch."
 Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Doctor Arturus, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
 
 Before attacking or cutting something that is part of Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
@@ -10297,12 +10307,14 @@ The description is "Death has not been kind to Doctor Arturus. The black blood f
 
 His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside[end if]."
 Understand "spiderweb/web" or "decay" or "wrinkle/wrinkles" or "face" as Doctor Arturus's head.
+Before searching Doctor Arturus's head, try inserting the endoscope into Doctor Arturus instead.
 Before inserting the endoscope into Doctor Arturus's head, try inserting the endoscope into Doctor Arturus instead.
 
-Doctor Arturus's eyes are a plural-named fixed in place thing part of Doctor Arturus.
-The description is "Doctor Arturus's eyes are open."
+Doctor Arturus's eyes are a plural-named thing part of Doctor Arturus.
+The description is "His eyes are open."
 Understand "eye" as Doctor Arturus's eyes.
-Instead of opening Doctor Arturus's eyes, say "Doctor Arturus's eyes are already open."
+Instead of opening Doctor Arturus's eyes, say "His eyes are already open."
+Instead of searching Doctor Arturus's eyes, say "No answers are forthcoming."
 Before rubbing or touching Doctor Arturus's eyes, try touching the dried black blood instead.
 
 Doctor Arturus's mouth is part of Doctor Arturus.
@@ -10313,7 +10325,7 @@ Before inserting the endoscope into Doctor Arturus's mouth, try inserting the en
 Doctor Arturus's glasses are a plural-named thing worn by Doctor Arturus.
 The description is "Black blood covers his glasses."
 Understand "stained" or "opaque" as Doctor Arturus's glasses.
-Before rubbing or touching Doctor Arturus's glasses, try touching the dried black blood instead.
+Before knocking on, pushing, pulling, rubbing, squeezing, or touching Doctor Arturus's glasses, try touching the dried black blood instead.
 Before looking under or searching Doctor Arturus's glasses, try examining Doctor Arturus's eyes instead.
 Instead of taking Doctor Arturus's glasses, say "You don't think you ought to carry a pair of potentially biohazardous glasses around."
 
@@ -10321,7 +10333,7 @@ Section 3.29.2.2.2 - Torso
 
 Doctor Arturus's torso is part of Doctor Arturus.
 The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] pictures. Your eyes are drawn  to his ruined sleeves, which cling to his skin like grotesque pelagic rays."
-Instead of knocking on, looking under, rubbing, searching, squeezing, or touching Doctor Arturus's torso, say "You pat him down but find nothing of interest."
+Before knocking on, looking under, rubbing, searching, squeezing, or touching Doctor Arturus's torso, say "You pat him down but find nothing of interest." instead.
 
 Doctor Arturus's natron coat is a thing worn by Doctor Arturus.
 The description is "You'd think those were inkstains if you didn't know better."
@@ -10330,7 +10342,7 @@ Instead of knocking on, looking under, rubbing, searching, squeezing, taking off
 
 Some old-fashioned buttons are part of Doctor Arturus's natron coat.
 The description is "Beady bloodstained buttons."
-Understand "button" as the old-fashioned buttons.
+Understand "button" or "arturus/arturus's" or "doctor" as the old-fashioned buttons.
 Instead of doing anything other than examining with the old-fashioned buttons, say "The buttons don't seem pertinent to the investigation."
 
 Section 3.29.2.2.3 - Arms
@@ -10369,7 +10381,7 @@ Instead of examining Doctor Arturus's gloves:
 		say "Although the gloves are coated in blood, they're brand new. You can still see the sigils glowing on the rubber."
 
 Before knocking on, pushing, rubbing, squeezing, or touching Doctor Arturus's gloves, try touching the dried black blood instead.
-Instead of looking under, pulling, searching, taking, or taking off Doctor Arturus's gloves, say "[one of]You get a pair of tweezers and carefully pull off one of the gloves. His hands are shriveled -- gnarled, black things, like dead tree branches. They have been utterly ruined by the disease.[paragraph break]You replace the glove and decontaminate the tweezers, suppressing a shudder.[or]The other hand doesn't look any better.[or]You've already inspected both hands and found them to be ruined by the disease.[stopping]".
+Before looking under, opening, pulling, searching, taking, or taking off Doctor Arturus's gloves, say "[one of]You get a pair of tweezers and carefully pull off one of the gloves. His hands are shriveled -- gnarled, black things, like dead tree branches. They have been utterly ruined by the disease.[paragraph break]You replace the glove and decontaminate the tweezers, suppressing a shudder.[or]The other hand doesn't look any better.[or]You've already inspected both hands and found them to be ruined by the disease.[stopping]" instead.
 Instead of swinging Doctor Arturus's gloves, say "Very funny." [">shake hand"]
 
 Section 3.29.2.2.4 - Legs
@@ -10484,15 +10496,18 @@ Before going up when the endoscopic location is arturus-endoscopy-lungs, try goi
 Chapter 3.29.2.4 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
-Understand "nacarat's" or "victim" as Creditor Nacarat.
+Understand "nacarat's" or "victim" or "bearing/poise" as Creditor Nacarat.
 
-Does the player mean doing something with Creditor Nacarat: it is likely.
+Does the player mean doing something with Creditor Nacarat: it is very likely.
 Does the player mean doing something with something that is enclosed by Creditor Nacarat:
 	if the noun part of the current action was Creditor Nacarat or
 	the noun part of the current action was enclosed by Creditor Nacarat or
 	the second noun part of the current action was Creditor Nacarat or
 	the second noun part of the current action was enclosed by Creditor Nacarat:
-		it is very likely.
+		it is likely.
+		
+Rule for clarifying the parser's choice of Creditor Nacarat: do nothing.
+Rule for clarifying the parser's choice of something enclosed by Creditor Nacarat: do nothing.
 
 Before listening to Creditor Nacarat, try listening to the tarpaulin-covered bodies instead.
 Before smelling Creditor Nacarat, try smelling the tarpaulin-covered bodies instead.
@@ -10508,9 +10523,144 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 
 nacarat-examined-quip is a truth state that varies.
 Instead of examining Creditor Nacarat:
-	say "";
+	if nacarat-examined-quip is false:
+		say "You approach the body.
+
+There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
+
+[wait for any key]You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
+		now nacarat-examined-quip is true;
+	otherwise:
+		say "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
+
+You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
 
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
+
+Section 3.29.2.4.1 - Head
+
+Creditor Nacarat's head is part of Creditor Nacarat.
+The description is "Like you, he bears tattoos on his face, but his are in the mode of the Austri rather than the alchemical. The curling script mingles with the stains that run from his eyes. And his pearl earrings -- they catch the light alongside, framing his face in pale off-white.
+
+His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside."
+Understand "face/features" as Creditor Nacarat's head.
+Before searching Creditor Nacarat's head, try inserting the endoscope into Creditor Nacarat instead.
+Before inserting the endoscope into Creditor Nacarat's head, try inserting the endoscope into Creditor Nacarat instead.
+
+Creditor Nacarat's eyes are a plural-named thing part of Creditor Nacarat.
+The description is "His eyes are dark."
+Understand "eye" as Creditor Nacarat's eyes.
+Instead of opening Creditor Nacarat's eyes, say "His eyes are already open."
+Instead of searching Creditor Nacarat's eyes, say "No answers are forthcoming."
+Before knocking on, pushing, pulling, rubbing, squeezing, touching, or taking Creditor Nacarat's eyes, try touching the dried black blood instead.
+
+Creditor Nacarat's mouth is part of Creditor Nacarat.
+The description is "You could put your endoscope in and look around inside."
+Before searching Creditor Nacarat's mouth, try inserting the endoscope into Creditor Nacarat instead.
+Before inserting the endoscope into Creditor Nacarat's mouth, try inserting the endoscope into Creditor Nacarat instead.
+
+Creditor Nacarat's facial hair is part of Creditor Nacarat.
+The description is "He has the look of a house model or play-actor."
+Understand "beard/goatee" or "moustache/mustache" or "chin" as Creditor Nacarat's facial hair.
+Before rubbing or touching Creditor Nacarat's facial hair, try touching the dried black blood instead.
+
+Creditor Nacarat's tattoos are a plural-named thing part of Creditor Nacarat.
+The description is "The Austri believed in spirits. In time, they were proven right."
+Understand "curling" or "script" or "tattoo" as Creditor Nacarat's tattoos.
+Before rubbing or touching Creditor Nacarat's tattoos, try touching the dried black blood instead.
+Instead of looking under Creditor Nacarat's tattoos, say "They're stained directly on his skin."
+
+Creditor Nacarat's earrings are a plural-named thing worn by Creditor Nacarat.
+The description is "They strike you as slightly ostentatious."
+Understand "pearl" or "earring" or "off-white" as Creditor Nacarat's earrings.
+Instead of taking Creditor Nacarat's earrings, say "You don't need money [italic type]that[roman type] desperately."
+
+Section 3.29.2.4.2 - Torso
+
+Creditor Nacarat's jacket is part of Creditor Nacarat.
+The description is "The creditor's jacket is dark, embellished with buttons of brass and mother-of-pearl. There are black stains, here and there, where blood has run down from his chin and seeped into the fabric.
+
+The jacket has been partially undone, revealing a quicksilver glyph embroidered in the lining."
+Understand "torso" or "flap" or "fabric" as Creditor Nacarat's jacket.
+Before looking under, opening, or searching Creditor Nacarat's jacket, try examining the glyph of recording instead.
+Before knocking on, squeezing, or touching Creditor Nacarat's jacket, say "You pat him down but find nothing else of interest."
+Before closing Creditor Nacarat's jacket, say "You hold up the jacket flap for a moment, but glean no useful clues from the way his jacket looks fully buttoned." instead.
+Before taking Creditor Nacarat's jacket, say "The jacket is a deadly biohazard. Besides, you'd get caught." instead.
+
+The glyph of recording is part of Creditor Nacarat's jacket.
+The printed name is "glyph in Creditor Nacarat's jacket lining".
+The description is "It appears to be a glyph of recording. Although it has suffered partial bloodstain damage, it still appears to be functional[if clue-nacarat-recording is false].
+
+You could listen to the stored recording, if you wanted[end if]."
+Understand "quicksilver" or "lining" or "geometric" or "construct/inscription/index" or "stored" or "in [Creditor Nacarat's jacket]" as the glyph of recording.
+Instead of rubbing or touching the glyph of recording, say "You don't want to damage the glyph any further."
+
+clue-nacarat-recording is a truth state that varies.
+Instead of listening to or talking to the glyph of recording:
+	say "[italic type]'Sonate,'[roman type] you say.
+
+The glyph flickers aglow, coursing with stained quicksilver, and the inscription begins to revolve around the index.[paragraph break]";
+	wait for any key;
+	say "'--for your hospitality, Doctor,' a bass voice crackles. 'I hope you will consider what I have said.'[paragraph break]";
+	wait for any key;
+	say "There is noise for a few seconds -- a clink that sounds like porcelain or glass. An inhalation.[paragraph break]";
+	wait for any key;
+	say "The crash of something shattering.[paragraph break]";
+	wait for any key;
+	say "'Are you feeling quite well, Creditor?' you hear Doctor Arturus's voice echo. 'Perhaps we should--'[paragraph break]";
+	wait for any key;
+	say "The words are drowned out by coughing. You hear the sound of friction on fabric, growing louder and louder--[paragraph break]";
+	wait for any key;
+	say "The recording cuts out. The glyph returns to its resting state.";
+	if clue-nacarat-recording is false:
+		say line break;
+		wait for any key;
+		say "It sounds like Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged.";
+		now clue-nacarat-recording is true.
+
+Some mother-of-pearl buttons are part of Creditor Nacarat's jacket.
+The description is "A jacket like this can't have been cheap."
+Understand "button" or "brass" or "creditor" or "nacarat/nacarat's" as the mother-of-pearl buttons.
+Before doing anything other than examining with the mother-of-pearl buttons, say "The buttons don't seem pertinent to the investigation." instead.
+
+Section 3.29.2.4.3 - Arms
+
+Creditor Nacarat's gloves are a plural-named thing part of Creditor Nacarat.
+The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint embossed silhouette of a raven."
+Understand "arm/arms" or "glove/hand/hands/gilding/leather" or "smooth" or "black" or "decorative" or "back of" or "each" as Creditor Nacarat's gloves.
+Before looking under, opening, pulling, searching, taking, or taking off Creditor Nacarat's gloves, say "You get a pair of tweezers and pull off Creditor Nacarat's gloves, revealing slender hands that could have belonged to a stage magician. Nothing about his hands seems pertinent to the investigation, though, so you replace the gloves and return the tweezers to the clinic." instead.
+Instead of swinging Creditor Nacarat's gloves, say "Very funny."
+
+Some embossed ravens are part of Creditor Nacarat's gloves.
+The description is "You have a nagging feeling that you've seen the symbol somewhere before."
+Understand "raven" or "silhouette/silhouettes/symbol" or "faint" or "of" as the embossed ravens.
+Instead of touching the embossed ravens, say "You can feel the ravens embossed in the leather."
+
+Section 3.29.2.4.4 - Legs
+
+Creditor Nacarat's legs are a plural-named thing part of Creditor Nacarat.
+The description is "Elegant pin-stripe trousers. There appear to be some things in his pockets."
+Understand "leg/trouser/trousers" or "pinstripe/pin-stripe" or "pin" or "stripe" as Creditor Nacarat's legs.
+
+Creditor Nacarat's pockets are a plural-named unopenable open container part of Creditor Nacarat.
+The description is "Most of the things in Creditor Nacarat's pockets are detritus, but that black pocketbook looks interesting."
+Understand "pocket" as Creditor Nacarat's pockets.
+Instead of inserting something into Creditor Nacarat's pockets, say "This is a dead body, not your personal chest-of-drawers."
+
+A black pocketbook is in Creditor Nacarat's pockets.
+Understand "coded" or "record/records of/--" or "business" or "transaction/transactions" or "last" or "chronological" or "entry" as the black pocketbook.
+Before pulling, opening, or searching the black pocketbook, try examining the black pocketbook instead.
+Instead of taking the black pocketbook, say "The pocketbook is evidence. You should leave it for the Vigiles investigators."
+
+clue-nacarat-pocketbook is a truth state that varies.
+Instead of examining the black pocketbook:
+	say "It appears to be a coded record of business transactions. Of particular interest is the last chronological entry, which records a significant sum made out to 'S&P'.";
+	if clue-nacarat-pocketbook is false:
+		say line break;
+		say "S&P? You don't know any company in the Channelworks District with those initials. Unless...[paragraph break]";
+		wait for any key;
+		say "The fact that Sal and Piper have those initials can't be a coincidence. Can it?";
+		now clue-nacarat-pocketbook is true.
 
 Chapter 3.29.2.5 - Nacarat Endoscopy
 
@@ -10521,13 +10671,16 @@ Chapter 3.29.2.6 - Sal
 Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
 
-Does the player mean doing something with Sal: it is likely.
+Does the player mean doing something with Sal: it is very likely.
 Does the player mean doing something with something that is enclosed by Sal:
 	if the noun part of the current action was Sal or
 	the noun part of the current action was enclosed by Sal or
 	the second noun part of the current action was Sal or
 	the second noun part of the current action was enclosed by Sal:
-		it is very likely.
+		it is likely.
+		
+Rule for clarifying the parser's choice of Sal: do nothing.
+Rule for clarifying the parser's choice of something enclosed by Sal: do nothing.
 
 Before listening to Sal, try listening to the tarpaulin-covered bodies instead.
 Before smelling Sal, try smelling the tarpaulin-covered bodies instead.
@@ -10552,13 +10705,16 @@ Chapter 3.29.2.8 - Piper
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
 
-Does the player mean doing something with Piper: it is likely.
+Does the player mean doing something with Piper: it is very likely.
 Does the player mean doing something with something that is enclosed by Piper:
 	if the noun part of the current action was Piper or
 	the noun part of the current action was enclosed by Piper or
 	the second noun part of the current action was Piper or
 	the second noun part of the current action was enclosed by Piper:
-		it is very likely.
+		it is likely.
+
+Rule for clarifying the parser's choice of Piper: do nothing.
+Rule for clarifying the parser's choice of something enclosed by Piper: do nothing.
 
 Before listening to Piper, try listening to the tarpaulin-covered bodies instead.
 Before smelling Piper, try smelling the tarpaulin-covered bodies instead.
@@ -10753,7 +10909,7 @@ examiner-nacarat-circum	true	false	"'What do you know about the circumstances of
 He shrugs. 'Creditor Nacarat was a patient here before he died. All the signs suggest he died here, together with Sal and Piper.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-nacarat-notable	true	false	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'
 
-A twitch of the mustache. 'There is a glyph of recording in the inner lining of his jacket. It holds an intriguing, if fragmented, phonographic transcription -- we found nothing relevant in it, but it may be worth listening to regardless.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+A twitch of the mustache. 'There is a glyph of recording in the inner lining of his jacket. It holds an intriguing, if fragmented, phonographic transcription -- we did not find it particularly useful, but it may be worth listening to regardless.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-id	true	false	"'Who were they again?'"	"'Who were they again?'
 
