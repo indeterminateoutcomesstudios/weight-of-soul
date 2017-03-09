@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 080317.
+The release number is 090317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -216,11 +216,17 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to mechanistry[roman type]";
 	say "[line break]>[bold type]skip to first aid[roman type]";
 	say "[line break]>[bold type]skip first aid[roman type]";
-	[say line break;
+	say line break;
 	say "[line break][italic type]Day Two[roman type]";
 	say "[line break]>[bold type]skip to day two[roman type]";
 	say "[line break]>[bold type]skip to endoscope[roman type]";
-	say "[line break]>[bold type]skip to bodies[roman type]";]
+	say "[line break]>[bold type]skip to bodies[roman type]";
+	
+When The Game is Afoot begins:
+	say "(Developer's note: At this point, only the Turris Infinita has new content. The rest of the district is unchanged from Day One.)";
+	
+When Meeting the Patients ends:
+	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";
 
 Book 1.2 - Days and Scenes
 
@@ -2161,7 +2167,7 @@ The bio-name of Horatio is "Vigile Horatio".
 The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been temporarily assigned as Doctor Cavala's protector[end if]."
 
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
-The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???".
+The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]??? (The Assassin)".
 The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
@@ -2172,11 +2178,11 @@ The bio-name of Justinian is "Doctor Justinian Volontis".
 The bio-description of Justinian is "Doctor Arturus's protégé, a driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it."
 
 When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
-The bio-description of Creditor Nacarat is "A victim of the mysterious disease. He was a financial-sector businessman, according to the Vigiles."
+The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do businessman, according to the Vigiles."
 
 When Meeting the Patients ends: add Sal to the list of discovered characters.
 The bio-name of Sal is "Sal and Piper".
-The bio-description of Sal is "Victims of the mysterious disease. A notorious pair of thugs in the Shanty Quarter, according to the Vigiles."
+The bio-description of Sal is "Two of Doctor Arturus's patients. A notorious pair of thugs, according to the Vigiles."
 
 Chapter 2.3.11.4 - Map
 
@@ -2377,13 +2383,21 @@ Chapter 2.3.12.1 - Flags
 journal-riggertown-detour-known is a truth state that varies.
 journal-zoiro-address-known is a truth state that varies.
 journal-reden-shack-known is a truth state that varies.
-journal-crucible-witnessed is a truth state that varies.
+
+clue-airborne-vector is a truth state that varies.
+clue-ingestion-vector is a truth state that varies.
 
 clue-patientrecords-justinian is a truth state that varies.
 
-clue-arturus-cavalacorrespondence is a truth state that varies.
 clue-arturus-discovery-justinian is a truth state that varies.
 clue-arturus-gloves is a truth state that varies.
+clue-arturus-animus is a truth state that varies.
+
+clue-nacarat-recording is a truth state that varies.
+clue-nacarat-pocketbook is a truth state that varies.
+clue-nacarat-stomach is a truth state that varies.
+
+journal-crucible-witnessed is a truth state that varies.
 
 Chapter 2.3.12.2 - Date
 	
@@ -2496,6 +2510,7 @@ To say journal-text-objectives:
 				add "- Deliver the bundle of documents to the censor in the basilica" to L;
 			if The Censor's Nap is happening:
 				add "[italic type]   ...and think of a way to wake the censor[roman type]" to L;
+			add "" to L;
 			add "- Find Zoiro, Reden's brother, in Riggertown" to L;
 			if journal-zoiro-address-known is false:
 				if Maze Part One is unvisited:
@@ -2520,12 +2535,55 @@ To say journal-text-objectives:
 	if The Game is Afoot is happening:
 		add "- Go to the Turris Infinita" to L;
 	if Four Investigations is happening:
-		add "- Identify the transmission vector of the disease" to L;
-		if Reden Investigation is happening, add "[italic type]   ...by investigating the death of Reden[roman type]" to L;
-		if Arturus Investigation is happening, add "[italic type]   ...by investigating the death of Doctor Arturus[roman type]" to L;
-		if Meeting the Patients is happening, add "[italic type]   ...by investigating the deaths of Doctor Arturus's patients[roman type]" to L;
-		if Nacarat Investigation is happening, add "[italic type]   ...by investigating the death of Creditor Nacarat[roman type]" to L;
-		if Thugs Investigation is happening, add "[italic type]   ...by investigating the deaths of Sal and Piper[roman type]" to L;
+		add "- Investigate the victims of the disease and identify the transmission vector" to L;
+	if Reden Investigation is happening:
+		add "" to L;
+		add "[italic type]Reden[roman type]" to L;
+		add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
+	if Arturus Investigation is happening:
+		add "" to L;
+		add "[italic type]Doctor Arturus[roman type]" to L;
+		if 4inv-vigiles-permission is false:
+			add "- Get permission from the Vigiles to examine the body" to L;
+		otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
+			add "- Examine the body" to L;
+		otherwise if clue-arturus-gloves is false or clue-arturus-animus is false:
+			add "- Examine the body further" to L;
+		if examiner-arturus-found-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
+		add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
+	if Meeting the Patients is happening:
+		add "" to L;
+		add "[italic type]Doctor Arturus's patients[roman type]" to L;
+		add "- Find out their identities" to L;
+		add "- Get permission from the Vigiles to examine the bodies" to L;
+		add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-patientrecords-justinian is false:
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+		otherwise:
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+	if Nacarat Investigation is happening:
+		add "" to L;
+		add "[italic type]Creditor Nacarat[roman type]" to L;
+		if clue-nacarat-stomach is false and clue-nacarat-pocketbook is false and clue-nacarat-recording is false:
+			add "- Examine the body" to L;
+		otherwise if clue-nacarat-stomach is false or clue-nacarat-pocketbook is false or clue-nacarat-recording is false:
+			add "- Examine the body further" to L;
+		if examiner-nacarat-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-patientrecords-justinian is false:
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+		otherwise:
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+	if Thugs Investigation is happening:
+		add "" to L;
+		add "[italic type]Sal and Piper[roman type]" to L;
+		add "- Examine Sal's body" to L;
+		add "- Examine Piper's body" to L;
+		if examiner-thugs-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-patientrecords-justinian is false:
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+		otherwise:
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	[---
 	END
 	---]
@@ -2569,98 +2627,78 @@ To say journal-text-notes:
 	if The Game is Afoot is happening:
 		add "- I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
 	if Four Investigations is happening:
-		let L2 be a list of texts;	
-		if clue-arturus-animus is true, add "- I learned that the disease is bloodborne and attacks the animus, or the soul." to L2;
-		if L2 is not {}, add "" to L2;
-		add L2 to L;
+		let LFI be a list of texts; [List of Four Investigations]
+		let L1 be a list of texts;
+		if clue-airborne-vector is true, add "- I learned that the disease is unlikely to be airborne." to L1;
+		if clue-ingestion-vector is true, add "- I learned that the disease can be transmitted by ingestion." to L1;
+		if clue-arturus-animus is true, add "- I learned that the disease is bloodborne and attacks the animus, or the soul." to L1;
+		if L1 is not {}:
+			add "[italic type]The disease[roman type]" to LFI;
+			add L1 to LFI;
 		if Reden Investigation is happening:
-			add "[italic type]Reden[roman type]" to L;
-			add "- I should go to Riggertown and ask Zoiro about his brother's activities." to L;
-			add "- I remember that Reden died on the night of the Third, two days ago." to L;
-			add "" to L;
+			if LFI is not {}, add "" to LFI;
+			add "[italic type]Reden[roman type]" to LFI;
+			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
 		if Arturus Investigation is happening:
-			add "[italic type]Doctor Arturus[roman type]" to L;
-			if examiner-arturus-found-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
-			if clue-arturus-discovery-justinian is false, add "- I should ask Justinian about the circumstances of Doctor Arturus's death." to L;
-			if 4inv-vigiles-permission is false:
-				add "- I should get permission from the Vigiles to examine Doctor Arturus's body." to L;
-			otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
-				add "- I should examine Doctor Arturus's body." to L;
-			otherwise if clue-arturus-gloves is false or clue-arturus-animus is false:
-				add "- I should examine Doctor Arturus's body further." to L;
-			add "- I should look around Doctor Arturus's domicile, in the Turris Infinita." to L;
-			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L;
+			let L2 be a list of texts;
+			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
 			if clue-arturus-gloves is true:
-				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he was wearing them." to L;
+				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he was wearing them." to L2;
 			otherwise if examiner-arturus-notable-asked is true:
-				add "- I learned that Doctor Arturus may have been infected through his gloves." to L;
-			add "" to L;
-		if Meeting the Patients is happening:
-			add "[italic type]Doctor Arturus's patients[roman type]" to L;
-			add "- I should ask the Vigiles examiner about his findings." to L;
-			add "- I should get permission from the Vigiles to examine the bodies of the patients." to L;
-			add "- I should find out the identities of Doctor Arturus's patients." to L;
-			if clue-patientrecords-justinian is false:
-				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
-			otherwise:
-				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
-			add "" to L;
+				add "- I learned that Doctor Arturus may have been infected through his gloves." to L2;
+			if L2 is not {}:
+				if LFI is not {}, add "" to LFI;
+				add "[italic type]Doctor Arturus[roman type]" to LFI;
+				add L2 to LFI;
 		if Nacarat Investigation is happening:
-			add "[italic type]Creditor Nacarat[roman type]" to L;
-			if examiner-nacarat-notable-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
-			add "- I should examine Creditor Nacarat's body." to L;
-			add "- I should find out more about the circumstances of Creditor Nacarat's death." to L;
-			if clue-patientrecords-justinian is false:
-				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
-			otherwise:
-				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
-			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L;
-			if clue-nacarat-pocketbook is true:
-				add "- I learned that Creditor Nacarat might have hired Sal and Piper recently." to L;
+			let L2 be a list of texts;
+			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L2;
 			if clue-nacarat-recording is true:
-				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged." to L;
+				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged." to L2;
 			otherwise if examiner-nacarat-notable-asked is true:
-				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L;
-			add "" to L;
+				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
+			if clue-nacarat-stomach is true:
+				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
+			if clue-nacarat-pocketbook is true:
+				add "- I learned that Creditor Nacarat might have hired Sal and Piper recently." to L2;
+			if L2 is not {}:
+				if LFI is not {}, add "" to LFI;
+				add "[italic type]Creditor Nacarat[roman type]" to LFI;
+				add L2 to LFI;
 		if Thugs Investigation is happening:
-			add "[italic type]Sal and Piper[roman type]" to L;
-			if examiner-thugs-notable-asked is false, add "- I should ask the Vigiles examiner about his findings." to L;
-			add "- I should examine Sal's body." to L;
-			add "- I should examine Piper's body." to L;
-			add "- I should find out more about the circumstances of Sal's death." to L;
-			add "- I should find out more about the circumstances of Piper's death." to L;
-			if clue-patientrecords-justinian is false:
-				add "- I should ask Justinian where Doctor Arturus's patient records are kept." to L;
-			otherwise:
-				add "- I should look up the patient records in Doctor Arturus's domicile, on the Turris Infinita upper floors." to L;
-			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L;
-			add "" to L;
-		add "[italic type]Miscellaneous[roman type]" to L;
+			let L2 be a list of texts;
+			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L2;
+			if L2 is not {}:
+				if LFI is not {}, add "" to LFI;
+				add "[italic type]Sal and Piper[roman type]" to LFI;
+				add L2 to LFI;
+		add LFI to L;
 	[---
 	MUSINGS, MISCELLANEOUS
 	---]
+	let LM be a list of texts; [List of Musings]
 	if time is not critical and the enabled of bartender-dialogue-drink is true:
-		add "- I'm in the mood for a drink... " to L;
+		add "- I'm in the mood for a drink... " to LM;
 	[---
 	MUSINGS, PROLOGUE
 	---]
 	if Walking Home in Darkness is happening and the Dormitory Block is visited and Saliunca is friendly:
-		add "- There's something strange about [if we have talked to Saliunca]Saliunca[otherwise]that old woman in the atrium[end if]... " to L;
+		add "- There's something strange about [if we have talked to Saliunca]Saliunca[otherwise]that old woman in the atrium[end if]... " to LM;
 	[---
 	MUSINGS, DAY ONE
 	---]
 	if Cavala's Errands is happening:
 		if Maze Part One is visited:
 			if Upper Riggertown is visited and we have not examined the advertising horns:
-				add "- Just what are those horns in Upper Riggertown honking anyway...? " to L;
+				add "- Just what are those horns in Upper Riggertown honking anyway...? " to LM;
 		otherwise if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
-				add "- Doctor Cavala told me to think about what I saw last night... " to L;
-			add "- This district is so much larger than the Lake District... " to L;
+				add "- Doctor Cavala told me to think about what I saw last night... " to LM;
+			add "- This district is so much larger than the Lake District... " to LM;
 			if the enabled of horatio-dayone-intro is true:
-				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on... " to L;
+				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on... " to LM;
 			if the Grand Forum is visited and we have not examined the street buskers:
-				add "- I wonder what those buskers in the grand forum are performing... " to L;
+				add "- I wonder what those buskers in the grand forum are performing... " to LM;
 			if we have not talked to the porter:
 				add "- Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
 	[---
@@ -2668,10 +2706,14 @@ To say journal-text-notes:
 	---]
 	if All Quiet on the Western Front is happening:
 		if journal-crucible-witnessed is false:
-			add "- I hope Doctor Cavala and Horatio will be all right at the clinic... " to L;
+			add "- I hope Doctor Cavala and Horatio will be all right at the clinic... " to LM;
+	if Four Investigations is happening and LM is not {}:
+		add "[italic type]Miscellaneous[roman type]" at entry 1 in LM;
+		add "" at entry 1 in LM;
 	[---
 	END
 	---]
+	add LM to L;
 	if the number of entries in L is not 0:
 		say "[paragraph break][bold type]Marid's notes:[roman type][line break]";
 		repeat with current note running through L:
@@ -10259,6 +10301,7 @@ Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
+Understand "doctor's" or "arturus" as a thing enclosed by Doctor Arturus.
 
 Does the player mean doing something with Doctor Arturus: it is very likely.
 Does the player mean doing something with something that is enclosed by Doctor Arturus:
@@ -10300,6 +10343,11 @@ Instead of examining Doctor Arturus:
 
 Instead of searching Doctor Arturus, say "You could examine Doctor Arturus's head, his torso, his arms, or his legs."
 
+arturus-body-completion-quip is a truth state that varies.
+Every turn when Arturus Investigation is happening and clue-arturus-gloves is true and clue-arturus-animus is true and arturus-body-completion-quip is false:
+	say "(You think you've learned all you can from Doctor Arturus's body. You should look for more clues elsewhere.)";
+	now arturus-body-completion-quip is true.
+
 Section 3.29.2.2.1 - Head
 
 Doctor Arturus's head is part of Doctor Arturus.
@@ -10319,8 +10367,12 @@ Before rubbing or touching Doctor Arturus's eyes, try touching the dried black b
 
 Doctor Arturus's mouth is part of Doctor Arturus.
 The description is "You could put your endoscope in and look around inside."
+Understand "jaw" as Doctor Arturus's mouth.
 Before searching Doctor Arturus's mouth, try inserting the endoscope into Doctor Arturus instead.
 Before inserting the endoscope into Doctor Arturus's mouth, try inserting the endoscope into Doctor Arturus instead.
+Instead of opening Doctor Arturus's mouth, say "His mouth is already open."
+Instead of closing Doctor Arturus's mouth, say "[italic type]Rigor mortis[roman type] has locked his jaw in place."
+Instead of inserting something into Doctor Arturus's mouth, say "Don't be ridiculous."
 
 Doctor Arturus's glasses are a plural-named thing worn by Doctor Arturus.
 The description is "Black blood covers his glasses."
@@ -10409,24 +10461,24 @@ Understand "tombstone/tombstones" or "tooth" or "colossal" or "bone" or "plinth/
 
 Doctor Arturus's oral cavity is scenery in arturus-endoscopy-mouth.
 The description is "The walls are streaked ebon where the diseased blood has set."
-Understand "cavern" or "capillary/capillaries/membrane/membranes/vessel/vessels" or "blood" or "shadow" or "wall/walls" or "black/ebon" or "diseased" as Doctor Arturus's oral cavity.
+Understand "cavern/mouth" or "capillary/capillaries/membrane/membranes/vessel/vessels" or "blood" or "shadow" or "wall/walls" or "black/ebon" or "diseased" as Doctor Arturus's oral cavity.
 
 The view of Doctor Arturus's pharynx is scenery in arturus-endoscopy-mouth.
 The description is "A black arch, infested with blacker capillaries."
 Understand "arch" as the view of Doctor Arturus's pharynx.
-Before searching or entering the view of Doctor Arturus's pharynx, try going down instead.
+Before entering or searching the view of Doctor Arturus's pharynx, try going down instead.
 
 Section 3.29.2.3.2 - Pharynx
 
 arturus-endoscopy-pharynx is a privately-named room. It is below arturus-endoscopy-mouth.
 The printed name is "Pharynx".
-The description is "A tunnel splitting, twisting darkly. Fleshy folds press inward, tight bundles of muscles and cartilage frozen in black ivy.
+The description is "A tunnel splitting, twisting darkly. Fleshy folds press inward, tight bundles of muscle and cartilage frozen in black ivy.
 
 The esophagus is blocked by the epiglottis. You can only descend through the larynx."
 
 Doctor Arturus's pharyngeal folds are plural-named scenery in arturus-endoscopy-pharynx.
 The description is "The scutiform cartilage. The smuggler's fossa. The ventricular folds."
-Understand "fleshy" or "muscle/muscles" or "bundle/bundles" or "of" or "tight" or "and" or "cartilage" or "black" or "ivy" or "scutiform" or "smuggler's" or "fossa" or "ventricular" or "fold/tunnel" as the pharyngeal folds.
+Understand "fleshy" or "muscle/muscles" or "bundle/bundles" or "of" or "tight" or "and" or "cartilage" or "black" or "ivy" or "scutiform" or "smuggler's" or "fossa" or "ventricular" or "fold/tunnel/pharynx" as the pharyngeal folds.
 
 Doctor Arturus's epiglottis is scenery in arturus-endoscopy-pharynx.
 The description is "The epiglottis is frozen in [italic type]rigor mortis,[roman type] and will not move."
@@ -10474,8 +10526,6 @@ Understand "alveole/capillary/capillaries/lung/lungs/vessel/vessels/socket/socke
 Some skeins of Doctor Arturus's animus are scenery in arturus-endoscopy-lungs. The indefinite article is "the".
 Understand "cast-off" or "tether/tethers/soul/skein/fragment/fragments" or "fragmented" or "aetheric/etheric/animic/auroral" or "weave" or "seat" as the skeins of Doctor Arturus's animus.
 
-clue-arturus-animus is a truth state that varies.
-
 Instead of examining the skeins of Doctor Arturus's animus:
 	if clue-arturus-animus is false:
 		say "The animus, colloquially known as the soul, is bound to a person's body by aetheric skeins. When the body dies, the skeins are loosened, and the animus drifts apart from the corpus. Every first-year medical student knows that.
@@ -10484,9 +10534,8 @@ Here, the animic skeins were not loosened. They were ripped apart.
 
 [wait for any key]You can see auroral fragments flickering in the halo of your lens-light. They shine weakly, painfully, unable to fade away.
 
-[wait for any key]What are you looking at here? What kind of disease attacks the [italic type]soul?[roman type]
-
-[wait for any key]No answers will be found here. You will have to look elsewhere.[line break]";
+[wait for any key]What are you looking at here? What kind of disease attacks the [italic type]soul?[roman type][line break]";
+		now clue-airborne-vector is true;
 		now clue-arturus-animus is true;
 	otherwise:
 		say "The fragments shine weakly, painfully, unable to fade away."
@@ -10497,6 +10546,7 @@ Chapter 3.29.2.4 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
 Understand "nacarat's" or "victim" or "bearing/poise" as Creditor Nacarat.
+Understand "creditor's" or "nacarat" as a thing enclosed by Doctor Arturus.
 
 Does the player mean doing something with Creditor Nacarat: it is very likely.
 Does the player mean doing something with something that is enclosed by Creditor Nacarat:
@@ -10537,12 +10587,17 @@ You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
 
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
+nacarat-body-completion-quip is a truth state that varies.
+Every turn when Nacarat Investigation is happening and clue-nacarat-stomach is true and clue-nacarat-pocketbook is true and clue-nacarat-recording is true and nacarat-body-completion-quip is false:
+	say "(You think you've learned all you can from Creditor Nacarat's body. You should look for more clues elsewhere.)";
+	now nacarat-body-completion-quip is true.
+
 Section 3.29.2.4.1 - Head
 
 Creditor Nacarat's head is part of Creditor Nacarat.
-The description is "Like you, he bears tattoos on his face, but his are in the mode of the Austri rather than the alchemical. The curling script mingles with the stains that run from his eyes. And his pearl earrings -- they catch the light alongside, framing his face in pale off-white.
+The description is "Like you, he bears tattoos on his face, but his are in the mode of the Austri rather than the alchemical. Alongside, his pearl earrings catch the light -- his face is framed in pale off-white[if clue-nacarat-stomach is false].
 
-His mouth is wide open. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside."
+Blood runs from his open mouth. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside[end if]."
 Understand "face/features" as Creditor Nacarat's head.
 Before searching Creditor Nacarat's head, try inserting the endoscope into Creditor Nacarat instead.
 Before inserting the endoscope into Creditor Nacarat's head, try inserting the endoscope into Creditor Nacarat instead.
@@ -10558,6 +10613,9 @@ Creditor Nacarat's mouth is part of Creditor Nacarat.
 The description is "You could put your endoscope in and look around inside."
 Before searching Creditor Nacarat's mouth, try inserting the endoscope into Creditor Nacarat instead.
 Before inserting the endoscope into Creditor Nacarat's mouth, try inserting the endoscope into Creditor Nacarat instead.
+Instead of opening Creditor Nacarat's mouth, say "His mouth is already open."
+Instead of closing Creditor Nacarat's mouth, say "[italic type]Rigor mortis[roman type] has locked his jaw in place."
+Instead of inserting something into Creditor Nacarat's mouth, say "Don't be ridiculous."
 
 Creditor Nacarat's facial hair is part of Creditor Nacarat.
 The description is "He has the look of a house model or play-actor."
@@ -10566,7 +10624,7 @@ Before rubbing or touching Creditor Nacarat's facial hair, try touching the drie
 
 Creditor Nacarat's tattoos are a plural-named thing part of Creditor Nacarat.
 The description is "The Austri believed in spirits. In time, they were proven right."
-Understand "curling" or "script" or "tattoo" as Creditor Nacarat's tattoos.
+Understand "tattoo" or "austri" as Creditor Nacarat's tattoos.
 Before rubbing or touching Creditor Nacarat's tattoos, try touching the dried black blood instead.
 Instead of looking under Creditor Nacarat's tattoos, say "They're stained directly on his skin."
 
@@ -10578,7 +10636,7 @@ Instead of taking Creditor Nacarat's earrings, say "You don't need money [italic
 Section 3.29.2.4.2 - Torso
 
 Creditor Nacarat's jacket is part of Creditor Nacarat.
-The description is "The creditor's jacket is dark, embellished with buttons of brass and mother-of-pearl. There are black stains, here and there, where blood has run down from his chin and seeped into the fabric.
+The description is "The creditor's jacket is dark, embellished with buttons of brass and mother-of-pearl. There are black stains here and there, where blood has run down from his chin and seeped into the fabric.
 
 The jacket has been partially undone, revealing a quicksilver glyph embroidered in the lining."
 Understand "torso" or "flap" or "fabric" as Creditor Nacarat's jacket.
@@ -10591,11 +10649,10 @@ The glyph of recording is part of Creditor Nacarat's jacket.
 The printed name is "glyph in Creditor Nacarat's jacket lining".
 The description is "It appears to be a glyph of recording. Although it has suffered partial bloodstain damage, it still appears to be functional[if clue-nacarat-recording is false].
 
-You could listen to the stored recording, if you wanted[end if]."
+You could listen to the stored recording if you wanted[end if]."
 Understand "quicksilver" or "lining" or "geometric" or "construct/inscription/index" or "stored" or "in [Creditor Nacarat's jacket]" as the glyph of recording.
 Instead of rubbing or touching the glyph of recording, say "You don't want to damage the glyph any further."
 
-clue-nacarat-recording is a truth state that varies.
 Instead of listening to or talking to the glyph of recording:
 	say "[italic type]'Sonate,'[roman type] you say.
 
@@ -10605,17 +10662,17 @@ The glyph flickers aglow, coursing with stained quicksilver, and the inscription
 	wait for any key;
 	say "There is noise for a few seconds -- a clink that sounds like porcelain or glass. An inhalation.[paragraph break]";
 	wait for any key;
-	say "The crash of something shattering.[paragraph break]";
+	say "The crash of shards shattering.[paragraph break]";
 	wait for any key;
 	say "'Are you feeling quite well, Creditor?' you hear Doctor Arturus's voice echo. 'Perhaps we should--'[paragraph break]";
 	wait for any key;
-	say "The words are drowned out by coughing. You hear the sound of friction on fabric, growing louder and louder--[paragraph break]";
+	say "The words are drowned out by coughing. You hear the sound of friction on fabric, growing louder and louder.[paragraph break]";
 	wait for any key;
 	say "The recording cuts out. The glyph returns to its resting state.";
 	if clue-nacarat-recording is false:
 		say line break;
 		wait for any key;
-		say "It sounds like Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged.";
+		say "It sounds like Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged. What could the significance of that be?";
 		now clue-nacarat-recording is true.
 
 Some mother-of-pearl buttons are part of Creditor Nacarat's jacket.
@@ -10627,9 +10684,13 @@ Section 3.29.2.4.3 - Arms
 
 Creditor Nacarat's gloves are a plural-named thing part of Creditor Nacarat.
 The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint embossed silhouette of a raven."
-Understand "arm/arms" or "glove/hand/hands/gilding/leather" or "smooth" or "black" or "decorative" or "back of" or "each" as Creditor Nacarat's gloves.
+Understand "arm/arms" or "glove/hand/hands/leather" or "smooth" or "black" as Creditor Nacarat's gloves.
 Before looking under, opening, pulling, searching, taking, or taking off Creditor Nacarat's gloves, say "You get a pair of tweezers and pull off Creditor Nacarat's gloves, revealing slender hands that could have belonged to a stage magician. Nothing about his hands seems pertinent to the investigation, though, so you replace the gloves and return the tweezers to the clinic." instead.
 Instead of swinging Creditor Nacarat's gloves, say "Very funny."
+
+The decorative glove-gilding is part of Creditor Nacarat's gloves. The indefinite article is "some".
+The description is "It echoes the form of alchemical sigil-work without conveying any actual meaning."
+Understand "gilding" or "back" or "of" or "each" as the decorative glove-gilding.
 
 Some embossed ravens are part of Creditor Nacarat's gloves.
 The description is "You have a nagging feeling that you've seen the symbol somewhere before."
@@ -10643,8 +10704,8 @@ The description is "Elegant pin-stripe trousers. There appear to be some things 
 Understand "leg/trouser/trousers" or "pinstripe/pin-stripe" or "pin" or "stripe" as Creditor Nacarat's legs.
 
 Creditor Nacarat's pockets are a plural-named unopenable open container part of Creditor Nacarat.
-The description is "Most of the things in Creditor Nacarat's pockets are detritus, but that black pocketbook looks interesting."
-Understand "pocket" as Creditor Nacarat's pockets.
+Instead of examining Creditor Nacarat's pockets, say "Most of the things in Creditor Nacarat's pockets are detritus, but that black pocketbook looks interesting."
+Understand "pocket" or "detritus" as Creditor Nacarat's pockets.
 Instead of inserting something into Creditor Nacarat's pockets, say "This is a dead body, not your personal chest-of-drawers."
 
 A black pocketbook is in Creditor Nacarat's pockets.
@@ -10652,19 +10713,130 @@ Understand "coded" or "record/records of/--" or "business" or "transaction/trans
 Before pulling, opening, or searching the black pocketbook, try examining the black pocketbook instead.
 Instead of taking the black pocketbook, say "The pocketbook is evidence. You should leave it for the Vigiles investigators."
 
-clue-nacarat-pocketbook is a truth state that varies.
 Instead of examining the black pocketbook:
 	say "It appears to be a coded record of business transactions. Of particular interest is the last chronological entry, which records a significant sum made out to 'S&P'.";
 	if clue-nacarat-pocketbook is false:
 		say line break;
-		say "S&P? You don't know any company in the Channelworks District with those initials. Unless...[paragraph break]";
+		say "Strange. You don't know any company in the Channelworks District with those initials. Unless...[paragraph break]";
 		wait for any key;
 		say "The fact that Sal and Piper have those initials can't be a coincidence. Can it?";
 		now clue-nacarat-pocketbook is true.
 
 Chapter 3.29.2.5 - Nacarat Endoscopy
 
+Instead of inserting the endoscope into Creditor Nacarat:
+	start an endoscopy on "Creditor Nacarat" via "Creditor Nacarat's mouth" to nacarat-endoscopy-mouth.
+	
+Section 3.29.2.3.1 - Mouth
+	
+nacarat-endoscopy-mouth is a privately-named room.
+The printed name is "Mouth".
+The description is "The tongue is a diseased behemoth. It wallows in a pool of dark dried blood, broken by stained folds and bleached teeth. On the tip a piercing has become infected, revealing the ragged holes at either side.
 
+Light streams in from outside. The pharynx lies further in."
+
+Creditor Nacarat's tongue is scenery in nacarat-endoscopy-mouth.
+The description is "Withered within and without."
+Understand "diseased" or "behemoth" as Creditor Nacarat's tongue.
+
+Creditor Nacarat's oral cavity is scenery in nacarat-endoscopy-mouth.
+The description is "The shadows are opaque."
+Understand "stained/stains" or "blood" or "fold/folds" or "sea/pool/mouth" or "dark" or "dried" or "sunless" as Creditor Nacarat's oral cavity.
+
+Creditor Nacarat's teeth are plural-named scenery in nacarat-endoscopy-mouth.
+The description is "Markers in a sunless sea. There are white trails where his tooth-powder has melted."
+Understand "bleach/bleached" or "tooth" or "powder/tooth-powder" or "white" or "trail/trails/marker/markers" as Creditor Nacarat's teeth.
+
+Creditor Nacarat's piercing is scenery in nacarat-endoscopy-mouth.
+The description is "Blood leaks beneath the engraved orichalcum."
+Understand "tip" or "hole/holes" or "ragged/engraved" or "metal" or "engraving" or "tongue piercing" or "orichalcum" as Creditor Nacarat's piercing.
+
+The view of Creditor Nacarat's pharynx is scenery in nacarat-endoscopy-mouth.
+The description is "A ruined arch."
+Understand "ruined" or "arch" as the view of Creditor Nacarat's pharynx.
+Before entering or searching the view of Creditor Nacarat's pharynx, try going down instead.
+
+Section 3.29.2.3.2 - Pharynx
+
+nacarat-endoscopy-pharynx is a privately-named room. It is below nacarat-endoscopy-mouth.
+The printed name is "Pharynx".
+The description is "This grotto is barely recognizable. Flesh has corroded, sloughed from cartilage. The throat weeps with the ruins of ruptured blood vessels.
+
+The epiglottis blocks the larynx. You can only descend into the esophagus."
+
+Creditor Nacarat's pharyngeal folds are plural-named scenery in nacarat-endoscopy-pharynx.
+The description is "Something terrible has happened here."
+Understand "flesh" or "cartilage" or "throat" or "pharynx" as Creditor Nacarat's pharyngeal folds.
+
+Some ruptured pharyngeal blood vessels are scenery in nacarat-endoscopy-pharynx.
+The description is "Striated, honeycombed, bleeding."
+Understand "honeycomb/honeycombed" or "rupture/striated/striation/striations" or "ruin/ruins" or "vessel" or "bleeding" as the ruptured pharyngeal blood vessels.
+
+Creditor Nacarat's epiglottis is scenery in nacarat-endoscopy-pharynx.
+The description is "The epiglottis is frozen in [italic type]rigor mortis,[roman type] and will not move."
+Understand "larynx" as Creditor Nacarat's epiglottis.
+
+The view of Creditor Nacarat's esophagus is scenery in nacarat-endoscopy-pharynx.
+The description is "A ravaged tunnel."
+Understand "oesophagus" as nacarat-endoscopy-pharynx.
+Before searching or entering the view of Creditor Nacarat's esophagus, try going down instead.
+
+Section 3.29.2.3.3 - Esophagus
+
+nacarat-endoscopy-esophagus is a privately-named room. It is below nacarat-endoscopy-pharynx.
+The printed name is "Esophagus".
+The description is "You hang between sphincters, slashed apart and seized with [italic type]rigor mortis[roman type]. The walls, flickering in your unsteady lens-light, run with black streaks into the yawning darkness.
+
+The stomach lies beneath."
+
+Creditor Nacarat's esophageal walls are plural-named scenery in nacarat-endoscopy-esophagus.
+The description is "Death flows through this place."
+Understand "streak/streaks" or "black" or "wall" or "esophagus/oesophagus/oesophageal" as Creditor Nacarat's esophageal walls.
+
+Creditor Nacarat's esophageal sphincters are plural-named scenery in nacarat-endoscopy-esophagus.
+The description is "Rings of decaying muscle."
+Understand "sphincter" or "ring/rings" or "decay/decaying" or "muscle/muscles" or "oesophageal" as Creditor Nacarat's esophageal sphincters.
+
+The view of Creditor Nacarat's stomach is scenery in nacarat-endoscopy-esophagus.
+The description is "An all-consuming void."
+Understand "yawning" or "darkness" or "beneath" or "all-consuming" or "void" as the view of Creditor Nacarat's stomach.
+Before entering or searching the view of Creditor Nacarat's stomach, try going down instead.
+
+Section 3.29.2.3.4 - Stomach
+
+nacarat-endoscopy-stomach is a privately-named room. It is below nacarat-endoscopy-esophagus.
+The printed name is "Stomach".
+The description is "The stain of disease is everywhere. The humidity is almost palpable. The pylorus is stopped -- a glistening black expanse rises in the light, residual bile and vitriolic secretions unable to drain into the small intestine.
+
+There are [italic type]things[roman type] drifting lazily in the body-of-stomach. You can see festering tumors that have crawled up the stomach lining, embedded themselves in the mucosa, insinuated themselves into the circulatory system. And from them, sickly veins crawl outward, each a deadly trail that points back to the heart."
+
+Every turn when the endoscopic location is nacarat-endoscopy-stomach and clue-nacarat-stomach is false (this is the clue-nacarat-stomach discovery rule):
+	wait for any key;
+	say "There is no doubt. This stomach -- this [italic type]spawning pit[roman type] -- this must have been the origin of Creditor Nacarat's infection.[paragraph break]";
+	wait for any key;
+	say "But what does that imply? Was the disease in something the man [italic type]ingested?[roman type] Was it something he ate, something he drank?[paragraph break]";
+	wait for any key;
+	say "There's too little evidence. You have to keep investigating.";
+	now clue-nacarat-stomach is true;
+	now clue-ingestion-vector is true.
+	
+Creditor Nacarat's stomach interior is scenery in nacarat-endoscopy-stomach.
+The printed name is "Creditor Nacarat's stomach".
+The description is "Unidentifiable boli drift across the pool's surface."
+Understand "glistening/inky" or "black" or "pool/pool's/expanse" or "surface" or "bile" or "residual" or "secretion/secretions" or "vitriol/vitriolic" as Creditor Nacarat's stomach interior.
+
+Creditor Nacarat's pylorus is scenery in nacarat-endoscopy-stomach.
+The description is "Nothing of it is visible beneath the pool of vitriol."
+Understand "small" or "intestine" or "drain" as Creditor Nacarat's pylorus.
+Before entering or searching Creditor Nacarat's pylorus, try going down instead.
+
+Some unidentifiable boli are scenery in nacarat-endoscopy-stomach.
+The description is "Black. Bloody. Spherical. They elude description."
+Understand "thing/things" or "ball/balls/bolus" or "body-of-stomach" or "body of stomach" as the unidentifiable boli.
+
+Some festering tumors are scenery in nacarat-endoscopy-stomach.
+The description is "You have the urge to throw up just looking at them."
+Understand "tumor/tumour/tumours" or "stomach/-- lining" or "mucus/mucosa" or "circulatory" or "system" or "sickly" or "vein/veins/trail/trails" as the festering tumors.
 
 Chapter 3.29.2.6 - Sal
 
@@ -10737,7 +10909,7 @@ Chapter 3.29.2.9 - Piper Endoscopy
 Part 3.29.3 - Arturus's Clinic during Day Two
 
 Rule for writing a paragraph about Justinian when Four Investigations is happening:
-	say "[An Examiner Velox] and his investigators are huddled around [if Meeting the Patients has ended]the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper[otherwise]a group of tarpaulin-covered bodies[end if]. Beside them, Justinian sits at a coffee table, brooding.";
+	say "[An Examiner Velox] and his investigators are huddled around [if Meeting the Patients has ended]the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper[otherwise]a group of tarpaulin-covered bodies[end if]. Beside them, Justinian sits at a coffee table, lost in thought.";
 	now the Vigiles investigators are mentioned;
 	now Examiner Velox is mentioned;
 	now Justinian is mentioned.
@@ -10973,7 +11145,7 @@ justinian-4inv-discovery	true	false	"'Can you tell me again about how you discov
 He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-Justinian's jaw hardens. 'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought.
@@ -10982,7 +11154,7 @@ He pauses in thought.
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
 'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
-justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on... on the disease, again?'
+justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on the disease, again?'
 
 Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-goodbye}
 justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
