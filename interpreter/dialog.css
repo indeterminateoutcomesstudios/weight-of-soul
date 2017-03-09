@@ -30,6 +30,7 @@
    dialog_frame. The auto margins keep it horizontally centered.
 */
 #dialog {
+  color: #000;
   position: relative;
   width: 400px;
   margin-left: auto;
