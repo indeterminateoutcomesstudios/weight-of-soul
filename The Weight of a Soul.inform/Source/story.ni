@@ -231,11 +231,11 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	
-When The Game is Afoot begins:
+[When The Game is Afoot begins:
 	say "(Developer's note: At this point, only the Turris Infinita has new content. The rest of the district is unchanged from Day One.)";
 	
 When Meeting the Patients ends:
-	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";
+	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";]
 	
 
 Book 1.2 - Days and Scenes
@@ -10361,9 +10361,10 @@ Instead of examining Doctor Arturus:
 		say "'His time is past,' Doctor Cavala had said, afterwards. 'He hardly practices these days...'[paragraph break]";
 		wait for any key;
 	say "The body laid before you is gaunt, almost pitiful. The sleeves of his natron coat are completely soaked in eerie black stains. His glasses are stained opaque, and his mouth is frozen open in horror.[paragraph break]";
-	if arturus-examined-quip is false, wait for any key;
+	if arturus-examined-quip is false:
+		wait for any key;
+		now arturus-examined-quip is true;
 	say "You could examine Doctor Arturus's head, his torso, his arms, or his legs.";
-	now arturus-examined-quip is true;
 
 Instead of searching Doctor Arturus, say "You could examine Doctor Arturus's head, his torso, his arms, or his legs."
 
@@ -10598,17 +10599,12 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 
 nacarat-examined-quip is a truth state that varies.
 Instead of examining Creditor Nacarat:
+	if nacarat-examined-quip is false, say "You approach the body.[paragraph break]";
+	say "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.[paragraph break]";
 	if nacarat-examined-quip is false:
-		say "You approach the body.
-
-There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
-
-[wait for any key]You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
+		wait for any key;
 		now nacarat-examined-quip is true;
-	otherwise:
-		say "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
-
-You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
+	say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
 
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
@@ -10887,6 +10883,16 @@ Before attacking or cutting something that is part of Sal, try attacking the tar
 Before smelling something that is part of Sal, try smelling Sal instead.
 Before touching something that is part of Sal, try touching Sal instead.
 Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Sal, try pushing Sal instead.
+
+sal-examined-quip is a truth state that varies.
+Instead of examining Sal:
+	if sal-examined-quip is false:
+		say "You approach the body.[paragraph break]";
+	say "";
+	if sal-examined-quip is false:
+		wait for any key;
+		now sal-examined-quip is true;
+	say "You could examine Sal's head, his torso, his arms, or his legs.";
 
 Instead of searching Sal, say "You could examine Sal's head, his torso, his arms, or his legs."
 
