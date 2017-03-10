@@ -237,15 +237,6 @@ When The Game is Afoot begins:
 When Meeting the Patients ends:
 	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";
 	
-Benchmarking is an action out of world.
-Understand "benchmark" as benchmarking.
-Carry out benchmarking:
-	follow the update chronological records rule;
-	follow the update chronological records rule;
-	follow the update chronological records rule;
-	follow the update chronological records rule;
-	say "Update chronological records x4."
-	
 
 Book 1.2 - Days and Scenes
 
@@ -10338,6 +10329,8 @@ Chapter 3.29.2.2 - Doctor Arturus
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
 Understand "doctor's" or "arturus" as a thing enclosed by Doctor Arturus.
+
+Does the player mean doing something with Doctor Arturus: it is very likely.
 		
 Before doing something with Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
 Before doing something with something enclosed by Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
