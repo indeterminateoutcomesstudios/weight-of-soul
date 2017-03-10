@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 090317.
+The release number is 100317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -105,14 +105,23 @@ Include Menus by Emily Short.
 
 Part 1.1.3 - Miscellaneous Functions
 
-To say wait for any key: wait for any key. [This allows us to write it directly inside the text without having to rely on tedious substitutions. Useful for dialogue trees and scripted events using tables.]
+The update chronological records rule is not listed in any rulebook.
+
+The previous location is a room that varies.
+Before reading a command (this is the update previous location rule):
+	now the previous location is the location.
+	
+[This is part of a general movement to reduce reliance on the "update chronological records" rule, which becomes really slow on Quixe if you have too many past tense checks in the game.]
+
+To say wait for any key: wait for any key.
+
+[This allows us to write it directly inside the text without having to rely on tedious substitutions. Dangerous for cases where the text may be expanded, but useful for dialogue trees and scripted events using tables.]
 
 This is the rest of the turn rule:
 	follow the scene changing rules;
 	follow the every turn rules;
 	abide by the timed events rule;
 	abide by the advance time rule;
-	abide by the update chronological records rule;
 	abide by the adjust light rule;
 	abide by the note object acquisitions rule;
 	abide by the notify score changes rule;
@@ -227,6 +236,16 @@ When The Game is Afoot begins:
 	
 When Meeting the Patients ends:
 	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";
+	
+Benchmarking is an action out of world.
+Understand "benchmark" as benchmarking.
+Carry out benchmarking:
+	follow the update chronological records rule;
+	follow the update chronological records rule;
+	follow the update chronological records rule;
+	follow the update chronological records rule;
+	say "Update chronological records x4."
+	
 
 Book 1.2 - Days and Scenes
 
@@ -2380,9 +2399,15 @@ Part 2.3.12 - Journal Text
 
 Chapter 2.3.12.1 - Flags
 
+[Day One]
+
 journal-riggertown-detour-known is a truth state that varies.
+journal-porter-talkedto is a truth state that varies.
+journal-buskers-examined is a truth state that varies.
 journal-zoiro-address-known is a truth state that varies.
 journal-reden-shack-known is a truth state that varies.
+
+[Day Two]
 
 clue-airborne-vector is a truth state that varies.
 clue-ingestion-vector is a truth state that varies.
@@ -2683,23 +2708,20 @@ To say journal-text-notes:
 	MUSINGS, PROLOGUE
 	---]
 	if Walking Home in Darkness is happening and the Dormitory Block is visited and Saliunca is friendly:
-		add "- There's something strange about [if we have talked to Saliunca]Saliunca[otherwise]that old woman in the atrium[end if]... " to LM;
+		add "- There's something strange about [if Saliunca is proper-named]Saliunca[otherwise]that old woman in the atrium[end if]... " to LM;
 	[---
 	MUSINGS, DAY ONE
 	---]
 	if Cavala's Errands is happening:
-		if Maze Part One is visited:
-			if Upper Riggertown is visited and we have not examined the advertising horns:
-				add "- Just what are those horns in Upper Riggertown honking anyway...? " to LM;
-		otherwise if Via Terminalis West Street is visited:
+		if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
 				add "- Doctor Cavala told me to think about what I saw last night... " to LM;
 			add "- This district is so much larger than the Lake District... " to LM;
 			if the enabled of horatio-dayone-intro is true:
 				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on... " to LM;
-			if the Grand Forum is visited and we have not examined the street buskers:
+			if the Grand Forum is visited and journal-buskers-examined is false:
 				add "- I wonder what those buskers in the grand forum are performing... " to LM;
-			if we have not talked to the porter:
+			if journal-porter-talkedto is false:
 				add "- Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
 	[---
 	MUSINGS, DAY TWO
@@ -3833,14 +3855,14 @@ cavala-wh-forgot-quipped is a truth state that varies. cavala-wh-forgot-quipped 
 cavala-wh-goodnight-quipped is a truth state that varies. cavala-wh-goodnight-quipped is false.
 
 Rule for writing a paragraph about Doctor Cavala during Walking Home in Darkness:
-	if the location was the West End:
+	if the previous location is the West End:
 		if cavala-wh-forgot-quipped is false:
 			say "Doctor Cavala raises an eyebrow when she notices you. 'Forgot something?'";
 			now cavala-wh-forgot-quipped is true;
 		otherwise:
 			say "Doctor Cavala glances at you before returning to her paperwork.";
 	otherwise:
-		say "Doctor Cavala is at her desk, engrossed in paperwork[if the location was the Surgery Room]. As you emerge from the surgery room, she glances up and gives you a nod[end if].";
+		say "Doctor Cavala is at her desk, engrossed in paperwork[if the previous location is the Surgery Room]. As you emerge from the surgery room, she glances up and gives you a nod[end if].";
 		
 [Doctor Cavala is technically not in her armchair, so we can show her initial appearance. But we want the game to behave in all other respects as though she is.]
 Instead of entering Doctor Cavala's armchair while Prologue is happening, say "Doctor Cavala is already in the armchair."
@@ -4989,7 +5011,7 @@ Some stairs to the mortuary are an open unopenable scenery door. They are below 
 The description is "[if the player is in the Clinic]The stairs lead into darkness.[otherwise]Light streams down the stairs."
 Understand "exit" as the stairs to the mortuary when the location is the Mortuary.
 
-After going through the mortuary stairs while the player is staid: say "[if the location was the Clinic]You descend the steps into shadow...[paragraph break][otherwise]You emerge from the darkness of the mortuary...[paragraph break]"; continue the action.
+After going through the mortuary stairs while the player is staid: say "[if the previous location is the Clinic]You descend the steps into shadow...[paragraph break][otherwise]You emerge from the darkness of the mortuary...[paragraph break]"; continue the action.
 
 Before putting something on the stairs to the mortuary, try dropping the noun instead.
 Instead of smelling the stairs to the mortuary in the Clinic, say "The smell of embalming fluid is faint, but distinctive."
@@ -5886,7 +5908,7 @@ When Day Two begins:
 
 First every turn when the location is the Public House and ambience suppression is false (this is the clockwork musician playing rule):
 	choose row clockwork musician track number in the Table of the Clockwork Musician's Repertoire;
-	if the location was not the Public House:
+	if the previous location is not the Public House:
 		say "The clockwork musician is currently playing [article entry][track entry].";
 	otherwise if the clockwork musician track time is 0:
 		say "The clockwork musician finishes playing [if article entry is empty][otherwise]the [end if][track entry][run paragraph on]";
@@ -5931,7 +5953,7 @@ Part 3.7.7 - Bartender
 
 [The bartender is an NPC for Marid to confide in and get all weepy with. Originally you were able to buy food and a bottle of brandy from him as well, but they don't serve any function for the puzzles or the storytelling, so those sections have been commented out. I may add them in later if there's a good reason.]
 
-The bartender is a mutant man in the Public House. "[one of]A smartly-dressed mutant[or]The bartender[stopping] is behind the counter polishing a glass[first time] -- this must be the new bartender[only].[if the location was not the Public House] He gives you a nod as you enter."
+The bartender is a mutant man in the Public House. "[one of]A smartly-dressed mutant[or]The bartender[stopping] is behind the counter polishing a glass[first time] -- this must be the new bartender[only].[if the previous location is not the Public House] He gives you a nod as you enter."
 The description is "He looks to be one of the older generation of mutants, with few features that mark him as having once been human. He wears a dignified wooden mask and a tailcoat that has been modified to accommodate additional limbs."
 The scent is "He smells of cologne."
 Understand "new" or "smartly-dressed" or "cologne" as the bartender.
@@ -7135,7 +7157,7 @@ Instead of opening, closing, switching on, or switching off the lift, say "The l
 
 Part 3.16.4 - Porter
 
-The porter is a hostile woman in the Turris Infinita. "[porter-initial-appearance]".
+The porter is a hostile woman in the Turris Infinita.
 The description is "A hawkish woman all in white. [if the Turris is in mourning]Her flashing spectacles make[otherwise]The glare on her spectacles makes[end if] it difficult to look at her directly."
 The scent is "She smells as nondescript as the rest of the entrance hall. There isn't even a hint of perfume."
 Instead of attacking or cutting the porter, say "You don't think that would end well for you."
@@ -7146,10 +7168,12 @@ Some reflective spectacles are worn by the porter.
 The description is "The spectacles magnify her mirthless expression."
 Understand "glasses/eyeglasses" or "spectacle/specs" or "flashing" as the spectacles.
 
-To say porter-initial-appearance:
-	if the location was not the Turris Infinita:
-		if the Turris Infinita was not visited:
+porter-firstgreeting-quipped is a truth state that varies.
+Rule for writing a paragraph about the porter:
+	if the previous location is not the Turris Infinita:
+		if porter-firstgreeting-quipped is false:
 			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?' ";
+			now porter-firstgreeting-quipped is true;
 		otherwise:
 			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.' [or]The porter regards you coolly and silently. [stopping]";
 	otherwise:
@@ -7202,6 +7226,8 @@ porter-day1-goodbye	true	false	"'Goodbye, then.'"	"'Goodbye, then.'
 You turn your back on the desk."	{}
 
 The home dialogue branch of the porter is porter-day1.
+
+After reading out porter-day1: now journal-porter-talkedto is true.
 
 Instead of talking to the porter when the enabled of porter-day1-visiting is false and the enabled of porter-day1-clinic is false, say "There's nothing to be gained in talking to her further."
 
@@ -7565,7 +7591,10 @@ Before listening to the street buskers, try examining the street buskers instead
 The scent is "Fantastic smells abound."
 Understand "busker" or "ventriloquist/ventriloquists" or "doll/dolls" or "puppet/puppets" or "stage/-- illusionist" or "card/-- trick/tricks" or "show/shows" or "woman/women" as the street buskers.
 Instead of talking to the street buskers, say "The buskers are too busy for conversation."
-After examining the street buskers: now ambience suppression is true; continue the action.
+After examining the street buskers:
+	now ambience suppression is true;
+	now journal-buskers-examined is true;
+	continue the action.
 
 Some playing children are undescribed mixed-race people in the Grand Forum.
 The description is "Human, goblin, mutant. They remind you of your own childhood in the Lake District, not so long ago."
@@ -10296,20 +10325,22 @@ Before doing anything when the current action involves the forensic tarpaulins a
 	otherwise:
 		say "The investigators stop you.";
 		stop the action.
+		
+[Here we define the body the player has most recently examined as the body that it's most likely the player wants to examine. This was previously accomplished with a clusterfuck of "if the noun part of the current action was X..." constructs, but that ended up being a large processing bottleneck during the update chronological records rule, and made the game basically unplayable on Quixe.]
+
+The body-currently-being-examined is a thing that varies.
+
+Does the player mean doing something with something that is enclosed by the body-currently-being-examined:
+	it is likely.
 
 Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's" or "victim" as Doctor Arturus.
 Understand "doctor's" or "arturus" as a thing enclosed by Doctor Arturus.
-
-Does the player mean doing something with Doctor Arturus: it is very likely.
-Does the player mean doing something with something that is enclosed by Doctor Arturus:
-	if the noun part of the current action was Doctor Arturus or
-	the noun part of the current action was enclosed by Doctor Arturus or
-	the second noun part of the current action was Doctor Arturus or
-	the second noun part of the current action was enclosed by Doctor Arturus:
-		it is likely.
+		
+Before doing something with Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
+Before doing something with something enclosed by Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
 		
 Rule for clarifying the parser's choice of Doctor Arturus: do nothing.
 Rule for clarifying the parser's choice of something enclosed by Doctor Arturus: do nothing.
@@ -10406,8 +10437,12 @@ But something's not right here. If his gloves were the rubber-natron surgical st
 Understand "streak/streaks" or "arm/forearm/forearms" or "sleeve/sleeves" or "skin" or "grotesque" or "pelagic" or "ray/rays" as Doctor Arturus's arms.
 Before knocking on, pushing, pulling, rubbing, squeezing, touching, or taking Doctor Arturus's arms, try touching the dried black blood instead.
 
-Before examining Doctor Arturus's arms when the current action was examining Doctor Arturus's arms and clue-arturus-gloves is false:
-	try examining Doctor Arturus's gloves instead.
+arturus-gloves-examined is a truth state that varies.
+Before examining Doctor Arturus's arms when clue-arturus-gloves is false:
+	if arturus-gloves-examined is false:
+		now arturus-gloves-examined is true;
+	otherwise:
+		try examining Doctor Arturus's gloves instead.
 
 Doctor Arturus's gloves are a plural-named thing part of Doctor Arturus.
 Understand "glove" or "hand/hands" or "sigil/sigils" or "rubber/rubber-natron" or "natron" as Doctor Arturus's gloves.
@@ -10549,12 +10584,9 @@ Understand "nacarat's" or "victim" or "bearing/poise" as Creditor Nacarat.
 Understand "creditor's" or "nacarat" as a thing enclosed by Doctor Arturus.
 
 Does the player mean doing something with Creditor Nacarat: it is very likely.
-Does the player mean doing something with something that is enclosed by Creditor Nacarat:
-	if the noun part of the current action was Creditor Nacarat or
-	the noun part of the current action was enclosed by Creditor Nacarat or
-	the second noun part of the current action was Creditor Nacarat or
-	the second noun part of the current action was enclosed by Creditor Nacarat:
-		it is likely.
+
+Before doing something with Creditor Nacarat: now the body-currently-being-examined is Creditor Nacarat.
+Before doing something with something enclosed by Creditor Nacarat: now the body-currently-being-examined is Creditor Nacarat.
 		
 Rule for clarifying the parser's choice of Creditor Nacarat: do nothing.
 Rule for clarifying the parser's choice of something enclosed by Creditor Nacarat: do nothing.
@@ -10844,12 +10876,9 @@ Sal is a dead undescribed man.
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
 
 Does the player mean doing something with Sal: it is very likely.
-Does the player mean doing something with something that is enclosed by Sal:
-	if the noun part of the current action was Sal or
-	the noun part of the current action was enclosed by Sal or
-	the second noun part of the current action was Sal or
-	the second noun part of the current action was enclosed by Sal:
-		it is likely.
+
+Before doing something with Sal: now the body-currently-being-examined is Sal.
+Before doing something with something enclosed by Sal: now the body-currently-being-examined is Sal.
 		
 Rule for clarifying the parser's choice of Sal: do nothing.
 Rule for clarifying the parser's choice of something enclosed by Sal: do nothing.
@@ -10878,12 +10907,9 @@ Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
 
 Does the player mean doing something with Piper: it is very likely.
-Does the player mean doing something with something that is enclosed by Piper:
-	if the noun part of the current action was Piper or
-	the noun part of the current action was enclosed by Piper or
-	the second noun part of the current action was Piper or
-	the second noun part of the current action was enclosed by Piper:
-		it is likely.
+
+Before doing something with Piper: now the body-currently-being-examined is Piper.
+Before doing something with something enclosed by Piper: now the body-currently-being-examined is Piper.
 
 Rule for clarifying the parser's choice of Piper: do nothing.
 Rule for clarifying the parser's choice of something enclosed by Piper: do nothing.
