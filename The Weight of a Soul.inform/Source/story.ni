@@ -3477,6 +3477,7 @@ Understand "stethoscope" or "orichalcum" or "ausculting" or "dish" as the phanto
 Instead of examining, looking under, or searching the gurney when the purely-surgical-stethoscope is in the Reden's surgery holding zone (this is the spawn the stethoscope rule):
 	say "You look behind the gurney and there it is -- a stethoscope reclining snakelike on its hook.";
 	now the purely-surgical-stethoscope is in the Surgery Room;
+	now the phantom-stethoscope is nowhere;
 	set pronouns from the purely-surgical-stethoscope. [Playtesting shows that it's natural to want to 'give it to Cavala' immediately after, so we do this.]
 
 Instead of examining, looking under, or searching the gurney when the purely-surgical-stethoscope is in the Surgery Room (this is the stethoscope is still there rule):
@@ -3540,6 +3541,7 @@ Instead of examining or searching the shelves of medical supplies when the catho
 	otherwise if the catholiconometer is 3:
 		say "You blink.[paragraph break]";
 		now the catholicon is on the shelves of medical supplies;
+		now the phantom-catholicon is nowhere;
 		set pronouns from the catholicon; [Playtesting shows that it's natural to want to 'give it to Cavala' immediately after, so we do this.]
 		increment the catholiconometer;
 		continue the action.
