@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 100317.
+The release number is 130317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -55,11 +55,9 @@ Volume 1 - Preamble
 [---TO DO---
 
 - Write Arturus Investigation
-- Write Arturus's body
 - Write Arturus's Domicile
 
 - Write Nacarat Investigation
-- Write Nacarat's body
 
 - Write the Shanty Quarter
 - Write the Crow's Nest
@@ -358,7 +356,7 @@ Nacarat Investigation begins when Meeting the Patients ends.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Poisoned the night before Prologue. Admitted Prologue day. Died Prologue night.
-- Justinian knows about them because they often came to shake down Arturus. He tracked them to their residences and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
+- Justinian knows about them because they often came to shake down Arturus. He tracked them to the flophouse and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
 - Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against Creditor documents from Arturus's Clinic - they don't match.
 - They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
 - They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
@@ -2405,13 +2403,20 @@ clue-ingestion-vector is a truth state that varies.
 
 clue-patientrecords-justinian is a truth state that varies.
 
+clue-ravens-sighted is a number that varies.
+clue-raven is a truth state that varies.
+clue-tradingcompany is a truth state that varies.
+
 clue-arturus-discovery-justinian is a truth state that varies.
 clue-arturus-gloves is a truth state that varies.
 clue-arturus-animus is a truth state that varies.
 
 clue-nacarat-recording is a truth state that varies.
 clue-nacarat-pocketbook is a truth state that varies.
+clue-nacarat-raven is a truth state that varies.
 clue-nacarat-stomach is a truth state that varies.
+
+clue-sal-raven is a truth state that varies.
 
 journal-crucible-witnessed is a truth state that varies.
 
@@ -2526,7 +2531,6 @@ To say journal-text-objectives:
 				add "- Deliver the bundle of documents to the censor in the basilica" to L;
 			if The Censor's Nap is happening:
 				add "[italic type]   ...and think of a way to wake the censor[roman type]" to L;
-			add "" to L;
 			add "- Find Zoiro, Reden's brother, in Riggertown" to L;
 			if journal-zoiro-address-known is false:
 				if Maze Part One is unvisited:
@@ -2574,10 +2578,6 @@ To say journal-text-objectives:
 		add "- Find out their identities" to L;
 		add "- Get permission from the Vigiles to examine the bodies" to L;
 		add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	if Nacarat Investigation is happening:
 		add "" to L;
 		add "[italic type]Creditor Nacarat[roman type]" to L;
@@ -2586,20 +2586,24 @@ To say journal-text-objectives:
 		otherwise if clue-nacarat-stomach is false or clue-nacarat-pocketbook is false or clue-nacarat-recording is false:
 			add "- Examine the body further" to L;
 		if examiner-nacarat-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	if Thugs Investigation is happening:
 		add "" to L;
 		add "[italic type]Sal and Piper[roman type]" to L;
 		add "- Examine Sal's body" to L;
 		add "- Examine Piper's body" to L;
 		if examiner-thugs-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+	if Four Investigations is happening:
+		let LM be a list;
 		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to LM;
 		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+			add "- Look up the patient records in Doctor Arturus's domicile" to LM;
+		if clue-raven is true and clue-tradingcompany is false:
+			add "- Ask around about the meaning of the raven symbol" to LM;
+		if LM is not {}:
+			add "" to L;
+			add "[italic type]Miscellaneous[roman type]" to L;
+			add LM to L;
 	[---
 	END
 	---]
@@ -2675,6 +2679,11 @@ To say journal-text-notes:
 				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
 			if clue-nacarat-stomach is true:
 				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
+			if clue-nacarat-raven is true:
+				if clue-tradingcompany is true:
+					add "- I learned that Creditor Nacarat is connected to the Greater Corindia Trading Company." to L2;
+				otherwise:
+					add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
 			if clue-nacarat-pocketbook is true:
 				add "- I learned that Creditor Nacarat might have hired Sal and Piper recently." to L2;
 			if L2 is not {}:
@@ -2684,6 +2693,11 @@ To say journal-text-notes:
 		if Thugs Investigation is happening:
 			let L2 be a list of texts;
 			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L2;
+			if clue-sal-raven is true:
+				if clue-tradingcompany is true:
+					add "- I learned that Sal is connected to the Greater Corindia Trading Company." to L2;
+				otherwise:
+					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -8171,7 +8185,7 @@ Then a funny look comes over him. Gradually he stirs. His eyes meet yours.
 Instead of pushing, pulling, or turning the censor's desk during The Censor's Nap:
 	say "An idea strikes you. You grip the side of the desk and heave with all your might, putting all your body weight into it, until you feel the desk move with a great groan -- and the censor is dragged along and nearly falls out of his chair.
 
-'Dogs in a dressing room!' he splutters, sitting bolt upright. (You quickly remove yourself from the desk.) 'What was [italic type]that[roman type] for?'";
+'Canines in a cloakroom!' he splutters, sitting bolt upright. (You quickly remove yourself from the desk.) 'What was [italic type]that[roman type] for?'";
 	now the censor is awake;
 	start a dialogue with the censor using dialogue censor-woken.
 
@@ -8299,7 +8313,7 @@ He frowns.
 'Well...' He shrugs. 'If you run into any trouble, holler for the guards. Now was there anything else you needed?'"	{censor-woken-documents, censor-woken-address, censor-woken-thanks}
 censor-woken-thanks	false	false	"'Nothing, thank you.'"	"'Nothing, thank you.'
 
-The censor beams. 'Have a good day, miss. Per radium sophia.'
+The censor beams. 'Have a good day, miss. [italic type]Per radium sophia.'[roman type]
 
 You step away from the censor's desk."	{}
 censor-woken-returning	true	false	""	"You approach the censor's desk, and he looks up like a startled animal.
@@ -10267,7 +10281,7 @@ Part 3.29.2 - Dead Bodies
 Chapter 3.29.2.1 - In General
 
 Some tarpaulin-covered bodies are scenery in Arturus's Clinic.
-The description is "[if Meeting the Patients has ended]Not a pretty sight.[otherwise]You can't see much of the bodies beneath the tarpaulins."
+The description is "[if Meeting the Patients has ended]The four bodies are lying on a slab.[otherwise]You can't see much of the bodies beneath the tarpaulins."
 The sound is "You hear nothing unexpected[first time], and indeed it would be rather troubling if you did[only]."
 The scent is "There's no smell at all[first time]. The clinic's environment must be too sterile for bloat to set in[only]."
 Understand "covered" or "tarpaulin covered" or "corpses/cadavers/victims" or "dead" or "slab" as the tarpaulin-covered bodies.
@@ -10389,6 +10403,7 @@ Doctor Arturus's eyes are a plural-named thing part of Doctor Arturus.
 The description is "His eyes are open."
 Understand "eye" as Doctor Arturus's eyes.
 Instead of opening Doctor Arturus's eyes, say "His eyes are already open."
+Instead of closing Doctor Arturus's eyes, say "That would be dangerous. His eyes are coated in black blood."
 Instead of searching Doctor Arturus's eyes, say "No answers are forthcoming."
 Before rubbing or touching Doctor Arturus's eyes, try touching the dried black blood instead.
 
@@ -10471,7 +10486,8 @@ Section 3.29.2.2.4 - Legs
 
 Doctor Arturus's legs are a plural-named thing part of Doctor Arturus.
 The description is "Doctor Arturus is wearing formal trousers and rubber boots -- relatively dignified, in comparison with the rest of his body."
-Understand "trousers" or "formal" or "rubber/-- boot/boots" as Doctor Arturus's legs.
+Understand "trousers/trouser" or "formal" or "rubber/-- boot/boots" as Doctor Arturus's legs.
+Instead of opening, taking, or taking off Doctor Arturus's legs, say "You can't imagine why you would want to."
 
 Chapter 3.29.2.3 - Arturus Endoscopy
 
@@ -10576,6 +10592,9 @@ Before going up when the endoscopic location is arturus-endoscopy-lungs, try goi
 Chapter 3.29.2.4 - Creditor Nacarat
 
 Creditor Nacarat is a dead undescribed man.
+The description is "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
+
+You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 Understand "nacarat's" or "victim" or "bearing/poise" as Creditor Nacarat.
 Understand "creditor's" or "nacarat" as a thing enclosed by Doctor Arturus.
 
@@ -10599,15 +10618,6 @@ Before smelling something that is part of Creditor Nacarat, try smelling Credito
 Before touching something that is part of Creditor Nacarat, try touching Creditor Nacarat instead.
 Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Creditor Nacarat, try pushing Creditor Nacarat instead.
 
-nacarat-examined-quip is a truth state that varies.
-Instead of examining Creditor Nacarat:
-	if nacarat-examined-quip is false, say "You approach the body.[paragraph break]";
-	say "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.[paragraph break]";
-	if nacarat-examined-quip is false:
-		wait for any key;
-		now nacarat-examined-quip is true;
-	say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs.";
-
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
 nacarat-body-completion-quip is a truth state that varies.
@@ -10629,6 +10639,7 @@ Creditor Nacarat's eyes are a plural-named thing part of Creditor Nacarat.
 The description is "His eyes are dark."
 Understand "eye" as Creditor Nacarat's eyes.
 Instead of opening Creditor Nacarat's eyes, say "His eyes are already open."
+Instead of closing Creditor Nacarat's eyes, say "That would be dangerous. His eyes are coated in black blood."
 Instead of searching Creditor Nacarat's eyes, say "No answers are forthcoming."
 Before knocking on, pushing, pulling, rubbing, squeezing, touching, or taking Creditor Nacarat's eyes, try touching the dried black blood instead.
 
@@ -10711,20 +10722,30 @@ Understand "arm/arms" or "glove/hand/hands/leather" or "smooth" or "black" as Cr
 Before looking under, opening, pulling, searching, taking, or taking off Creditor Nacarat's gloves, say "You get a pair of tweezers and pull off Creditor Nacarat's gloves, revealing slender hands that could have belonged to a stage magician. Nothing about his hands seems pertinent to the investigation, though, so you replace the gloves and return the tweezers to the clinic." instead.
 Instead of swinging Creditor Nacarat's gloves, say "Very funny."
 
+After examining Creditor Nacarat's gloves:
+	now the embossed ravens are part of Creditor Nacarat's gloves;
+	continue the action.
+
 The decorative glove-gilding is part of Creditor Nacarat's gloves. The indefinite article is "some".
 The description is "It echoes the form of alchemical sigil-work without conveying any actual meaning."
 Understand "gilding" or "back" or "of" or "each" as the decorative glove-gilding.
 
-Some embossed ravens are part of Creditor Nacarat's gloves.
-The description is "You have a nagging feeling that you've seen the symbol somewhere before."
+Some embossed ravens are a thing.
+The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company.[otherwise]You have a nagging feeling that you've seen the symbol somewhere before."
 Understand "raven" or "silhouette/silhouettes/symbol" or "faint" or "of" as the embossed ravens.
 Instead of touching the embossed ravens, say "You can feel the ravens embossed in the leather."
+
+After examining the embossed ravens when clue-nacarat-raven is false:
+	increment clue-ravens-sighted;
+	now clue-nacarat-raven is true;
+	continue the action.
 
 Section 3.29.2.4.4 - Legs
 
 Creditor Nacarat's legs are a plural-named thing part of Creditor Nacarat.
-The description is "Elegant pin-stripe trousers. There appear to be some things in his pockets."
-Understand "leg/trouser/trousers" or "pinstripe/pin-stripe" or "pin" or "stripe" as Creditor Nacarat's legs.
+The description is "Elegant pin-striped trousers. There appear to be some things in his pockets."
+Understand "leg" or "trouser/trousers" or "pinstriped/pin-striped/pinstripe/pin-stripe" or "pin" or "stripe/striped" as Creditor Nacarat's legs.
+Instead of opening, taking, or taking off Creditor Nacarat's legs, say "You can't imagine why you would want to."
 
 Creditor Nacarat's pockets are a plural-named unopenable open container part of Creditor Nacarat.
 Instead of examining Creditor Nacarat's pockets, say "Most of the things in Creditor Nacarat's pockets are detritus, but that black pocketbook looks interesting."
@@ -10732,7 +10753,7 @@ Understand "pocket" or "detritus" as Creditor Nacarat's pockets.
 Instead of inserting something into Creditor Nacarat's pockets, say "This is a dead body, not your personal chest-of-drawers."
 
 A black pocketbook is in Creditor Nacarat's pockets.
-Understand "coded" or "record/records of/--" or "business" or "transaction/transactions" or "last" or "chronological" or "entry" as the black pocketbook.
+Understand "coded" or "record/records of/--" or "business" or "transaction/transactions" or "last" or "chronological" or "entry" or "book" as the black pocketbook.
 Before pulling, opening, or searching the black pocketbook, try examining the black pocketbook instead.
 Instead of taking the black pocketbook, say "The pocketbook is evidence. You should leave it for the Vigiles investigators."
 
@@ -10864,7 +10885,11 @@ Understand "tumor/tumour/tumours" or "stomach/-- lining" or "mucus/mucosa" or "c
 Chapter 3.29.2.6 - Sal
 
 Sal is a dead undescribed man.
+The description is "The man on the slab is muscle-bound -- built like a gray longhorn, with a countenance to match. His coat has the whiff of sweat and blood. It does not quite conceal the scars that split his knuckles, nor the black lines that crisscross his chest.
+
+You could examine Sal's head, his torso, his arms, or his legs."
 Understand "salio" or "salio's/sal's" or "victim" as Sal.
+Understand "sal" as a thing enclosed by Sal.
 
 Does the player mean doing something with Sal: it is very likely.
 
@@ -10886,26 +10911,117 @@ Before smelling something that is part of Sal, try smelling Sal instead.
 Before touching something that is part of Sal, try touching Sal instead.
 Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Sal, try pushing Sal instead.
 
-sal-examined-quip is a truth state that varies.
-Instead of examining Sal:
-	if sal-examined-quip is false:
-		say "You approach the body.[paragraph break]";
-	say "";
-	if sal-examined-quip is false:
-		wait for any key;
-		now sal-examined-quip is true;
-	say "You could examine Sal's head, his torso, his arms, or his legs.";
-
 Instead of searching Sal, say "You could examine Sal's head, his torso, his arms, or his legs."
 
-Chapter 3.29.2.7 - Sal Endoscopy
+[sal-body-completion-quip is a truth state that varies.
+Every turn when Thugs Investigation is happening and ... is true and sal-body-completion-quip is false:
+	say "(You think you've learned all you can from Sal's body. You should look for more clues elsewhere.)";
+	now sal-body-completion-quip is true.]
 
+Section 3.29.2.6.1 - Head
 
+Sal's head is part of Sal.
+The description is "His skull is monstrous and chiseled. His eyes bleed, glisten, like orbs of bloodshot onyx. But beneath the brutishness so prominent in his features, there is an indescribable and all-too-familiar sadness[first time].
 
-Chapter 3.29.2.8 - Piper
+His mouth is closed. An endoscopy will not be possible here[only]."
+Understand "block" or "of/-- granite" or "skull" or "feature/features" as Sal's head.
+Before searching Sal's head, try opening Sal's mouth instead.
+
+Sal's eyes are a plural-named thing part of Sal.
+The description is "Small and sunken."
+Understand "eye" or "orb/orbs" or "bloodshot" or "onyx" as Sal's eyes.
+Instead of opening Sal's eyes, say "His eyes are already open."
+Instead of closing Sal's eyes, say "That would be dangerous. His eyes are coated in black blood."
+Instead of searching Sal's eyes, say "No answers are forthcoming."
+Before rubbing or touching Sal's eyes, try touching the dried black blood instead.
+
+Sal's mouth is part of Sal.
+The description is "Sal's chin is streaked with black blood from his mouth."
+Understand "chin/jaw" as Sal's mouth.
+Before inserting something into Sal's mouth, try opening Sal's mouth instead.
+Before searching Sal's mouth, try opening Sal's mouth instead.
+Instead of closing Sal's mouth, say "His mouth is already closed."
+Instead of opening Sal's mouth, say "[italic type]Rigor mortis[roman type] has locked his jaw in place."
+
+Section 3.29.2.6.2 - Torso
+
+Sal's torso is part of Sal.
+The description is "If Sal wasn't a canal-man, he had the dress sense of one. His work coat is an intimidating leather mass that could stop knife blades, and looks like it has. Beneath is an unbuttoned shirt, revealing a mass of savage black scars.
+
+[if sal-knuckles-quipped is false]You notice a bit of metal glinting[otherwise]There is a set of knuckle-dusters[end if] in his coat pocket."
+Before knocking on, looking under, rubbing, searching, squeezing, or touching Sal's torso, say "You pat him down but find nothing else of interest." instead.
+
+Sal's work coat is a thing worn by Sal.
+The description is "It's a crinkly brown, with unprepossessing stains splashed here and there."
+The scent is "It smells of the Bilious Canal."
+Understand "cloth/leather" or "mass" or "stain/stains" as Sal's work coat.
+Before knocking on, rubbing, squeezing, taking off, or touching Sal's work coat, try searching Sal's torso instead.
+Before looking under or searching Sal's work coat, try examining Sal's pockets instead.
+Before inserting something into Sal's work coat, now the second noun is Sal's pockets.
+
+Sal's shirt is a thing worn by Sal.
+The description is "Some unbutton their shirts to look fashionable. Others do so because they sweat a great deal in their line of work. You suspect Sal falls into the latter category."
+Understand "unbuttoned" as Sal's shirt.
+Before knocking on, looking under, rubbing, searching, squeezing, taking off, or touching Sal's shirt, try searching Sal's torso instead.
+
+Sal's chest scars are a plural-named thing part of Sal.
+The description is "Once, these would have been red. Now they are black and diseased."
+Understand "scar" or "line/lines" or "black" or "diseased" or "mass" or "of" or "savage" as Sal's chest scars.
+Before rubbing or touching Sal's chest scars, try touching the dried black blood instead.
+
+Sal's pockets are a plural-named container part of Sal's work coat.
+Understand "[Sal's work coat] pocket/pockets" or "of [Sal's work coat]" as Sal's pockets.
+Instead of examining Sal's pockets, say "There's [if sal-knuckles-quipped is false]something[otherwise]a set of knuckle-dusters[end if] inside."
+Before searching Sal's pockets when sal-knuckles-quipped is false, try examining Sal's knuckle-dusters instead.
+Instead of inserting something into Sal's pockets, say "This is a dead body, not your personal chest-of-drawers."
+
+sal-knuckles-quipped is a truth state that varies.
+Sal's knuckle-dusters are a plural-named thing in Sal's pockets.
+The description is "A set of steel knuckle-dusters. Each has a raven engraved in place of the manufacturer's logo."
+Understand "brass" or "knuckle/knuckles" or "duster/dusters/knuckleduster/knuckledusters/knuckle-duster" or "bit" or "of/-- metal/steel" or "in" or "set/pair of/--" or "implement/implements" or "hole/holes" or "nub/nubs" as Sal's knuckle-dusters.
+Instead of taking Sal's knuckle-dusters, say "You should leave the knuckle-dusters as evidence for the Vigiles investigators. Besides, they're too big for your hands."
+
+First instead of examining or taking Sal's knuckle-dusters when sal-knuckles-quipped is false:
+	say "You draw back the leather, revealing a pair of knuckle-dusters. Wicked-looking implements, with holes for the fingers, and grim stains surrounding the pointed nubs.
+
+[wait for any key]Weapons like these aren't uncommon in the Channelworks District. Even Horatio used to own a set. One can't be too careful living and working in the less-frequented parts of the city.
+
+[wait for any key]But you don't often see a knuckle-duster with a raven engraved in place of the manufacturer's logo.";
+	now sal-knuckles-quipped is true;
+	now the engraved ravens are part of Sal's knuckle-dusters.
+	
+Some engraved ravens are a thing.
+The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company.[otherwise]The symbol rings a bell, but you can't quite place it."
+Understand "raven" or "engraving" as the engraved ravens.
+Instead of touching the engraved ravens, say "The engraving is of very fine quality."
+
+After examining the engraved ravens when clue-sal-raven is false:
+	increment clue-ravens-sighted;
+	now clue-sal-raven is true;
+	continue the action.
+	
+Section 3.29.2.6.3 - Arms
+
+Sal's arms are a plural-named thing part of Sal.
+The description is "The sleeves of his coat are partially rolled up, revealing forearms like tree trunks. You can see diseased veins, deformed black things that weave and wither under the skin."
+Understand "arm" as Sal's arms.
+
+Sal's forearms are a plural-named thing part of Sal.
+The description is "The sight is manifestly disturbing."
+Understand "vein/veins" or "diseased" or "deformed" or "black" or "thing/things" or "under/-- the/-- skin" or "forearm" or "tree/-- trunk/trunks" or "sleeve/sleeves" as Sal's forearms.
+
+Section 3.29.2.6.4 - Legs
+
+Sal's legs are a plural-named thing part of Sal.
+The description is "Tough trousers and work boots."
+Understand "leg" or "trouser/trousers" or "boot/boots" as Sal's legs.
+Instead of opening, taking, or taking off Sal's legs, say "You can't imagine why you would want to."
+
+Chapter 3.29.2.7 - Piper
 
 Piper is a dead undescribed woman.
 Understand "piper's" or "victim" as Piper.
+Understand "piper" as something enclosed by Piper.
 
 Does the player mean doing something with Piper: it is very likely.
 
@@ -10929,9 +11045,15 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 
 Instead of searching Piper, say "You could examine Piper's head, her torso, her arms, or her legs."
 
-Chapter 3.29.2.9 - Piper Endoscopy
+Chapter 3.29.2.8 - Piper Endoscopy
 
 
+
+Chapter 3.29.2.9 - Raven Symbols
+
+Every turn when clue-ravens-sighted is greater than 1 and clue-raven is false (this is the unlocking raven symbol questions rule):
+	say "That's the second time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
+	now clue-raven is true.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
