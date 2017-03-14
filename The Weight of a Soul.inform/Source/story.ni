@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 130317.
+The release number is 140317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -942,7 +942,7 @@ Before pushing the player to, try going the second noun instead.
 Before showing something to the player, try examining the noun instead.
 Instead of attacking or cutting the player, say "[if time is critical]This is not the time.[otherwise]Self-harm won't accomplish anything."
 Instead of burning the player, say "No."
-The can't give to yourself rule response (A) is "[if time is critical]This is not the time.[otherwise]If only gifts could be earned so freely."
+Before giving something to the player, say "[if time is critical]This is not the time.[otherwise]Don't be silly." instead.
 Instead of kissing, pushing, pulling, or taking the player, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 Instead of knocking on or touching the player, say "You feel nothing unexpected."
 Instead of rubbing the player, say "[if time is critical]This is not the time.[otherwise]You don't get much cleaner."
@@ -2033,6 +2033,11 @@ Last before doing anything when the player is engaged in endoscopy (this is the 
 		continue the action.
 		
 [Since the before stage doesn't run for out of world actions, this still allows saving, loading, asking for help, and so on.]
+		
+endoscopy-exit-tutorial-quipped is a truth state that varies.
+Before reading a command when the player is engaged in endoscopy and endoscopy-exit-tutorial-quipped is false and the room down from the endoscopic location is not a room:
+	say "(Type >[bold type]out[roman type] to end the endoscopy.)";
+	now endoscopy-exit-tutorial-quipped is true.
 
 Chapter 2.3.10.3 - Starting and Ending an Endoscopy
 
@@ -2043,7 +2048,7 @@ To start an endoscopy on (victim name - some text) via (the aperture - some text
 	wait for any key;
 	now the player is engaged in endoscopy;
 	now the endoscopic location is the destination;
-	now the endoscopic subject text is "Examining [victim name]";
+	now the endoscopic subject text is "Inspecting [victim name]";
 	if the number of characters in the endoscopic subject text is greater than 14, now right alignment depth is the number of characters in the endoscopic subject text;
 	clear the screen;
 	redraw status line;
@@ -2058,7 +2063,7 @@ To end the endoscopy, followed by looking:
 	clear the screen;
 	redraw status line;
 	say line break;
-	say "You wipe down the endoscope and put it in your pocket.[paragraph break]";
+	say "You clean the endoscope and put it in your pocket.[paragraph break]";
 	if followed by looking, try looking.
 
 Part 2.3.11 - Help Menu
@@ -2158,10 +2163,10 @@ A person has some text called the bio-description. The bio-description of a pers
 To say characters-text:
 	say "You have discovered the following notable characters:";
 	repeat with current character running through the list of discovered characters:
-		say "[paragraph break][bold type][bio-name of current character][roman type][if current character is yourself] (yourself)[end if][line break][bio-description of current character][run paragraph on]".
+		say "[paragraph break][bold type][bio-name of current character][roman type][line break][bio-description of current character][run paragraph on]".
 
 When play begins: add yourself to the list of discovered characters.
-The bio-name of yourself is "Servator Marid Orpheia".
+The bio-name of yourself is "Servator Marid Orpheia[roman type] (yourself)".
 The bio-description of yourself is "A seventeen-year-old graduate of the Physicians['] College, currently apprenticed to Doctor Cavala. You have taken care of yourself ever since your parents died four years ago."
 
 When play begins: add Doctor Cavala to the list of discovered characters.
@@ -2175,7 +2180,7 @@ The bio-name of Horatio is "Vigile Horatio".
 The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been temporarily assigned as Doctor Cavala's protector[end if]."
 
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
-The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]??? (The Assassin)".
+The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???[roman type] (The Assassin)".
 The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
@@ -2186,11 +2191,11 @@ The bio-name of Justinian is "Doctor Justinian Volontis".
 The bio-description of Justinian is "Doctor Arturus's protégé, a driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it."
 
 When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
-The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do businessman, according to the Vigiles."
+The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do financial businessman."
 
 When Meeting the Patients ends: add Sal to the list of discovered characters.
 The bio-name of Sal is "Sal and Piper".
-The bio-description of Sal is "Two of Doctor Arturus's patients. A notorious pair of thugs, according to the Vigiles."
+The bio-description of Sal is "Two of Doctor Arturus's patients. A notorious pair of underworld thugs."
 
 Chapter 2.3.11.4 - Map
 
@@ -2567,7 +2572,7 @@ To say journal-text-objectives:
 			add "- Get permission from the Vigiles to examine the body" to L;
 		otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
 			add "- Examine the body" to L;
-		otherwise if clue-arturus-gloves is false or clue-arturus-animus is false:
+		otherwise if arturus-body-completion-quip is false:
 			add "- Examine the body further" to L;
 		if examiner-arturus-found-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
 		if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
@@ -2578,26 +2583,37 @@ To say journal-text-objectives:
 		add "- Find out their identities" to L;
 		add "- Get permission from the Vigiles to examine the bodies" to L;
 		add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-patientrecords-justinian is false:
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+		otherwise:
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	if Nacarat Investigation is happening:
 		add "" to L;
 		add "[italic type]Creditor Nacarat[roman type]" to L;
-		if clue-nacarat-stomach is false and clue-nacarat-pocketbook is false and clue-nacarat-recording is false:
+		if clue-nacarat-stomach is false and clue-nacarat-pocketbook is false and clue-nacarat-recording is false and clue-nacarat-raven is false:
 			add "- Examine the body" to L;
-		otherwise if clue-nacarat-stomach is false or clue-nacarat-pocketbook is false or clue-nacarat-recording is false:
+		otherwise if nacarat-body-completion-quip is false:
 			add "- Examine the body further" to L;
 		if examiner-nacarat-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-patientrecords-justinian is false:
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+		otherwise:
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	if Thugs Investigation is happening:
 		add "" to L;
 		add "[italic type]Sal and Piper[roman type]" to L;
-		add "- Examine Sal's body" to L;
+		if clue-sal-raven is false and the battered keyring is not carried:
+			add "- Examine Sal's body" to L;
+		otherwise if sal-body-completion-quip is false:
+			add "- Examine Sal's body further" to L;
 		add "- Examine Piper's body" to L;
 		if examiner-thugs-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
-	if Four Investigations is happening:
-		let LM be a list;
 		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to LM;
+			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
 		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to LM;
+			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+	if Four Investigations is happening:
+		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
 			add "- Ask around about the meaning of the raven symbol" to LM;
 		if LM is not {}:
@@ -2681,11 +2697,11 @@ To say journal-text-notes:
 				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
 			if clue-nacarat-raven is true:
 				if clue-tradingcompany is true:
-					add "- I learned that Creditor Nacarat is connected to the Greater Corindia Trading Company." to L2;
+					add "- I learned that Creditor Nacarat was connected to the Greater Corindia Trading Company." to L2;
 				otherwise:
 					add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
 			if clue-nacarat-pocketbook is true:
-				add "- I learned that Creditor Nacarat might have hired Sal and Piper recently." to L2;
+				add "- I learned that Creditor Nacarat could have hired Sal and Piper recently." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Creditor Nacarat[roman type]" to LFI;
@@ -2695,9 +2711,11 @@ To say journal-text-notes:
 			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L2;
 			if clue-sal-raven is true:
 				if clue-tradingcompany is true:
-					add "- I learned that Sal is connected to the Greater Corindia Trading Company." to L2;
+					add "- I learned that Sal was connected to the Greater Corindia Trading Company." to L2;
 				otherwise:
 					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
+			if the battered keyring is carried:
+				add "- I found a battered keyring on Sal's belt." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -2731,6 +2749,9 @@ To say journal-text-notes:
 	[---
 	MUSINGS, DAY TWO
 	---]
+	if Four Investigations is happening:
+		if clue-tradingcompany is true:
+			add "- I learned that the raven is a symbol of the Greater Corindia Trading Company, a criminal syndicate. " to LM;
 	if All Quiet on the Western Front is happening:
 		if journal-crucible-witnessed is false:
 			add "- I hope Doctor Cavala and Horatio will be all right at the clinic... " to LM;
@@ -4632,7 +4653,7 @@ Last after going to the Clinic when Bad News from Cavala is happening (this is t
 		say "'Not yet,' you say.[paragraph break]";
 	say "She passes the newspaper to you. 'Take a look at this.'[paragraph break]";
 	wait for any key;
-	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'[roman type][paragraph break]";
+	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic--[roman type][paragraph break]";
 	wait for any key;
 	say "A chill grips your spine.[paragraph break]";
 	wait for any key;
@@ -4672,7 +4693,7 @@ She gives you a withering look.
 You sigh. 'Yes, Doctor.'"	{cavala-badnews-wheretostart, cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-wheretostart	true	true	"'Where should I begin?'"	"'Where should I begin?' you ask.
 
-'You could begin by examining Doctor Arturus's body,' Doctor Cavala says. 'He'll be in his clinic -- I suppose it's Doctor Justinian's clinic now. Talk to Doctor Justinian about it, and check his patient records for possible contagion vectors between the deceased.
+'You could begin by examining the bodies,' Doctor Cavala says. 'He'll be in his clinic -- I suppose it's Doctor Justinian's clinic now. Talk to Doctor Justinian about it, and check his patient records for possible contagion vectors between the deceased.
 
 'It might also be worth asking Zoiro about his brother's associations. See if you can find any correlation between the patients so far. With any luck, we'll uncover the source of the outbreak.'"	{cavala-badnews-whattofind, cavala-badnews-aboutarturus, cavala-badnews-aboutjustinian, cavala-badnews-onit}
 cavala-badnews-whattofind	true	true	"'What should I look out for?'"	"'What should I look out for?'
@@ -4716,12 +4737,13 @@ To say cavala-badnews-onit-text:
 Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
 The day-two copy of the Libri Liberi is a thing.
-The printed name is "copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
-The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could 'mark the beginning of a dangerous epidemic--'".
+The printed name is "[if Day Three has ended]backdated [end if]copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic.".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
 Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
 Understand "yesterday's" or "yesterday" as the day-two copy of the Libri Liberi when the current day is Day Three.
+Understand "backdated" as the day-two copy of the Libri Liberi when Day Three has ended.
 
 Instead of searching the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
 Instead of eating the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
@@ -7559,7 +7581,6 @@ The sound is "The sounds of music and laughter fill the forum."
 The scent is "You smell ice cream and flowers mingling in the mist."
 The exit reminder is "You can go east to Miller's Gate, west to the basilica, north to the Via Terminalis junction, or south along the Via Mercurii."
 
-Before buying in the Grand Forum, try talking to the traveling merchants instead.
 Before going inside in the Grand Forum, try going west instead.
 Before examining west in the Grand Forum, try examining the view of the basilica instead.
 Before examining inside in the Grand Forum, try examining the view of the basilica instead.
@@ -7577,53 +7598,6 @@ Before entering the view of the junction in the Grand Forum, try going north ins
 Before entering the view of the Via Mercurii in the Grand Forum, try going south instead.
 Before entering the view of the basilica in the Grand Forum, try going west instead.
 Before entering the view of Miller's Gate in the Grand Forum, try going east instead.
-
-Some promenading couples are undescribed mixed-race people in the Grand Forum.
-The description is "You recognize them by their closeness."
-The sound is "They are chatting and laughing."
-The scent is "You smell perfume and cologne."
-Understand "couple" or "woman/women" as the promenading couples.
-Instead of talking to the promenading couples, say "It wouldn't be polite to intrude on the couples."
-
-Some traveling merchants are undescribed mixed-race people in the Grand Forum.
-The description is "Carts selling flowers, books, ice cream."
-The sound is "They're peddling their wares."
-The scent is "The flowers smell sweet."
-Understand "cart/carts" or "flower/flowers" or "book/books" or "ice-cream/ice-creams" or "ice" or "cream/creams" or "merchant" or "wares" or "woman/women" as the traveling merchants.
-Instead of talking to the traveling merchants, say "You don't have much money to spend on luxuries. Perhaps another time."
-
-Some street buskers are undescribed mixed-race people in the Grand Forum.
-The description is "[one of]You watch a ventriloquist and his irreverent dolls for a while.[or]You enjoy a spontaneous jazz rendition of [italic type]The Words I Couldn't Say[roman type].[or]You watch a bawdy puppet show about the adventures of a three-legged mutant.[or]You watch a stage illusionist perform increasingly implausible card tricks, much to her audience's delight.[or]That's enough entertainment for one day. You shouldn't keep Doctor Cavala waiting.[stopping]".
-Before listening to the street buskers, try examining the street buskers instead.
-The scent is "Fantastic smells abound."
-Understand "busker" or "ventriloquist/ventriloquists" or "doll/dolls" or "puppet/puppets" or "stage/-- illusionist" or "card/-- trick/tricks" or "show/shows" or "woman/women" as the street buskers.
-Instead of talking to the street buskers, say "The buskers are too busy for conversation."
-After examining the street buskers:
-	now ambience suppression is true;
-	now journal-buskers-examined is true;
-	continue the action.
-
-Some playing children are undescribed mixed-race people in the Grand Forum.
-The description is "Human, goblin, mutant. They remind you of your own childhood in the Lake District, not so long ago."
-The sound is "They're making a lot of lively noise, as children do."
-The scent is "Some of these kids will have to take a shower later."
-Understand "boy/boys" or "girl/girls" or "child" or "kid/kids" or "lively" or "noise" as the playing children.
-Instead of talking to the playing children, say "You play with the children for a while."
-
-Some paper kites are faraway scenery in the Grand Forum.
-The description is "Simple childrens['] kites. Some have sigils of suspension on them, perhaps drawn by parents or older siblings."
-The sound is "The kites flap in the breeze."
-Understand "childrens'" or "kite" or "sigil/sigils of/-- suspension/--" or "wooden/-- frame/frames" or "string/strings" as the paper kites.
-Instead of looking under the paper kites, say "The paper kites flap on wooden frames."
-Instead of attacking or cutting the paper kites, say "That would make the children cry."
-Instead of pulling, pushing, rubbing, swinging, taking, touching, or turning the paper kites, say "You're too old for games like that."
-
-Some amicable old men are undescribed mixed-race men in the Grand Forum.
-The description is "Amicable old men, puffing on pipes and discussing old friendships."
-The sound is "It's all war stories and nostalgia."
-The scent is "Tobacco smoke wafts around them."
-Understand "pipe/pipes" or "tobacco" or "smoke" as the amicable old men.
-Instead of talking to the amicable old men, say "You make some small talk with the old men, who look quite delighted to have someone new to talk to."
 
 Chapter 3.17.1.1 - Mural of Solphos
 
@@ -7694,7 +7668,57 @@ Part 3.17.2 - Grand Forum during Day One
 
 Instead of going south in the Grand Forum when the bundle of documents is undelivered, say "Hold on. Since the basilica is right there, you might as well drop off the bundle of documents first."
 
-Chapter 3.17.2.1 - Newsboy
+Chapter 3.17.2.1 - Normal Lives
+
+Some promenading couples are undescribed mixed-race people in the Grand Forum.
+The description is "You recognize them by their closeness."
+The sound is "They are chatting and laughing."
+The scent is "You smell perfume and cologne."
+Understand "couple" or "woman/women" as the promenading couples.
+Instead of talking to the promenading couples, say "It wouldn't be polite to intrude on the couples."
+
+Some traveling merchants are undescribed mixed-race people in the Grand Forum.
+The description is "Carts selling flowers, books, ice cream."
+The sound is "They're peddling their wares."
+The scent is "The merchants' wares smell sweet."
+Understand "cart/carts" or "flower/flowers" or "book/books" or "ice-cream/ice-creams" or "ice" or "cream/creams" or "merchant" or "wares" or "woman/women" as the traveling merchants.
+Before buying when the traveling merchants are in the location, try talking to the traveling merchants instead.
+Instead of talking to the traveling merchants, say "You don't have much money to spend on luxuries. Perhaps another time."
+
+Some street buskers are undescribed mixed-race people in the Grand Forum.
+The description is "[one of]You watch a ventriloquist and his irreverent dolls for a while.[or]You enjoy a spontaneous folk rendition of [italic type]The Words I Couldn't Say[roman type].[or]You watch a bawdy puppet show about the adventures of a three-legged mutant.[or]You watch a stage illusionist perform increasingly implausible card tricks, much to her audience's delight.[or]That's enough entertainment for one day. You shouldn't keep Doctor Cavala waiting.[stopping]".
+Before listening to the street buskers, try examining the street buskers instead.
+The scent is "Fantastic smells abound."
+Understand "busker" or "ventriloquist/ventriloquists" or "doll/dolls" or "puppet/puppets" or "stage/-- illusionist" or "card/-- trick/tricks" or "show/shows" or "woman/women" as the street buskers.
+Instead of talking to the street buskers, say "The buskers are too busy for conversation."
+After examining the street buskers:
+	now ambience suppression is true;
+	now journal-buskers-examined is true;
+	continue the action.
+
+Some playing children are undescribed mixed-race people in the Grand Forum.
+The description is "Human, goblin, mutant. They remind you of your own childhood in the Lake District, not so long ago."
+The sound is "They're making a lot of lively noise, as children do."
+The scent is "Some of these kids will have to take a shower later."
+Understand "boy/boys" or "girl/girls" or "child" or "kid/kids" or "lively" or "noise" as the playing children.
+Instead of talking to the playing children, say "You play with the children for a while."
+
+Some paper kites are faraway scenery in the Grand Forum.
+The description is "Simple childrens['] kites. Some have sigils of suspension on them, perhaps drawn by parents or older siblings."
+The sound is "The kites flap in the breeze."
+Understand "childrens'" or "kite" or "sigil/sigils of/-- suspension/--" or "wooden/-- frame/frames" or "string/strings" as the paper kites.
+Instead of looking under the paper kites, say "The paper kites flap on wooden frames."
+Instead of attacking or cutting the paper kites, say "That would make the children cry."
+Instead of pulling, pushing, rubbing, swinging, taking, touching, or turning the paper kites, say "You're too old for games like that."
+
+Some amicable old men are undescribed mixed-race men in the Grand Forum.
+The description is "Amicable old men, puffing on pipes and discussing old friendships."
+The sound is "It's all war stories and nostalgia."
+The scent is "Tobacco smoke wafts around them."
+Understand "pipe/pipes" or "tobacco" or "smoke" as the amicable old men.
+Instead of talking to the amicable old men, say "You make some small talk with the old men, who look quite delighted to have someone new to talk to."
+
+Chapter 3.17.2.2 - Newsboy
 
 The newsboy is a human male person in the Grand Forum. "A newsboy is handing out copies of the [italic type]Libri Liberi[roman type] to passers-by."
 The description is "A little human boy with ruddy cheeks and blond hair. His white cap marks him as an errand-boy for Revelaris Press."
@@ -7718,15 +7742,16 @@ Instead of talking to the newsboy for the first time:
 When Day One ends (this is the despawn the newsboy rule):
 	now the newsboy is nowhere.
 
-Chapter 3.17.2.2 - Day-One Copy of the Libri Liberi
+Chapter 3.17.2.3 - Day-One Copy of the Libri Liberi
 
 The day-one copy of the Libri Liberi is a thing.
-The printed name is "copy of [if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The printed name is "[if Day Two has ended]outdated [end if]copy of [if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
 The description is "[if time is critical]The newspaper can't help you.[otherwise]The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
 The scent is "[if the current day is Day One]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-one copy of the Libri Liberi.
 Understand "today's" or "today" as the day-one copy of the Libri Liberi when the current day is Day One.
 Understand "yesterday's" or "yesterday" as the day-one copy of the Libri Liberi when the current day is Day Two.
+Understand "outdated" as the day-one copy of the Libri Liberi when Day Two has ended.
 
 Instead of searching the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
 Instead of eating the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
@@ -7780,7 +7805,7 @@ Instead of giving the day-one copy of the Libri Liberi to someone when Day One i
 	otherwise if the second noun is a creature:
 		say "There is no response.";
 	otherwise if the second noun is friendly:
-		say "You don't think [the second noun] would want an outdated newspaper.";
+		say "You don't think [the second noun] is interested in [if Day Two is happening]yesterday's[otherwise]old[end if] news.";
 	otherwise:
 		say "You don't see what that would accomplish.";
 
@@ -10336,17 +10361,19 @@ Before doing anything when the current action involves the forensic tarpaulins a
 [Here we define the body the player has most recently examined as the body that it's most likely the player wants to examine. This was previously accomplished with a clusterfuck of "if the noun part of the current action was X..." constructs, but that ended up being a large processing bottleneck during the update chronological records rule, and made the game basically unplayable on Quixe.]
 
 The body-currently-being-examined is a thing that varies.
-
-Does the player mean doing something with something that is enclosed by the body-currently-being-examined:
-	it is likely.
+Does the player mean doing something with the body-currently-being-examined: it is very likely.
+Does the player mean inserting the endoscope into the body-currently-being-examined: it is very likely.
+Does the player mean doing something with something that is enclosed by the body-currently-being-examined: it is likely.
+Does the player mean inserting the endoscope into something that is enclosed by the body-currently-being-examined: it is likely.
 
 Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
-Understand "arturus's" or "victim" as Doctor Arturus.
-Understand "doctor's" or "arturus" as a thing enclosed by Doctor Arturus.
+Understand "arturus's body/corpse/cadaver" or "victim" as Doctor Arturus.
+Understand "arturus" or "doctor's" as something enclosed by Doctor Arturus.
 
 Does the player mean doing something with Doctor Arturus: it is very likely.
+Does the player mean inserting the endoscope into Doctor Arturus: it is very likely.
 		
 Before doing something with Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
 Before doing something with something enclosed by Doctor Arturus: now the body-currently-being-examined is Doctor Arturus.
@@ -10426,7 +10453,7 @@ Instead of taking Doctor Arturus's glasses, say "You don't think you ought to ca
 Section 3.29.2.2.2 - Torso
 
 Doctor Arturus's torso is part of Doctor Arturus.
-The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] pictures. Your eyes are drawn  to his ruined sleeves, which cling to his skin like grotesque pelagic rays."
+The description is "The doctor is a thin man, shrunken with age. His natron coat is of that old-fashioned button-up sort you see in [italic type]laterna magica[roman type] pictures. Your eyes are drawn to his ruined sleeves, which cling to his skin like grotesque pelagic rays."
 Before knocking on, looking under, rubbing, searching, squeezing, or touching Doctor Arturus's torso, say "You pat him down but find nothing of interest." instead.
 
 Doctor Arturus's natron coat is a thing worn by Doctor Arturus.
@@ -10436,7 +10463,7 @@ Instead of knocking on, looking under, rubbing, searching, squeezing, taking off
 
 Some old-fashioned buttons are part of Doctor Arturus's natron coat.
 The description is "Beady bloodstained buttons."
-Understand "button" or "arturus/arturus's" or "doctor" as the old-fashioned buttons.
+Understand "button" as the old-fashioned buttons.
 Instead of doing anything other than examining with the old-fashioned buttons, say "The buttons don't seem pertinent to the investigation."
 
 Section 3.29.2.2.3 - Arms
@@ -10595,10 +10622,11 @@ Creditor Nacarat is a dead undescribed man.
 The description is "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
 
 You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
-Understand "nacarat's" or "victim" or "bearing/poise" as Creditor Nacarat.
-Understand "creditor's" or "nacarat" as a thing enclosed by Doctor Arturus.
+Understand "nacarat's body/corpse/cadaver" or "victim" or "bearing/poise" as Creditor Nacarat.
+Understand "creditor's" or "nacarat" as something enclosed by Creditor Nacarat.
 
 Does the player mean doing something with Creditor Nacarat: it is very likely.
+Does the player mean inserting the endoscope into Creditor Nacarat: it is very likely.
 
 Before doing something with Creditor Nacarat: now the body-currently-being-examined is Creditor Nacarat.
 Before doing something with something enclosed by Creditor Nacarat: now the body-currently-being-examined is Creditor Nacarat.
@@ -10621,7 +10649,7 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
 nacarat-body-completion-quip is a truth state that varies.
-Every turn when Nacarat Investigation is happening and clue-nacarat-stomach is true and clue-nacarat-pocketbook is true and clue-nacarat-recording is true and nacarat-body-completion-quip is false:
+Every turn when Nacarat Investigation is happening and clue-nacarat-stomach is true and clue-nacarat-pocketbook is true and clue-nacarat-recording is true and clue-nacarat-raven is true and nacarat-body-completion-quip is false:
 	say "(You think you've learned all you can from Creditor Nacarat's body. You should look for more clues elsewhere.)";
 	now nacarat-body-completion-quip is true.
 
@@ -10683,7 +10711,7 @@ The glyph of recording is part of Creditor Nacarat's jacket.
 The printed name is "glyph in Creditor Nacarat's jacket lining".
 The description is "It appears to be a glyph of recording. Although it has suffered partial bloodstain damage, it still appears to be functional[if clue-nacarat-recording is false].
 
-You could listen to the stored recording if you wanted[end if]."
+(You could >[bold type]listen to[roman type] the recording.)[otherwise]."
 Understand "quicksilver" or "lining" or "geometric" or "construct/inscription/index" or "stored" or "in [Creditor Nacarat's jacket]" as the glyph of recording.
 Instead of rubbing or touching the glyph of recording, say "You don't want to damage the glyph any further."
 
@@ -10698,7 +10726,7 @@ The glyph flickers aglow, coursing with stained quicksilver, and the inscription
 	wait for any key;
 	say "The crash of shards shattering.[paragraph break]";
 	wait for any key;
-	say "'Are you feeling quite well, Creditor?' you hear Doctor Arturus's voice echo. 'Perhaps we should--'[paragraph break]";
+	say "'Creditor?' you hear Doctor Arturus's voice echo. 'Are you feeling quite all right? Perhaps we should--'[paragraph break]";
 	wait for any key;
 	say "The words are drowned out by coughing. You hear the sound of friction on fabric, growing louder and louder.[paragraph break]";
 	wait for any key;
@@ -10706,7 +10734,7 @@ The glyph flickers aglow, coursing with stained quicksilver, and the inscription
 	if clue-nacarat-recording is false:
 		say line break;
 		wait for any key;
-		say "It sounds like Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged. What could the significance of that be?";
+		say "It sounds like Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged.";
 		now clue-nacarat-recording is true.
 
 Some mother-of-pearl buttons are part of Creditor Nacarat's jacket.
@@ -10888,10 +10916,11 @@ Sal is a dead undescribed man.
 The description is "The man on the slab is muscle-bound -- built like a gray longhorn, with a countenance to match. His coat has the whiff of sweat and blood. It does not quite conceal the scars that split his knuckles, nor the black lines that crisscross his chest.
 
 You could examine Sal's head, his torso, his arms, or his legs."
-Understand "salio" or "salio's/sal's" or "victim" as Sal.
-Understand "sal" as a thing enclosed by Sal.
+Understand "salio" or "salio's/sal's body/corpse/cadaver" or "victim" as Sal.
+Understand "sal" as something enclosed by Sal.
 
 Does the player mean doing something with Sal: it is very likely.
+Does the player mean inserting the endoscope into Sal: it is very likely.
 
 Before doing something with Sal: now the body-currently-being-examined is Sal.
 Before doing something with something enclosed by Sal: now the body-currently-being-examined is Sal.
@@ -10912,11 +10941,12 @@ Before touching something that is part of Sal, try touching Sal instead.
 Before knocking on, pushing, pulling, rubbing, squeezing, or taking something that is part of Sal, try pushing Sal instead.
 
 Instead of searching Sal, say "You could examine Sal's head, his torso, his arms, or his legs."
+Before inserting the endoscope into Sal, say "There's no suitable point of entry." instead.
 
-[sal-body-completion-quip is a truth state that varies.
-Every turn when Thugs Investigation is happening and ... is true and sal-body-completion-quip is false:
+sal-body-completion-quip is a truth state that varies.
+Every turn when Thugs Investigation is happening and clue-sal-raven is true and the battered keyring is carried and sal-body-completion-quip is false:
 	say "(You think you've learned all you can from Sal's body. You should look for more clues elsewhere.)";
-	now sal-body-completion-quip is true.]
+	now sal-body-completion-quip is true.
 
 Section 3.29.2.6.1 - Head
 
@@ -10952,7 +10982,9 @@ The description is "If Sal wasn't a canal-man, he had the dress sense of one. Hi
 Before knocking on, looking under, rubbing, searching, squeezing, or touching Sal's torso, say "You pat him down but find nothing else of interest." instead.
 
 Sal's work coat is a thing worn by Sal.
-The description is "It's a crinkly brown, with unprepossessing stains splashed here and there."
+The description is "It's a crinkly brown, with unprepossessing stains splashed here and there.
+
+[if sal-knuckles-quipped is false]You notice a bit of metal glinting[otherwise]There is a set of knuckle-dusters[end if] in his coat pocket."
 The scent is "It smells of the Bilious Canal."
 Understand "cloth/leather" or "mass" or "stain/stains" as Sal's work coat.
 Before knocking on, rubbing, squeezing, taking off, or touching Sal's work coat, try searching Sal's torso instead.
@@ -10979,12 +11011,12 @@ sal-knuckles-quipped is a truth state that varies.
 Sal's knuckle-dusters are a plural-named thing in Sal's pockets.
 The description is "A set of steel knuckle-dusters. Each has a raven engraved in place of the manufacturer's logo."
 Understand "brass" or "knuckle/knuckles" or "duster/dusters/knuckleduster/knuckledusters/knuckle-duster" or "bit" or "of/-- metal/steel" or "in" or "set/pair of/--" or "implement/implements" or "hole/holes" or "nub/nubs" as Sal's knuckle-dusters.
-Instead of taking Sal's knuckle-dusters, say "You should leave the knuckle-dusters as evidence for the Vigiles investigators. Besides, they're too big for your hands."
+Instead of taking Sal's knuckle-dusters, say "The knuckle-dusters are evidence. You should leave them for the Vigiles investigators."
 
 First instead of examining or taking Sal's knuckle-dusters when sal-knuckles-quipped is false:
 	say "You draw back the leather, revealing a pair of knuckle-dusters. Wicked-looking implements, with holes for the fingers, and grim stains surrounding the pointed nubs.
 
-[wait for any key]Weapons like these aren't uncommon in the Channelworks District. Even Horatio used to own a set. One can't be too careful living and working in the less-frequented parts of the city.
+Weapons like these aren't uncommon in the Channelworks District. Even Horatio used to own a set. One can't be too careful living and working in the less-frequented parts of the city.
 
 [wait for any key]But you don't often see a knuckle-duster with a raven engraved in place of the manufacturer's logo.";
 	now sal-knuckles-quipped is true;
@@ -11013,17 +11045,65 @@ Understand "vein/veins" or "diseased" or "deformed" or "black" or "thing/things"
 Section 3.29.2.6.4 - Legs
 
 Sal's legs are a plural-named thing part of Sal.
-The description is "Tough trousers and work boots."
+The description is "Tough trousers and work boots. There are clumps of grime encrusted in his soles, and other things that you don't really want to dwell on[if the battered keyring is undescribed].
+
+Hanging from Sal's belt is a battered keyring[end if]."
 Understand "leg" or "trouser/trousers" or "boot/boots" as Sal's legs.
 Instead of opening, taking, or taking off Sal's legs, say "You can't imagine why you would want to."
+
+Some clumps of grime are part of Sal's legs.
+The description is "You've learned to stomach a lot of things as a doctor's apprentice, but this is something else entirely."
+Understand "clump" or "sole/soles" as the clumps of grime.
+Before doing anything other than examining or listening with the clumps of grime, say "You would rather not." instead.
+
+Sal's belt is a thing worn by Sal.
+The description is "A rugged leather belt[if the battered keyring is undescribed]. There's a keyring hanging from it[end if]."
+Understand "leather" as Sal's belt.
+Instead of opening, taking, or taking off Sal's belt, say "You shouldn't unduly disturb the body."
+
+After examining Sal's legs when the battered keyring is nowhere:
+	now the battered keyring is in Arturus's Clinic;
+	now the enabled of examiner-thugs-keyring is true;
+	continue the action.
+
+After examining Sal's belt when the battered keyring is nowhere:
+	now the battered keyring is in Arturus's Clinic;
+	now the enabled of examiner-thugs-keyring is true;
+	continue the action.
+
+The battered keyring is an undescribed key-item.
+The description is "A loop of steel wire[if the battered keyring is described] you found on Sal's body[end if]. It holds a pair of crudely fashioned keys, the sort used in old buildings and cheap locks[if the battered keyring is undescribed and keyring-permission-granted is false].
+
+You wonder if Examiner Velox will allow you to borrow it[otherwise if the battered keyring is undescribed].
+
+Examiner Velox gave you implicit permission to borrow this keyring[end if]."
+Understand "key/keys" or "crude/crudely" or "fashioned" or "ring" or "steel" or "loop" or "wire" as the battered keyring.
+Instead of attacking or cutting the battered keyring, say "This keyring is technically still evidence. The Vigiles wouldn't appreciate you returning it piecemeal."
+Instead of swinging the battered keyring, say "The keys jangle on the wire."
+
+keyring-permission-granted is a truth state that varies.
+After taking the battered keyring when the battered keyring is undescribed:
+	now the battered keyring is described;
+	now the enabled of examiner-thugs-keyring is false;
+	if keyring-permission-granted is false:
+		say "You glance at Examiner Velox. 'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'
+
+'Well--' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
+
+[wait for any key]'I will,' you reply. 'Thank you.'
+
+[wait for any key]You pocket the keyring.";
+	otherwise:
+		continue the action.
 
 Chapter 3.29.2.7 - Piper
 
 Piper is a dead undescribed woman.
-Understand "piper's" or "victim" as Piper.
+Understand "piper's body/corpse/cadaver" or "victim" as Piper.
 Understand "piper" as something enclosed by Piper.
 
 Does the player mean doing something with Piper: it is very likely.
+Does the player mean inserting the endoscope into Piper: it is very likely.
 
 Before doing something with Piper: now the body-currently-being-examined is Piper.
 Before doing something with something enclosed by Piper: now the body-currently-being-examined is Piper.
@@ -11053,12 +11133,19 @@ Chapter 3.29.2.9 - Raven Symbols
 
 Every turn when clue-ravens-sighted is greater than 1 and clue-raven is false (this is the unlocking raven symbol questions rule):
 	say "That's the second time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
+	now the enabled of examiner-raven is true;
+	now the enabled of justinian-4inv-raven is true;
 	now clue-raven is true.
+	
+To discover the Trading Company connection:
+	now the enabled of examiner-raven is false;
+	now the enabled of justinian-4inv-raven is false;
+	now clue-tradingcompany is true.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
 
 Rule for writing a paragraph about Justinian when Four Investigations is happening:
-	say "[An Examiner Velox] and his investigators are huddled around [if Meeting the Patients has ended]the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper[otherwise]a group of tarpaulin-covered bodies[end if]. Beside them, Justinian sits at a coffee table, lost in thought.";
+	say "[An Examiner Velox] and his investigators are huddled around [if Meeting the Patients has ended]the bodies of Doctor Arturus, Creditor Nacarat, Sal, and Piper[otherwise]a group of tarpaulin-covered bodies[end if]. Beside them, Justinian sits at a coffee table, brooding.";
 	now the Vigiles investigators are mentioned;
 	now Examiner Velox is mentioned;
 	now Justinian is mentioned.
@@ -11185,7 +11272,7 @@ To say examiner-exposition:
 	wait for any key;
 	say "'Here are the four victims of the disease,' Examiner Velox says. 'We've made some preliminary investigations into their identities. Looking for identification on the bodies, cross-referencing against our records, [italic type]et cetera...'[roman type][paragraph break]";
 	wait for any key;
-	say "'What have you found?' you ask.
+	say "'What can you tell me?' you ask.
 
 'The man on the left is Doctor Arturus -- I see you're already familiar with him. Very good. The one beside him, the well-dressed man, is Creditor Nacarat of the Furopolis Securities Exchange. He's rather well-known in certain circles of society -- he has been implicated in some fraud allegations, but nothing concrete.'[paragraph break]";
 	wait for any key;
@@ -11205,6 +11292,9 @@ examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Vel
 examiner-causeofdeath	true	true	"'The victims all died of the same disease?'"	"'The victims all died of the same disease?'
 
 Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
+
+The examiner raises an eyebrow. 'It... it does, now that you mention it. The raven is one of the symbols of the Greater Corindia Trading Company -- it's a criminal syndicate, one of the biggest in Furopolis. If some of these people had been involved...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-id	true	true	"'You're certain about his identity?'"	"'You're certain about his identity?'
 
@@ -11230,20 +11320,25 @@ examiner-nacarat-circum	true	false	"'What do you know about the circumstances of
 He shrugs. 'Creditor Nacarat was a patient here before he died. All the signs suggest he died here, together with Sal and Piper.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-notable, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-nacarat-notable	true	false	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-nacarat-notable-asked is true], again[end if]?'
 
-A twitch of the mustache. 'There is a glyph of recording in the inner lining of his jacket. It holds an intriguing, if fragmented, phonographic transcription -- we did not find it particularly useful, but it may be worth listening to regardless.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+A twitch of the mustache. 'There is a glyph of recording in the inner lining of his jacket. It holds an intriguing, if fragmented, phonographic transcription. We did not find it particularly useful, but it may be worth listening to regardless.'"	{examiner-nacarat-id, examiner-nacarat-timeofdeath, examiner-nacarat-circum, examiner-arturus-ask, examiner-thugs-ask, examiner-thanksbye}
+examiner-thugs-ask	true	false	"'Regarding Sal and Piper...'"	"'Regarding Sal and Piper...'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-id	true	false	"'Who were they again?'"	"'Who were they again?'
 
-'We believe Sal and Piper to have been criminals operating out of the Shanty Quarter,' he replies. 'They were notorious underworld enforcers, according to our contacts.'"	{examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+'We believe Sal and Piper to have been criminals operating out of the Shanty Quarter,' he replies. 'They were notorious underworld enforcers, according to our contacts.'"	{examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-timeofdeath	true	false	"'What were the times of death[if examiner-thugs-timeofdeath-asked is true], again[end if]?'"	"'What were the times of death[if examiner-thugs-timeofdeath-asked is true], again[end if]?'
 
-'Both of them died around the same time,' Examiner Velox replies, 'though the precise time is uncertain. I am given to believe that they died [if examiner-nacarat-timeofdeath-asked is true]around the same time as Creditor Nacarat -- [end if]around thirty hours ago, on the night of the Third[if examiner-nacarat-timeofdeath-asked is false].'[paragraph break][italic type]The night Reden died,[roman type] you mentally append.[otherwise].'"	{examiner-thugs-id, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+'Both of them died around the same time,' Examiner Velox replies, 'though the precise time is uncertain. I am given to believe that they died [if examiner-nacarat-timeofdeath-asked is true]around the same time as Creditor Nacarat -- [end if]around thirty hours ago, on the night of the Third[if examiner-nacarat-timeofdeath-asked is false].'[paragraph break][italic type]The night Reden died,[roman type] you mentally append.[otherwise].'"	{examiner-thugs-id, examiner-thugs-circum, examiner-thugs-notable, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-circum	true	false	"'What do you know about the circumstances of their deaths[if examiner-thugs-circum-asked is true], again[end if]?'"	"'What do you know about the circumstances of their deaths[if examiner-thugs-circum-asked is true], again[end if]?'
 
-'As they were patients in the clinic,' he replies, 'they likely died here, together with Creditor Nacarat. The signs they exhibit corroborate that.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+'As they were patients in the clinic,' he replies, 'they likely died here, together with Creditor Nacarat. The signs they exhibit corroborate that.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-notable, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-notable	true	false	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'"	"'Is there anything I should be aware of[if examiner-thugs-notable-asked is true], again[end if]?'
 
-'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions... although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions... although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
+examiner-thugs-keyring	false	true	"'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'"	"'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'
+
+'Well--' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
+
+'I will,' you reply. 'Thank you.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thanksbye	true	false	"'I'll keep investigating.'"	"'I'll keep investigating.'
 
 'Very well. I will be here if you have any further questions.'
@@ -11252,6 +11347,8 @@ You step back, and Examiner Velox returns to his work."	{}
 examiner-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
 
 You step back, and Examiner Velox returns to his work."	{}
+
+After reading out examiner-raven: discover the Trading Company connection.
 
 examiner-arturus-found-asked is a truth state that varies.
 examiner-arturus-timeofdeath-asked is a truth state that varies.
@@ -11275,6 +11372,7 @@ examiner-thugs-notable-asked is a truth state that varies.
 After reading out examiner-thugs-timeofdeath: now examiner-thugs-timeofdeath-asked is true.
 After reading out examiner-thugs-circum: now examiner-thugs-circum-asked is true.
 After reading out examiner-thugs-notable: now examiner-thugs-notable-asked is true.
+After reading out examiner-thugs-keyring: now keyring-permission-granted is true.
 
 Chapter 3.29.3.2 - Justinian during Four Investigations
 
@@ -11288,27 +11386,34 @@ Table of Justinian 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-4inv-home	true	false	""	"Justinian brightens up as you approach him.
 
-'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
+'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-nevermind}
 justinian-4inv-discovery	true	false	"'Can you tell me again about how you discovered the body?'"	"'Can you tell me again about... about how you discovered the body?'
 
-He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought.
 
-'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
-'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on the disease, again?'
 
-Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-goodbye}
+Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
 
-Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-nevermind}
+Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-raven, justinian-4inv-goodbye}
+justinian-4inv-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
+
+'A raven symbol?'
+
+Justinian furrows his brow.
+
+[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the logo of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
