@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 140317.
+The release number is 150317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -229,11 +229,11 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	
-[When The Game is Afoot begins:
+When The Game is Afoot begins:
 	say "(Developer's note: At this point, only the Turris Infinita has new content. The rest of the district is unchanged from Day One.)";
 	
-When Meeting the Patients ends:
-	say "(Developer's note: At this point, only Doctor Arturus's body and Creditor Nacarat's body can be examined. Further investigation scenes have not yet been written.)";]
+When The Game is Afoot ends:
+	say "(Developer's note: At this point, only the bodies in Arturus's Clinic can be examined. Further investigation scenes have not yet been written.)";
 	
 
 Book 1.2 - Days and Scenes
@@ -1585,7 +1585,7 @@ Carry out going home:
 	if Marid's Room is visited:
 		try approaching Marid's Room;
 	otherwise:
-		say "That isn't a room you've visited[if the player has not tried going].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
+		say "That isn't a place you've visited[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
 
 Knocking on is an action applying to one thing. Understand "knock on/-- [something]" or "tap [something]" as knocking on.
 Check knocking on an openable door: say "There is no response."; stop the action.
@@ -1646,11 +1646,14 @@ Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]Th
 
 Part 2.3.4 - New Parser Error Messages
 
+look-reminder-printed is a truth state that varies.
+
 Rule for printing a parser error when the latest parser error is the can't see any such thing error (this is the new can't see any such thing rule):
 	if the player's command includes "go/walk/run":
 		say "You can only go in compass directions, or up, down, in, or out." instead;
 	otherwise:
-		say "That is either not important or not something you can see[if the current action has not been looking].[paragraph break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)[otherwise]." instead.
+		say "That is either not important or not something you can see.[line break][if look-reminder-printed is false][line break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)";
+		now look-reminder-printed is true.
 	
 Rule for printing a parser error when the latest parser error is the not a verb I recognise error or the latest parser error is the didn't understand that number error (this is the new not a verb I recognise rule):
 	say "That object or command isn't available[one of].
@@ -1659,11 +1662,22 @@ Rule for printing a parser error when the latest parser error is the not a verb 
 	
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
 	if the player's command includes "go/revisit/return":
-		say "That isn't a room you've visited[if the player has not tried going].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise]." instead;
+		say "That isn't a place you've visited[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise]." instead;
 	otherwise:
-		say "That is either not important or not something you can see[if the current action has not been looking].[paragraph break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)[otherwise]." instead.
+		say "That is either not important or not something you can see.[line break][if look-reminder-printed is false][line break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)";
+		now look-reminder-printed is true.
 	
 Part 2.3.5 - New Action Behavior
+
+player-knows-look is a truth state that varies.
+Before looking when player-knows-look is false (this is the so you do know how to look rule):
+	now player-knows-look is true;
+	continue the action.
+
+player-knows-go is a truth state that varies.
+Before going a direction when player-knows-go is false (this is the so you do know how to go rule):
+	now player-knows-go is true;
+	continue the action.
 
 After opening (this is the reveal any newly visible interior even if it contains nothing rule):
 	if the noun is an opaque container and
@@ -1905,17 +1919,13 @@ Understand "yell at [something]" as talking to.
 
 Does the player mean talking to something that is not a person: it is unlikely.
 
-Check talking to something that is not a person (this is the can't talk to inanimate objects rule): say "You won't get much of a response." instead.
+Check talking to something that is not a living person (this is the can't talk to inanimate objects rule): say "You won't get much of a response." instead.
 
 Check talking to the player (this is the can't talk to yourself rule): say "You aren't that far gone, Marid." instead.
 
 Check talking to an other person when the home dialogue branch of the noun is the null dialogue branch (this is the can't talk to someone with no home dialogue rule): say "[The noun] [have] nothing to say to you." instead.
 
-Check talking to an other person when the enabled of the home dialogue branch of the noun is false (this is the can't talk to someone with disabled home dialogue rule):
-	if the noun is living:
-		say "[The noun] [have] nothing to say to you." instead;
-	otherwise:
-		say "There is no response." instead.
+Check talking to an other person when the enabled of the home dialogue branch of the noun is false (this is the can't talk to someone with disabled home dialogue rule): say "[The noun] [have] nothing to say to you." instead.
 
 Carry out talking to something (this is the standard talking to rule):
 	start a dialogue with the noun.
@@ -2116,7 +2126,7 @@ To say useful-commands-text:
 
 >[bold type]sleep[roman type] advances the story at the end of each in-game day.
 
->[bold type]go to[roman type] lets you quickly travel to an area you've visited before.
+>[bold type]go to (place)[roman type] lets you quickly travel to a place you've visited before.
 
 >[bold type]help[roman type] opens the help menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
 
@@ -2422,6 +2432,9 @@ clue-nacarat-raven is a truth state that varies.
 clue-nacarat-stomach is a truth state that varies.
 
 clue-sal-raven is a truth state that varies.
+clue-piper-namelist is a truth state that varies.
+clue-piper-raven is a truth state that varies.
+clue-piper-stomach is a truth state that varies.
 
 journal-crucible-witnessed is a truth state that varies.
 
@@ -2574,7 +2587,7 @@ To say journal-text-objectives:
 			add "- Examine the body" to L;
 		otherwise if arturus-body-completion-quip is false:
 			add "- Examine the body further" to L;
-		if examiner-arturus-found-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if examiner-arturus-found-asked is false and clue-arturus-gloves is false, add "- Ask the Vigiles examiner about his findings" to L;
 		if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
 		add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
 	if Meeting the Patients is happening:
@@ -2594,7 +2607,7 @@ To say journal-text-objectives:
 			add "- Examine the body" to L;
 		otherwise if nacarat-body-completion-quip is false:
 			add "- Examine the body further" to L;
-		if examiner-nacarat-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if examiner-nacarat-notable-asked is false and clue-nacarat-recording is false, add "- Ask the Vigiles examiner about his findings" to L;
 		if clue-patientrecords-justinian is false:
 			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
 		otherwise:
@@ -2606,8 +2619,11 @@ To say journal-text-objectives:
 			add "- Examine Sal's body" to L;
 		otherwise if sal-body-completion-quip is false:
 			add "- Examine Sal's body further" to L;
-		add "- Examine Piper's body" to L;
-		if examiner-thugs-notable-asked is false, add "- Ask the Vigiles examiner about his findings" to L;
+		if clue-piper-namelist is false and clue-piper-raven is false and clue-piper-stomach is false:
+			add "- Examine Piper's body" to L;
+		otherwise if piper-body-completion-quip is false:
+			add "- Examine Piper's body further" to L;
+		if examiner-thugs-notable-asked is false and (the battered keyring is not carried or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
 		if clue-patientrecords-justinian is false:
 			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
 		otherwise:
@@ -2709,13 +2725,24 @@ To say journal-text-notes:
 		if Thugs Investigation is happening:
 			let L2 be a list of texts;
 			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L2;
-			if clue-sal-raven is true:
-				if clue-tradingcompany is true:
-					add "- I learned that Sal was connected to the Greater Corindia Trading Company." to L2;
-				otherwise:
-					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
 			if the battered keyring is carried:
 				add "- I found a battered keyring on Sal's belt." to L2;
+			if clue-tradingcompany is true:
+				if clue-sal-raven is true and clue-piper-raven is true:
+					add "- I learned that Sal and Piper were connected to the Greater Corindia Trading Company." to L2;
+				otherwise if clue-sal-raven is true:
+					add "- I learned that Sal was connected to the Greater Corindia Trading Company." to L2;
+				otherwise:
+					add "- I learned that Piper was connected to the Greater Corindia Trading Company." to L2;
+			otherwise:
+				if clue-sal-raven is true:
+					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
+				if clue-piper-raven is true:
+					add "- I found a raven symbol on Piper's throwing knives." to L2;
+			if clue-piper-namelist is true:
+				add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
+			if clue-piper-stomach is true:
+				add "- I learned that Piper was killed by something she ingested." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -3263,7 +3290,7 @@ Instead of entering the shelves of medical supplies, say "There's no need; you c
 Part 3.2.2 - Calomel Curtain
 
 The calomel curtain is a scenery door. It is south of the Surgery Room and north of the Clinic. It is open and unopenable.
-The description is "It decontaminates objects that pass through it[if the player has not tried going].[paragraph break](Type >[bold type]go south[roman type] to leave the surgery room.)[otherwise]."
+The description is "It decontaminates objects that pass through it[if player-knows-go is false].[paragraph break](Type >[bold type]go south[roman type] to leave the surgery room.)[otherwise]."
 The scent is "It smells[if time is not critical], unsurprisingly,[end if] of calomel."
 Understand "immaterial" or "field" or "of" or "energy" as the calomel curtain.
 Understand "exit" as the calomel curtain when the location is the Surgery Room.
@@ -3879,14 +3906,16 @@ Instead of taking Reden during Walking Home in Darkness, say "Doctor Cavala alre
 
 Chapter 3.3.4.1 - Cavala Doing Paperwork
 
-cavala-wh-forgot-quipped is a truth state that varies. cavala-wh-forgot-quipped is false.
-cavala-wh-goodnight-quipped is a truth state that varies. cavala-wh-goodnight-quipped is false.
+cavala-wh-forgot-quipped is a truth state that varies.
+cavala-wh-forgot-quip-switch is a truth state that varies.
+cavala-wh-goodnight-quipped is a truth state that varies.
 
 Rule for writing a paragraph about Doctor Cavala during Walking Home in Darkness:
 	if the previous location is the West End:
 		if cavala-wh-forgot-quipped is false:
 			say "Doctor Cavala raises an eyebrow when she notices you. 'Forgot something?'";
 			now cavala-wh-forgot-quipped is true;
+			now cavala-wh-forgot-quip-switch is true;
 		otherwise:
 			say "Doctor Cavala glances at you before returning to her paperwork.";
 	otherwise:
@@ -3897,7 +3926,7 @@ Instead of entering Doctor Cavala's armchair while Prologue is happening, say "D
 Instead of putting anything on Doctor Cavala's armchair while Prologue is happening, say "Doctor Cavala is already in the armchair."
 
 Instead of talking to Doctor Cavala during Walking Home in Darkness:
-	if cavala-wh-forgot-quipped has been true for only one turn:
+	if cavala-wh-forgot-quip-switch is true:
 		say "'I'm just checking,' you reply.
 
 She shrugs and returns to her paperwork.[line break]";
@@ -3906,6 +3935,9 @@ She shrugs and returns to her paperwork.[line break]";
 		now cavala-wh-goodnight-quipped is true;
 	otherwise:
 		say "You shouldn't bother Doctor Cavala while she's working.";
+		
+Every turn when cavala-wh-forgot-quip-switch is true:
+	now cavala-wh-forgot-quip-switch is false.
 		
 Instead of giving something to Doctor Cavala during Walking Home in Darkness, say "You shouldn't bother Doctor Cavala while she's working."
 		
@@ -7265,6 +7297,7 @@ Chapter 3.16.5.2 - Pissing Off the Porter and Getting Blacklisted
 [If you mess around too much in the Turris Infinita, you get thrown out.]
 
 Yourself can be a normal Turris Infinita guest, blacklisted by Turris Infinita security, cowed by Turris Infinita security, or cleared by Turris Infinita security. Yourself is a normal Turris Infinita guest.
+once-blacklisted-always-blacklisted is a truth state that varies.
 The porter can be mildly irritable or royally pissed off. The porter is mildly irritable.
 turris-goingup-day1 is a truth state that varies.
 turris-goingeast-day1 is a truth state that varies.
@@ -7323,6 +7356,7 @@ To piss off the porter:
 		
 To evict the player from the Turris Infinita:
 	now the player is blacklisted by Turris Infinita security;
+	now once-blacklisted-always-blacklisted is true;
 	say "'Guards!' she calls. 'Show our guest out.'
 
 Two gargoyles land to your left and right with a thud. They grab your arms and escort you out the doors, which slam behind you.[line break]";
@@ -7365,7 +7399,7 @@ To perform the Game Afoot cutscene:
 	say "The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds. You find yourself treading softly, lightly -- as though if you took a wrong step, the whole glass tower would come crashing down.[paragraph break]";
 	say "As you enter the foyer, two gargoyles land to your left and right. They move to seize your arms.[paragraph break]";
 	wait for any key;
-	if the player has been blacklisted by Turris Infinita security:
+	if once-blacklisted-always-blacklisted is true:
 		now the enabled of porter-afoot-apology is true;
 		start a dialogue with the porter using dialogue porter-afoot-bhome;
 	otherwise:
@@ -10275,7 +10309,7 @@ The dizzyingly intricate sigil-work is scenery in Arturus's Clinic. The indefini
 The description is "The sigils encircle the fixtures and link them with exquisite precision."
 Understand "sigil/sigils" or "marble" as the dizzyingly intricate sigil-work.
 Instead of touching the dizzyingly intricate sigil-work, say "You feel the tingling potential in the marble."
-Instead of attacking, cutting, or rubbing the dizzyingly intricate sigil-work, say "That might get you thrown out of the Turris Infinita[if the player has been blacklisted by Turris Infinita security] again[end if]."
+Instead of attacking, cutting, or rubbing the dizzyingly intricate sigil-work, say "That might get you thrown out of the Turris Infinita[if once-blacklisted-always-blacklisted is true] again[end if]."
 
 The melancholy space is faraway scenery in Arturus's Clinic.
 The description is "You could get lost in the emptiness here."
@@ -10343,7 +10377,7 @@ Instead of pushing, pulling, squeezing, taking, or turning the forensic tarpauli
 
 The dried black blood is a scenery thing. The indefinite article is "some".
 The description is "You know these symptoms all too well, now."
-Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink/bloodstain/bloodstains/trail/trails" as the dried black blood.
+Understand "droplet/droplets/stain/stains/inkstain/inkstains/ink/bloodstain/bloodstains/trail/trails/ichor" as the dried black blood.
 Instead of doing anything other than examining or listening with the dried black blood, say "That could be dangerous. You shouldn't."
 
 Before doing anything when the current action involves the forensic tarpaulins and 4inv-vigiles-permission is false:
@@ -10385,7 +10419,6 @@ Before listening to Doctor Arturus, try listening to the tarpaulin-covered bodie
 Before smelling Doctor Arturus, try smelling the tarpaulin-covered bodies instead.
 Before attacking or cutting Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
 Instead of looking under Doctor Arturus, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
-Instead of rubbing or touching Doctor Arturus, say "He is cold to the touch."
 Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Doctor Arturus, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
 
 Before attacking or cutting something that is part of Doctor Arturus, try attacking the tarpaulin-covered bodies instead.
@@ -10412,7 +10445,7 @@ Instead of examining Doctor Arturus:
 Instead of searching Doctor Arturus, say "You could examine Doctor Arturus's head, his torso, his arms, or his legs."
 
 arturus-body-completion-quip is a truth state that varies.
-Every turn when Arturus Investigation is happening and clue-arturus-gloves is true and clue-arturus-animus is true and arturus-body-completion-quip is false:
+Before reading a command when Arturus Investigation is happening and clue-arturus-gloves is true and clue-arturus-animus is true and arturus-body-completion-quip is false:
 	say "(You think you've learned all you can from Doctor Arturus's body. You should look for more clues elsewhere.)";
 	now arturus-body-completion-quip is true.
 
@@ -10622,7 +10655,7 @@ Creditor Nacarat is a dead undescribed man.
 The description is "There is a certain poise surrounding this man, even in death. His facial hair is immaculately trimmed; his features are not diminished by the black trails that stain them. But something in his bearing sends a shiver up your spine, one that is cold and callous and utterly without sympathy.
 
 You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
-Understand "nacarat's body/corpse/cadaver" or "victim" or "bearing/poise" as Creditor Nacarat.
+Understand "nacarat's body/corpse/cadaver" or "victim/patient" or "bearing/poise" as Creditor Nacarat.
 Understand "creditor's" or "nacarat" as something enclosed by Creditor Nacarat.
 
 Does the player mean doing something with Creditor Nacarat: it is very likely.
@@ -10638,7 +10671,6 @@ Before listening to Creditor Nacarat, try listening to the tarpaulin-covered bod
 Before smelling Creditor Nacarat, try smelling the tarpaulin-covered bodies instead.
 Before attacking or cutting Creditor Nacarat, try attacking the tarpaulin-covered bodies instead.
 Instead of looking under Creditor Nacarat, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
-Instead of touching Creditor Nacarat, say "He is cold to the touch."
 Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Creditor Nacarat, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
 
 Before attacking or cutting something that is part of Creditor Nacarat, try attacking the tarpaulin-covered bodies instead.
@@ -10649,7 +10681,7 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 Instead of searching Creditor Nacarat, say "You could examine Creditor Nacarat's head, his torso, his arms, or his legs."
 
 nacarat-body-completion-quip is a truth state that varies.
-Every turn when Nacarat Investigation is happening and clue-nacarat-stomach is true and clue-nacarat-pocketbook is true and clue-nacarat-recording is true and clue-nacarat-raven is true and nacarat-body-completion-quip is false:
+Before reading a command when Nacarat Investigation is happening and clue-nacarat-stomach is true and clue-nacarat-pocketbook is true and clue-nacarat-recording is true and clue-nacarat-raven is true and nacarat-body-completion-quip is false:
 	say "(You think you've learned all you can from Creditor Nacarat's body. You should look for more clues elsewhere.)";
 	now nacarat-body-completion-quip is true.
 
@@ -10709,9 +10741,7 @@ Before taking Creditor Nacarat's jacket, say "The jacket is a deadly biohazard. 
 
 The glyph of recording is part of Creditor Nacarat's jacket.
 The printed name is "glyph in Creditor Nacarat's jacket lining".
-The description is "It appears to be a glyph of recording. Although it has suffered partial bloodstain damage, it still appears to be functional[if clue-nacarat-recording is false].
-
-(You could >[bold type]listen to[roman type] the recording.)[otherwise]."
+The description is "It appears to be a glyph of recording. Although it has suffered partial bloodstain damage, it still appears to be functional[if clue-nacarat-recording is false]. You could listen to it if you wanted[otherwise]."
 Understand "quicksilver" or "lining" or "geometric" or "construct/inscription/index" or "stored" or "in [Creditor Nacarat's jacket]" as the glyph of recording.
 Instead of rubbing or touching the glyph of recording, say "You don't want to damage the glyph any further."
 
@@ -10745,25 +10775,27 @@ Before doing anything other than examining with the mother-of-pearl buttons, say
 Section 3.29.2.4.3 - Arms
 
 Creditor Nacarat's gloves are a plural-named thing part of Creditor Nacarat.
-The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint embossed silhouette of a raven."
+The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint molded silhouette of a raven[if clue-nacarat-raven is false].
+
+Wait. A raven?[line break][otherwise]."
 Understand "arm/arms" or "glove/hand/hands/leather" or "smooth" or "black" as Creditor Nacarat's gloves.
 Before looking under, opening, pulling, searching, taking, or taking off Creditor Nacarat's gloves, say "You get a pair of tweezers and pull off Creditor Nacarat's gloves, revealing slender hands that could have belonged to a stage magician. Nothing about his hands seems pertinent to the investigation, though, so you replace the gloves and return the tweezers to the clinic." instead.
 Instead of swinging Creditor Nacarat's gloves, say "Very funny."
 
 After examining Creditor Nacarat's gloves:
-	now the embossed ravens are part of Creditor Nacarat's gloves;
+	now the molded ravens are part of Creditor Nacarat's gloves;
 	continue the action.
 
 The decorative glove-gilding is part of Creditor Nacarat's gloves. The indefinite article is "some".
 The description is "It echoes the form of alchemical sigil-work without conveying any actual meaning."
 Understand "gilding" or "back" or "of" or "each" as the decorative glove-gilding.
 
-Some embossed ravens are a thing.
-The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company.[otherwise]You have a nagging feeling that you've seen the symbol somewhere before."
-Understand "raven" or "silhouette/silhouettes/symbol" or "faint" or "of" as the embossed ravens.
-Instead of touching the embossed ravens, say "You can feel the ravens embossed in the leather."
+Some molded ravens are a thing.
+The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company. Creditor Nacarat must have been connected to them somehow.[otherwise]You have a nagging feeling that you've seen the symbol somewhere before."
+Understand "raven" or "silhouette/silhouettes/symbol" or "faint" or "of" as the molded ravens.
+Instead of touching the molded ravens, say "You can feel the ravens molded in the leather."
 
-After examining the embossed ravens when clue-nacarat-raven is false:
+After examining the molded ravens when clue-nacarat-raven is false:
 	increment clue-ravens-sighted;
 	now clue-nacarat-raven is true;
 	continue the action.
@@ -10771,19 +10803,21 @@ After examining the embossed ravens when clue-nacarat-raven is false:
 Section 3.29.2.4.4 - Legs
 
 Creditor Nacarat's legs are a plural-named thing part of Creditor Nacarat.
-The description is "Elegant pin-striped trousers. There appear to be some things in his pockets."
+The description is "Elegant pin-striped trousers. There appear to be some items in his pockets."
 Understand "leg" or "trouser/trousers" or "pinstriped/pin-striped/pinstripe/pin-stripe" or "pin" or "stripe/striped" as Creditor Nacarat's legs.
 Instead of opening, taking, or taking off Creditor Nacarat's legs, say "You can't imagine why you would want to."
 
 Creditor Nacarat's pockets are a plural-named unopenable open container part of Creditor Nacarat.
 Instead of examining Creditor Nacarat's pockets, say "Most of the things in Creditor Nacarat's pockets are detritus, but that black pocketbook looks interesting."
-Understand "pocket" or "detritus" as Creditor Nacarat's pockets.
+Understand "pocket" or "detritus" or "item/items" as Creditor Nacarat's pockets.
 Instead of inserting something into Creditor Nacarat's pockets, say "This is a dead body, not your personal chest-of-drawers."
 
 A black pocketbook is in Creditor Nacarat's pockets.
 Understand "coded" or "record/records of/--" or "business" or "transaction/transactions" or "last" or "chronological" or "entry" or "book" as the black pocketbook.
 Before pulling, opening, or searching the black pocketbook, try examining the black pocketbook instead.
 Instead of taking the black pocketbook, say "The pocketbook is evidence. You should leave it for the Vigiles investigators."
+
+Before taking the pocketbook when clue-nacarat-pocketbook is false, try examining the black pocketbook instead.
 
 Instead of examining the black pocketbook:
 	say "It appears to be a coded record of business transactions. Of particular interest is the last chronological entry, which records a significant sum made out to 'S&P'.";
@@ -10885,12 +10919,15 @@ There are [italic type]things[roman type] drifting lazily in the body-of-stomach
 Every turn when the endoscopic location is nacarat-endoscopy-stomach and clue-nacarat-stomach is false (this is the clue-nacarat-stomach discovery rule):
 	wait for any key;
 	say "There is no doubt. This stomach -- this [italic type]spawning pit[roman type] -- this must have been the origin of Creditor Nacarat's infection.[paragraph break]";
-	wait for any key;
-	say "But what does that imply? Was the disease in something the man [italic type]ingested?[roman type] Was it something he ate, something he drank?[paragraph break]";
-	wait for any key;
-	say "There's too little evidence. You have to keep investigating.";
 	now clue-nacarat-stomach is true;
-	now clue-ingestion-vector is true.
+	wait for any key;
+	if clue-ingestion-vector is false:
+		say "But what does that imply? Was the disease in something the man [italic type]ingested?[roman type] Was it something he ate, something he drank?[paragraph break]";
+		wait for any key;
+		say "There's too little evidence. You have to keep investigating.";
+		now clue-ingestion-vector is true;
+	otherwise:
+		say "That isn't at all comforting. It raises more questions than it answers."
 	
 Creditor Nacarat's stomach interior is scenery in nacarat-endoscopy-stomach.
 The printed name is "Creditor Nacarat's stomach".
@@ -10916,7 +10953,7 @@ Sal is a dead undescribed man.
 The description is "The man on the slab is muscle-bound -- built like a gray longhorn, with a countenance to match. His coat has the whiff of sweat and blood. It does not quite conceal the scars that split his knuckles, nor the black lines that crisscross his chest.
 
 You could examine Sal's head, his torso, his arms, or his legs."
-Understand "salio" or "salio's/sal's body/corpse/cadaver" or "victim" as Sal.
+Understand "salio" or "salio's/sal's body/corpse/cadaver" or "victim/patient/thug" as Sal.
 Understand "sal" as something enclosed by Sal.
 
 Does the player mean doing something with Sal: it is very likely.
@@ -10932,7 +10969,6 @@ Before listening to Sal, try listening to the tarpaulin-covered bodies instead.
 Before smelling Sal, try smelling the tarpaulin-covered bodies instead.
 Before attacking or cutting Sal, try attacking the tarpaulin-covered bodies instead.
 Instead of looking under Sal, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
-Instead of touching Sal, say "He is cold to the touch."
 Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Sal, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move him at all."
 
 Before attacking or cutting something that is part of Sal, try attacking the tarpaulin-covered bodies instead.
@@ -10944,7 +10980,7 @@ Instead of searching Sal, say "You could examine Sal's head, his torso, his arms
 Before inserting the endoscope into Sal, say "There's no suitable point of entry." instead.
 
 sal-body-completion-quip is a truth state that varies.
-Every turn when Thugs Investigation is happening and clue-sal-raven is true and the battered keyring is carried and sal-body-completion-quip is false:
+Before reading a command when Thugs Investigation is happening and clue-sal-raven is true and the battered keyring is carried and sal-body-completion-quip is false:
 	say "(You think you've learned all you can from Sal's body. You should look for more clues elsewhere.)";
 	now sal-body-completion-quip is true.
 
@@ -11023,8 +11059,8 @@ Weapons like these aren't uncommon in the Channelworks District. Even Horatio us
 	now the engraved ravens are part of Sal's knuckle-dusters.
 	
 Some engraved ravens are a thing.
-The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company.[otherwise]The symbol rings a bell, but you can't quite place it."
-Understand "raven" or "engraving" as the engraved ravens.
+The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company. Sal must have been connected to them somehow.[otherwise]The symbol rings a bell, but you can't quite place it."
+Understand "raven" or "engraving" or "symbol" or "of" as the engraved ravens.
 Instead of touching the engraved ravens, say "The engraving is of very fine quality."
 
 After examining the engraved ravens when clue-sal-raven is false:
@@ -11099,7 +11135,10 @@ After taking the battered keyring when the battered keyring is undescribed:
 Chapter 3.29.2.7 - Piper
 
 Piper is a dead undescribed woman.
-Understand "piper's body/corpse/cadaver" or "victim" as Piper.
+The description is "A tall, thin specimen of a woman with arms and legs like sea-stilts.  Of all the patients, her posture is the most contorted, as though her body had convulsed in the hour of death -- she is a broken marionette, loosed from its strings and cast aside.
+
+You could examine Piper's head, her torso, her arms, or her legs."
+Understand "piper's body/corpse/cadaver" or "victim/patient/thug" or "posture" as Piper.
 Understand "piper" as something enclosed by Piper.
 
 Does the player mean doing something with Piper: it is very likely.
@@ -11115,7 +11154,6 @@ Before listening to Piper, try listening to the tarpaulin-covered bodies instead
 Before smelling Piper, try smelling the tarpaulin-covered bodies instead.
 Before attacking or cutting Piper, try attacking the tarpaulin-covered bodies instead.
 Instead of looking under Piper, say "A quick check shows that the [italic type]livor mortis[roman type], the settling of the blood, is consistent with a body that has lain on its back for some time."
-Instead of touching Piper, say "She is cold to the touch."
 Instead of knocking on, pushing, pulling, rubbing, squeezing, or taking Piper, say "[italic type]Rigor mortis[roman type] is in full effect. You can't move her at all."
 
 Before attacking or cutting something that is part of Piper, try attacking the tarpaulin-covered bodies instead.
@@ -11125,14 +11163,262 @@ Before knocking on, pushing, pulling, rubbing, squeezing, or taking something th
 
 Instead of searching Piper, say "You could examine Piper's head, her torso, her arms, or her legs."
 
+piper-body-completion-quip is a truth state that varies.
+Before reading a command when Thugs Investigation is happening and clue-piper-namelist is true and clue-piper-raven is true and clue-piper-stomach is true and piper-body-completion-quip is false:
+	say "(You think you've learned all you can from Piper's body. You should look for more clues elsewhere.)";
+	now piper-body-completion-quip is true.
+
+Section 3.29.2.7.1 - Head
+
+Piper's head is part of Piper.
+The description is "A dark thin face with dark thin hair. Her lips are colorless, foul with trails of long-dried ichor; her eyes, glassy and expressionless, are buried in black rings of decay[if clue-piper-stomach is false].
+
+Her mouth is slightly parted. [one of]It occurs to you that y[or]Y[stopping]ou could put your endoscope in and look around inside[end if]."
+Understand "face" or "hair" or "dark" or "thin" as Piper's head.
+Before searching Piper's head, try inserting the endoscope into Piper instead.
+Before inserting the endoscope into Piper's head, try inserting the endoscope into Piper instead.
+
+Piper's eyes are a plural-named thing part of Piper.
+The description is "Her eyes are empty."
+Understand "eye" or "ring/rings" or "decay" as Piper's eyes.
+Instead of opening Piper's eyes, say "Her eyes are already open."
+Instead of closing Piper's eyes, say "That would be dangerous. Her eyes are coated in black blood."
+Instead of searching Piper's eyes, say "No answers are forthcoming."
+Before rubbing or touching Piper's eyes, try touching the dried black blood instead.
+
+Piper's mouth is part of Piper.
+The description is "You could put your endoscope in and look around inside."
+Understand "lip/lips" as Piper's mouth.
+Before searching Piper's mouth, try inserting the endoscope into Piper instead.
+Before inserting the endoscope into Piper's mouth, try inserting the endoscope into Piper instead.
+Instead of opening Piper's mouth, say "Her mouth is already open."
+Instead of closing Piper's mouth, say "[italic type]Rigor mortis[roman type] has locked her jaw in place."
+Instead of inserting something into Piper's mouth, say "Don't be ridiculous."
+
+Section 3.29.2.7.2 - Torso
+
+Piper's torso is part of Piper.
+The description is "Piper's clothes are muted and loosely fitted. She wears a cut-off frock, and above it a watchwoman's jacket with unidentifiable stains along the flaps. She would have been difficult to pick out in a working crowd -- or in a dark alley.
+
+[if clue-piper-namelist is false]You notice a square, flat outline[otherwise]The list of names you found is[end if] in one of her jacket pockets."
+Before knocking on, looking under, rubbing, searching, squeezing, or touching Piper's torso, say "You pat her down but find nothing else of interest." instead.
+After examining Piper's torso when Piper's name list is nowhere: now Piper's name list is in Piper's pocket; continue the action.
+
+Piper's frock is a thing worn by Piper.
+The description is "A worn black dress that has been patched to the point of unrecognizability. Midway along the thigh, a tell-tale fray of the hem shows where the dress has been shortened."
+Understand "worn" or "black dress" or "dress" or "hem" or "cut" or "off" or "cut-off" or "patch/patches" as Piper's frock.
+Instead of looking under, opening, taking, or taking off Piper's frock, say "There's nothing under there that you're interested in."
+
+Piper's jacket is a container worn by Piper.
+The description is "This jacket was either stolen or poorly tailored. Possibly both.
+
+[if clue-piper-namelist is false]You notice a square, flat outline[otherwise]The list of names you found is[end if] in one of the jacket pockets."
+Understand "watchwoman/watchwoman's" or "watch" or "woman/woman's" or "stain/stains" or "flap/flaps/fold/folds" as Piper's jacket.
+Instead of inserting something into Piper's jacket, say "This is a dead body, not your personal chest-of-drawers."
+Instead of looking under, taking, or taking off Piper's jacket, say "The jacket is a biohazard, and not terribly fashionable either."
+Instead of opening Piper's jacket, say "Piper's jacket is already open."
+Instead of closing Piper's jacket, say "You see no reason to do that."
+After examining Piper's jacket when Piper's name list is nowhere: now Piper's name list is in Piper's pocket; continue the action.
+
+Piper's pocket is a transparent closed openable container part of Piper's jacket.
+Instead of examining or searching Piper's pocket, say "[if clue-piper-namelist is false]There's something[otherwise]The list of names you found is[end if] inside."
+Understand "jacket pocket/pockets" or "pockets" as Piper's pocket.
+Instead of inserting something into Piper's pocket, say "This is a dead body, not your personal chest-of-drawers."
+
+Piper's name list is a thing. [This was bleached with hydrogen peroxide, a.k.a. caustic baryta.]
+The description is "A list of names followed by sums of money. All of the names have check marks beside them; some of them are crossed out. The reverse side, for some reason, has been bleached a blank white."
+The scent is "The paper has no distinct smell."
+Understand "square" or "flat" or "outline" or "folded" or "scrap" or "the/-- paper" or "of" or "names" or "check" or "mark/marks" or "reverse" or "side" as Piper's name list.
+Before taking Piper's name list, say "The name list is evidence. You should leave it for the Vigiles investigators." instead.
+
+Instead of examining or taking Piper's name list when clue-piper-namelist is false:
+	say "A folded scrap of paper. Further investigation reveals it to be a list of names followed by -- numbers? Prices?
+
+[wait for any key]Sums of money.
+
+[wait for any key]You recognize some of the names on here, too -- you've bought your groceries, or your clothes, from these people in the past. All of the names have check marks beside them. Some of them are crossed out. Has Piper been collecting debts?
+
+[wait for any key]You reach the end of the page, and turn it over only to find the reverse side blank.
+
+[wait for any key]Only... hold on a second.
+
+[wait for any key]The front of the paper was slightly yellowed, but this side is completely white. It looks almost -- almost [italic type]bleached[roman type].
+
+[wait for any key]Yes. It's not just your imagination. The texture is different. The stains have been removed.
+
+[wait for any key]The reverse side of the paper wasn't blank. Someone [italic type]blanked[roman type] it.";
+	now clue-piper-namelist is true.
+
+Section 3.29.2.7.3 - Arms
+
+Piper's arms are a plural-named thing part of Piper.
+The description is "Her arms are surprisingly toned, beneath the concealing folds of her jacket. There are calluses on her hands, clumps of dirt under her fingernails."
+Understand "arm" as Piper's arms.
+
+Piper's hands are a plural-named thing part of Piper.
+The description is "Piper was no stranger to rough work."
+Understand "hand" or "finger/fingers" or "nail/nails/fingernail/fingernails" or "of/-- dirt" or "clump/clumps" or "callus/calluses" as Piper's hands.
+Instead of swinging Piper's hands, say "Hilarious."
+
+Section 3.29.2.7.4 - Legs
+
+Piper's legs are a plural-named thing part of Piper.
+The description is "Piper wears jackboots and a tattered half slip, leaving her thighs mostly exposed. Close to the pelvis, you can see ink-black blood vessels running perversely beneath the skin.
+
+[one of]You notice[or]There is[stopping] an inconspicuous leather strap around her right thigh."
+Understand "leg" as Piper's legs.
+
+Piper's jackboots are a plural-named thing worn by Piper.
+The description is "Heavy, hobnailed things."
+Understand "jackboot" or "boot/boots" or "hobnail/hobnails/hobnailed" or "footwear" as Piper's jackboots.
+Instead of opening, taking, or taking off Piper's jackboots, say "You don't think the Vigiles will appreciate you running off with a victim's footwear."
+
+Piper's half slip is a thing worn by Piper.
+The description is "You don't want to know what those stains are."
+The scent is "The smell is not pleasant."
+Understand "tattered" or "stain/stains" or "unmentionables" as Piper's half slip.
+Instead of opening, taking, or taking off Piper's half slip, say "Surely you can solve this investigation [italic type]without[roman type] carting a dead woman's unmentionables around."
+
+Piper's thighs are a plural-named thing part of Piper.
+The description is "The color has drained from her skin."
+Understand "thigh" or "blood/-- vessel/vessels" or "pelvis" or "skin" as Piper's thighs.
+
+Piper's thigh strap is a transparent openable closed container worn by Piper.
+Instead of examining Piper's thigh strap, say "[if Piper's throwing knives are nowhere]The strap looks like it can be opened.[otherwise if Piper's thigh strap is open]The false lining is open, revealing a set of throwing knives.[otherwise]The false lining is closed."
+Understand "right thigh" or "leather" or "inconspicuous" or "false" or "lining" as Piper's thigh strap.
+Instead of inserting something into Piper's thigh strap, say "This is a dead body, not your personal chest-of-drawers."
+After opening Piper's thigh strap:
+	say "You draw back the false lining, revealing a set of throwing knives.";
+	now Piper's throwing knives are in Piper's thigh strap.
+	
+Piper's throwing knives are a plural-named thing.
+The description is "On the hilt of each knife is embossed the symbol of a raven."
+Understand "knife" or "set" or "of" as Piper's throwing knives.
+Instead of taking the throwing knives, say "You shouldn't disturb the evidence. You already have your scalpel if you need a cutting implement."
+
+Some embossed ravens are part of Piper's throwing knives.
+The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company. Piper must have been connected to them somehow.[otherwise]The symbol is oddly familiar, but you can't quite put your finger on it."
+Understand "raven" or "hilt" or "symbol" or "of" as the embossed ravens.
+Instead of touching the embossed ravens, say "It's stunning work. The knives can't have been easy to acquire."
+
+After examining Piper's throwing knives when clue-piper-raven is false:
+	increment clue-ravens-sighted;
+	now clue-piper-raven is true;
+	continue the action.
+
 Chapter 3.29.2.8 - Piper Endoscopy
 
+Instead of inserting the endoscope into Piper:
+	start an endoscopy on "Piper" via "Piper's mouth" to piper-endoscopy-mouth.
+	
+Section 3.29.2.8.1 - Mouth
 
+piper-endoscopy-mouth is a privately-named room.
+The printed name is "Mouth".
+The description is "It is dark. What little light filters through the lips is absorbed by countless black ulcers, each an eruption of effluvium and contagion. Between them run stains on a stained tongue, and capillaries that have shriveled and died.
+
+The light leads out. The pharynx leads in."
+
+Piper's lips are plural-named scenery in piper-endoscopy-mouth.
+The description is "At this magnification they are monstrous, engorged."
+Understand "lip" as Piper's lips.
+
+Piper's mouth ulcers are plural-named scenery in piper-endoscopy-mouth.
+The description is "You feel your own mouth tingling."
+Understand "black" or "ulcer" or "eruption/eruptions" or "effluvium" or "contagion" as Piper's mouth ulcers.
+
+Piper's tongue is scenery in piper-endoscopy-mouth.
+The description is "It's utterly black."
+Understand "stain/stains/stained" as Piper's tongue.
+
+Piper's oral capillaries are plural-named scenery in piper-endoscopy-mouth.
+The description is "Like the corpses of worms."
+Understand "capillary" or "corpse/corpses" or "worm/worms" as Piper's oral capillaries.
+
+The view of Piper's pharynx is scenery in piper-endoscopy-mouth.
+The description is "A swollen arch."
+Understand "swollen" or "arch" as the view of Piper's pharynx.
+Before entering or searching the view of Piper's pharynx, try going down instead.
+
+Section 3.29.2.8.2 - Pharynx
+
+piper-endoscopy-pharynx is a privately-named room. It is below piper-endoscopy-mouth.
+The printed name is "Pharynx".
+The description is "Dead flesh constricts you. Muscles seized by [italic type]rigor mortis[roman type] impede your entry, distended as though in a perpetual scream. The walls stain trails on the endoscope lenses.
+
+The epiglottis blocks the larynx. You can only descend into the esophagus."
+
+Piper's pharyngeal muscles are plural-named scenery in piper-endoscopy-pharynx.
+The description is "Masses like black bezoars."
+Understand "dead" or "flesh" or "muscle" or "bezoar/bezoars" or "wall/walls" as Piper's pharyngeal muscles.
+
+Piper's epiglottis is scenery in piper-endoscopy-pharynx.
+The description is "The epiglottis, too, is frozen in [italic type]rigor mortis,[roman type] and will not move."
+Understand "larynx" as Piper's epiglottis.
+
+The view of Piper's esophagus is scenery in piper-endoscopy-pharynx.
+The description is "A forbidding abyss."
+Understand "oesophagus" as the view of Piper's esophagus.
+Before entering or searching the view of Piper's esophagus, try going down instead.
+
+Section 3.29.2.8.3 - Esophagus
+
+piper-endoscopy-esophagus is a privately-named room. It is below piper-endoscopy-pharynx.
+The printed name is "Esophagus".
+The description is "A well without an end. You stare into a palpable darkness that goes on and on, a purgatory of black branches and devouring rings.
+
+The stomach is beneath."
+
+Piper's esophageal blood vessels are plural-named scenery in piper-endoscopy-esophagus.
+The description is "Arteries, veins, twisting and spiraling into the dark."
+Understand "black" or "branch/branches" or "artery/arteries" or "vein/veins" or "purgatory/darkness" or "palpable" as Piper's esophageal blood vessels.
+
+Piper's esophageal sphincters are plural-named scenery in piper-endoscopy-esophagus.
+The description is "Sphincters."
+Understand "sphincter" or "oesophageal" or "devouring" or "ring/rings" as Piper's esophageal sphincters.
+
+The view of Piper's stomach is scenery in piper-endoscopy-esophagus.
+The description is "You can see nothing."
+Understand "end" as the view of Piper's stomach.
+Before entering or searching the view of Piper's stomach, try going down instead.
+
+Section 3.29.2.8.4 - Stomach
+
+piper-endoscopy-stomach is a privately-named room. It is below piper-endoscopy-esophagus.
+The printed name is "Stomach".
+The description is "A flooded cavern. You hang terrifyingly over a pitch-dark expanse of undigested bile. The stomach walls are ruptured and lacerated and pockmarked with ulcers that leer evilly in your lens-light.
+
+And in the center of it all there is a [italic type]mass,[roman type] an island in the body-of-stomach. Sickening boli that have clumped together and extended their tendrils into the surrounding vitriol and flesh -- infected the bloodstream."
+
+Every turn when the endoscopic location is piper-endoscopy-stomach and clue-piper-stomach is false (this is the clue-piper-stomach discovery rule):
+	wait for any key;
+	say "These are the things that killed Piper. These -- these [italic type]things[roman type] -- they must have grown inside her stomach. They must have destroyed her from the inside.[paragraph break]";
+	now clue-piper-stomach is true;
+	wait for any key;
+	if clue-ingestion-vector is false:
+		say "But how did they get here? Did she eat something that was contaminated? Did she [italic type]drink[roman type] something?[paragraph break]";
+		wait for any key;
+		say "You don't know. All you can do is keep investigating.";
+		now clue-ingestion-vector is true;
+	otherwise:
+		say "Not a comforting thought. It raises more questions than it answers."
+	
+The undigested bile is scenery in piper-endoscopy-stomach. The indefinite article is "some".
+The description is "Acid. Mucus. Chyme."
+Understand "acid/vitriol" or "mucus" or "chyme" or "flooded" or "cavern" or "pitch" or "dark/pitch-dark" or "expanse" as the undigested bile.
+
+Piper's stomach walls are plural-named scenery in piper-endoscopy-stomach.
+The description is "Layers of flesh have been flayed away."
+Understand "wall" or "rupture/ruptured" or "laceration/lacerated" or "layer/layers" or "flesh" or "ulcer/ulcers" or "bloodstream" as Piper's stomach walls.
+
+An abominable mass is scenery in piper-endoscopy-stomach.
+The description is "You hope it's your hands that are trembling, and not the mass."
+Understand "island" or "body-of-stomach" or "sickening" or "bolus/boli" or "tendril/tendrils" as the abominable mass.
 
 Chapter 3.29.2.9 - Raven Symbols
 
-Every turn when clue-ravens-sighted is greater than 1 and clue-raven is false (this is the unlocking raven symbol questions rule):
-	say "That's the second time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
+Every turn when Four Investigations is happening and clue-ravens-sighted is greater than 2 and clue-raven is false (this is the unlocking raven symbol questions rule):
+	say "That's the third time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
 	now the enabled of examiner-raven is true;
 	now the enabled of justinian-4inv-raven is true;
 	now clue-raven is true.
@@ -11288,10 +11574,10 @@ Table of Vigiles Examiner Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Velox looks up from the bodies.
 
-'Servator,' he says. 'What can I do for you?'"	{examiner-causeofdeath, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
+'Servator,' he says. 'What can I do for you?'"	{examiner-causeofdeath, examiner-raven, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-nevermind}
 examiner-causeofdeath	true	true	"'The victims all died of the same disease?'"	"'The victims all died of the same disease?'
 
-Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'"	{examiner-raven, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
 
 The examiner raises an eyebrow. 'It... it does, now that you mention it. The raven is one of the symbols of the Greater Corindia Trading Company -- it's a criminal syndicate, one of the biggest in Furopolis. If some of these people had been involved...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
@@ -11443,3 +11729,5 @@ Arturus's Domicile is a proper-named room.
 It is above the Turris Infinita.
 Understand "doctor" or "arturus'" as Arturus's Domicile.
 The simple-name is "Doctor Arturus's domicile".
+
+[There is an antique tinderbox in Crow's Nest]
