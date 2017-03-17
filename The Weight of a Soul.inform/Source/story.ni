@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 150317.
+The release number is 170317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -229,11 +229,11 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	
-When The Game is Afoot begins:
+[When The Game is Afoot begins:
 	say "(Developer's note: At this point, only the Turris Infinita has new content. The rest of the district is unchanged from Day One.)";
 	
 When The Game is Afoot ends:
-	say "(Developer's note: At this point, only the bodies in Arturus's Clinic can be examined. Further investigation scenes have not yet been written.)";
+	say "(Developer's note: At this point, only the bodies in Arturus's Clinic can be examined. Further investigation scenes have not yet been written.)";]
 	
 
 Book 1.2 - Days and Scenes
@@ -2963,7 +2963,7 @@ Understand "western" or "embankment" as the view of Riggertown when the location
 Instead of looking under the view of Riggertown, say "The Bilious Canal churns below."
 
 The view of the basilica is a faraway backdrop. The indefinite article is "the".
-The description is "An imposing gothic hall. Petitioners trickle in and out."
+The description is "An imposing gothic hall[if Day One is happening]. Petitioners trickle in and out[end if]."
 Understand "gothic" or "hall" as the view of the basilica.
 
 The clandestine stairway is a faraway backdrop. The indefinite article is "the".
@@ -7112,10 +7112,10 @@ The description is "Curving plates of orichalcum hover in midair over the fosse.
 Understand "curving" or "plate/plates" or "orichalcum" or "part/parts" or "glyph/glyphs" as the partition bridge.
 Instead of looking under the partition bridge, say "You see only the churning fosse."
 Instead of entering the partition bridge when the partition bridge is closed, say "The distance is too far to jump."
-Instead of talking to the partition bridge, say "You don't know the password, if there is one."
+Instead of talking to the partition bridge, say "[one of][italic type]'Aperi!'[roman type] you command.[paragraph break]Nothing happens. Well, it was worth a try[or]You don't know the command word, if there is one[stopping]."
 Instead of closing the partition bridge when the partition bridge is closed, say "The bridge is already raised."
 Instead of searching the partition bridge when the partition bridge is closed, say "The parts of the bridge are covered in incomprehensible glyphs."
-Instead of opening, or taking the partition bridge when the partition bridge is closed, say "Yes, but how?"
+Instead of opening or taking the partition bridge when the partition bridge is closed, say "Yes, but how?"
 Instead of pushing, pulling, squeezing, swinging, touching, or turning the partition bridge when the partition bridge is closed, say "The parts of the bridge are out of reach."
 
 The partition bridge can be open or closed. The partition bridge is closed.
@@ -7167,11 +7167,11 @@ The elaborate crystal chandeliers have some text called the faraway response. Th
 Understand "chandelier" or "invisible" or "alchemical" or "line/lines" as the elaborate crystal chandeliers.
 
 The porter's desk is scenery in the Turris Infinita. The indefinite article is "the".
-The description is "[if the Turris is in mourning]The mourning-light has done nothing to improve the porter's complexion.[otherwise]It's difficult to imagine how anyone could work in that glare."
+The description is "[if the tremendous mess is in the Turris Infinita]The desk looks tidier now.[otherwise if the Turris is in mourning]The mourning-light has done nothing to improve the porter's complexion.[otherwise]It's difficult to imagine how anyone could work in that glare."
 Understand "light/lights" or "chair" or "glare" as the porter's desk.
 Understand "mourning" or "mourning-light" as the porter's desk when Day Two is happening.
 Instead of pushing, pulling, swinging, taking, or turning the porter's desk, say "That is fixed in place."
-Instead of entering, searching, or looking under the porter's desk, say "There's only one chair, and the porter's sitting in it."
+Instead of entering, searching, or looking under the porter's desk, say "[if the tremendous mess is in the Turris Infinita]The look on the porter's face makes you reconsider.[otherwise]There's only one chair, and the porter's sitting in it."
 
 Some security gargoyles are faraway scenery in the Turris Infinita.
 The description is "These gargoyles are carved with sigiled masks and lifelike wings. They are utterly unmoving, but you don't doubt they could spring to life with a word from the porter."
@@ -7208,12 +7208,10 @@ Before going when the location is the Via Terminalis Junction or the location is
 
 Part 3.16.3 - Hydraulic Lift
 
-The hydraulic lift is scenery in the Turris Infinita.
+The hydraulic lift is an open unopenable scenery door. It is above the Turris Infinita.
 The description is "A silvered contraption of telescoping pistons."
 The sound is "The lift is not in use."
 Understand "silvered" or "contraption" or "telescoping" or "piston/pistons" as the hydraulic lift.
-Before entering the hydraulic lift, try going up instead.
-Instead of attacking or cutting the lift, say "That seems unnecessarily sadistic."
 Instead of opening, closing, switching on, or switching off the lift, say "The lift is of the automatic variety."
 
 Part 3.16.4 - Porter
@@ -7221,7 +7219,7 @@ Part 3.16.4 - Porter
 The porter is a hostile woman in the Turris Infinita.
 The description is "A hawkish woman all in white. [if the Turris is in mourning]Her flashing spectacles make[otherwise]The glare on her spectacles makes[end if] it difficult to look at her directly."
 The scent is "She smells as nondescript as the rest of the entrance hall. There isn't even a hint of perfume."
-Instead of attacking or cutting the porter, say "You don't think that would end well for you."
+Instead of attacking or cutting the porter, say "As tempting as it is, you don't think that would end well for you."
 Instead of giving the bundle of documents to the porter, say "Those aren't appointment papers, and it would be inconvenient if you turned them over to the basilica with the seal broken."
 Instead of giving the purse to the porter, say "You doubt your bribe will impress her, considering where she works."
 
@@ -7229,8 +7227,12 @@ Some reflective spectacles are worn by the porter.
 The description is "The spectacles magnify her mirthless expression."
 Understand "glasses/eyeglasses" or "spectacle/specs" or "flashing" as the spectacles.
 
+Part 3.16.5 - Turris Infinita during Day One
+
+Chapter 3.16.5.1 - Porter during Day One
+
 porter-firstgreeting-quipped is a truth state that varies.
-Rule for writing a paragraph about the porter:
+Rule for writing a paragraph about the porter during Day One:
 	if the previous location is not the Turris Infinita:
 		if porter-firstgreeting-quipped is false:
 			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?' ";
@@ -7239,10 +7241,6 @@ Rule for writing a paragraph about the porter:
 			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.' [or]The porter regards you coolly and silently. [stopping]";
 	otherwise:
 		say "The porter regards you coolly and silently. ".
-		
-Part 3.16.5 - Turris Infinita during Day One
-
-Chapter 3.16.5.1 - Porter Day One Dialogue
 
 Some dialogue branches are defined by the Table of Porter Day One Dialogue.
 
@@ -7458,6 +7456,9 @@ The porter's gaze falls on the slip of paper in your hand. The corner of her mou
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 
+After reading out porter-afoot-actuallyfuckyou (this is the spawn the tremendous mess rule):
+	now the tremendous mess is in the Turris Infinita.
+
 Section 3.16.6.1.1 - Justinian's Glorious Entrance
 
 To say Justinian's glorious entrance:
@@ -7603,17 +7604,37 @@ After reading out justinian-afoot-patients: now the enabled of justinian-afoot-p
 After reading out justinian-afoot-patientrecords: now the enabled of justinian-4inv-patientrecords is false; now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
 After reading out justinian-afoot-disease: now the enabled of justinian-afoot-cautious is true.
 
+Chapter 3.16.6.2 - The Tremendous Mess and Porter during Four Investigations
+
+The tremendous mess is a faraway scenery thing.
+The description is "Oceans of ink. Mountains of stationery."
+The tremendous mess has some text called the faraway response. The faraway response is "The porter's hands are already full with the mess. You'd best leave it alone."
+Understand "ocean/oceans" or "of" or "ink" or "mountain/mountains" or "stationery" as the tremendous mess.
+
+Rule for writing a paragraph about the porter when Four Investigations is happening:
+	if the tremendous mess is in the Turris Infinita:
+		say "The porter is on her hands and knees cleaning up the tremendous mess you made earlier. She appears to be steadfastly ignoring you.";
+	otherwise:
+		say "The porter is steadfastly ignoring you."
+		
+Instead of examining the porter during Four Investigations, say "She looks peeved."
+Instead of attacking or cutting the porter when the tremendous mess is in the Turris Infinita, say "There's no need. She's already received her comeuppance."
+Instead of talking to the porter when Four Investigations is happening, say "She doesn't acknowledge your presence."
+
+When Four Investigations ends (this is the despawn the tremendous mess rule):
+	now the tremendous mess is nowhere.
+
 Book 3.17 - Grand Forum
 
-There is a proper-named room in Outdoors called the Grand Forum. "This immense paved square is alive with people of all kinds: couples, merchants, buskers. There are children flying their paper kites and old men watching the clouds drift by. A brilliant mural of Furopolis and Solphos hovers at the heart of it all.
+There is a proper-named room in Outdoors called the Grand Forum. "[if Day One is happening]This immense paved square is alive with people of all kinds: couples, merchants, buskers. There are children flying their paper kites and old men watching the clouds drift by. A brilliant mural of Furopolis and Solphos hovers at the heart of it all[otherwise]Aside from the mural of Solphos, this immense paved square is largely deserted. There are no couples, no merchants, no buskers -- nothing except for a chilly breeze that you can feel in your bones[end if].
 
 The arch of Miller's Gate rules the east, and the curving canal cradles the basilica to the west. From the northern Via Terminalis junction, the Via Mercurii splits off and travels south."
 It is south of the Junction.
 
 The simple-name is "the grand forum".
-The sound is "The sounds of music and laughter fill the forum."
-The scent is "You smell ice cream and flowers mingling in the mist."
-The exit reminder is "You can go east to Miller's Gate, west to the basilica, north to the Via Terminalis junction, or south along the Via Mercurii."
+The sound is "[if Day One is happening]The sounds of music and laughter fill the forum[otherwise]You hear only the whistling of the wind[end if]."
+The scent is "[if Day One is happening]You smell ice cream and flowers mingling in the mist[otherwise]You smell only the canal mist[end if]."
+The exit reminder is "You can go east to Miller's Gate[if Day One is happening], west to the basilica,[end if] north to the Via Terminalis junction, or south along the Via Mercurii."
 
 Before going inside in the Grand Forum, try going west instead.
 Before examining west in the Grand Forum, try examining the view of the basilica instead.
@@ -7632,6 +7653,13 @@ Before entering the view of the junction in the Grand Forum, try going north ins
 Before entering the view of the Via Mercurii in the Grand Forum, try going south instead.
 Before entering the view of the basilica in the Grand Forum, try going west instead.
 Before entering the view of Miller's Gate in the Grand Forum, try going east instead.
+
+The immense paved square is scenery in the Grand Forum.
+The description is "There are faded colors, patterns that have grown arcane with age."
+The scent is "Dusty."
+Understand "faded" or "color/colors" or "pattern/patterns" as the immense paved square.
+Instead of knocking on or touching the immense paved square, say "You'd only get your gloves dusty."
+Instead of searching the immense paved square, say "[if Day One is happening]There are lots of people milling around.[otherwise]It is practically empty.[end if]"
 
 Chapter 3.17.1.1 - Mural of Solphos
 
@@ -7752,6 +7780,14 @@ The scent is "Tobacco smoke wafts around them."
 Understand "pipe/pipes" or "tobacco" or "smoke" as the amicable old men.
 Instead of talking to the amicable old men, say "You make some small talk with the old men, who look quite delighted to have someone new to talk to."
 
+When Day One ends (this is the despawn all the people in the grand forum rule):
+	now the promenading couples are nowhere;
+	now the traveling merchants are nowhere;
+	now the street buskers are nowhere;
+	now the playing children are nowhere;
+	now the paper kites are nowhere;
+	now the amicable old men are nowhere.
+
 Chapter 3.17.2.2 - Newsboy
 
 The newsboy is a human male person in the Grand Forum. "A newsboy is handing out copies of the [italic type]Libri Liberi[roman type] to passers-by."
@@ -7871,6 +7907,21 @@ Instead of talking to the newsboy when day-one-newspaper-was-destroyed is true:
 After going while day-one-newspaper-was-destroyed is true:
 	now day-one-newspaper-was-destroyed is false;
 	continue the action.
+	
+Part 3.17.3 - Grand Forum during Day Two
+
+The chilly breeze is a faraway scenery thing.
+The description is "It is only felt, never seen."
+The chilly breeze has some text called the faraway response. The faraway response is "The wind eludes you."
+Understand "cold" or "wind" or "whistling" as the chilly breeze.
+Before listening to the chilly breeze, try listening to the location instead.
+Before smelling the chilly breeze, try smelling the location instead.
+
+When Day Two begins (this is the spawn the chilly breeze rule):
+	now the chilly breeze is in the Grand Forum.
+	
+Instead of going to the Basilica during Day Two:
+	say "[path-walked so far][one of]You make your way to the basilica, only to find it closed for an emergency council meeting. You have no choice but to return to the grand forum[or]The basilica is closed for an emergency council meeting[stopping]."
 
 Book 3.18 - Canalside Steps
 
@@ -10404,7 +10455,7 @@ Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
 Understand "arturus's body/corpse/cadaver" or "victim" as Doctor Arturus.
-Understand "arturus" or "doctor's" as something enclosed by Doctor Arturus.
+Understand "arturus" or "doctor's" or "arturus'" as something enclosed by Doctor Arturus.
 
 Does the player mean doing something with Doctor Arturus: it is very likely.
 Does the player mean inserting the endoscope into Doctor Arturus: it is very likely.
@@ -11714,6 +11765,13 @@ After reading out justinian-4inv-patients: now the enabled of justinian-4inv-pat
 After reading out justinian-4inv-patientrecords: now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
 After reading out justinian-4inv-discovery: now clue-arturus-discovery-justinian is true.
 
+Book 3.30 - Arturus's Domicile
+
+Arturus's Domicile is a proper-named room.
+It is above the hydraulic lift.
+Understand "doctor" or "arturus'" as Arturus's Domicile.
+The simple-name is "Doctor Arturus's domicile".
+
 Book of the Rest
 
 The Sewer Enclave is a room. 
@@ -11724,10 +11782,5 @@ There is a proper-named room called the Channelworks.
 It is north of the Channelworks Concourse.
 Understand "building" as the Channelworks.
 The simple-name is "the Channelworks building".
-
-Arturus's Domicile is a proper-named room.
-It is above the Turris Infinita.
-Understand "doctor" or "arturus'" as Arturus's Domicile.
-The simple-name is "Doctor Arturus's domicile".
 
 [There is an antique tinderbox in Crow's Nest]
