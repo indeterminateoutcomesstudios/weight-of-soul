@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 170317.
+The release number is 180317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -6212,8 +6212,8 @@ Understand "my" or "own" or "house/home/dormitory/dorm/domicile" as Marid's Room
 
 The simple-name is "your dormitory room".
 The sound is "[if time is critical]Your heartbeat hammers in your ears.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
-The scent is "[if time is critical]You take a deep breath.[otherwise]Your room smells clean enough."
-The exit reminder is "[if time is critical]You're not going to be escaping through a wall.[otherwise]You can take the stairs down to the atrium."
+The scent is "[if time is critical]You smell your own sweat, your own fear.[otherwise]Your room smells clean enough."
+The exit reminder is "[if time is critical]You can't go that way.[otherwise]You can take the stairs down to the atrium."
 
 Before examining north in Marid's Room, try searching the dormitory window instead.
 Before examining down in Marid's Room, try searching the dormitory window instead.
@@ -7129,18 +7129,18 @@ Book 3.16 - Turris Infinita
 
 There is a proper-named room called the Turris Infinita. "[if the Turris is in mourning]The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds.[otherwise]Mirrors cover every surface in this avant-garde tower, from the floors to the doors to the chandeliers. The porter's desk is framed in lights, while watchful gargoyles above gaze into infinity.[end if]
 
-A hydraulic lift provides access to the upstairs domiciles. Doctor Arturus's clinic is east, and the exit is to the west."
+A hydraulic lift provides access to [if Day One is happening]the upstairs domiciles[otherwise]Doctor Arturus's upstairs domicile[end if]. Doctor Arturus's clinic is east, and the exit is to the west."
 
 The simple-name is "the Turris Infinita".
 The sound is "It's quiet. You could hear a pin drop."
 The scent is "The air is cold and sterile."
-The exit reminder is "You can take the lift up to the domiciles, go east to Doctor Arturus's clinic, or leave to the west."
-The going-in disambiguation is "Do you mean going up (to the domiciles) or going east (to Doctor Arturus's clinic)?"
+The exit reminder is "You can take the lift up to [if Day One is happening]the domiciles[otherwise]Doctor Arturus's domicile[end if], go east to Doctor Arturus's clinic, or leave to the west."
+The going-in disambiguation is "Do you mean going up (to [if Day One is happening]the domiciles[otherwise]Doctor Arturus's domicile[end if]) or going east (to Doctor Arturus's clinic)?"
 Understand "foyer" as the Turris Infinita.
 
 Before examining west in the Turris Infinita, try examining the ornate double doors instead.
 Before examining outside in the Turris Infinita, try examining the ornate double doors instead.
-Before examining north in the Turris Infinita, try examining the hydraulic lift instead.
+Before examining up in the Turris Infinita, try examining the hydraulic lift instead.
 Before examining east in the Turris Infinita, try examining the view of Doctor Arturus's clinic instead.
 Before going outside in the Turris Infinita, try going west instead.
 Instead of examining inside in the Turris Infinita, say "It's unclear where you want to look."
@@ -7213,6 +7213,8 @@ The description is "A silvered contraption of telescoping pistons."
 The sound is "The lift is not in use."
 Understand "silvered" or "contraption" or "telescoping" or "piston/pistons" as the hydraulic lift.
 Instead of opening, closing, switching on, or switching off the lift, say "The lift is of the automatic variety."
+
+After going through the hydraulic lift when the player is staid: say "The lift bears you [if the previous location is the Turris Infinita]upward[otherwise]downward[end if]."; continue the action.
 
 Part 3.16.4 - Porter
 
@@ -7615,11 +7617,13 @@ Rule for writing a paragraph about the porter when Four Investigations is happen
 	if the tremendous mess is in the Turris Infinita:
 		say "The porter is on her hands and knees cleaning up the tremendous mess you made earlier. She appears to be steadfastly ignoring you.";
 	otherwise:
-		say "The porter is steadfastly ignoring you."
+		say "The porter is silent at her desk."
 		
 Instead of examining the porter during Four Investigations, say "She looks peeved."
 Instead of attacking or cutting the porter when the tremendous mess is in the Turris Infinita, say "There's no need. She's already received her comeuppance."
-Instead of talking to the porter when Four Investigations is happening, say "She doesn't acknowledge your presence."
+Instead of talking to the porter when Four Investigations is happening, say "[one of]'Excuse me...'
+
+She doesn't acknowledge your presence[or]The porter is ignoring you[stopping]."
 
 When Four Investigations ends (this is the despawn the tremendous mess rule):
 	now the tremendous mess is nowhere.
@@ -11767,10 +11771,94 @@ After reading out justinian-4inv-discovery: now clue-arturus-discovery-justinian
 
 Book 3.30 - Arturus's Domicile
 
-Arturus's Domicile is a proper-named room.
+Arturus's Domicile is a proper-named room. "This suspended mansion echoes with a grandiose hollowness. There is no comfort to be found in these faux hearths and chaise longues, these mantelpieces burdened by decades of history. Beyond the frosted-glass windows, the sky masses with stormclouds darkly shadowed by the mourning-banner.
+
+A study lies to the north. The hydraulic lift leads back down to the foyer."
 It is above the hydraulic lift.
 Understand "doctor" or "arturus'" as Arturus's Domicile.
+
 The simple-name is "Doctor Arturus's domicile".
+The sound is "There is no sound but your own breathing."
+The scent is "Cold, clean air."
+The exit reminder is "You can go north to Doctor Arturus's study or down to the Turris Infinita foyer."
+
+Before examining north in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
+Before examining inside in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
+Before examining outside in Arturus's Domicile, try examining the shadowed stormclouds instead.
+Before examining down in Arturus's Domicile, try examining the hydraulic lift instead.
+
+Part 3.30.1 - Scenery
+
+Some faux hearths are an open unopenable scenery container in Arturus's Domicile.
+The scent is "Nothing has ever been burned here."
+Instead of examining the faux hearths, say "Empty stone fixtures. They're more for decoration than anything."
+Understand "hearth" or "stone" or "fixture/fixtures" as the faux hearths.
+Instead of burning the faux hearths, say "These are purely decorative fixtures. They don't even have chimneys."
+Instead of inserting something into the faux hearths, say "You have better things to do."
+
+Some chaise longues are a scenery supporter in Arturus's Domicile.
+The description is "Ornate brass-and-leather furnishings that prioritize opulence over comfort."
+The scent is "The leather smells of beeswax and other preservatives."
+Understand "furnishing/furnishings/furniture" or "longue/long" or "chair/chairs" as the chaise longues.
+Instead of entering the chaise longues, say "You aren't in the mood for a rest right now."
+Instead of pushing, pulling, taking, or turning the chaise longues, say "You don't see any reason to rearrange the furniture."
+Instead of looking under the chaise longues, say "There isn't a mote of dust to be seen."
+
+Some baroque mantelpieces are a scenery supporter in Arturus's Domicile.
+The description is "Arrayed on the mantelpieces are photographic impressions, trinkets, and other mementos. Here is a painting of Doctor Arturus in his youth; there, an antique cast-iron scalpel, and a reliquary containing a shard of lapis lazuli."
+The scent is "There is no dust."
+Understand "mantelpiece" as the baroque mantelpieces.
+Before searching the baroque mantelpieces, try examining the baroque mantelpieces instead.
+Instead of putting something on the baroque mantelpieces, say "There's no space on the mantelpieces."
+
+Some mantelpiece trinkets are privately-named scenery in Arturus's Domicile.
+The description is "Relics of another time."
+Understand "photo/photos/photograph/photographs/photographic" or "impression/impressions" or "trinket/trinkets" or "memento/mementos" as the mantelpiece trinkets.
+Instead of pushing, pulling, taking, or turning the mantelpiece trinkets, say "You don't think the trinkets are important to your investigation."
+
+There is a scenery thing in Arturus's Domicile called a painting of Doctor Arturus in his youth.
+The description is "You recognize the illustration from your textbooks."
+Instead of taking the painting of Doctor Arturus, say "You feel like you should leave Doctor Arturus's things as they were."
+Instead of looking under, searching, or turning the painting of Doctor Arturus, say "There is nothing behind the painting."
+
+The antique cast-iron scalpel is scenery in Arturus's Domicile.
+The description is "It's hard to imagine surgeons once used these."
+Instead of taking the antique cast-iron scalpel, say "You feel like you should leave Doctor Arturus's things as they were."
+
+The lapis lazuli reliquary is a closed unopenable transparent scenery container in Arturus's Domicile.
+Instead of examining the lapis lazuli reliquary, say "Genuine lapis lazuli, not alchemically transmuted."
+Understand "shard" or "containing" or "of" as the lapis lazuli reliquary.
+Instead of opening the lapis lazuli reliquary, say "The reliquary is beautiful, but you don't think it's pertinent to the investigation."
+Instead of inserting something into the lapis lazuli reliquary, say "There's no space for anything but the shard of lapis lazuli."
+Instead of searching the lapis lazuli reliquary, say "A shard of lapis lazuli is stored inside."
+Instead of looking under the lapis lazuli reliquary, say "There is nothing under the reliquary."
+Instead of taking the lapis lazuli reliquary, say "You feel like you should leave Doctor Arturus's things as they were."
+
+Some frosted-glass windows are scenery in Arturus's Domicile.
+The description is "".
+Understand "window" or "frosted" or "glass" as the frosted-glass windows.
+
+[Stormclouds]
+
+[Mourning-banner]
+
+The view of Doctor Arturus's study is faraway scenery in Arturus's Domicile.
+The description is "You can't see much in the gloom."
+Understand "doctor's" or "arturus" or "arturus'" as the view of Doctor Arturus's study.
+Before entering the view of Doctor Arturus's study, try going north instead.
+
+[coffee table with wine, where nacarat was served; empty dustbin (because justinian threw out the evidence)
+
+the whole place is strangely clean]
+
+Book 3.31 - Arturus's Study
+
+Arturus's Study is a proper-named room. It is north of Arturus's Domicile.
+Understand "doctor" or "arturus'" as Arturus's Study.
+
+The simple-name is "Doctor Arturus's study".
+
+[ticker tape correspondence machine; nacarat debt documents; patient records]
 
 Book of the Rest
 
