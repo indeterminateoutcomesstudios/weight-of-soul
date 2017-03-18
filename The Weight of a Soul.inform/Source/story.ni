@@ -2423,8 +2423,10 @@ clue-raven is a truth state that varies.
 clue-tradingcompany is a truth state that varies.
 
 clue-arturus-discovery-justinian is a truth state that varies.
+clue-arturus-timeofdeath is a truth state that varies.
 clue-arturus-gloves is a truth state that varies.
 clue-arturus-animus is a truth state that varies.
+clue-arturus-coffeetable is a truth state that varies.
 
 clue-nacarat-recording is a truth state that varies.
 clue-nacarat-pocketbook is a truth state that varies.
@@ -2693,22 +2695,19 @@ To say journal-text-notes:
 			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
 		if Arturus Investigation is happening:
 			let L2 be a list of texts;
-			if clue-arturus-discovery-justinian is true, add "- Justinian told me that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
+			if clue-arturus-coffeetable is true:
+				add "- I found a coffee table set for three in Doctor Arturus's home. The table had not been tidied up, but the third wineglass was missing." to L2;
 			if clue-arturus-gloves is true:
 				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he was wearing them." to L2;
 			otherwise if examiner-arturus-notable-asked is true:
 				add "- I learned that Doctor Arturus may have been infected through his gloves." to L2;
+			if clue-arturus-timeofdeath is true, add "- I learned that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Doctor Arturus[roman type]" to LFI;
 				add L2 to LFI;
 		if Nacarat Investigation is happening:
 			let L2 be a list of texts;
-			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L2;
-			if clue-nacarat-recording is true:
-				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged." to L2;
-			otherwise if examiner-nacarat-notable-asked is true:
-				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
 			if clue-nacarat-stomach is true:
 				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
 			if clue-nacarat-raven is true:
@@ -2718,13 +2717,17 @@ To say journal-text-notes:
 					add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
 			if clue-nacarat-pocketbook is true:
 				add "- I learned that Creditor Nacarat could have hired Sal and Piper recently." to L2;
+			if clue-nacarat-recording is true:
+				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged, and he broke a piece of tableware as a result." to L2;
+			otherwise if examiner-nacarat-notable-asked is true:
+				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
+			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Creditor Nacarat[roman type]" to LFI;
 				add L2 to LFI;
 		if Thugs Investigation is happening:
 			let L2 be a list of texts;
-			if examiner-thugs-timeofdeath-asked is true, add "- I learned that Sal and Piper died on the night of the Third, two days ago." to L2;
 			if the battered keyring is carried:
 				add "- I found a battered keyring on Sal's belt." to L2;
 			if clue-tradingcompany is true:
@@ -2743,6 +2746,7 @@ To say journal-text-notes:
 				add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
 			if clue-piper-stomach is true:
 				add "- I learned that Piper was killed by something she ingested." to L2;
+			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of the Third, two days ago." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -7012,7 +7016,7 @@ The trailing black banner is a fixed in place faraway thing.
 "Above the Turris Infinita, a black banner casts its trailing shadow across the sky."
 The description is "A black banner is traditionally put up when the head of the house has died."
 The sound is "It flaps disconsolately."
-Understand "shadow" as the trailing black banner.
+Understand "shadow" or "mourning-banner" or "mourning" as the trailing black banner.
 
 After writing a paragraph about the trailing black banner: now ambience suppression is true.
 
@@ -7601,10 +7605,22 @@ You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it
 
 [wait for any key]You turn and make your way into the frigid light.[line break][look pending]"	{}
 
-After reading out justinian-afoot-discovery: now clue-arturus-discovery-justinian is true.
-After reading out justinian-afoot-patients: now the enabled of justinian-afoot-patients is false; now the enabled of justinian-afoot-patientrecords is true; now the enabled of justinian-4inv-patientrecords is true.
-After reading out justinian-afoot-patientrecords: now the enabled of justinian-4inv-patientrecords is false; now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
-After reading out justinian-afoot-disease: now the enabled of justinian-afoot-cautious is true.
+After reading out justinian-afoot-discovery:
+	now clue-arturus-timeofdeath is true;
+	now clue-arturus-discovery-justinian is true.
+	
+After reading out justinian-afoot-patients:
+	now the enabled of justinian-afoot-patients is false;
+	now the enabled of justinian-afoot-patientrecords is true;
+	now the enabled of justinian-4inv-patientrecords is true.
+	
+After reading out justinian-afoot-patientrecords:
+	now the enabled of justinian-4inv-patientrecords is false;
+	now the enabled of justinian-4inv-patientrecords2 is true;
+	now clue-patientrecords-justinian is true.
+	
+After reading out justinian-afoot-disease:
+	now the enabled of justinian-afoot-cautious is true.
 
 Chapter 3.16.6.2 - The Tremendous Mess and Porter during Four Investigations
 
@@ -7621,7 +7637,7 @@ Rule for writing a paragraph about the porter when Four Investigations is happen
 		
 Instead of examining the porter during Four Investigations, say "She looks peeved."
 Instead of attacking or cutting the porter when the tremendous mess is in the Turris Infinita, say "There's no need. She's already received her comeuppance."
-Instead of talking to the porter when Four Investigations is happening, say "[one of]'Excuse me...'
+Instead of talking to the porter when Four Investigations is happening, say "[one of]'Excuse me--'
 
 She doesn't acknowledge your presence[or]The porter is ignoring you[stopping]."
 
@@ -7798,20 +7814,22 @@ The newsboy is a human male person in the Grand Forum. "A newsboy is handing out
 The description is "A little human boy with ruddy cheeks and blond hair. His white cap marks him as an errand-boy for Revelaris Press."
 The scent is "He smells like newspaper ink."
 Understand "boy" or "errand/errand-boy" or "ruddy/-- cheek/cheeks" or "blond" or "hair" or "little" as the newsboy.
-Understand "libri" or "liberi" or "newspaper/news/paper" as the newsboy when the copy of the Libri Liberi is off-stage.
-Before taking the newsboy when the copy of the Libri Liberi has not been on-stage, try talking to the newsboy instead.
+Understand "libri" or "liberi" or "newspaper/news/paper" as the newsboy when newsboy-delivered is false.
+Before taking the newsboy when newsboy-delivered is false, try talking to the newsboy instead.
 Instead of talking to the newsboy, say "He's too busy handing out newspapers to chat."
 
 The white cap is worn by the newsboy.
 The description is "It's a very nifty cap."
 
-Instead of talking to the newsboy for the first time:
+newsboy-delivered is a truth state that varies.
+Instead of talking to the newsboy when newsboy-delivered is false:
 	say "'Good morning,' you say.
 
 'Morning, miss.' He thrusts a newspaper into your hands. 'Compliments of the press.'
 
 'Um, thanks.'";
-	now the player carries the day-one copy of the Libri Liberi.
+	now the player carries the day-one copy of the Libri Liberi;
+	now newsboy-delivered is true.
 	
 When Day One ends (this is the despawn the newsboy rule):
 	now the newsboy is nowhere.
@@ -10385,10 +10403,10 @@ Instead of knocking on or touching the calomel arch, say "It's cold to the touch
 
 After going through the calomel arch when the player is staid: say "A chill washes over you as you step through the arch."; continue the action.
 
-The coffee table is a scenery supporter in Arturus's Clinic.
+The little coffee table is a scenery supporter in Arturus's Clinic.
 The description is "It's hard to focus on the coffee table when Justinian is sitting at it."
-Instead of entering the coffee table, try talking to Justinian instead.
-Instead of putting something on the coffee table, say "No! Justinian's right there. That would be so awkward."
+Instead of entering the little coffee table, try talking to Justinian instead.
+Instead of putting something on the little coffee table, say "No! Justinian's right there. That would be so awkward."
 
 Part 3.29.2 - Dead Bodies
 
@@ -11694,10 +11712,15 @@ After reading out examiner-raven: discover the Trading Company connection.
 examiner-arturus-found-asked is a truth state that varies.
 examiner-arturus-timeofdeath-asked is a truth state that varies.
 examiner-arturus-notable-asked is a truth state that varies.
+
 After reading out examiner-arturus-found:
-	now examiner-arturus-found-asked is true;
-	if the enabled of justinian-4inv-movedbody has not been true, now the enabled of justinian-4inv-movedbody is true.
-After reading out examiner-arturus-timeofdeath: now examiner-arturus-timeofdeath-asked is true.
+	if examiner-arturus-found-asked is not true, now the enabled of justinian-4inv-movedbody is true;
+	now examiner-arturus-found-asked is true.
+	
+After reading out examiner-arturus-timeofdeath:
+	now clue-arturus-timeofdeath is true;
+	now examiner-arturus-timeofdeath-asked is true.
+	
 After reading out examiner-arturus-notable: now examiner-arturus-notable-asked is true.
 
 examiner-nacarat-timeofdeath-asked is a truth state that varies.
@@ -11754,7 +11777,7 @@ justinian-4inv-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'
 
 Justinian furrows his brow.
 
-[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the logo of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
+[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the symbol of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
@@ -11765,13 +11788,21 @@ He nods. 'Be careful, Marid.'
 You scurry away before you start blushing."	{}
 
 The home dialogue branch of Justinian is justinian-4inv-home.
-After reading out justinian-4inv-patients: now the enabled of justinian-4inv-patientrecords is true.
-After reading out justinian-4inv-patientrecords: now the enabled of justinian-4inv-patientrecords2 is true; now clue-patientrecords-justinian is true.
-After reading out justinian-4inv-discovery: now clue-arturus-discovery-justinian is true.
+
+After reading out justinian-4inv-patients:
+	now the enabled of justinian-4inv-patientrecords is true.
+
+After reading out justinian-4inv-patientrecords:
+	now the enabled of justinian-4inv-patientrecords2 is true;
+	now clue-patientrecords-justinian is true.
+
+After reading out justinian-4inv-discovery:
+	now clue-arturus-timeofdeath is true;
+	now clue-arturus-discovery-justinian is true.
 
 Book 3.30 - Arturus's Domicile
 
-Arturus's Domicile is a proper-named room. "This suspended mansion echoes with a grandiose hollowness. There is no comfort to be found in these faux hearths and chaise longues, these mantelpieces burdened by decades of history. Beyond the frosted-glass windows, the sky masses with stormclouds darkly shadowed by the mourning-banner.
+Arturus's Domicile is a proper-named room. "This suspended mansion echoes with a grandiose hollowness. There is no comfort to be found in these faux hearths and chaise longues, these mantelpieces burdened by decades of history.
 
 A study lies to the north. The hydraulic lift leads back down to the foyer."
 It is above the hydraulic lift.
@@ -11784,7 +11815,11 @@ The exit reminder is "You can go north to Doctor Arturus's study or down to the 
 
 Before examining north in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining inside in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
-Before examining outside in Arturus's Domicile, try examining the shadowed stormclouds instead.
+Before examining outside in Arturus's Domicile, try examining the ominous stormclouds instead.
+Before examining northwest in Arturus's Domicile, try examining the ominous stormclouds instead.
+Before examining west in Arturus's Domicile, try examining the ominous stormclouds instead.
+Before examining southwest in Arturus's Domicile, try examining the ominous stormclouds instead.
+Before examining south in Arturus's Domicile, try examining the ominous stormclouds instead.
 Before examining down in Arturus's Domicile, try examining the hydraulic lift instead.
 
 Part 3.30.1 - Scenery
@@ -11797,9 +11832,9 @@ Instead of burning the faux hearths, say "These are purely decorative fixtures. 
 Instead of inserting something into the faux hearths, say "You have better things to do."
 
 Some chaise longues are a scenery supporter in Arturus's Domicile.
-The description is "Ornate brass-and-leather furnishings that prioritize opulence over comfort."
+The description is "Long, intimidating chairs of brass and leather."
 The scent is "The leather smells of beeswax and other preservatives."
-Understand "furnishing/furnishings/furniture" or "longue/long" or "chair/chairs" as the chaise longues.
+Understand "furniture" or "longue/long" or "chair/chairs" or "brass" or "leather" as the chaise longues.
 Instead of entering the chaise longues, say "You aren't in the mood for a rest right now."
 Instead of pushing, pulling, taking, or turning the chaise longues, say "You don't see any reason to rearrange the furniture."
 Instead of looking under the chaise longues, say "There isn't a mote of dust to be seen."
@@ -11807,13 +11842,13 @@ Instead of looking under the chaise longues, say "There isn't a mote of dust to 
 Some baroque mantelpieces are a scenery supporter in Arturus's Domicile.
 The description is "Arrayed on the mantelpieces are photographic impressions, trinkets, and other mementos. Here is a painting of Doctor Arturus in his youth; there, an antique cast-iron scalpel, and a reliquary containing a shard of lapis lazuli."
 The scent is "There is no dust."
-Understand "mantelpiece" as the baroque mantelpieces.
+Understand "mantelpiece/mantel/mantels" as the baroque mantelpieces.
 Before searching the baroque mantelpieces, try examining the baroque mantelpieces instead.
 Instead of putting something on the baroque mantelpieces, say "There's no space on the mantelpieces."
 
 Some mantelpiece trinkets are privately-named scenery in Arturus's Domicile.
 The description is "Relics of another time."
-Understand "photo/photos/photograph/photographs/photographic" or "impression/impressions" or "trinket/trinkets" or "memento/mementos" as the mantelpiece trinkets.
+Understand "photo/photos/photograph/photographs/photographic" or "impression/impressions" or "trinket/trinkets" or "memento/mementos" or "history" or "decade/decades" or "of" as the mantelpiece trinkets.
 Instead of pushing, pulling, taking, or turning the mantelpiece trinkets, say "You don't think the trinkets are important to your investigation."
 
 There is a scenery thing in Arturus's Domicile called a painting of Doctor Arturus in his youth.
@@ -11835,25 +11870,100 @@ Instead of looking under the lapis lazuli reliquary, say "There is nothing under
 Instead of taking the lapis lazuli reliquary, say "You feel like you should leave Doctor Arturus's things as they were."
 
 Some frosted-glass windows are scenery in Arturus's Domicile.
-The description is "".
+The description is "The sky masses with stormclouds."
+The sound is "The windows muffle sound."
 Understand "window" or "frosted" or "glass" as the frosted-glass windows.
+Before searching the frosted-glass windows, try examining the frosted-glass windows instead.
+Instead of opening or closing the frosted-glass windows, say "These windows aren't the kind that open."
+Instead of rubbing the frosted-glass windows, say "The windows don't get any clearer."
+Instead of touching the frosted-glass windows, say "The windows are cold to the touch."
 
-[Stormclouds]
+Some ominous stormclouds are faraway scenery in Arturus's Domicile.
+The description is "It's going to rain tonight."
+The sound is "The windows muffle sound."
+The ominous stormclouds have some text called the faraway response. The faraway response is "That's on the other side of the windows."
+Understand "storm" or "cloud/clouds/stormcloud" or "dark" or "sky" or "mass/masses" as the ominous stormclouds.
 
-[Mourning-banner]
+[The black mourning-banner is faraway scenery in Arturus's Domicile.
+The description is "A black banner is traditionally put up when the head of the house has died."
+The sound is "The windows muffle sound."
+The black mourning-banner has some text called the faraway response. The faraway response is "The banner is outside, on the roof of the Turris Infinita."
+Understand "shadow" or "banner" or "trailing" or "mourning" as the black mourning-banner.]
 
 The view of Doctor Arturus's study is faraway scenery in Arturus's Domicile.
 The description is "You can't see much in the gloom."
 Understand "doctor's" or "arturus" or "arturus'" as the view of Doctor Arturus's study.
 Before entering the view of Doctor Arturus's study, try going north instead.
 
-[coffee table with wine, where nacarat was served; empty dustbin (because justinian threw out the evidence)
+Part 3.30.2 - Coffee Table
 
-the whole place is strangely clean]
+The vintage coffee table is a fixed in place supporter in Arturus's Domicile.
+
+Rule for writing a paragraph about the vintage coffee table:
+	say "By the frosted-glass windows, a coffee table has been set for three.";
+	now the vintage coffee table is mentioned;
+	now all things enclosed by the vintage coffee table are mentioned.
+	
+Instead of examining the vintage coffee table:
+	say "A dark wooden table set with linen and porcelain. There is a serving platter of crackers and cheese, barely touched; surrounding it, there are three smaller plates, two of which are accompanied by wineglasses.[line break]";
+	if clue-arturus-coffeetable is false:
+		say "[line break][wait for any key]The third wineglass is nowhere to be seen.";
+		now clue-arturus-coffeetable is true.
+
+The scent of the vintage coffee table is "You can still smell the red wine."
+Understand "dark" or "wood/wooden" or "linen" or "porcelain" as the vintage coffee table.
+Instead of entering the vintage coffee table, say "You aren't in the mood for a rest right now."
+Instead of looking under the vintage coffee table, say "There is nothing under the table, not even dust."
+Instead of putting something on the vintage coffee table, say "You aren't comfortable leaving your things in this place."
+Instead of pushing, pulling, taking, or turning the vintage coffee table, say "You don't see any reason to rearrange the furniture."
+Instead of searching the vintage coffee table, say "On the coffee table are a serving platter, three plates, and two wineglasses."
+
+The serving platter is a portable supporter on the vintage coffee table.
+Before smelling the serving platter, try smelling the crackers and cheese instead.
+Instead of examining or searching the serving platter, say "It has some crackers and cheese on it."
+Instead of putting something on the serving platter, say "There's no space on the platter for anything else."
+Instead of looking under or taking the serving platter, say "You lift up the serving platter, but there's nothing underneath."
+
+There is a plural-named thing on the serving platter called the crackers and cheese.
+The description is "Water crackers and sharp cheese slices."
+The scent is "You smell the sharpness of the cheese."
+Understand "cracker" or "slice/slices" or "water" or "food" as the crackers and cheese.
+Instead of taking, touching, tasting, or eating the crackers and cheese, say "[one of]After a careful look-over, you sneak a bite. Not bad, but it would go better with wine[or]You sneak another bite[stopping]."
+Instead of searching the crackers and cheese, say "You see nothing strange about the food."
+Instead of looking under the crackers and cheese, say "The food is on a serving platter."
+
+Some smaller plates are a portable supporter on the vintage coffee table.
+The scent is "There is no smell."
+Understand "plate" or "3/three" as the smaller plates.
+Instead of examining or searching the smaller plates, say "The plates are clean."
+Instead of looking under the smaller plates, say "The plates are on the coffee table."
+Instead of putting something on the smaller plates, say "You have better things to do."
+Instead of taking the smaller plates, say "You feel like you should leave Doctor Arturus's things as they were."
+
+Some leftover wineglasses are a portable open unopenable container on the vintage coffee table.
+The scent is "The wineglasses smell of red wine."
+Understand "wineglass/glass/glasses" or "wine glass/glasses" or "2/two" as the leftover wineglasses.
+Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.
+Instead of examining or searching the leftover wineglasses, say "The wineglasses still contain traces of red wine."
+Instead of drinking, turning, or tasting the leftover wineglasses, say "You tilt one of the glasses experimentally, but there isn't enough wine left to form even a drop."
+Instead of inserting something into the leftover wineglasses, say "You can't imagine why you would want to do that."
+Instead of looking under the leftover wineglasses, say "The wineglasses are on the coffee table."
+Instead of rubbing the leftover wineglasses, say "You're here to investigate a series of deaths, not to polish Doctor Arturus's tableware."
+Instead of taking the leftover wineglasses, say "You feel like you should leave Doctor Arturus's things as they were."
+Instead of touching the leftover wineglasses, say "The glass is cold."
+
+Some leftover stains of red wine are scenery in the leftover wineglasses.
+The description is "An expensive claret, if you had to guess."
+The scent is "An expensive claret, if you had to guess."
+Understand "stain" as the leftover stains of red wine.
+Before drinking, taking, or tasting the leftover stains of red wine, try drinking the leftover wineglasses instead.
+Before rubbing the leftover stains of red wine, try rubbing the leftover wineglasses instead.
+Instead of searching the leftover stains of red wine, say "There's nothing apart from the faint stains."
+Instead of touching the leftover stains of red wine, say "That would only dirty your gloves."
 
 Book 3.31 - Arturus's Study
 
-Arturus's Study is a proper-named room. It is north of Arturus's Domicile.
+There is a proper-named room called Arturus's Study. It is north of Arturus's Domicile.
 Understand "doctor" or "arturus'" as Arturus's Study.
 
 The simple-name is "Doctor Arturus's study".
