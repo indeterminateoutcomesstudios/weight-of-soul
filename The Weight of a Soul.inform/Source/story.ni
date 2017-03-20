@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 200317.
+The release number is 210317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -11818,12 +11818,12 @@ It is above the hydraulic lift.
 Understand "doctor" or "arturus'" as Arturus's Domicile.
 
 The simple-name is "Doctor Arturus's domicile".
-The sound is "There is no sound but your own breathing."
+The sound is "You hear ticking from the study."
 The scent is "Cold, clean air."
 The exit reminder is "You can go north to Doctor Arturus's study or down to the Turris Infinita foyer."
 
 Before going inside in Arturus's Domicile, try going north instead.
-Before going outside in Arturu's Domicile, try going down instead.
+Before going outside in Arturus's Domicile, try going down instead.
 Before examining north in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining inside in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining outside in Arturus's Domicile, try examining the ominous stormclouds instead.
@@ -11984,7 +11984,7 @@ Instead of touching the leftover stains of red wine, say "That would only dirty 
 
 Book 3.31 - Arturus's Study
 
-There is a proper-named room called Arturus's Study. "A chamber decked with aging bookcases and dusty plaques. The frieze that circles the walls is engraved with scenes from antiquity, lines in the [italic type]lingua libria[roman type]; by the exit to the south, a clock has been mounted, and ticks the minutes and seconds away.
+There is a proper-named room called Arturus's Study. "A chamber decked with aging bookcases and dusty plaques. The frieze that circles the walls is engraved with scenes from antiquity, lines in the [italic type]lingua libria;[roman type] by the exit to the south, a clock ticks the minutes and seconds away.
 
 A rosewood desk stands in the heart of the room. Beside it, there is a storage cabinet."
 
@@ -11996,8 +11996,8 @@ The sound is "You hear the ticking of the clock."
 The scent is "The room smells of ink and tobacco."
 The exit reminder is "The exit is to the south."
 
-Before examining outside in Arturus's Study, try examining south instead.
-Instead of examining south in Arturus's Study, say "That way is the rest of the domicile."
+Before examining outside in Arturus's Study, try examining the view of Doctor Arturus's domicile instead.
+Before examining south in Arturus's Study, try examining the view of Doctor Arturus's domicile instead.
 
 Before going outside in Arturus's Study, try going south instead.
 
@@ -12014,19 +12014,112 @@ Some antique medical texts are scenery in the aging bookcases.
 The description is "Mostly outdated, but they have historical value."
 The scent is "The books are old and moldy."
 Understand "collection" or "of" or "text" or "book/books" as the antique medical texts.
-Before opening, pushing, pulling, or turning the antique medical texts, try opening the aging bookcases instead.
+Before opening, pushing, pulling, turning, or looking under the antique medical texts, try opening the aging bookcases instead.
 Instead of searching the antique medical texts, say "You don't have the time to look through them. In any case, you doubt they're relevant to the investigation."
 Instead of taking the antique medical texts, say "You don't need any of these texts."
 
 Some dusty plaques are scenery in Arturus's Study.
+The description is "Various awards and certificates."
+The scent is "You sneeze."
+Understand "plaque" or "award/awards" or "certificate/certificates" as scenery in Arturus's Study.
+Instead of looking under the dusty plaques, say "The plaques are firmly affixed to the wall."
+
+The decorative frieze is scenery in Arturus's Study.
+The description is "The wood has been carefully carved and sigiled."
+Understand "wood" or "carved/engraved" or "sigil/sigils/sigiled" as the decorative frieze.
+Instead of searching the decorative frieze, say "There are some scenes from antiquity, and lines in the [italic type]lingua libria[roman type]."
+
+Some scenes from antiquity are part of the decorative frieze.
+The description is "One scene depicts Pharmacos discovering the humors. Another shows Merula and Collis treating refugees during the Corindian Civil War."
+Understand "scene" as the scenes from antiquity.
+Does the player mean doing something with the scenes from antiquity: it is likely.
+
+The decorative frieze incorporates a thing called the scene of Pharmacos.
+The description of the scene of Pharmacos is "Pharmacos the Wise was the first to name the four humors of the body."
+Understand "humor/humors" or "four/4" or "wise" as the scene of Pharmacos.
+
+The decorative frieze incorporates a thing called the scene of Merula and Collis.
+The description of the scene of Merula is "The two lovers would eventually found the Physicians['] College."
+Understand "two/2" or "lover/lovers" or "refugee/refugees" or "corindia/corindian" or "civil" or "war" as the scene of Merula.
+
+The decorative frieze incorporates a plural-named thing called the lines in the lingua libria.
+The printed name of the lingua libria lines is "lines in the [italic type]lingua libria[roman type]".
+The description is "[italic type]Nascentes morimur finisque ab origine pendet.[roman type] 'When we are born we die; our end is but the pendant of our beginning.'"
+Understand "line" as the lingua libria lines.
+
+The view of Doctor Arturus's domicile is faraway scenery in Arturus's Study.
+The description is "Light streams in."
+The sound is "It's quiet."
+Understand "exit" as the view of Doctor Arturus's domicile.
+Before entering the view of Doctor Arturus's domicile, try going south instead.
+
+The pendulum clock is scenery in Arturus's Study.
+The description is "A pendulum clock. Its arm sways to and fro, never quite finding rest."
+The sound is "Tick. Tock."
+Understand "arm" as the pendulum clock.
+Instead of looking under, opening, pushing, pulling, searching, or turning the pendulum clock, say "You give the clock a once-over, but it isn't hiding any secret compartments or anything like that."
 
 Part 3.31.2 - Rosewood Desk
+
+The rosewood desk is a scenery supporter in Arturus's Study.
+The scent is "The smell is overpowering."
+Instead of examining the rosewood desk, say "The desk is drenched with tobacco, stained with ink, and weathered by decades of use. It curves around a high-backed armchair, piled with stationery and never-finished letters.
+
+At the end of the table sits a correspondence machine, accompanied by its box of ticker-tape reels."
+Instead of looking under the rosewood desk, say "Nothing is under the desk."
+Instead of searching the rosewood desk, say "Apart from the stationery, there is a correspondence machine, and a box of ticker-tape reels."
+Instead of pushing, pulling, or turning the rosewood desk, say "You don't see any reason to rearrange the furniture."
+Instead of putting something on the rosewood desk, say "You aren't comfortable leaving your things in this place."
+
+Report entering the rosewood desk: say "You sit at the rosewood desk."; stop the action.
+Report getting off the rosewood desk: say "You stand up."; stop the action.
 	
-[ticker tape correspondence machine]
+Rule for issuing the response text of room description heading rule response (B) when the player is on the rosewood desk (this is the print 'at the rosewood desk' rule):
+	say " (at the rosewood desk)".
+	
+Some ancient inkstains are part of the rosewood desk.
+The description is "You thought those were bloodstains for a second. Thankfully, that isn't the case."
+The scent is "Ink. Definitely ink."
+Understand "stain/stains" or "ink" as the ancient inkstains.
+Instead of looking under, rubbing, or touching the ancient inkstains, say "The stains are deep in the wood."
+
+The high-backed armchair is a scenery supporter in Arturus's Study.
+The scent is "It smells of tobacco."
+Understand "chair" as the high-backed armchair.
+Before entering the high-backed armchair, try entering the rosewood desk instead.
+Before getting off the high-backed armchair, try getting off the rosewood desk instead.
+Instead of examining the high-backed armchair, say "It looks to be very old, and not very comfortable."
+Instead of looking under the high-backed armchair, say "Nothing is under the chair."
+Instead of searching the high-backed armchair, say "Nothing is hidden in the chair."
+Instead of pushing, pulling, or turning the high-backed armchair, say "You don't see any reason to rearrange the furniture."
+Instead of putting something on the high-backed armchair, say "You aren't comfortable leaving your things in this place."
+Instead of inserting something into the high-backed armchair, say "You aren't comfortable leaving your things in this place."
+
+The dreary stationery is scenery on the rosewood desk. The indefinite article is "some".
+The description is "A pen and inkpot have been set out, as though Doctor Arturus had been planning to write something."
+Understand "pen" or "inkpot" as the dreary stationery.
+Instead of looking under the dreary stationery, say "The stationery is on the rosewood desk."
+Instead of taking the dreary stationery, say "You don't need either a pen or an inkpot."
+
+Some never-finished letters are scenery on the rosewood desk.
+The description is "You guess that these letters were addressed to Doctor Arturus's friends once. But the ink has dried on unfinished sentences, leaving the letters cryptic, without resolution."
+The scent is "The paper is old."
+Understand "letter" or "never" or "finished/unfinished" or "ink" or "sentence/sentences" as the never-finished letters.
+Instead of looking under the never-finished letters, say "The letters are on the rosewood desk."
+Instead of searching or taking the never-finished letters, say "You skim through the letters, but none of them appear to be relevant to the investigation."
+
+Chapter 3.31.2.1 - Correspondence Machine
+
+The correspondence machine is scenery on the rosewood desk.
+The description is "A complex alchemical-mechanical device which is labelled as a correspondence machine. It purports to receive and transmit messages in the aether without the need for magical training.
+
+The machine consists of a dial, a keyboard, a feed wheel, and a letterpress. Two lightbulbs are lit, indicating messages received on the first and second channels."
+Understand "device" as the correspondence machine.
+Instead of taking, turning, pushing, pulling, or looking under the correspondence machine, say "The machine has been bolted to the desk."
 
 Part 3.31.3 - Storage Cabinet
 
-[nacarat documents; patient records]
+[patient records]
 
 Book of the Rest
 
