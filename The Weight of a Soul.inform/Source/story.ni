@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 180317.
+The release number is 200317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,23 +54,17 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Arturus Investigation
 - Write Arturus's Domicile
 
-- Write Nacarat Investigation
-
-- Write the Shanty Quarter
-- Write the Crow's Nest
-
-- Write Reden Investigation
+- Write Reden's postmortem file
+- Write VII Layabout Row
 - Write Zoiro's dialogue
 - Put the coupon in Reden's Shack
 
-- Write Thugs Investigation
-- Write Sal's body
-- Write Piper's body
+- Write Shanty Quarter
 - Write Sal's Domicile
 - Write Piper's Domicile
+- Write Crow's Nest
 
 - Write end of Day Two
 
@@ -2427,6 +2421,7 @@ clue-arturus-timeofdeath is a truth state that varies.
 clue-arturus-gloves is a truth state that varies.
 clue-arturus-animus is a truth state that varies.
 clue-arturus-coffeetable is a truth state that varies.
+clue-arturus-wineglassbroken is a truth state that varies.
 
 clue-nacarat-recording is a truth state that varies.
 clue-nacarat-pocketbook is a truth state that varies.
@@ -2695,10 +2690,12 @@ To say journal-text-notes:
 			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
 		if Arturus Investigation is happening:
 			let L2 be a list of texts;
-			if clue-arturus-coffeetable is true:
+			if clue-arturus-wineglassbroken is true:
+				add "- I found a coffee table set for three in Doctor Arturus's home. According to Justinian, one of the wineglasses had been broken by a guest." to L2;
+			otherwise if clue-arturus-coffeetable is true:
 				add "- I found a coffee table set for three in Doctor Arturus's home. The table had not been tidied up, but the third wineglass was missing." to L2;
 			if clue-arturus-gloves is true:
-				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he was wearing them." to L2;
+				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he had been wearing them." to L2;
 			otherwise if examiner-arturus-notable-asked is true:
 				add "- I learned that Doctor Arturus may have been infected through his gloves." to L2;
 			if clue-arturus-timeofdeath is true, add "- I learned that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
@@ -7241,12 +7238,12 @@ porter-firstgreeting-quipped is a truth state that varies.
 Rule for writing a paragraph about the porter during Day One:
 	if the previous location is not the Turris Infinita:
 		if porter-firstgreeting-quipped is false:
-			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?' ";
+			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?'";
 			now porter-firstgreeting-quipped is true;
 		otherwise:
-			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.' [or]The porter regards you coolly and silently. [stopping]";
+			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.'[or]The porter regards you coolly and silently.[stopping]";
 	otherwise:
-		say "The porter regards you coolly and silently. ".
+		say "The porter regards you coolly and silently.";
 
 Some dialogue branches are defined by the Table of Porter Day One Dialogue.
 
@@ -7943,7 +7940,11 @@ When Day Two begins (this is the spawn the chilly breeze rule):
 	now the chilly breeze is in the Grand Forum.
 	
 Instead of going to the Basilica during Day Two:
-	say "[path-walked so far][one of]You make your way to the basilica, only to find it closed for an emergency council meeting. You have no choice but to return to the grand forum[or]The basilica is closed for an emergency council meeting[stopping]."
+	say "[path-walked so far][one of]You make your way to the basilica, only to find it closed for an emergency council meeting. You have no choice but to return to the grand forum[or]The basilica is closed for an emergency council meeting[stopping].";
+	now the Basilica is goto-impassable.
+	
+When Day Two ends (this is the now you can go to the basilica again i guess rule):
+	now the Basilica is goto-passable.
 
 Book 3.18 - Canalside Steps
 
@@ -10354,10 +10355,10 @@ The sound is "It's quiet."
 The scent is "There is an antiseptic quality to the air."
 The exit reminder is "The Turris Infinita foyer is to the west."
 
-Before examining west in the Turris Infinita, try examining the view of the foyer instead.
-Before examining outside in the Turris Infinita, try examining the view of the foyer instead.
+Before examining west in Arturus's Clinic, try examining the view of the foyer instead.
+Before examining outside in Arturus's Clinic, try examining the view of the foyer instead.
 
-Before going outside in the Turris Infinita, try going west instead.
+Before going outside in Arturus's Clinic, try going west instead.
 
 Part 3.29.1 - Scenery
 
@@ -11750,34 +11751,39 @@ Table of Justinian 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-4inv-home	true	false	""	"Justinian brightens up as you approach him.
 
-'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-nevermind}
+'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-nevermind}
 justinian-4inv-discovery	true	false	"'Can you tell me again about how you discovered the body?'"	"'Can you tell me again about... about how you discovered the body?'
 
-He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought.
 
-'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
-'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on the disease, again?'
 
-Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
 
-Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-raven, justinian-4inv-goodbye}
+Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
 justinian-4inv-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
 
 'A raven symbol?'
 
 Justinian furrows his brow.
 
-[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the symbol of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-nevermind}
+[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the symbol of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-goodbye}
+justinian-4inv-wineglass	false	true	"'A wineglass was missing from Doctor Arturus's domicile...'"	"'A wineglass was missing from Doctor Arturus's domicile. Do you have any idea why?'
+
+Justinian regards you curiously. 'I believe a guest broke one of the glasses. Do you... do you think it was relevant to Doctor Arturus's death?'
+
+You can already feel yourself reddening. 'Never mind,' you say. 'Forget I asked.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
@@ -11799,6 +11805,9 @@ After reading out justinian-4inv-patientrecords:
 After reading out justinian-4inv-discovery:
 	now clue-arturus-timeofdeath is true;
 	now clue-arturus-discovery-justinian is true.
+	
+After reading out justinian-4inv-wineglass:
+	now clue-arturus-wineglassbroken is true.
 
 Book 3.30 - Arturus's Domicile
 
@@ -11813,6 +11822,8 @@ The sound is "There is no sound but your own breathing."
 The scent is "Cold, clean air."
 The exit reminder is "You can go north to Doctor Arturus's study or down to the Turris Infinita foyer."
 
+Before going inside in Arturus's Domicile, try going north instead.
+Before going outside in Arturu's Domicile, try going down instead.
 Before examining north in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining inside in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining outside in Arturus's Domicile, try examining the ominous stormclouds instead.
@@ -11823,6 +11834,12 @@ Before examining south in Arturus's Domicile, try examining the ominous stormclo
 Before examining down in Arturus's Domicile, try examining the hydraulic lift instead.
 
 Part 3.30.1 - Scenery
+
+A grandiose hollowness is faraway scenery in Arturus's Domicile.
+The description is "This place is uncomfortably empty."
+Before listening to the grandiose hollowness, try listening to the location instead.
+The grandiose hollowness has some text called the faraway response. The faraway response is "The [italic type]whole[roman type] domicile?"
+Understand "suspended" or "mansion" or "echo/echoes" or "empty" or "space" as the grandiose hollowness.
 
 Some faux hearths are an open unopenable scenery container in Arturus's Domicile.
 The scent is "Nothing has ever been burned here."
@@ -11849,6 +11866,7 @@ Instead of putting something on the baroque mantelpieces, say "There's no space 
 Some mantelpiece trinkets are privately-named scenery in Arturus's Domicile.
 The description is "Relics of another time."
 Understand "photo/photos/photograph/photographs/photographic" or "impression/impressions" or "trinket/trinkets" or "memento/mementos" or "history" or "decade/decades" or "of" as the mantelpiece trinkets.
+Instead of looking under the mantelpiece trinkets, say "The trinkets are displayed on the mantelpieces."
 Instead of pushing, pulling, taking, or turning the mantelpiece trinkets, say "You don't think the trinkets are important to your investigation."
 
 There is a scenery thing in Arturus's Domicile called a painting of Doctor Arturus in his youth.
@@ -11858,6 +11876,8 @@ Instead of looking under, searching, or turning the painting of Doctor Arturus, 
 
 The antique cast-iron scalpel is scenery in Arturus's Domicile.
 The description is "It's hard to imagine surgeons once used these."
+Understand "stand" as the antique cast-iron scalpel.
+Instead of looking under the antique cast-iron scalpel, say "The scalpel is displayed on a stand."
 Instead of taking the antique cast-iron scalpel, say "You feel like you should leave Doctor Arturus's things as they were."
 
 The lapis lazuli reliquary is a closed unopenable transparent scenery container in Arturus's Domicile.
@@ -11873,7 +11893,7 @@ Some frosted-glass windows are scenery in Arturus's Domicile.
 The description is "The sky masses with stormclouds."
 The sound is "The windows muffle sound."
 Understand "window" or "frosted" or "glass" as the frosted-glass windows.
-Before searching the frosted-glass windows, try examining the frosted-glass windows instead.
+Before searching or looking under the frosted-glass windows, try examining the frosted-glass windows instead.
 Instead of opening or closing the frosted-glass windows, say "These windows aren't the kind that open."
 Instead of rubbing the frosted-glass windows, say "The windows don't get any clearer."
 Instead of touching the frosted-glass windows, say "The windows are cold to the touch."
@@ -11908,9 +11928,10 @@ Instead of examining the vintage coffee table:
 	say "A dark wooden table set with linen and porcelain. There is a serving platter of crackers and cheese, barely touched; surrounding it, there are three smaller plates, two of which are accompanied by wineglasses.[line break]";
 	if clue-arturus-coffeetable is false:
 		say "[line break][wait for any key]The third wineglass is nowhere to be seen.";
-		now clue-arturus-coffeetable is true.
+		now clue-arturus-coffeetable is true;
+		now the enabled of justinian-4inv-wineglass is true.
 
-The scent of the vintage coffee table is "You can still smell the red wine."
+The scent of the vintage coffee table is "The table smells of red wine and sharp cheese."
 Understand "dark" or "wood/wooden" or "linen" or "porcelain" as the vintage coffee table.
 Instead of entering the vintage coffee table, say "You aren't in the mood for a rest right now."
 Instead of looking under the vintage coffee table, say "There is nothing under the table, not even dust."
@@ -11941,8 +11962,8 @@ Instead of putting something on the smaller plates, say "You have better things 
 Instead of taking the smaller plates, say "You feel like you should leave Doctor Arturus's things as they were."
 
 Some leftover wineglasses are a portable open unopenable container on the vintage coffee table.
-The scent is "The wineglasses smell of red wine."
 Understand "wineglass/glass/glasses" or "wine glass/glasses" or "2/two" as the leftover wineglasses.
+Before smelling the leftover wineglasses, try smelling the leftover stains of red wine instead.
 Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.
 Instead of examining or searching the leftover wineglasses, say "The wineglasses still contain traces of red wine."
 Instead of drinking, turning, or tasting the leftover wineglasses, say "You tilt one of the glasses experimentally, but there isn't enough wine left to form even a drop."
@@ -11954,8 +11975,8 @@ Instead of touching the leftover wineglasses, say "The glass is cold."
 
 Some leftover stains of red wine are scenery in the leftover wineglasses.
 The description is "An expensive claret, if you had to guess."
-The scent is "An expensive claret, if you had to guess."
-Understand "stain" as the leftover stains of red wine.
+The scent is "You smell nothing strange from the leftover stains."
+Understand "stain" or "faint" as the leftover stains of red wine.
 Before drinking, taking, or tasting the leftover stains of red wine, try drinking the leftover wineglasses instead.
 Before rubbing the leftover stains of red wine, try rubbing the leftover wineglasses instead.
 Instead of searching the leftover stains of red wine, say "There's nothing apart from the faint stains."
@@ -11963,12 +11984,49 @@ Instead of touching the leftover stains of red wine, say "That would only dirty 
 
 Book 3.31 - Arturus's Study
 
-There is a proper-named room called Arturus's Study. It is north of Arturus's Domicile.
+There is a proper-named room called Arturus's Study. "A chamber decked with aging bookcases and dusty plaques. The frieze that circles the walls is engraved with scenes from antiquity, lines in the [italic type]lingua libria[roman type]; by the exit to the south, a clock has been mounted, and ticks the minutes and seconds away.
+
+A rosewood desk stands in the heart of the room. Beside it, there is a storage cabinet."
+
+It is north of Arturus's Domicile.
 Understand "doctor" or "arturus'" as Arturus's Study.
 
 The simple-name is "Doctor Arturus's study".
+The sound is "You hear the ticking of the clock."
+The scent is "The room smells of ink and tobacco."
+The exit reminder is "The exit is to the south."
 
-[ticker tape correspondence machine; nacarat debt documents; patient records]
+Before examining outside in Arturus's Study, try examining south instead.
+Instead of examining south in Arturus's Study, say "That way is the rest of the domicile."
+
+Before going outside in Arturus's Study, try going south instead.
+
+Part 3.31.1 - Scenery
+
+Some aging bookcases are an open unopenable scenery container in Arturus's Study.
+Understand "bookcase" or "bookshelf/bookshelves" or "secret" or "compartment" as the aging bookcases.
+Before smelling the aging bookcases, try smelling the antique medical texts instead.
+Instead of examining or searching the aging bookcases, say "Doctor Arturus has a small collection of antique medical texts."
+Instead of opening, pushing, pulling, or turning the aging bookcases, say "[one of]You find the catch and open up the secret compartment that is so common in old bookcases. Unfortunately, Doctor Arturus doesn't appear to have made use of it, and you close the secret compartment back up with some disappointment[or]You've already checked the secret compartment[stopping]."
+Instead of inserting something into the aging bookcases, say "You shouldn't leave your things lying around in old houses."
+
+Some antique medical texts are scenery in the aging bookcases.
+The description is "Mostly outdated, but they have historical value."
+The scent is "The books are old and moldy."
+Understand "collection" or "of" or "text" or "book/books" as the antique medical texts.
+Before opening, pushing, pulling, or turning the antique medical texts, try opening the aging bookcases instead.
+Instead of searching the antique medical texts, say "You don't have the time to look through them. In any case, you doubt they're relevant to the investigation."
+Instead of taking the antique medical texts, say "You don't need any of these texts."
+
+Some dusty plaques are scenery in Arturus's Study.
+
+Part 3.31.2 - Rosewood Desk
+	
+[ticker tape correspondence machine]
+
+Part 3.31.3 - Storage Cabinet
+
+[nacarat documents; patient records]
 
 Book of the Rest
 
