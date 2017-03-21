@@ -1447,6 +1447,7 @@ Understand "straighten [something]" as turning.
 Understand "study [something]" as examining.
 Understand "tear [something]" as attacking.
 Understand "thread [something preferably held] into [something]" as inserting it into.
+Understand "turn [something] to [text]" as setting it to.
 Understand "unravel [something]" as opening.
 Understand "untie [something]" as opening.
 
@@ -1636,6 +1637,7 @@ Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[o
 Understand "step with care" as a mistake ("[if the location is Maze Part Four]You can't bring yourself to.[otherwise]Always.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
+Understand "type [text]" as a mistake ("[if the correspondence machine is in the location]None of the alphanumeric keys are working.[otherwise]There's nothing here that you can type on.").
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
 
 Part 2.3.4 - New Parser Error Messages
@@ -2422,6 +2424,7 @@ clue-arturus-gloves is a truth state that varies.
 clue-arturus-animus is a truth state that varies.
 clue-arturus-coffeetable is a truth state that varies.
 clue-arturus-wineglassbroken is a truth state that varies.
+clue-arturus-debt is a truth state that varies.
 
 clue-nacarat-recording is a truth state that varies.
 clue-nacarat-pocketbook is a truth state that varies.
@@ -2628,7 +2631,7 @@ To say journal-text-objectives:
 	if Four Investigations is happening:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
-			add "- Ask around about the meaning of the raven symbol" to LM;
+			add "- Ask around about the meaning of the raven" to LM;
 		if LM is not {}:
 			add "" to L;
 			add "[italic type]Miscellaneous[roman type]" to L;
@@ -2690,6 +2693,11 @@ To say journal-text-notes:
 			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
 		if Arturus Investigation is happening:
 			let L2 be a list of texts;
+			if clue-arturus-debt is true:
+				if clue-tradingcompany is true:
+					add "- I learned that Doctor Arturus was in debt, and the Trading Company was involved." to L2;
+				otherwise:
+					add "- I learned that Doctor Arturus was in debt, and someone or something referred to as a 'raven' was involved." to L2;
 			if clue-arturus-wineglassbroken is true:
 				add "- I found a coffee table set for three in Doctor Arturus's home. According to Justinian, one of the wineglasses had been broken by a guest." to L2;
 			otherwise if clue-arturus-coffeetable is true:
@@ -2709,7 +2717,7 @@ To say journal-text-notes:
 				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
 			if clue-nacarat-raven is true:
 				if clue-tradingcompany is true:
-					add "- I learned that Creditor Nacarat was connected to the Greater Corindia Trading Company." to L2;
+					add "- I learned that Creditor Nacarat was connected to the Trading Company." to L2;
 				otherwise:
 					add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
 			if clue-nacarat-pocketbook is true:
@@ -2729,11 +2737,11 @@ To say journal-text-notes:
 				add "- I found a battered keyring on Sal's belt." to L2;
 			if clue-tradingcompany is true:
 				if clue-sal-raven is true and clue-piper-raven is true:
-					add "- I learned that Sal and Piper were connected to the Greater Corindia Trading Company." to L2;
+					add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
 				otherwise if clue-sal-raven is true:
-					add "- I learned that Sal was connected to the Greater Corindia Trading Company." to L2;
-				otherwise:
-					add "- I learned that Piper was connected to the Greater Corindia Trading Company." to L2;
+					add "- I learned that Sal was connected to the Trading Company." to L2;
+				otherwise if clue-piper-raven is true:
+					add "- I learned that Piper was connected to the Trading Company." to L2;
 			otherwise:
 				if clue-sal-raven is true:
 					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
@@ -2752,37 +2760,37 @@ To say journal-text-notes:
 	[---
 	MUSINGS, MISCELLANEOUS
 	---]
-	let LM be a list of texts; [List of Musings]
+	let LM be a list of texts; [List of Miscellaneous]
+	if Four Investigations is happening:
+		if clue-tradingcompany is true:
+			add "- I learned that the raven is the symbol of the Greater Corindia Trading Company, a criminal syndicate." to LM;
 	if time is not critical and the enabled of bartender-dialogue-drink is true:
-		add "- I'm in the mood for a drink... " to LM;
+		add "- I'm in the mood for a drink..." to LM;
 	[---
 	MUSINGS, PROLOGUE
 	---]
 	if Walking Home in Darkness is happening and the Dormitory Block is visited and Saliunca is friendly:
-		add "- There's something strange about [if Saliunca is proper-named]Saliunca[otherwise]that old woman in the atrium[end if]... " to LM;
+		add "- There's something strange about [if Saliunca is proper-named]Saliunca[otherwise]that old woman in the atrium[end if]..." to LM;
 	[---
 	MUSINGS, DAY ONE
 	---]
 	if Cavala's Errands is happening:
 		if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
-				add "- Doctor Cavala told me to think about what I saw last night... " to LM;
-			add "- This district is so much larger than the Lake District... " to LM;
+				add "- Doctor Cavala told me to think about what I saw last night.. " to LM;
+			add "- This district is so much larger than the Lake District..." to LM;
 			if the enabled of horatio-dayone-intro is true:
-				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on... " to LM;
+				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on..." to LM;
 			if the Grand Forum is visited and journal-buskers-examined is false:
-				add "- I wonder what those buskers in the grand forum are performing... " to LM;
+				add "- I wonder what those buskers in the grand forum are performing..." to LM;
 			if journal-porter-talkedto is false:
-				add "- Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit... " to L;
+				add "- Perhaps I could go to the Turris Infinita and pay Justinian a surprise visit..." to L;
 	[---
 	MUSINGS, DAY TWO
 	---]
-	if Four Investigations is happening:
-		if clue-tradingcompany is true:
-			add "- I learned that the raven is a symbol of the Greater Corindia Trading Company, a criminal syndicate. " to LM;
 	if All Quiet on the Western Front is happening:
 		if journal-crucible-witnessed is false:
-			add "- I hope Doctor Cavala and Horatio will be all right at the clinic... " to LM;
+			add "- I hope Doctor Cavala and Horatio will be all right at the clinic..." to LM;
 	if Four Investigations is happening and LM is not {}:
 		add "[italic type]Miscellaneous[roman type]" at entry 1 in LM;
 		add "" at entry 1 in LM;
@@ -11489,10 +11497,13 @@ An abominable mass is scenery in piper-endoscopy-stomach.
 The description is "You hope it's your hands that are trembling, and not the mass."
 Understand "island" or "body-of-stomach" or "sickening" or "bolus/boli" or "tendril/tendrils" as the abominable mass.
 
-Chapter 3.29.2.9 - Raven Symbols
+Chapter 3.29.2.9 - Raven Questions
 
 Every turn when Four Investigations is happening and clue-ravens-sighted is greater than 2 and clue-raven is false (this is the unlocking raven symbol questions rule):
 	say "That's the third time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
+	unlock raven questions.
+	
+To unlock raven questions:
 	now the enabled of examiner-raven is true;
 	now the enabled of justinian-4inv-raven is true;
 	now clue-raven is true.
@@ -11652,9 +11663,11 @@ examiner-home3	true	false	""	"You approach the team of Vigiles, and Examiner Vel
 examiner-causeofdeath	true	true	"'The victims all died of the same disease?'"	"'The victims all died of the same disease?'
 
 Examiner Velox shrugs. 'Like you, we cannot damage the bodies, making any detailed examination impossible. It seems clear, however, that these deaths were all caused by the same affliction of the blood.'"	{examiner-raven, examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
-examiner-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
+examiner-raven	false	true	"'Does a raven mean anything to you?'"	"'Does a raven mean anything to you?'
 
-The examiner raises an eyebrow. 'It... it does, now that you mention it. The raven is one of the symbols of the Greater Corindia Trading Company -- it's a criminal syndicate, one of the biggest in Furopolis. If some of these people had been involved...'"	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
+The examiner raises an eyebrow. 'It... it does, now that you mention it. The raven is one of the symbols of the Greater Corindia Trading Company -- it's a criminal syndicate, one of the biggest in Furopolis. If some of these people had been involved...'
+
+That can't be good. You make a mental note of the connection."	{examiner-arturus-ask, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-ask	true	false	"'Regarding Doctor Arturus...'"	"'Regarding Doctor Arturus...'"	{examiner-arturus-id, examiner-arturus-found, examiner-arturus-timeofdeath, examiner-arturus-notable, examiner-nacarat-ask, examiner-thugs-ask, examiner-thanksbye}
 examiner-arturus-id	true	true	"'You're certain about his identity?'"	"'You're certain about his identity?'
 
@@ -11751,39 +11764,42 @@ Table of Justinian 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 justinian-4inv-home	true	false	""	"Justinian brightens up as you approach him.
 
-'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-nevermind}
+'Marid,' he says."	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-nevermind}
 justinian-4inv-discovery	true	false	"'Can you tell me again about how you discovered the body?'"	"'Can you tell me again about... about how you discovered the body?'
 
-He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
+He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
+'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought.
 
-'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he says. 'He was obsessed with control. It would be like him to have every record on hand.'"	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-patientrecords2	false	false	"'Where are the patient records, again?'"	"'Where are the patient records, again?'
 
-'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
+'Try Doctor Arturus's domicile,' he replies."	{justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-disease	true	false	"'What are your thoughts on the disease again?'"	"'What are your thoughts on the disease, again?'
 
-Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
+Justinian shakes his head. 'I don't have any more idea than you do. Even Doctor Arturus was at a loss, and he was one of the most renowned pathologists in the region.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-movedbody	false	true	"'The Vigiles told me that you moved Doctor Arturus's body.'"	"'The -- The Vigiles told me that you moved Doctor Arturus's body.'
 
-Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-raven, justinian-4inv-wineglass, justinian-4inv-goodbye}
-justinian-4inv-raven	false	true	"'Does a raven symbol mean anything to you?'"	"'Does a raven symbol mean anything to you?'
+Justinian looks down. 'I thought -- I believed he was unconscious at first. I thought he could have been revived...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
+justinian-4inv-raven	false	true	"'Does a raven mean anything to you?'"	"'Does a raven mean anything to you?'
 
-'A raven symbol?'
+'A raven?'
 
 Justinian furrows his brow.
 
-[wait for any key]'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the symbol of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-goodbye}
+'I'm sorry, Marid,' he says after a pause. 'Nothing comes to mind. Perhaps the symbol of a company...'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-debt, justinian-4inv-goodbye}
+justinian-4inv-debt	false	true	"'Did you know that Doctor Arturus was in debt?'"	"'Did you know that Doctor Arturus was in debt?'
+
+He blinks. 'I... no. I did not. That [italic type]is[roman type] rather intriguing... and it does paint recent events in a different light.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-goodbye}
 justinian-4inv-wineglass	false	true	"'A wineglass was missing from Doctor Arturus's domicile...'"	"'A wineglass was missing from Doctor Arturus's domicile. Do you have any idea why?'
 
 Justinian regards you curiously. 'I believe a guest broke one of the glasses. Do you... do you think it was relevant to Doctor Arturus's death?'
 
-You can already feel yourself reddening. 'Never mind,' you say. 'Forget I asked.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-goodbye}
+You can already feel yourself reddening. 'Never mind,' you say. 'Forget I asked.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-nevermind	true	false	"'Nothing, never mind!'"	"'Nothing -- nothing. Never mind!'
 
 You scurry away in a fluster of embarassment."	{}
@@ -12044,7 +12060,7 @@ Understand "two/2" or "lover/lovers" or "refugee/refugees" or "corindia/corindia
 
 The decorative frieze incorporates a plural-named thing called the lines in the lingua libria.
 The printed name of the lingua libria lines is "lines in the [italic type]lingua libria[roman type]".
-The description is "[italic type]Nascentes morimur finisque ab origine pendet.[roman type] 'When we are born we die; our end is but the pendant of our beginning.'"
+The description of the lingua libria lines is "[italic type]Nascentes morimur finisque ab origine pendet.[roman type] 'When we are born we die; our end is but the pendant of our beginning.'"
 Understand "line" as the lingua libria lines.
 
 The view of Doctor Arturus's domicile is faraway scenery in Arturus's Study.
@@ -12063,7 +12079,7 @@ Part 3.31.2 - Rosewood Desk
 
 The rosewood desk is a scenery supporter in Arturus's Study.
 The scent is "The smell is overpowering."
-Instead of examining the rosewood desk, say "The desk is drenched with tobacco, stained with ink, and weathered by decades of use. It curves around a high-backed armchair, piled with stationery and never-finished letters.
+Instead of examining the rosewood desk, say "The desk is drenched with tobacco, stained with ink, and weathered by decades of use. It curves around a high-backed armchair, piled with stationery and never-finished drafts.
 
 At the end of the table sits a correspondence machine, accompanied by its box of ticker-tape reels."
 Instead of looking under the rosewood desk, say "Nothing is under the desk."
@@ -12101,21 +12117,189 @@ Understand "pen" or "inkpot" as the dreary stationery.
 Instead of looking under the dreary stationery, say "The stationery is on the rosewood desk."
 Instead of taking the dreary stationery, say "You don't need either a pen or an inkpot."
 
-Some never-finished letters are scenery on the rosewood desk.
-The description is "You guess that these letters were addressed to Doctor Arturus's friends once. But the ink has dried on unfinished sentences, leaving the letters cryptic, without resolution."
+Some never-finished drafts are scenery on the rosewood desk.
+The description is "You guess that these were addressed to Doctor Arturus's friends once. But the ink has dried on unfinished sentences, leaving the drafts cryptic, without resolution."
 The scent is "The paper is old."
-Understand "letter" or "never" or "finished/unfinished" or "ink" or "sentence/sentences" as the never-finished letters.
-Instead of looking under the never-finished letters, say "The letters are on the rosewood desk."
-Instead of searching or taking the never-finished letters, say "You skim through the letters, but none of them appear to be relevant to the investigation."
+Understand "draft" or "never" or "finished/unfinished" or "ink" or "sentence/sentences" as the never-finished drafts.
+Instead of looking under the never-finished drafts, say "The drafts are on the rosewood desk."
+Instead of searching or taking the never-finished drafts, say "You skim through the drafts, but none of them appear to be relevant to the investigation."
 
 Chapter 3.31.2.1 - Correspondence Machine
 
-The correspondence machine is scenery on the rosewood desk.
-The description is "A complex alchemical-mechanical device which is labelled as a correspondence machine. It purports to receive and transmit messages in the aether without the need for magical training.
+Section 3.31.2.1.1 - The Machine
 
-The machine consists of a dial, a keyboard, a feed wheel, and a letterpress. Two lightbulbs are lit, indicating messages received on the first and second channels."
-Understand "device" as the correspondence machine.
-Instead of taking, turning, pushing, pulling, or looking under the correspondence machine, say "The machine has been bolted to the desk."
+The correspondence machine is scenery on the rosewood desk.
+The description is "A complex alchemical-mechanical device which is labelled as a correspondence machine. It purports to receive and transmit messages through the aether without the need for magical training.
+
+The machine consists of a dial, a keyboard, a feed wheel, and a letterpress. Next to the dial, there are three indicator lamps, of which the first and second are lit."
+The scent is "It smells... aetheric, for lack of a better word."
+The sound is "It isn't making any sound at the moment."
+Understand "device" or "bolt/bolts/bolted" as the correspondence machine.
+Instead of searching the correspondence machine, say "The machine consists of a dial, a keyboard, a feed wheel, and a letterpress."
+Instead of taking, turning, pushing, pulling, or looking under the correspondence machine, say "The machine is bolted to the desk."
+Instead of inserting something into the correspondence machine, say "You'll have to specify which part of the correspondence machine you mean."
+Instead of putting something on the correspondence machine, say "You'll have to specify which part of the correspondence machine you mean."
+Instead of setting the correspondence machine to, say "You'll have to be more specific about how you plan to accomplish that."
+Instead of switching on or switching off the correspondence machine, say "You don't see a switch anywhere."
+
+Section 3.31.2.1.1 - Channel Selection Dial
+
+The channel selection dial is a thing part of the correspondence machine.
+The description is "It looks as though this machine operates on one of three predefined frequencies. You could set the dial to channel 1, 2, or 3.
+
+The dial is currently set to channel [selected correspondence channel]."
+Understand "channels" as the channel selection dial.
+
+Instead of pushing, pulling, squeezing, taking, opening, or closing the channel selection dial, say "You could set the dial to channel 1, 2, or 3."
+
+The selected correspondence channel is a number that varies. The selected correspondence channel is 3.
+
+Instead of turning the channel selection dial:
+	if the selected correspondence channel is 3:
+		set the correspondence channel to 1;
+	otherwise:
+		set the correspondence channel to the selected correspondence channel + 1.
+		
+Instead of setting the channel selection dial to "[a number]":
+	set the correspondence channel to the number understood.
+		
+Instead of setting the channel selection dial to "channel [number]":
+	set the correspondence channel to the number understood.
+
+Last instead of setting the channel selection dial to something:
+	say "The dial only goes from 1 to 3."
+
+To set the correspondence channel to (proposed setting - a number):
+	if the proposed setting is less than 1 or the proposed setting is greater than 3:
+		say "The dial only goes from 1 to 3.";
+	otherwise:
+		say "You set the dial to channel [proposed setting].";
+		now the selected correspondence channel is the proposed setting.
+
+Section 3.31.2.1.2 - Keyboard
+
+The keyboard is a thing part of the correspondence machine.
+The description is "A piano-style keyboard with letters and numbers printed on the keys. Unfortunately, it doesn't appear to be working. Only the playback key at the end of the keyboard is functional."
+Understand "board" or "key board" as the keyboard.
+Instead of searching the keyboard, say "It looks like the [']send['] and [']receive['] keys are still functional."
+Before pushing or touching the keyboard, try pushing the alphanumeric keys instead.
+
+Some alphanumeric keys are part of the keyboard.
+The description is "None of the alphanumeric keys are working."
+Understand "letter/letters" or "number/numbers" or "printed" or "a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/0/1/2/3/4/5/6/7/8/9 key" or "key" as the alphanumeric keys.
+Instead of pushing or touching the alphanumeric keys, say "You press a few of the alphanumeric keys, but none of them are working."
+
+The playback key is part of the keyboard.
+The description is "The key is labeled with a triangular sigil of recall. Presumably, pressing it will play back messages."
+Understand "sigil of/--" or "recall" or "play" or "back" or "triangle/triangular" as the playback key.
+
+Instead of pushing or touching the playback key (this is the playback key functionality rule):
+	say "The ";
+	if the selected correspondence channel is:
+		-- 1:
+			say "first";
+		-- 2:
+			say "second";
+		-- 3:
+			say "third";
+	say " lamp starts blinking, and the feed wheel begins to spin. ";
+	if the ticker-tape reel is not in the feed wheel:
+		say "But after a moment, the wheel makes a hollow clacking noise, and the machine stops as quickly as it started.";
+	otherwise:
+		if the selected correspondence channel is:
+			-- 1:
+				say "The ticker tape is rapidly run through the letterpress, which punches out the following message:[paragraph break]";
+				say "[fixed letter spacing]RAVEN REMINDS TO SETTLE DEBT SOON[variable letter spacing][line break]";
+				if clue-arturus-debt is false:
+					say line break;
+					wait for any key;
+					say "Debt? Was Doctor Arturus in debt? And the raven -- ";
+					if clue-tradingcompany is true:
+						say "does that mean the Greater Corindia Trading Company was involved, too?";
+					otherwise:
+						say "who or what could that be referring to?[paragraph break][wait for any key]You'll have to ask around and see if someone knows something.";
+						unlock raven questions;
+					now clue-arturus-debt is true;
+					now the enabled of justinian-4inv-debt is true;
+			-- 2:
+				say "The ticker tape is rapidly run through the letterpress, which punches out the following message:[paragraph break]";
+				say "[fixed letter spacing]ENCOUNTERED DANGEROUS UNKNOWN DISEASE SYMPTOMS BLACK BLOOD RESPIRATORY ATTACKS COME DOWN ASAP RGDS CAVALA[variable letter spacing][line break]";
+			-- 3:
+				say "The ticker tape is rapidly run through the letterpress. But it emerges blank on the other side, and the machine eventually stops and spins back the unpunched ticker tape.";
+
+Section 3.31.2.1.3 - Feed Wheel
+
+The feed wheel is an open unopenable container part of the correspondence machine.
+Instead of examining the feed wheel, say "A revolving wheel with a track on the outer rim. [if the ticker-tape reel is in the feed wheel]It's been freshly stocked with ticker tape[otherwise]It looks like something long and flat is meant to be placed inside[end if]."
+Instead of turning, pushing, pulling, touching, or swinging the feed wheel, say "The wheel spins merrily."
+Instead of inserting something that is not the ticker-tape reel into the feed wheel, say "That won't fit in the feed wheel."
+Instead of putting something that is not the ticker-tape reel on the feed wheel, say "That won't fit in the feed wheel."
+
+Section 3.31.2.1.4 - Letterpress
+
+The letterpress is a thing part of the correspondence machine.
+The description is "A grid of metal punches, each cast in the shape of a letter or number. They are mounted on a crankshaft that allows them to rapidly piston up and down."
+Understand "letter press" or "press" or "punch/punches" or "metal" or "crankshaft/mechanism" as the letterpress.
+Instead of pushing, pulling, or turning the letterpress, say "You'd better not. You might break the mechanism."
+Instead of touching the letterpress, say "The punches are surprisingly sharp."
+
+Section 3.31.2.1.5 - Lamps
+
+Some indicator lamps are a fixed in place thing part of the correspondence machine.
+The description is "Each of the lamps seems to be associated with one of the channels on the dial.
+
+Currently, the first and second indicator lamps are lit."
+Understand "lamp" or "indicators" or "first/second/third" or "lit" or "three" or "of" or "channel/channels" as the indicator lamps.
+Instead of switching on or switching off the indicator lamps, say "You don't see a switch anywhere."
+
+Section 3.31.2.1.6 - Ticker Tape
+
+The box of ticker-tape reels is an open unopenable scenery container on the rosewood desk.
+The scent is "It's papery."
+Understand "ticker" or "tape" or "reel" as the box of ticker-tape reels.
+Instead of examining the box of ticker-tape reels, say "You could take a reel if you wanted."
+Instead of searching the box of ticker-tape reels, say "It contains a great quantity of ticker tape."
+Instead of inserting something that is not the ticker-tape reel into the box of ticker-tape reels, say "The box is for ticker tape."
+Instead of taking the box of ticker-tape reels (this is the taking reels rule):
+	if the ticker-tape reel is nowhere:
+		say "You fish out a reel of ticker tape.";
+		now the ticker-tape reel is carried by the player;
+	otherwise:
+		say "You already have a reel of ticker tape.";
+
+The ticker-tape reel is an undescribed thing.
+The description is "A thin paper strip. You took it from the box beside the correspondence machine."
+The scent is "It smells of paper."
+Understand "ticker" or "tape" or "thin" or "paper" or "strip" as the ticker-tape reel.
+Instead of looking under the ticker-tape reel, say "[if the ticker-tape reel is in the feed wheel]It's mounted in the feed wheel[otherwise]It's blank on both sides[end if]."
+
+Does the player mean doing something with the ticker-tape reel: it is likely.
+
+Instead of dropping the ticker-tape reel:
+	if the location is in Outdoors:
+		say "The ticker tape flutters away in the wind.";
+		now the ticker-tape reel is nowhere;
+	otherwise:
+		say "You shouldn't leave the ticker tape lying around here."
+
+Instead of attacking or cutting the ticker-tape reel:
+	say "You tear up the ticker-tape reel, destroying it.";
+	now the ticker-tape reel is nowhere.
+
+Instead of inserting the ticker-tape reel into something:
+	if the second noun is the box of ticker-tape reels:
+		say "You return the reel to the box.";
+		now the ticker-tape reel is nowhere;
+	otherwise if the second noun is the feed wheel:
+		say "You thread the ticker tape into the feed wheel, which it fits perfectly.";
+		now the ticker-tape reel is on the feed wheel;
+	otherwise:
+		say "You shouldn't leave the ticker tape lying around here."
+		
+Before putting the ticker-tape reel on the feed wheel, try inserting the ticker-tape reel into the feed wheel instead.
+
+After taking the ticker-tape reel when the ticker-tape reel is in the feed wheel:
+	say "You pull the ticker tape out of the feed wheel."
 
 Part 3.31.3 - Storage Cabinet
 
