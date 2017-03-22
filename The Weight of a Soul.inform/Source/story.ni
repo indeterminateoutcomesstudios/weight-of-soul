@@ -121,6 +121,19 @@ This is the rest of the turn rule:
 
 [This is the turn sequence rules minus the part that parses and follows a command. We use the 'rest of the turn rule' later when we reject the player's command but still want to advance the turn.]
 
+Understand "i" as 1.
+Understand "ii" as 2.
+Understand "iii" as 3.
+Understand "iv" as 4.
+Understand "v" as 5.
+Understand "vi" as 6.
+Understand "vii" as 7.
+Understand "viii" as 8.
+Understand "ix" as 9.
+Understand "x" as 10.
+
+[I dunno, flavor I guess.]
+
 Part 1.1.4 - Tweaked Extension Functionality
 
 A room can be goto-passable or goto-impassable. A room is usually goto-passable.
@@ -1663,6 +1676,12 @@ Rule for printing a parser error when the latest parser error is the noun did no
 		say "That is either not important or not something you can see.[line break][if look-reminder-printed is false][line break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)";
 		now look-reminder-printed is true.
 	
+Rule for printing a parser error when the latest parser error is the can't use multiple objects error (this is the new can't use multiple objects rule):
+	say "You'll have to specify which one." instead.
+
+Rule for printing a parser error when the latest parser error is the can't see whom to talk to error or the latest parser error is the can't talk to inanimate things error or the latest parser error is the can't again the addressee error or the latest parser error is the didn't understand addressee's last name error (this is the new can't see whom to talk to rule):
+	say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)" instead.
+
 Part 2.3.5 - New Action Behavior
 
 player-knows-look is a truth state that varies.
@@ -2412,6 +2431,7 @@ journal-reden-shack-known is a truth state that varies.
 clue-airborne-vector is a truth state that varies.
 clue-ingestion-vector is a truth state that varies.
 
+clue-patientrecords is a truth state that varies.
 clue-patientrecords-justinian is a truth state that varies.
 
 clue-ravens-sighted is a number that varies.
@@ -2589,17 +2609,24 @@ To say journal-text-objectives:
 			add "- Examine the body further" to L;
 		if examiner-arturus-found-asked is false and clue-arturus-gloves is false, add "- Ask the Vigiles examiner about his findings" to L;
 		if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
-		add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
+		if clue-arturus-coffeetable is false and clue-arturus-debt is false and clue-patientrecords is false:
+			if Arturus's Domicile is unvisited:
+				add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
+			otherwise:
+				add "- Continue investigating Doctor Arturus's domicile, in the Turris Infinita" to L;
 	if Meeting the Patients is happening:
 		add "" to L;
 		add "[italic type]Doctor Arturus's patients[roman type]" to L;
 		add "- Find out their identities" to L;
 		add "- Get permission from the Vigiles to examine the bodies" to L;
 		add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		if the Nacarat file is nowhere:
+			if clue-patientrecords-justinian is false:
+				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+			otherwise:
+				add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		otherwise if the Piper file is meticulously digested:
+			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
 	if Nacarat Investigation is happening:
 		add "" to L;
 		add "[italic type]Creditor Nacarat[roman type]" to L;
@@ -2608,10 +2635,11 @@ To say journal-text-objectives:
 		otherwise if nacarat-body-completion-quip is false:
 			add "- Examine the body further" to L;
 		if examiner-nacarat-notable-asked is false and clue-nacarat-recording is false, add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		if the Nacarat file is nowhere:
+			if clue-patientrecords-justinian is false:
+				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+			otherwise:
+				add "- Look up the patient records in Doctor Arturus's domicile" to L;
 	if Thugs Investigation is happening:
 		add "" to L;
 		add "[italic type]Sal and Piper[roman type]" to L;
@@ -2624,10 +2652,13 @@ To say journal-text-objectives:
 		otherwise if piper-body-completion-quip is false:
 			add "- Examine Piper's body further" to L;
 		if examiner-thugs-notable-asked is false and (the battered keyring is not carried or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-patientrecords-justinian is false:
-			add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-		otherwise:
-			add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		if the Nacarat file is nowhere:
+			if clue-patientrecords-justinian is false:
+				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+			otherwise:
+				add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		otherwise if the Piper file is meticulously digested:
+			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
 	if Four Investigations is happening:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
@@ -2702,6 +2733,8 @@ To say journal-text-notes:
 				add "- I found a coffee table set for three in Doctor Arturus's home. According to Justinian, one of the wineglasses had been broken by a guest." to L2;
 			otherwise if clue-arturus-coffeetable is true:
 				add "- I found a coffee table set for three in Doctor Arturus's home. The table had not been tidied up, but the third wineglass was missing." to L2;
+			if clue-patientrecords is true:
+				add "- I found that Doctor Arturus rushed through his patient record files for some reason, leaving them unfinished." to L2;
 			if clue-arturus-gloves is true:
 				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he had been wearing them." to L2;
 			otherwise if examiner-arturus-notable-asked is true:
@@ -2726,7 +2759,9 @@ To say journal-text-notes:
 				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged, and he broke a piece of tableware as a result." to L2;
 			otherwise if examiner-nacarat-notable-asked is true:
 				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
-			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the Third, two days ago." to L2;
+			if the Nacarat file is meticulously digested:
+				add "- I learned that Creditor Nacarat was admitted to the clinic on the afternoon of the Third, two days ago." to L2;
+			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the [if clue-patientrecords is true]same day[otherwise]Third, two days ago[end if]." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Creditor Nacarat[roman type]" to LFI;
@@ -2735,6 +2770,8 @@ To say journal-text-notes:
 			let L2 be a list of texts;
 			if the battered keyring is carried:
 				add "- I found a battered keyring on Sal's belt." to L2;
+			if the Piper file is meticulously digested:
+				add "- I found a note in Piper's patient record that read 'IV in FH shanty quarter.'" to L2;
 			if clue-tradingcompany is true:
 				if clue-sal-raven is true and clue-piper-raven is true:
 					add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
@@ -2751,7 +2788,11 @@ To say journal-text-notes:
 				add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
 			if clue-piper-stomach is true:
 				add "- I learned that Piper was killed by something she ingested." to L2;
-			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of the Third, two days ago." to L2;
+			if the Salio file is meticulously digested:
+				add "- I learned that Sal [if the Piper file is meticulously digested]and Piper were[otherwise]was[end if] admitted to the clinic on the morning of the Third, two days ago." to L2;
+			otherwise if the Piper file is meticulously digested:
+				add "- I learned that Piper was admitted to the clinic on the morning of the Third, two days ago." to L2;
+			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of the [if the Salio file is meticulously digested or the Piper file is meticulously digested]same day[otherwise]Third, two days ago[end if]." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -7151,6 +7192,7 @@ Before examining west in the Turris Infinita, try examining the ornate double do
 Before examining outside in the Turris Infinita, try examining the ornate double doors instead.
 Before examining up in the Turris Infinita, try examining the hydraulic lift instead.
 Before examining east in the Turris Infinita, try examining the view of Doctor Arturus's clinic instead.
+Before going north in the Turris Infinita, try going up instead.
 Before going outside in the Turris Infinita, try going west instead.
 Instead of examining inside in the Turris Infinita, say "It's unclear where you want to look."
 
@@ -11812,10 +11854,10 @@ You scurry away before you start blushing."	{}
 The home dialogue branch of Justinian is justinian-4inv-home.
 
 After reading out justinian-4inv-patients:
-	now the enabled of justinian-4inv-patientrecords is true.
+	if the Nacarat file is nowhere, now the enabled of justinian-4inv-patientrecords is true.
 
 After reading out justinian-4inv-patientrecords:
-	now the enabled of justinian-4inv-patientrecords2 is true;
+	if the Nacarat file is nowhere, now the enabled of justinian-4inv-patientrecords2 is true;
 	now clue-patientrecords-justinian is true.
 
 After reading out justinian-4inv-discovery:
@@ -11840,13 +11882,14 @@ The exit reminder is "You can go north to Doctor Arturus's study or down to the 
 
 Before going inside in Arturus's Domicile, try going north instead.
 Before going outside in Arturus's Domicile, try going down instead.
+Before going south in Arturus's Domicile, try going down instead.
 Before examining north in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining inside in Arturus's Domicile, try examining the view of Doctor Arturus's study instead.
 Before examining outside in Arturus's Domicile, try examining the ominous stormclouds instead.
 Before examining northwest in Arturus's Domicile, try examining the ominous stormclouds instead.
 Before examining west in Arturus's Domicile, try examining the ominous stormclouds instead.
 Before examining southwest in Arturus's Domicile, try examining the ominous stormclouds instead.
-Before examining south in Arturus's Domicile, try examining the ominous stormclouds instead.
+Before examining south in Arturus's Domicile, try examining the hydraulic lift instead.
 Before examining down in Arturus's Domicile, try examining the hydraulic lift instead.
 
 Part 3.30.1 - Scenery
@@ -12303,7 +12346,110 @@ After taking the ticker-tape reel when the ticker-tape reel is in the feed wheel
 
 Part 3.31.3 - Storage Cabinet
 
-[patient records]
+The storage cabinet is a closed openable scenery container in Arturus's Study.
+Understand "casework" as the storage cabinet.
+
+Instead of examining the storage cabinet, say "Silver-inlaid casework. The cabinet is [if the storage cabinet is open and the storage cabinet encloses a patient-record file]open, revealing [the list of patient-record files enclosed by the storage cabinet], as well as a stack of miscellaneous patient records[otherwise if the storage cabinet is open]open, revealing [a stack of miscellaneous patient records][otherwise]currently closed[end if]."
+Instead of taking, pushing, pulling, or turning the storage cabinet, say "You don't see any reason to rearrange the furniture."
+Instead of looking under the storage cabinet, say "Nothing is under the cabinet."
+After opening the storage cabinet, say "You open the storage cabinet, revealing [if the storage cabinet encloses a patient-record file][the list of patient-record files enclosed by the storage cabinet], as well as a stack of miscellaneous patient records[otherwise][a stack of miscellaneous patient records][end if]."
+
+The stack of miscellaneous patient records is an open unopenable container in the storage cabinet.
+The printed name is "stack of leatherbound files".
+Instead of examining or searching the stack of miscellaneous patient records, say "The rest of the files don't look to be relevant to the investigation."
+The scent is "Musty."
+Understand "record" as the stack of miscellaneous patient records.
+Understand "file/files" or "record" or "leatherbound" as the stack of miscellaneous patient records when the printed name of the stack of miscellaneous patient records is "stack of leatherbound files".
+
+Instead of examining or searching the stack of miscellaneous patient records when the printed name of the stack of miscellaneous patient records is "stack of leatherbound files":
+	say "Upon closer examination, they appear to be patient records. The three most recently updated files are labeled [']Nacarat,['] [']Salio,['] and [']Piper.['][line break]";
+	now the enabled of justinian-4inv-patientrecords is false;
+	now the enabled of justinian-4inv-patientrecords2 is false;
+	now the printed name of the stack of miscellaneous patient records is "stack of patient records";
+	now the Piper file is in the stack of miscellaneous patient records;
+	now the Salio file is in the stack of miscellaneous patient records;
+	now the Nacarat file is in the stack of miscellaneous patient records.
+	
+Instead of taking the stack of miscellaneous patient records when the printed name of the stack of miscellaneous patient records is "stack of leatherbound files":
+	say "Upon closer examination, they appear to be patient records. You take the three most recently updated files, which are labeled [']Nacarat,['] [']Salio,['] and [']Piper.['][line break]";
+	now the enabled of justinian-4inv-patientrecords is false;
+	now the enabled of justinian-4inv-patientrecords2 is false;
+	now the printed name of the stack of miscellaneous patient records is "stack of patient records";
+	now the Piper file is carried by the player;
+	now the Salio file is carried by the player;
+	now the Nacarat file is carried by the player.
+	
+Instead of searching or looking under the stack of miscellaneous patient records, say "Nothing else in the cabinet appears to be relevant."
+Instead of taking the stack of miscellaneous patient records, say "You don't need these other files."
+Instead of inserting something into the stack of miscellaneous patient records:
+	if the noun is a patient-record file:
+		continue the action;
+	otherwise:
+		say "That doesn't belong there."
+		
+Does the player mean doing something with the stack of miscellaneous patient records: it is unlikely.
+
+Before going south in Arturus's Study (this is the restoring the storage cabinet before leaving rule):
+	let L be a list of texts;
+	if the player carries a patient-record file:
+		if the number of patient-record files carried by the player is 1:
+			add "replacing the file" to L;
+		otherwise:
+			add "replacing the files" to L;
+		now all patient-record files carried by the player are in the stack of miscellaneous patient records;
+	if the storage cabinet is open:
+		add "closing the storage cabinet" to L;
+		try silently closing the storage cabinet;
+	say "(first [L])[command clarification break]";
+
+Chapter 3.31.3.1 - Patient Record Files
+
+A patient-record file is a kind of thing.
+	
+The Nacarat file is a patient-record file.
+The printed name is "[']Nacarat['] file". The indefinite article is "the".
+The description is "[if Meeting the Patients has ended]The patient record for Creditor Nacarat[otherwise]This file must be on one of the patients downstairs[end if]. It states that he developed nausea and vomiting during an afternoon visit on Third of Aquaria, and was immediately admitted -- but the handwriting is rushed, and the rest of the file is blank."
+The scent is "It smells papery."
+Understand "patient" or "record" or "nacarat's" or "creditor/creditor's" as the Nacarat file.
+
+The Salio file is a patient-record file.
+The printed name is "[']Salio['] file". The indefinite article is "the".
+The description is "[if Meeting the Patients has ended]The patient record for Sal[otherwise]This file must be on one of the patients downstairs[end if]. It states that he was admitted together with [if Meeting the Patients has ended]Piper[otherwise]another patient[end if] on the morning of the Third of Aquaria, complaining of migraines, nausea, and vomiting. Doctor Arturus initially diagnosed food poisoning, but the diagnosis has been scratched out. The rest of the file is blank."
+The scent is "It smells papery."
+Understand "patient" or "record" or "sal/sal's/salio's" as the Salio file.
+
+The Piper file is a patient-record file.
+The printed name is "[']Piper['] file". The indefinite article is "the".
+The description is "[if Meeting the Patients has ended]The patient record for Piper[otherwise]This file must be on one of the patients downstairs[end if]. It states that she was admitted together with [if Meeting the Patients has ended]Sal[otherwise]another patient[end if] on the morning of the Third of Aquaria, exhibiting the same symptoms as him. The rest of the file is blank apart from a cryptic note that reads 'IV in FH shanty quarter.'"
+The scent is "It smells papery."
+Understand "patient" or "record" or "piper's" as the Piper file.
+
+Check dropping a patient-record file:
+	say "You shouldn't leave the file lying around." instead.
+	
+Check putting a patient-record file on:
+	say "You shouldn't leave the file lying around." instead.
+	
+Check inserting a patient-record file into:
+	say "You shouldn't leave the file lying around." instead.
+	
+Before inserting a patient-record file (called the relevant file) into the storage cabinet, try inserting the relevant file into the stack of miscellaneous patient records instead.
+Before putting a patient-record file (called the relevant file) on the storage cabinet, try inserting the relevant file into the stack of miscellaneous patient records instead.
+Before putting a patient-record file (called the relevant file) on the stack of miscellaneous patient records, try inserting the relevant file into the stack of miscellaneous patient records instead.
+
+Instead of inserting a patient-record file (called the relevant file) into the stack of miscellaneous patient records:
+	say "You return the file to the storage cabinet.";
+	now the relevant file is in the stack of miscellaneous patient records.
+	
+A patient-record file can be meticulously digested or callously left unread.
+After examining a patient-record file (called the relevant file):
+	now the relevant file is meticulously digested;
+	if all patient-record files are meticulously digested and clue-patientrecords is false:
+		now clue-patientrecords is true;
+		say "It's frustrating. All of these files look like they were written in a hurry and left unfinished. Why didn't Doctor Arturus leave more information for you to work with?[paragraph break]";
+		wait for any key;
+		say "You suppose you'll have to follow up on that cryptic note in the [']Piper['] file. It's the only lead you've found here.";
+
 
 Book of the Rest
 
