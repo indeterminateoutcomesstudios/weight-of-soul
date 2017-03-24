@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 210317.
+The release number is 240317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,9 +54,6 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Arturus's Domicile
-
-- Write Reden's postmortem file
 - Write VII Layabout Row
 - Write Zoiro's dialogue
 - Put the coupon in Reden's Shack
@@ -340,7 +337,7 @@ A Crucible Game ends when All Quiet on the Western Front ends.
 [1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
 - Poisoned the afternoon of Prologue, died that night. Accidentally exposed himself to Noctis. Justinian doesn't know about him.
 - A Channelworks worker fired for alcoholism. Knew the back entrance, tended to wander there drunk. That's how he got poisoned.
-- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where the waitress knows more about Reden's activities. She doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
+- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where Webster knows more about Reden's activities. She doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
 - Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
 
 Reden Investigation is a scene.
@@ -2200,16 +2197,19 @@ The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vit
 When Reden's Surgery ends: add Reden to the list of discovered characters.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
 
-After going to the West Street for the first time: add Horatio to the list of discovered characters; continue the action.
+After going to the West Street when Horatio is not listed in the list of discovered characters: add Horatio to the list of discovered characters; continue the action.
 The bio-name of Horatio is "Vigile Horatio".
 The bio-description of Horatio is "A guardsman of the Channelworks District, and a childhood friend of yours[if First Aid on Cavala has ended]. He has been temporarily assigned as Doctor Cavala's protector[end if]."
 
+When Cavala's Errands ends: add Zoiro to the list of discovered characters.
+The bio-description of Zoiro is "The brother of Reden. An assembly-worker who is employed at the Riggertown Mechanistry, and lives at VII Layabout Row."
+
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
-The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???[roman type] (The Assassin)".
+The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???[roman type] (the assassin)".
 The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
-The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease, and now he is dead of the same contagion."
+The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease; now he is dead of the same contagion."
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
@@ -4874,20 +4874,23 @@ Table of Cavala 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-4inv-home	true	false	""	"You approach Doctor Cavala, and she looks up [if A Crucible Game is happening]from her cards[otherwise]at you[end if].
 
-'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-nevermind}
-cavala-4inv-wherebeginagain	true	false	"'Where should I begin my investigation, again?'"	"'Where should I begin my investigation, again?'
+'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-nevermind}
+cavala-4inv-wherebeginagain	true	false	"'[if The Game is Afoot has ended]Where should I investigate[otherwise]Where should I begin my investigation[end if], again?'"	"'[if The Game is Afoot has ended]Where should I investigate[otherwise]Where should I begin my investigation[end if], again?'
 
 'Go to Doctor Arturus's clinic,' she says. 'The doctor's body will be there, along with the bodies of his patients. Talk to Doctor Justinian and see if you can find any connection between the deceased.
 
-'It might also be worth asking Zoiro about his brother's associations. There may be a lead on the source of the affliction we've missed.'"	{cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+'It might also be worth asking Zoiro about his brother's associations. There may be a lead on the source of the affliction we've missed.'"	{cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-whatlookagain	true	false	"'What should I look out for, again?'"	"'What should I look out for, again?'
 
-'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-goodbye}
+cavala-4inv-redeninfo	true	true	"'By the way, did you learn anything from Reden's autopsy?'"	"'By the way, did you learn anything from Reden's autopsy?'
+
+Doctor Cavala shrugs. 'Little that we did not already know. The disease is in the blood, certainly -- it spreads through the circulatory system, attacking the brain, heart, lungs, and other vital organs -- but Reden's death was both violent and degenerative, obfuscating the means of transmission. My hope is that Doctor Arturus and his patients will shed more light on how the disease operates.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-crucible	false	true	"'Crucible? Really?'"	"'Crucible? Really?'
 
 She raises an eyebrow. 'I'll get to work as soon as you bring me information I can act upon. Until then, it's either crucible or romance novels.'
 
-'...Fair enough.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-goodbye}	
+'...Fair enough.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-goodbye}	
 cavala-4inv-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
 
 Doctor Cavala [if A Crucible Game is happening]returns her attention to the card game[otherwise]waves you off nonchalantly[end if]."	{}
@@ -10337,10 +10340,10 @@ Part 3.28.1 - Scenery
 The street-lamps, the mist, the twisty catwalks, the Riggertown crowd, the scrap-heap spires, the view of the Riggertown Mechanistry, and the Riggertown ambience are in VII Layabout Row.
 
 The rustic little house is scenery in VII Layabout Row.
-The description is "It looks like something out of a picture-book, if picture-books were made out of sheet metal."
-The sound is "[if Day One is happening]Nobody seems to be home.[otherwise]You hear Zoiro puttering around in his home."
+The description is "It looks like something that might have been in a picture-book, if picture-books were made out of sheet metal."
+The sound is "[if Day One is happening]Nobody seems to be home.[otherwise]You hear someone moving around inside."
 The scent is "You smell leftovers. Something fried."
-Understand "home" or "zoiro's" or "koriph's" as the rustic little house.
+Understand "home" or "zoiro's" or "koriph's" or "residence" as the rustic little house.
 Before entering the rustic little house, try going west instead.
 
 Some other houses along Layabout Row are scenery in VII Layabout Row.
@@ -10373,7 +10376,7 @@ The sound is "You'll have to ring the bell to hear its sound."
 Understand "pull" or "doorbell" or "bell" or "rope" as the tarnished old pull-bell.
 Before pulling the tarnished old pull-bell, try swinging the tarnished old pull-bell instead.
 Instead of pushing the tarnished old pull-bell, say "It's a pull-bell, not a push-bell."
-Instead of swinging the tarnished old pull-bell, say "The bell clatters noisily[if Cavala's Errands is happening], but no one answers the door[end if]."
+Instead of swinging the tarnished old pull-bell, say "The bell clatters noisily. 'Come in!' you hear Zoiro call."
 Instead of turning the tarnished old pull-bell, say "It's a pull-bell, not a turn-bell."
 Instead of tying the tarnished old pull-bell to something, say "That won't accomplish anything."
 Instead of tying something to the tarnished old pull-bell, say "That won't accomplish anything."
@@ -10381,9 +10384,9 @@ Instead of tying something to the tarnished old pull-bell, say "That won't accom
 Part 3.28.2 - Front Door of Zoiro's House
 
 The front door of Zoiro's house is a lockable locked scenery door.
-It is west of VII Layabout Row and east of Placeholder House.
+It is west of VII Layabout Row and east of Zoiro's Residence.
 The description is "The plaque on the front door informs you that this house is the residence of Zoiro and Koriph."
-Understand "plaque" or "koriph's" as the front door of Zoiro's house.
+Understand "plaque" or "koriph's" or "residence" as the front door of Zoiro's house.
 Instead of searching the front door of Zoiro's house, say "The door [if the front door of Zoiro's house is open and the location is VII Layabout Row]leads into the house.[otherwise if the front door of Zoiro's house is open]leads out of the house.[otherwise]is closed."
 Does the player mean doing something with the front door of Zoiro's house: it is unlikely. [As opposed to Zoiro's house.]
 
@@ -10391,6 +10394,16 @@ Part 3.28.3 - VII Layabout Row during Day One
 
 Instead of knocking on the front door while Cavala's Errands is happening:
 	say "There is no response. Zoiro must not be home at the moment.";
+
+Instead of swinging the tarnished old pull-bell when Cavala's Errands is happening, say "The bell clatters noisily, but no one answers the door."
+	
+Part 3.28.4 - VII Layabout Row during Day Two
+
+When Day Two begins (this is the unlock the door to Zoiro's house rule):
+	now the front door of Zoiro's house is unlocked.
+	
+Instead of knocking on the front door of Zoiro's house when Day One has ended (this is the polite Marid rule):
+	say "'Come in!' you hear Zoiro call.";
 
 Book 3.29 - Arturus's Clinic
 
@@ -12450,6 +12463,73 @@ After examining a patient-record file (called the relevant file):
 		wait for any key;
 		say "You suppose you'll have to follow up on that cryptic note in the [']Piper['] file. It's the only lead you've found here.";
 
+
+Book 3.32 - Zoiro's Residence (Zoiro's House)
+
+[I call this Zoiro's Residence internally because I don't want to name clash with the front door or something by accident. In retrospect this has been a sequence of pretty dumb naming decisions.]
+
+Zoiro's Residence is a proper-named room. "The shutters have been drawn in this tiny cottage, cloaking its confines in somber shades. In the shadows glimmer vases, knick-knacks and wishing-eyes; the furniture is small and faintly unreal.
+
+The front door squats to the east."
+The printed name is "Zoiro's House".
+Understand "zoiro" or "house" as Zoiro's Residence.
+
+The simple-name is "Zoiro's house".
+The sound is "It's quiet, apart from the occasional grunt from Zoiro."
+The scent is "There is the inexplicable scent of fritters."
+The exit reminder is "The exit is to the east."
+
+Before examining east in Zoiro's Residence, try examining the front door of Zoiro's house instead.
+Before examining outside in Zoiro's Residence, try examining the front door of Zoiro's house instead.
+Before going outside in Zoiro's Residence, try going east instead.
+
+Part 3.32.1 - Scenery
+
+Some somber shutters are scenery in Zoiro's Residence.
+The description is "Light filters through the shutters in uneasy, broken streams."
+Understand "shutter" or "shade/shades" as the somber shutters.
+Instead of closing the somber shutters, say "The shutters are already drawn."
+Instead of opening, pushing, or pulling the somber shutters, say "The shutters were drawn for a reason. You have the feeling it would be very rude to open them."
+Instead of searching or looking under the somber shutters, say "It's hard to see anything through the slits."
+
+Some tiny cottage confines are scenery in Zoiro's Residence.
+The description is "There's enough room for you to stand, at least."
+Understand "confine" as the tiny cottage confines.
+Before listening to or smelling the tiny cottage confines, now the noun is the location.
+Before inserting something into the tiny cottage confines, try dropping the noun instead.
+Before putting something on the tiny cottage confines, try dropping the noun instead.
+Before removing something from the tiny cottage confines, try taking the noun instead.
+Instead of entering the tiny cottage confines, say "You're standing in it."
+Instead of searching the tiny cottage confines, say "You find nothing of interest apart from what you've already seen."
+
+Some ornamental vases are scenery in Zoiro's Residence.
+The description is "Ornamental chalices and amphorae."
+Understand "vase" or "chalice/chalices" or "amphora/amphorae" as the ornamental vases.
+Instead of attacking the ornamental vases, say "That would be both unnecessary and cruel."
+Instead of inserting something into the ornamental vases, say "That would be excessively rude. Besides, you'd never get [regarding the noun][them] out again."
+Instead of searching the ornamental vases, say "The vases contain nothing but dust."
+
+Some unidentifiable knick-knacks are scenery in Zoiro's Residence.
+The description is  "Bric-a-brac, dingle-dangles, whim-whams, folderol..."
+Understand "bric-a-brac" or "folderol/folderols" or "dingle-dangle/dingle-dangles" or "knick" or "knick-knack/knack/knacks" or "whim-wham/whim-whams" as the unidentifiable knick-knacks.
+
+Some wishing-eyes are scenery in Zoiro's Residence.
+The description is "Baubles of colorful cloth and shiny stones, made to be strung up and displayed. It's a goblin tradition to give them as gifts."
+Understand  "bauble/baubles" or "wishing" or "eye/eyes/wishing-eye" or "colorful/colourful" or "cloth" or "shiny" or "stone/stones" as the wishing-eyes.
+
+Some faintly unreal furniture is scenery in Zoiro's Residence.
+The description is "It reminds you of a doll-house[first time]. Is that racist? You hope not[only]."
+Understand "small and/--" or "dollhouse/doll-house" or "table/tables" or "chair/chairs" or "tableware" or "day-to-day" or "necessity/necessities" as the faintly unreal furniture.
+Instead of taking, pushing, pulling, or turning the faintly unreal furniture, say "Even if it reminds you of a doll-house, that doesn't mean you should play with it."
+Instead of entering the faintly unreal furniture, say "The tables and chairs are too small for you."
+Instead of searching the faintly unreal furniture, say "Just the usual tableware and other day-to-day necessities."
+Instead of looking under the faintly unreal furniture, say "You're forced to stoop to an embarrassing degree to get a better look. Unfortunately, you find nothing of interest."
+
+Part 3.32.2 - Zoiro's Residence during Day Two
+
+Chapter 3.32.2.1 - Zoiro
+
+Zoiro is a goblin man in Zoiro's Residence.
 
 Book of the Rest
 
