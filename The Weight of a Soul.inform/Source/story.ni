@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 240317.
+The release number is 260317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -1571,8 +1571,8 @@ Check crying (this is the block crying rule): say "No. You have to stay strong."
 Descending is an action applying to nothing. Understand "descend" as descending.
 Check descending: try going down instead.
 		
-Extinguishing is an action applying to one thing. Understand "extinguish [something]" or "put out [something]" or "snuff [something]" as extinguishing.
-Check extinguishing: say "That's not something that can be extinguished."; stop the action.
+Extinguishing is an action applying to one thing. Understand "blow out/on/-- [something]" or "extinguish [something]" or "put out [something]" or "snuff [something]" as extinguishing.
+Check extinguishing: say "[regarding the noun][They're] not something that can be extinguished."; stop the action.
 
 Filing your nails is an action applying to nothing. Understand "cut my/-- nails" or "file my/-- nails" or "trim my/-- nails" as filing your nails. [I hate you all.]
 Carry out filing your nails (this is the standard filing your nails rule):
@@ -4874,23 +4874,32 @@ Table of Cavala 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-4inv-home	true	false	""	"You approach Doctor Cavala, and she looks up [if A Crucible Game is happening]from her cards[otherwise]at you[end if].
 
-'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-nevermind}
+'Yes, Marid?'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-raven, cavala-4inv-crucible, cavala-4inv-nevermind}
 cavala-4inv-wherebeginagain	true	false	"'[if The Game is Afoot has ended]Where should I investigate[otherwise]Where should I begin my investigation[end if], again?'"	"'[if The Game is Afoot has ended]Where should I investigate[otherwise]Where should I begin my investigation[end if], again?'
 
 'Go to Doctor Arturus's clinic,' she says. 'The doctor's body will be there, along with the bodies of his patients. Talk to Doctor Justinian and see if you can find any connection between the deceased.
 
-'It might also be worth asking Zoiro about his brother's associations. There may be a lead on the source of the affliction we've missed.'"	{cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-goodbye}
+'It might also be worth asking Zoiro about his brother's associations. There may be a lead on the source of the affliction we've missed.'"	{cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-raven, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-whatlookagain	true	false	"'What should I look out for, again?'"	"'What should I look out for, again?'
 
-'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-redeninfo, cavala-4inv-crucible, cavala-4inv-goodbye}
+'Find out how the disease is transmitted,' she replies. 'Once we've determined how it spreads, we can isolate it and begin work on a cure.'"	{cavala-4inv-wherebeginagain, cavala-4inv-redeninfo, cavala-4inv-raven, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-redeninfo	true	true	"'By the way, did you learn anything from Reden's autopsy?'"	"'By the way, did you learn anything from Reden's autopsy?'
 
-Doctor Cavala shrugs. 'Little that we did not already know. The disease is in the blood, certainly -- it spreads through the circulatory system, attacking the brain, heart, lungs, and other vital organs -- but Reden's death was both violent and degenerative, obfuscating the means of transmission. My hope is that Doctor Arturus and his patients will shed more light on how the disease operates.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
+Doctor Cavala shrugs. 'Little that we did not already know. The disease is in the blood, certainly -- it spreads through the circulatory system, attacking the brain, heart, lungs, and other vital organs -- but Reden's death was both violent and degenerative, obfuscating the means of transmission. My hope is that Doctor Arturus and his patients will shed more light on how the disease operates.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-raven, cavala-4inv-crucible, cavala-4inv-goodbye}
+cavala-4inv-raven	false	true	"'Does a raven mean anything to you?'"	"'Does a raven mean anything to you?'
+
+'A raven?' She frowns. 'When someone mentions a raven in the Channelworks District, the Greater Corindia Trading Company is usually involved. Don't tell me you've gotten yourself mixed up with them.'
+
+'The... Trading Company?'
+
+'A criminal syndicate,' Doctor Cavala replies. 'One of the oldest and most dangerous. If you believe they have something to do with the source of the outbreak, all I can tell you is -- be careful.'
+
+You make a mental note of the connection."	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-crucible, cavala-4inv-goodbye}
 cavala-4inv-crucible	false	true	"'Crucible? Really?'"	"'Crucible? Really?'
 
 She raises an eyebrow. 'I'll get to work as soon as you bring me information I can act upon. Until then, it's either crucible or romance novels.'
 
-'...Fair enough.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-goodbye}	
+'...Fair enough.'"	{cavala-4inv-wherebeginagain, cavala-4inv-whatlookagain, cavala-4inv-redeninfo, cavala-4inv-raven, cavala-4inv-goodbye}	
 cavala-4inv-nevermind	true	false	"'Nothing, never mind.'"	"'Nothing, never mind.'
 
 Doctor Cavala [if A Crucible Game is happening]returns her attention to the card game[otherwise]waves you off nonchalantly[end if]."	{}
@@ -4899,6 +4908,8 @@ cavala-4inv-goodbye	true	false	"'I'll be back soon.'"	"'I'll be back soon.'
 Doctor Cavala nods. 'I'm counting on you, Marid.'
 
 You step back from the makeshift bed."	{}
+
+After reading out cavala-4inv-raven: discover the Trading Company connection.
 
 Section 3.3.6.2.2 - Horatio Dialogue
 
@@ -4911,7 +4922,7 @@ Table of Horatio 4inv Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 horatio-4inv-home	true	false	""	"You approach Horatio, and he [if A Crucible Game is happening]puts down his cards and grins[otherwise]grins a little bashfully[end if].
 
-'Hey, Marid,' he says."	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-crucible, horatio-4inv-seeyou}
+'Hey, Marid,' he says."	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-raven, horatio-4inv-crucible, horatio-4inv-seeyou}
 horatio-4inv-sleepwell	true	true	"'You don't look too good. Did you sleep well last night?'"	"'You don't look too good,' you say. 'Did you sleep well last night?'
 
 'Well... no.' He rubs his eyes. 'I couldn't get any shut-eye in the clinic -- too much calomel in the air. Doctor Cavala slept like a baby, though. I don't know how she does it...'
@@ -4920,22 +4931,33 @@ He sighs and looks you over.
 
 'To be honest,' he says, 'you don't look too good yourself. Your tattoos are all in a jumble. I know the doctor has you running errands for her, but -- just watch yourself out there, all right?'
 
-'I will,' you say. 'I promise.'"	{horatio-4inv-thoughts, horatio-4inv-crucible, horatio-4inv-seeyou}
+'I will,' you say. 'I promise.'"	{horatio-4inv-thoughts, horatio-4inv-raven, horatio-4inv-crucible, horatio-4inv-seeyou}
 horatio-4inv-thoughts	true	true	"'What do you think of the situation so far?'"	"'What do you think of the situation so far?'
 
 Horatio's jaw hardens, and he looks contemplative.
 
-'I... I don't really know what to think,' he says. 'You and Doctor Cavala have been at this for a lot longer than I have. All I know that people seem to be dropping like flies all of a sudden. Doctor Arturus is dead -- even Doctor Cavala's got a ruined leg. How can we fix the problem when we don't even know what's going on?'"	{horatio-4inv-sleepwell, horatio-4inv-crucible, horatio-4inv-seeyou}
+'I... I don't really know what to think,' he says. 'You and Doctor Cavala have been at this for a lot longer than I have. All I know that people seem to be dropping like flies all of a sudden. Doctor Arturus is dead -- even Doctor Cavala's got a ruined leg. How can we fix the problem when we don't even know what's going on?'"	{horatio-4inv-sleepwell, horatio-4inv-raven, horatio-4inv-crucible, horatio-4inv-seeyou}
+horatio-4inv-raven	false	true	"'Does a raven mean anything to you?'"	"'Does a raven mean anything to you?'
+
+Horatio blinks. 'The raven? Now that's an omen if I ever heard one. The Greater Corindia Trading Company uses a raven as its symbol.'
+
+'What's that?'
+
+'It's a criminal syndicate,' he says. 'Rich, powerful, and very dangerous. The Vigiles have been trying to stamp them out for years, but it seems like they control the city at times...'
+
+That can't be good. You make a mental note of the connection."	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-seeyou}
 horatio-4inv-crucible	false	true	"'I didn't know you played crucible.'"	"'I didn't know you played crucible.'
 
 He shrugs. 'I picked it up in the Vigiles. It's a way to pass the time in the late-night watches. Want me to teach you?'
 
-You smile. 'Thanks, but I'm a bit busy right now. Perhaps another time.'"	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-seeyou}
+You smile. 'Thanks, but I'm a bit busy right now. Perhaps another time.'"	{horatio-4inv-sleepwell, horatio-4inv-thoughts, horatio-4inv-raven, horatio-4inv-seeyou}
 horatio-4inv-seeyou	true	false	"'See you around, Horatio.'"	"'See you around, Horatio.'
 
 'You too, Marid.'
 
 You step back, and Horatio returns to his [if A Crucible Game is happening]card game[otherwise]duties[end if]."	{}
+
+After reading out horatio-4inv-raven: discover the Trading Company connection.
 
 Instead of talking to Horatio when (the home dialogue branch of Horatio is horatio-4inv-home and the enabled of horatio-4inv-sleepwell is false and the enabled of horatio-4inv-thoughts is false and the enabled of horatio-4inv-crucible is false) (this is the no more Horatio 4inv dialogue rule):
 	say "You can't think of anything to bring up at the moment."
@@ -10912,9 +10934,7 @@ Before doing anything other than examining with the mother-of-pearl buttons, say
 Section 3.29.2.4.3 - Arms
 
 Creditor Nacarat's gloves are a plural-named thing part of Creditor Nacarat.
-The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint molded silhouette of a raven[if clue-nacarat-raven is false].
-
-Wait. A raven?[line break][otherwise]."
+The description is "He wears the smooth black gloves of a businessman. Decorative gilding plays across the back of each hand, surrounding the faint molded silhouette of a raven."
 Understand "arm/arms" or "glove/hand/hands/leather" or "smooth" or "black" as Creditor Nacarat's gloves.
 Before looking under, opening, pulling, searching, taking, or taking off Creditor Nacarat's gloves, say "You get a pair of tweezers and pull off Creditor Nacarat's gloves, revealing slender hands that could have belonged to a stage magician. Nothing about his hands seems pertinent to the investigation, though, so you replace the gloves and return the tweezers to the clinic." instead.
 Instead of swinging Creditor Nacarat's gloves, say "Very funny."
@@ -11272,7 +11292,7 @@ After taking the battered keyring when the battered keyring is undescribed:
 Chapter 3.29.2.7 - Piper
 
 Piper is a dead undescribed woman.
-The description is "A tall, thin specimen of a woman with arms and legs like sea-stilts.  Of all the patients, her posture is the most contorted, as though her body had convulsed in the hour of death -- she is a broken marionette, loosed from its strings and cast aside.
+The description is "A tall, thin specimen of a woman with arms and legs like sea-stilts.  Of all the patients, her posture is the most contorted, as though her body had convulsed in the hour of death: she is a broken marionette, loosed from its strings and cast aside.
 
 You could examine Piper's head, her torso, her arms, or her legs."
 Understand "piper's body/corpse/cadaver" or "victim/patient/thug" or "posture" as Piper.
@@ -11373,7 +11393,9 @@ Instead of examining or taking Piper's name list when clue-piper-namelist is fal
 
 [wait for any key]Sums of money.
 
-[wait for any key]You recognize some of the names on here, too -- you've bought your groceries, or your clothes, from these people in the past. All of the names have check marks beside them. Some of them are crossed out. Has Piper been collecting debts?
+[wait for any key]You recognize some of the names on here, too -- you've bought your groceries, or your clothes, from these people in the past. All of the names have check marks beside them. Some of them are crossed out.
+
+[wait for any key]Has Piper been collecting debts?
 
 [wait for any key]You reach the end of the page, and turn it over only to find the reverse side blank.
 
@@ -11554,18 +11576,22 @@ Understand "island" or "body-of-stomach" or "sickening" or "bolus/boli" or "tend
 
 Chapter 3.29.2.9 - Raven Questions
 
-Every turn when Four Investigations is happening and clue-ravens-sighted is greater than 2 and clue-raven is false (this is the unlocking raven symbol questions rule):
-	say "That's the third time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
+Every turn when Four Investigations is happening and clue-ravens-sighted is greater than 1 and clue-raven is false (this is the unlocking raven symbol questions rule):
+	say "That's the second time you've seen that raven symbol today. Is it connected to these deaths somehow? Perhaps someone will know something about the symbol's significance.";
 	unlock raven questions.
 	
 To unlock raven questions:
 	now the enabled of examiner-raven is true;
 	now the enabled of justinian-4inv-raven is true;
+	now the enabled of cavala-4inv-raven is true;
+	now the enabled of horatio-4inv-raven is true;
 	now clue-raven is true.
 	
 To discover the Trading Company connection:
 	now the enabled of examiner-raven is false;
 	now the enabled of justinian-4inv-raven is false;
+	now the enabled of cavala-4inv-raven is false;
+	now the enabled of horatio-4inv-raven is false;
 	now clue-tradingcompany is true.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
@@ -12468,9 +12494,7 @@ Book 3.32 - Zoiro's Residence (Zoiro's House)
 
 [I call this Zoiro's Residence internally because I don't want to name clash with the front door or something by accident. In retrospect this has been a sequence of pretty dumb naming decisions.]
 
-Zoiro's Residence is a proper-named room. "The shutters have been drawn in this tiny cottage, cloaking its confines in somber shades. In the shadows glimmer vases, knick-knacks and wishing-eyes; the furniture is small and faintly unreal.
-
-The front door squats to the east."
+Zoiro's Residence is a proper-named room. "The shutters have been drawn in this tiny cottage, cloaking its confines in somber shades. In the shadows glimmer vases, knick-knacks and wishing-eyes; the furniture is small and faintly unreal. The front door squats to the east."
 The printed name is "Zoiro's House".
 Understand "zoiro" or "house" as Zoiro's Residence.
 
@@ -12510,26 +12534,98 @@ Instead of inserting something into the ornamental vases, say "That would be exc
 Instead of searching the ornamental vases, say "The vases contain nothing but dust."
 
 Some unidentifiable knick-knacks are scenery in Zoiro's Residence.
-The description is  "Bric-a-brac, dingle-dangles, whim-whams, folderol..."
-Understand "bric-a-brac" or "folderol/folderols" or "dingle-dangle/dingle-dangles" or "knick" or "knick-knack/knack/knacks" or "whim-wham/whim-whams" as the unidentifiable knick-knacks.
+The description is  "Bric-a-brac, whim-whams, folderol..."
+Understand "bric-a-brac" or "folderol/folderols" or "knick" or "knick-knack/knack/knacks" or "whim-wham/whim-whams" as the unidentifiable knick-knacks.
 
 Some wishing-eyes are scenery in Zoiro's Residence.
 The description is "Baubles of colorful cloth and shiny stones, made to be strung up and displayed. It's a goblin tradition to give them as gifts."
 Understand  "bauble/baubles" or "wishing" or "eye/eyes/wishing-eye" or "colorful/colourful" or "cloth" or "shiny" or "stone/stones" as the wishing-eyes.
 
 Some faintly unreal furniture is scenery in Zoiro's Residence.
-The description is "It reminds you of a doll-house[first time]. Is that racist? You hope not[only]."
+The description is "It reminds you quite a bit of dollhouse furniture."
 Understand "small and/--" or "dollhouse/doll-house" or "table/tables" or "chair/chairs" or "tableware" or "day-to-day" or "necessity/necessities" as the faintly unreal furniture.
-Instead of taking, pushing, pulling, or turning the faintly unreal furniture, say "Even if it reminds you of a doll-house, that doesn't mean you should play with it."
+Instead of taking, pushing, pulling, or turning the faintly unreal furniture, say "You don't think you should rearrange the furniture. Even if it [italic type]does[roman type] remind you of dollhouse furniture."
 Instead of entering the faintly unreal furniture, say "The tables and chairs are too small for you."
 Instead of searching the faintly unreal furniture, say "Just the usual tableware and other day-to-day necessities."
-Instead of looking under the faintly unreal furniture, say "You're forced to stoop to an embarrassing degree to get a better look. Unfortunately, you find nothing of interest."
 
 Part 3.32.2 - Zoiro's Residence during Day Two
 
 Chapter 3.32.2.1 - Zoiro
 
-Zoiro is a goblin man in Zoiro's Residence.
+Zoiro is a goblin man in Zoiro's Residence. "Zoiro is here, [one of]looking quite unlike the last time you saw him at the Riggertown Mechanistry. He is wearing a deep black cassock and lighting beeswax candles around the sitting room[or]lighting beeswax candles and arranging obsidian beads[stopping]."
+The description is "There is a weary cast to his features."
+The sound is "He is quiet."
+The scent is "He smells of glue."
+
+The deep black cassock is a thing worn by Zoiro.
+The description is "A garment of mourning."
+Understand "garment of/--" or "mourning" as the deep black cassock.
+
+The handheld tinderbox is a thing carried by Zoiro.
+The description is "A little belligerent sparking thing."
+
+Some beeswax candles are scenery in Zoiro's Residence.
+The description is "They glow with eerie light."
+The scent is "Scented smoke."
+Understand "candle" or "wax" as the beeswax candles.
+Instead of burning the beeswax candles, say "Zoiro is already doing that."
+Instead of extinguishing, pushing, pulling, squeezing, taking, or turning the beeswax candles, say "That wouldn't be polite."
+Instead of rubbing or touching the beeswax candles, say "You don't want to."
+
+Some obsidian beads are scenery in Zoiro's Residence.
+The description is "Little black beads placed in asymmetric patterns."
+Understand "bead" or "little" or "black" or "pattern/patterns" as the obsidian beads.
+Instead of pushing, pulling, taking, or turning the obsidian beads, say "You don't think you should disturb the beads."
+
+Section 3.32.2.1.1 - Zoiro Mourning Dialogue
+
+Some dialogue branches are defined by the Table of Zoiro Mourning Dialogue.
+
+Table of Zoiro Mourning Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+zoiro-mourning-home	true	false	""	"'Zoiro,' you say. 'Hello.'
+
+The goblin pauses mid-motion. He inclines his head respectfully.
+
+'Hello,' he says. 'Marid. Sorry about the mess. I wasn't expecting a visit so early.'"	{zoiro-mourning-itsok, zoiro-mourning-sorryinterrupt, zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
+zoiro-mourning-itsok	true	true	"'It's okay.'"	"'It's okay.'
+
+'Um.' He waves his tinderbox. 'I'd ask you to have a seat, but I don't think I have any human-sized furniture. Do you want to sit on the table? Or...'
+
+'It's fine,' you tell him. 'Really.'"	{zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
+zoiro-mourning-sorryinterrupt	true	true	"'Sorry. I didn't mean to interrupt.'"	"'Sorry. I didn't mean to interrupt.'
+
+'Don't worry about it,' he replies. 'I can work and talk at the same time. What's on your mind?'"	{zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
+
+zoiro-mourning-whatdoing	true	true	"'What are you doing?'"	"'What are you doing?'
+
+'This?' Zoiro holds up his tinderbox. 'Ah... it's a tradition in my clan. A ritual of mourning -- of remembering.'
+
+'A ritual?'
+
+He looks down. 'I know,' he says. 'I know. It's complete, rank superstition. Total hogwash. But... it feels right. Like something I have to do, you know?'
+
+'...I know what you mean.'"	{zoiro-mourning-sorryinterrupt, zoiro-mourning-aboutreden}
+zoiro-mourning-aboutreden	true	false	"'I wanted to ask you some things about Reden...'"	"'I wanted to ask you some things about Reden,' you say. 'We're looking into the transmission vector of the disease -- trying to find out how he could have contracted it. If you could tell us about the places he'd been, or what he'd been doing...'
+
+Zoiro's shoulders slump.
+
+'Yeah,' he says. 'Reden. I suppose I can help. I don't know how much use I'll be, though... practically cut off contact with him before he died.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations}
+zoiro-mourning-werentclose	true	true	"'You weren't close to him?'"	"'You weren't close to him?'
+
+'No.'  Zoiro closes his eyes. 'Primes, no. He was a dead weight, always cadging, borrowing money. I hated him. When he walked out the door and never came back, well... I wasn't sorry to see him go.'"	{zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed}
+zoiro-mourning-placesfrequented	true	true	"'Do you know anything about the places he frequented?'"	"'Do you know anything about the places he frequented?'
+
+Zoiro scratches his nose. 'No... not really, no. He was a changed man after he lost his job. Started frequenting public houses, frittering away what money he had left... and not long after that, he just left. I don't know what happened to him afterward.'"	{zoiro-mourning-werentclose, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-drinker}
+zoiro-mourning-associations	true	true	"'Do you know anyone else that Reden associated with?'"	"'Do you know anyone else that Reden associated with?'
+
+A shake of the head. 'The only thing he associated with was alcohol. He never talked about his friends... never talked about his work. When he lost his job, all he cared about was his next drink, and the next. Whatever associations he had, he threw away.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-unemployed, zoiro-mourning-drinker}
+zoiro-mourning-unemployed	true	true	"So Reden was unemployed?"	"'So Reden was unemployed?'
+
+Zoiro nods. 'He was a janitor at the Channelworks, fired for drunkenness and acting unprofessional. He was unrepentant. No company would have him -- he spent all his days rotting at home, and drinking himself into a coma.'"	{zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-drinker}
+zoiro-mourning-drinker	true	true	"Reden was a compulsive drinker?"	"'Reden was a compulsive drinker?'
+
+"	{}
 
 Book of the Rest
 
