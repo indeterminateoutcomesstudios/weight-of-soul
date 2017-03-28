@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 260317.
+The release number is 280317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -341,7 +341,7 @@ A Crucible Game ends when All Quiet on the Western Front ends.
 - Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
 
 Reden Investigation is a scene.
-Reden Investigation begins when Bad News from Cavala begins.
+Reden Investigation begins when Four Investigations begins.
 
 [2. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
 - The doctor was poisoned Day One afternoon after an argument with Justinian and died the evening of Day One.
@@ -527,8 +527,6 @@ To skip past Zoiro:
 	if Cadaver Walk is not visited:
 		skip past the Shanty Maze;
 	now Riggertown Lower Level is visited;
-	now Reden's Shack is visited;
-	now journal-reden-shack-known is true;
 	now Riggertown Upper Level is visited;
 	now VII Layabout Row is visited;
 	move the player to the Riggertown Mechanistry, without printing a room description;
@@ -2424,7 +2422,6 @@ journal-riggertown-detour-known is a truth state that varies.
 journal-porter-talkedto is a truth state that varies.
 journal-buskers-examined is a truth state that varies.
 journal-zoiro-address-known is a truth state that varies.
-journal-reden-shack-known is a truth state that varies.
 
 [Day Two]
 
@@ -2437,6 +2434,11 @@ clue-patientrecords-justinian is a truth state that varies.
 clue-ravens-sighted is a number that varies.
 clue-raven is a truth state that varies.
 clue-tradingcompany is a truth state that varies.
+clue-crowsnest is a truth state that varies.
+
+clue-reden-channelworks is a truth state that varies.
+clue-reden-zoironest is a truth state that varies.
+clue-reden-shack is a truth state that varies.
 
 clue-arturus-discovery-justinian is a truth state that varies.
 clue-arturus-timeofdeath is a truth state that varies.
@@ -2597,7 +2599,16 @@ To say journal-text-objectives:
 	if Reden Investigation is happening:
 		add "" to L;
 		add "[italic type]Reden[roman type]" to L;
-		add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
+		if the enabled of zoiro-mourning-alldone is false:
+			add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
+		if clue-reden-shack is true and Reden's Shack is unvisited:
+			add "- Look for a place in Lower Riggertown where Reden could have stayed" to L;
+		if Reden's Shack is visited:
+			add "- Investigate Reden's shack in Lower Riggertown for clues" to L;
+		if clue-crowsnest is true:
+			add "- Go to the Shanty Quarter and investigate the Crow's Nest pub" to L;
+		otherwise if clue-reden-zoironest is true:
+			add "- Find out more about a pub involving a [']bird's nest[']" to L;
 	if Arturus Investigation is happening:
 		add "" to L;
 		add "[italic type]Doctor Arturus[roman type]" to L;
@@ -2721,6 +2732,14 @@ To say journal-text-notes:
 		if Reden Investigation is happening:
 			if LFI is not {}, add "" to LFI;
 			add "[italic type]Reden[roman type]" to LFI;
+			if clue-crowsnest is true:
+				add "- I learned that Reden frequented a rooftop pub in the Shanty Quarter called the Crow's Nest." to LFI;
+			otherwise if clue-reden-zoironest is true:
+				add "- I learned that Reden could have frequented a pub involving a [']bird's nest.[']" to LFI;
+			if clue-reden-shack is true and Reden's Shack is unvisited:
+				add "- I learned that Reden could have stayed somewhere in Lower Riggertown." to LFI;
+			if clue-reden-channelworks is true:
+				add "- I learned that Reden was once a Channelworks worker, and it reminded me that his clothes were unusually wet when he stumbled into Doctor Cavala's clinic." to LFI;
 			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
 		if Arturus Investigation is happening:
 			let L2 be a list of texts;
@@ -9573,15 +9592,15 @@ There is a region in Outdoors called Riggertown.
 
 Riggertown Lower Level is a proper-named room in Riggertown. "This peculiarly goblin neighborhood bristles with mechanical-chymical detritus. There are twisty catwalks made for childlike feet, and sheet-metal shacks you must stoop to enter. Here and there in the shadow of the upper landing, neon lamps glow and windchimes tinkle like laughter.
 
-You can climb a ladder up to the next level, [if journal-reden-shack-known is true]visit Reden's shack[otherwise]wander among the shacks[end if] to the west, or cross the canal east by way of Cadaver Walk."
+You can climb a ladder up to the next level, [if Reden's Shack is visited]visit Reden's shack[otherwise]wander among the shacks[end if] to the west, or cross the canal east by way of Cadaver Walk."
 It is west of Cadaver Walk.
 The printed name is "Riggertown, Lower Level". 
 
 The simple-name is "Lower Riggertown".
 The sound is "The goblins chatter; the landings creak."
 The scent is "The landing smells of grease and brine."
-The exit reminder is "You can go up to Upper Riggertown, west to [if journal-reden-shack-known is true]Reden's shack[otherwise]the shacks[end if], or east to Cadaver Walk."
-The going-in disambiguation is "Do you mean going up (to Upper Riggertown) or west (to [if journal-reden-shack-known is true]Reden's shack[otherwise]the shacks[end if])?"
+The exit reminder is "You can go up to Upper Riggertown, west to [if Reden's Shack is visited]Reden's shack[otherwise]the shacks[end if], or east to Cadaver Walk."
+The going-in disambiguation is "Do you mean going up (to Upper Riggertown) or west (to [if Reden's Shack is visited]Reden's shack[otherwise]the shacks[end if])?"
 
 Before examining west in Riggertown Lower Level, try examining the sheet-metal shacks instead.
 Before examining east in Riggertown Lower Level, try examining the view of Cadaver Walk instead.
@@ -9612,7 +9631,7 @@ The description is "Squatting in clusters, or suspended from girders, or stacked
 The sound is "You hear the sounds of everyday living."
 The scent is "You smell burnt metal and train oil. Goblin cooking, in other words."
 Understand "sheet" or "metal" or "shack" or "door/doors" as the sheet-metal shacks.
-Before entering or searching the sheet-metal shacks when journal-reden-shack-known is false, try going west instead.
+Before entering or searching the sheet-metal shacks when Reden's Shack is unvisited, try going west instead.
 Instead of entering, knocking on, or searching the sheet-metal shacks, say "You see no reason to disturb the residents."
 Instead of climbing the sheet-metal shacks, say "That doesn't seem necessary."
 
@@ -9626,7 +9645,7 @@ Instead of touching the neon lamps, say "The lamps are warm to the touch."
 
 Some tinkling windchimes are scenery in Riggertown Lower Level.
 The description is "You've heard that these windchimes evolved from goblin religious practices. These days, they're mostly for decoration."
-The sound is "It is a gentle sound they make."
+The sound is "It's a gentle sound they make."
 Understand "windchime" or "chime/chimes" as the tinkling windchimes.
 Instead of knocking on, pulling, pushing, squeezing, swinging, touching, or turning the tinkling windchimes, say "Tinkle, tinkle, go the windchimes."
 
@@ -9638,7 +9657,13 @@ Instead of climbing the view of Reden's shack, say "That strikes you as highly u
 
 Part 3.24.2 - Riggertown Lower Level during Day One
 
-Instead of entering, knocking on, or searching the sheet-metal shacks when Cavala's Errands is happening: say "It's embarrassing to go door to door. There must be some other way."
+Before going west in Riggertown Lower Level when Cavala's Errands is happening:
+	say "You wander among the shacks for a bit, but you don't think Zoiro lives there. You return to the main level before you get lost.";
+	stop the action.
+	
+Before going west in Riggertown Lower Level when Returning to a Break-In is happening:
+	say "You wander among the shacks for a bit, but it's getting dark out. You return to the main level before you get lost.";
+	stop the action.
 
 Chapter 3.24.2.1 - Donti
 
@@ -9806,7 +9831,7 @@ Book 3.25 - Reden's Shack
 There is a proper-named room called Reden's Shack. "This tiny hovel is visibly shabbier than the rest. The roof is uncomfortably low, and the space just a little too cramped to stand in. A pile of bedding dominates the only room, draped in dirty clothing and empty wine bottles.
 
 The only exit is to the east."
-It is west of Riggertown Lower Level. It is inside of Riggertown Lower Level.
+It is west of Riggertown Lower Level.
 
 The simple-name is "Reden's shack".
 The sound is "No sound but your breathing."
@@ -9815,11 +9840,11 @@ The exit reminder is "The only exit lies east, to Lower Riggertown."
 
 Instead of examining east in Reden's Shack, say "The exit is that way."
 Instead of examining outside in Reden's Shack, say "The exit is that way."
+Before going outside in Reden's Shack, try going east instead.
 
 Before going to Reden's Shack (this is the entering Reden's Shack flavor rule):
-	if journal-reden-shack-known is false:
+	if Reden's Shack is unvisited:
 		say "One shack among the others catches your attention. You enter cautiously...";
-		now journal-reden-shack-known is true;
 		now the view of Reden's shack is in Riggertown Lower Level;
 	otherwise:
 		if the player is staid, say "You duck into the shack...";
@@ -9848,7 +9873,7 @@ Instead of pushing, pulling, looking under, rubbing, swinging, touching, or turn
 Instead of inserting the endoscope into the pile of bedding, say "You poke through the bedding, but find nothing except more bedding."
 Instead of bed-making the pile of bedding, say "There's a time and place to be fastidious about cleanliness. This isn't it."
 Instead of entering the pile of bedding, say "You aren't comfortable getting into in a dead man's bed."
-Instead of taking the pile of bedding, say "You'd look like an fool lugging all these blankets around."
+Instead of taking the pile of bedding, say "You'd look like a fool lugging all these blankets around."
 
 The dirty clothing is scenery in Reden's Shack. The indefinite article is "some".
 The description is "The clothing is crumpled and dirty, but otherwise unmarked. They smell like their owner has been wading around in canal-water."
@@ -9860,21 +9885,54 @@ Instead of inserting the endoscope into the dirty clothing, say "You find nothin
 Instead of rubbing the dirty clothing, say "You aren't about to do a dead man's laundry."
 Instead of taking the dirty clothing, say "You can't imagine any reason to take the clothing with you."
 
-Some empty wine bottles are scenery in Reden's shack.
+Some empty wine bottles are scenery in Reden's Shack.
 The description is "The labels denote shoddy liquor, third-pressed or fourth-pressed. It's charitable to call it wine at all."
-The scent is "The bottles smell bitter and pungent."
+The scent is "The scent in the bottles could, if you were feeling imaginative, be described as wine."
 Understand "label/labels" or "liquor" or "shoddy" or "bottle" as the empty wine bottles.
 Before removing the empty wine bottles from something, try taking the empty wine bottles instead.
 Instead of drinking or opening the empty wine bottles, say "All of the bottles are empty. Besides, you aren't sure you'd want to drink any."
-Instead of closing the empty wine bottles, say "You don't see any bottle caps."
+Instead of closing the empty wine bottles, say "You don't see any corks here."
 Instead of inserting something into the empty wine bottles, say "That seems entirely unwise."
 Instead of inserting the endoscope into the empty wine bottles, say "You see some reddish wine stains around the base of the bottles, but nothing out of the ordinary."
 Instead of searching the empty wine bottles, say "Nothing about these bottles seems out of the ordinary."
 Instead of taking the empty wine bottles, say "You don't need any of these bottles."
 
-Part 3.25.2 - Reden's Things
+Part 3.25.2 - Drink Coupons
 
-[TBA. Reden doesn't leave any textual clues, but he leaves a key of some sort that is necessary to get into the Channelworks. I'll put it here when I have a better idea of what kinds of obstacles lead there.]
+Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called 'The Crow's Nest,' located in the rooftops of the Shanty Quarter. Each coupon entitles the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
+
+After examining the scattered coupons:
+	now clue-crowsnest is true;
+	continue the action.
+	
+A drink coupon is a kind of thing.
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. It entitles the holder to a free drink at 'The Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
+
+There are three drink coupons.
+
+Instead of taking the scattered coupons:
+	now the scattered coupons are nowhere;
+	now all drink coupons are carried by the player;
+	now clue-crowsnest is true;
+	say "Taken.";
+	
+Instead of giving a drink coupon to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
+
+Instead of attacking or cutting a drink coupon:
+	say "You tear up the drink coupon.";
+	now the noun is nowhere.
+	
+Instead of dropping a drink coupon:
+	if the location is in Outdoors:
+		say "The coupon flutters away in the wind.";
+		now the noun is nowhere;
+	otherwise if the location is not Marid's Room:
+		say "You shouldn't leave the coupon lying around here.";
+	otherwise:
+		continue the action.
 
 Book 3.26 - Riggertown Upper Level
 
@@ -10338,7 +10396,7 @@ After reading out zoiro-mechanistry-whichzoiro:
 
 Book 3.28 - VII Layabout Row
 
-VII Layabout Row is a proper-named room in Riggertown. "This rustic little house is one of many that squat here and there along the lane. A pair of scrap-metal sculptures flank the steps to the front door. Beside it is a tarnished old pull-bell, tied with a rope that has seen better days.
+VII Layabout Row is a proper-named room in Riggertown. "This rustic little house is one of many that squat here and there along the lane. A pair of scrap-metal sculptures flank the steps to the front door. Beside it is a tarnished old pull-bell, dangling from a rope that has seen better days.
 
 You can enter the front door of the house to the west, or return along the walkway to the northeast."
 It is southwest of Riggertown Upper Level.
@@ -10398,10 +10456,15 @@ The sound is "You'll have to ring the bell to hear its sound."
 Understand "pull" or "doorbell" or "bell" or "rope" as the tarnished old pull-bell.
 Before pulling the tarnished old pull-bell, try swinging the tarnished old pull-bell instead.
 Instead of pushing the tarnished old pull-bell, say "It's a pull-bell, not a push-bell."
-Instead of swinging the tarnished old pull-bell, say "The bell clatters noisily. 'Come in!' you hear Zoiro call."
 Instead of turning the tarnished old pull-bell, say "It's a pull-bell, not a turn-bell."
 Instead of tying the tarnished old pull-bell to something, say "That won't accomplish anything."
 Instead of tying something to the tarnished old pull-bell, say "That won't accomplish anything."
+
+Instead of swinging the tarnished old pull-bell:
+	if the front door of Zoiro's house is locked:
+		say "The bell clatters noisily, but no one answers the door.";
+	otherwise:
+		say "The bell clatters noisily. 'Come in!' you hear Zoiro call."
 
 Part 3.28.2 - Front Door of Zoiro's House
 
@@ -10412,20 +10475,19 @@ Understand "plaque" or "koriph's" or "residence" as the front door of Zoiro's ho
 Instead of searching the front door of Zoiro's house, say "The door [if the front door of Zoiro's house is open and the location is VII Layabout Row]leads into the house.[otherwise if the front door of Zoiro's house is open]leads out of the house.[otherwise]is closed."
 Does the player mean doing something with the front door of Zoiro's house: it is unlikely. [As opposed to Zoiro's house.]
 
-Part 3.28.3 - VII Layabout Row during Day One
+Instead of knocking on the front door of Zoiro's house:
+	if the front door of Zoiro's house is locked:
+		if Cavala's Errands is happening:
+			say "There is no response. Zoiro must not be home at the moment.";
+		otherwise:
+			say "There is no response. Perhaps you should come back later.";
+	otherwise:
+		say "'Come in!' you hear Zoiro call."
 
-Instead of knocking on the front door while Cavala's Errands is happening:
-	say "There is no response. Zoiro must not be home at the moment.";
-
-Instead of swinging the tarnished old pull-bell when Cavala's Errands is happening, say "The bell clatters noisily, but no one answers the door."
-	
 Part 3.28.4 - VII Layabout Row during Day Two
 
-When Day Two begins (this is the unlock the door to Zoiro's house rule):
+When Reden Investigation begins (this is the unlock the door to Zoiro's house rule):
 	now the front door of Zoiro's house is unlocked.
-	
-Instead of knocking on the front door of Zoiro's house when Day One has ended (this is the polite Marid rule):
-	say "'Come in!' you hear Zoiro call.";
 
 Book 3.29 - Arturus's Clinic
 
@@ -11433,9 +11495,9 @@ Understand "jackboot" or "boot/boots" or "hobnail/hobnails/hobnailed" or "footwe
 Instead of opening, taking, or taking off Piper's jackboots, say "You don't think the Vigiles will appreciate you running off with a victim's footwear."
 
 Piper's half slip is a thing worn by Piper.
-The description is "You don't want to know what those stains are."
+The description is "It's seen better days."
 The scent is "The smell is not pleasant."
-Understand "tattered" or "stain/stains" or "unmentionables" as Piper's half slip.
+Understand "tattered" or "unmentionables" as Piper's half slip.
 Instead of opening, taking, or taking off Piper's half slip, say "Surely you can solve this investigation [italic type]without[roman type] carting a dead woman's unmentionables around."
 
 Piper's thighs are a plural-named thing part of Piper.
@@ -12494,7 +12556,9 @@ Book 3.32 - Zoiro's Residence (Zoiro's House)
 
 [I call this Zoiro's Residence internally because I don't want to name clash with the front door or something by accident. In retrospect this has been a sequence of pretty dumb naming decisions.]
 
-Zoiro's Residence is a proper-named room. "The shutters have been drawn in this tiny cottage, cloaking its confines in somber shades. In the shadows glimmer vases, knick-knacks and wishing-eyes; the furniture is small and faintly unreal. The front door squats to the east."
+Zoiro's Residence is a proper-named room. "The shutters have been drawn in this tiny cottage, cloaking its confines in somber shades. In the shadows glimmer vases, knick-knacks, and wishing-eyes; the furniture is small and faintly unreal.
+
+The front door squats to the east."
 The printed name is "Zoiro's House".
 Understand "zoiro" or "house" as Zoiro's Residence.
 
@@ -12552,8 +12616,8 @@ Part 3.32.2 - Zoiro's Residence during Day Two
 
 Chapter 3.32.2.1 - Zoiro
 
-Zoiro is a goblin man in Zoiro's Residence. "Zoiro is here, [one of]looking quite unlike the last time you saw him at the Riggertown Mechanistry. He is wearing a deep black cassock and lighting beeswax candles around the sitting room[or]lighting beeswax candles and arranging obsidian beads[stopping]."
-The description is "There is a weary cast to his features."
+Zoiro is a goblin man in Zoiro's Residence. "Zoiro is here, [one of]looking quite unlike the last time you saw him at the Riggertown Mechanistry. He is dressed in a deep black cassock and lighting beeswax candles around the sitting room[or]lighting beeswax candles and arranging obsidian beads[stopping]."
+The description is "An air of solemnity surrounds him."
 The sound is "He is quiet."
 The scent is "He smells of glue."
 
@@ -12587,16 +12651,19 @@ zoiro-mourning-home	true	false	""	"'Zoiro,' you say. 'Hello.'
 
 The goblin pauses mid-motion. He inclines his head respectfully.
 
-'Hello,' he says. 'Marid. Sorry about the mess. I wasn't expecting a visit so early.'"	{zoiro-mourning-itsok, zoiro-mourning-sorryinterrupt, zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
+'Hello,' he says. 'Marid.'
+
+[wait for any key]He turns around, shuffling his feet on the floor.
+
+'Sorry about the mess. I wasn't expecting a visit so early.'"	{zoiro-mourning-itsok, zoiro-mourning-sorryinterrupt, zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
 zoiro-mourning-itsok	true	true	"'It's okay.'"	"'It's okay.'
 
-'Um.' He waves his tinderbox. 'I'd ask you to have a seat, but I don't think I have any human-sized furniture. Do you want to sit on the table? Or...'
+'Um.' He waves his tinderbox. 'I'd ask you to have a seat, but I don't think I have any human-sized furniture. Do you... do you want to sit on the table? Or...'
 
-'It's fine,' you tell him. 'Really.'"	{zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
-zoiro-mourning-sorryinterrupt	true	true	"'Sorry. I didn't mean to interrupt.'"	"'Sorry. I didn't mean to interrupt.'
+'It's fine,' you tell him. 'Really.'"	{zoiro-mourning-sorryinterrupt, zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
+zoiro-mourning-sorryinterrupt	true	true	"'I didn't mean to interrupt.'"	"'I didn't mean to interrupt.'
 
-'Don't worry about it,' he replies. 'I can work and talk at the same time. What's on your mind?'"	{zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
-
+'Don't worry about it,' he replies. 'It's nothing all that urgent. What's on your mind?'"	{zoiro-mourning-whatdoing, zoiro-mourning-aboutreden}
 zoiro-mourning-whatdoing	true	true	"'What are you doing?'"	"'What are you doing?'
 
 'This?' Zoiro holds up his tinderbox. 'Ah... it's a tradition in my clan. A ritual of mourning -- of remembering.'
@@ -12606,26 +12673,175 @@ zoiro-mourning-whatdoing	true	true	"'What are you doing?'"	"'What are you doing?
 He looks down. 'I know,' he says. 'I know. It's complete, rank superstition. Total hogwash. But... it feels right. Like something I have to do, you know?'
 
 '...I know what you mean.'"	{zoiro-mourning-sorryinterrupt, zoiro-mourning-aboutreden}
+
+The home dialogue branch of Zoiro is zoiro-mourning-home.
+
+Section 3.32.2.1.2 - Zoiro Mourning Dialogue, Branching Investigative Section
+
+[In this little specimen of spaghetti code, Marid asks Zoiro about various topics, which lead to new potential topics. What happens here is that all of the dialogue branches have every possible choice, but the 'enabled' property is only turned on for the branches once they have been unlocked.
+
+We use the 'one-shot' property to see which branches have already been unlocked before so we don't unlock them again: false means they haven't been unlocked by the player, true means they have.
+
+The starting branch is aboutreden, which branches to:
+	-werentclose
+	-placesfrequented
+	-associations
+	
+From these we get the following:
+	-unemployed
+	-heleft
+	-drinker
+	
+And finally the following critical clues:
+	-channelworks
+	-pub
+	-redenshack
+	
+Once Marid has asked all of the final three, we unlock the final dialogue branch, which is alldone.]
+
+Table of Zoiro Mourning Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
 zoiro-mourning-aboutreden	true	false	"'I wanted to ask you some things about Reden...'"	"'I wanted to ask you some things about Reden,' you say. 'We're looking into the transmission vector of the disease -- trying to find out how he could have contracted it. If you could tell us about the places he'd been, or what he'd been doing...'
 
 Zoiro's shoulders slump.
 
-'Yeah,' he says. 'Reden. I suppose I can help. I don't know how much use I'll be, though... practically cut off contact with him before he died.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations}
+'Yeah,' he says. 'Reden.'
+
+[wait for any key]He shuffles over to an armchair and sits with a sigh. He fidgets with the tinderbox in his hands.
+
+'I suppose I can help. I don't know how much use I'll be, though... practically cut off contact with him before he died.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations}
 zoiro-mourning-werentclose	true	true	"'You weren't close to him?'"	"'You weren't close to him?'
 
-'No.'  Zoiro closes his eyes. 'Primes, no. He was a dead weight, always cadging, borrowing money. I hated him. When he walked out the door and never came back, well... I wasn't sorry to see him go.'"	{zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed}
+'No.'  Zoiro closes his eyes. 'Primes, no. He was a dead weight, always cadging, borrowing money.'
+
+He turns over the box in his hands.
+
+'I hated him. When he walked out the door and never came back, well... I can't say I was sorry to see him go.'"	{zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-placesfrequented	true	true	"'Do you know anything about the places he frequented?'"	"'Do you know anything about the places he frequented?'
 
-Zoiro scratches his nose. 'No... not really, no. He was a changed man after he lost his job. Started frequenting public houses, frittering away what money he had left... and not long after that, he just left. I don't know what happened to him afterward.'"	{zoiro-mourning-werentclose, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-drinker}
+Zoiro shakes his head. 'No... not really, no. He was hardly around the house... he'd go out in the morning and come back late, smelling of shitty booze. Some days he was like someone I didn't know.
+
+'I never asked him where he was going. Don't think I cared. When he left... I don't know what happened to him afterward.'"	{zoiro-mourning-werentclose, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-associations	true	true	"'Do you know anyone else that Reden associated with?'"	"'Do you know anyone else that Reden associated with?'
 
-A shake of the head. 'The only thing he associated with was alcohol. He never talked about his friends... never talked about his work. When he lost his job, all he cared about was his next drink, and the next. Whatever associations he had, he threw away.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-unemployed, zoiro-mourning-drinker}
-zoiro-mourning-unemployed	true	true	"So Reden was unemployed?"	"'So Reden was unemployed?'
+A shake of the head. 'The only thing he associated with was alcohol. He never talked about his friends... never talked about his work. When he got fired, I wouldn't be surprised if no one even batted an eye -- he was that kind of person.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-unemployed	false	false	"'Reden was unemployed?'"	"'Reden was unemployed?'
 
-Zoiro nods. 'He was a janitor at the Channelworks, fired for drunkenness and acting unprofessional. He was unrepentant. No company would have him -- he spent all his days rotting at home, and drinking himself into a coma.'"	{zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-drinker}
-zoiro-mourning-drinker	true	true	"Reden was a compulsive drinker?"	"'Reden was a compulsive drinker?'
+Zoiro nods. 'He was a janitor at the Channelworks, let go for drunkenness and unprofessional conduct. He was unrepentant -- no company would have him.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-heleft	false	false	"'Reden left and didn't come back?'"	"'Reden left and didn't come back?'
 
-"	{}
+Zoiro gazes at the door.
+
+'Yeah,' he says. 'He just... left. He did it so quietly, I almost didn't realize he was gone.
+
+'I guess he realized this place wasn't his home any more.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-drinker	false	false	"'Reden was a compulsive drinker?'"	"'Reden was a compulsive drinker?'
+
+'The biggest dipsomaniac I ever saw.' Zoiro smiles grimly. 'He'd go through cheap wine by the bottle -- he didn't care what was in the stuff, or who sold it to him, as long as it got him buzzed.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-channelworks	false	false	"'Could you tell me more about what he did at the Channelworks?'"	"'Could you tell me more about what he did at the Channelworks?'
+
+Zoiro shrugs. 'I've never been there myself,' he says. 'Reden wasn't one for talking about his work. It wasn't anything important... he was just a janitor, some kind of canal scrubber or something. I remember he always came back smelling like a wet rag...'
+
+It occurs to you that there was a dampness about Reden on the night he died. It didn't register to you at the time, but... it wasn't raining that day, was it?"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-pub	false	false	"'Could there have been a public house he especially frequented?'"	"'Could there have been a public house he especially frequented?' you ask.
+
+Zoiro frowns, and his ears stiffen.
+
+'There could have,' he says, 'now that you mention it. Something about a bird's nest... they sell the cheapest booze in the district, or so Reden used to say. I can't quite remember the name, though.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+zoiro-mourning-redenshack	false	false	"'Do you know where he could have gone after he left?'"	"'Do you know where he could have gone after he left?'
+
+Zoiro rubs his chin. 'Actually... I did see him once or twice after he left. Or someone who looked a great deal like him. It was around the shacks in Lower Riggertown...'
+
+[if Reden's Shack is visited]'I think I know the place you're talking about,' you say.
+
+Zoiro shrugs. 'Then you already know more than I do. I suppose that's where he stayed after he left here.'[otherwise]'Do you think he might have found someplace to stay?' you ask.
+
+Zoiro shrugs. 'It couldn't hurt to take a look.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-alldone}
+zoiro-mourning-alldone	false	false	"'That's all the questions I have regarding Reden...'"	"'That's all the questions I have regarding Reden,' you say. 'You've been a great help.'
+
+Zoiro nods. 'If I can help you with anything else, let me know.'
+
+'I will.'
+
+[wait for any key]As Zoiro returns to his work, you step back and mull over what he's told you. Reden's connection to the Channelworks... [if clue-crowsnest is true]the public house called the Crow's Nest[otherwise]a public house involving a [']bird's nest['][end if]... [if Reden's Shack is visited]a place in Lower Riggertown Reden might have stayed[otherwise]Reden's shack in Lower Riggertown[end if].
+
+[wait for any key]Does it mean anything? How much of it is relevant?
+
+[wait for any key]You suppose you'll just have to keep investigating.[line break][look pending]"	{}
+
+After reading out zoiro-mourning-werentclose:
+	if the one-shot of zoiro-mourning-unemployed is false:
+		now the enabled of zoiro-mourning-unemployed is true;
+		now the one-shot of zoiro-mourning-unemployed is true;
+	if the one-shot of zoiro-mourning-heleft is false:
+		now the enabled of zoiro-mourning-heleft is true;
+		now the one-shot of zoiro-mourning-heleft is true;
+		
+After reading out zoiro-mourning-placesfrequented:
+	if the one-shot of zoiro-mourning-drinker is false:
+		now the enabled of zoiro-mourning-drinker is true;
+		now the one-shot of zoiro-mourning-drinker is true;
+	if the one-shot of zoiro-mourning-heleft is false:
+		now the enabled of zoiro-mourning-heleft is true;
+		now the one-shot of zoiro-mourning-heleft is true;
+		
+After reading out zoiro-mourning-associations:
+	if the one-shot of zoiro-mourning-unemployed is false:
+		now the enabled of zoiro-mourning-unemployed is true;
+		now the one-shot of zoiro-mourning-unemployed is true;
+	if the one-shot of zoiro-mourning-drinker is false:
+		now the enabled of zoiro-mourning-drinker is true;
+		now the one-shot of zoiro-mourning-drinker is true;
+		
+After reading out zoiro-mourning-unemployed:
+	if the one-shot of zoiro-mourning-channelworks is false:
+		now the enabled of zoiro-mourning-channelworks is true;
+		now the one-shot of zoiro-mourning-channelworks is true;
+		
+After reading out zoiro-mourning-heleft:
+	if the one-shot of zoiro-mourning-redenshack is false:
+		now the enabled of zoiro-mourning-redenshack is true;
+		now the one-shot of zoiro-mourning-redenshack is true;
+		
+After reading out zoiro-mourning-drinker:
+	if the one-shot of zoiro-mourning-pub is false:
+		now the enabled of zoiro-mourning-pub is true;
+		now the one-shot of zoiro-mourning-pub is true;
+		
+After reading out zoiro-mourning-channelworks:
+	now clue-reden-channelworks is true;
+	check for Zoiro mourning dialogue completion.
+		
+After reading out zoiro-mourning-pub:
+	now clue-reden-zoironest is true;
+	check for Zoiro mourning dialogue completion.
+		
+After reading out zoiro-mourning-redenshack:
+	now clue-reden-shack is true;
+	check for Zoiro mourning dialogue completion.
+	
+To check for Zoiro mourning dialogue completion:
+	if the enabled of zoiro-mourning-channelworks is false and
+	the one-shot of zoiro-mourning-channelworks is true and
+	the enabled of zoiro-mourning-pub is false and
+	the one-shot of zoiro-mourning-pub is true and
+	the enabled of zoiro-mourning-redenshack is false and
+	the one-shot of zoiro-mourning-redenshack is true:
+		now the enabled of zoiro-mourning-alldone is true.
+
+Section 3.32.2.1.2 - Zoiro Mourning Dialogue, Post Investigative Section
+
+zoiro-mourning-raven-quipped is a truth state that varies.
+Instead of talking to Zoiro when Day Two is happening and the enabled of zoiro-mourning-alldone is true:
+	if clue-raven is true and clue-tradingcompany is false and zoiro-mourning-raven-quipped is false:
+		say "'By the way,' you say, 'does a raven mean anything to you?'
+
+Zoiro shrugs. 'I can't say that it does.'
+
+'Oh.'";
+		now zoiro-mourning-raven-quipped is true;
+	otherwise:
+		say "You can't think of anything else to ask him about."
 
 Book of the Rest
 
