@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 280317.
+The release number is 290317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,11 +54,9 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write VII Layabout Row
-- Write Zoiro's dialogue
-- Put the coupon in Reden's Shack
-
 - Write Shanty Quarter
+- Write Rats' Run
+- Write Flophouse
 - Write Sal's Domicile
 - Write Piper's Domicile
 - Write Crow's Nest
@@ -232,13 +230,6 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to day two[roman type]";
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
-	
-[When The Game is Afoot begins:
-	say "(Developer's note: At this point, only the Turris Infinita has new content. The rest of the district is unchanged from Day One.)";
-	
-When The Game is Afoot ends:
-	say "(Developer's note: At this point, only the bodies in Arturus's Clinic can be examined. Further investigation scenes have not yet been written.)";]
-	
 
 Book 1.2 - Days and Scenes
 
@@ -9086,9 +9077,9 @@ When Cavala's Errands ends (this is the despawn the fortune-teller and his table
 
 Book 3.22 - Shanty Quarter
 
-There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "No words can describe this place. It is claustrophobic, oppressive, a place where light does not reach. The air is heavy with the stench of offal and waste, and other things better left unimagined -- and you are hemmed in by ropes, walled off by concrete, entombed with the walking dead.
+There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "[italic type]Developer's note: The Shanty Quarter has not yet been implemented for Day Two. If you've investigated all the leads in your journal and all your clues lead here, this is the end of the playtest build for now.[roman type]
 
-The Via Mercurii is somewhere to the north; Cadaver Walk is somewhere to the west[if Rats' Run is visited]. Rats' Run is somewhere below you, under the manholes and the rickety beams[end if]."
+The Via Mercurii is somewhere to the north. Cadaver Walk is somewhere to the west[if Rats' Run is visited]. Rats' Run is somewhere below you, under the manholes and the rickety beams[end if]."
 It is south of the Via Mercurii.
 
 The simple-name is "the Shanty Quarter".
@@ -12087,7 +12078,7 @@ Rule for writing a paragraph about the vintage coffee table:
 Instead of examining the vintage coffee table:
 	say "A dark wooden table set with linen and porcelain. There is a serving platter of crackers and cheese, barely touched; surrounding it, there are three smaller plates, two of which are accompanied by wineglasses.[line break]";
 	if clue-arturus-coffeetable is false:
-		say "[line break][wait for any key]The third wineglass is nowhere to be seen.";
+		say "[line break]The third wineglass is nowhere to be seen.";
 		now clue-arturus-coffeetable is true;
 		now the enabled of justinian-4inv-wineglass is true.
 
