@@ -9891,7 +9891,7 @@ Instead of taking the empty wine bottles, say "You don't need any of these bottl
 Part 3.25.2 - Drink Coupons
 
 Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
-The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called 'The Crow's Nest,' located in the rooftops of the Shanty Quarter. Each coupon entitles the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called 'The Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
 Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
 
 After examining the scattered coupons:
@@ -9899,7 +9899,7 @@ After examining the scattered coupons:
 	continue the action.
 	
 A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. It entitles the holder to a free drink at 'The Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five of them entitle the holder to a free drink at 'The Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
 Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
 
 There are three drink coupons.
