@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 290317.
+The release number is 310317.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -3062,7 +3062,7 @@ Understand "maze" or "of/-- urban/-- decay" as the view of the Shanty Quarter.
 The nightmarish architecture is a backdrop.
 The description is "The architecture of this place is nightmarish, impossible. Walls are crushed together. Roofs and floors are one and the same."
 The scent is "Every inch of this place smells foul."
-Understand "rope/ropes" or "concrete" or "wall/walls" or "impossible" or "roof/roofs" or "floor/floors" or "manhole/manholes" or "rickety" or "beam/beams" or "light/darkness" as the nightmarish architecture.
+Understand "rope/ropes" or "concrete" or "wall/walls" or "impossible" or "roof/roofs" or "floor/floors" or "manhole/manholes" or "rickety" or "beam/beams" or "light/darkness" or "labyrinthine" or "morass" or "path/paths" or "alley/alleys" as the nightmarish architecture.
 Instead of searching the nightmarish architecture, say "Nothing will be found here."
 Instead of entering or climbing the nightmarish architecture:
 	if the location is in the Shanty Maze:
@@ -5908,7 +5908,7 @@ The sound is "Music and conversation intermingle with one another."
 The scent is "The aroma of hot food reaches you."
 The exit reminder of the Public House is "The only door is to the east."
 
-Instead of buying in the Public House, say "To buy something, talk to the bartender."
+Instead of buying in the Public House, say "[if the enabled of bartender-dialogue-drink is true]To buy a drink, talk to the bartender[otherwise]You aren't in the mood for anything[end if]."
 Instead of examining east in the Public House, say "That way lies the door."
 Before examining inside in the Public House, try examining the bar and kitchen instead.
 Instead of examining outside in the Public House, say "That way lies the door."
@@ -5970,8 +5970,8 @@ Rule for issuing the response text of room description heading rule response (B)
 There is some plural-named scenery on the dining tables called food and drink.
 The description is "The cooking here is quite highly regarded, and you can see why."
 The scent is "It smells good."
-Understand "drinks/drinking" or "supper/suppers" or "cooking" as the food.
-Instead of drinking, eating, taking, or tasting the food, say "To buy something, talk to the bartender."
+Understand "drinks/drinking" or "supper/suppers" or "cooking" or "wine" as the food.
+Instead of drinking, eating, taking, or tasting the food, say "[if the enabled of bartender-dialogue-drink is true]To buy a drink, talk to the bartender[otherwise]You aren't in the mood for anything[end if]."
 Instead of looking under the food, say "It's on the dining tables."
 
 Part 3.7.4 - Serving Counter
@@ -6006,7 +6006,7 @@ The scent is "It smells of chalk."
 Understand "chalk" as the chalkboard menu.
 Instead of rubbing or touching the chalkboard menu, say "The bartender would be annoyed if you wiped away the chalk."
 Instead of pushing, pulling, swinging, taking, or turning the chalkboard menu, say "You don't think the bartender would appreciate that."
-Instead of searching the chalkboard menu, say "To buy something, talk to the bartender."
+Instead of searching the chalkboard menu, say "[if the enabled of bartender-dialogue-drink is true]To buy a drink, talk to the bartender[otherwise]You aren't in the mood for anything[end if]."
 
 Part 3.7.5 - Patrons
 
@@ -6419,8 +6419,12 @@ The flameless stove is an openable closed scenery container part of the kitchene
 The description is "[if time is critical]That won't help you right now.[otherwise]Anything placed in this cast-iron apparatus is heated without flame, thanks to the complex glyphs which funnel warmth to it from the cold closet."
 The scent is "The stove has no smell, as it uses neither fuel nor flame."
 Understand "cast-iron" or "cast iron" or "apparatus" as the flameless stove.
+Instead of burning or switching on the flameless stove, say "It's a flameless stove."
 Instead of knocking on or touching the flameless stove, say "You would burn your hand if you did that."
 Instead of searching the flameless stove, say "[if time is critical]This is not the time.[otherwise]Nothing is inside."
+
+Instead of opening the flameless stove, say "[if time is critical]That won't help you right now.[otherwise]You don't need to cook anything at the moment.[end if]".
+Instead of inserting something into the flameless stove, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 
 [Check inserting something into the flameless stove (this is the can't put most things in the stove rule):
 	say "[if time is critical]You don't have time for that.[otherwise]No; the heat would damage [the noun].";
@@ -6431,9 +6435,7 @@ The description is "[if time is critical]That won't help you right now.[otherwis
 Instead of searching the cold closet, say "[if time is critical]This is not the time.[otherwise]Nothing in there but empty ice-cream jars."
 Instead of touching the cold closet, say "[if time is critical]This is not the time.[otherwise]It's cold to the touch."
 
-Instead of opening the flameless stove, say "[if time is critical]That won't help you right now.[otherwise]You don't need to cook anything at the moment.[end if]".
-Instead of inserting something into the flameless stove, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
-Instead of opening the cold closet, say "[if time is critical]That won't help you right now.[otherwise]You aren't hungry.[end if]".
+Instead of opening the cold closet, say "[if time is critical]That won't help you right now.[otherwise]You aren't hungry, and there's no wine in the cold closet.[end if]".
 Instead of inserting something into the cold closet, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 
 Part 3.8.5 - Marid's Bed
@@ -8107,7 +8109,7 @@ The sound is "You hear nothing beyond the door."
 The scent is "There is a hint of incense from the window."
 It is east of the Canalside Steps and west of the Sewer Enclave.
 It is better left open.
-Instead of opening or closing the mysterious iron door, say "The door has no handle[if the player carries the bundle of documents]. In any case, you don't think the basilica is this way[paragraph break]."
+Instead of opening or closing the mysterious iron door, say "The door has no handle[if the player carries the bundle of documents]. In any case, you don't think the basilica is this way[end if]."
 Instead of cutting the mysterious iron door, say "The iron is thick and sturdy, and you give up after a few minutes of scratching the surface."
 Instead of attacking, pushing, or pulling the mysterious iron door, say "The door doesn't budge."
 Instead of looking under the mysterious iron door, say "The gap under the door is too small to look through."
@@ -9075,21 +9077,42 @@ When Cavala's Errands ends (this is the despawn the fortune-teller and his table
 	now the fortune-teller is nowhere;
 	now the divining table is nowhere.
 
-Book 3.22 - Shanty Quarter
+Book 3.22 - Shanty Quarter / Shanty Maze
 
-There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "[italic type]Developer's note: The Shanty Quarter has not yet been implemented for Day Two. If you've investigated all the leads in your journal and all your clues lead here, this is the end of the playtest build for now.[roman type]
+There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "A labyrinthine morass of concrete and claustrophobia. You know this place better now that you've seen the worst of it -- you know which paths to take, which alleys to avoid -- but there is a horror here that sinks its teeth into you and does not lets go.
 
-The Via Mercurii is somewhere to the north. Cadaver Walk is somewhere to the west[if Rats' Run is visited]. Rats' Run is somewhere below you, under the manholes and the rickety beams[end if]."
+Tangled rope ladders lead up and down. A crumbling flophouse lies to the east. Somewhere to the north is the Via Mercurii, and to the west, Cadaver Walk."
 It is south of the Via Mercurii.
 
 The simple-name is "the Shanty Quarter".
 The sound is "The walls echo with the sounds of laughter and tears."
 The scent is "It smells horrible in here."
-The exit reminder is "You can go north to the Via Mercurii[if Rats' Run is visited], down to Rats' Run,[end if] or west to Cadaver Walk."
+The exit reminder is "You can go up to the rooftops, down [if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if], east to the flophouse, north to the Via Mercurii, or west to Cadaver Walk."
+The going-in disambiguation is "Do you mean going down ([if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if]) or going east (to the flophouse)?"
+
+Before examining east in the Shanty Quarter, try examining the view of the crumbling flophouse instead.
+Instead of examining north in the Shanty Quarter, say "The Via Mercurii lies in that direction."
+Instead of examining west in the Shanty Quarter, say "Cadaver Walk lies in that direction."
+Instead of examining up in the Shanty Quarter, say "The rooftops are that way."
+Instead of examining down in the Shanty Quarter, say "There, the labyrinth sinks into dark water."
+Instead of going outside in the Shanty Quarter, say "Do you mean going north (to the Via Mercurii) or going west (to Cadaver Walk)?"
+Instead of examining outside in the Shanty Quarter, say "It's unclear where you want to look."
 
 Part 3.22.1 - Scenery
 
 The nightmarish architecture, the slum-dwellers, and the offal are in the Shanty Quarter.
+
+Some tangled rope ladders are scenery in the Shanty Quarter.
+The description is "Fraying things, held together by lashings and prayers."
+Understand "ladder" or "ropes" as the tangled rope ladders.
+Before climbing the tangled rope ladders, try going up instead.
+Instead of entering the tangled rope ladders, say "Do you mean going up (to the rooftops) or going down ([if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if])?"
+
+The view of the crumbling flophouse is faraway scenery in the Shanty Quarter.
+The description is "There are flickering lights in the windows, in the cracks."
+The sound is "Silence."
+Understand "light/lights" or "crack/cracks" or "window/windows" or "flickering" or "house" as the view of the crumbling flophouse.
+Before entering the view of the crumbling flophouse, try going east instead.
 
 Part 3.22.2 - Shanty Quarter during Day One
 
@@ -9891,7 +9914,7 @@ Instead of taking the empty wine bottles, say "You don't need any of these bottl
 Part 3.25.2 - Drink Coupons
 
 Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
-The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called 'The Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
 Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
 
 After examining the scattered coupons:
@@ -9899,14 +9922,14 @@ After examining the scattered coupons:
 	continue the action.
 	
 A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five of them entitle the holder to a free drink at 'The Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five of them entitle the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
 Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
 
-There are three drink coupons.
+The Reden's Shack coupon container is a container. It contains three drink coupons.
 
 Instead of taking the scattered coupons:
 	now the scattered coupons are nowhere;
-	now all drink coupons are carried by the player;
+	now all drink coupons in the Reden's Shack coupon container are carried by the player;
 	now clue-crowsnest is true;
 	say "Taken.";
 	
@@ -12408,7 +12431,7 @@ The scent is "It smells of paper."
 Understand "ticker" or "tape" or "thin" or "paper" or "strip" as the ticker-tape reel.
 Instead of looking under the ticker-tape reel, say "[if the ticker-tape reel is in the feed wheel]It's mounted in the feed wheel[otherwise]It's blank on both sides[end if]."
 
-Does the player mean doing something with the ticker-tape reel: it is likely.
+Does the player mean doing something with the ticker-tape reel when the location is Arturus's Study: it is likely.
 
 Instead of dropping the ticker-tape reel:
 	if the location is in Outdoors:
@@ -12836,13 +12859,19 @@ Zoiro shrugs. 'I can't say that it does.'
 
 Book of the Rest
 
-The Sewer Enclave is a room. 
+Rats' Run is a room. It is south of the Sewer Enclave and below the Shanty Quarter.
 
-Rats' Run is a room. It is south of the Sewer Enclave.
+There is a room called the Flophouse. It is east of the Shanty Quarter.
+
+The Gangway is a room. It is above the Shanty Quarter.
+
+The Crow's Nest is a room. It is above the Gangway.
+
+[There is an antique tinderbox in Crow's Nest]
+
+The Sewer Enclave is a room. 
 
 There is a proper-named room called the Channelworks.
 It is north of the Channelworks Concourse.
 Understand "building" as the Channelworks.
 The simple-name is "the Channelworks building".
-
-[There is an antique tinderbox in Crow's Nest]
