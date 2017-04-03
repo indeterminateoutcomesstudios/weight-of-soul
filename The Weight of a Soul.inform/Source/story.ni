@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 310317.
+The release number is 030417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,7 +54,6 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Shanty Quarter
 - Write Rats' Run
 - Write Flophouse
 - Write Sal's Domicile
@@ -1601,6 +1600,8 @@ Swimming is an action applying to nothing. Understand "swim" or "dive" as swimmi
 Check swimming (this is the block swimming rule):
 	if the fosse is in the location:
 		say "[if time is critical]It's too dangerous to swim.[otherwise]Diving into the fosse is both dangerous and illegal.";
+	otherwise if the Bilious Canal's runoff is in the location:
+		say "If you dived into the water here, you doubt you'd ever come up again.";
 	otherwise if the Bilious Canal is in the location or the up-close Canal is in the location:
 		say "[if time is critical]It's impossible to swim in this current.[otherwise]The Bilious Canal isn't the most appealing venue for a swim.";
 	otherwise:
@@ -1706,7 +1707,7 @@ Rule for issuing the response text of the opening doors before entering rule res
 
 Part 2.3.7 - Emptying It Into
 
-Emptying it into is an action applying to two things.
+[Emptying it into is an action applying to two things.
 Understand "empty [something preferably held]" as emptying it into.
 Understand "empty [something preferably held] in/into/on/onto/over [something]" as emptying it into.
 Understand "empty out [something preferably held]" as emptying it into.
@@ -1754,7 +1755,7 @@ Report emptying (this is the report emptying rule):
 	if the second noun is a supporter:
 		say "You empty [the noun] onto [the second noun].";
 	otherwise:
-		say "You empty [the noun] into [the second noun]."
+		say "You empty [the noun] into [the second noun]."]
 		
 Part 2.3.8 - Listing Exits and Going-In Disambiguation
 
@@ -2146,7 +2147,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, to the IF community, and to every single person who's provided feedback on this game. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -3081,7 +3082,7 @@ Some slum-dwellers are a backdrop.
 The description is "Here are the homeless and the destitute, the lost and the damned."
 The sound is "A hundred broken voices reach you."
 The scent is "None of these people have showered in weeks."
-Understand "walking" or "dead" or "homeless" or "lost" or "damned" or "crowd/crowds" or "man/men/woman/women/person/people" or "human/humans" or "goblin/goblins" or "mutant/mutants" or "and" or "voice/voices" or "bustle/traffic" or "life/lives" or "destitute" or "slum" or "dweller/dwellers" or "slum-dweller" or "in" or "general" as the slum-dwellers.
+Understand "walking" or "dead" or "homeless" or "lost" or "damned" or "crowd/crowds" or "man/men/woman/women/person/people" or "human/humans" or "goblin/goblins" or "mutant/mutants" or "and" or "voice/voices" or "bustle/traffic" or "life/lives" or "destitute" or "slum" or "dweller/dwellers" or "slum-dweller" or "in" or "general" or "hollow-eyed" or "resident/residents" as the slum-dwellers.
 After printing the name of the slum-dwellers while asking which do you mean: say " in general".
 Instead of setting the slum-dwellers to something, say "That doesn't make any sense."
 Instead of taking the slum-dwellers, say "An impossible notion."
@@ -3140,6 +3141,20 @@ The description is "The Riggertown Mechanistry is a monstrosity of a workshop th
 The sound is "A great cacophony of grinding and chugging issues from the building."
 The scent is "The Mechanistry smells of hard phlogiston, the kind used in industrial furnaces."
 Understand "monstrosity" or "workshop/workshops" or "chimera" or "feather/feathers" or "brick/bricks/brickwork" or "antler/antlers" or "mortar" or "chimney/chimneys" or "sign/signs/signage" as the view of the Riggertown Mechanistry.
+
+The Bilious Canal's runoff is a backdrop.
+The description is "A black, viscous, spiteful weight."
+Understand "water/waters" or "surface" or "dark" or "writhing" or "canal" as the Bilious Canal's runoff.
+The sound is "The water percolates."
+The scent is "There is a powerful odor of algae and corrosion."
+Before entering the Bilious Canal's runoff, try swimming instead.
+Instead of cutting the Bilious Canal's runoff, say "You dip your scalpel in the current and watch the flow divide in two."
+Instead of knocking on, rubbing or touching the Bilious Canal's runoff, say "Your gloves would be ruined if you did that."
+Instead of inserting the endoscope into the Bilious Canal's runoff, say "The endoscope would be ruined if you did that."
+Instead of inserting something into the Bilious Canal's runoff, say "You would never see [regarding the noun][them] again if you did that."
+Instead of searching or looking under the Bilious Canal's runoff, say "The water is utterly opaque."
+Instead of drinking the Bilious Canal's runoff, say "To call the canal water potable would be quite the exaggeration."
+Instead of attacking, pushing, pulling, squeezing, swinging, or turning the Bilious Canal's runoff, say "How you might accomplish that is beyond you."
 
 Part 3.1.3 - Ambience
 
@@ -4238,7 +4253,7 @@ Instead of inserting something into the first aid bag:
 		say "That doesn't belong in the first aid bag."
 		
 Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 3, say "No, you still need the first aid bag."
-Instead of emptying the first aid bag into when First Aid on Cavala is happening, say "This is not the time to be making a mess."
+[Instead of emptying the first aid bag into when First Aid on Cavala is happening, say "This is not the time to be making a mess."]
 	
 Instead of doing anything with the first aid bag when Cavala's Errands has not ended (this is the block actions on the first aid bag before First Aid on Cavala rule):
 	if we are examining the first aid bag:
@@ -9079,7 +9094,7 @@ When Cavala's Errands ends (this is the despawn the fortune-teller and his table
 
 Book 3.22 - Shanty Quarter / Shanty Maze
 
-There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "A labyrinthine morass of concrete and claustrophobia. You know this place better now that you've seen the worst of it -- you know which paths to take, which alleys to avoid -- but there is a horror here that sinks its teeth into you and does not lets go.
+There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "A labyrinthine morass of concrete and claustrophobia. You know this place better now that you've seen the worst of it -- you know which paths to take, which alleys to avoid -- but there is a horror here that sinks its teeth into you, and does not lets go.
 
 Tangled rope ladders lead up and down. A crumbling flophouse lies to the east. Somewhere to the north is the Via Mercurii, and to the west, Cadaver Walk."
 It is south of the Via Mercurii.
@@ -9109,7 +9124,7 @@ Before climbing the tangled rope ladders, try going up instead.
 Instead of entering the tangled rope ladders, say "Do you mean going up (to the rooftops) or going down ([if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if])?"
 
 The view of the crumbling flophouse is faraway scenery in the Shanty Quarter.
-The description is "There are flickering lights in the windows, in the cracks."
+The description is "There are flickering lights in the windows, the cracks."
 The sound is "Silence."
 Understand "light/lights" or "crack/cracks" or "window/windows" or "flickering" or "house" as the view of the crumbling flophouse.
 Before entering the view of the crumbling flophouse, try going east instead.
@@ -12138,7 +12153,7 @@ Instead of taking the smaller plates, say "You feel like you should leave Doctor
 Some leftover wineglasses are a portable open unopenable container on the vintage coffee table.
 Understand "wineglass/glass/glasses" or "wine glass/glasses" or "2/two" as the leftover wineglasses.
 Before smelling the leftover wineglasses, try smelling the leftover stains of red wine instead.
-Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.
+[Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.]
 Instead of examining or searching the leftover wineglasses, say "The wineglasses still contain traces of red wine."
 Instead of drinking, turning, or tasting the leftover wineglasses, say "You tilt one of the glasses experimentally, but there isn't enough wine left to form even a drop."
 Instead of inserting something into the leftover wineglasses, say "You can't imagine why you would want to do that."
@@ -12857,17 +12872,203 @@ Zoiro shrugs. 'I can't say that it does.'
 	otherwise:
 		say "You can't think of anything else to ask him about."
 
-Book of the Rest
+Book 3.33 - Rats' Run
 
-Rats' Run is a room. It is south of the Sewer Enclave and below the Shanty Quarter.
+Rats' Run is a proper-named room. "The Bilious Canal's runoff rises. It swallows these buildings and alleys in dark writhing water. Unsteady plank bridges run between the few islands of dry stone; hollow-eyed residents crowd around what lanterns pierce the gloom.
 
-There is a room called the Flophouse. It is east of the Shanty Quarter.
+A sewage pipe spews outflow from the north. Above, rope ladders climb to the rest of the Shanty Quarter."
+It is below the Shanty Quarter.
+Understand "rats" or "pits" as Rats' Run.
+
+The sound is "The air is stale, deadened by water."
+The scent is "The canal reeks."
+The exit reminder is "You can go up to the rest of the Shanty Quarter."
+
+Before examining down in Rats' Run, try examining the Bilious Canal's runoff instead.
+Before examining north in Rats' Run, try examining the sewage pipe instead.
+Instead of examining up in Rats' Run, say "Crumbling buildings crowd out the sky."
+Before going inside in Rats' Run, try going north instead.
+Before going down in Rats' Run, try swimming instead.
+
+Part 3.33.1 - Scenery
+
+The mist, the slum-dwellers, and the Bilious Canal's runoff are in Rats' Run.
+
+Some unsteady plank bridges are scenery in Rats' Run.
+The description is "They creak and bend with every step."
+The sound is "[italic type]Creak[roman type]."
+Understand "bridge" as the unsteady plank bridges.
+Instead of entering the unsteady plank bridges, say "You're already trying not to think about the way the bridges creak underfoot."
+Instead of looking under the unsteady plank bridges, say "Beneath the bridges, the Bilious Canal swims like a predator."
+Instead of pushing, pulling, rubbing, taking, touching, or turning the unsteady plank bridges, say "One wrong move could dislodge the bridges. You shouldn't touch them any more than you absolutely have to."
+
+Some few islands of dry stone are scenery in Rats' Run.
+The description is "Ruins, husks, collapsed remnants of the buildings that came before. They are nothing but stepping-stones now."
+Understand "island" or "stepping" or "stones/stepping-stone/stepping-stones/ground" or "ruin/ruins" or "husk/husks" or "collapsed" or "remnant/remnants" or "building/buildings" or "gloom" as the few islands of dry stone.
+Instead of entering the islands of dry stone, say "That's where you're standing."
+Instead of searching or looking under the islands of dry stone, say "The canal has already swallowed all their secrets."
+Instead of touching the islands of dry stone, say "Well, not all that dry."
+
+Some improvised lanterns are scenery in Rats' Run.
+The description is "Hollowed-out tins of phlogiston; ruptured flickering animus lamps."
+The scent is "Smoke and ozone."
+Understand "lantern" or "tin/tins" or "of" or "phlogiston" or "animus" or "lamp/lamps" as the improvised lanterns.
+Instead of burning the improvised lanterns, say "The lanterns are already lit."
+Instead of extinguishing the improvised lanterns, say "You see no reason to do that."
+Instead of looking under the improvised lanterns, say "Only shadows."
+Instead of pushing, pulling, or turning the improvised lanterns, say "The lanterns are fixed in place."
+Instead of searching the improvised lanterns, say "They're just lanterns."
+Instead of taking the improvised lanterns, say "You don't need a lantern."
+Instead of touching the improvised lanterns, say "You don't want to."
+
+The sewage pipe is an open unopenable scenery door. It is north of Rats' Run and south of the Sewer Enclave.
+The description is "Black water gushes from a grille of broken teeth."
+The sound is "The pipe ululates."
+The scent is "It smells awful."
+Understand "outflow" or "grille" or "broken" or "teeth" as the sewage pipe.
+Before climbing the sewage pipe, try entering the sewage pipe instead.
+Instead of looking under the sewage pipe, say "Outflow pours from the sewage pipe into the water."
+
+Some creeping rope ladders are scenery in Rats' Run.
+The description is "They hang from above, knotted, rotted."
+Understand "knot/knots/knotted" or "rot/rotted" or "ropes" or "ladder" as the creeping rope ladders.
+Before climbing or entering the creeping rope ladders, try going up instead.
+Instead of looking under the creeping rope ladders, say "The rope ladders dangle just above the ground."
+
+Part 3.33.2 - Rats' Run during Day Two
+
+Instead of going north in Rats' Run, say "Climb into the sewage pipe? You'd rather not."
+
+The dismembered pigeon is a neuter creature animal in Rats' Run. "Nearby, a dismembered pigeon floats in the water."
+
+First before doing anything when the current action involves the dismembered pigeon:
+	say "You take a step closer--[paragraph break]";
+	wait for any key;
+	say "The pigeon's remaining eye snaps open. It twitches madly.[paragraph break]";
+	wait for any key;
+	say "It opens its beak as though to cry out. Tendons snap and trail free. Canal-water floods into its mouth -- it sinks bloody beneath the surface of the water --[paragraph break]";
+	wait for any key;
+	say "And it is gone. As though it was never there.";
+	now the dismembered pigeon is nowhere;
+	stop the action.
+	
+When Four Investigations ends (this is the despawn the dismembered pigeon rule):
+	now the dismembered pigeon is nowhere.
+
+Book 3.34 - Flophouse
+
+There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood; vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and doped up on laudanum or alcohol.
+
+To the west is the exit. To the south, a passageway leads to the rooms."
+It is east of the Shanty Quarter.
+
+The simple-name is "the flophouse".
+The sound is "It's uncannily quiet."
+The scent is "The flophouse smells of ash."
+The exit reminder is "You can exit the flophouse to the west, or enter [if Room IV is visited]Room IV[otherwise]the rooms[end if] to the south."
+
+Before going inside in the Flophouse, try going south instead.
+Before going outside in the Flophouse, try going west instead.
+Before examining inside in the Flophouse, try examining south instead.
+Before examining south in the Flophouse, try examining the crooked little passageway instead.
+Before examining outside in the Flophouse, try examining west instead.
+Instead of examining west in the Flophouse, say "The exit is that way."
+Before going up in the Flophouse, try examining up instead.
+Instead of examining up in the Flophouse, say "The stairs are collapsed; they don't actually lead anywhere."
+
+Part 3.34.1 - Scenery
+
+Some once-beautiful furnishings are scenery in the Flophouse.
+The description is "Brass fixtures have been pried from their housing. Sigils have been vandalized beyond recognition."
+Understand "beautiful" or "townhouse/house/ruin" or "wall/walls" or "bone-white/white" or "bone" or "plaster" or "rotting" or "wood" or "brass" or "fixture/fixtures" or "housing" or "sigil/sigils" as the once-beautiful furnishings.
+Instead of touching the once-beautiful furnishings, say "This is a scarred, broken place."
+
+Some homeless vagrants are an undescribed mixed-race person in the Flophouse.
+The description is "They are barely cognizant of this world."
+The sound is "Silence."
+The scent is "They smell foul."
+Understand "man/men" or "woman/women" or "vagrant" as the homeless vagrants.
+Instead of setting the homeless vagrants to something, say "That doesn't make any sense."
+Instead of taking the homeless vagrants, say "An impossible notion."
+Instead of attacking or cutting the homeless vagrants, say "They outnumber you. You'd better not."
+Instead of drinking, eating, switching on, switching off, or wearing the homeless vagrants, say "That doesn't make any sense."
+Instead of giving something to the homeless vagrants, say "Misguided acts of charity won't change anything."
+Instead of kissing, knocking on, pushing, pulling, rubbing, swinging, squeezing, touching, or turning the homeless vagrants, say "You don't want to."
+Instead of searching the homeless vagrants, say "No one you know."
+Instead of talking to or waking the homeless vagrants, say "There is no response."
+
+Some collapsed stairs are scenery in the Flophouse.
+The description is "More rubble than stairs. The steps have splintered, and the banisters are long gone."
+Understand "rubble" or "stair/step/steps" or "banister/banisters/bannister/bannisters" or "splinter/splinters/splintered" as the collapsed stairs.
+Before climbing or entering the collapsed stairs, try examining up instead.
+
+Some devastated corridors are scenery in the Flophouse.
+The description is "Dead ends."
+Understand "dead end" or "dead ends" or "corridor" as the devastated corridors.
+Instead of entering the devastated corridors, say "The corridors go nowhere."
+
+The makeshift bedding is scenery in the Flophouse. The indefinite article is "some".
+The description is "Mattresses and rags."
+Understand "mattress/mattresses" or "rag/rags" or "bed/beds" as the makeshift bedding.
+Before entering the makeshift bedding, try sleeping instead.
+Instead of looking under the makeshift bedding, say "There's nothing underneath but rubble."
+Instead of searching the makeshift bedding, say "Vagrants are sleeping on the bedding."
+
+Some empty apothecary bottles are scenery in the Flophouse.
+The description is "The empty bottles here and there are unlabeled, but you can take a guess at what they once contained."
+Understand "laudanum/opium/morphine" or "bottle" or "alcohol" or "unlabeled" or "drug/drugs" as the empty apothecary bottles.
+Instead of drinking the empty apothecary bottles, say "The bottles are empty. In any case, you're more of a spiced wine person."
+Instead of inserting the endoscope into the empty apothecary bottles, say "You don't need an endoscope to see that these bottles are empty."
+Instead of inserting something into the empty apothecary bottles, say "That won't accomplish anything."
+Instead of searching the empty apothecary bottles, say "All are empty."
+Instead of taking the empty apothecary bottles, say "You don't need to carry empty bottles around."
+
+The crooked little passageway is an open unopenable scenery door. It is south of the Flophouse and north of Room IV.
+The description is "A crooked little passageway, with flea-eaten carpeting and empty doorways."
+The sound is "You hear nothing."
+Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" as the crooked little passageway.
+
+The flophouse reception office is scenery in the Flophouse. The printed name is "reception office".
+The description is "Perhaps it was once a cloakroom, but it's some kind of office now."
+Understand "cloakroom" as the flophouse reception office.
+Instead of entering the flophouse reception office, say "That would put you in uncomfortably close proximity with [the landlord]. You'd better just remain outside."
+Instead of searching the flophouse reception office, say "You can't see much apart from [the landlord] and its keys."
+Before inserting something into the flophouse reception office, try giving the noun to the landlord instead.
+
+Part 3.34.2 - The Landlord
+
+The landlord is a neuter mutant person in the Flophouse. "In the reception office, a nightmarish many-armed creature crouches, and pores obsessively over an assortment of keys."
+The description is "There's something deeply unnatural about the way it moves. You have to look away before you get a headache."
+The sound is "[The landlord] is murmuring to itself."
+The scent is "There is a whiff of something oily and faintly pelagic."
+Understand "many-armed/armed/arm/arms" or "many" or "nightmarish" or "creature" as the landlord.
+
+landlord-title-known is a truth state that varies.
+Rule for printing the name of the landlord when landlord-title-known is false: say "many-armed creature".
+
+The assortment of keys is a thing carried by the landlord.
+The description is "Crudely fashioned keys, jangling together on loops of wire."
+Understand "key" or "assorted" or "crude/crudely" or "fashioned" or "loop/loops" or "wire" as the assortment of keys.
+Instead of searching the assortment of keys, say "You can't see much with the landlord moving the keys around."
+Instead of taking the assortment of keys, say "You don't think [the landlord] would appreciate that."
+
+Does the player mean examining the assortment of keys: it is likely. [As opposed to Sal's battered keyring.]
+
+Book 3.35 - Room IV
+
+There is a room called Room IV.
+
+Book 3.36 - Gangway
 
 The Gangway is a room. It is above the Shanty Quarter.
+
+Book 3.37 - Crow's Nest
 
 The Crow's Nest is a room. It is above the Gangway.
 
 [There is an antique tinderbox in Crow's Nest]
+
+Book of the Rest
 
 The Sewer Enclave is a room. 
 
