@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 030417.
+The release number is 040417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,10 +54,9 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Rats' Run
 - Write Flophouse
-- Write Sal's Domicile
-- Write Piper's Domicile
+- Write Room IV
+- Write Gangway
 - Write Crow's Nest
 
 - Write end of Day Two
@@ -13037,11 +13036,14 @@ Before inserting something into the flophouse reception office, try giving the n
 
 Part 3.34.2 - The Landlord
 
+[This character is a reference to XS, one of the best and most twisted questmistresses I've ever encountered on /tg/.]
+
 The landlord is a neuter mutant person in the Flophouse. "In the reception office, a nightmarish many-armed creature crouches, and pores obsessively over an assortment of keys."
 The description is "There's something deeply unnatural about the way it moves. You have to look away before you get a headache."
 The sound is "[The landlord] is murmuring to itself."
 The scent is "There is a whiff of something oily and faintly pelagic."
 Understand "many-armed/armed/arm/arms" or "many" or "nightmarish" or "creature" as the landlord.
+Instead of attacking, cutting, or pushing the landlord, say "You don't think that would be a good idea."
 
 landlord-title-known is a truth state that varies.
 Rule for printing the name of the landlord when landlord-title-known is false: say "many-armed creature".
@@ -13053,6 +13055,96 @@ Instead of searching the assortment of keys, say "You can't see much with the la
 Instead of taking the assortment of keys, say "You don't think [the landlord] would appreciate that."
 
 Does the player mean examining the assortment of keys: it is likely. [As opposed to Sal's battered keyring.]
+
+Before giving the battered keyring to the landlord, try talking to the landlord instead.
+
+Part 3.34.3 - Flophouse during Day Two
+
+[So let me bang out some thoughts here
+
+Room IV is inaccessible before you get Sal's keyring. If you attempt to go south in the Flophouse the landlord will stop you and tell you it's not allowed, you don't live here. Only the Key-bearer can go in.
+
+If you DO have Sal's keyring you can talk to the landlord and show it the keyring. It asks you which room the keyring unlocks. If you answer correctly (you can't unless you've seen the note in Arturus's Domicile), it slobbers all over the keyring looking really happy, and gives you permission to go in.]
+
+Chapter 3.34.3.1 - Gating Room IV
+
+roomiv-access-granted is a truth state that varies.
+roomiv-noaccess-quipped is a truth state that varies.
+
+Instead of going south in the Flophouse when roomiv-access-granted is false (this is the spoopy Room IV gating message rule):
+	if roomiv-noaccess-quipped is false:
+		say "You take a step into the passageway, only to hear a screeching from behind you. A rubbery tentacle snaps tight around your foot.[paragraph break]";
+		wait for any key;
+		say "[italic type]'You,'[roman type] [the landlord] hisses, its voice crawling on your neck. [italic type]'Not resident. Not [roman type]key-bearer.[italic type] No more steps. No more. Understand?'[roman type][paragraph break]";
+		wait for any key;
+		say "'I-- I understand,' you stutter. 'Please don't hurt me.'[paragraph break]";
+		wait for any key;
+		say "[italic type]'Show me key. Show me [roman type]key-teeth.[italic type] Then... change, reconsider.'[roman type][paragraph break]";
+		wait for any key;
+		say "The creature withdraws. You rub your neck with a trembling hand.";
+		now roomiv-noaccess-quipped is true;
+	otherwise:
+		say "[The landlord] made it clear that you had to show it a key before it would allow you to go in.";
+
+Chapter 3.34.3.2 - Talking to the Landlord
+
+Some dialogue branches are defined by the Table of Day Two Landlord Dialogue.
+
+Table of Day Two Landlord Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+landlord-d2-intro	true	false	""	"'E-Excuse me?' you say.
+
+The creature freezes. It rears up, bringing undulating folds of flesh to bear, and it fixes you with seven unblinking eyes.
+
+[wait for any key][italic type]'I am,'[roman type] it says. [italic type]'Landlord.'[roman type]
+
+[wait for any key]A clatter. It has dropped its keys -- it rushes forth like an engulfing wave. Its eyes surround you, press inward.
+
+[wait for any key][italic type]'You are,'[roman type] the landlord breathes. [italic type]'You are?'[roman type]
+
+[wait for any key]'I...'"	{landlord-d2-panic, pleasegetaway, landlord-d2-mynameis}
+landlord-d2-panic	true	true	"<Panic.>"	"Okay, now you're panicking."	{pleasegetaway, landlord-d2-mynameis}
+landlord-d2-pleasegetaway	true	true	"'Please get away from me.'"	"'Please get away from me.'
+
+The landlord blinks with all seven of its eyes. It shifts back slightly.
+
+[italic type]'Rude.'[roman type]"	{landlord-d2-panic, landlord-d2-sorryforgetaway, landlord-d2-mynameis}
+landlord-d2-sorryforgetaway	true	true	"'...Sorry. It's just...'"	"'...Sorry,' you append. 'It... it's just...'
+
+The landlord watches you, expressionless.
+
+'Um.'"	{landlord-d2-panic, landlord-d2-mynameis}
+landlord-d2-mynameis	true	false	"'My name is Marid. Servator Marid Orpheia.'"	"'M-My name is Marid,' you stutter. 'Serva... Servator Marid Orpheia.'
+
+[italic type]'Hmmmmmm.'[roman type]
+
+The creature lowers itself close. It inspects your neck. A wriggling presence touches your hair, your ear.
+
+[wait for any key]Then it withdraws, and inhales.
+
+[wait for any key][italic type]'You are not resident,'[roman type] it says, sounding almost disappointed. [italic type]'You are not[roman type] key-bearer.'"	{landlord-d2-noimnot, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-operate, landlord-d2-okgoingnow}
+landlord-d2-noimnot	true	false	"'No. I'm not.'"	"'No. I'm not.'
+
+The landlord blinks, very slowly, and seems to droop.
+
+[italic type]'Sad,'[roman type] it replies. [italic type]'Sad.'[roman type]"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-operate, landlord-d2-okgoingnow}
+landlord-d2-resident	true	true	"'Who are the residents?'"	"'Who are the residents?'"	{landlord-d2-keybearer, landlord-d2-operate, landlord-d2-seerooms, landlord-d2-comebacklater}
+landlord-d2-keybearer	true	true	"'What's a key-bearer?'"	"'What's a key-bearer?'"	{landlord-d2-resident, landlord-d2-operate, landlord-d2-seerooms, landlord-d2-comebacklater}
+landlord-d2-operate	true	true	"'You operate this establishment?'"	"'You operate this establishment?'"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-seerooms, landlord-d2-comebacklater}
+landlord-d2-seerooms	false	true	"'I'd like to take a look at your rooms.'"	"'I'd like to take a look at your rooms.'"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-comebacklater}
+landlord-d2-okgoingnow	true	false	"'Okay... I'll be going now.'"	"'Okay... I'll be going now.'"	{}
+landlord-d2-comebacklater	true	false	"'I'll come back later.'"	"'I'll come back later.'"	{}
+
+The home dialogue branch of the landlord is landlord-d2-intro.
+After reading out landlord-d2-intro: now landlord-title-known is true.
+After reading out landlord-d2-operate: now the enabled of landlord-d2-seerooms is true.
+
+Chapter 3.34.3.3 - Presenting Keys
+
+Table of Day Two Landlord Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+landlord-d2-actuallyihavekey	false	false	"'Actually, I have some keys right here.' <Present the battered keyring.>"	""	{}
+landlord-d2-imkeybearer	false	false	"'Are you sure I'm not a key-bearer?' <Present the battered keyring.>"	""	{}
 
 Book 3.35 - Room IV
 
