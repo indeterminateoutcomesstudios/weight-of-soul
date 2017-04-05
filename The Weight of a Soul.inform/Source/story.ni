@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 050417.
+The release number is 060417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -2781,7 +2781,7 @@ To say journal-text-notes:
 			if the battered keyring is carried:
 				add "- I found a battered keyring on Sal's belt." to L2;
 			if the Piper file is meticulously digested:
-				add "- I found a note in Piper's patient record that read 'IV in FH shanty quarter.'" to L2;
+				add "- I found a note in Piper's patient record that read 'IV in f.h. shanty quarter.'" to L2;
 			if clue-tradingcompany is true:
 				if clue-sal-raven is true and clue-piper-raven is true:
 					add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
@@ -10523,7 +10523,7 @@ There is a proper-named room called Arturus's Clinic.
 The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work[first time]. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy[only].
 
 An arch to the west leads back to the Turris Infinita foyer."
-Understand "doctor" or "arturus'" as Arturus's Clinic.
+Understand "doctor" or "arturus/arturus'" as Arturus's Clinic.
 
 The simple-name is "Doctor Arturus's clinic".
 The sound is "It's quiet."
@@ -11377,7 +11377,7 @@ After taking the battered keyring when the battered keyring is undescribed:
 
 [wait for any key]'I will,' you reply. 'Thank you.'
 
-[wait for any key]You pocket the keyring.";
+You pocket the keyring.";
 	otherwise:
 		continue the action.
 
@@ -12004,7 +12004,7 @@ Arturus's Domicile is a proper-named room. "This suspended mansion echoes with a
 
 A study lies to the north. The hydraulic lift leads back down to the foyer."
 It is above the hydraulic lift.
-Understand "doctor" or "arturus'" as Arturus's Domicile.
+Understand "doctor" or "arturus/arturus'" as Arturus's Domicile.
 
 The simple-name is "Doctor Arturus's domicile".
 The sound is "You hear ticking from the study."
@@ -12551,7 +12551,7 @@ Understand "patient" or "record" or "sal/sal's/salio's" as the Salio file.
 
 The Piper file is a patient-record file.
 The printed name is "[']Piper['] file". The indefinite article is "the".
-The description is "[if Meeting the Patients has ended]The patient record for Piper[otherwise]This file must be on one of the patients downstairs[end if]. It states that she was admitted together with [if Meeting the Patients has ended]Sal[otherwise]another patient[end if] on the morning of the Third of Aquaria, exhibiting the same symptoms as him. The rest of the file is blank apart from a cryptic note that reads 'IV in FH shanty quarter.'"
+The description is "[if Meeting the Patients has ended]The patient record for Piper[otherwise]This file must be on one of the patients downstairs[end if]. It states that she was admitted together with [if Meeting the Patients has ended]Sal[otherwise]another patient[end if] on the morning of the Third of Aquaria, exhibiting the same symptoms as him. The rest of the file is blank apart from a cryptic note that reads 'IV in f.h. shanty quarter.'"
 The scent is "It smells papery."
 Understand "patient" or "record" or "piper's" as the Piper file.
 
@@ -12575,6 +12575,8 @@ Instead of inserting a patient-record file (called the relevant file) into the s
 A patient-record file can be meticulously digested or callously left unread.
 After examining a patient-record file (called the relevant file):
 	now the relevant file is meticulously digested;
+	if the relevant file is the Piper file:
+		now the enabled of landlord-d2-roomiv is true;
 	if all patient-record files are meticulously digested and clue-patientrecords is false:
 		now clue-patientrecords is true;
 		say "It's frustrating. All of these files look like they were written in a hurry and left unfinished. Why didn't Doctor Arturus leave more information for you to work with?[paragraph break]";
@@ -13048,7 +13050,7 @@ Understand "many-armed/armed/arm/arms" or "many" or "nightmarish" or "creature" 
 Instead of attacking, cutting, or pushing the landlord, say "You don't think that would be a good idea."
 
 landlord-title-known is a truth state that varies.
-Rule for printing the name of the landlord when landlord-title-known is false: say "many-armed creature".
+Rule for printing the name of the landlord when landlord-title-known is false: say "creature".
 
 The assortment of keys is a thing carried by the landlord.
 The description is "Crudely fashioned keys, jangling together on loops of wire."
@@ -13078,7 +13080,7 @@ Instead of going south in the Flophouse when roomiv-access-granted is false (thi
 	if roomiv-noaccess-quipped is false:
 		say "You take a step into the passageway, only to hear a screeching from behind you. A rubbery tentacle snaps tight around your foot.[paragraph break]";
 		wait for any key;
-		say "[italic type]'You,'[roman type] [the landlord] hisses, its voice crawling on your neck. [italic type]'Not resident. Not [roman type]key-bearer.[italic type] No more steps. No more. Understand?'[roman type][paragraph break]";
+		say "[italic type]'You,'[roman type] [the landlord] hisses, its voice crawling on your neck. [italic type]'Not resident. Not key-bearer. No more steps. No more. Understand?'[roman type][paragraph break]";
 		wait for any key;
 		say "'I-- I understand,' you stutter. 'Please don't hurt me.'[paragraph break]";
 		wait for any key;
@@ -13103,8 +13105,8 @@ The creature freezes. It rears up, bringing undulating folds of flesh to bear, a
 
 [wait for any key]A clatter. It has dropped its keys -- it rushes forth like an engulfing wave. Its eyes surround you, press inward.
 
-[wait for any key][italic type]'You are,'[roman type] it breathes. [italic type]'You are?'[roman type]"	{landlord-d2-panic, pleasegetaway, landlord-d2-mynameis}
-landlord-d2-panic	true	true	"<Panic.>"	"Okay, now you're panicking."	{pleasegetaway, landlord-d2-mynameis}
+[wait for any key][italic type]'You are,'[roman type] it breathes. [italic type]'You are?'[roman type]"	{landlord-d2-panic, landlord-d2-pleasegetaway, landlord-d2-mynameis}
+landlord-d2-panic	true	true	"<Panic.>"	"Okay, now you're panicking."	{landlord-d2-pleasegetaway, landlord-d2-mynameis}
 landlord-d2-pleasegetaway	true	true	"'Please get away from me.'"	"'Please get away from me.'
 
 The landlord blinks with all seven of its eyes. It shifts back slightly.
@@ -13123,7 +13125,7 @@ The creature lowers itself close. It inspects your neck. A wriggling presence to
 
 [wait for any key]Then it withdraws, and collects its keys from the floor.
 
-[wait for any key][italic type]'You are not resident,'[roman type] it says, in a tone that sounds almost disappointed. [italic type]'You are not[roman type] key-bearer.'"	{landlord-d2-noimnot, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-operate, landlord-d2-actuallyihavekey, landlord-d2-okgoingnow}
+[italic type]'You are not resident,'[roman type] it says, in a tone that sounds almost disappointed. [italic type]'You are not[roman type] key-bearer.'"	{landlord-d2-noimnot, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-operate, landlord-d2-actuallyihavekey, landlord-d2-okgoingnow}
 landlord-d2-noimnot	true	false	"'No. I'm not.'"	"'No. I'm not.'
 
 The landlord blinks, very slowly, and seems to droop.
@@ -13133,14 +13135,14 @@ landlord-d2-resident	true	true	"'Who are the residents?'"	"'Who are the resident
 
 The landlord inhales wetly. It peers blinking at the rooms, and gesticulates with its tentacles.
 
-[italic type]'They are residents. Live in flophouse. [roman type]Key-bearers.[italic type] They sleep, grow.'[roman type]
+[italic type]'They are residents. Live in flophouse. Key-bearers. They sleep, grow.'[roman type]
 
-[wait for any key]'Can you tell me who they are?' you ask.
+'Can you tell me who they are?' you ask.
 
 [italic type]'Many residents. Come and go. You wish to know? Landlord will not tell. Secret.'[roman type]"	{landlord-d2-keybearer, landlord-d2-operate, landlord-d2-seerooms, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-keybearer	true	true	"'What's a key-bearer?'"	"'What's a key-bearer?'
 
-The landlord licks its beak. [italic type]'Key. Key important. Bearer of key?[roman type] Key-bearer.[italic type] Owner of room.'[roman type]"	{landlord-d2-resident, landlord-d2-operate, landlord-d2-seerooms, landlord-d2-imkeybearer, landlord-d2-comebacklater}
+The landlord licks its beak. [italic type]'Key. Key important. Bearer of key? Key-bearer. Owner of room.'[roman type]"	{landlord-d2-resident, landlord-d2-operate, landlord-d2-seerooms, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-operate	true	true	"'You operate this establishment?'"	"'You operate this establishment?'
 
 The creature looks at you very intently.
@@ -13162,7 +13164,7 @@ The creature spasms. It makes a pendulum-like motion with its foremost tentacle.
 [italic type]'Cannot,'[roman type] it says. [italic type]'No room. All rooms. Occupied. Secret.'[roman type]"	{landlord-d2-makeexception, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-makeexception	true	true	"'Please. I'm investigating a murder.' <Present the signum.>"	"'Please. I'm investigating a murder.'
 
-The landlord doesn't even look at your signum. [italic type]'No,'[roman type] it says. [italic type]'Cannot. You are not [roman type]key-bearer.'"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
+The landlord brushes your signum away. [italic type]'No,'[roman type] it repeats. [italic type]'Cannot. You are not key-bearer.'[roman type]"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-okgoingnow	true	false	"'Okay... I'll be going now.'"	"'Okay... I'll be going now.'
 
 [italic type]'See. You soon.'[roman type]
@@ -13184,6 +13186,7 @@ The home dialogue branch of the landlord is landlord-d2-intro.
 
 After reading out landlord-d2-intro:
 	now landlord-title-known is true;
+	redraw status line;
 	now the home dialogue branch of the landlord is landlord-d2-home.
 
 After reading out landlord-d2-operate: now the enabled of landlord-d2-seerooms is true.
@@ -13191,7 +13194,7 @@ After reading out landlord-d2-operate: now the enabled of landlord-d2-seerooms i
 Instead of talking to the landlord when the enabled of landlord-d2-resident is false and the enabled of landlord-d2-keybearer is false and the enabled of landlord-d2-operate is false and the enabled of landlord-d2-seerooms is false and the enabled of landlord-d2-imkeybearer is false (this is the no more landlord dialogue rule):
 	say "[one of]'E-Excuse me?'
 
-The landlord waves its tentacle dismissively. [italic type]'You are not [roman type]key-bearer.'[or]The landlord won't entertain anyone who isn't a [']key-bearer.['][line break][stopping]";
+The landlord waves its tentacle dismissively. [italic type]'You are not key-bearer.'[roman type][line break][or]The landlord won't entertain anyone who doesn't have a key.[stopping]";
 
 Chapter 3.34.3.4 - Presenting Keys
 
@@ -13219,7 +13222,7 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly, and recedes. Spittle runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
 landlord-d2-explanation2	true	false	"'The keyring was given to me by the previous owner.'"	"'The keyring was given to me by the previous owner.'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
@@ -13228,7 +13231,7 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly, and recedes. Spittle runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
 landlord-d2-explanation3	true	false	"'I have the keyring now. Does it matter who it used to belong to?'"	"'I have the keyring now. Does it matter who it used to belong to?'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
@@ -13237,12 +13240,12 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly and recedes. Spittle runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{}
+[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
 landlord-d2-answer1	true	false	""	"The key unlocks the first room."	{}
 landlord-d2-answer2	true	false	""	"The key unlocks the second room."	{}
 landlord-d2-answer3	true	false	""	"The key unlocks the third room."	{}
 landlord-d2-roomiv	false	false	"'The key unlocks the fourth room -- Room IV.'"	"'The key unlocks the fourth room -- Room IV.'"	{}
-landlord-d2-answer5	true	false	"'I don't know which room this unlocks.'"	"'I don't know which room this unlocks.'"	{}
+landlord-d2-idk	true	false	"'I don't know which room this unlocks.'"	"'I don't know which room this unlocks.'"	{}
 
 Book 3.35 - Room IV
 
