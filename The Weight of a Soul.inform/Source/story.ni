@@ -820,10 +820,13 @@ To decide whether time is critical:
 	if the location is the Condemned Block, decide yes;
 	if the location is the Shanty Quarter, decide yes;
 	if the location is Rats' Run, decide yes;
+	if the location is the Flophouse, decide yes;
+	if the location is Room IV, decide yes;
 	if the location is in the Shanty Maze, decide yes;
 	if Returning to a Break-In is happening and Carnicer is in the Clinic, decide yes;
 	if Averting Cavala's Assassination is happening, decide yes;
 	if First Aid on Cavala is happening, decide yes;
+	if Midnight is happening, decide yes;
 	decide no.
 
 To decide whether time is not critical:
@@ -2659,8 +2662,10 @@ To say journal-text-objectives:
 				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
 			otherwise:
 				add "- Look up the patient records in Doctor Arturus's domicile" to L;
-		otherwise if the Piper file is meticulously digested:
+		otherwise if the Piper file is meticulously digested and cellar-access-granted is false:
 			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
+		if cellar-keygiven is true and cellar-access-granted is false:
+			add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
 	if Four Investigations is happening:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
@@ -2778,10 +2783,13 @@ To say journal-text-notes:
 				add L2 to LFI;
 		if Thugs Investigation is happening:
 			let L2 be a list of texts;
-			if the battered keyring is carried:
-				add "- I found a battered keyring on Sal's belt." to L2;
+			if the battered keyring is described:
+				if cellar-keygiven is true:
+					add "- I found a battered keyring on Sal's belt, and learned that it unlocks a room in a Shanty Quarter flophouse." to L2;
+				otherwise:
+					add "- I found a battered keyring on Sal's belt." to L2;
 			if the Piper file is meticulously digested:
-				add "- I found a note in Piper's patient record that read 'IV in f.h. shanty quarter.'" to L2;
+				add "- I found a note in Piper's patient record that read 'cellar in f.h. shanty quarter.'" to L2;
 			if clue-tradingcompany is true:
 				if clue-sal-raven is true and clue-piper-raven is true:
 					add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
@@ -12551,7 +12559,7 @@ Understand "patient" or "record" or "sal/sal's/salio's" as the Salio file.
 
 The Piper file is a patient-record file.
 The printed name is "[']Piper['] file". The indefinite article is "the".
-The description is "[if Meeting the Patients has ended]The patient record for Piper[otherwise]This file must be on one of the patients downstairs[end if]. It states that she was admitted together with [if Meeting the Patients has ended]Sal[otherwise]another patient[end if] on the morning of the Third of Aquaria, exhibiting the same symptoms as him. The rest of the file is blank apart from a cryptic note that reads 'IV in f.h. shanty quarter.'"
+The description is "[if Meeting the Patients has ended]The patient record for Piper[otherwise]This file must be on one of the patients downstairs[end if]. It states that she was admitted together with [if Meeting the Patients has ended]Sal[otherwise]another patient[end if] on the morning of the Third of Aquaria, exhibiting the same symptoms as him. The rest of the file is blank apart from a cryptic note that reads 'cellar in f.h. shanty quarter.'"
 The scent is "It smells papery."
 Understand "patient" or "record" or "piper's" as the Piper file.
 
@@ -12576,7 +12584,7 @@ A patient-record file can be meticulously digested or callously left unread.
 After examining a patient-record file (called the relevant file):
 	now the relevant file is meticulously digested;
 	if the relevant file is the Piper file:
-		now the enabled of landlord-d2-roomiv is true;
+		now the enabled of landlord-d2-cellar is true;
 	if all patient-record files are meticulously digested and clue-patientrecords is false:
 		now clue-patientrecords is true;
 		say "It's frustrating. All of these files look like they were written in a hurry and left unfinished. Why didn't Doctor Arturus leave more information for you to work with?[paragraph break]";
@@ -13027,9 +13035,10 @@ Instead of searching the empty apothecary bottles, say "All are empty."
 Instead of taking the empty apothecary bottles, say "You don't need to carry empty bottles around."
 
 The crooked little passageway is an open unopenable scenery door. It is south of the Flophouse and north of Room IV.
-The description is "A crooked little passageway, with flea-eaten carpeting and empty doorways."
+The description is "A crooked little passageway, with flea-eaten carpeting and empty doorways. You can see a total of three rooms."
 The sound is "You hear nothing."
-Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" as the crooked little passageway.
+Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" or "room/rooms" or "[3]" as the crooked little passageway.
+Instead of searching the crooked little passageway, say "You can't see much from here."
 
 The flophouse reception office is scenery in the Flophouse. The printed name is "reception office".
 The description is "Perhaps it was once a cloakroom, but it's some kind of office now."
@@ -13071,25 +13080,32 @@ Room IV is inaccessible before you get Sal's keyring. If you attempt to go south
 
 If you DO have Sal's keyring you can talk to the landlord and show it the keyring. It asks you which room the keyring unlocks. If you answer correctly (you can't unless you've seen the note in Arturus's Domicile), it slobbers all over the keyring looking really happy, and gives you permission to go in.]
 
-Chapter 3.34.3.1 - Gating Room IV
+Chapter 3.34.3.1 - Gating the Cellar
 
-roomiv-access-granted is a truth state that varies.
-roomiv-noaccess-quipped is a truth state that varies.
+cellar-keygiven is a truth state that varies.
+cellar-access-granted is a truth state that varies.
+cellar-noaccess-quipped is a truth state that varies.
 
-Instead of going south in the Flophouse when roomiv-access-granted is false (this is the spoopy Room IV gating message rule):
-	if roomiv-noaccess-quipped is false:
+Instead of going south in the Flophouse when cellar-access-granted is false (this is the spoopy Room IV gating message rule):
+	if cellar-noaccess-quipped is false:
 		say "You take a step into the passageway, only to hear a screeching from behind you. A rubbery tentacle snaps tight around your foot.[paragraph break]";
 		wait for any key;
 		say "[italic type]'You,'[roman type] [the landlord] hisses, its voice crawling on your neck. [italic type]'Not resident. Not key-bearer. No more steps. No more. Understand?'[roman type][paragraph break]";
 		wait for any key;
 		say "'I-- I understand,' you stutter. 'Please don't hurt me.'[paragraph break]";
 		wait for any key;
-		say "[italic type]'Show me key. Show me [roman type]key-teeth.[italic type] Then... change, reconsider.'[roman type][paragraph break]";
+		if cellar-keygiven is true:
+			say "[italic type]'Learn which room. Tell which room. Then... change, reconsider.'[roman type][paragraph break]";
+		otherwise:
+			say "[italic type]'Show me key. Show me key-teeth. Then... change, reconsider.'[roman type][paragraph break]";
 		wait for any key;
 		say "The creature withdraws. You rub your neck with a trembling hand.";
-		now roomiv-noaccess-quipped is true;
+		now cellar-noaccess-quipped is true;
 	otherwise:
-		say "[The landlord] made it clear that you had to show it a key before it would allow you to go in.";
+		if cellar-keygiven is true:
+			say "The landlord said that you had to tell it which room Sal's key unlocked before it would allow you to go in.";
+		otherwise:
+			say "[The landlord] said that you had to show it a key before it would allow you to go in.";
 
 Chapter 3.34.3.2 - The Landlord's Introduction
 
@@ -13191,7 +13207,7 @@ After reading out landlord-d2-intro:
 
 After reading out landlord-d2-operate: now the enabled of landlord-d2-seerooms is true.
 
-Instead of talking to the landlord when the enabled of landlord-d2-resident is false and the enabled of landlord-d2-keybearer is false and the enabled of landlord-d2-operate is false and the enabled of landlord-d2-seerooms is false and the enabled of landlord-d2-imkeybearer is false (this is the no more landlord dialogue rule):
+Instead of talking to the landlord when cellar-keygiven is false and the enabled of landlord-d2-resident is false and the enabled of landlord-d2-keybearer is false and the enabled of landlord-d2-operate is false and the enabled of landlord-d2-seerooms is false and the enabled of landlord-d2-imkeybearer is false (this is the no more landlord dialogue before key given rule):
 	say "[one of]'E-Excuse me?'
 
 The landlord waves its tentacle dismissively. [italic type]'You are not key-bearer.'[roman type][line break][or]The landlord won't entertain anyone who doesn't have a key.[stopping]";
@@ -13220,36 +13236,145 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [italic type]'Maybe,'[roman type] it says. [italic type]'Maybe you lie. Maybe you thief.'[roman type]
 
-[wait for any key]It exhales wetly, and recedes. Spittle runs from its beak and strikes the floor with a hiss.
+[wait for any key]It exhales wetly, and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
 landlord-d2-explanation2	true	false	"'The keyring was given to me by the previous owner.'"	"'The keyring was given to me by the previous owner.'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
 
 [italic type]'Maybe,'[roman type] it says. [italic type]'Maybe you lie. Maybe you thief.'[roman type]
 
-[wait for any key]It exhales wetly, and recedes. Spittle runs from its beak and strikes the floor with a hiss.
+[wait for any key]It exhales wetly, and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
 landlord-d2-explanation3	true	false	"'I have the keyring now. Does it matter who it used to belong to?'"	"'I have the keyring now. Does it matter who it used to belong to?'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
 
 [italic type]'Maybe,'[roman type] it says. [italic type]'Maybe. Standards to uphold.'[roman type]
 
-[wait for any key]It exhales wetly and recedes. Spittle runs from its beak and strikes the floor with a hiss.
+[wait for any key]It exhales wetly and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-roomiv, landlord-d2-idk}
-landlord-d2-answer1	true	false	""	"The key unlocks the first room."	{}
-landlord-d2-answer2	true	false	""	"The key unlocks the second room."	{}
-landlord-d2-answer3	true	false	""	"The key unlocks the third room."	{}
-landlord-d2-roomiv	false	false	"'The key unlocks the fourth room -- Room IV.'"	"'The key unlocks the fourth room -- Room IV.'"	{}
-landlord-d2-idk	true	false	"'I don't know which room this unlocks.'"	"'I don't know which room this unlocks.'"	{}
+[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
+landlord-d2-answer1	true	false	"'The key unlocks the first room.'"	"'The key unlocks the first room.'
 
-Book 3.35 - Room IV
+[landlord-wronganswer]"	{}
+landlord-d2-answer2	true	false	"'The key unlocks the second room.'"	"'The key unlocks the second room.'
 
-There is a room called Room IV.
+[landlord-wronganswer]"	{}
+landlord-d2-answer3	true	false	"'The key unlocks the third room.'"	"'The key unlocks the third room.'
+
+[landlord-wronganswer]"	{}
+landlord-d2-arbitrary	true	false	"'That seems like an overly arbitrary way to decide.'"	"'That seems like an overly arbitrary way to decide,' you tell the landlord.
+
+It tilts its head. Seven pupils gaze unblinking.
+
+[italic type]'Perhaps. Perhaps. Answer.'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-idk}
+landlord-d2-idk	true	false	"'I don't know which room this unlocks.'"	"'I don't know which room this unlocks.'
+
+The landlord hisses. The coils tighten, and you feel the keyring being pried from your fingers.
+
+[italic type]'Honest. Good. Saves trouble.'[roman type]
+
+[wait for any key]'Please,' you say desperately. 'Please. I need to get into that room--'
+
+The landlord holds up the keyring, gingerly, almost tenderly. Saliva runs from its beak and oozes down the wire.
+
+[italic type]'I will,'[roman type] it says. [italic type]'Keep this. Until you know. Until you see.'[roman type]
+
+[wait for any key]'Until... I see?'
+
+[italic type]'Learn which room. Tell which room. Until then... go.'[roman type]
+
+[wait for any key]Its grip loosens. You step back, holding your arm close to your chest."	{}
+
+To say landlord-wronganswer:
+	say "A beat. You feel your heart crawl in your chest.[paragraph break]";
+	wait for any key;
+	say "[italic type]'Wrong.'[roman type][paragraph break]";
+	wait for any key;
+	say "The coils tighten around your forearm. You cry out in pain. The keyring is pried from your fingers.[paragraph break]";
+	wait for any key;
+	say "[italic type]'You guess. You not know. Pathetic.'[roman type][paragraph break]";
+	wait for any key;
+	say "'I'm sorry!' you wail. 'Oh Primes -- I'm sorry I guessed--'[paragraph break]";
+	wait for any key;
+	say "[italic type]'Pathetic.'[roman type][paragraph break]";
+	wait for any key;
+	say "The landlord flings you to the ground and you collapse clutching your bruised forearm. With its other arm it holds up the keyring, gingerly, almost tenderly.[paragraph break]";
+	wait for any key;
+	say "[italic type]'I will,'[roman type] it says. [italic type]'Keep this. Until you know. Until you see.'[roman type][paragraph break]";
+	wait for any key;
+	say "'Please,' you find yourself saying. 'Please...'";
+	wait for any key;
+	say "[italic type]'Learn which room. Tell which room. Until then... go.'[roman type][paragraph break]";
+	wait for any key;
+	say "It slithers back into the reception office. You clamber unsteadily to your feet.";
+	now the battered keyring is nowhere;
+	now cellar-keygiven is true;
+	now the home dialogue branch of the landlord is landlord-d2-home2.
+	
+After reading out landlord-d2-answer1: now the enabled of landlord-d2-guess1 is false.
+After reading out landlord-d2-answer2: now the enabled of landlord-d2-guess2 is false.
+After reading out landlord-d2-answer3: now the enabled of landlord-d2-guess3 is false.
+	
+After reading out landlord-d2-idk:
+	now the battered keyring is nowhere;
+	now cellar-keygiven is true;
+	now the home dialogue branch of the landlord is landlord-d2-home2.
+	
+Table of Day Two Landlord Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+landlord-d2-home2	true	false	""	"'Excuse me?'
+
+The landlord comes rippling out of the reception office, looking expectant."	{landlord-d2-iknowroom, landlord-d2-guessroom, landlord-d2-nevermind}
+landlord-d2-iknowroom	true	false	"'I know which room the keyring unlocks.'"	"'I know which room the keyring unlocks.'
+
+The landlord cocks its head. [italic type]'Tell.'[roman type]"	{landlord-d2-guess1, landlord-d2-guess2, landlord-d2-guess3, landlord-d2-cellar, landlord-d2-allwrong, landlord-d2-nevermind}
+landlord-d2-guess1	true	true	"'The key unlocks the first room.'"	"'The key unlocks the first room.'
+
+[italic type]'Wrong.'[roman type]"	{landlord-d2-guess2, landlord-d2-guess3, landlord-d2-cellar, landlord-d2-allwrong, landlord-d2-comebacklater}
+landlord-d2-guess2	true	true	"'The key unlocks the second room.'"	"'The key unlocks the second room.'
+
+[italic type]'Wrong.'[roman type]"	{landlord-d2-guess1, landlord-d2-guess3, landlord-d2-cellar, landlord-d2-allwrong, landlord-d2-comebacklater}
+landlord-d2-guess3	true	true	"'The key unlocks the third room.'"	"'The key unlocks the third room.'
+
+[italic type]'Wrong.'[roman type]"	{landlord-d2-guess2, landlord-d2-guess3, landlord-d2-cellar, landlord-d2-allwrong, landlord-d2-comebacklater}
+landlord-d2-allwrong	false	true	"'This is a trick question, isn't it?'"	"'This is a trick question, isn't it?'
+
+[italic type]'Maybe.'[roman type]
+
+You sigh."	{landlord-d2-cellar, landlord-d2-comebacklater}
+landlord-d2-guessroom	true	true	"'Aren't there only three rooms? All I have to do is guess which one.'"	"'Aren't there only three rooms? All I have to do is guess which one.'
+
+It looks at you, eyes unblinking.
+
+[italic type]'Try.'[roman type]"	{landlord-d2-iknowroom, landlord-d2-nevermind}
+
+After reading out landlord-d2-guess1: check for landlord-d2-allwrong.
+After reading out landlord-d2-guess2: check for landlord-d2-allwrong.
+After reading out landlord-d2-guess3: check for landlord-d2-allwrong.
+	
+To check for landlord-d2-allwrong:
+	if the enabled of landlord-d2-guess1 is false and
+	the enabled of landlord-d2-guess2 is false and
+	the enabled of landlord-d2-guess3 is false:
+		now the enabled of landlord-d2-guessroom is false;
+		now the enabled of landlord-d2-allwrong is true.
+		
+Instead of talking to the landlord when cellar-keygiven is true and cellar-access-granted is false and the enabled of landlord-d2-guess1 is false and the enabled of landlord-d2-guess2 is false and the enabled of landlord-d2-guess3 is false and the enabled of landlord-d2-allwrong is false and the enabled of landlord-d2-cellar is false (this is the no more landlord dialogue before answering cellar rule):
+	say "You haven't found out which room the keyring unlocks.";
+	
+Chapter 3.34.3.5 - Answering Cellar
+
+Table of Landlord Day Two Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+landlord-d2-cellar	false	false	"'The key unlocks the fourth room -- the cellar.'"	"'The key unlocks the fourth room -- the cellar.'"	{}
+
+Book 3.35 - Cellar
+
+The Cellar is a room.
 
 Book 3.36 - Gangway
 
