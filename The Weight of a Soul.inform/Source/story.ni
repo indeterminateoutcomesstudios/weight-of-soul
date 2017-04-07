@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 060417.
+The release number is 070417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,7 +54,6 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Flophouse
 - Write Room IV
 - Write Gangway
 - Write Crow's Nest
@@ -228,6 +227,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to day two[roman type]";
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
+	say "[line break]>[bold type]skip to cellar[roman type]";
 
 Book 1.2 - Days and Scenes
 
@@ -339,6 +339,7 @@ Reden Investigation begins when Four Investigations begins.
 
 Arturus Investigation is a scene.
 Arturus Investigation begins when Four Investigations begins.
+Arturus Investigation ends when arturus-body-completion-quip is true and clue-arturus-discovery-justinian is true and clue-arturus-debt is true and clue-arturus-coffeetable is true and clue-patientrecords is true.
 
 [3. Creditor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
 - Justinian poisoned his wine during a "meeting" with Arturus the morning of Prologue. Admitted Prologue day. Died Prologue night.
@@ -346,6 +347,7 @@ Arturus Investigation begins when Four Investigations begins.
 
 Nacarat Investigation is a scene.
 Nacarat Investigation begins when Meeting the Patients ends.
+Nacarat Investigation ends when nacarat-body-completion-quip is true and the Nacarat file is meticulously digested.
 
 [4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
 - Poisoned the night before Prologue. Admitted Prologue day. Died Prologue night.
@@ -578,6 +580,61 @@ To skip past Meeting the Patients:
 	now the home dialogue branch of Examiner Velox is examiner-home3;
 	follow the scene changing rules.
 	
+To skip past the first half of Four Investigations:
+	if Meeting the Patients has not ended:
+		skip past Meeting the Patients;
+	now clue-airborne-vector is true;
+	now clue-ingestion-vector is true;
+	now clue-patientrecords-justinian is true;
+	now clue-arturus-discovery-justinian is true;
+	now clue-arturus-timeofdeath is true;
+	now examiner-thugs-timeofdeath-asked is true;
+	now examiner-nacarat-timeofdeath-asked is true;
+	now clue-arturus-gloves is true;
+	now clue-arturus-animus is true;
+	now arturus-body-completion-quip is true;
+	now clue-nacarat-stomach is true;
+	now clue-nacarat-pocketbook is true;
+	now clue-nacarat-recording is true;
+	now clue-nacarat-raven is true;
+	now nacarat-body-completion-quip is true;
+	now clue-sal-raven is true;
+	now the battered keyring is described;
+	now sal-body-completion-quip is true;
+	now clue-piper-namelist is true;
+	now clue-piper-raven is true;
+	now clue-piper-stomach is true;
+	now piper-body-completion-quip is true;
+	now clue-ravens-sighted is 3;
+	now clue-raven is true;
+	discover the Trading Company connection;
+	now clue-arturus-coffeetable is true;
+	now clue-arturus-wineglassbroken is true;
+	now clue-arturus-debt is true;
+	now the Piper file is in the stack of miscellaneous patient records;
+	now the Salio file is in the stack of miscellaneous patient records;
+	now the Nacarat file is in the stack of miscellaneous patient records;
+	now all patient-record files are meticulously digested;
+	now clue-patientrecords is true;
+	[now clue-reden-channelworks is true;
+	now clue-reden-zoironest is true;
+	now clue-reden-shack is true;
+	now the enabled of zoiro-mourning-alldone is true;
+	now the scattered coupons are nowhere;
+	now all drink coupons in the Reden's Shack coupon container are carried by the player;
+	now clue-crowsnest is true;]
+	now the battered keyring is nowhere;
+	now cellar-keygiven is true;
+	now the landlord is nowhere;
+	now cellar-access-granted is true;
+	now Arturus's Domicile is visited;
+	now Arturus's Study is visited;
+	[now Zoiro's Residence is visited;
+	now Reden's Shack is visited;]
+	now Rats' Run is visited;
+	move the player to the Flophouse, without printing a room description;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -655,6 +712,13 @@ Understand "skip to bodies" as skipping to bodies.
 Check skipping to bodies when Meeting the Patients has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to bodies:
 	skip past Meeting the Patients;
+	try looking.
+	
+Skipping to cellar is an action applying to nothing.
+Understand "skip to cellar" as skipping to cellar.
+Check skipping to cellar when the landlord is nowhere: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to cellar:
+	skip past the first half of Four Investigations;
 	try looking.
 	
 Book 1.3 - People
@@ -821,7 +885,6 @@ To decide whether time is critical:
 	if the location is the Shanty Quarter, decide yes;
 	if the location is Rats' Run, decide yes;
 	if the location is the Flophouse, decide yes;
-	if the location is Room IV, decide yes;
 	if the location is in the Shanty Maze, decide yes;
 	if Returning to a Break-In is happening and Carnicer is in the Clinic, decide yes;
 	if Averting Cavala's Assassination is happening, decide yes;
@@ -2656,7 +2719,7 @@ To say journal-text-objectives:
 			add "- Examine Piper's body" to L;
 		otherwise if piper-body-completion-quip is false:
 			add "- Examine Piper's body further" to L;
-		if examiner-thugs-notable-asked is false and (the battered keyring is not carried or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
+		if examiner-thugs-notable-asked is false and (the battered keyring is not described or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
 		if the Nacarat file is nowhere:
 			if clue-patientrecords-justinian is false:
 				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
@@ -2666,6 +2729,8 @@ To say journal-text-objectives:
 			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
 		if cellar-keygiven is true and cellar-access-granted is false:
 			add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
+		otherwise:
+			add "- Investigate the cellar of the flophouse" to L;
 	if Four Investigations is happening:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
@@ -2783,12 +2848,14 @@ To say journal-text-notes:
 				add L2 to LFI;
 		if Thugs Investigation is happening:
 			let L2 be a list of texts;
-			if the battered keyring is described:
+			if the battered keyring is described and the Cellar is unvisited:
 				if cellar-keygiven is true:
 					add "- I found a battered keyring on Sal's belt, and learned that it unlocks a room in a Shanty Quarter flophouse." to L2;
 				otherwise:
 					add "- I found a battered keyring on Sal's belt." to L2;
-			if the Piper file is meticulously digested:
+			if the Cellar is visited:
+				add "- I found that Sal and Piper had been hiding out in the cellar of a flophouse in the Shanty Quarter.'" to L2;
+			otherwise if the Piper file is meticulously digested:
 				add "- I found a note in Piper's patient record that read 'cellar in f.h. shanty quarter.'" to L2;
 			if clue-tradingcompany is true:
 				if clue-sal-raven is true and clue-piper-raven is true:
@@ -2810,7 +2877,7 @@ To say journal-text-notes:
 				add "- I learned that Sal [if the Piper file is meticulously digested]and Piper were[otherwise]was[end if] admitted to the clinic on the morning of the Third, two days ago." to L2;
 			otherwise if the Piper file is meticulously digested:
 				add "- I learned that Piper was admitted to the clinic on the morning of the Third, two days ago." to L2;
-			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of the [if the Salio file is meticulously digested or the Piper file is meticulously digested]same day[otherwise]Third, two days ago[end if]." to L2;
+			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of [if the Salio file is meticulously digested or the Piper file is meticulously digested]that day[otherwise]the Third, two days ago[end if]." to L2;
 			if L2 is not {}:
 				if LFI is not {}, add "" to LFI;
 				add "[italic type]Sal and Piper[roman type]" to LFI;
@@ -12970,22 +13037,28 @@ Book 3.34 - Flophouse
 
 There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood; vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and doped up on laudanum or alcohol.
 
-To the west is the exit. To the south, a passageway leads to the rooms."
+To the west is the exit. To the south, [if cellar-access-granted is true]a trapdoor descends to the cellar[otherwise]a passageway leads to the rooms[end if]."
 It is east of the Shanty Quarter.
 
 The simple-name is "the flophouse".
 The sound is "It's uncannily quiet."
 The scent is "The flophouse smells of ash."
-The exit reminder is "You can exit the flophouse to the west, or enter [if Room IV is visited]Room IV[otherwise]the rooms[end if] to the south."
+The exit reminder is "You can exit the flophouse to the west, or enter [if cellar-access-granted is true]the cellar[otherwise]the rooms[end if] to the south."
 
 Before going inside in the Flophouse, try going south instead.
 Before going outside in the Flophouse, try going west instead.
+Before going down in the Flophouse when cellar-access-granted is true, try going south instead.
 Before examining inside in the Flophouse, try examining south instead.
-Before examining south in the Flophouse, try examining the crooked little passageway instead.
+Before examining down in the Flophouse when cellar-access-granted is true, try examining south instead.
 Before examining outside in the Flophouse, try examining west instead.
 Instead of examining west in the Flophouse, say "The exit is that way."
-Before going up in the Flophouse, try examining up instead.
 Instead of examining up in the Flophouse, say "The stairs are collapsed; they don't actually lead anywhere."
+
+Before examining south in the Flophouse:
+	if cellar-access-granted is true:
+		try examining the trapdoor to the cellar instead;
+	otherwise:
+		try examining the crooked little passageway instead.
 
 Part 3.34.1 - Scenery
 
@@ -13011,7 +13084,7 @@ Instead of talking to or waking the homeless vagrants, say "There is no response
 Some collapsed stairs are scenery in the Flophouse.
 The description is "More rubble than stairs. The steps have splintered, and the banisters are long gone."
 Understand "rubble" or "stair/step/steps" or "banister/banisters/bannister/bannisters" or "splinter/splinters/splintered" as the collapsed stairs.
-Before climbing or entering the collapsed stairs, try examining up instead.
+Instead of climbing or entering the collapsed stairs, say "The stairs are collapsed; they don't actually lead anywhere."
 
 Some devastated corridors are scenery in the Flophouse.
 The description is "Dead ends."
@@ -13027,27 +13100,40 @@ Instead of searching the makeshift bedding, say "Vagrants are sleeping on the be
 
 Some empty apothecary bottles are scenery in the Flophouse.
 The description is "The empty bottles here and there are unlabeled, but you can take a guess at what they once contained."
-Understand "laudanum/opium/morphine" or "bottle" or "alcohol" or "unlabeled" or "drug/drugs" as the empty apothecary bottles.
+Understand "laudanum/opium/morphine" or "bottle" or "alcohol/wine" or "of" or "unlabeled" or "drug/drugs" as the empty apothecary bottles.
 Instead of drinking the empty apothecary bottles, say "The bottles are empty. In any case, you're more of a spiced wine person."
 Instead of inserting the endoscope into the empty apothecary bottles, say "You don't need an endoscope to see that these bottles are empty."
 Instead of inserting something into the empty apothecary bottles, say "That won't accomplish anything."
 Instead of searching the empty apothecary bottles, say "All are empty."
-Instead of taking the empty apothecary bottles, say "You don't need to carry empty bottles around."
+Instead of taking the empty apothecary bottles, say "You don't need these empty bottles."
 
-The crooked little passageway is an open unopenable scenery door. It is south of the Flophouse and north of Room IV.
+The crooked little passageway is scenery.
 The description is "A crooked little passageway, with flea-eaten carpeting and empty doorways. You can see a total of three rooms."
 The sound is "You hear nothing."
-Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" or "room/rooms" or "[3]" as the crooked little passageway.
+Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" or "room/rooms" or "three/3" as the crooked little passageway.
+Before entering the crooked little passageway, try going south instead.
 Instead of searching the crooked little passageway, say "You can't see much from here."
 
 The flophouse reception office is scenery in the Flophouse. The printed name is "reception office".
 The description is "Perhaps it was once a cloakroom, but it's some kind of office now."
 Understand "cloakroom" as the flophouse reception office.
-Instead of entering the flophouse reception office, say "That would put you in uncomfortably close proximity with [the landlord]. You'd better just remain outside."
-Instead of searching the flophouse reception office, say "You can't see much apart from [the landlord] and its keys."
-Before inserting something into the flophouse reception office, try giving the noun to the landlord instead.
+Instead of entering the flophouse reception office, say "[if the landlord is in the location]That would put you in uncomfortably close proximity with [the landlord]. You'd better just remain outside[otherwise]You stick your head in, but there's no one there[end if]."
+Instead of searching the flophouse reception office, say "[if the landlord is in the location]You can't see much apart from [the landlord] and its keys[otherwise]There is no trace of the landlord[end if]."
+Before inserting something into the flophouse reception office:
+	if the landlord is in the location:
+		try giving the noun to the landlord instead;
+	otherwise:
+		say "You don't really want to do that." instead.
+		
+The trapdoor to the cellar is a privately-named closed openable lockable unlocked scenery door.
+The description is "[if the trapdoor to the cellar is closed]It's closed[otherwise]It's open[end if]."
+Understand "trap" or "door/doors/trapdoor" or "to/into" or "cellar" or "opening" or "ladder" or "darkness" or "half-eaten" or "descending" as the trapdoor to the cellar when cellar-access-granted is true.
+Instead of inserting something into the trapdoor to the cellar, say "[if the location is the Flophouse]You aren't in the habit of dropping your possessions into trapdoors[otherwise]You could just climb up if you wanted[end if]."
+Instead of searching the trapdoor to the cellar, say "You can't see much."
 
-Part 3.34.2 - The Landlord
+Part 3.34.2 - Flophouse during Day Two
+
+Chapter 3.34.2.1 - The Landlord
 
 [This character is a reference to XS, one of the best and most twisted questmistresses I've ever encountered on /tg/.]
 
@@ -13072,15 +13158,7 @@ Does the player mean examining the assortment of keys: it is likely. [As opposed
 Before giving the battered keyring to the landlord, try talking to the landlord instead.
 Instead of giving Doctor Cavala's signum to the landlord, say "[The landlord] doesn't even look."
 
-Part 3.34.3 - Flophouse during Day Two
-
-[So let me bang out some thoughts here
-
-Room IV is inaccessible before you get Sal's keyring. If you attempt to go south in the Flophouse the landlord will stop you and tell you it's not allowed, you don't live here. Only the Key-bearer can go in.
-
-If you DO have Sal's keyring you can talk to the landlord and show it the keyring. It asks you which room the keyring unlocks. If you answer correctly (you can't unless you've seen the note in Arturus's Domicile), it slobbers all over the keyring looking really happy, and gives you permission to go in.]
-
-Chapter 3.34.3.1 - Gating the Cellar
+Chapter 3.34.2.2 - Gating the Cellar
 
 cellar-keygiven is a truth state that varies.
 cellar-access-granted is a truth state that varies.
@@ -13107,7 +13185,7 @@ Instead of going south in the Flophouse when cellar-access-granted is false (thi
 		otherwise:
 			say "[The landlord] said that you had to show it a key before it would allow you to go in.";
 
-Chapter 3.34.3.2 - The Landlord's Introduction
+Chapter 3.34.2.3 - The Landlord's Introduction
 
 Some dialogue branches are defined by the Table of Day Two Landlord Dialogue.
 
@@ -13178,7 +13256,7 @@ landlord-d2-seerooms	false	true	"'I'd like to take a look at your rooms.'"	"'I'd
 The creature spasms. It makes a pendulum-like motion with its foremost tentacle.
 
 [italic type]'Cannot,'[roman type] it says. [italic type]'No room. All rooms. Occupied. Secret.'[roman type]"	{landlord-d2-makeexception, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
-landlord-d2-makeexception	true	true	"'Please. I'm investigating a murder.' <Present the signum.>"	"'Please. I'm investigating a murder.'
+landlord-d2-makeexception	true	true	"'Please. I'm investigating a man's death.' <Present the signum.>"	"'Please. I'm investigating a man's death.'
 
 The landlord brushes your signum away. [italic type]'No,'[roman type] it repeats. [italic type]'Cannot. You are not key-bearer.'[roman type]"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-okgoingnow	true	false	"'Okay... I'll be going now.'"	"'Okay... I'll be going now.'
@@ -13212,7 +13290,7 @@ Instead of talking to the landlord when cellar-keygiven is false and the enabled
 
 The landlord waves its tentacle dismissively. [italic type]'You are not key-bearer.'[roman type][line break][or]The landlord won't entertain anyone who doesn't have a key.[stopping]";
 
-Chapter 3.34.3.4 - Presenting Keys
+Chapter 3.34.2.4 - Presenting Keys
 
 Table of Day Two Landlord Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
@@ -13230,7 +13308,7 @@ You hold up the keyring. The landlord rushes up to you, quivering, scrutinizing 
 [wait for any key]There is an uncomfortably long pause.
 
 [wait for any key][italic type]'Strange,'[roman type] it says at last. [italic type]'Right key. Wrong person.'[roman type]"	{landlord-d2-explanation1, landlord-d2-explanation2, landlord-d2-explanation3}
-landlord-d2-explanation1	true	false	"'The owner of the keyring is dead. I'm investigating his murder.'"	"'The owner of the keyring is dead. I'm investigating his murder.'
+landlord-d2-explanation1	true	false	"'The owner of the keyring is dead. I'm investigating his death.'"	"'The owner of the keyring is dead. I'm investigating his death.'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
 
@@ -13238,7 +13316,9 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly, and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]
+
+[wait for any key]'Um...'"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
 landlord-d2-explanation2	true	false	"'The keyring was given to me by the previous owner.'"	"'The keyring was given to me by the previous owner.'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
@@ -13247,7 +13327,9 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly, and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
+[italic type]'Conundrum. Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]
+
+[wait for any key]'Um...'"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
 landlord-d2-explanation3	true	false	"'I have the keyring now. Does it matter who it used to belong to?'"	"'I have the keyring now. Does it matter who it used to belong to?'
 
 The landlord's tentacles coil around your arm, cradling the keyring, and you suppress the urge to shudder.
@@ -13256,7 +13338,9 @@ The landlord's tentacles coil around your arm, cradling the keyring, and you sup
 
 [wait for any key]It exhales wetly and recedes. Saliva runs from its beak and strikes the floor with a hiss.
 
-[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
+[italic type]'Compromise. You have key? Tell which room. Correct, you enter. Wrong, you leave. Yes?'[roman type]
+
+[wait for any key]'Um...'"	{landlord-d2-answer1, landlord-d2-answer2, landlord-d2-answer3, landlord-d2-cellar, landlord-d2-arbitrary, landlord-d2-idk}
 landlord-d2-answer1	true	false	"'The key unlocks the first room.'"	"'The key unlocks the first room.'
 
 [landlord-wronganswer]"	{}
@@ -13299,18 +13383,16 @@ To say landlord-wronganswer:
 	say "[italic type]'You guess. You not know. Pathetic.'[roman type][paragraph break]";
 	wait for any key;
 	say "'I'm sorry!' you wail. 'Oh Primes -- I'm sorry I guessed--'[paragraph break]";
-	wait for any key;
 	say "[italic type]'Pathetic.'[roman type][paragraph break]";
 	wait for any key;
 	say "The landlord flings you to the ground and you collapse clutching your bruised forearm. With its other arm it holds up the keyring, gingerly, almost tenderly.[paragraph break]";
 	wait for any key;
 	say "[italic type]'I will,'[roman type] it says. [italic type]'Keep this. Until you know. Until you see.'[roman type][paragraph break]";
 	wait for any key;
-	say "'Please,' you find yourself saying. 'Please...'";
-	wait for any key;
+	say "'Please,' you find yourself saying. 'Please...'[paragraph break]";
 	say "[italic type]'Learn which room. Tell which room. Until then... go.'[roman type][paragraph break]";
 	wait for any key;
-	say "It slithers back into the reception office. You clamber unsteadily to your feet.";
+	say "It slithers back into the reception office. You clamber unsteadily to your feet. ";
 	now the battered keyring is nowhere;
 	now cellar-keygiven is true;
 	now the home dialogue branch of the landlord is landlord-d2-home2.
@@ -13341,12 +13423,12 @@ landlord-d2-guess2	true	true	"'The key unlocks the second room.'"	"'The key unlo
 landlord-d2-guess3	true	true	"'The key unlocks the third room.'"	"'The key unlocks the third room.'
 
 [italic type]'Wrong.'[roman type]"	{landlord-d2-guess2, landlord-d2-guess3, landlord-d2-cellar, landlord-d2-allwrong, landlord-d2-comebacklater}
-landlord-d2-allwrong	false	true	"'This is a trick question, isn't it?'"	"'This is a trick question, isn't it?'
+landlord-d2-allwrong	false	true	"'...This is a trick question, isn't it?'"	"'...This is a trick question, isn't it?'
 
 [italic type]'Maybe.'[roman type]
 
 You sigh."	{landlord-d2-cellar, landlord-d2-comebacklater}
-landlord-d2-guessroom	true	true	"'Aren't there only three rooms? All I have to do is guess which one.'"	"'Aren't there only three rooms? All I have to do is guess which one.'
+landlord-d2-guessroom	true	true	"'Aren't there only a few rooms? All I have to do is guess which one.'"	"'Aren't there only a few rooms? All I have to do is guess which one.'
 
 It looks at you, eyes unblinking.
 
@@ -13366,15 +13448,37 @@ To check for landlord-d2-allwrong:
 Instead of talking to the landlord when cellar-keygiven is true and cellar-access-granted is false and the enabled of landlord-d2-guess1 is false and the enabled of landlord-d2-guess2 is false and the enabled of landlord-d2-guess3 is false and the enabled of landlord-d2-allwrong is false and the enabled of landlord-d2-cellar is false (this is the no more landlord dialogue before answering cellar rule):
 	say "You haven't found out which room the keyring unlocks.";
 	
-Chapter 3.34.3.5 - Answering Cellar
+Chapter 3.34.2.5 - Answering Cellar
 
-Table of Landlord Day Two Dialogue (continued)
+Table of Day Two Landlord Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-landlord-d2-cellar	false	false	"'The key unlocks the fourth room -- the cellar.'"	"'The key unlocks the fourth room -- the cellar.'"	{}
+landlord-d2-cellar	false	false	"'The key unlocks the fourth room -- the cellar.'"	"'The key unlocks the fourth room -- the cellar.'
+
+The landlord regards you wordlessly, and your lips feel suddenly dry. You're no longer quite so sure about your guess--
+
+[wait for any key][italic type]'You see.'[roman type]
+
+[wait for any key]A crescent opens up in the landlord's body, a ring of grinning white teeth. [italic type]'You see. You know.'[roman type]
+
+[wait for any key]Then it says a word that doesn't -- doesn't quite [italic type]register[roman type] in your mind. Your head feels fuzzy for a second, and you -- you [italic type]blink--[roman type]
+
+[wait for any key]--Where did that trapdoor come from?
+
+[wait for any key]There's a trapdoor to the south where there was carpet just seconds ago. It's cut into the floor, with a half-eaten ladder descending into darkness.
+
+[wait for any key]And the landlord...
+
+[wait for any key]The landlord is gone. There's no one there. The office is empty."	{}
+
+After reading out landlord-d2-cellar:
+	now the landlord is nowhere;
+	now cellar-access-granted is true.
 
 Book 3.35 - Cellar
 
-The Cellar is a room.
+There is a room called the Cellar.
+
+The trapdoor to the cellar is south of the Flophouse and north of the Cellar. [I have to put this here because Inform 7 is trash when it comes to objects with names that include other names.]
 
 Book 3.36 - Gangway
 
