@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 070417.
+The release number is 100417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,7 +54,7 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Room IV
+- Write the Cellar
 - Write Gangway
 - Write Crow's Nest
 
@@ -10003,7 +10003,7 @@ Instead of taking the empty wine bottles, say "You don't need any of these bottl
 Part 3.25.2 - Drink Coupons
 
 Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
-The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Each coupon entitles the holder to a free drink and a spin of the 'Daemon's Wheel.'"
 Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
 
 After examining the scattered coupons:
@@ -10011,7 +10011,7 @@ After examining the scattered coupons:
 	continue the action.
 	
 A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five of them entitle the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Each one entitles the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
 Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
 
 The Reden's Shack coupon container is a container. It contains three drink coupons.
@@ -13035,7 +13035,7 @@ When Four Investigations ends (this is the despawn the dismembered pigeon rule):
 
 Book 3.34 - Flophouse
 
-There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood; vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and doped up on laudanum or alcohol.
+There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood. Vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and doped up on laudanum or alcohol.
 
 To the west is the exit. To the south, [if cellar-access-granted is true]a trapdoor descends to the cellar[otherwise]a passageway leads to the rooms[end if]."
 It is east of the Shanty Quarter.
@@ -13125,7 +13125,7 @@ Before inserting something into the flophouse reception office:
 	otherwise:
 		say "You don't really want to do that." instead.
 		
-The trapdoor to the cellar is a privately-named closed openable lockable unlocked scenery door.
+The trapdoor to the cellar is a privately-named closed openable better left open lockable unlocked scenery door.
 The description is "[if the trapdoor to the cellar is closed]It's closed[otherwise]It's open[end if]."
 Understand "trap" or "door/doors/trapdoor" or "to/into" or "cellar" or "opening" or "ladder" or "darkness" or "half-eaten" or "descending" as the trapdoor to the cellar when cellar-access-granted is true.
 Instead of inserting something into the trapdoor to the cellar, say "[if the location is the Flophouse]You aren't in the habit of dropping your possessions into trapdoors[otherwise]You could just climb up if you wanted[end if]."
@@ -13476,9 +13476,68 @@ After reading out landlord-d2-cellar:
 
 Book 3.35 - Cellar
 
-There is a room called the Cellar.
+There is a room called the Cellar. "A dimly lit mouse-hole of a hollow that has been bricked off from prying eyes. A pair of mattresses lie near the entrance, where Sal and Piper must have slept. Further in, the only table is laden with bladed weapons, counterfeit notes, and other contraband.
+
+A trapdoor ascends out of the cellar.
+
+On the table is a wine bottle[first time] that seems particularly out of place[only]."
+
+The simple-name is "the cellar".
+The sound is "You hear the faint sounds of vermin squeaking."
+The scent is "The odors of urine and alcohol reach you."
+The exit reminder is "You can only go upstairs, back to the flophouse."
+
+Before going outside in the Cellar, try going north instead.
+Before going up in the Cellar, try going north instead.
+Before examining outside in the Cellar, try examining north instead.
+Before examining up in the Cellar, try examining north instead.
+Instead of examining north in the Cellar, say "The exit is that way."
 
 The trapdoor to the cellar is south of the Flophouse and north of the Cellar. [I have to put this here because Inform 7 is trash when it comes to objects with names that include other names.]
+
+Part 3.35.1 - Scenery
+
+The dimly lit hollow is scenery in the Cellar.
+The description is "This is a place for vermin, not for people."
+Before listening to or smelling the dimly lit hollow, now the noun is the location.
+Understand "mouse-hole/mousehole/hole" or "of" or "brick/bricks/bricked" or "dim" or "mouse" as the dimly lit hollow.
+Before inserting something into the dimly lit hollow, try dropping the noun instead.
+Before putting something on the dimly lit hollow, try dropping the noun instead.
+Instead of entering the dimly lit hollow, say "You're standing in it."
+Before getting off the dimly lit hollow, try going outside instead.
+
+Some dingy mattresses are scenery in the Cellar.
+The description is "One is big; the other, small."
+The scent is "The mattresses certainly smell criminal."
+Understand "pair" or "of" or "mattress" or "bed/beds" as the dingy mattresses.
+Before entering the dingy mattresses, try sleeping instead.
+Instead of sleeping when the dingy mattresses are in the location, say "You'd really rather not."
+Instead of looking under the dingy mattresses, say "Nothing under there but cockroaches."
+
+Some cockroaches are faraway scenery in the Cellar.
+The description is "Cockroaches haven't scared you since you were a little girl. They are, however, deathly irritating things."
+The cockroaches have some text called the faraway response. The faraway response is "The cockroaches scurry away before you can get close."
+Understand "cockroach/roach/roaches/vermin" as the cockroaches.
+Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]There! Nope. You missed.[or]Slap! You missed.[or]Ha! Got one![or]That's enough. You can't spend the whole day killing cockroaches.[stopping]".
+
+Part 3.35.2 - The Incriminating Table
+
+The incriminating table is a scenery supporter in the Cellar.
+Instead of examining or searching the incriminating table, say "There are many things on the table, but that wine bottle seems the strangest."
+Instead of putting something on the incriminating table, say "You shouldn't leave your things lying around here."
+
+Some miscellaneous bladed weapons are scenery on the incriminating table.
+The description is "Knives, mostly, of various sizes and shapes. There is also a saber which you recognize to be stolen from the Vigiles."
+Understand "weapon" or "knife/knives" or "saber/sabre" or "stolen" or "contraband" as the miscellaneous bladed weapons.
+Instead of taking the miscellaneous bladed weapons, say "Being caught with one of these would just raise unwanted questions. In any case, you already have your scalpel for cutting things."
+
+Some counterfeit notes are scenery on the incriminating table.
+The description is "You can tell that they're counterfeit because some are only halfway inscribed."
+The scent is "They are convincingly odorless."
+Understand "note/banknote/banknotes/money" as the counterfeit notes.
+Instead of taking the counterfeit notes, say "You aren't [italic type]that[roman type] strapped for cash, Marid."
+
+A highly suspicious wine bottle is an open unopenable scenery container on the incriminating table.
 
 Book 3.36 - Gangway
 
