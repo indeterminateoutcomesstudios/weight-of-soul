@@ -13476,11 +13476,11 @@ After reading out landlord-d2-cellar:
 
 Book 3.35 - Cellar
 
-There is a room called the Cellar. "A dimly lit mouse-hole of a hollow that has been bricked off from prying eyes. A pair of mattresses lie near the entrance, where Sal and Piper must have slept. Further in, the only table is laden with bladed weapons, counterfeit notes, and other contraband.
+There is a room called the Cellar. "A dimly lit mouse-hole of a hollow that has been bricked off from prying eyes. A pair of mattresses lie near the entrance, where Sal and Piper must have slept. Further in, a guttering candle on the only table illuminates bladed weapons, counterfeit notes, and other contraband.
 
 A trapdoor ascends out of the cellar.
 
-On the table is a wine bottle[first time] that seems particularly out of place[only]."
+[one of]You notice a wine bottle on the table that seems particularly out of place[or]On the table is a wine bottle[stopping]."
 
 The simple-name is "the cellar".
 The sound is "You hear the faint sounds of vermin squeaking."
@@ -13523,12 +13523,19 @@ Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]There! N
 Part 3.35.2 - The Incriminating Table
 
 The incriminating table is a scenery supporter in the Cellar.
-Instead of examining or searching the incriminating table, say "There are many things on the table, but that wine bottle seems the strangest."
+Instead of examining or searching the incriminating table, say "There are many shapes that glisten in the candlelight, but that wine bottle seems the strangest."
 Instead of putting something on the incriminating table, say "You shouldn't leave your things lying around here."
+
+The guttering phlogiston candle is scenery on the incriminating table.
+The description is "A slow-burning phlogiston candle. It looks as though it was lit some days ago, then forgotten."
+Understand "slow-burning/burning" or "slow" as the guttering phlogiston candle.
+Instead of burning the guttering phlogiston candle, say "The candle is already lit."
+Instead of extinguishing the guttering phlogiston candle, say "You don't like it, but you need the light to see by."
+Instead of listening to, pushing, pulling, rubbing, smelling, squeezing, taking, touching, or turning the guttering phlogiston candle, say "You don't want to."
 
 Some miscellaneous bladed weapons are scenery on the incriminating table.
 The description is "Knives, mostly, of various sizes and shapes. There is also a saber which you recognize to be stolen from the Vigiles."
-Understand "weapon" or "knife/knives" or "saber/sabre" or "stolen" or "contraband" as the miscellaneous bladed weapons.
+Understand "weapon/blade/blades" or "knife/knives" or "saber/sabre" or "stolen" or "vigiles" or "contraband/shape/shapes" as the miscellaneous bladed weapons.
 Instead of taking the miscellaneous bladed weapons, say "Being caught with one of these would just raise unwanted questions. In any case, you already have your scalpel for cutting things."
 
 Some counterfeit notes are scenery on the incriminating table.
