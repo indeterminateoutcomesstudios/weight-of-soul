@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 100417.
+The release number is 110417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -53,6 +53,8 @@ You have been warned.
 Volume 1 - Preamble
 
 [---TO DO---
+
+- Add a response for talking to Doctor Cavala about Saliunca
 
 - Write the Cellar
 - Write Gangway
@@ -358,6 +360,7 @@ Nacarat Investigation ends when nacarat-body-completion-quip is true and the Nac
 
 Thugs Investigation is a scene.
 Thugs Investigation begins when Meeting the Patients ends.
+Thugs Investigation ends when sal-body-completion-quip is true and piper-body-completion-quip is true and clue-giftnote is true.
 
 [We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
 
@@ -1009,7 +1012,7 @@ Instead of turning the player, say "[if time is critical]This is not the time.[o
 
 Part 2.1.2 - Marid's Tattoos
 
-The alchemical tattoos are part of the player. The indefinite article of the alchemical tattoos is "your". The description of the alchemical tattoos is "Your father gave you these tattoos when you were a young child, as is tradition in some alchemical families. Even now, the flowing, circuitous lines remind you of him." Understand "my" or "marid's" or "face" or "neck" or "tattoo" or "flowing" or "circuitous" or "lines" or "line" as the alchemical tattoos.
+The alchemical tattoos are part of the player. The indefinite article of the alchemical tattoos is "your". The description of the alchemical tattoos is "Your father gave you these tattoos when you were a young child, as is tradition in some alchemical families. Even now, the flowing, circuitous lines remind you of him." Understand "my" or "marid's" or "face/skin" or "neck" or "tattoo" or "flowing" or "circuitous" or "lines" or "line" as the alchemical tattoos.
 
 Instead of knocking on, looking under, searching, or touching the alchemical tattoos, say "[if time is critical]This is not the time.[otherwise]Your feel the faintest tingle of power beneath your skin."
 
@@ -1492,6 +1495,7 @@ Understand "look for [text] in [something]" as consulting it about (with nouns r
 Understand "l for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "load" as restoring the game.
 Understand "order [something]" as buying.
+Understand "poke [something]" as touching.
 Understand "prop up/-- [other things] up/-- on/onto [something]" as putting it on.
 Understand "put [something preferably held] down [something]" as inserting it into.
 Understand "raise [something]" as pulling.
@@ -1692,6 +1696,7 @@ Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be m
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
+Understand "undress" as a mistake ("[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire.").
 Understand "use [text]" as a mistake ("(You'll have to use a more specific verb than that.)").
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
@@ -1772,7 +1777,7 @@ Rule for issuing the response text of the opening doors before entering rule res
 
 Part 2.3.7 - Emptying It Into
 
-[Emptying it into is an action applying to two things.
+Emptying it into is an action applying to two things.
 Understand "empty [something preferably held]" as emptying it into.
 Understand "empty [something preferably held] in/into/on/onto/over [something]" as emptying it into.
 Understand "empty out [something preferably held]" as emptying it into.
@@ -1820,7 +1825,7 @@ Report emptying (this is the report emptying rule):
 	if the second noun is a supporter:
 		say "You empty [the noun] onto [the second noun].";
 	otherwise:
-		say "You empty [the noun] into [the second noun]."]
+		say "You empty [the noun] into [the second noun]."
 		
 Part 2.3.8 - Listing Exits and Going-In Disambiguation
 
@@ -2492,6 +2497,7 @@ clue-ravens-sighted is a number that varies.
 clue-raven is a truth state that varies.
 clue-tradingcompany is a truth state that varies.
 clue-crowsnest is a truth state that varies.
+clue-giftnote is a truth state that varies.
 
 clue-reden-channelworks is a truth state that varies.
 clue-reden-zoironest is a truth state that varies.
@@ -2729,7 +2735,7 @@ To say journal-text-objectives:
 			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
 		if cellar-keygiven is true and cellar-access-granted is false:
 			add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
-		otherwise:
+		otherwise if clue-giftnote is false:
 			add "- Investigate the cellar of the flophouse" to L;
 	if Four Investigations is happening:
 		let LM be a list of texts;
@@ -2783,105 +2789,122 @@ To say journal-text-notes:
 		add "- I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
 	if Four Investigations is happening:
 		let LFI be a list of texts; [List of Four Investigations]
-		let L1 be a list of texts;
-		if clue-airborne-vector is true, add "- I learned that the disease is unlikely to be airborne." to L1;
-		if clue-ingestion-vector is true, add "- I learned that the disease can be transmitted by ingestion." to L1;
-		if clue-arturus-animus is true, add "- I learned that the disease is bloodborne and attacks the animus, or the soul." to L1;
-		if L1 is not {}:
+		let L2 be a list of texts;
+		if clue-airborne-vector is true, add "- I learned that the disease is unlikely to be airborne." to L2;
+		if clue-ingestion-vector is true, add "- I learned that the disease can be transmitted by ingestion." to L2;
+		if clue-arturus-animus is true, add "- I learned that the disease is bloodborne and attacks the animus, or the soul." to L2;
+		if L2 is not {}:
 			add "[italic type]The disease[roman type]" to LFI;
-			add L1 to LFI;
-		if Reden Investigation is happening:
+			add L2 to LFI;
+		[---
+		REDEN INVESTIGATION
+		---]
+		now L2 is {};
+		if clue-crowsnest is true:
+			add "- I learned that Reden frequented a rooftop pub in the Shanty Quarter called the Crow's Nest." to L2;
+		otherwise if clue-reden-zoironest is true:
+			add "- I learned that Reden could have frequented a pub involving a [']bird's nest.[']" to L2;
+		if clue-reden-shack is true and Reden's Shack is unvisited:
+			add "- I learned that Reden could have stayed somewhere in Lower Riggertown." to L2;
+		if clue-reden-channelworks is true:
+			add "- I learned that Reden was once a Channelworks worker, and it reminded me that his clothes were unusually wet when he stumbled into Doctor Cavala's clinic." to L2;
+		add "- I remember that Reden died on the night of the Third, two days ago." to L2;
+		if L2 is not {}:
 			if LFI is not {}, add "" to LFI;
 			add "[italic type]Reden[roman type]" to LFI;
-			if clue-crowsnest is true:
-				add "- I learned that Reden frequented a rooftop pub in the Shanty Quarter called the Crow's Nest." to LFI;
-			otherwise if clue-reden-zoironest is true:
-				add "- I learned that Reden could have frequented a pub involving a [']bird's nest.[']" to LFI;
-			if clue-reden-shack is true and Reden's Shack is unvisited:
-				add "- I learned that Reden could have stayed somewhere in Lower Riggertown." to LFI;
-			if clue-reden-channelworks is true:
-				add "- I learned that Reden was once a Channelworks worker, and it reminded me that his clothes were unusually wet when he stumbled into Doctor Cavala's clinic." to LFI;
-			add "- I remember that Reden died on the night of the Third, two days ago." to LFI;
-		if Arturus Investigation is happening:
-			let L2 be a list of texts;
-			if clue-arturus-debt is true:
-				if clue-tradingcompany is true:
-					add "- I learned that Doctor Arturus was in debt, and the Trading Company was involved." to L2;
-				otherwise:
-					add "- I learned that Doctor Arturus was in debt, and someone or something referred to as a 'raven' was involved." to L2;
-			if clue-arturus-wineglassbroken is true:
-				add "- I found a coffee table set for three in Doctor Arturus's home. According to Justinian, one of the wineglasses had been broken by a guest." to L2;
-			otherwise if clue-arturus-coffeetable is true:
-				add "- I found a coffee table set for three in Doctor Arturus's home. The table had not been tidied up, but the third wineglass was missing." to L2;
-			if clue-patientrecords is true:
-				add "- I found that Doctor Arturus rushed through his patient record files for some reason, leaving them unfinished." to L2;
-			if clue-arturus-gloves is true:
-				add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he had been wearing them." to L2;
-			otherwise if examiner-arturus-notable-asked is true:
-				add "- I learned that Doctor Arturus may have been infected through his gloves." to L2;
-			if clue-arturus-timeofdeath is true, add "- I learned that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
-			if L2 is not {}:
-				if LFI is not {}, add "" to LFI;
-				add "[italic type]Doctor Arturus[roman type]" to LFI;
-				add L2 to LFI;
-		if Nacarat Investigation is happening:
-			let L2 be a list of texts;
-			if clue-nacarat-stomach is true:
-				add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
-			if clue-nacarat-raven is true:
-				if clue-tradingcompany is true:
-					add "- I learned that Creditor Nacarat was connected to the Trading Company." to L2;
-				otherwise:
-					add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
-			if clue-nacarat-pocketbook is true:
-				add "- I learned that Creditor Nacarat could have hired Sal and Piper recently." to L2;
-			if clue-nacarat-recording is true:
-				add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged, and he broke a piece of tableware as a result." to L2;
-			otherwise if examiner-nacarat-notable-asked is true:
-				add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
-			if the Nacarat file is meticulously digested:
-				add "- I learned that Creditor Nacarat was admitted to the clinic on the afternoon of the Third, two days ago." to L2;
-			if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of the [if clue-patientrecords is true]same day[otherwise]Third, two days ago[end if]." to L2;
-			if L2 is not {}:
-				if LFI is not {}, add "" to LFI;
-				add "[italic type]Creditor Nacarat[roman type]" to LFI;
-				add L2 to LFI;
-		if Thugs Investigation is happening:
-			let L2 be a list of texts;
-			if the battered keyring is described and the Cellar is unvisited:
-				if cellar-keygiven is true:
-					add "- I found a battered keyring on Sal's belt, and learned that it unlocks a room in a Shanty Quarter flophouse." to L2;
-				otherwise:
-					add "- I found a battered keyring on Sal's belt." to L2;
-			if the Cellar is visited:
-				add "- I found that Sal and Piper had been hiding out in the cellar of a flophouse in the Shanty Quarter.'" to L2;
-			otherwise if the Piper file is meticulously digested:
-				add "- I found a note in Piper's patient record that read 'cellar in f.h. shanty quarter.'" to L2;
+			add L2 to LFI;
+		[---
+		ARTURUS INVESTIGATION
+		---]
+		now L2 is {};
+		if clue-arturus-debt is true:
 			if clue-tradingcompany is true:
-				if clue-sal-raven is true and clue-piper-raven is true:
-					add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
-				otherwise if clue-sal-raven is true:
-					add "- I learned that Sal was connected to the Trading Company." to L2;
-				otherwise if clue-piper-raven is true:
-					add "- I learned that Piper was connected to the Trading Company." to L2;
+				add "- I learned that Doctor Arturus was in debt, and the Trading Company was involved." to L2;
 			otherwise:
-				if clue-sal-raven is true:
-					add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
-				if clue-piper-raven is true:
-					add "- I found a raven symbol on Piper's throwing knives." to L2;
-			if clue-piper-namelist is true:
-				add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
-			if clue-piper-stomach is true:
-				add "- I learned that Piper was killed by something she ingested." to L2;
-			if the Salio file is meticulously digested:
-				add "- I learned that Sal [if the Piper file is meticulously digested]and Piper were[otherwise]was[end if] admitted to the clinic on the morning of the Third, two days ago." to L2;
-			otherwise if the Piper file is meticulously digested:
-				add "- I learned that Piper was admitted to the clinic on the morning of the Third, two days ago." to L2;
-			if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of [if the Salio file is meticulously digested or the Piper file is meticulously digested]that day[otherwise]the Third, two days ago[end if]." to L2;
-			if L2 is not {}:
-				if LFI is not {}, add "" to LFI;
-				add "[italic type]Sal and Piper[roman type]" to LFI;
-				add L2 to LFI;
+				add "- I learned that Doctor Arturus was in debt, and someone or something referred to as a 'raven' was involved." to L2;
+		if clue-arturus-wineglassbroken is true:
+			add "- I found a coffee table set for three in Doctor Arturus's home. According to Justinian, one of the wineglasses had been broken by a guest." to L2;
+		otherwise if clue-arturus-coffeetable is true:
+			add "- I found a coffee table set for three in Doctor Arturus's home. The table had not been tidied up, but the third wineglass was missing." to L2;
+		if clue-patientrecords is true:
+			add "- I found that Doctor Arturus rushed through his patient record files for some reason, leaving them unfinished." to L2;
+		if clue-arturus-gloves is true:
+			add "- I found that the gloves on Doctor Arturus's body were brand new. He couldn't have been infected through his hands if he had been wearing them." to L2;
+		otherwise if examiner-arturus-notable-asked is true:
+			add "- I learned that Doctor Arturus may have been infected through his gloves." to L2;
+		if clue-arturus-timeofdeath is true, add "- I learned that Doctor Arturus died sometime between last night, on the Fourth, and this morning, on the Fifth." to L2;
+		if L2 is not {}:
+			if LFI is not {}, add "" to LFI;
+			add "[italic type]Doctor Arturus[roman type]" to LFI;
+			add L2 to LFI;
+		[---
+		NACARAT INVESTIGATION
+		---]
+		now L2 is {};
+		if clue-nacarat-stomach is true:
+			add "- I learned that Creditor Nacarat was killed by something he ingested." to L2;
+		if clue-nacarat-raven is true:
+			if clue-tradingcompany is true:
+				add "- I learned that Creditor Nacarat was connected to the Trading Company." to L2;
+			otherwise:
+				add "- I found a raven symbol on Creditor Nacarat's gloves." to L2;
+		if clue-giftnote is true:
+			add "- I learned that Creditor Nacarat hired Sal and Piper recently." to L2;
+		otherwise if clue-nacarat-pocketbook is true:
+			add "- I learned that Creditor Nacarat could have hired Sal and Piper recently." to L2;
+		if clue-nacarat-recording is true:
+			add "- I learned that Creditor Nacarat was taking tea with Doctor Arturus when his symptoms emerged, and he broke a piece of tableware as a result." to L2;
+		otherwise if examiner-nacarat-notable-asked is true:
+			add "- I learned that Creditor Nacarat has a glyph of recording hidden in his jacket." to L2;
+		if the Nacarat file is meticulously digested:
+			add "- I learned that Creditor Nacarat was admitted to the clinic on the afternoon of the Third, two days ago." to L2;
+		if examiner-nacarat-timeofdeath-asked is true, add "- I learned that Creditor Nacarat died on the night of [if clue-patientrecords is true]that day[otherwise]the Third, two days ago[end if]." to L2;
+		if L2 is not {}:
+			if LFI is not {}, add "" to LFI;
+			add "[italic type]Creditor Nacarat[roman type]" to LFI;
+			add L2 to LFI;
+		[---
+		THUGS INVESTIGATION
+		---]
+		now L2 is {};
+		if clue-tradingcompany is true:
+			if clue-sal-raven is true and clue-piper-raven is true:
+				add "- I learned that Sal and Piper were connected to the Trading Company." to L2;
+			otherwise if clue-sal-raven is true:
+				add "- I learned that Sal was connected to the Trading Company." to L2;
+			otherwise if clue-piper-raven is true:
+				add "- I learned that Piper was connected to the Trading Company." to L2;
+		otherwise:
+			if clue-sal-raven is true:
+				add "- I found a raven symbol on Sal's knuckle-dusters." to L2;
+			if clue-piper-raven is true:
+				add "- I found a raven symbol on Piper's throwing knives." to L2;
+		if clue-piper-namelist is true:
+			add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
+		if the battered keyring is described and the Cellar is unvisited:
+			if cellar-keygiven is true:
+				add "- I found a battered keyring on Sal's belt, and learned that it unlocks a room in a Shanty Quarter flophouse." to L2;
+			otherwise:
+				add "- I found a battered keyring on Sal's belt." to L2;
+		if the Cellar is visited:
+			add "- I found that Sal and Piper had been hiding out in the cellar of a flophouse in the Shanty Quarter.'" to L2;
+		otherwise if the Piper file is meticulously digested:
+			add "- I found a note in Piper's patient record that read 'cellar in f.h. shanty quarter.'" to L2;
+		if clue-giftnote is true:
+			add "- I found a strange wine bottle in the hideout that was apparently a gift from Nacarat." to L2;
+		otherwise if the Cellar is visited:
+			add "- I found a strange wine bottle in the hideout." to L2;
+		if clue-piper-stomach is true:
+			add "- I learned that Piper was killed by something she ingested." to L2;
+		if the Salio file is meticulously digested:
+			add "- I learned that Sal [if the Piper file is meticulously digested]and Piper were[otherwise]was[end if] admitted to the clinic on the morning of the Third, two days ago." to L2;
+		otherwise if the Piper file is meticulously digested:
+			add "- I learned that Piper was admitted to the clinic on the morning of the Third, two days ago." to L2;
+		if examiner-thugs-timeofdeath-asked is true, add "- I learned that both Sal and Piper died on the night of [if the Salio file is meticulously digested or the Piper file is meticulously digested]that day[otherwise]the Third, two days ago[end if]." to L2;
+		if L2 is not {}:
+			if LFI is not {}, add "" to LFI;
+			add "[italic type]Sal and Piper[roman type]" to LFI;
+			add L2 to LFI;
 		add LFI to L;
 	[---
 	MUSINGS, MISCELLANEOUS
@@ -4327,7 +4350,7 @@ Instead of inserting something into the first aid bag:
 		say "That doesn't belong in the first aid bag."
 		
 Instead of closing the first aid bag while the first aid bag is open and the CSOFAOC < 3, say "No, you still need the first aid bag."
-[Instead of emptying the first aid bag into when First Aid on Cavala is happening, say "This is not the time to be making a mess."]
+Instead of emptying the first aid bag into when First Aid on Cavala is happening, say "This is not the time to be making a mess."
 	
 Instead of doing anything with the first aid bag when Cavala's Errands has not ended (this is the block actions on the first aid bag before First Aid on Cavala rule):
 	if we are examining the first aid bag:
@@ -4917,14 +4940,14 @@ To say cavala-badnews-onit-text:
 	
 Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
-The day-two copy of the Libri Liberi is a thing.
-The printed name is "[if Day Three has ended]backdated [end if]copy of [if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The day-two copy of the Libri Liberi is a proper-named thing.
+The printed name is "[if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise if Day Three has ended]Fifth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
 The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic.".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
 Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
 Understand "yesterday's" or "yesterday" as the day-two copy of the Libri Liberi when the current day is Day Three.
-Understand "backdated" as the day-two copy of the Libri Liberi when Day Three has ended.
+Understand "fifth/five/5th/5/v" or "of" or "aquaria" as the day-two copy of the Libri Liberi when Day Three has ended.
 
 Instead of searching the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
 Instead of eating the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
@@ -6164,11 +6187,11 @@ Table of the Clockwork Musician's Repertoire
 article	track
 "the "	"[italic type]Planetaria[roman type] Overture"
 "the "	"[italic type]Symphony of the Primes[roman type]"
-"the"	"[italic type]Sonata Aquifera[roman type]"
-"the"	"[italic type]Hunter's March[roman type]"
-"the"	"[italic type]Verse of the Queen[roman type]"
+"the "	"[italic type]Sonata Aquifera[roman type]"
+"the "	"[italic type]Hunter's March[roman type]"
+"the "	"[italic type]Verse of the Queen[roman type]"
 "an "	"instrumental cover of [italic type]Amesha, Amesha[roman type]"
-"an"	"instrumental cover of the [italic type]Cantata Caelestia[roman type]"
+"an "	"instrumental cover of the [italic type]Cantata Caelestia[roman type]"
 ""	"Tristitas's [italic type]Concerto IX[roman type]"
 ""	"[italic type]Dance, Aurora[roman type]"
 ""	"[italic type]Trismegistus[roman type]"
@@ -7783,7 +7806,7 @@ After reading out justinian-afoot-discovery:
 	now clue-arturus-discovery-justinian is true.
 	
 After reading out justinian-afoot-patients:
-	now the enabled of justinian-afoot-patients is false;
+	now the enabled of justinian-4inv-patients is false;
 	now the enabled of justinian-afoot-patientrecords is true;
 	now the enabled of justinian-4inv-patientrecords is true.
 	
@@ -8009,14 +8032,14 @@ When Day One ends (this is the despawn the newsboy rule):
 
 Chapter 3.17.2.3 - Day-One Copy of the Libri Liberi
 
-The day-one copy of the Libri Liberi is a thing.
-The printed name is "[if Day Two has ended]outdated [end if]copy of [if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise]the[end if] [italic type]Libri Liberi[roman type]".
+The day-one copy of the Libri Liberi is a proper-named thing.
+The printed name is "[if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise if Day Two has ended]Fourth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
 The description is "[if time is critical]The newspaper can't help you.[otherwise]The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
 The scent is "[if the current day is Day One]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-one copy of the Libri Liberi.
 Understand "today's" or "today" as the day-one copy of the Libri Liberi when the current day is Day One.
 Understand "yesterday's" or "yesterday" as the day-one copy of the Libri Liberi when the current day is Day Two.
-Understand "outdated" as the day-one copy of the Libri Liberi when Day Two has ended.
+Understand "fourth/four/4th/4/iv" or "of" or "aquaria" as the day-one copy of the Libri Liberi when Day Two has ended.
 
 Instead of searching the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
 Instead of eating the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]While the [italic type]Libri Liberi[roman type] is technically edible, it doesn't strike you as the most appropriate midday snack."
@@ -8466,6 +8489,7 @@ Instead of going from the Basilica during The Censor's Nap, say "You still have 
 
 Instead of cutting the censor during The Censor's Nap, say "You'd have to defend your actions in court afterwards. Not exactly the ideal solution."
 Instead of waking the censor during The Censor's Nap, say "Yes, but how?"
+Instead of singing during The Censor's Nap, say "[one of]Sing? In public? Surely... surely there must be another way[or]You are not going to sing to the censor[stopping]."
 Instead of giving the bundle of documents to the censor during The Censor's Nap, say "He doesn't appear to be in a state to receive anything."
 
 Instead of attacking or knocking on the censor during The Censor's Nap:
@@ -8538,7 +8562,7 @@ Instead of touching or tickling the censor during The Censor's Nap:
 		-- otherwise:
 			say "You move on to prodding his eyelids and pulling on his nose hairs. He fidgets and tosses and starts uttering a series of remarkable, if incomprehensible, vocalizations. Then you squeeze his nose and he nearly falls out of his chair.
 
-'Trismegistus's tits!' he splutters, sitting bolt upright. 'What was [italic type]that[roman type] for?'";
+'Trismegistus's tush!' he splutters, sitting bolt upright. 'What was [italic type]that[roman type] for?'";
 			now the censor is awake;
 			start a dialogue with the censor using dialogue censor-woken.
 			
@@ -10605,10 +10629,10 @@ The sound is "It's quiet."
 The scent is "There is an antiseptic quality to the air."
 The exit reminder is "The Turris Infinita foyer is to the west."
 
-Before examining west in Arturus's Clinic, try examining the view of the foyer instead.
-Before examining outside in Arturus's Clinic, try examining the view of the foyer instead.
+Before examining west in Arturus's Clinic when the player is not engaged in endoscopy, try examining the view of the foyer instead.
+Before examining outside in Arturus's Clinic when the player is not engaged in endoscopy, try examining the view of the foyer instead.
 
-Before going outside in Arturus's Clinic, try going west instead.
+Before going outside in Arturus's Clinic when the player is not engaged in endoscopy, try going west instead.
 
 Part 3.29.1 - Scenery
 
@@ -11106,6 +11130,9 @@ Instead of swinging Creditor Nacarat's gloves, say "Very funny."
 
 After examining Creditor Nacarat's gloves:
 	now the molded ravens are part of Creditor Nacarat's gloves;
+	if clue-nacarat-raven is false:
+		increment clue-ravens-sighted;
+		now clue-nacarat-raven is true;
 	continue the action.
 
 The decorative glove-gilding is part of Creditor Nacarat's gloves. The indefinite article is "some".
@@ -11116,11 +11143,6 @@ Some molded ravens are a thing.
 The description is "[if clue-tradingcompany is true]It's the symbol of the Greater Corindia Trading Company. Creditor Nacarat must have been connected to them somehow.[otherwise]You have a nagging feeling that you've seen the symbol somewhere before."
 Understand "raven" or "silhouette/silhouettes/symbol" or "faint" or "of" as the molded ravens.
 Instead of touching the molded ravens, say "You can feel the ravens molded in the leather."
-
-After examining the molded ravens when clue-nacarat-raven is false:
-	increment clue-ravens-sighted;
-	now clue-nacarat-raven is true;
-	continue the action.
 
 Section 3.29.2.4.4 - Legs
 
@@ -11268,6 +11290,8 @@ Understand "thing/things" or "ball/balls/bolus" or "body-of-stomach" or "body of
 Some festering tumors are scenery in nacarat-endoscopy-stomach.
 The description is "You have the urge to throw up just looking at them."
 Understand "tumor/tumour/tumours" or "stomach/-- lining" or "mucus/mucosa" or "circulatory" or "system" or "sickly" or "vein/veins/trail/trails" as the festering tumors.
+
+Before going up when the endoscopic location is nacarat-endoscopy-stomach, try going outside instead.
 
 Chapter 3.29.2.6 - Sal
 
@@ -11741,6 +11765,8 @@ An abominable mass is scenery in piper-endoscopy-stomach.
 The description is "You hope it's your hands that are trembling, and not the mass."
 Understand "island" or "body-of-stomach" or "sickening" or "bolus/boli" or "tendril/tendrils" as the abominable mass.
 
+Before going up when the endoscopic location is piper-endoscopy-stomach, try going outside instead.
+
 Chapter 3.29.2.9 - Raven Questions
 
 Every turn when Four Investigations is happening and clue-ravens-sighted is greater than 1 and clue-raven is false (this is the unlocking raven symbol questions rule):
@@ -12018,7 +12044,7 @@ justinian-4inv-discovery	true	false	"'Can you tell me again about how you discov
 He closes his eyes. 'Doctor Arturus had cloistered himself in the back -- he had instructed me not to disturb him. When I left him in the evening, he seemed his usual self... but when I called on him this morning, he was already dead in his domicile.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-patients, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-patients	true	true	"'Can you tell me anything about Doctor Arturus's patients?'"	"'Can you tell me anything about Doctor Arturus's patients?'
 
-'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
+'I know very little,' he says. 'Doctor Arturus... even in this clinic, with his aide, he was circumspect about his clients. They looked like anyone else -- they were just people, like anyone else who might pass by the Turris Infinita. I'm afraid I can't help you more.'"	{justinian-4inv-patientrecords, justinian-4inv-patientrecords2, justinian-4inv-discovery, justinian-4inv-disease, justinian-4inv-movedbody, justinian-4inv-wineglass, justinian-4inv-raven, justinian-4inv-debt, justinian-4inv-goodbye}
 justinian-4inv-patientrecords	false	true	"'Do you know where the patient records are kept?'"	"'Do you -- do you know where the patient records are kept?'
 
 He pauses in thought.
@@ -12229,7 +12255,7 @@ Instead of taking the smaller plates, say "You feel like you should leave Doctor
 Some leftover wineglasses are a portable open unopenable container on the vintage coffee table.
 Understand "wineglass/glass/glasses" or "wine glass/glasses" or "2/two" as the leftover wineglasses.
 Before smelling the leftover wineglasses, try smelling the leftover stains of red wine instead.
-[Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.]
+Before emptying the leftover wineglasses into, try drinking the leftover wineglasses instead.
 Instead of examining or searching the leftover wineglasses, say "The wineglasses still contain traces of red wine."
 Instead of drinking, turning, or tasting the leftover wineglasses, say "You tilt one of the glasses experimentally, but there isn't enough wine left to form even a drop."
 Instead of inserting something into the leftover wineglasses, say "You can't imagine why you would want to do that."
@@ -12436,7 +12462,7 @@ Before pushing or touching the keyboard, try pushing the alphanumeric keys inste
 Some alphanumeric keys are part of the keyboard.
 The description is "None of the alphanumeric keys are working."
 Understand "letter/letters" or "number/numbers" or "printed" or "a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/0/1/2/3/4/5/6/7/8/9 key" or "key" as the alphanumeric keys.
-Instead of pushing or touching the alphanumeric keys, say "You press a few of the alphanumeric keys, but none of them are working."
+Instead of pushing or touching the alphanumeric keys, say "You press a few of the alphanumeric keys, but none of them are working. Only the playback key appears to be functional."
 
 The playback key is part of the keyboard.
 The description is "The key is labeled with a triangular sigil of recall. Presumably, pressing it will play back messages."
@@ -12480,7 +12506,7 @@ Section 3.31.2.1.3 - Feed Wheel
 
 The feed wheel is an open unopenable container part of the correspondence machine.
 Instead of examining the feed wheel, say "A revolving wheel with a track on the outer rim. [if the ticker-tape reel is in the feed wheel]It's been freshly stocked with ticker tape[otherwise]It looks like something long and flat is meant to be placed inside[end if]."
-Instead of turning, pushing, pulling, touching, or swinging the feed wheel, say "The wheel spins merrily."
+Instead of turning, pushing, pulling, touching, or swinging the feed wheel, say "The wheel spins [if the ticker-tape reel is in the feed wheel]merrily[otherwise]hollowly[end if]."
 Instead of inserting something that is not the ticker-tape reel into the feed wheel, say "That won't fit in the feed wheel."
 Instead of putting something that is not the ticker-tape reel on the feed wheel, say "That won't fit in the feed wheel."
 
@@ -13128,6 +13154,7 @@ Before inserting something into the flophouse reception office:
 The trapdoor to the cellar is a privately-named closed openable better left open lockable unlocked scenery door.
 The description is "[if the trapdoor to the cellar is closed]It's closed[otherwise]It's open[end if]."
 Understand "trap" or "door/doors/trapdoor" or "to/into" or "cellar" or "opening" or "ladder" or "darkness" or "half-eaten" or "descending" as the trapdoor to the cellar when cellar-access-granted is true.
+Before climbing the trapdoor to the cellar, try entering the trapdoor to the cellar instead.
 Instead of inserting something into the trapdoor to the cellar, say "[if the location is the Flophouse]You aren't in the habit of dropping your possessions into trapdoors[otherwise]You could just climb up if you wanted[end if]."
 Instead of searching the trapdoor to the cellar, say "You can't see much."
 
@@ -13476,15 +13503,13 @@ After reading out landlord-d2-cellar:
 
 Book 3.35 - Cellar
 
-There is a room called the Cellar. "A dimly lit mouse-hole of a hollow that has been bricked off from prying eyes. A pair of mattresses lie near the entrance, where Sal and Piper must have slept. Further in, a guttering candle on the only table illuminates bladed weapons, counterfeit notes, and other contraband.
+There is a room called the Cellar. "A dimly lit mouse-hole of a hollow that has been bricked off from prying eyes. A pair of mattresses lie near the entrance, where Sal and Piper must have slept. Further in, a guttering candle on the only table illuminates bladed weapons, counterfeit bills, and other contraband.
 
-A trapdoor ascends out of the cellar.
-
-[one of]You notice a wine bottle on the table that seems particularly out of place[or]On the table is a wine bottle[stopping]."
+A trapdoor ascends out of the cellar."
 
 The simple-name is "the cellar".
 The sound is "You hear the faint sounds of vermin squeaking."
-The scent is "The odors of urine and alcohol reach you."
+The scent is "There is a strange odor in the air."
 The exit reminder is "You can only go upstairs, back to the flophouse."
 
 Before going outside in the Cellar, try going north instead.
@@ -13518,13 +13543,14 @@ Some cockroaches are faraway scenery in the Cellar.
 The description is "Cockroaches haven't scared you since you were a little girl. They are, however, deathly irritating things."
 The cockroaches have some text called the faraway response. The faraway response is "The cockroaches scurry away before you can get close."
 Understand "cockroach/roach/roaches/vermin" as the cockroaches.
-Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]There! Nope. You missed.[or]Slap! You missed.[or]Ha! Got one![or]That's enough. You can't spend the whole day killing cockroaches.[stopping]".
+Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]Pow! Nope. You missed.[or]Slap! You missed.[or]Ha! Got one![or]Okay, that's enough. You can't spend the whole day killing cockroaches.[or]You can't spend the whole day killing cockroaches.[stopping]".
 
 Part 3.35.2 - The Incriminating Table
 
 The incriminating table is a scenery supporter in the Cellar.
+The printed name is "table".
 Instead of examining or searching the incriminating table, say "There are many shapes that glisten in the candlelight, but that wine bottle seems the strangest."
-Instead of putting something on the incriminating table, say "You shouldn't leave your things lying around here."
+Instead of putting something that is not the gift note on the incriminating table, say "You shouldn't leave your things lying around here."
 
 The guttering phlogiston candle is scenery on the incriminating table.
 The description is "A slow-burning phlogiston candle. It looks as though it was lit some days ago, then forgotten."
@@ -13538,13 +13564,91 @@ The description is "Knives, mostly, of various sizes and shapes. There is also a
 Understand "weapon/blade/blades" or "knife/knives" or "saber/sabre" or "stolen" or "vigiles" or "contraband/shape/shapes" as the miscellaneous bladed weapons.
 Instead of taking the miscellaneous bladed weapons, say "Being caught with one of these would just raise unwanted questions. In any case, you already have your scalpel for cutting things."
 
-Some counterfeit notes are scenery on the incriminating table.
-The description is "You can tell that they're counterfeit because some are only halfway inscribed."
+Some counterfeit bills are scenery on the incriminating table.
+The description is "You can tell they're counterfeit because some of the bills are only halfway inscribed."
 The scent is "They are convincingly odorless."
-Understand "note/banknote/banknotes/money" as the counterfeit notes.
-Instead of taking the counterfeit notes, say "You aren't [italic type]that[roman type] strapped for cash, Marid."
+Understand "bill" as the counterfeit bills.
+Instead of taking the counterfeit bills, say "You aren't [italic type]that[roman type] strapped for cash, Marid."
 
-A highly suspicious wine bottle is an open unopenable scenery container on the incriminating table.
+Part 3.35.3 - The Highly Suspicious Wine Bottle
+
+A highly suspicious wine bottle is an open unopenable container on the incriminating table. "[one of]You notice a wine bottle on the table that seems particularly out of place[or]On the table is a wine bottle[stopping]."
+The description is "The bottle is [if the highly suspicious wine bottle is all wined up]still half-full[otherwise]empty, now[end if]; the label suggests an expensive claret. But the odor surrounding the mouth of the bottle is not quite the odor of wine.
+
+Next to the wine bottle, you spy a stained ribbon[if the gift note is on the incriminating table] and a handwritten note[end if]."
+Understand "expensive" or "claret" or "mouth" or "of" or "red" or "quantity" or "drop/drops/droplet/droplets/dreg/dregs" as the highly suspicious wine bottle.
+
+The highly suspicious wine bottle can be all wined up or all wined out. The highly suspicious wine bottle is all wined up.
+
+Before smelling the highly suspicious wine bottle, try examining the strange odor instead.
+Instead of drinking or tasting the highly suspicious wine bottle, say "[if the highly suspicious wine bottle is all wined up]You aren't comfortable tasting suspicious wine from a hidden cellar. Especially when it doesn't [italic type]smell[roman type] quite right[otherwise]There's no wine left in the bottle[end if]."
+Instead of inserting the endoscope into the highly suspicious wine bottle, say "You poke around with the endoscope for a bit, but [if the highly suspicious wine bottle is all wined up]the wine isn't any less opaque close up[otherwise]make out nothing interesting from the dregs that remain in the bottle[end if]."
+Instead of inserting something into the highly suspicious wine bottle, say "That won't accomplish anything."
+Instead of pushing, pulling, swinging, or turning the highly suspicious wine bottle, say "[if the highly suspicious wine bottle is all wined up]You give the bottle a shake, but the wine is too murky to make out anything inside[otherwise]Nothing happens[end if]."
+Instead of searching the highly suspicious wine bottle, say "The bottle [if the highly suspicious wine bottle is all wined up]contains a quantity of red wine[otherwise]is empty[end if]."
+Instead of taking the highly suspicious wine bottle, say "[if the highly suspicious wine bottle is all wined up]It's uncorked, and you might spill it while moving around. Best to just leave it where it is[otherwise]You don't need an empty bottle[end if]."
+Instead of touching the highly suspicious wine bottle, say "It's cold."
+
+Instead of emptying the highly suspicious wine bottle into:
+	if the highly suspicious wine bottle is all wined up:
+		if the second noun is not the location:
+			say "(That would make a big mess, so you decide to pour the wine onto the floor instead.)[paragraph break]";
+		say "You pick up the bottle and pour the wine out, careful not to get any on your gloves or trousers. It's scarlet, glittering, and it cascades and splashes in droplets before seeping into the stone.
+
+Is it just your imagination, or is it -- thicker, somehow, than you'd expect wine to be?[paragraph break]";
+		say wait for any key;
+		say "In any case, it's all gone now. Nothing is revealed at the bottom of the now-empty bottle, and you replace it with a sigh.";
+		now the highly suspicious wine bottle is all wined out;
+	otherwise:
+		say "The bottle is already empty."
+
+The strange odor is faraway scenery in the Cellar.
+The description is "At first it smells like red wine, light and fruity. But there is the barest coppery undertone to it."
+The strange odor has some text called the faraway response. The faraway response is "It's just a scent -- nothing more."
+Understand "scent" or "odour" as the strange odor.
+Before smelling the strange odor, try examining the strange odor instead.
+
+Part 3.35.4 - Other Non-Wine-Bottle, Less Suspicious (But No Less Informative) Clues
+
+The stained ribbon is scenery on the incriminating table.
+The description is "A sigiled natron ribbon, of the kind used in gift-wrapping. It's stained black on blood-red."
+The scent is "The natron fabric masks the scent, but you think you smell dried blood."
+Understand "sigil/sigils/sigiled" or "natron" or "gift" or "gift-wrap/gift-wrapping/giftwrap/giftwrapping/wrap/wrapping" or "blood-red" as the stained ribbon.
+Instead of pushing, pulling, squeezing, taking, touching, or turning the stained ribbon, say "The stains on the ribbon make you hesitant to touch it."
+
+Some black speckled stains are part of the stained ribbon.
+The description is "You have a feeling that they aren't inkstains. And they definitely aren't wine."
+The scent is "The natron fabric masks the scent, but you think you smell dried blood."
+Understand "stain/bloodstain/bloodstains" or "dried" or "blood" as the black speckled stains.
+Instead of pushing, pulling, squeezing, touching, or turning the black speckled stains, say "You don't think touching the stains is a good idea."
+
+Chapter 3.35.4.1 - Gift Note
+
+The gift note is an undescribed thing on the incriminating table.
+The description is "[if the gift note is described]A handwritten note you found in the flophouse cellar[otherwise]A gift note written on plain stationery[end if]. It reads:[paragraph break][italic type]Congratulations to both of you on a job well done. Here is a gift to our continued partnership.[line break]A. Z. B. N. Creditor Nacarat[roman type]".
+The scent is "The note is odorless."
+Understand "handwritten" or "hand" or "written" or "plain" or "stationery" as the gift note.
+
+After examining the gift note when clue-giftnote is false:
+	now clue-giftnote is true;
+	say "[']A. Z. B. N.[']? That's an old-fashioned way to end a letter. You thought the instructors at the Physicians['] College were the only ones who still wrote that.[paragraph break]";
+	wait for any key;
+	say "More importantly, this is proof that Creditor Nacarat had been working with Sal and Piper. Or is it?[paragraph break]";
+	wait for any key;
+	say "There's something a little off about the whole situation that you can't put your finger on.";
+
+Instead of attacking or cutting the gift note:
+	say "You tear up the note.";
+	now the noun is nowhere.
+	
+Instead of dropping the gift note:
+	if the location is in Outdoors:
+		say "The note flutters away in the wind.";
+		now the noun is nowhere;
+	otherwise if the location is not Marid's Room and the location is not the Cellar:
+		say "You shouldn't leave the note lying around here.";
+	otherwise:
+		continue the action.
 
 Book 3.36 - Gangway
 
