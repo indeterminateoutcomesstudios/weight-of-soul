@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 110417.
+The release number is 130417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -56,8 +56,7 @@ Volume 1 - Preamble
 
 - Add a response for talking to Doctor Cavala about Saliunca
 
-- Write the Cellar
-- Write Gangway
+- Write Webster's dialogue
 - Write Crow's Nest
 
 - Write end of Day Two
@@ -328,7 +327,7 @@ A Crucible Game ends when All Quiet on the Western Front ends.
 [1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
 - Poisoned the afternoon of Prologue, died that night. Accidentally exposed himself to Noctis. Justinian doesn't know about him.
 - A Channelworks worker fired for alcoholism. Knew the back entrance, tended to wander there drunk. That's how he got poisoned.
-- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where Webster knows more about Reden's activities. She doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
+- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where Webster knows more about Reden's activities. He doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
 - Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
 
 Reden Investigation is a scene.
@@ -634,6 +633,7 @@ To skip past the first half of Four Investigations:
 	now Arturus's Study is visited;
 	[now Zoiro's Residence is visited;
 	now Reden's Shack is visited;]
+	now shantyquarter-daytwo-quipped is true;
 	now Rats' Run is visited;
 	move the player to the Flophouse, without printing a room description;
 	follow the scene changing rules.
@@ -2217,7 +2217,9 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-Thanks to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, to the IF community, and to every single person who's provided feedback on this game. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host of people whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+
+Thanks again to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -2967,7 +2969,7 @@ The sky is a faraway backdrop in Outdoors. The indefinite article is "the".
 The description is "[if it is night]Shrouded among the clouds and the constellations, the [italic type]Luna[roman type] presides from its throne.[otherwise]The clouds huddle overhead in suspense."
 The sound is "The [if it is night]night is[otherwise]clouds are[end if] quiet."
 The sky has some text called the faraway response. The faraway response of the sky is "The heavens are beyond your reach."
-Understand "heaven" or "heavens" or "day/night/daylight" or "weather" or "overcast" as the sky.
+Understand "heaven" or "heavens" or "day/night/daylight" or "weather" or "overcast" or "desolate" as the sky.
 
 Some clouds are scenery part of the sky. The indefinite article is "the".
 The description is "[if it is night]They are dark shapes in a darker sky.[otherwise]The sun is shy on the best of days here, and today's weather is far from the best."
@@ -3155,7 +3157,7 @@ The view of the Shanty Quarter is a faraway backdrop. The indefinite article is 
 The description is "There, the city splinters into a maze of urban decay."
 The sound is "You hear flapping fabric and little else."
 The scent is "It's too far to smell. You're almost relieved."
-Understand "maze" or "of/-- urban/-- decay" as the view of the Shanty Quarter.
+Understand "maze" or "of/-- urban/-- decay" or "grimy" or "brick" or "concrete" or "and" as the view of the Shanty Quarter.
 
 The nightmarish architecture is a backdrop.
 The description is "The architecture of this place is nightmarish, impossible. Walls are crushed together. Roofs and floors are one and the same."
@@ -6018,7 +6020,7 @@ There is a proper-named room called the Public House. "Tucked away in the shadow
 The simple-name is "the public house".
 The sound is "Music and conversation intermingle with one another."
 The scent is "The aroma of hot food reaches you."
-The exit reminder of the Public House is "The only door is to the east."
+The exit reminder is "The only door is to the east."
 
 Instead of buying in the Public House, say "[if the enabled of bartender-dialogue-drink is true]To buy a drink, talk to the bartender[otherwise]You aren't in the mood for anything[end if]."
 Instead of examining east in the Public House, say "That way lies the door."
@@ -8286,6 +8288,7 @@ Before examining west in Miller's Gate, try examining the view of the grand foru
 Part 3.19.1 - Scenery
 
 The high-rise buildings, the city crowd, the Via Terminalis, the view of the grand forum, and the Upper Perioch ambience are in Miller's Gate.
+
 Before entering the view of the grand forum in Miller's Gate, try going west instead.
 
 Some gate-mounted searchlights are faraway scenery in Miller's Gate.
@@ -8405,6 +8408,8 @@ Instead of examining outside in the Basilica, say "You see the bustle of the gra
 Part 3.20.1 - Scenery
 
 The view of the grand forum is in the Basilica.
+
+Before entering the view of the grand forum in the Basilica, try going east instead.
 
 Some busy clerks are a undescribed mixed-race person in the Basilica.
 The description is "They look very busy."
@@ -8716,6 +8721,9 @@ Instead of examining outside in the Via Mercurii, say "It's unclear where you wa
 Part 3.21.1 - Scenery
 
 The high-rise buildings, the city crowd, the Bilious Canal, the view of the grand forum, the view of the Shanty Quarter, and the Upper Perioch ambience are in the Via Mercurii.
+
+Before entering the view of the grand forum in the Via Mercurii, try going north instead.
+Before entering the view of the Shanty Quarter in the Via Mercurii, try going south instead.
 
 Some shady side streets are faraway scenery in the Via Mercurii.
 The description is "You are uncomfortable in this place."
@@ -9661,6 +9669,9 @@ Part 3.23.1 - Scenery
 
 The mist, the Bilious Canal, the view of Riggertown, and the view of the Shanty Quarter are in Cadaver Walk.
 
+Before entering the view of Riggertown in Cadaver Walk, try going west instead.
+Before entering the view of the Shanty Quarter in Cadaver Walk, try going east instead.
+
 The haphazard bridge is scenery in Cadaver Walk.
 The description is "You can see why they call it Cadaver Walk."
 The sound is "The bridge rattles dishearteningly in the wind."
@@ -9739,6 +9750,7 @@ Instead of examining outside in Riggertown Lower Level, say "It's unclear where 
 Part 3.24.1 - Scenery
 
 The mist, the Bilious Canal, the view of Cadaver Walk, the view of the upper landing, the arcane system of ladders, the twisty catwalks, the Riggertown crowd, and the Riggertown ambience are in Riggertown Lower Level.
+
 Before entering the view of Cadaver Walk in Riggertown Lower Level, try going east instead.
 Before entering the view of the upper landing in Riggertown Lower Level, try going up instead.
 Before entering the arcane system of ladders in Riggertown Lower Level, try going up instead.
@@ -10085,7 +10097,9 @@ Instead of examining outside in Riggertown Upper Level, say "It's unclear where 
 Part 3.26.1 - Scenery
 
 The street-lamps, the mist, the Bilious Canal, the view of the footpath, the arcane system of ladders, the twisty catwalks, the Riggertown crowd, the scrap-heap spires, the view of the Riggertown Mechanistry, and the Riggertown ambience are in Riggertown Upper Level.
+
 Before entering the view of the Riggertown Mechanistry in Riggertown Upper Level, try going south instead.
+Before entering the arcane system of ladders in Riggertown Upper Level, try going down instead.
 
 Some cubby-carts are faraway scenery in Riggertown Upper Level.
 The description is "A series of belts conveys materials from building to building."
@@ -13568,7 +13582,8 @@ Some counterfeit bills are scenery on the incriminating table.
 The description is "You can tell they're counterfeit because some of the bills are only halfway inscribed."
 The scent is "They are convincingly odorless."
 Understand "bill" as the counterfeit bills.
-Instead of taking the counterfeit bills, say "You aren't [italic type]that[roman type] strapped for cash, Marid."
+Instead of taking the counterfeit bills, say "You pick up a bill, only for it to fall apart in your fingers. It seems the glyphs on these bills have not yet been sealed."
+Instead of searching or looking under the counterfeit bills, say "You sift through the stacks of money, but there's nothing underneath."
 
 Part 3.35.3 - The Highly Suspicious Wine Bottle
 
@@ -13597,7 +13612,7 @@ Instead of emptying the highly suspicious wine bottle into:
 
 Is it just your imagination, or is it -- thicker, somehow, than you'd expect wine to be?[paragraph break]";
 		say wait for any key;
-		say "In any case, it's all gone now. Nothing is revealed at the bottom of the now-empty bottle, and you replace it with a sigh.";
+		say "In any case, it's all gone now. Nothing is revealed at the bottom of the now-empty bottle. You replace it on the table.";
 		now the highly suspicious wine bottle is all wined out;
 	otherwise:
 		say "The bottle is already empty."
@@ -13631,11 +13646,14 @@ Understand "handwritten" or "hand" or "written" or "plain" or "stationery" as th
 
 After examining the gift note when clue-giftnote is false:
 	now clue-giftnote is true;
+	wait for any key;
 	say "[']A. Z. B. N.[']? That's an old-fashioned way to end a letter. You thought the instructors at the Physicians['] College were the only ones who still wrote that.[paragraph break]";
 	wait for any key;
-	say "More importantly, this is proof that Creditor Nacarat had been working with Sal and Piper. Or is it?[paragraph break]";
+	say "More importantly, this is proof that Creditor Nacarat had been working with Sal and Piper.[paragraph break]";
 	wait for any key;
-	say "There's something a little off about the whole situation that you can't put your finger on.";
+	say "Or is it?[paragraph break]";
+	wait for any key;
+	say "There's something off here that you can't quite put your finger on.";
 
 Instead of attacking or cutting the gift note:
 	say "You tear up the note.";
@@ -13652,11 +13670,93 @@ Instead of dropping the gift note:
 
 Book 3.36 - Gangway
 
-The Gangway is a room. It is above the Shanty Quarter.
+The Gangway is a proper-named room in Outdoors. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
+
+The Shanty Quarter yawns below. Above you is [first time]the place called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer named Webster blocks the way[end if]."
+It is above the Shanty Quarter.
+
+The simple-name is "the Gangway".
+The sound is "The wind whistles around you."
+The scent is "It's cold here, and foul."
+The exit reminder is "You can go down to the Shanty Quarter or up to the Crow's Nest."
+The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the Crow's Nest)?"
+
+Instead of jumping in the Gangway, say "That sounds rather more fatal than you would prefer."
+Before examining up in the Gangway, try examining the view of the Crow's Nest instead.
+Before examining down in the Gangway, try examining the view of the Shanty Quarter instead.
+Instead of examining inside in the Gangway, say "It's unclear where you want to look."
+Instead of examining outside in the Gangway, say "It's unclear where you want to look."
+Instead of examining a direction in the Gangway, say "The city stretches away in that direction."
+
+Part 3.36.1 - Scenery
+
+The high-rise buildings, the mist, and the view of the Shanty Quarter are in the Gangway.
+
+Before entering the view of the Shanty Quarter in the Gangway, try going down instead.
+
+Some rotting beams are scenery in the Gangway.
+The description is "Old wood, but noticeably reinforced and maintained."
+Understand "beam/buttress/buttresses" or "spiral/lattice" or "stair/stairs/staircase/stairway" or "wood/wooden" as the rotting beams.
+Before climbing the rotting beams, try going up instead.
+Instead of attacking, pushing, pulling, rubbing, squeezing, touching, or turning the rotting beams, say "The beams are surprisingly sturdy."
+Instead of entering the rotting beams, say "That's where you're perched right now."
+
+Some figurative stars are faraway scenery in the Gangway.
+The description is "Figuratively speaking. The stars aren't actually out."
+The sound is "Figuratively speaking. The stars aren't actually out."
+The figurative stars have some text called the faraway response. The faraway response is "Figuratively speaking. The stars aren't actually out."
+
+The view of the Crow's Nest is faraway scenery in the Gangway.
+The description is "At first glance it is haphazardly built. Only on closer inspection do you see the buttresses, the care that has gone into its construction."
+The sound is "It's quiet."
+The scent is "There is the faintest scent of food on the wind."
+Understand "jutting" or "structure" or "treehouse/house" or "pub/public" or "place" as the view of the Crow's Nest.
+Before climbing or entering the view of the Crow's Nest, try going up instead.
+Instead of looking under the view of the Crow's Nest, say "The Crow's Nest is balanced on a lattice of beams."
+
+Part 3.36.2 - Webster
+
+Webster is a human man.
+He is improper-named. The indefinite article is "a".
+The printed name is "[if Webster is improper-named]bouncer[otherwise]Webster".
+The description is "[first time]He is human, though you wouldn't have guessed from his silhouette. [only]He wears cracked welding goggles and the greasy leathers of a mechanist; below the waist, his legs have been entirely replaced with a roaring pistoning walking-chassis. But if you look beyond the sound and fury, there's a twinkle in his eye, and an unexpected air of amicable civility."
+The sound is "His mechanical legs clank and hiss."
+The scent is "He smells like a machine shop."
+Understand "fearsome" or "bouncer" or "eight-legged/8-legged/legged" or "eight/8/viii" as Webster.
+Instead of attacking, cutting, knocking on, or pushing Webster, say "You doubt that would end well for you."
+Instead of looking under Webster, say "He's standing (sitting?) on the wooden beams."
+
+Some cracked welding goggles are a thing worn by Webster.
+The description is "Scratches and scorch marks."
+Understand "goggle" or "crack/cracks/scratch/scratches/scratched" or "scorch" or "mark/marks" as the cracked welding goggles.
+
+Some greasy leathers are a thing worn by Webster.
+The description is "His clothes are just a little too oily and pockmarked to be fashionable."
+Before smelling the greasy leathers, try smelling Webster instead.
+Understand "oil/oily/grease" or "pockmark/pockmarks/pockmarked" or "clothes" or "leather" or "machinist" as the greasy leathers.
+
+The walking-chassis is a thing part of Webster.
+The description is "A spider-legged contraption of bewildering complexity. A glyph of transfusion connects [the Webster]'s nervous system to the chassis."
+Before smelling the walking-chassis, try smelling Webster instead.
+Understand "roaring" or "piston/pistons/pistoning" or "walking" or "chassis/contraption" or "spider" or "leg/legs/legged/spider-legged" as the walking-chassis.
+Before looking under the walking-chassis, try looking under Webster instead.
+Instead of pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning the walking-chassis, say "[one of]'Hey,' says [the Webster]. 'No touching.'[or][The Webster] told you not to touch the chassis.[stopping]"
+
+The glyph of transfusion is a thing part of the walking-chassis.
+The description is "An advanced glyph you learned in the Physicians['] College. You never imagined you'd come across it in a place like this."
+Understand "nervous" or "system" or "advanced" as the glyph of transfusion.
+Before pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning the glyph of transfusion, try touching the walking-chassis instead.
+Instead of looking under the glyph of transfusion, say "The glyph is inscribed on the chassis."
+
+Chapter 3.36.2.1 - Webster during Day Two
+
+Webster can be in-the-way or sufficiently-convinced. Webster is in-the-way.
+
+[You need to bring up Reden to get into the Crow's Nest, which is only possible if you know he visited this place.]
 
 Book 3.37 - Crow's Nest
 
-The Crow's Nest is a room. It is above the Gangway.
+There is a proper-named room called the Crow's Nest. It is above the Gangway.
 
 [There is an antique tinderbox in Crow's Nest]
 
