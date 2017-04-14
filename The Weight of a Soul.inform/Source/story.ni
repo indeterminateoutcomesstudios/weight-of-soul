@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 130417.
+The release number is 140417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -53,8 +53,6 @@ You have been warned.
 Volume 1 - Preamble
 
 [---TO DO---
-
-- Add a response for talking to Doctor Cavala about Saliunca
 
 - Write Webster's dialogue
 - Write Crow's Nest
@@ -4082,6 +4080,7 @@ Chapter 3.3.4.1 - Cavala Doing Paperwork
 
 cavala-wh-forgot-quipped is a truth state that varies.
 cavala-wh-forgot-quip-switch is a truth state that varies.
+cavala-wh-saliunca-quipped is a truth state that varies.
 cavala-wh-goodnight-quipped is a truth state that varies.
 
 Rule for writing a paragraph about Doctor Cavala during Walking Home in Darkness:
@@ -4100,18 +4099,30 @@ Instead of entering Doctor Cavala's armchair while Prologue is happening, say "D
 Instead of putting anything on Doctor Cavala's armchair while Prologue is happening, say "Doctor Cavala is already in the armchair."
 
 Instead of talking to Doctor Cavala during Walking Home in Darkness:
-	if cavala-wh-forgot-quip-switch is true:
+	if cavala-wh-saliunca-quipped is false and Saliunca is hostile:
+		say "'Doctor,' you breathe. 'There's a woman in my dormitory block -- she's poisoning the pigeons, and... and...'
+
+Doctor Cavala is giving you a look. You trail off, suddenly embarrassed.
+
+[wait for any key]'Please, Marid,' she replies wearily. 'I'm a physician, not a veterinarian. I know tonight has been hard on you, but... could you just leave me to my paperwork? Please?'
+
+[wait for any key]You look at your feet. 'I -- I'm sorry, Doctor. I won't do it again.'
+
+She shakes her head and turns her attention back to her desk.";
+		now cavala-wh-saliunca-quipped is true;
+		now cavala-wh-forgot-quip-switch is false;
+	otherwise if cavala-wh-forgot-quip-switch is true:
 		say "'I'm just checking,' you reply.
 
 She shrugs and returns to her paperwork.[line break]";
+		now cavala-wh-forgot-quip-switch is false;
 	otherwise if cavala-wh-goodnight-quipped is false:
 		say "'Good night, Doctor Cavala.'[paragraph break]'Good night, Marid,' she replies. 'Don't stay up too late.'";
 		now cavala-wh-goodnight-quipped is true;
+	otherwise if cavala-wh-saliunca-quipped is true:
+		say "You promised not to bother Doctor Cavala.";
 	otherwise:
 		say "You shouldn't bother Doctor Cavala while she's working.";
-		
-Every turn when cavala-wh-forgot-quip-switch is true:
-	now cavala-wh-forgot-quip-switch is false.
 		
 Instead of giving something to Doctor Cavala during Walking Home in Darkness, say "You shouldn't bother Doctor Cavala while she's working."
 		
