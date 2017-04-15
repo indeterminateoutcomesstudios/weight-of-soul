@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 140417.
+The release number is 150417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -1493,7 +1493,7 @@ Understand "look for [text] in [something]" as consulting it about (with nouns r
 Understand "l for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "load" as restoring the game.
 Understand "order [something]" as buying.
-Understand "poke [something]" as touching.
+Understand "poke [something]" as pushing.
 Understand "prop up/-- [other things] up/-- on/onto [something]" as putting it on.
 Understand "put [something preferably held] down [something]" as inserting it into.
 Understand "raise [something]" as pulling.
@@ -1561,6 +1561,8 @@ Check approaching (this is the no need to hurry when you can go normally rule):
 	
 A thing can be consultable. A thing is usually not consultable.
 Before consulting something that is not consultable about something (this is the search unconsultable things instead rule): try searching the noun instead.
+
+Understand "possession" as a thing enclosed by a person.
 
 Part 2.3.3 - New Miscellaneous Actions
 
@@ -11594,9 +11596,13 @@ Instead of closing Piper's jacket, say "You see no reason to do that."
 After examining Piper's jacket when Piper's name list is nowhere: now Piper's name list is in Piper's pocket; continue the action.
 
 Piper's pocket is a transparent closed openable container part of Piper's jacket.
-Instead of examining or searching Piper's pocket, say "[if clue-piper-namelist is false]There's something[otherwise]The list of names you found is[end if] inside."
 Understand "jacket pocket/pockets" or "pockets" as Piper's pocket.
 Instead of inserting something into Piper's pocket, say "This is a dead body, not your personal chest-of-drawers."
+Instead of examining or searching Piper's pocket:
+	if clue-piper-namelist is false:
+		try examining Piper's name list;
+	otherwise:
+		say "The list of names you found is inside."
 
 Piper's name list is a thing. [This was bleached with hydrogen peroxide, a.k.a. caustic baryta.]
 The description is "A list of names followed by sums of money. All of the names have check marks beside them; some of them are crossed out. The reverse side, for some reason, has been bleached a blank white."
@@ -11879,7 +11885,7 @@ He frowns. 'Then the situation is worse than I had imagined. We [italic type]mus
 examiner-tribunal	true	true	"'Tribunal?'"	"'Tribunal?'
 
 Examiner Velox taps the pin on his coat. 'We are here on behalf of the district councils. At this very moment, a hearing is under way regarding measures to be taken against the disease.'"	{examiner-iequarantine, examiner-agree, examiner-refuse}
-examiner-mentionedtribunal	true	true	"'You mentioned a tribunal?'"	"You mentioned a tribunal?'
+examiner-mentionedtribunal	true	true	"'You mentioned a tribunal?'"	"'You mentioned a tribunal?'
 
 Examiner Velox flashes his badge. 'We are here on behalf of the district councils. At this very moment, a hearing is under way regarding measures to be taken against the disease.'"	{examiner-agree, examiner-refuse}
 examiner-refuse	true	false	"'I can't promise that I won't damage the bodies...'"	"'I can't promise that I won't damage the bodies. What if I need to perform a dissection for more information?'
@@ -11944,7 +11950,7 @@ To say examiner-exposition:
 	wait for any key;
 	say "'What can you tell me?' you ask.
 
-'The man on the left is Doctor Arturus -- I see you're already familiar with him. Very good. The one beside him, the well-dressed man, is Creditor Nacarat of the Furopolis Securities Exchange. He's rather well-known in certain circles of society -- he has been implicated in some fraud allegations, but nothing concrete.'[paragraph break]";
+'The man on the left is Doctor Arturus -- I see you're already familiar with him. Very good. The one beside him, the well-dressed man, is Creditor Nacarat of the Furopolis Securities Exchange. He's rather well-known in certain circles of society -- has been implicated in some fraud allegations, but nothing concrete.'[paragraph break]";
 	wait for any key;
 	say "'What about the other two?'
 
