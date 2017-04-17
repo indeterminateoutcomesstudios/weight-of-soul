@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 150417.
+The release number is 170417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -2245,7 +2245,7 @@ A person has some text called the bio-name. The bio-name of a person is usually 
 A person has some text called the bio-description. The bio-description of a person is usually "".
 
 To say characters-text:
-	say "You have discovered the following notable characters:";
+	say "You have encountered the following notable characters:";
 	repeat with current character running through the list of discovered characters:
 		say "[paragraph break][bold type][bio-name of current character][roman type][line break][bio-description of current character][run paragraph on]".
 
@@ -10052,7 +10052,7 @@ Instead of taking the empty wine bottles, say "You don't need any of these bottl
 Part 3.25.2 - Drink Coupons
 
 Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
-The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Each coupon entitles the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
 Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
 
 After examining the scattered coupons:
@@ -10060,7 +10060,7 @@ After examining the scattered coupons:
 	continue the action.
 	
 A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Each one entitles the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five coupons entitle the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
 Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
 
 The Reden's Shack coupon container is a container. It contains three drink coupons.
@@ -13689,11 +13689,11 @@ Book 3.36 - Gangway
 
 The Gangway is a proper-named room in Outdoors. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
-The Shanty Quarter yawns below. Above you is [first time]the place called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer named Webster blocks the way[end if]."
+The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[end if]."
 It is above the Shanty Quarter.
 
 The simple-name is "the Gangway".
-The sound is "The wind whistles around you."
+The sound is "The wind sighs, and [the Webster]'s legs groan."
 The scent is "It's cold here, and foul."
 The exit reminder is "You can go down to the Shanty Quarter or up to the Crow's Nest."
 The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the Crow's Nest)?"
@@ -13727,20 +13727,20 @@ The view of the Crow's Nest is faraway scenery in the Gangway.
 The description is "At first glance it is haphazardly built. Only on closer inspection do you see the buttresses, the care that has gone into its construction."
 The sound is "It's quiet."
 The scent is "There is the faintest scent of food on the wind."
-Understand "jutting" or "structure" or "treehouse/house" or "pub/public" or "place" as the view of the Crow's Nest.
+Understand "jutting" or "structure" or "treehouse/house" or "pub/public" or "house" as the view of the Crow's Nest.
 Before climbing or entering the view of the Crow's Nest, try going up instead.
 Instead of looking under the view of the Crow's Nest, say "The Crow's Nest is balanced on a lattice of beams."
 
 Part 3.36.2 - Webster
 
-Webster is a human man.
+Webster is an undescribed hostile human man in the Gangway.
 He is improper-named. The indefinite article is "a".
 The printed name is "[if Webster is improper-named]bouncer[otherwise]Webster".
-The description is "[first time]He is human, though you wouldn't have guessed from his silhouette. [only]He wears cracked welding goggles and the greasy leathers of a mechanist; below the waist, his legs have been entirely replaced with a roaring pistoning walking-chassis. But if you look beyond the sound and fury, there's a twinkle in his eye, and an unexpected air of amicable civility."
+The description is "[first time]He is human, though you wouldn't have guessed from his silhouette. [only]He wears cracked welding goggles and the greasy leathers of a mechanist; below the waist, his legs have been entirely replaced with a roaring pistoning walking-chassis."
 The sound is "His mechanical legs clank and hiss."
 The scent is "He smells like a machine shop."
 Understand "fearsome" or "bouncer" or "eight-legged/8-legged/legged" or "eight/8/viii" as Webster.
-Instead of attacking, cutting, knocking on, or pushing Webster, say "You doubt that would end well for you."
+[Instead of attacking, cutting, knocking on, or pushing Webster, say "You doubt that would end well for you."]
 Instead of looking under Webster, say "He's standing (sitting?) on the wooden beams."
 
 Some cracked welding goggles are a thing worn by Webster.
@@ -13754,6 +13754,7 @@ Understand "oil/oily/grease" or "pockmark/pockmarks/pockmarked" or "clothes" or 
 
 The walking-chassis is a thing part of Webster.
 The description is "A spider-legged contraption of bewildering complexity. A glyph of transfusion connects [the Webster]'s nervous system to the chassis."
+The sound is "The chassis is extremely noisy."
 Before smelling the walking-chassis, try smelling Webster instead.
 Understand "roaring" or "piston/pistons/pistoning" or "walking" or "chassis/contraption" or "spider" or "leg/legs/legged/spider-legged" as the walking-chassis.
 Before looking under the walking-chassis, try looking under Webster instead.
@@ -13769,13 +13770,73 @@ Chapter 3.36.2.1 - Webster during Day Two
 
 Webster can be in-the-way or sufficiently-convinced. Webster is in-the-way.
 
-[You need to bring up Reden to get into the Crow's Nest, which is only possible if you know he visited this place.]
+Instead of going up in the Gangway when Webster is in-the-way:
+	if the home dialogue branch of Webster is webster-d2-intro:
+		start a dialogue with Webster using dialogue webster-d2-confront;
+	otherwise:
+		say "[The Webster] is suspicious of you, and won't let you through.";
+		
+Section 3.36.2.1.1 - Intro
+
+[The Crow's Nest serves a small community of Channelworks and ex-Channelworks workers. It has recently been strong-armed into serving Trading Company associates as well. Webster is contractually required to turn Marid away unless she looks like a good-faith customer. You need to bring up Reden to get into the Crow's Nest, which is only possible if you know he visited this place.]
+
+Some dialogue branches are defined by the Table of Webster Day Two Dialogue.
+
+Table of Webster Day Two Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+webster-d2-intro	true	false	""	"'Hello,' you say, rather meekly.
+
+The bouncer peers down at you and frowns. He wipes soot from his goggles, blows on his gloved fingers.
+
+'You don't look like you're from around here,' he finally remarks."	{webster-d2-whatmean, webster-d2-neitheryou, webster-d2-cavalaclinic}
+webster-d2-whatmean	true	false	"'What do you mean?'"	"'What do you mean?'
+
+He shakes his head. 'Take a look around you, sweetheart. You got your eyes screwed on tight? Everything in order? [']Cause nothing here is. Nobody comes here [']cept broken people trying to fix themselves.
+
+'And now you come along. Little Miss Prim in your white jacket. People like you? You don't come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-neitheryou	true	false	"'Neither do you.'"	"'Neither do you.'
+
+He looks down at himself. His mechanical legs hiss with a plume of steam, and he chuckles.
+
+'Yeah,' he says. 'Yeah, I suppose I don't, either. We all got our own stories.
+
+'You, though? You're especially out of place. Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-cavalaclinic	true	false	"'I work at Doctor Cavala's clinic.'"	"'I work at Doctor Cavala's clinic.'
+
+He appraises you with a raised eyebrow. 'Thought you looked the sort. White jacket. Gloves like a surgeon. You don't ever take those gloves off, do you?'
+
+You look at your gloves, and he shakes his head.
+
+'I don't know why you'd come down here,' he mutters. 'People like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-confront	true	false	""	"You've hardly taken two steps when the bouncer clears his throat.
+
+'Funny thing about the usual customers,' he says. 'The ones with the dead look in their eyes. They tend to stop when they see a big man with spider legs. But you? Little Miss Prim in your white jacket?'
+
+He folds his arms, looks you up and down.
+
+'You're different. Different from them. People like you don't ever come down here -- not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-needadrink	true	true	"'I'm just looking for a drink.'"	"'I'm just... looking for a drink.'
+
+The bouncer sighs. 'You're a terrible liar, sweetheart.'
+
+You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest. Please.'"	"'I need to get into the Crow's Nest. Please.'
+
+He looks you squarely in the eye. His expression is guarded, and for the briefest of moments, sad.
+
+'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths.'"	"'I'm investigating a series of deaths.'
+
+"	{}
+webster-d2-investigatingdisease	true	false	"'I'm here on behalf of Doctor Cavala...' <Present the signum.>"	"'I'm here on behalf of Doctor Cavala. We're investigating the spread of a certain disease -- I think this place might be involved...'"	{}
+
+The home dialogue branch of Webster is webster-d2-intro.
 
 Book 3.37 - Crow's Nest
 
 There is a proper-named room called the Crow's Nest. It is above the Gangway.
 
-[There is an antique tinderbox in Crow's Nest]
+[The antique tinderbox, the Daemon's Wheel]
 
 Book of the Rest
 
