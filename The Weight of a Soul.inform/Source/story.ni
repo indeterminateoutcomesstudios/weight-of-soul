@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 170417.
+The release number is 180417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -10057,6 +10057,7 @@ Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered c
 
 After examining the scattered coupons:
 	now clue-crowsnest is true;
+	now the enabled of webster-d2-deathsreden is true;
 	continue the action.
 	
 A drink coupon is a kind of thing.
@@ -10069,6 +10070,7 @@ Instead of taking the scattered coupons:
 	now the scattered coupons are nowhere;
 	now all drink coupons in the Reden's Shack coupon container are carried by the player;
 	now clue-crowsnest is true;
+	now the enabled of webster-d2-deathsreden is true;
 	say "Taken.";
 	
 Instead of giving a drink coupon to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
@@ -13689,7 +13691,7 @@ Book 3.36 - Gangway
 
 The Gangway is a proper-named room in Outdoors. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
-The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[end if]."
+The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[otherwise], watched by the bouncer Webster from his perch[end if]."
 It is above the Shanty Quarter.
 
 The simple-name is "the Gangway".
@@ -13713,7 +13715,7 @@ Before entering the view of the Shanty Quarter in the Gangway, try going down in
 
 Some rotting beams are scenery in the Gangway.
 The description is "Old wood, but noticeably reinforced and maintained."
-Understand "beam/buttress/buttresses" or "spiral/lattice" or "stair/stairs/staircase/stairway" or "wood/wooden" as the rotting beams.
+Understand "beam/buttress/buttresses" or "spiral/lattice" or "stair/stairs/staircase/stairway" or "wood/wooden" or "perch" as the rotting beams.
 Before climbing the rotting beams, try going up instead.
 Instead of attacking, pushing, pulling, rubbing, squeezing, touching, or turning the rotting beams, say "The beams are surprisingly sturdy."
 Instead of entering the rotting beams, say "That's where you're perched right now."
@@ -13774,11 +13776,13 @@ Instead of going up in the Gangway when Webster is in-the-way:
 	if the home dialogue branch of Webster is webster-d2-intro:
 		start a dialogue with Webster using dialogue webster-d2-confront;
 	otherwise:
-		say "[The Webster] is suspicious of you, and won't let you through.";
+		say "[The Webster] blocks your way.";
 		
 Section 3.36.2.1.1 - Intro
 
-[The Crow's Nest serves a small community of Channelworks and ex-Channelworks workers. It has recently been strong-armed into serving Trading Company associates as well. Webster is contractually required to turn Marid away unless she looks like a good-faith customer. You need to bring up Reden to get into the Crow's Nest, which is only possible if you know he visited this place.]
+[The Crow's Nest serves a small community of Channelworks and ex-Channelworks workers. It has recently been strong-armed into serving Trading Company associates as well.
+
+Webster needs the money but is disliked by the new Trading Company management. He's contractually required to turn Marid away because she isn't a 'friend'. You need to bring up Reden to convince him to look the other way, which is only possible if you know he visited this place.]
 
 Some dialogue branches are defined by the Table of Webster Day Two Dialogue.
 
@@ -13786,51 +13790,96 @@ Table of Webster Day Two Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 webster-d2-intro	true	false	""	"'Hello,' you say, rather meekly.
 
-The bouncer peers down at you and frowns. He wipes soot from his goggles, blows on his gloved fingers.
+The bouncer peers down at you and frowns. He wipes soot from his goggles; he blows on his gloved fingers.
 
-'You don't look like you're from around here,' he finally remarks."	{webster-d2-whatmean, webster-d2-neitheryou, webster-d2-cavalaclinic}
+'You don't look,' he finally remarks, 'like you're from around here.'"	{webster-d2-whatmean, webster-d2-neitheryou, webster-d2-cavalaclinic}
 webster-d2-whatmean	true	false	"'What do you mean?'"	"'What do you mean?'
 
-He shakes his head. 'Take a look around you, sweetheart. You got your eyes screwed on tight? Everything in order? [']Cause nothing here is. Nobody comes here [']cept broken people trying to fix themselves.
+He gives you a curious look, and shakes his head.
 
-'And now you come along. Little Miss Prim in your white jacket. People like you? You don't come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'Take a look around you, sweetheart. You got your eyes screwed on tight? Everything in order? Because nothing here is. Nobody comes here except broken people trying to fix themselves...'
+
+[wait for any key]His eyes lock with yours.
+
+'Then you come along, Little Miss Prim in your white jacket. People like you? You don't come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
 webster-d2-neitheryou	true	false	"'Neither do you.'"	"'Neither do you.'
 
-He looks down at himself. His mechanical legs hiss with a plume of steam, and he chuckles.
+He looks down at himself. His mechanical legs hiss with steam, and he chuckles.
 
 'Yeah,' he says. 'Yeah, I suppose I don't, either. We all got our own stories.
 
-'You, though? You're especially out of place. Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'You, though? You're especially out of place. Look at you, Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
 webster-d2-cavalaclinic	true	false	"'I work at Doctor Cavala's clinic.'"	"'I work at Doctor Cavala's clinic.'
 
 He appraises you with a raised eyebrow. 'Thought you looked the sort. White jacket. Gloves like a surgeon. You don't ever take those gloves off, do you?'
 
-You look at your gloves, and he shakes his head.
+[wait for any key]You look at your gloves, and he shakes his head.
 
 'I don't know why you'd come down here,' he mutters. 'People like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
 webster-d2-confront	true	false	""	"You've hardly taken two steps when the bouncer clears his throat.
 
-'Funny thing about the usual customers,' he says. 'The ones with the dead look in their eyes. They tend to stop when they see a big man with spider legs. But you? Little Miss Prim in your white jacket?'
+[wait for any key]'Funny thing about the usual customers,' he says. 'The ones with the dead look in their eyes. They tend to stop when they see a big man with spider legs. But you? Little Miss Prim in your white jacket?'
 
-He folds his arms, looks you up and down.
+[wait for any key]He folds his arms, looks you up and down.
 
 'You're different. Different from them. People like you don't ever come down here -- not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
 webster-d2-needadrink	true	true	"'I'm just looking for a drink.'"	"'I'm just... looking for a drink.'
 
-The bouncer sighs. 'You're a terrible liar, sweetheart.'
+'You're a terrible liar, sweetheart.'
 
 You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
-webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest. Please.'"	"'I need to get into the Crow's Nest. Please.'
+webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest.'"	"'I need to get into the Crow's Nest.'
 
-He looks you squarely in the eye. His expression is guarded, and for the briefest of moments, sad.
+The bouncer looks up at the bulk in the sky. His expression is guarded, and for the briefest of moments, melancholy.
 
-'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
-webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths.'"	"'I'm investigating a series of deaths.'
+'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-whynoentry	false	true	"'Why aren't you letting customers in?'"	"'Why aren't you letting customers in?'
 
-"	{}
-webster-d2-investigatingdisease	true	false	"'I'm here on behalf of Doctor Cavala...' <Present the signum.>"	"'I'm here on behalf of Doctor Cavala. We're investigating the spread of a certain disease -- I think this place might be involved...'"	{}
+He opens his mouth. Closes it again. He closes his eyes, and rubs his goggles.
+
+'Trouble,' he says. 'The kind that hangs over you and me both. Let's leave it at that.'"	{webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths...'"	"'I'm investigating a series of deaths,' you say. 'Some dead bodies have turned up in the Turris Infinita. I've been told to look around the district for clues about the deceased, and... and I thought...'
+
+The bouncer shakes his head and looks away. He gazes across the spires of the city, rising from the smoke and the water.
+
+[wait for any key]'Sounds like a bunch of important people died,' he says. 'I'm sorry to hear that. But this is the Shanty Quarter -- people die like flies here, each and every day, and no one gives a shit. And why would they? There's no one here worth remembering.
+
+[wait for any key]'Your heart is in the right place, sweetheart. But if you're looking for clues about people that matter... you should look elsewhere.'"	{webster-d2-deathsthugs, webster-d2-deathsreden, webster-d2-beback}
+webster-d2-deathsthugs	false	true	"'Sal and Piper lived in the Shanty Quarter...'"	"'Sal and Piper lived in the Shanty Quarter,' you say. 'They were among the deceased.'
+
+The bouncer narrows his eyes.
+
+'That's a dangerous thing for a girl to know,' he says, quietly. 'More dangerous to go around talking about. I don't know anything about that -- and if you're as smart as you look, neither do you.'"	{webster-d2-threateningme, webster-d2-deathsreden, webster-d2-beback}
+webster-d2-threateningme	true	true	"'Are you threatening me?'"	"'Are you threatening me?'
+
+He looks up, at the shadow that blots out the sky, and purses his lips.
+
+'I'm keeping you out of trouble,' he says. 'You and me both. That's all.'"	{webster-d2-deathsreden, webster-d2-beback}
+webster-d2-deathsreden	false	true	"'I know for a fact that Reden came here often...'"	"'I know for a fact that Reden came here often,' you say. 'I'm investigating his death, too.'"	{}
+webster-d2-beback	true	false	"'I'll be back. I'll find someone who matters to you.'"	"'I'll be back,' you say. 'I'll find someone who matters to you.'
+
+The bouncer shakes his head. He doesn't stop you as you turn away, as you make your way down the stairway of crooked beams.
+
+'People like you don't come to the Shanty Quarter,' he says quietly behind you. 'Just the people who have nothing left to lose.'[line break][look pending]"	{}
+webster-d2-investigatingdisease	true	false	"'I'm here on behalf of Doctor Cavala...' <Present the signum.>"	"'I'm here on behalf of Doctor Cavala. We're investigating the spread of a certain disease -- I think this place might be involved...'
+
+The bouncer takes the signum and examines it through his goggles. A low whistle escapes his lips.
+
+'You're serious,' he says. 'Do you... I don't...'
+
+[wait for any key]He crouches closer, looks around furtively.
+
+'Listen,' he says. 'I want to help you, I really do -- but my employers have their sights set on me. If I let anyone in who isn't on the guest list, it's my animus in the next firing oven. Do you know what I'm saying?'"	{webster-d2-guestlist, webster-d2-whatchangemind}
+webster-d2-guestlist	true	true	"'Who is on this guest list, exactly?'"	"'Who is on this guest list, exactly?'"	{webster-d2-whatchangemind}
+webster-d2-whatchangemind	true	false	"'Is there anything I could say that would change your mind?'"	"'Is there anything I could say that would change your mind?'"	{}
 
 The home dialogue branch of Webster is webster-d2-intro.
+
+After reading out webster-d2-needgetin:
+	now the enabled of webster-d2-whynoentry is true.
+
+When Thugs Investigation begins:
+	now the enabled of webster-d2-deathsthugs is true.
 
 Book 3.37 - Crow's Nest
 
