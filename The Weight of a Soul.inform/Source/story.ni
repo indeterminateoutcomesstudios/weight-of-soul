@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 180417.
+The release number is 210417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -174,18 +174,6 @@ When play begins (this is the new final question options rule):
 	now the final question wording entry is ">[bold type]quit[roman type]";
 	choose row 5 in the Table of Final Question Options;
 	now the final question wording entry is ">[bold type]undo[roman type] the last command";
-	
-To to be continued:
-	clear the screen;
-	say "[paragraph break][paragraph break][paragraph break][line break]";
-	center "T O";
-	say paragraph break;
-	center "B E";
-	say paragraph break;
-	center "C O N T I N U E D";
-	wait for any key;
-	clear the screen;
-	end the story saying "The end... for now".
 
 Part 1.1.7 - Debug Messages - Release for testing
 
@@ -217,7 +205,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to day one[roman type]";
 	say "[line break]>[bold type]skip to errands[roman type]";
 	say "[line break]>[bold type]skip to censor[roman type]";
-	say "[line break]>[bold type]skip shanty maze[roman type]";
+	say "[line break]>[bold type]skip shanty quarter[roman type]";
 	say "[line break]>[bold type]skip to mechanistry[roman type]";
 	say "[line break]>[bold type]skip to first aid[roman type]";
 	say "[line break]>[bold type]skip first aid[roman type]";
@@ -227,6 +215,18 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	say "[line break]>[bold type]skip to cellar[roman type]";
+	
+To to be continued:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][line break]";
+	center "T O";
+	say paragraph break;
+	center "B E";
+	say paragraph break;
+	center "C O N T I N U E D";
+	wait for any key;
+	clear the screen;
+	end the story saying "The end... for now".
 
 Book 1.2 - Days and Scenes
 
@@ -665,7 +665,7 @@ Carry out skipping to censor:
 	skip past the first errand;
 	try looking.
 	
-Skipping the Shanty Maze is an action applying to nothing. Understand "skip shanty quarter/-- maze" as skipping the Shanty Maze.
+Skipping the Shanty Maze is an action applying to nothing. Understand "skip shanty quarter" as skipping the Shanty Maze.
 Check skipping the Shanty Maze when Cadaver Walk is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping the Shanty Maze:
 	skip past the Shanty Maze;
@@ -2296,6 +2296,7 @@ title	subtable	description	toggle
 "General Hints"	--	"[general-hints-text]"	--
 "Prologue"	Table of Prologue Hints	--	--
 "Day One"	Table of Day One Hints	--	--
+"Day Two"	Table of Day Two Hints	--	--
 "Back"	--	--	quit rule
 
 Section 2.3.11.5.1 - General Hints
@@ -2362,6 +2363,38 @@ hint	used
 "Next, >[bold type]take[roman type] the antiseptic dressing and the elastic bandage."
 "Finally, >[bold type]take[roman type] Doctor Cavala's leg."
 "That wasn't so hard, was it?"
+
+Section 2.3.11.5.4 - Day Two Hints
+
+Table of Day Two Hints
+title	subtable	description	toggle
+"The landlord won't let me in!"	Table of Landlord Hints	--	hint toggle rule
+"How do I get past [the Webster]?"	Table of Webster Hints	--	hint toggle rule
+"Back"	--	--	quit rule
+
+Table of Landlord Hints
+hint	used
+"It won't allow you in unless you have the proper key."	a number
+"The key can be taken from the previous owner of the room."
+"It's on one of Doctor Arturus's patients."
+"Specifically, it's on Sal's belt."
+"The landlord isn't satisfied with just the key, though. You have to know which room it unlocks as well."
+"It doesn't unlock any of the three rooms you can see."
+"The clue can be found in Doctor Arturus's patient records."
+"The patient records are in Doctor Arturus's study, which is in his domicile in the Turris Infinita."
+"They're in the storage cabinet."
+"Once you find the note, you can go back and tell the landlord what you've learned."
+
+Table of Webster Hints
+hint	used
+"[The Webster] won't let you past unless you can convince him somehow."	a number
+"You need to find someone or something that matters to him."
+"To be precise, you need to find someone connected to the Crow's Nest."
+"It's someone you already know."
+"One of the victims you're investigating."
+"If you search Reden's lodgings, you'll find something linking him to the Crow's Nest."
+"Reden's shack is among the shacks to the west of Lower Riggertown."
+"Once you've examined the drink coupons, you can return to [the Webster] and tell him what you've learned."
 
 Chapter 2.3.11.6 - Summoning the Help Menu
 
@@ -2500,6 +2533,7 @@ clue-raven is a truth state that varies.
 clue-tradingcompany is a truth state that varies.
 clue-crowsnest is a truth state that varies.
 clue-giftnote is a truth state that varies.
+clue-webster is a truth state that varies.
 
 clue-reden-channelworks is a truth state that varies.
 clue-reden-zoironest is a truth state that varies.
@@ -2743,6 +2777,8 @@ To say journal-text-objectives:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
 			add "- Ask around about the meaning of the raven" to LM;
+		if the Gangway is visited and Webster is in-the-way:
+			add "- Find a way to convince [the Webster] to let you into the Crow's Nest" to LM;
 		if LM is not {}:
 			add "" to L;
 			add "[italic type]Miscellaneous[roman type]" to L;
@@ -10052,16 +10088,17 @@ Instead of taking the empty wine bottles, say "You don't need any of these bottl
 Part 3.25.2 - Drink Coupons
 
 Some scattered coupons are a thing in Reden's Shack. "[one of]You notice some paper tickets[or]Some paper tickets are[stopping] scattered among the wine bottles."
-The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
+The description is "[one of]Upon closer examination, t[or]T[stopping]hey appear to be coupons from [if Gangway is visited]the Crow's Nest[otherwise]an establishment called the 'Crow's Nest,' located in the rooftops of the Shanty Quarter[end if]. Five coupons entitle the holder to a free drink and a spin of the 'Daemon's Wheel.'"
 Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered coupons.
 
 After examining the scattered coupons:
 	now clue-crowsnest is true;
 	now the enabled of webster-d2-deathsreden is true;
+	now the enabled of webster-d2-answerreden is true;
 	continue the action.
 	
 A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five coupons entitle the holder to a free drink at the 'Crow's Nest,' located in the rooftops of the Shanty Quarter, as well as a spin of the 'Daemon's Wheel.'"
+The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five coupons entitle the holder to a free drink at the [if Gangway is visited]Crow's Nest[otherwise]'Crow's Nest,' located in the rooftops of the Shanty Quarter[end if], as well as a spin of the 'Daemon's Wheel.'"
 Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
 
 The Reden's Shack coupon container is a container. It contains three drink coupons.
@@ -10071,6 +10108,7 @@ Instead of taking the scattered coupons:
 	now all drink coupons in the Reden's Shack coupon container are carried by the player;
 	now clue-crowsnest is true;
 	now the enabled of webster-d2-deathsreden is true;
+	now the enabled of webster-d2-answerreden is true;
 	say "Taken.";
 	
 Instead of giving a drink coupon to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
@@ -11811,6 +11849,7 @@ To unlock raven questions:
 	now the enabled of justinian-4inv-raven is true;
 	now the enabled of cavala-4inv-raven is true;
 	now the enabled of horatio-4inv-raven is true;
+	now the enabled of webster-d2-raven is true;
 	now clue-raven is true.
 	
 To discover the Trading Company connection:
@@ -11818,6 +11857,7 @@ To discover the Trading Company connection:
 	now the enabled of justinian-4inv-raven is false;
 	now the enabled of cavala-4inv-raven is false;
 	now the enabled of horatio-4inv-raven is false;
+	now the enabled of webster-d2-raven is false;
 	now clue-tradingcompany is true.
 
 Part 3.29.3 - Arturus's Clinic during Day Two
@@ -12867,7 +12907,7 @@ Once Marid has asked all of the final three, we unlock the final dialogue branch
 
 Table of Zoiro Mourning Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-zoiro-mourning-aboutreden	true	false	"'I wanted to ask you some things about Reden...'"	"'I wanted to ask you some things about Reden,' you say. 'We're looking into the transmission vector of the disease -- trying to find out how he could have contracted it. If you could tell us about the places he'd been, or what he'd been doing...'
+zoiro-mourning-aboutreden	true	false	"'I wanted to ask you some things about Reden...'"	"'I wanted to ask you some things about Reden,' you say. 'We're looking into the transmission vector of the disease, trying to find out how he could have contracted it. If you could tell us about the places he'd been, or the things he'd been doing...'
 
 Zoiro's shoulders slump.
 
@@ -12890,7 +12930,7 @@ Zoiro shakes his head. 'No... not really, no. He was hardly around the house... 
 'I never asked him where he was going. Don't think I cared. When he left... I don't know what happened to him afterward.'"	{zoiro-mourning-werentclose, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-associations	true	true	"'Do you know anyone else that Reden associated with?'"	"'Do you know anyone else that Reden associated with?'
 
-A shake of the head. 'The only thing he associated with was alcohol. He never talked about his friends... never talked about his work. When he got fired, I wouldn't be surprised if no one even batted an eye -- he was that kind of person.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+A shake of the head. 'The only thing he associated with was alcohol. He never talked about his friends... never talked about his work. When he got fired, I wouldn't be surprised if no one even batted an eye. He was that kind of person.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-unemployed	false	false	"'Reden was unemployed?'"	"'Reden was unemployed?'
 
 Zoiro nods. 'He was a janitor at the Channelworks, let go for drunkenness and unprofessional conduct. He was unrepentant -- no company would have him.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
@@ -12903,7 +12943,7 @@ Zoiro gazes at the door.
 'I guess he realized this place wasn't his home any more.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-drinker	false	false	"'Reden was a compulsive drinker?'"	"'Reden was a compulsive drinker?'
 
-'The biggest dipsomaniac I ever saw.' Zoiro smiles grimly. 'He'd go through cheap wine by the bottle -- he didn't care what was in the stuff, or who sold it to him, as long as it got him buzzed.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
+'The biggest dipsomaniac I ever saw.' Zoiro smiles grimly. 'He'd go through cheap wine by the bottle. He didn't care what was in the stuff, or who sold it to him, as long as it got him buzzed.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-redenshack, zoiro-mourning-alldone}
 zoiro-mourning-channelworks	false	false	"'Could you tell me more about what he did at the Channelworks?'"	"'Could you tell me more about what he did at the Channelworks?'
 
 Zoiro shrugs. 'I've never been there myself,' he says. 'Reden wasn't one for talking about his work. It wasn't anything important... he was just a janitor, some kind of canal scrubber or something. I remember he always came back smelling like a wet rag...'
@@ -12920,7 +12960,7 @@ Zoiro rubs his chin. 'Actually... I did see him once or twice after he left. Or 
 
 [if Reden's Shack is visited]'I think I know the place you're talking about,' you say.
 
-Zoiro shrugs. 'Then you already know more than I do. I suppose that's where he stayed after he left here.'[otherwise]'Do you think he might have found someplace to stay?' you ask.
+Zoiro shrugs. 'Then you already know more than I do. I suppose that's where he went after he left here.'[otherwise]'Do you think he might have found someplace to stay?' you ask.
 
 Zoiro shrugs. 'It couldn't hurt to take a look.'"	{zoiro-mourning-werentclose, zoiro-mourning-placesfrequented, zoiro-mourning-associations, zoiro-mourning-unemployed, zoiro-mourning-heleft, zoiro-mourning-drinker, zoiro-mourning-channelworks, zoiro-mourning-pub, zoiro-mourning-alldone}
 zoiro-mourning-alldone	false	false	"'That's all the questions I have regarding Reden...'"	"'That's all the questions I have regarding Reden,' you say. 'You've been a great help.'
@@ -13094,7 +13134,7 @@ When Four Investigations ends (this is the despawn the dismembered pigeon rule):
 
 Book 3.34 - Flophouse
 
-There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood. Vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and doped up on laudanum or alcohol.
+There is a room called the Flophouse. "This place was once a beautiful townhouse; now it is a ruin. The walls have been stripped of their furnishings, leaving bone-white plaster and rotting wood. Vagrants sleep on the stairs or in the corridors, curled up in makeshift bedding and soused with laudanum or alcohol.
 
 To the west is the exit. To the south, [if cellar-access-granted is true]a trapdoor descends to the cellar[otherwise]a passageway leads to the rooms[end if]."
 It is east of the Shanty Quarter.
@@ -13169,7 +13209,7 @@ Instead of taking the empty apothecary bottles, say "You don't need these empty 
 The crooked little passageway is scenery.
 The description is "A crooked little passageway, with flea-eaten carpeting and empty doorways. You can see a total of three rooms."
 The sound is "You hear nothing."
-Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" or "room/rooms" or "three/3" as the crooked little passageway.
+Understand "flea-eaten" or "carpet/carpeting" or "empty" or "doorway/doorways" or "passage" or "room/rooms" or "one/two/three/first/second/third/1/2/3/1st/2nd/3rd" as the crooked little passageway.
 Before entering the crooked little passageway, try going south instead.
 Instead of searching the crooked little passageway, say "You can't see much from here."
 
@@ -13524,7 +13564,7 @@ The landlord regards you wordlessly, and your lips feel suddenly dry. You're no 
 
 [wait for any key]--Where did that trapdoor come from?
 
-[wait for any key]There's a trapdoor to the south where there was carpet just seconds ago. It's cut into the floor, with a half-eaten ladder descending into darkness.
+[wait for any key]There's a trapdoor to the south where there was carpet just moments ago. It's cut into the floor, with a half-eaten ladder descending into darkness.
 
 [wait for any key]And the landlord...
 
@@ -13743,7 +13783,7 @@ The sound is "His mechanical legs clank and hiss."
 The scent is "He smells like a machine shop."
 Understand "fearsome" or "bouncer" or "eight-legged/8-legged/legged" or "eight/8/viii" as Webster.
 [Instead of attacking, cutting, knocking on, or pushing Webster, say "You doubt that would end well for you."]
-Instead of looking under Webster, say "He's standing (sitting?) on the wooden beams."
+Instead of looking under Webster, say "He's standing on the wooden beams."
 
 Some cracked welding goggles are a thing worn by Webster.
 The description is "Scratches and scorch marks."
@@ -13776,13 +13816,9 @@ Instead of going up in the Gangway when Webster is in-the-way:
 	if the home dialogue branch of Webster is webster-d2-intro:
 		start a dialogue with Webster using dialogue webster-d2-confront;
 	otherwise:
-		say "[The Webster] blocks your way.";
+		say "[The Webster] won't let you past unless you manage to convince him somehow.";
 		
 Section 3.36.2.1.1 - Intro
-
-[The Crow's Nest serves a small community of Channelworks and ex-Channelworks workers. It has recently been strong-armed into serving Trading Company associates as well.
-
-Webster needs the money but is disliked by the new Trading Company management. He's contractually required to turn Marid away because she isn't a 'friend'. You need to bring up Reden to convince him to look the other way, which is only possible if you know he visited this place.]
 
 Some dialogue branches are defined by the Table of Webster Day Two Dialogue.
 
@@ -13801,77 +13837,60 @@ He gives you a curious look, and shakes his head.
 
 [wait for any key]His eyes lock with yours.
 
-'Then you come along, Little Miss Prim in your white jacket. People like you? You don't come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'People like you? You don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-neitheryou	true	false	"'Neither do you.'"	"'Neither do you.'
 
 He looks down at himself. His mechanical legs hiss with steam, and he chuckles.
 
 'Yeah,' he says. 'Yeah, I suppose I don't, either. We all got our own stories.
 
-'You, though? You're especially out of place. Look at you, Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'You, though? You're especially out of place. Look at you, Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-cavalaclinic	true	false	"'I work at Doctor Cavala's clinic.'"	"'I work at Doctor Cavala's clinic.'
 
 He appraises you with a raised eyebrow. 'Thought you looked the sort. White jacket. Gloves like a surgeon. You don't ever take those gloves off, do you?'
 
-[wait for any key]You look at your gloves, and he shakes his head.
+You look at your gloves, and he shakes his head.
 
-'I don't know why you'd come down here,' he mutters. 'People like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'I don't know why you'd come down here,' he mutters. 'People like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-confront	true	false	""	"You've hardly taken two steps when the bouncer clears his throat.
 
-[wait for any key]'Funny thing about the usual customers,' he says. 'The ones with the dead look in their eyes. They tend to stop when they see a big man with spider legs. But you? Little Miss Prim in your white jacket?'
+[wait for any key]'Funny thing about the usual customers,' he says. 'The ones with the dead look in their eyes. They tend to stop when they see a big man with spider legs. But you? Little Miss Prim in your white jacket...'
 
 [wait for any key]He folds his arms, looks you up and down.
 
-'You're different. Different from them. People like you don't ever come down here -- not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'You're different. Different from them. People like you don't ever come down here -- not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-needadrink	true	true	"'I'm just looking for a drink.'"	"'I'm just... looking for a drink.'
 
 'You're a terrible liar, sweetheart.'
 
-You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest.'"	"'I need to get into the Crow's Nest.'
 
 The bouncer looks up at the bulk in the sky. His expression is guarded, and for the briefest of moments, melancholy.
 
-'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
+'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths}
 webster-d2-whynoentry	false	true	"'Why aren't you letting customers in?'"	"'Why aren't you letting customers in?'
 
 He opens his mouth. Closes it again. He closes his eyes, and rubs his goggles.
 
-'Trouble,' he says. 'The kind that hangs over you and me both. Let's leave it at that.'"	{webster-d2-investigatingdeaths, webster-d2-investigatingdisease}
-webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths...'"	"'I'm investigating a series of deaths,' you say. 'Some dead bodies have turned up in the Turris Infinita. I've been told to look around the district for clues about the deceased, and... and I thought...'
+'Trouble,' he says. 'The kind that hangs over you and me both. Let's leave it at that.'"	{webster-d2-investigatingdeaths}
+webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths...'"	"'I'm investigating a series of deaths,' you say. 'Some dead bodies have turned up in the Turris Infinita, all of the same affliction. I've been looking around the district for clues, and... and I thought...'
 
 The bouncer shakes his head and looks away. He gazes across the spires of the city, rising from the smoke and the water.
 
-[wait for any key]'Sounds like a bunch of important people died,' he says. 'I'm sorry to hear that. But this is the Shanty Quarter -- people die like flies here, each and every day, and no one gives a shit. And why would they? There's no one here worth remembering.
+[wait for any key]'Sounds like a bunch of important people died,' he says. 'I'm sorry to hear that. But this is the Shanty Quarter -- people die like flies here, each and every day. No one gives a shit. And why would they? There's no one here worth remembering.
 
-[wait for any key]'Your heart is in the right place, sweetheart. But if you're looking for clues about people that matter... you should look elsewhere.'"	{webster-d2-deathsthugs, webster-d2-deathsreden, webster-d2-beback}
+[wait for any key]'Your heart is in the right place, sweetheart. But if you're looking to learn something about people that matter... you should look elsewhere.'"	{webster-d2-deathsthugs, webster-d2-deathsreden, webster-d2-beback}
 webster-d2-deathsthugs	false	true	"'Sal and Piper lived in the Shanty Quarter...'"	"'Sal and Piper lived in the Shanty Quarter,' you say. 'They were among the deceased.'
 
 The bouncer narrows his eyes.
 
-'That's a dangerous thing for a girl to know,' he says, quietly. 'More dangerous to go around talking about. I don't know anything about that -- and if you're as smart as you look, neither do you.'"	{webster-d2-threateningme, webster-d2-deathsreden, webster-d2-beback}
-webster-d2-threateningme	true	true	"'Are you threatening me?'"	"'Are you threatening me?'
-
-He looks up, at the shadow that blots out the sky, and purses his lips.
-
-'I'm keeping you out of trouble,' he says. 'You and me both. That's all.'"	{webster-d2-deathsreden, webster-d2-beback}
-webster-d2-deathsreden	false	true	"'I know for a fact that Reden came here often...'"	"'I know for a fact that Reden came here often,' you say. 'I'm investigating his death, too.'"	{}
+'That's a dangerous thing for a girl to know,' he says, quietly. 'More dangerous to go around talking about. I don't know anything about that -- and if you're as smart as you look, neither do you.'"	{webster-d2-deathsreden, webster-d2-beback}
 webster-d2-beback	true	false	"'I'll be back. I'll find someone who matters to you.'"	"'I'll be back,' you say. 'I'll find someone who matters to you.'
 
 The bouncer shakes his head. He doesn't stop you as you turn away, as you make your way down the stairway of crooked beams.
 
-'People like you don't come to the Shanty Quarter,' he says quietly behind you. 'Just the people who have nothing left to lose.'[line break][look pending]"	{}
-webster-d2-investigatingdisease	true	false	"'I'm here on behalf of Doctor Cavala...' <Present the signum.>"	"'I'm here on behalf of Doctor Cavala. We're investigating the spread of a certain disease -- I think this place might be involved...'
-
-The bouncer takes the signum and examines it through his goggles. A low whistle escapes his lips.
-
-'You're serious,' he says. 'Do you... I don't...'
-
-[wait for any key]He crouches closer, looks around furtively.
-
-'Listen,' he says. 'I want to help you, I really do -- but my employers have their sights set on me. If I let anyone in who isn't on the guest list, it's my animus in the next firing oven. Do you know what I'm saying?'"	{webster-d2-guestlist, webster-d2-whatchangemind}
-webster-d2-guestlist	true	true	"'Who is on this guest list, exactly?'"	"'Who is on this guest list, exactly?'"	{webster-d2-whatchangemind}
-webster-d2-whatchangemind	true	false	"'Is there anything I could say that would change your mind?'"	"'Is there anything I could say that would change your mind?'"	{}
+'People like you don't come to the Shanty Quarter,' he says quietly behind you. 'Just the people who have nothing left to lose.'"	{}
 
 The home dialogue branch of Webster is webster-d2-intro.
 
@@ -13880,6 +13899,106 @@ After reading out webster-d2-needgetin:
 
 When Thugs Investigation begins:
 	now the enabled of webster-d2-deathsthugs is true.
+	
+After reading out webster-d2-beback:
+	now the home dialogue branch of Webster is webster-d2-home.
+	
+Section 3.36.2.1.2 - Further Dialogue
+	
+Table of Webster Day Two Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+webster-d2-home	true	false	""	"You approach [the Webster], and he nods at you.
+
+'You're back,' he says."	{webster-d2-urname, webster-d2-curiouslegs, webster-d2-raven, webster-d2-answerreden, webster-d2-justpassingthru}
+webster-d2-urname	true	true	"'I never caught your name.'"	"'I never caught your name.'
+
+He raises an eyebrow. 'Promise you won't laugh.'"	{webster-d2-nameok, webster-d2-nameno}
+webster-d2-nameok	true	false	"'Okay.'"	"'Okay.'
+
+'All right,' he replies. 'Here goes. My name is...'
+
+[wait for any key]He takes a deep breath.
+
+[wait for any key]'...Webster.'"	{webster-d2-laugh, webster-d2-dontlaugh}
+webster-d2-nameno	true	false	"'No promises.'"	"'No promises.'
+
+He rolls his eyes. 'Suit yourself. My name is...'
+
+[wait for any key]He takes a deep breath.
+
+[wait for any key]'...Webster.'"	{webster-d2-laugh, webster-d2-dontlaugh}
+webster-d2-laugh	true	false	"<Laugh.>"	"You burst out laughing.
+
+'Damn it.'"	{webster-d2-curiouslegs, webster-d2-raven, webster-d2-answerreden, webster-d2-beback2}
+webster-d2-dontlaugh	true	false	"<Keep a straight face.>"	"You keep a straight face.
+
+'Webster,' you say. 'Eight legs. Right. Of course.'
+
+'You're trying not to laugh.' Webster observes. 'I can respect that.'"	{webster-d2-curiouslegs, webster-d2-raven, webster-d2-answerreden, webster-d2-beback2}
+webster-d2-curiouslegs	true	true	"'I must admit I'm curious about the legs.'"	"'I must admit,' you say, 'I'm curious about the legs.'
+
+'Yeah, I get that a lot.'
+
+[The Webster] looks down at his walking-chassis. He taps his fingers idly on a steam gauge, watching the readings rise and fall.
+
+[wait for any key]'I was an engineer way back when,' he says. 'Studied [italic type]automataria[roman type] at the Institute. Ran systematic maintenance at the Channelworks. One day I didn't look where I was walking, and, well... I put my feet somewhere I shouldn't have.'"	{webster-d2-sorryforlegs, webster-d2-safety}
+webster-d2-sorryforlegs	true	false	"'I'm so sorry to hear that.'"	"'I'm so sorry to hear that.'
+
+He shakes his head. 'Yeah, well, don't get your knickers in a twist about it. I had loads of free time afterward, since I couldn't exactly go back to work... figured my legs were due for an upgrade anyway.'"	{webster-d2-builtlegs, webster-d2-whyeightlegs, webster-d2-ilikelegs}
+webster-d2-safety	true	false	"'There weren't any safety measures in place?'"	"'There weren't any safety measures in place?'
+
+He grimaces. 'Don't remind me. The Council of Works chose to fire me rather than admit their own oversight. I was shit out of luck. On the plus side, I suddenly had loads of free time -- so I figured my legs were due for an upgrade anyway.'"	{webster-d2-builtlegs, webster-d2-whyeightlegs, webster-d2-ilikelegs}
+webster-d2-builtlegs	true	true	"'You built them yourself?'"	"'You built them yourself?'
+
+'That I did,' replies [the Webster]. 'I like to think I'm pretty handy with a hammer. I'd been thinking about a similar project for months. Just never imagined I'd be building something for myself to use.'"	{webster-d2-whyeightlegs, webster-d2-ilikelegs}
+webster-d2-whyeightlegs	true	true	"'Why eight legs?'"	"'Why eight legs?'
+
+'Redundancy,' he replies. 'Stability. You never fall over with eight legs, you know?'"	{webster-d2-builtlegs, webster-d2-ilikelegs}
+webster-d2-ilikelegs	true	false	"'I like your legs.'"	"'I like your legs.'
+
+'Thanks.' He inclines his head. 'You ever lose a body part, come see me. I'll even let you choose how many limbs you want to walk out with.'
+
+'Um, thanks,' you say. 'I'll keep that in mind.'"	{webster-d2-urname, webster-d2-raven, webster-d2-answerreden, webster-d2-beback2}
+webster-d2-raven	false	true	"'Does a raven mean anything to you?'"	"'Does a raven mean anything to you?'
+
+[The Webster] looks at you intently.
+
+'It's not a crow,' he says. 'If that's what you're asking.'
+
+You have the feeling he's not going to say anything else about the subject."	{webster-d2-urname, webster-d2-curiouslegs, webster-d2-answerreden, webster-d2-justpassingthru}
+webster-d2-justpassingthru	true	false	"'Just passing through.'"	"'Just passing through.'
+
+You step away from [the Webster], feeling the beams shift beneath your weight."	{}
+webster-d2-beback2	true	false	"'I'll be back.'"	"'I'll be back.'
+
+'Take care. This isn't a place for decent people.'
+
+You step away from [the Webster], feeling the beams shift beneath your weight."	{}
+
+After reading out webster-d2-nameok:
+	now Webster is proper-named;
+	redraw status line.
+	
+After reading out webster-d2-nameno:
+	now Webster is proper-named;
+	redraw status line.
+
+Section 3.36.2.1.3 - Answering Reden
+	
+Table of Webster Day Two Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+webster-d2-deathsreden	false	false	"'I know for a fact that Reden came here often...'"	"'I know for a fact that Reden came here often,' you say. 'I'm investigating his death, too.'
+
+There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
+
+[wait for any key]'Reden,' he says. 'He's dead?'"	{webster-d2-diseasetookhim, webster-d2-watchedhimdie}
+webster-d2-answerreden	false	false	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
+
+There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
+
+[wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-diseasetookhim, webster-d2-watchedhimdie}
+webster-d2-diseasetookhim	true	false	"'I'm sorry. The disease took him.'"	"'I'm sorry. The disease took him.'"	{}
+webster-d2-watchedhimdie	true	false	"'I watched him die in Doctor Cavala's clinic.'"	"'I watched him die in Doctor Cavala's clinic.'"	{}
 
 Book 3.37 - Crow's Nest
 
