@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 220417.
+The release number is 230417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -13729,7 +13729,7 @@ Book 3.36 - Gangway
 
 The Gangway is a proper-named room in Outdoors. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
-The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[otherwise], watched by the bouncer Webster from his perch[end if]."
+The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
 It is above the Shanty Quarter.
 
 The simple-name is "the Gangway".
@@ -13796,7 +13796,7 @@ The walking-chassis is a thing part of Webster.
 The description is "A spider-legged contraption of bewildering complexity. A glyph of transfusion connects [the Webster]'s nervous system to the chassis."
 The sound is "The chassis is extremely noisy."
 Before smelling the walking-chassis, try smelling Webster instead.
-Understand "roaring" or "piston/pistons/pistoning" or "walking" or "chassis/contraption" or "spider" or "leg/legs/legged/spider-legged" as the walking-chassis.
+Understand "roaring" or "piston/pistons/pistoning" or "walking" or "chassis/contraption/sprawl" or "spider" or "leg/legs/legged/spider-legged" or "spine" or "alchemical" or "glyph/glyphs" or "gear/gears" as the walking-chassis.
 Before looking under the walking-chassis, try looking under Webster instead.
 Instead of pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning the walking-chassis, say "[one of]'Hey,' says [the Webster]. 'No touching.'[or][The Webster] told you not to touch the chassis.[stopping]"
 
@@ -13903,7 +13903,7 @@ After reading out webster-d2-needgetin:
 When Thugs Investigation begins:
 	now the enabled of webster-d2-deathsthugs is true.
 	
-After reading out webster-d2-beback:
+After reading out webster-d2-investigatingdeaths:
 	now the home dialogue branch of Webster is webster-d2-home.
 	
 Section 3.36.2.1.2 - Further Dialogue
@@ -13990,17 +13990,89 @@ Section 3.36.2.1.3 - Answering Reden
 	
 Table of Webster Day Two Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-webster-d2-answerreden	false	false	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
+webster-d2-answerreden	false	true	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
 
 There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
 
-[wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-hesdead, webster-d2-watchedhimdie}
-webster-d2-hesdead	true	false	"'He was one of the victims. I'm sorry.'"	"'He was one of the victims. I'm sorry.'"	{}
-webster-d2-watchedhimdie	true	false	"'I watched him die in Doctor Cavala's clinic.'"	"'I watched him die in Doctor Cavala's clinic.'"	{}
+[wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-avictim, webster-d2-watchedhimdie}
+webster-d2-avictim	true	false	"'He's one of the victims I'm investigating.'"	"'He's one of the victims I'm investigating.'
+
+'Primes,' [the Webster] whispers. 'He's dead, then. I... I never imagined--'
+
+[wait for any key]He shakes his head and falls silent. His hands ball into fists, exposing knuckles covered with angry scars."	{webster-d2-condolences, webster-d2-youknewhim}
+webster-d2-watchedhimdie	true	false	"'I watched him die in Doctor Cavala's clinic.'"	"'I watched him die in Doctor Cavala's clinic.'
+
+[The Webster]'s voice is arrested. He shakes his head -- his hands ball into fists, exposing knuckles covered with angry scars.
+
+[wait for any key]'Primes,' he whispers. 'Reden... I never imagined.'"	{webster-d2-condolences, webster-d2-youknewhim}
+webster-d2-condolences	true	true	"'I'm sorry you had to find out this way.'"	"'I'm sorry you had to find out this way.'
+
+He just shakes his head, his mouth a thin line. He does not reply."	{webster-d2-youknewhim}
+webster-d2-youknewhim	true	false	"'You were close to Reden?'"	"'You were close to Reden?'
+
+[The Webster] looks at his mechanical legs; he leans heavily on the struts. The cracks in his goggles glint in the cold light.
+
+[wait for any key]'We were co-workers,' he says. 'Way back when in the Channelworks. Back before I lost my legs, before everything came tumbling down...'
+
+[wait for any key]He looks off into the distance.
+
+'We were drinking buddies. Him and me and Crow. We all knew each other back in the day -- told jokes, comforted each other when we got laid off. I don't think he had anyone other than the two of us.
+
+[wait for any key]'And now he's gone. It's just the two of us left.'"	{webster-d2-crow, webster-d2-nooneelse, webster-d2-avengereden}
+webster-d2-crow	true	true	"'Who's Crow?'"	"'Who's Crow?' you ask.
+
+'Used to be the most cheerful girl on the night shift,' he says. 'Now... well. People change. Some more than others.'"	{webster-d2-nooneelse, webster-d2-avengereden}
+webster-d2-nooneelse	true	true	"'There's no one else?'"	"'There's no one else?'
+
+'Not anymore. Not since...'
+
+He trails off, and looks up at the clouds. He does not continue."	{webster-d2-crow, webster-d2-avengereden}
+webster-d2-avengereden	true	false	"'I'm here because I don't want anyone else to die...'"	"'I'm here because I don't want anyone else to die,' you say. 'I... I need to find out everything I can about the victims. Please.'
+
+[The Webster] looks at you, and the eyes behind his goggles are dark and tormented.
+
+'I don't know,' he says. 'I don't know anymore.'
+
+[wait for any key]He turns around with a hiss of steam. For the first time, you notice the assembly woven into his spine -- a sprawl of alchemical glyphs and gears, messily sewn together.
+
+[wait for any key]'You want to get into the Crow's Nest?' he whispers."	{webster-d2-please, webster-d2-foralloursakes, webster-d2-silent}
+webster-d2-please	true	false	"'Please.'"	"'Please.' Your voice cracks.
+
+He takes a deep breath. The gears in his spine turn.
+
+[webster-d2-accept][look pending]"	{}
+webster-d2-foralloursakes	true	false	"'For all our sakes.'"	"'For all our sakes.'
+
+He takes a deep breath. The gears in his spine turn.
+
+[webster-d2-accept][look pending]"	{}
+webster-d2-silent	true	false	"<Remain silent.>"	"You remain silent, your heart in your throat.
+
+He takes a deep breath.
+
+[webster-d2-accept][look pending]"	{}
+
+To say webster-d2-accept:
+	wait for any key;
+	say "'Go,' he says. 'Just go. I'm putting my head on the block for you -- for Reden. Don't make me regret this. Go and find out whatever you can find.'[paragraph break]";
+	wait for any key;
+	say "'Thank you,' you breathe. 'I...'
+
+'Don't thank me.' He shakes his head. 'This is for Reden's sake. If I die tomorrow... I can tell him I died making a difference in the end.'[paragraph break]";
+	wait for any key;
+	say "'I--'
+
+'Just go. Please.'[paragraph break]";
+	wait for any key;
+	say "You don't have to be told twice. With a final lingering look at the bouncer on his perch, you push past him, and onward, upward, into the tavern at the edge of the sky. ";
+	now Webster is sufficiently-convinced;
+	move the player to the Crow's Nest, without printing a room description.
 
 Book 3.37 - Crow's Nest
 
-There is a proper-named room called the Crow's Nest. It is above the Gangway.
+There is a proper-named room called the Crow's Nest.
+
+It is above the Gangway.
 
 [The antique tinderbox, the Daemon's Wheel]
 
