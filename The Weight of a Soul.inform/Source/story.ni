@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 210417.
+The release number is 220417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -10093,7 +10093,6 @@ Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered c
 
 After examining the scattered coupons:
 	now clue-crowsnest is true;
-	now the enabled of webster-d2-deathsreden is true;
 	now the enabled of webster-d2-answerreden is true;
 	continue the action.
 	
@@ -10107,7 +10106,6 @@ Instead of taking the scattered coupons:
 	now the scattered coupons are nowhere;
 	now all drink coupons in the Reden's Shack coupon container are carried by the player;
 	now clue-crowsnest is true;
-	now the enabled of webster-d2-deathsreden is true;
 	now the enabled of webster-d2-answerreden is true;
 	say "Taken.";
 	
@@ -13842,7 +13840,7 @@ webster-d2-neitheryou	true	false	"'Neither do you.'"	"'Neither do you.'
 
 He looks down at himself. His mechanical legs hiss with steam, and he chuckles.
 
-'Yeah,' he says. 'Yeah, I suppose I don't, either. We all got our own stories.
+'Yeah,' he says. 'Yeah, I suppose I don't, neither. We all got our own stories.
 
 'You, though? You're especially out of place. Look at you, Little Miss Prim in your white jacket -- people like you don't ever come down here. Not unless there's something you're looking for.'"	{webster-d2-needadrink, webster-d2-needgetin, webster-d2-investigatingdeaths}
 webster-d2-cavalaclinic	true	false	"'I work at Doctor Cavala's clinic.'"	"'I work at Doctor Cavala's clinic.'
@@ -13864,33 +13862,38 @@ webster-d2-needadrink	true	true	"'I'm just looking for a drink.'"	"'I'm just... 
 'You're a terrible liar, sweetheart.'
 
 You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths}
-webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest.'"	"'I need to get into the Crow's Nest.'
+webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest.'"	"'I need to get into the Crow's Nest,' you say.
 
 The bouncer looks up at the bulk in the sky. His expression is guarded, and for the briefest of moments, melancholy.
 
-'I'd love to let you in, sweetheart,' he says. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths}
+'I'd love to let you in, sweetheart,' he replies. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths}
 webster-d2-whynoentry	false	true	"'Why aren't you letting customers in?'"	"'Why aren't you letting customers in?'
 
 He opens his mouth. Closes it again. He closes his eyes, and rubs his goggles.
 
 'Trouble,' he says. 'The kind that hangs over you and me both. Let's leave it at that.'"	{webster-d2-investigatingdeaths}
-webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths...'"	"'I'm investigating a series of deaths,' you say. 'Some dead bodies have turned up in the Turris Infinita, all of the same affliction. I've been looking around the district for clues, and... and I thought...'
+webster-d2-investigatingdeaths	true	false	"'I'm investigating a series of deaths...'"	"'I'm investigating a series of deaths,' you say. 'Some bodies have turned up in the Turris Infinita, all dead of the same affliction. I've been looking around the district for clues, and... and I thought...'
 
 The bouncer shakes his head and looks away. He gazes across the spires of the city, rising from the smoke and the water.
 
-[wait for any key]'Sounds like a bunch of important people died,' he says. 'I'm sorry to hear that. But this is the Shanty Quarter -- people die like flies here, each and every day. No one gives a shit. And why would they? There's no one here worth remembering.
+[wait for any key]'Sounds like a bunch of important people died,' he says. 'I'm sorry to hear that. But this is the Shanty Quarter. People die like flies here, each and every day, and no one gives a damn. Am I supposed to step aside for everyone who's lost someone?
 
-[wait for any key]'Your heart is in the right place, sweetheart. But if you're looking to learn something about people that matter... you should look elsewhere.'"	{webster-d2-deathsthugs, webster-d2-deathsreden, webster-d2-beback}
-webster-d2-deathsthugs	false	true	"'Sal and Piper lived in the Shanty Quarter...'"	"'Sal and Piper lived in the Shanty Quarter,' you say. 'They were among the deceased.'
+[wait for any key]'Your heart is in the right place, sweetheart. I don't begrudge you or nothing. But if you're looking to learn something about people that matter... you should look elsewhere.'"	{webster-d2-cavalasentme, webster-d2-deathsthugs, webster-d2-answerreden, webster-d2-beback}
+webster-d2-cavalasentme	true	true	"'Doctor Cavala sent me.' <Present the signum.>"	"You look up at him defiantly. 'Doctor Cavala sent me.'
+
+He raises an eyebrow at the signum in your hand -- his eyes flicker, momentarily, to your pendant. But he shakes his head, and when he speaks, there is regret in his voice.
+
+'So she did,' he replies. 'Too bad for her. There are people in this district even she won't sway, signum or no.'"	{webster-d2-deathsthugs, webster-d2-answerreden, webster-d2-beback}
+webster-d2-deathsthugs	false	true	"'Sal and Piper lived in the Shanty Quarter...'"	"'Sal and Piper lived in the Shanty Quarter,' you say. 'They were among the deceased, too.'
 
 The bouncer narrows his eyes.
 
-'That's a dangerous thing for a girl to know,' he says, quietly. 'More dangerous to go around talking about. I don't know anything about that -- and if you're as smart as you look, neither do you.'"	{webster-d2-deathsreden, webster-d2-beback}
-webster-d2-beback	true	false	"'I'll be back. I'll find someone who matters to you.'"	"'I'll be back,' you say. 'I'll find someone who matters to you.'
+'That's a dangerous thing for a girl to know,' he replies, quietly. 'More dangerous to go around talking about. I don't know anything about that -- and if you're as smart as you look, neither do you.'"	{webster-d2-cavalasentme, webster-d2-answerreden, webster-d2-beback}
+webster-d2-beback	true	false	"'I'll be back. I'll find something that matters to you.'"	"'I'll be back,' you say. 'I'll find something that matters to you.'
 
 The bouncer shakes his head. He doesn't stop you as you turn away, as you make your way down the stairway of crooked beams.
 
-'People like you don't come to the Shanty Quarter,' he says quietly behind you. 'Just the people who have nothing left to lose.'"	{}
+'People like you don't come to the Shanty Quarter,' he says quietly behind you. 'Just the people who have nothing left to lose.'[line break][look pending]"	{}
 
 The home dialogue branch of Webster is webster-d2-intro.
 
@@ -13935,7 +13938,7 @@ webster-d2-dontlaugh	true	false	"<Keep a straight face.>"	"You keep a straight f
 'Webster,' you say. 'Eight legs. Right. Of course.'
 
 'You're trying not to laugh.' Webster observes. 'I can respect that.'"	{webster-d2-curiouslegs, webster-d2-raven, webster-d2-answerreden, webster-d2-beback2}
-webster-d2-curiouslegs	true	true	"'I must admit I'm curious about the legs.'"	"'I must admit,' you say, 'I'm curious about the legs.'
+webster-d2-curiouslegs	true	true	"'I must admit, I'm curious about the legs.'"	"'I must admit,' you say, 'I'm curious about the legs.'
 
 'Yeah, I get that a lot.'
 
@@ -13947,13 +13950,13 @@ webster-d2-sorryforlegs	true	false	"'I'm so sorry to hear that.'"	"'I'm so sorry
 He shakes his head. 'Yeah, well, don't get your knickers in a twist about it. I had loads of free time afterward, since I couldn't exactly go back to work... figured my legs were due for an upgrade anyway.'"	{webster-d2-builtlegs, webster-d2-whyeightlegs, webster-d2-ilikelegs}
 webster-d2-safety	true	false	"'There weren't any safety measures in place?'"	"'There weren't any safety measures in place?'
 
-He grimaces. 'Don't remind me. The Council of Works chose to fire me rather than admit their own oversight. I was shit out of luck. On the plus side, I suddenly had loads of free time -- so I figured my legs were due for an upgrade anyway.'"	{webster-d2-builtlegs, webster-d2-whyeightlegs, webster-d2-ilikelegs}
+He grimaces. 'Don't remind me. The Council of Works chose to fire me rather than admit their own oversight. On the plus side, that gave me loads of free time -- so I figured my legs were due for an upgrade anyway.'"	{webster-d2-builtlegs, webster-d2-whyeightlegs, webster-d2-ilikelegs}
 webster-d2-builtlegs	true	true	"'You built them yourself?'"	"'You built them yourself?'
 
-'That I did,' replies [the Webster]. 'I like to think I'm pretty handy with a hammer. I'd been thinking about a similar project for months. Just never imagined I'd be building something for myself to use.'"	{webster-d2-whyeightlegs, webster-d2-ilikelegs}
+'That I did,' replies [the Webster]. 'I like to think I'm pretty handy with a hammer. I'd been thinking about a similar project for months... just never imagined I'd be building something for myself to use.'"	{webster-d2-whyeightlegs, webster-d2-ilikelegs}
 webster-d2-whyeightlegs	true	true	"'Why eight legs?'"	"'Why eight legs?'
 
-'Redundancy,' he replies. 'Stability. You never fall over with eight legs, you know?'"	{webster-d2-builtlegs, webster-d2-ilikelegs}
+'Redundancy,' he says. 'Stability. You never fall over with eight legs, you know?'"	{webster-d2-builtlegs, webster-d2-ilikelegs}
 webster-d2-ilikelegs	true	false	"'I like your legs.'"	"'I like your legs.'
 
 'Thanks.' He inclines his head. 'You ever lose a body part, come see me. I'll even let you choose how many limbs you want to walk out with.'
@@ -13987,17 +13990,12 @@ Section 3.36.2.1.3 - Answering Reden
 	
 Table of Webster Day Two Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-webster-d2-deathsreden	false	false	"'I know for a fact that Reden came here often...'"	"'I know for a fact that Reden came here often,' you say. 'I'm investigating his death, too.'
-
-There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
-
-[wait for any key]'Reden,' he says. 'He's dead?'"	{webster-d2-diseasetookhim, webster-d2-watchedhimdie}
 webster-d2-answerreden	false	false	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
 
 There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
 
-[wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-diseasetookhim, webster-d2-watchedhimdie}
-webster-d2-diseasetookhim	true	false	"'I'm sorry. The disease took him.'"	"'I'm sorry. The disease took him.'"	{}
+[wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-hesdead, webster-d2-watchedhimdie}
+webster-d2-hesdead	true	false	"'He was one of the victims. I'm sorry.'"	"'He was one of the victims. I'm sorry.'"	{}
 webster-d2-watchedhimdie	true	false	"'I watched him die in Doctor Cavala's clinic.'"	"'I watched him die in Doctor Cavala's clinic.'"	{}
 
 Book 3.37 - Crow's Nest
