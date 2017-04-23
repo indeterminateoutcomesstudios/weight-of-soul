@@ -3279,9 +3279,9 @@ Understand "monstrosity" or "workshop/workshops" or "chimera" or "feather/feathe
 
 The Bilious Canal's runoff is a backdrop.
 The description is "A black, viscous, spiteful weight."
-Understand "water/waters" or "surface" or "dark" or "writhing" or "canal" as the Bilious Canal's runoff.
 The sound is "The water percolates."
 The scent is "There is a powerful odor of algae and corrosion."
+Understand "water/waters" or "surface" or "dark" or "writhing" or "canal" as the Bilious Canal's runoff.
 Before entering the Bilious Canal's runoff, try swimming instead.
 Instead of cutting the Bilious Canal's runoff, say "You dip your scalpel in the current and watch the flow divide in two."
 Instead of knocking on, rubbing or touching the Bilious Canal's runoff, say "Your gloves would be ruined if you did that."
@@ -3290,6 +3290,9 @@ Instead of inserting something into the Bilious Canal's runoff, say "You would n
 Instead of searching or looking under the Bilious Canal's runoff, say "The water is utterly opaque."
 Instead of drinking the Bilious Canal's runoff, say "To call the canal water potable would be quite the exaggeration."
 Instead of attacking, pushing, pulling, squeezing, swinging, or turning the Bilious Canal's runoff, say "How you might accomplish that is beyond you."
+
+The view of the Gangway is a faraway backdrop.
+The description is "It spirals from the earth to the heavens."
 
 Part 3.1.3 - Ambience
 
@@ -9270,7 +9273,9 @@ Instead of examining outside in the Shanty Quarter, say "It's unclear where you 
 
 Part 3.22.1 - Scenery
 
-The nightmarish architecture, the slum-dwellers, and the offal are in the Shanty Quarter.
+The nightmarish architecture, the slum-dwellers, the offal, and the view of the Gangway are in the Shanty Quarter.
+
+Before entering the view of the Gangway in the Shanty Quarter, try going up instead.
 
 Some tangled rope ladders are scenery in the Shanty Quarter.
 The description is "Fraying things, held together by lashings and prayers."
@@ -13816,6 +13821,8 @@ Instead of going up in the Gangway when Webster is in-the-way:
 	otherwise:
 		say "[The Webster] won't let you past unless you manage to convince him somehow.";
 		
+Before giving something to Webster, try talking to Webster instead.
+		
 Section 3.36.2.1.1 - Intro
 
 Some dialogue branches are defined by the Table of Webster Day Two Dialogue.
@@ -14070,11 +14077,79 @@ To say webster-d2-accept:
 
 Book 3.37 - Crow's Nest
 
-There is a proper-named room called the Crow's Nest.
+There is a proper-named room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; around you odd patrons mingle, engrossed in their late-afternoon murmur.
 
+The Gangway lies below."
 It is above the Gangway.
+Understand "crow/crows" as the Crow's Nest.
 
-[The antique tinderbox, the Daemon's Wheel]
+The simple-name is "the Crow's Nest".
+The sound is "Snatches of conversation on the wind."
+The scent is "This place is soaked in alcohol and wood grain."
+The exit reminder is "The exit is below."
+
+Before examining down in the Crow's Nest, try examining the view of the Gangway instead.
+
+Part 3.37.1 - Scenery
+
+The high-rise buildings, the mist, the view of the Shanty Quarter, and the view of the Gangway are in the Crow's Nest.
+
+Before entering the view of the Shanty Quarter in the Crow's Nest, try going down instead.
+Before entering the view of the Gangway in the Crow's Nest, try going down instead.
+
+Some sail-rags are faraway scenery in the Crow's Nest.
+The description is "They are evocative of ancient sailing-ships. Only more ragged."
+The sound is "The rags billow."
+Understand "sail/sails" or "rag/rags/ragged" as the sail-rags.
+
+Some cobbled-together furnishings are fixed in place scenery in the Crow's Nest.
+The description is "There is half a method to the madness, as though the builders had followed a half-forgotten blueprint."
+Understand "discarded" or "block/blocks" or "beam/beams" or "table/tables" or "landing/landings" or "madness" as the cobbled-together furnishings.
+Instead of entering the cobbled-together furnishings, say "You're standing in the Crow's Nest."
+
+Some odd patrons are a mixed-race undescribed person in the Crow's Nest.
+The description is "There are the shabby homeless you'd expect from a public house in the Shanty Quarter -- but there are also well-dressed patrons, and unfamiliar workmen and work-women."
+The sound is "'[one of]...should do something about the situation[or]...really? My condolences[or]...can't believe something like that happened[cycling]...'".
+Understand "patron" or "conversation" or "late" or "late-afternoon/afternoon" or "murmur" or "shabby" or "homeless" or "well-dressed/dressed" or "well" or "work" or "workmen/workwomen/workman/workwoman/work-women/work-woman" as the odd patrons.
+Before searching the odd patrons, try examining the odd patrons instead.
+Instead of talking to the odd patrons, say "You're too nervous about this place to make yourself sociable."
+
+Part 3.37.2 - Tram-Cart Countertop
+
+The tram-cart countertop is a scenery supporter in the Shanty Quarter.
+The description is "A countertop made out of a broken-down tram cart. An antique tinderbox has been bolted to one end, and a [italic type]rota fortunae[roman type] to the other."
+Understand "counter" or "top" or "bar" or "tram" or "cart" as the tram-cart countertop.
+Instead of entering the tram-cart countertop, say "You don't think [the Crow] would appreciate that."
+Instead of putting something on the tram-cart countertop, say "[The Crow] gives you a withering look."
+Instead of searching or looking under the tram-cart countertop, say "Behind the bar are the usual taps and glasses."
+
+The antique tinderbox is scenery on the serving bar.
+The description is "A large, bulky glass fixture. It looks to be for lighting tobacco pipes."
+The scent is "It smells of phlogiston."
+Understand "glass" or "fixture" or "large" or "bulky" or "phlogiston" or "inflammable/flammable" or "aer/aeres" as the antique tinderbox.
+Instead of lighting the antique tinderbox, say "You'd rather not use it unless you have to."
+Instead of looking under the antique tinderbox, say "It's bolted to the bar."
+Instead of opening the antique tinderbox, say "[The Crow]'s watching. Best not to meddle with her things."
+Instead of searching the antique tinderbox, say "You can't see anything inside, but you assume it contains phlogiston and other inflammable [italic type]aeres[roman type]."
+
+The Daemon's Wheel is scenery on the serving bar.
+The description is "'[italic type]The Daemon's Wheel.[roman type] Step up and spin for your fate!'"
+Understand "rota" or "fortunae" or "of/-- fortune" as the Daemon's Wheel.
+Instead of looking under the Daemon's Wheel, say "It's bolted to the bar."
+Instead of searching the Daemon's Wheel, say "The wheel is marked with various prizes."
+
+Instead of turning the Daemon's Wheel:
+	say "You give the wheel a spin. [one of]Disappointingly, it lands on a blank space.[or]It lands on a space marked 'One Libra.'[or]It lands on a space marked 'Twenty Librae.'[or]It lands on a space marked 'Free Drink.'[or]It lands on a space marked 'One Talent.'[or]It lands on a space marked 'Five Talents.'[or]It lands on a space marked 'On the House.'[paragraph break]'Congratulations,' [the Crow] deadpans. 'You won. Lucky you.'[as decreasingly likely outcomes]";
+
+The Crow's Nest kitchenware is faraway scenery in the Crow's Nest.
+The description is "Just the usual day-to-day things found in every public house."
+The Crow's Nest kitchenware has some text called the faraway response. The faraway response is "That's not something you need to be concerned with."
+Understand "tap/taps" or "glass/glasses" as the Crow's Nest kitchenware.
+
+Part 3.37.3 - Crow
+
+Crow is an improper-named human woman in the Shanty Quarter. "Behind the bar a disaffected young woman lounges, chewing on a stick of gum and idly spinning a [italic type]rota fortunae[roman type] with her finger."
+The printed name is "[if Crow is proper-named]Crow[otherwise]bartender[end if]".
 
 Book of the Rest
 
