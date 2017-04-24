@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 230417.
+The release number is 250417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -13732,7 +13732,7 @@ Instead of dropping the gift note:
 
 Book 3.36 - Gangway
 
-The Gangway is a proper-named room in Outdoors. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
+There is a proper-named room in Outdoors called the Gangway. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
 The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
 It is above the Shanty Quarter.
@@ -14077,14 +14077,14 @@ To say webster-d2-accept:
 
 Book 3.37 - Crow's Nest
 
-There is a proper-named room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; around you odd patrons mingle, engrossed in their late-afternoon murmur.
+There is a proper-named room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; odd patrons mingle all around you, engrossed in the late-afternoon murmur.
 
 The Gangway lies below."
 It is above the Gangway.
 Understand "crow/crows" as the Crow's Nest.
 
 The simple-name is "the Crow's Nest".
-The sound is "Snatches of conversation on the wind."
+The sound is "Snatches of conversation escape the wind."
 The scent is "This place is soaked in alcohol and wood grain."
 The exit reminder is "The exit is below."
 
@@ -14098,7 +14098,7 @@ Before entering the view of the Shanty Quarter in the Crow's Nest, try going dow
 Before entering the view of the Gangway in the Crow's Nest, try going down instead.
 
 Some sail-rags are faraway scenery in the Crow's Nest.
-The description is "They are evocative of ancient sailing-ships. Only more ragged."
+The description is "They're evocative of ancient sailing-ships. Only more ragged."
 The sound is "The rags billow."
 Understand "sail/sails" or "rag/rags/ragged" as the sail-rags.
 
@@ -14108,7 +14108,7 @@ Understand "discarded" or "block/blocks" or "beam/beams" or "table/tables" or "l
 Instead of entering the cobbled-together furnishings, say "You're standing in the Crow's Nest."
 
 Some odd patrons are a mixed-race undescribed person in the Crow's Nest.
-The description is "There are the shabby homeless you'd expect from a public house in the Shanty Quarter -- but there are also well-dressed patrons, and unfamiliar workmen and work-women."
+The description is "There are the shabby homeless you'd expect from a public house in the Shanty Quarter -- but there are also well-dressed patrons, unfamiliar workmen and work-women."
 The sound is "'[one of]...should do something about the situation[or]...really? My condolences[or]...can't believe something like that happened[cycling]...'".
 Understand "patron" or "conversation" or "late" or "late-afternoon/afternoon" or "murmur" or "shabby" or "homeless" or "well-dressed/dressed" or "well" or "work" or "workmen/workwomen/workman/workwoman/work-women/work-woman" as the odd patrons.
 Before searching the odd patrons, try examining the odd patrons instead.
@@ -14116,27 +14116,27 @@ Instead of talking to the odd patrons, say "You're too nervous about this place 
 
 Part 3.37.2 - Tram-Cart Countertop
 
-The tram-cart countertop is a scenery supporter in the Shanty Quarter.
+The tram-cart countertop is a scenery supporter in the Crow's Nest.
 The description is "A countertop made out of a broken-down tram cart. An antique tinderbox has been bolted to one end, and a [italic type]rota fortunae[roman type] to the other."
 Understand "counter" or "top" or "bar" or "tram" or "cart" as the tram-cart countertop.
-Instead of entering the tram-cart countertop, say "You don't think [the Crow] would appreciate that."
+Before entering the tram-cart countertop, try talking to Crow instead.
 Instead of putting something on the tram-cart countertop, say "[The Crow] gives you a withering look."
 Instead of searching or looking under the tram-cart countertop, say "Behind the bar are the usual taps and glasses."
 
-The antique tinderbox is scenery on the serving bar.
+The antique tinderbox is scenery on the tram-cart countertop.
 The description is "A large, bulky glass fixture. It looks to be for lighting tobacco pipes."
 The scent is "It smells of phlogiston."
 Understand "glass" or "fixture" or "large" or "bulky" or "phlogiston" or "inflammable/flammable" or "aer/aeres" as the antique tinderbox.
-Instead of lighting the antique tinderbox, say "You'd rather not use it unless you have to."
+Instead of burning the antique tinderbox, say "You'd rather not use it unless you have to."
 Instead of looking under the antique tinderbox, say "It's bolted to the bar."
-Instead of opening the antique tinderbox, say "[The Crow]'s watching. Best not to meddle with her things."
+Instead of opening the antique tinderbox, say "[The Crow]'s watching. You probably shouldn't meddle with her things."
 Instead of searching the antique tinderbox, say "You can't see anything inside, but you assume it contains phlogiston and other inflammable [italic type]aeres[roman type]."
 
-The Daemon's Wheel is scenery on the serving bar.
-The description is "'[italic type]The Daemon's Wheel.[roman type] Step up and spin for your fate!'"
-Understand "rota" or "fortunae" or "of/-- fortune" as the Daemon's Wheel.
+The Daemon's Wheel is scenery on the tram-cart countertop.
+The description is "THE DAEMON'S WHEEL. 'Step up and spin for your fate!' proclaims the sign."
+Understand "rota" or "fortunae" or "of/-- fortune" or "finger" or "sign" as the Daemon's Wheel.
 Instead of looking under the Daemon's Wheel, say "It's bolted to the bar."
-Instead of searching the Daemon's Wheel, say "The wheel is marked with various prizes."
+Instead of searching the Daemon's Wheel, say "The wheel is marked with prizes in varying denominations."
 
 Instead of turning the Daemon's Wheel:
 	say "You give the wheel a spin. [one of]Disappointingly, it lands on a blank space.[or]It lands on a space marked 'One Libra.'[or]It lands on a space marked 'Twenty Librae.'[or]It lands on a space marked 'Free Drink.'[or]It lands on a space marked 'One Talent.'[or]It lands on a space marked 'Five Talents.'[or]It lands on a space marked 'On the House.'[paragraph break]'Congratulations,' [the Crow] deadpans. 'You won. Lucky you.'[as decreasingly likely outcomes]";
@@ -14146,10 +14146,88 @@ The description is "Just the usual day-to-day things found in every public house
 The Crow's Nest kitchenware has some text called the faraway response. The faraway response is "That's not something you need to be concerned with."
 Understand "tap/taps" or "glass/glasses" as the Crow's Nest kitchenware.
 
+The listening device is faraway scenery in the Crow's Nest.
+The description is "Crow must hear everything that goes on in the Gangway."
+The sound is "You hear wind blowing."
+The listening device has some text called the faraway response. The faraway response is "You don't think [the Crow] would appreciate that."
+Understand "horn/foghorn" or "fog" or "behind the/-- bar" or "sigil/sigils/sigiled" or "feather/feathers" as the listening device.
+Does the player mean doing something with the listening device: it is unlikely.
+
 Part 3.37.3 - Crow
 
-Crow is an improper-named human woman in the Shanty Quarter. "Behind the bar a disaffected young woman lounges, chewing on a stick of gum and idly spinning a [italic type]rota fortunae[roman type] with her finger."
+Crow is an improper-named hostile human woman in the Crow's Nest. "A disaffected young woman lounges behind the bar, chewing on a stick of gum and idly spinning a [italic type]rota fortunae[roman type] with her finger."
 The printed name is "[if Crow is proper-named]Crow[otherwise]bartender[end if]".
+The description is "She's dressed in a disheveled shirt, wearing a hairpin of feathers and bones."
+The scent is "'Do you mind?' [the Crow] snaps."
+Understand "bartender" or "young" as Crow.
+
+The stick of chewing gum is a faraway thing carried by Crow.
+The description is "Well, you assume it's chewing gum."
+The sound is "She's chewing on it rather ferociously."
+The stick of chewing gum has some text called the faraway response. The faraway response is "That appears to be in [the Crow]'s mouth at the moment."
+
+The disheveled shirt is a thing worn by Crow.
+The description is "You don't think she particularly cares about her appearance."
+
+The feathered hairpin is a thing worn by Crow.
+The description is "It looks like it's made out of a crow's remains."
+Understand "feather/feathers" or "bone/bones" or "of" or "hair" or "pin" as the feathered hairpin.
+
+Chapter 3.37.3.1 - Crow during Day Two
+
+Some dialogue branches are defined by the Table of Crow Day Two Dialogue.
+
+Table of Crow Day Two Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+crow-d2-intro	true	false	""	"You approach the bartender. She doesn't bother looking up from the countertop.
+
+'So,' she says. 'You got past Webster. Makes me wonder why I hire him at all.'"	{crow-d2-hi, crow-d2-doyougreet, crow-d2-aboutreden}
+crow-d2-hi	true	true	"'Nice to meet you [roman type]too,[italic type] Miss...'"	"'Nice to meet you [italic type]too,[roman type] Miss...'
+
+'Crow. Just Crow.'
+
+She leans back, and spreads her arms in an all-encompassing gesture.
+
+'This is my nest.'"	{crow-d2-doyougreet, crow-d2-aboutreden}
+crow-d2-doyougreet	true	true	"'Do you greet all your customers like that?'"	"You fold your arms. 'Do you greet all your customers like that?'
+
+'In case you haven't noticed, we aren't exactly open to the public.' She drums her fingers on the counter. 'Be glad I'm making an exception for you.'"	{crow-d2-hi, crow-d2-aboutreden}
+crow-d2-aboutreden	true	false	"'I'm here about Reden.'"	"'I'm here about Reden.'
+
+[The Crow] swivels slowly around on her stool. She gets up and paces back and forth, hooking her thumbs in the loops of her trousers.
+
+'Yeah,' she says. 'I heard.'
+
+[wait for any key]Her eyes flicker to the device behind the bar, flared like a foghorn. She brushes the sigiled feathers in its bell and sends them fluttering.
+
+'You hear all kinds of things on the wind.'
+
+[wait for any key]'You heard everything?' you ask.
+
+'I heard enough.'
+
+[wait for any key]She uncorks a bottle and mixes a drink, a rich dark rum that you can smell from across the bar. She pours out a glass for herself -- she retrieves another, and raises it with a sidelong arch of her brow.
+
+[wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
+crow-d2-drinkplz	true	false	"'Please.'"	"'Please.'
+
+"	{}
+crow-d2-nodrink	true	false	"'I'm fine.'"	"'I'm fine.'
+
+"	{}
+crow-d2-wineplz	true	false	"'I'm more of a spiced wine person, actually.'"	"'I'm more of a spiced wine person, actually.'
+
+She rolls her eyes, but fetches another bottle from under the counter and pours you a sparkling white spirit. The powdered spices settle as she hands you the glass."	{}
+
+The home dialogue branch of Crow is crow-d2-intro.
+
+After reading out crow-d2-intro:
+	now Webster is proper-named;
+	now the enabled of webster-d2-urname is false.
+
+After reading out crow-d2-hi:
+	now Crow is proper-named;
+	redraw status line.
 
 Book of the Rest
 
