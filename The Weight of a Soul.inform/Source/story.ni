@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 250417.
+The release number is 260417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -618,6 +618,7 @@ To skip past the first half of Four Investigations:
 	now all patient-record files are meticulously digested;
 	now clue-patientrecords is true;
 	now the battered keyring is nowhere;
+	now clue-salkeyneeded is true;
 	now cellar-keygiven is true;
 	now the landlord is nowhere;
 	now cellar-access-granted is true;
@@ -638,7 +639,7 @@ To skip past the Reden part of Four Investigations:
 	now clue-reden-shack is true;
 	now the enabled of zoiro-mourning-alldone is true;
 	now the scattered coupons are nowhere;
-	now all drink coupons in the Reden's Shack coupon container are carried by the player;
+	now the drink coupons are carried by the player;
 	now clue-crowsnest is true;
 	now Zoiro's Residence is visited;
 	now Reden's Shack is visited;
@@ -2389,31 +2390,34 @@ Section 2.3.11.5.4 - Day Two Hints
 Table of Day Two Hints
 title	subtable	description	toggle
 "The landlord won't let me in!"	Table of Landlord Hints	--	hint toggle rule
-"How do I get past [the Webster]?"	Table of Webster Hints	--	hint toggle rule
+"How do I get past the bouncer?"	Table of Webster Hints	--	hint toggle rule
 "Back"	--	--	quit rule
 
 Table of Landlord Hints
 hint	used
-"It won't allow you in unless you have the proper key."	a number
+"The landlord won't allow you in unless you have the proper key."	a number
 "The key can be taken from the previous owner of the room."
 "It's on one of Doctor Arturus's patients."
-"Specifically, it's on Sal's belt."
+"Specifically, it's with Sal."
+"It's on his belt (his torso)."
 "The landlord isn't satisfied with just the key, though. You have to know which room it unlocks as well."
 "It doesn't unlock any of the three rooms you can see."
 "The clue can be found in Doctor Arturus's patient records."
-"The patient records are in Doctor Arturus's study, which is in his domicile in the Turris Infinita."
-"They're in the storage cabinet."
+"Justinian has an idea of where the patient records might be."
+"The patient records are in Doctor Arturus's domicile, in the Turris Infinita."
+"They're in the storage cabinet in the study."
 "Once you find the note, you can go back and tell the landlord what you've learned."
 
 Table of Webster Hints
 hint	used
 "[The Webster] won't let you past unless you can convince him somehow."	a number
 "You need to find someone or something that matters to him."
-"To be precise, you need to find someone connected to the Crow's Nest."
-"It's someone you already know."
+"To be precise, you need to know that someone is connected to the place he's guarding."
+"It's someone who you've seen before."
 "One of the victims you're investigating."
-"If you search Reden's lodgings, you'll find something linking him to the Crow's Nest."
-"Reden's shack is among the shacks to the west of Lower Riggertown."
+"Reden."
+"If you search his lodgings, you'll find an important clue."
+"Reden's shack is to the west of Lower Riggertown."
 "Once you've examined the drink coupons, you can return to [the Webster] and tell him what you've learned."
 
 Chapter 2.3.11.6 - Summoning the Help Menu
@@ -2551,9 +2555,9 @@ clue-patientrecords-justinian is a truth state that varies.
 clue-ravens-sighted is a number that varies.
 clue-raven is a truth state that varies.
 clue-tradingcompany is a truth state that varies.
+clue-salkeyneeded is a truth state that varies.
 clue-crowsnest is a truth state that varies.
 clue-giftnote is a truth state that varies.
-clue-webster is a truth state that varies.
 
 clue-reden-channelworks is a truth state that varies.
 clue-reden-zoironest is a truth state that varies.
@@ -2792,14 +2796,18 @@ To say journal-text-objectives:
 			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
 		if cellar-keygiven is true and cellar-access-granted is false:
 			add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
-		otherwise if clue-giftnote is false:
+		otherwise if clue-giftnote is false and cellar-access-granted is true:
 			add "- Investigate the cellar of the flophouse" to L;
 	if Four Investigations is happening:
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
 			add "- Ask around about the meaning of the raven" to LM;
-		if the Gangway is visited and Webster is in-the-way:
+		if clue-salkeyneeded is true and cellar-keygiven is false:
+			add "- Find a key to placate [the landlord]" to LM;
+		if clue-crowsnest is true and Webster is in-the-way:
 			add "- Find a way to convince [the Webster] to let you into the Crow's Nest" to LM;
+		otherwise if the Gangway is visited and Webster is in-the-way:
+			add "- Find a way to convince [the Webster] to let you pass" to LM;
 		if LM is not {}:
 			add "" to L;
 			add "[italic type]Miscellaneous[roman type]" to L;
@@ -2985,7 +2993,7 @@ To say journal-text-notes:
 	if Cavala's Errands is happening:
 		if Via Terminalis West Street is visited:
 			if the enabled of cavala-errands2-vision is true:
-				add "- Doctor Cavala told me to think about what I saw last night.. " to LM;
+				add "- Doctor Cavala told me to think about what I saw last night..." to LM;
 			add "- This district is so much larger than the Lake District..." to LM;
 			if the enabled of horatio-dayone-intro is true:
 				add "- I haven't spoken with Horatio in a while. I wonder how he's getting on..." to LM;
@@ -3202,9 +3210,9 @@ The sound is "Silence."
 Understand "obelisk" or "glass" or "apartment/apartments" or "tower" or "mirror/mirrors" as the view of the Turris Infinita.
 
 The view of the grand forum is a faraway backdrop. The indefinite article is "the".
-The description is "It's a lively riot of color."
-The sound is "You can hear voices and music."
-Understand "riot" or "color" or "voice/voices" or "music" as the view of the grand forum.
+The description is "[if Day One is happening]It's a lively riot of color[otherwise]The wind is colder, there[end if]."
+The sound is "[if Day One is happening]You can hear voices and music[otherwise]It's quiet[end if]."
+Understand "riot" or "color" or "voice/voices" or "music" as the view of the grand forum when Day One is happening.
 
 The view of the Via Mercurii is a faraway backdrop. The indefinite article is "the".
 The description is "It curves back and forth like a stone-gray serpent."
@@ -4118,12 +4126,16 @@ topic	description
 "doctor/-- serpens"	"Doctor Serpens does not reside in the Channelworks District, and so would not be on record."
 "saliunca"	"It appears Saliunca is a long-time patron of this clinic. She suffers from a severe imbalance of the choleric temperament, leading to cataracts and incontinence."
 "horatio" or "vigile"	"Horatio is a regular patron of the clinic, mainly for injuries sustained during physical exercise."
+"censor" or "provis"	"There are no records on Censor Provis. He must visit Doctor Arturus's clinic instead."
 "donti"	"There's no reference to Donti here."
 "zoiro"	"Zoiro has come in for the common cold now and then."
 "koriph"	"It seems Koriph receives regular treatment here for an imbalance of phlegm. His file records a visit every month."
+"examiner" or "velox"	"A man named Velox visits fortnightly for certain pharmaceutical treatments of a private nature."
 "creditor" or "nacarat"	"There's no patient record for Creditor Nacarat."
 "sal" or "salio"	"You find that a man named Salio has come in for brawl-related injuries before, but he was thrown out by Doctor Cavala for disorderly conduct."
 "piper"	"There are records of someone named Piper with a recurring phlegmatic infection, but she stopped coming to this clinic a few months ago."
+"crow"	"There are no records on Crow."
+"webster"	"A man named Webster was admitted some years ago for a second-degree burn on his wrist."
 "inhaler/inhalers" or "aer" or "halitus"	"There are a few inhalers here, mainly for treating asthma and hay fever."
 "soporific" or "aer/-- soporifer" or "vivific" or "aer/-- vivificans"	"The more powerful medications are reserved for the surgery room."
 "catholicon" or "breath of catholicon" or "halitus/-- catholiconis"	"You doubt you will see another inhaler of the [italic type]halitus catholiconis[roman type] in your lifetime, let alone in these pigeonholes."
@@ -6900,18 +6912,14 @@ horatio-dayone-intro	true	true	""	"You smile at him. 'Good morning, Horatio.'
 He grins. 'Hey, Marid. Out and about early?'"	{horatio-dayone-samething, horatio-dayone-errand}
 horatio-dayone-samething	true	false	"'I should be asking you the same thing...'"	"'I should be asking you the same thing,' you say dryly. 'You're up unusually early. Did your mother force you to get out of bed?'
 
-'Hey! I'll have you know I wake up on time now.' He scratches his tousled hair. 'Mostly. It was that or water-closet duty for another week.'
-
-'Is that why I haven't seen you around recently?'
-
-'Um, yes... yes it is.'"	{horatio-dayone-vigiles, horatio-dayone-errand, horatio-dayone-seeyou}
+'Hey! I'll have you know I wake up on time now.' He scratches his tousled hair. 'Mostly. It was that or water-closet duty for another week.'"	{horatio-dayone-vigiles, horatio-dayone-errand, horatio-dayone-seeyou}
 horatio-dayone-vigiles	true	true	"'How is life in the Vigiles?'"	"'How is life in the Vigiles?'
 
 Horatio folds his arms. 'I've hardly done anything. It's been nothing but closet-scrubbing and guard duty. I thought I'd had enough of that after boot camp.'
 
 'I know the feeling.'
 
-'I'm getting antsy, you know?' He drums his fingers on the hilt of his saber. 'I want to be out there stopping burglaries and giving criminals what for. Not standing around. I want to see some [italic type]action[roman type] once in a while.'"	{horatio-dayone-errand, horatio-dayone-seeyou}
+'I'm getting antsy, you know?' He drums his fingers on the hilt of his saber. 'I want to be out there catching criminals and stopping burglaries, not standing around. I want to see some [italic type]action[roman type] once in a while.'"	{horatio-dayone-errand, horatio-dayone-seeyou}
 horatio-dayone-errand	true	true	"'I'm on an errand for Doctor Cavala...'"	"'I'm on an errand for Doctor Cavala,' you explain. 'I'm on my way to deliver some documents to the basilica.'
 
 'No wonder you looked like you were in a hurry,' Horatio muses. 'Well, I shan't hold you up. You do know the way, don't you?'
@@ -7373,7 +7381,15 @@ Instead of throwing something at the fosse, say "If you did that, you'd never ge
 
 The statue of Reason is scenery in the Channelworks Concourse.
 The description is "She is sculpted in the image of the Trismegistus. A cloak billows around her, and a blindfold hides her eyes."
-Understand "image" or "trismegistus" or "her" or "cloak" or "blindfold" or "eyes" as the statue of Reason.
+Understand "image" or "trismegistus" as the statue of Reason.
+
+The sculpted cloak is part of the statue of Reason.
+The description is "A cloak, because Reason is only revealed to the devoted."
+Understand "her" or "statue's" as the sculpted cloak.
+
+The sculpted blindfold is part of the statue of Reason.
+The description is "A blindfold, because Reason gazes beyond worldly things."
+Understand "her" or "statue's" or "eye/eyes" as the sculpted blindfold.
 
 The replica of the Azoth is scenery in the Channelworks Concourse.
 The description is "A representation of the Staff of the Philosophers that stands for the Ineffable Truth. Or so you were taught in school."
@@ -7720,7 +7736,7 @@ You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots 
 
 [wait for any key]The gargoyles wrench your arms behind your back. The porter gives you a slowly erupting volcano of a glare.
 
-[italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking--'[roman type]
+[wait for any key][italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking--'[roman type]
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
@@ -7843,7 +7859,7 @@ justinian-afoot-disease	true	true	"'What are your thoughts on the disease?'"	"'W
 
 A serious cast comes over Justinian's features, and he pauses before speaking.
 
-'I know only that it is dangerous, Marid. It has killed dozens in mere days -- not even Doctor Arturus was safe, and he was the most cautious man I ever knew. If you plan to investigate this -- you must be careful, Marid. Very careful.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
+'I know only that it is dangerous, Marid. It has killed so many in mere days -- not even Doctor Arturus was safe, and he was the most cautious man I ever knew. If you plan to investigate this -- you must be careful, Marid. Very careful.'"	{justinian-afoot-patientrecords, justinian-afoot-cautious, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-assassin, justinian-afoot-lookaround}
 justinian-afoot-assassin	true	true	"'There was an attempt on Doctor Cavala's life. Do you have any idea why?'"	"'There was... there was an attempt on Doctor Cavala's life. Do you have any idea why?'
 
 'Hmm?'
@@ -7870,7 +7886,7 @@ You stand up a little too anxiously -- [italic type]no, Marid, you're blowing it
 
 [wait for any key]But when you close your eyes, you know you'd never forgive yourself. Not for the rest of your life.
 
-[wait for any key]'I'll be careful,' you tell him. 'Thanks, Justinian. I appreciate it.'
+[wait for any key]'I'll be careful,' you tell him. 'I promise.'
 
 [wait for any key]He reluctantly lets go.
 
@@ -8224,7 +8240,7 @@ Book 3.18 - Canalside Steps
 
 The Canalside Steps are a proper-named room in Outdoors. "The mist of the Bilious Canal slicks this cramped and winding stairway, and the rusted railings are battered with white spray. The bustle of the bridge reverberates cascading down the steps until they sink beneath the dark rushing water.
 
-Among the moss and graffiti of the east embankment, a mysterious iron door is set into the stone. The only other way lies back up to the Via Terminalis bridge."
+Among the moss and graffiti of the east embankment, a mysterious iron door is set into the stone."
 They are below Via Terminalis Bridge and south of Via Terminalis Bridge.
 Understand "stairway" as the Canalside Steps.
 
@@ -8370,7 +8386,7 @@ Understand "searchlight" or "mounted" or "cathode" or "lamp/lamps" or "light/lig
 Instead of looking under the gate-mounted searchlights, say "Watchmen are operating the searchlights."
 
 The arch of Miller's Gate is scenery in Miller's Gate. The indefinite article is "the".
-The description is "The venerable battlements are cast in concrete and furnished with marble. Seven bell-towers run the length of the arch, carefully attended by numerous gargoyles and watchmen, and a giant clock is set in the keystone."
+The description is "The venerable battlements are cast in concrete and furnished with marble. Seven bell-towers run the length of the arch, attended by gargoyles and watchmen, and a giant clock is set in the keystone."
 Understand "battlement/battlements" or "great" or "white" or "concrete" or "marble" or "venerable" as the arch of Miller's Gate.
 Before searching the arch of Miller's Gate, try examining the view of the Commercial District instead.
 Before entering the arch of Miller's Gate, try going east instead.
@@ -8697,7 +8713,7 @@ You hand the bundle of documents to the censor, who regards it with an appraisin
 
 [wait for any key]He puts a big red stamp on the bundle and files it away in a clattering of drawers, muttering to himself all the while. At last he pats the desk and nods with an air of self-importance.
 
-'Very good, miss,' he says. 'Thank you for bringing this to our attention. Now was there anything else you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
+[wait for any key]'Very good, miss,' he says. 'Thank you for bringing this to our attention. Now was there anything else you needed?'"	{censor-woken-address, censor-woken-detour, censor-woken-thanks}
 censor-woken-address	true	true	"'I need the address of a Channelworks District citizen...'"	"'I need the address of a Channelworks District citizen. His name is Zoiro.'
 
 The censor furrows his brow. 'Right then,' he says. 'Just a moment. Wait here, if you please.'
@@ -8776,7 +8792,7 @@ Book 3.21 - Via Mercurii
 
 There is a proper-named room in Outdoors called the Via Mercurii. "The Road of Change is a snaking, secretive thing. It curls in the side streets and in the dark places. Here along the canal, the opulence of the Upper Perioch peels away to reveal midnight hues and scarlet lamps, cabarets and pawnbrokers and establishments of ill repute -- but for now, at least, they slumber in the daylight.
 
-To the north is the grand forum, vibrant and lively, while to the south the Shanty Quarter begins."
+To the north is the grand forum, [if Day One is happening]vibrant and lively[otherwise]bleak and empty[end if], while to the south the Shanty Quarter begins."
 It is south of the Grand Forum.
 
 The simple-name is "the Via Mercurii".
@@ -8830,7 +8846,7 @@ Instead of entering the pawnbrokers, say "You aren't planning on pawning anythin
 Before searching the pawnbrokers, try examining the pawnbrokers instead.
 
 Some brothels are scenery in the Via Mercurii.
-The description is "You weren't the only youth who fell on hard times after the troubles, and not everyone had the luxury of an inheritance."
+The description is "Brothels, to put it bluntly."
 The sound is "The brothels are quiet during the day."
 The scent is "They are thick with sweat and incense."
 Understand "shop/shops" or "establishment/establishments" or "of" or "ill" or "repute" or "brothel" as the brothels.
@@ -9281,8 +9297,8 @@ It is south of the Via Mercurii.
 The simple-name is "the Shanty Quarter".
 The sound is "The walls echo with the sounds of laughter and tears."
 The scent is "It smells horrible in here."
-The exit reminder is "You can go up to the rooftops, down [if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if], east to the flophouse, north to the Via Mercurii, or west to Cadaver Walk."
-The going-in disambiguation is "Do you mean going down ([if Rats' Run is visited]to Rats' Run[otherwise]to the pits[end if]) or going east (to the flophouse)?"
+The exit reminder is "You can go up to the rooftops, down [if Rats' Run is visited]to Rats['] Run[otherwise]to the pits[end if], east to the flophouse, north to the Via Mercurii, or west to Cadaver Walk."
+The going-in disambiguation is "Do you mean going down ([if Rats' Run is visited]to Rats['] Run[otherwise]to the pits[end if]) or going east (to the flophouse)?"
 
 Before examining east in the Shanty Quarter, try examining the view of the crumbling flophouse instead.
 Instead of examining north in the Shanty Quarter, say "The Via Mercurii lies in that direction."
@@ -10124,33 +10140,31 @@ After examining the scattered coupons:
 		now the enabled of webster-d2-answerreden is true;
 	continue the action.
 	
-A drink coupon is a kind of thing.
-The description of a drink coupon is usually "A paper ticket you found in Reden's shack. Five coupons entitle the holder to a free drink at the [if Gangway is visited]Crow's Nest[otherwise]'Crow's Nest,' located in the rooftops of the Shanty Quarter[end if], as well as a spin of the 'Daemon's Wheel.'"
-Understand "paper" or "ticket" as a drink coupon. Understand "tickets" or "coupons" as the plural of a drink coupon.
-
-The Reden's Shack coupon container is a container. It contains three drink coupons.
+Some drink coupons are a thing.
+The description is "Some paper tickets you found in Reden's shack. Five coupons entitle the holder to a free drink at the [if Gangway is visited]Crow's Nest[otherwise]'Crow's Nest,' located in the rooftops of the Shanty Quarter[end if], as well as a spin of the 'Daemon's Wheel.'"
+Understand "paper/papers" or "ticket/tickets" or "coupon" as the drink coupons.
 
 Instead of taking the scattered coupons:
 	now the scattered coupons are nowhere;
-	now all drink coupons in the Reden's Shack coupon container are carried by the player;
+	now the drink coupons are carried by the player;
 	now clue-crowsnest is true;
 	if the one-shot of webster-d2-answerreden is false:
 		now the one-shot of webster-d2-answerreden is true;
 		now the enabled of webster-d2-answerreden is true;
 	say "Taken.";
 	
-Instead of giving a drink coupon to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
+Instead of giving the drink coupons to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
 
-Instead of attacking or cutting a drink coupon:
-	say "You tear up the drink coupon.";
+Instead of attacking or cutting the drink coupons:
+	say "You tear up the drink coupons.";
 	now the noun is nowhere.
 	
-Instead of dropping a drink coupon:
+Instead of dropping the drink coupons:
 	if the location is in Outdoors:
-		say "The coupon flutters away in the wind.";
+		say "The coupons flutter away in the wind.";
 		now the noun is nowhere;
-	otherwise if the location is not Marid's Room:
-		say "You shouldn't leave the coupon lying around here.";
+	otherwise if the location is not Marid's Room and the location is not Reden's Shack:
+		say "You shouldn't leave the coupons lying around here.";
 	otherwise:
 		continue the action.
 
@@ -10738,7 +10752,7 @@ Understand "turris" or "infinita" as the view of the foyer.
 Before entering the view of the foyer, try going west instead.
 
 Some chrome fixtures are scenery in Arturus's Clinic.
-The description is "Racks of gleaming equipment; gurneys that bristle with instrumentation. But none of them are useful at the moment."
+The description is "Racks of gleaming equipment; gurneys that bristle with instrumentation. But none of them appear to be useful at the moment."
 Understand "gleaming" or "equipment" or "gurney/gurneys" or "instrument/instruments/instrumentation" or "fixture" as the chrome fixtures.
 Instead of entering the chrome fixtures, say "You have better things to do than that."
 Instead of looking under, searching, or taking the chrome fixtures, say "As well-equipped as Doctor Arturus's clinic is, its fixtures are irrelevant to your interests."
@@ -12413,11 +12427,11 @@ Instead of taking the antique medical texts, say "You don't need any of these te
 Some dusty plaques are scenery in Arturus's Study.
 The description is "Various awards and certificates."
 The scent is "You sneeze."
-Understand "plaque" or "award/awards" or "certificate/certificates" as scenery in Arturus's Study.
+Understand "plaque" or "award/awards" or "certificate/certificates" as the dusty plaques.
 Instead of looking under the dusty plaques, say "The plaques are firmly affixed to the wall."
 
 The decorative frieze is scenery in Arturus's Study.
-The description is "The wood has been carefully carved and sigiled."
+The description is "The wood has been painstakingly carved and sigiled. You could examine the scenes or lines further if you wished."
 Understand "wood" or "carved/engraved" or "sigil/sigils/sigiled" as the decorative frieze.
 Instead of searching the decorative frieze, say "There are some scenes from antiquity, and lines in the [italic type]lingua libria[roman type]."
 
@@ -12438,6 +12452,7 @@ The decorative frieze incorporates a plural-named thing called the lines in the 
 The printed name of the lingua libria lines is "lines in the [italic type]lingua libria[roman type]".
 The description of the lingua libria lines is "[italic type]Nascentes morimur finisque ab origine pendet.[roman type] 'When we are born we die; our end is but the pendant of our beginning.'"
 Understand "line" as the lingua libria lines.
+Does the player mean doing something with the lingua libria lines: it is likely. [As opposed to her own tattoos.]
 
 The view of Doctor Arturus's domicile is faraway scenery in Arturus's Study.
 The description is "Light streams in."
@@ -12453,7 +12468,7 @@ Instead of looking under, opening, pushing, pulling, searching, or turning the p
 
 Part 3.31.2 - Rosewood Desk
 
-The rosewood desk is a scenery supporter in Arturus's Study.
+The rosewood desk is an enterable scenery supporter in Arturus's Study.
 The scent is "The smell is overpowering."
 Instead of examining the rosewood desk, say "The desk is drenched with tobacco, stained with ink, and weathered by decades of use. It curves around a high-backed armchair, piled with stationery and never-finished drafts.
 
@@ -12488,13 +12503,13 @@ Instead of putting something on the high-backed armchair, say "You aren't comfor
 Instead of inserting something into the high-backed armchair, say "You aren't comfortable leaving your things in this place."
 
 The dreary stationery is scenery on the rosewood desk. The indefinite article is "some".
-The description is "A pen and inkpot have been set out, as though Doctor Arturus had been planning to write something."
+The description is "A pen and inkpot have been set out, as though Doctor Arturus had been midway through writing something."
 Understand "pen" or "inkpot" as the dreary stationery.
 Instead of looking under the dreary stationery, say "The stationery is on the rosewood desk."
 Instead of taking the dreary stationery, say "You don't need either a pen or an inkpot."
 
 Some never-finished drafts are scenery on the rosewood desk.
-The description is "You guess that these were addressed to Doctor Arturus's friends once. But the ink has dried on unfinished sentences, leaving the drafts cryptic, without resolution."
+The description is "[one of]You guess that these were addressed to Doctor Arturus's friends once. But the ink has dried on unfinished sentences, leaving the drafts cryptic, without resolution[or]You skim the never-finished drafts but find nothing of note[stopping]."
 The scent is "The paper is old."
 Understand "draft" or "never" or "finished/unfinished" or "ink" or "sentence/sentences" as the never-finished drafts.
 Instead of looking under the never-finished drafts, say "The drafts are on the rosewood desk."
@@ -12505,9 +12520,11 @@ Chapter 3.31.2.1 - Correspondence Machine
 Section 3.31.2.1.1 - The Machine
 
 The correspondence machine is scenery on the rosewood desk.
-The description is "A complex alchemical-mechanical device which is labelled as a correspondence machine. It purports to receive and transmit messages through the aether without the need for magical training.
+The description is "A complex alchemical-mechanical device. It purports to receive and transmit messages through the aether without the need for magical training.
 
-The machine consists of a dial, a keyboard, a feed wheel, and a letterpress. Next to the dial, there are three indicator lamps, of which the first and second are lit."
+The machine consists of a dial, a keyboard, a feed wheel, and a letterpress. Next to the dial, there are three indicator lamps, of which the first and second are lit.
+
+There is also a box of ticker-tape reels beside the machine."
 The scent is "It smells... aetheric, for lack of a better word."
 The sound is "It isn't making any sound at the moment."
 Understand "device" or "bolt/bolts/bolted" as the correspondence machine.
@@ -12555,13 +12572,13 @@ To set the correspondence channel to (proposed setting - a number):
 Section 3.31.2.1.2 - Keyboard
 
 The keyboard is a thing part of the correspondence machine.
-The description is "A piano-style keyboard with letters and numbers printed on the keys. Unfortunately, it doesn't appear to be working. Only the playback key at the end of the keyboard is functional."
+The description is "A piano-style keyboard with letters and numbers printed on the keys. Unfortunately, only the playback key at the end of the keyboard appears to be functional."
 Understand "board" or "key board" as the keyboard.
-Instead of searching the keyboard, say "It looks like the [']send['] and [']receive['] keys are still functional."
+Instead of searching the keyboard, say "It looks like only the [']playback['] key is functional."
 Before pushing or touching the keyboard, try pushing the alphanumeric keys instead.
 
 Some alphanumeric keys are part of the keyboard.
-The description is "None of the alphanumeric keys are working."
+The description is "A piano-style keyboard with letters and numbers printed on the keys. Only the playback key at the end of the keyboard appears to be functional."
 Understand "letter/letters" or "number/numbers" or "printed" or "a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/0/1/2/3/4/5/6/7/8/9 key" or "key" as the alphanumeric keys.
 Instead of pushing or touching the alphanumeric keys, say "You press a few of the alphanumeric keys, but none of them are working. Only the playback key appears to be functional."
 
@@ -12578,7 +12595,7 @@ Instead of pushing or touching the playback key (this is the playback key functi
 			say "second";
 		-- 3:
 			say "third";
-	say " lamp starts blinking, and the feed wheel begins to spin. ";
+	say " lamp starts blinking and the feed wheel begins to spin. ";
 	if the ticker-tape reel is not in the feed wheel:
 		say "But after a moment, the wheel makes a hollow clacking noise, and the machine stops as quickly as it started.";
 	otherwise:
@@ -12599,14 +12616,14 @@ Instead of pushing or touching the playback key (this is the playback key functi
 					now the enabled of justinian-4inv-debt is true;
 			-- 2:
 				say "The ticker tape is rapidly run through the letterpress, which punches out the following message:[paragraph break]";
-				say "[fixed letter spacing]ENCOUNTERED DANGEROUS UNKNOWN DISEASE SYMPTOMS BLACK BLOOD RESPIRATORY ATTACKS COME DOWN ASAP RGDS CAVALA[variable letter spacing][line break]";
+				say "[fixed letter spacing]ENCOUNTERED FATAL UNKNOWN DISEASE SYMPTOMS BLACK BLOOD RESPIRATORY ATTACKS COME DOWN ASAP RGDS CAVALA[variable letter spacing][line break]";
 			-- 3:
 				say "The ticker tape is rapidly run through the letterpress. But it emerges blank on the other side, and the machine eventually stops and spins back the unpunched ticker tape.";
 
 Section 3.31.2.1.3 - Feed Wheel
 
 The feed wheel is an open unopenable container part of the correspondence machine.
-Instead of examining the feed wheel, say "A revolving wheel with a track on the outer rim. [if the ticker-tape reel is in the feed wheel]It's been freshly stocked with ticker tape[otherwise]It looks like something long and flat is meant to be placed inside[end if]."
+Instead of examining the feed wheel, say "A revolving wheel with a track on the outer rim. [if the ticker-tape reel is in the feed wheel]It's been freshly stocked with ticker tape[otherwise]It looks like something is meant to be placed inside[end if]."
 Instead of turning, pushing, pulling, touching, or swinging the feed wheel, say "The wheel spins [if the ticker-tape reel is in the feed wheel]merrily[otherwise]hollowly[end if]."
 Instead of inserting something that is not the ticker-tape reel into the feed wheel, say "That won't fit in the feed wheel."
 Instead of putting something that is not the ticker-tape reel on the feed wheel, say "That won't fit in the feed wheel."
@@ -12640,6 +12657,7 @@ Instead of taking the box of ticker-tape reels (this is the taking reels rule):
 	if the ticker-tape reel is nowhere:
 		say "You fish out a reel of ticker tape.";
 		now the ticker-tape reel is carried by the player;
+		set pronouns from the ticker-tape reel;
 	otherwise:
 		say "You already have a reel of ticker tape.";
 
@@ -13292,7 +13310,7 @@ cellar-keygiven is a truth state that varies.
 cellar-access-granted is a truth state that varies.
 cellar-noaccess-quipped is a truth state that varies.
 
-Instead of going south in the Flophouse when cellar-access-granted is false (this is the spoopy Room IV gating message rule):
+First before going south in the Flophouse when cellar-access-granted is false (this is the spoopy Room IV gating message rule):
 	if cellar-noaccess-quipped is false:
 		say "You take a step into the passageway, only to hear a screeching from behind you. A rubbery tentacle snaps tight around your foot.[paragraph break]";
 		wait for any key;
@@ -13307,11 +13325,13 @@ Instead of going south in the Flophouse when cellar-access-granted is false (thi
 		wait for any key;
 		say "The creature withdraws. You rub your neck with a trembling hand.";
 		now cellar-noaccess-quipped is true;
+		now clue-salkeyneeded is true;
 	otherwise:
 		if cellar-keygiven is true:
 			say "The landlord said that you had to tell it which room Sal's key unlocked before it would allow you to go in.";
 		otherwise:
 			say "[The landlord] said that you had to show it a key before it would allow you to go in.";
+	stop the action.
 
 Chapter 3.34.2.3 - The Landlord's Introduction
 
@@ -13384,7 +13404,7 @@ landlord-d2-seerooms	false	true	"'I'd like to take a look at your rooms.'"	"'I'd
 The creature spasms. It makes a pendulum-like motion with its foremost tentacle.
 
 [italic type]'Cannot,'[roman type] it says. [italic type]'No room. All rooms. Occupied. Secret.'[roman type]"	{landlord-d2-makeexception, landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
-landlord-d2-makeexception	true	true	"'Please. I'm investigating a man's death.' <Present the signum.>"	"'Please. I'm investigating a man's death.'
+landlord-d2-makeexception	true	true	"'Please. I'm investigating a series of deaths.' <Present the signum.>"	"'Please. I'm investigating a series of deaths.'
 
 The landlord brushes your signum away. [italic type]'No,'[roman type] it repeats. [italic type]'Cannot. You are not key-bearer.'[roman type]"	{landlord-d2-resident, landlord-d2-keybearer, landlord-d2-imkeybearer, landlord-d2-comebacklater}
 landlord-d2-okgoingnow	true	false	"'Okay... I'll be going now.'"	"'Okay... I'll be going now.'
@@ -13412,6 +13432,7 @@ After reading out landlord-d2-intro:
 	now the home dialogue branch of the landlord is landlord-d2-home.
 
 After reading out landlord-d2-operate: now the enabled of landlord-d2-seerooms is true.
+After reading out landlord-d2-makeexception: now clue-salkeyneeded is true.
 
 Instead of talking to the landlord when cellar-keygiven is false and the enabled of landlord-d2-resident is false and the enabled of landlord-d2-keybearer is false and the enabled of landlord-d2-operate is false and the enabled of landlord-d2-seerooms is false and the enabled of landlord-d2-imkeybearer is false (this is the no more landlord dialogue before key given rule):
 	say "[one of]'E-Excuse me?'
@@ -13600,6 +13621,7 @@ The landlord regards you wordlessly, and your lips feel suddenly dry. You're no 
 
 After reading out landlord-d2-cellar:
 	now the landlord is nowhere;
+	now the battered keyring is nowhere;
 	now cellar-access-granted is true.
 
 Book 3.35 - Cellar
@@ -13717,12 +13739,14 @@ The description is "A sigiled natron ribbon of the kind used in gift-wrapping. I
 The scent is "The natron fabric masks the scent, but you think you smell dried blood."
 Understand "sigil/sigils/sigiled" or "natron" or "gift" or "gift-wrap/gift-wrapping/giftwrap/giftwrapping/wrap/wrapping" or "blood-red" as the stained ribbon.
 Instead of pushing, pulling, squeezing, taking, touching, or turning the stained ribbon, say "The stains on the ribbon make you hesitant to touch it."
+Instead of looking under the stained ribbon, say "The stained ribbon is lying on the table."
 
 Some black speckled stains are part of the stained ribbon.
 The description is "You have a feeling that they aren't inkstains. And they definitely aren't wine."
 The scent is "The natron fabric masks the scent, but you think you smell dried blood."
 Understand "stain/bloodstain/bloodstains" or "dried" or "blood" as the black speckled stains.
 Instead of pushing, pulling, squeezing, touching, or turning the black speckled stains, say "You don't think touching the stains is a good idea."
+Instead of looking under the black speckled stains, say "The stains are part of the ribbon."
 
 Chapter 3.35.4.1 - Gift Note
 
@@ -13730,6 +13754,7 @@ The gift note is an undescribed thing on the incriminating table.
 The description is "[if the gift note is described]A handwritten note you found in the flophouse cellar[otherwise]A gift note written on plain stationery[end if]. It reads:[paragraph break][italic type]Congratulations to both of you on a job well done. Here is a gift to our continued partnership. Let's keep it a secret between us, shall we?[line break]A. Z. B. N. Creditor Nacarat[roman type]".
 The scent is "The note is odorless."
 Understand "handwritten" or "hand" or "written" or "plain" or "stationery" as the gift note.
+Instead of looking under the gift note, say "Nothing is written on the reverse."
 
 After taking the gift note: now the gift note is described; continue the action.
 After putting the gift note on the incriminating table: now the gift note is undescribed; continue the action.
@@ -13762,14 +13787,14 @@ Book 3.36 - Gangway
 
 There is a proper-named room in Outdoors called the Gangway. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
-The Shanty Quarter yawns below. Above you is the [if the Crow's Nest is visited or clue-crowsnest is true]public house called the Crow's Nest[otherwise]jutting structure[end if][if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way] -- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
+The Shanty Quarter yawns below. Above you is the [if clue-crowsnest is true]public house called the Crow's Nest[otherwise]jutting structure[end if][if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way] -- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
 It is above the Shanty Quarter.
 
 The simple-name is "the Gangway".
 The sound is "The wind sighs, and [the Webster]'s legs groan."
 The scent is "It's cold here, and foul."
-The exit reminder is "You can go down to the Shanty Quarter or up to the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]."
-The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if])?"
+The exit reminder is "You can go down to the Shanty Quarter or up to the [if clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]."
+The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the [if clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if])?"
 
 Instead of jumping in the Gangway, say "That sounds rather more fatal than you would prefer."
 Before examining up in the Gangway, try examining the view of the Crow's Nest instead.
@@ -13797,7 +13822,7 @@ The sound is "Figuratively speaking. The stars aren't actually out."
 The figurative stars have some text called the faraway response. The faraway response is "Figuratively speaking. The stars aren't actually out."
 
 The view of the Crow's Nest is faraway scenery in the Gangway.
-The printed name is "view of the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]".
+The printed name is "view of the [if clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]".
 The description is "At first glance it is haphazardly built. Only on closer inspection do you see the buttresses, the care that has gone into its construction."
 The sound is "It's quiet."
 The scent is "There is the faintest scent of food on the wind."
@@ -14182,7 +14207,7 @@ Understand "tap/taps" or "glass/glasses" as the Crow's Nest kitchenware.
 
 The listening device is faraway scenery in the Crow's Nest.
 The description is "Crow must hear everything that goes on in the Gangway."
-The sound is "You hear wind blowing."
+The sound is "You hear the whispering of the wind."
 The listening device has some text called the faraway response. The faraway response is "You don't think [the Crow] would appreciate that."
 Understand "horn/foghorn" or "fog" or "behind the/-- bar" or "sigil/sigils/sigiled" or "feather/feathers" as the listening device.
 Does the player mean doing something with the listening device: it is unlikely.
@@ -14194,6 +14219,8 @@ The printed name is "[if Crow is proper-named]Crow[otherwise]bartender[end if]".
 The description is "She's dressed in a disheveled shirt, wearing a hairpin of feathers and bones."
 The scent is "'Do you mind?' [the Crow] snaps."
 Understand "bartender" or "young" as Crow.
+
+Instead of giving the drink coupons to Crow, say "You don't think this is the best time to ask for a free drink."
 
 The stick of chewing gum is a faraway thing carried by Crow.
 The description is "At least you assume it's gum."
