@@ -215,6 +215,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	say "[line break]>[bold type]skip to cellar[roman type]";
+	say "[line break]>[bold type]skip to crow[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -616,24 +617,36 @@ To skip past the first half of Four Investigations:
 	now the Nacarat file is in the stack of miscellaneous patient records;
 	now all patient-record files are meticulously digested;
 	now clue-patientrecords is true;
-	[now clue-reden-channelworks is true;
-	now clue-reden-zoironest is true;
-	now clue-reden-shack is true;
-	now the enabled of zoiro-mourning-alldone is true;
-	now the scattered coupons are nowhere;
-	now all drink coupons in the Reden's Shack coupon container are carried by the player;
-	now clue-crowsnest is true;]
 	now the battered keyring is nowhere;
 	now cellar-keygiven is true;
 	now the landlord is nowhere;
 	now cellar-access-granted is true;
 	now Arturus's Domicile is visited;
 	now Arturus's Study is visited;
-	[now Zoiro's Residence is visited;
-	now Reden's Shack is visited;]
 	now shantyquarter-daytwo-quipped is true;
 	now Rats' Run is visited;
 	move the player to the Flophouse, without printing a room description;
+	follow the scene changing rules.
+	
+To skip past the Reden part of Four Investigations:
+	if cellar-access-granted is false:
+		skip past the first half of Four Investigations;
+	now the Cellar is visited;
+	now clue-giftnote is true;
+	now clue-reden-channelworks is true;
+	now clue-reden-zoironest is true;
+	now clue-reden-shack is true;
+	now the enabled of zoiro-mourning-alldone is true;
+	now the scattered coupons are nowhere;
+	now all drink coupons in the Reden's Shack coupon container are carried by the player;
+	now clue-crowsnest is true;
+	now Zoiro's Residence is visited;
+	now Reden's Shack is visited;
+	now the home dialogue branch of Webster is webster-d2-home;
+	now the enabled of webster-d2-answerreden is false;
+	now the one-shot of webster-d2-answerreden is false;
+	now Webster is sufficiently-convinced;
+	move the player to the Crow's Nest, without printing a room description;
 	follow the scene changing rules.
 	
 Skipping Reden's surgery is an action applying to nothing.
@@ -720,6 +733,13 @@ Understand "skip to cellar" as skipping to cellar.
 Check skipping to cellar when the landlord is nowhere: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to cellar:
 	skip past the first half of Four Investigations;
+	try looking.
+	
+Skipping to Crow's Nest is an action applying to nothing.
+Understand "skip to crow" as skipping to Crow's Nest.
+Check skipping to Crow's Nest when the Crow's Nest is visited: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to Crow's Nest:
+	skip past the Reden part of Four Investigations;
 	try looking.
 	
 Book 1.3 - People
@@ -2702,12 +2722,13 @@ To say journal-text-objectives:
 			add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
 		if clue-reden-shack is true and Reden's Shack is unvisited:
 			add "- Look for a place in Lower Riggertown where Reden could have stayed" to L;
-		if Reden's Shack is visited:
-			add "- Investigate Reden's shack in Lower Riggertown for clues" to L;
 		if clue-crowsnest is true:
 			add "- Go to the Shanty Quarter and investigate the Crow's Nest pub" to L;
-		otherwise if clue-reden-zoironest is true:
-			add "- Find out more about a pub involving a [']bird's nest[']" to L;
+		otherwise:
+			if Reden's Shack is visited:
+				add "- Investigate Reden's shack in Lower Riggertown for clues" to L;
+			if clue-reden-zoironest is true and Gangway is unvisited:
+				add "- Find out more about a pub involving a [']bird's nest[']" to L;
 	if Arturus Investigation is happening:
 		add "" to L;
 		add "[italic type]Doctor Arturus[roman type]" to L;
@@ -10098,7 +10119,9 @@ Understand "drink" or "coupon" or "paper" or "ticket/tickets" as the scattered c
 
 After examining the scattered coupons:
 	now clue-crowsnest is true;
-	now the enabled of webster-d2-answerreden is true;
+	if the one-shot of webster-d2-answerreden is false:
+		now the one-shot of webster-d2-answerreden is true;
+		now the enabled of webster-d2-answerreden is true;
 	continue the action.
 	
 A drink coupon is a kind of thing.
@@ -10111,7 +10134,9 @@ Instead of taking the scattered coupons:
 	now the scattered coupons are nowhere;
 	now all drink coupons in the Reden's Shack coupon container are carried by the player;
 	now clue-crowsnest is true;
-	now the enabled of webster-d2-answerreden is true;
+	if the one-shot of webster-d2-answerreden is false:
+		now the one-shot of webster-d2-answerreden is true;
+		now the enabled of webster-d2-answerreden is true;
 	say "Taken.";
 	
 Instead of giving a drink coupon to someone, say "[if time is critical]This is not the time.[otherwise]You don't think [the second noun] would appreciate the gift."
@@ -13619,7 +13644,7 @@ Some cockroaches are faraway scenery in the Cellar.
 The description is "Cockroaches haven't scared you since you were a little girl. They are, however, deathly irritating things."
 The cockroaches have some text called the faraway response. The faraway response is "The cockroaches scurry away before you can get close."
 Understand "cockroach/roach/roaches/vermin" as the cockroaches.
-Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]Pow! Nope. You missed.[or]Slap! You missed.[or]Ha! Got one![or]Okay, that's enough. You can't spend the whole day killing cockroaches.[or]You can't spend the whole day killing cockroaches.[stopping]".
+Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]Pow! You missed.[or]Slap! You missed.[or]Ha! Got one![or]Okay, that's enough. You can't spend the whole day killing cockroaches.[or]You can't spend the whole day killing cockroaches.[stopping]".
 
 Part 3.35.2 - The Incriminating Table
 
@@ -13636,8 +13661,8 @@ Instead of extinguishing the guttering phlogiston candle, say "You don't like it
 Instead of listening to, pushing, pulling, rubbing, smelling, squeezing, taking, touching, or turning the guttering phlogiston candle, say "You don't want to."
 
 Some miscellaneous bladed weapons are scenery on the incriminating table.
-The description is "Knives, mostly, of various sizes and shapes. There is also a saber which you recognize to be stolen from the Vigiles."
-Understand "weapon/blade/blades" or "knife/knives" or "saber/sabre" or "stolen" or "vigiles" or "contraband/shape/shapes" as the miscellaneous bladed weapons.
+The description is "Knives, mostly, of various sizes and shapes."
+Understand "weapon/blade/blades" or "knife/knives" or "contraband/shape/shapes" as the miscellaneous bladed weapons.
 Instead of taking the miscellaneous bladed weapons, say "Being caught with one of these would just raise unwanted questions. In any case, you already have your scalpel for cutting things."
 
 Some counterfeit bills are scenery on the incriminating table.
@@ -13688,7 +13713,7 @@ Before smelling the strange odor, try examining the strange odor instead.
 Part 3.35.4 - Other Non-Wine-Bottle, Less Suspicious (But No Less Informative) Clues
 
 The stained ribbon is scenery on the incriminating table.
-The description is "A sigiled natron ribbon, of the kind used in gift-wrapping. It's stained black on blood-red."
+The description is "A sigiled natron ribbon of the kind used in gift-wrapping. It is stained black on blood-red."
 The scent is "The natron fabric masks the scent, but you think you smell dried blood."
 Understand "sigil/sigils/sigiled" or "natron" or "gift" or "gift-wrap/gift-wrapping/giftwrap/giftwrapping/wrap/wrapping" or "blood-red" as the stained ribbon.
 Instead of pushing, pulling, squeezing, taking, touching, or turning the stained ribbon, say "The stains on the ribbon make you hesitant to touch it."
@@ -13702,9 +13727,12 @@ Instead of pushing, pulling, squeezing, touching, or turning the black speckled 
 Chapter 3.35.4.1 - Gift Note
 
 The gift note is an undescribed thing on the incriminating table.
-The description is "[if the gift note is described]A handwritten note you found in the flophouse cellar[otherwise]A gift note written on plain stationery[end if]. It reads:[paragraph break][italic type]Congratulations to both of you on a job well done. Here is a gift to our continued partnership.[line break]A. Z. B. N. Creditor Nacarat[roman type]".
+The description is "[if the gift note is described]A handwritten note you found in the flophouse cellar[otherwise]A gift note written on plain stationery[end if]. It reads:[paragraph break][italic type]Congratulations to both of you on a job well done. Here is a gift to our continued partnership. Let's keep it a secret between us, shall we?[line break]A. Z. B. N. Creditor Nacarat[roman type]".
 The scent is "The note is odorless."
 Understand "handwritten" or "hand" or "written" or "plain" or "stationery" as the gift note.
+
+After taking the gift note: now the gift note is described; continue the action.
+After putting the gift note on the incriminating table: now the gift note is undescribed; continue the action.
 
 After examining the gift note when clue-giftnote is false:
 	now clue-giftnote is true;
@@ -13734,14 +13762,14 @@ Book 3.36 - Gangway
 
 There is a proper-named room in Outdoors called the Gangway. "Rotting beams spiral from the Shanty Quarter like a stairway grasping for the stars. At their head is a jutting structure like a treehouse, and it shadows all that is beneath it, shielding grimy brick and concrete from desolate sky.
 
-The Shanty Quarter yawns below. Above you is [first time]the public house called [only]the Crow's Nest[if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way]-- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
+The Shanty Quarter yawns below. Above you is the [if the Crow's Nest is visited or clue-crowsnest is true]public house called the Crow's Nest[otherwise]jutting structure[end if][if Webster is in-the-way and Webster is improper-named] -- but a fearsome eight-legged bouncer blocks the way[otherwise if Webster is in-the-way] -- but the eight-legged bouncer called Webster blocks the way[otherwise if Webster is improper-named], watched by the eight-legged bouncer from his perch[otherwise], watched by the bouncer Webster from his perch[end if]."
 It is above the Shanty Quarter.
 
 The simple-name is "the Gangway".
 The sound is "The wind sighs, and [the Webster]'s legs groan."
 The scent is "It's cold here, and foul."
-The exit reminder is "You can go down to the Shanty Quarter or up to the Crow's Nest."
-The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the Crow's Nest)?"
+The exit reminder is "You can go down to the Shanty Quarter or up to the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]."
+The going-in disambiguation is "Do you mean going down (to the Shanty Quarter) or going up (to the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if])?"
 
 Instead of jumping in the Gangway, say "That sounds rather more fatal than you would prefer."
 Before examining up in the Gangway, try examining the view of the Crow's Nest instead.
@@ -13769,12 +13797,13 @@ The sound is "Figuratively speaking. The stars aren't actually out."
 The figurative stars have some text called the faraway response. The faraway response is "Figuratively speaking. The stars aren't actually out."
 
 The view of the Crow's Nest is faraway scenery in the Gangway.
+The printed name is "view of the [if the Crow's Nest is visited or clue-crowsnest is true]Crow's Nest[otherwise]jutting structure[end if]".
 The description is "At first glance it is haphazardly built. Only on closer inspection do you see the buttresses, the care that has gone into its construction."
 The sound is "It's quiet."
 The scent is "There is the faintest scent of food on the wind."
 Understand "jutting" or "structure" or "treehouse/house" or "pub/public" or "house" as the view of the Crow's Nest.
 Before climbing or entering the view of the Crow's Nest, try going up instead.
-Instead of looking under the view of the Crow's Nest, say "The Crow's Nest is balanced on a lattice of beams."
+Instead of looking under the view of the Crow's Nest, say "It's balanced on a lattice of beams."
 
 Part 3.36.2 - Webster
 
@@ -13869,12 +13898,12 @@ webster-d2-needadrink	true	true	"'I'm just looking for a drink.'"	"'I'm just... 
 'You're a terrible liar, sweetheart.'
 
 You redden."	{webster-d2-needgetin, webster-d2-investigatingdeaths}
-webster-d2-needgetin	true	true	"'I need to get into the Crow's Nest.'"	"'I need to get into the Crow's Nest,' you say.
+webster-d2-needgetin	true	true	"'I need to get inside.'"	"'I need to get inside,' you say.
 
 The bouncer looks up at the bulk in the sky. His expression is guarded, and for the briefest of moments, melancholy.
 
 'I'd love to let you in, sweetheart,' he replies. 'But these are troublesome times. We... aren't letting just anyone in these days.'"	{webster-d2-whynoentry, webster-d2-investigatingdeaths}
-webster-d2-whynoentry	false	true	"'Why aren't you letting customers in?'"	"'Why aren't you letting customers in?'
+webster-d2-whynoentry	false	true	"'Why aren't you letting people in?'"	"'Why aren't you letting people in?'
 
 He opens his mouth. Closes it again. He closes his eyes, and rubs his goggles.
 
@@ -13987,17 +14016,21 @@ You step away from [the Webster], feeling the beams shift beneath your weight."	
 
 After reading out webster-d2-nameok:
 	now Webster is proper-named;
+	now the conversational partner text is "Talking to Webster";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line.
 	
 After reading out webster-d2-nameno:
 	now Webster is proper-named;
+	now the conversational partner text is "Talking to Webster";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line.
 
 Section 3.36.2.1.3 - Answering Reden
 	
 Table of Webster Day Two Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-webster-d2-answerreden	false	true	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
+webster-d2-answerreden	false	false	"'Reden came here often, didn't he?'"	"'Reden came here often, didn't he?'
 
 There is a shift in the air. [The Webster] starts, and looks at you with something approaching incredulity in his eyes.
 
@@ -14079,7 +14112,7 @@ Book 3.37 - Crow's Nest
 
 There is a proper-named room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; odd patrons mingle all around you, engrossed in the late-afternoon murmur.
 
-The Gangway lies below."
+The exit lies below."
 It is above the Gangway.
 Understand "crow/crows" as the Crow's Nest.
 
@@ -14093,6 +14126,7 @@ Before examining down in the Crow's Nest, try examining the view of the Gangway 
 Part 3.37.1 - Scenery
 
 The high-rise buildings, the mist, the view of the Shanty Quarter, and the view of the Gangway are in the Crow's Nest.
+Understand "exit" as the view of the Gangway when the location is the Crow's Nest.
 
 Before entering the view of the Shanty Quarter in the Crow's Nest, try going down instead.
 Before entering the view of the Gangway in the Crow's Nest, try going down instead.
@@ -14133,7 +14167,7 @@ Instead of opening the antique tinderbox, say "[The Crow]'s watching. You probab
 Instead of searching the antique tinderbox, say "You can't see anything inside, but you assume it contains phlogiston and other inflammable [italic type]aeres[roman type]."
 
 The Daemon's Wheel is scenery on the tram-cart countertop.
-The description is "THE DAEMON'S WHEEL. 'Step up and spin for your fate!' proclaims the sign."
+The description is "'THE DAEMON'S WHEEL. Step up and spin for your fate!'"
 Understand "rota" or "fortunae" or "of/-- fortune" or "finger" or "sign" as the Daemon's Wheel.
 Instead of looking under the Daemon's Wheel, say "It's bolted to the bar."
 Instead of searching the Daemon's Wheel, say "The wheel is marked with prizes in varying denominations."
@@ -14162,7 +14196,7 @@ The scent is "'Do you mind?' [the Crow] snaps."
 Understand "bartender" or "young" as Crow.
 
 The stick of chewing gum is a faraway thing carried by Crow.
-The description is "Well, you assume it's chewing gum."
+The description is "At least you assume it's gum."
 The sound is "She's chewing on it rather ferociously."
 The stick of chewing gum has some text called the faraway response. The faraway response is "That appears to be in [the Crow]'s mouth at the moment."
 
@@ -14170,8 +14204,15 @@ The disheveled shirt is a thing worn by Crow.
 The description is "You don't think she particularly cares about her appearance."
 
 The feathered hairpin is a thing worn by Crow.
-The description is "It looks like it's made out of a crow's remains."
+The description is "It's rather morbid."
 Understand "feather/feathers" or "bone/bones" or "of" or "hair" or "pin" as the feathered hairpin.
+
+Crow's stool is a scenery supporter in the Crow's Nest.
+The description is "[The Crow]'s sitting on it."
+Instead of searching Crow's stool, say "On the stool is [the Crow]."
+Instead of entering Crow's stool, say "[The Crow] seems to be sitting on that."
+Instead of pushing, pulling, squeezing, swinging, taking, touching, or turning Crow's stool, say "You don't think [the Crow] would appreciate that."
+Instead of putting something on Crow's stool, say "[The Crow] seems to be sitting on that."
 
 Chapter 3.37.3.1 - Crow during Day Two
 
@@ -14181,43 +14222,79 @@ Table of Crow Day Two Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 crow-d2-intro	true	false	""	"You approach the bartender. She doesn't bother looking up from the countertop.
 
-'So,' she says. 'You got past Webster. Makes me wonder why I hire him at all.'"	{crow-d2-hi, crow-d2-doyougreet, crow-d2-aboutreden}
-crow-d2-hi	true	true	"'Nice to meet you [roman type]too,[italic type] Miss...'"	"'Nice to meet you [italic type]too,[roman type] Miss...'
+'So,' she says. 'You got past Webster. Makes me wonder why I hire him at all.'"	{crow-d2-doyougreet, crow-d2-hi, crow-d2-aboutreden}
+crow-d2-doyougreet	true	true	"'Do you greet all your customers like that?'"	"'Do you greet all your customers like that?'
+
+'In case you haven't noticed, we aren't exactly open to the public.' She drums her fingers on the counter. 'Be glad I'm making an exception for you.'"	{crow-d2-hi, crow-d2-aboutreden}
+crow-d2-hi	true	true	"'Nice to meet you too, Miss...'"	"'Nice to meet you too, Miss...'
 
 'Crow. Just Crow.'
 
 She leans back, and spreads her arms in an all-encompassing gesture.
 
-'This is my nest.'"	{crow-d2-doyougreet, crow-d2-aboutreden}
-crow-d2-doyougreet	true	true	"'Do you greet all your customers like that?'"	"You fold your arms. 'Do you greet all your customers like that?'
+'This is my nest.'"	{crow-d2-immarid, crow-d2-aboutreden}
+crow-d2-immarid	true	true	"'I'm Marid.'"	"'I'm Marid.'
 
-'In case you haven't noticed, we aren't exactly open to the public.' She drums her fingers on the counter. 'Be glad I'm making an exception for you.'"	{crow-d2-hi, crow-d2-aboutreden}
+She shrugs."	{crow-d2-doyougreet, crow-d2-aboutreden}
 crow-d2-aboutreden	true	false	"'I'm here about Reden.'"	"'I'm here about Reden.'
 
 [The Crow] swivels slowly around on her stool. She gets up and paces back and forth, hooking her thumbs in the loops of her trousers.
 
 'Yeah,' she says. 'I heard.'
 
-[wait for any key]Her eyes flicker to the device behind the bar, flared like a foghorn. She brushes the sigiled feathers in its bell and sends them fluttering.
+[wait for any key]Her eyes flicker to the device behind the bar, flared like a foghorn. She brushes the sigiled feathers in its bell, sending them fluttering, whispering.
 
-'You hear all kinds of things on the wind.'
-
-[wait for any key]'You heard everything?' you ask.
+[wait for any key]'You hear all kinds of things on the wind,' she says."	{crow-d2-youheardeverything, crow-d2-thenyouknow}
+crow-d2-youheardeverything	true	false	"'You heard everything?'"	"'You heard everything?' you ask.
 
 'I heard enough.'
 
-[wait for any key]She uncorks a bottle and mixes a drink, a rich dark rum that you can smell from across the bar. She pours out a glass for herself -- she retrieves another, and raises it with a sidelong arch of her brow.
+[wait for any key]She uncorks a bottle and mixes a drink -- a rich dark rum you can smell from across the bar. She pours out a glass for herself. Then she retrieves another, raises it with a sidelong arch of her brow.
+
+[wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
+crow-d2-thenyouknow	true	false	"'Then you know why I'm here.'"	"'Then you know why I'm here.'
+
+'Mm.'
+
+[wait for any key]She uncorks a bottle and mixes a drink -- a rich dark rum you can smell from across the bar. She pours out a glass for herself. Then she retrieves another, raises it with a sidelong arch of her brow.
 
 [wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
 crow-d2-drinkplz	true	false	"'Please.'"	"'Please.'
 
-"	{}
+She fills another glass and pushes it across the countertop. You take a sip -- it's powerful stuff, warm in your throat all the way down.
+
+'I'm impressed,' she says. 'Not a lot of people around here with the stomach for that.'
+
+[wait for any key]She takes a long swig from her own glass. For a long while she is silent, absorbed in her own thoughts.
+
+[wait for any key]'Reden,' she finally says. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-nodrink	true	false	"'I'm fine.'"	"'I'm fine.'
 
-"	{}
+'Suit yourself.'
+
+She corks the bottle and settles back onto her stool. Through hooded eyes she studies your expression, like a languid predator studying its prey.
+
+[wait for any key]A long moment passes before she finally speaks.
+
+[wait for any key]'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-wineplz	true	false	"'I'm more of a spiced wine person, actually.'"	"'I'm more of a spiced wine person, actually.'
 
-She rolls her eyes, but fetches another bottle from under the counter and pours you a sparkling white spirit. The powdered spices settle as she hands you the glass."	{}
+She rolls her eyes, but fetches another bottle from under the counter and pours you a sparkling white spirit. The powders are still settling as she hands you the glass.
+
+'Don't drink it all at once,' she mutters.
+
+'Um, thanks.'
+
+[wait for any key]She shakes her head and takes a long swig from her own tumbler. For a long while she is silent, absorbed in her own thoughts.
+
+[wait for any key]'Reden,' she finally says. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
+crow-d2-hecamehere	true	false	"'I understand he frequented this place.'"	"'I understand he frequented this place.'"	{}
+crow-d2-youknewhim	true	false	"'Were you on good terms with him?'"	"'Were you on good terms with him?'"	{}
+crow-d2-whatwashelike	true	false	"'Can you tell me what he was like?'"	"'Can you tell me what he was like?'"	{}
+
+[The super important thing you need to learn from Crow is Reden's history. She provides context for the revelation in Day Three of the secret lab and says something like 'he was nobody, we're nobody.' You learn from her that Reden became obsessed with the past when he was drunk, and kept going back to the Channelworks.
+
+Through Crow, Marid also learns a bit about the history of the Crow's Nest, and the change of management about a month ago. Crow talks about Sal and Piper and how they came in complaining they were out of work because of someone called Carnicer. She's surprised to learn that they died too.]
 
 The home dialogue branch of Crow is crow-d2-intro.
 
@@ -14227,6 +14304,8 @@ After reading out crow-d2-intro:
 
 After reading out crow-d2-hi:
 	now Crow is proper-named;
+	now the conversational partner text is "Talking to Crow";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line.
 
 Book of the Rest
