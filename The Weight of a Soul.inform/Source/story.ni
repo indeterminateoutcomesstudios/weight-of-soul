@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 270417.
+The release number is 280417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,10 +54,13 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Webster's dialogue
-- Write Crow's Nest
+- Write Returning with More Questions
+- Write the prompt
+- Close everything during RwMQ
 
-- Write end of Day Two
+- Write Reconstruction
+
+- Write Walking Home in Suspense
 
 - Write Midnight
 - Write Day Three
@@ -77,7 +80,7 @@ Use MAX_NUM_STATIC_STRINGS of 40000.
 Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
 Use MAX_STATIC_DATA of 1440000.
-Use MAX_SYMBOLS of 40000.
+Use MAX_SYMBOLS of 60000.
 Release along with a "Marid" website and the "SpookyQuixe" interpreter.
 
 Part 1.1.2 - Extensions
@@ -217,7 +220,8 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	say "[line break]>[bold type]skip to cellar[roman type]";
-	[say "[line break]>[bold type]skip to crow[roman type]";]
+	say "[line break]>[bold type]skip to crow[roman type]";
+	say "[line break]>[bold type]skip investigation[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -311,11 +315,11 @@ The Game is Afoot ends when the player is in Arturus's Clinic.
 
 Meeting the Patients is a scene. [Marid goes to learn about Nacarat and the Thugs.]
 Meeting the Patients begins when Four Investigations begins.
-Meeting the Patients ends when Doctor Arturus is in Arturus's Clinic
+Meeting the Patients ends when Doctor Arturus is in Arturus's Clinic.
 
 Four Investigations is a scene. [The overarching scene for most of Day Two.]
 Four Investigations begins when The Game is Afoot ends.
-Four Investigations ends when (Reden Investigation has ended and Arturus Investigation has ended and Nacarat Investigation has ended and Thugs Investigation has ended).
+Four Investigations ends when the enabled of crow-d2-intro is false and clue-giftnote is true.
 
 All Quiet on the Western Front is a scene. [Doctor Cavala and Horatio stay in the clinic and do absolutely fuck all.]
 All Quiet on the Western Front begins when The Game is Afoot begins.
@@ -325,46 +329,24 @@ A Crucible Game is a scene. [This marks when Doctor Cavala and Horatio are playi
 A Crucible Game begins when the main crucible timer is greater than 1.
 A Crucible Game ends when All Quiet on the Western Front ends.
 
-[1. Reden. A bum who stumbled near the secret lab beneath the Channelworks.
-- Poisoned the afternoon of Prologue, died that night. Accidentally exposed himself to Noctis. Justinian doesn't know about him.
-- A Channelworks worker fired for alcoholism. Knew the back entrance, tended to wander there drunk. That's how he got poisoned.
-- A collection of rewards stamps found in Reden's shack leads the player to a sketchy pub in the Shanty Quarter, where Webster knows more about Reden's activities. He doesn't know exactly where he was going -- that's for Marid to find out on Day Three.
-- Zoiro doesn't know exactly what Reden was doing, since Reden is a bum, but mentions his past and that he spent a lot of time in the undercity.]
-
-Reden Investigation is a scene.
+Reden Investigation is a scene. [Marid investigates Reden by talking to Zoiro and Crow. Includes the Webster puzzle.]
 Reden Investigation begins when Four Investigations begins.
+Reden Investigation ends when the enabled of crow-d2-intro is false.
 
-[2. Doctor Arturus, in Arturus's Domicile. Justinian personally poisoned Arturus because his mentor found out about his plans.
-- The doctor was poisoned Day One afternoon after an argument with Justinian and died the evening of Day One.
-- Noctis was planted inside the doctor's gloves. It entered his skin, dissolved in his bloodstream, and stopped his heart.
-- Justinian implicates the bodies that Arturus was investigating. He fabricated some evidence and destroyed others.]
-
-Arturus Investigation is a scene.
+Arturus Investigation is a scene. [Marid investigates Doctor Arturus. Includes the correspondence machine puzzle.]
 Arturus Investigation begins when Four Investigations begins.
 Arturus Investigation ends when arturus-body-completion-quip is true and clue-arturus-discovery-justinian is true and clue-arturus-debt is true and clue-arturus-coffeetable is true and clue-patientrecords is true.
 
-[3. Creditor Nacarat, in Arturus's Clinic. One of the Noctis patients that Arturus was investigating. A Trading Company hawk going after Arturus. Rich scumbag.
-- Justinian poisoned his wine during a "meeting" with Arturus the morning of Prologue. Admitted Prologue day. Died Prologue night.
-- Justinian destroyed most of the evidence, but Marid can print out a ticker-tape correspondence message in Arturus's Domicile that shows Arturus owed money to him.]
-
-Nacarat Investigation is a scene.
+Nacarat Investigation is a scene. [Marid investigates Creditor Nacarat.]
 Nacarat Investigation begins when Meeting the Patients ends.
 Nacarat Investigation ends when nacarat-body-completion-quip is true and the Nacarat file is meticulously digested.
 
-[4. Sal (Salio) and Piper, in the Shanty Quarter. Trading Company thugs, with very few redeeming qualities.
-- Poisoned the night before Prologue. Admitted Prologue day. Died Prologue night.
-- Justinian knows about them because they often came to shake down Arturus. He tracked them to the flophouse and falsified gifts of wine for them from their employers, which is how they were poisoned. (They're not very bright.)
-- Justinian wrote in the notes to keep them a secret, but they kept the notes (because they're not very bright). Marid can check the handwriting against Creditor documents from Arturus's Clinic - they don't match.
-- They were disgruntled because of work being taken from them by Carnicer. This gives Marid Carnicer's name and foreshadows the encounter later.
-- They frequented the same pub as Reden, and the bartender will testify they worked for "those guys you don't talk about."]
-
-Thugs Investigation is a scene.
+Thugs Investigation is a scene. [Marid investigates Sal and Piper.]
 Thugs Investigation begins when Meeting the Patients ends.
 Thugs Investigation ends when sal-body-completion-quip is true and piper-body-completion-quip is true and clue-giftnote is true.
 
-[We make Justinian seem like a sympathetic victim and potential ally - not to mention love interest. We also foreshadow Doctor Serpens's arrival in Day Three.
-
-Marid internally notes when she doesn't think there are any more clues for each investigation. When all the investigations are done, she notes it's getting late and she should return to Doctor Cavala for a debrief.]
+There is a scene called Returning with More Questions. [Marid returns to the Clinic with all that she's learned.]
+Returning with More Questions begins when Four Investigations ends.
 
 Chapter 1.2.1.4 - Midnight
 
@@ -652,6 +634,21 @@ To skip past the Reden part of Four Investigations:
 	move the player to the Crow's Nest, without printing a room description;
 	follow the scene changing rules.
 	
+To skip past the rest of Four Investigations:
+	if the Crow's Nest is not visited:
+		skip past the Reden part of Four Investigations;
+	now Webster is proper-named;
+	now Crow is proper-named;
+	now the enabled of crow-d2-intro is false;
+	now clue-reden-revisit is true;
+	now clue-reden-channelworkshistory is true;
+	now clue-crowsnestemployer is true;
+	now Crow is friendly;
+	now the stick of chewing gum is nowhere;
+	now the unprepossessing gray lumps are in the waste bin;
+	move the player to the Shanty Quarter, without printing a room description;
+	follow the scene changing rules.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -743,6 +740,13 @@ Understand "skip to crow" as skipping to Crow's Nest.
 Check skipping to Crow's Nest when the Crow's Nest is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to Crow's Nest:
 	skip past the Reden part of Four Investigations;
+	try looking.
+	
+Skipping Four Investigations is an action applying to nothing.
+Understand "skip investigation" as skipping Four Investigations.
+Check skipping Four Investigations when Four Investigations has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping Four Investigations:
+	skip past the rest of Four Investigations;
 	try looking.
 	
 Book 1.3 - People
@@ -1123,15 +1127,15 @@ animus-flashback-seen is a truth state that varies. animus-flashback-seen is fal
 
 Instead of examining the pendant (this is the custom pendant description rule):
 	if animus-flashback-seen is false:
-		say "Images tumble unbidden from memory--[paragraph break]";
+		say "Images tumble unbidden from memory --[paragraph break]";
 		wait for any key;
-		say "[italic type]--flames, licking at the beams, melting glass, engulfing the silhouette of your father. 'Marid, go!' he screamed, hoarse from the fumes, and you ran, ran, cheeks stained with tears--[paragraph break]";
+		say "[italic type]-- flames, licking at the beams, melting glass, engulfing the silhouette of your father. 'Marid, go!' he screamed, hoarse from the fumes, and you ran, ran, cheeks stained with tears --[paragraph break]";
 		wait for any key;
-		say "--turned to you, and her golden eyes were haunted. 'I'm sorry, Marid,' she said, her voice cracking. 'I couldn't save him. I'm so sorry--'[paragraph break]";
+		say "-- turned to you, and her golden eyes were haunted. 'I'm sorry, Marid,' she said, her voice cracking. 'I couldn't save him. I'm so sorry --'[paragraph break]";
 		wait for any key;
-		say "'--no promises,' the animologist said, his brow knitted. 'If indeed your father died there, we can bind the residual energies to an animus stone, residual, you understand; there's no telling--'[paragraph break]";
+		say "'-- no promises,' the animologist said, his brow knitted. 'If indeed your father died there, we can bind the residual energies to an animus stone, residual, you understand; there's no telling --'[paragraph break]";
 		wait for any key;
-		say "--flaring light, and you reached out and mouthed the word--[paragraph break]";
+		say "-- flaring light, and you reached out and mouthed the word --[paragraph break]";
 		wait for any key;
 		say "[roman type]Father.[paragraph break]";
 		wait for any key;
@@ -2560,10 +2564,13 @@ clue-tradingcompany is a truth state that varies.
 clue-salkeyneeded is a truth state that varies.
 clue-crowsnest is a truth state that varies.
 clue-giftnote is a truth state that varies.
+clue-crowsnestemployer is a truth state that varies.
 
 clue-reden-channelworks is a truth state that varies.
 clue-reden-zoironest is a truth state that varies.
 clue-reden-shack is a truth state that varies.
+clue-reden-revisit is a truth state that varies.
+clue-reden-channelworkshistory is a truth state that varies.
 
 clue-arturus-discovery-justinian is a truth state that varies.
 clue-arturus-timeofdeath is a truth state that varies.
@@ -2666,6 +2673,10 @@ I don't want to lose anyone else. ";
 I don't know what to think. All I can do is make my way there and talk to Justinian. Find out what really happened, and why. ";
 	otherwise if Four Investigations is happening:
 		say "I've made my choice. I have a job to do -- and I'm going to finish it. ";
+	otherwise if Returning with More Questions is happening:
+		say "I've learned so much about the victims, and I have a better idea of how the disease works... but it still feels like there's so much I'm missing, just dancing out of sight. What's really going on in the Channelworks District? What else have I been unable to see?
+
+It's too late for me to do anything but return to Doctor Cavala for now, but one thing is for certain -- I don't think this is an ordinary epidemic. Not any more. ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -2721,86 +2732,85 @@ To say journal-text-objectives:
 		add "- Go to the Turris Infinita" to L;
 	if Four Investigations is happening:
 		add "- Investigate the victims of the disease and identify the transmission vector" to L;
-	if Reden Investigation is happening:
-		add "" to L;
-		add "[italic type]Reden[roman type]" to L;
-		if the enabled of zoiro-mourning-alldone is false:
-			add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
-		if clue-reden-shack is true and Reden's Shack is unvisited:
-			add "- Look for a place in Lower Riggertown where Reden could have stayed" to L;
-		if clue-crowsnest is true:
-			add "- Go to the Shanty Quarter and investigate the Crow's Nest pub" to L;
-		otherwise:
-			if Reden's Shack is visited:
-				add "- Investigate Reden's shack in Lower Riggertown for clues" to L;
-			if clue-reden-zoironest is true and Gangway is unvisited:
-				add "- Find out more about a pub involving a [']bird's nest[']" to L;
-	if Arturus Investigation is happening:
-		add "" to L;
-		add "[italic type]Doctor Arturus[roman type]" to L;
-		if 4inv-vigiles-permission is false:
-			add "- Get permission from the Vigiles to examine the body" to L;
-		otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
-			add "- Examine the body" to L;
-		otherwise if arturus-body-completion-quip is false:
-			add "- Examine the body further" to L;
-		if examiner-arturus-found-asked is false and clue-arturus-gloves is false, add "- Ask the Vigiles examiner about his findings" to L;
-		if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
-		if clue-arturus-coffeetable is false and clue-arturus-debt is false and clue-patientrecords is false:
-			if Arturus's Domicile is unvisited:
-				add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
+		if Reden Investigation is happening:
+			add "" to L;
+			add "[italic type]Reden[roman type]" to L;
+			if the enabled of zoiro-mourning-alldone is false:
+				add "- Go to Riggertown and ask Zoiro about his brother's activities" to L;
+			if clue-reden-shack is true and Reden's Shack is unvisited:
+				add "- Look for a place in Lower Riggertown where Reden could have stayed" to L;
+			if clue-crowsnest is true:
+				add "- Go to the Shanty Quarter and investigate the Crow's Nest pub" to L;
 			otherwise:
-				add "- Continue investigating Doctor Arturus's domicile, in the Turris Infinita" to L;
-	if Meeting the Patients is happening:
-		add "" to L;
-		add "[italic type]Doctor Arturus's patients[roman type]" to L;
-		add "- Find out their identities" to L;
-		add "- Get permission from the Vigiles to examine the bodies" to L;
-		add "- Ask the Vigiles examiner about his findings" to L;
-		if the Nacarat file is nowhere:
-			if clue-patientrecords-justinian is false:
-				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-			otherwise:
-				add "- Look up the patient records in Doctor Arturus's domicile" to L;
-		otherwise if the Piper file is meticulously digested:
-			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
-	if Nacarat Investigation is happening:
-		add "" to L;
-		add "[italic type]Creditor Nacarat[roman type]" to L;
-		if clue-nacarat-stomach is false and clue-nacarat-pocketbook is false and clue-nacarat-recording is false and clue-nacarat-raven is false:
-			add "- Examine the body" to L;
-		otherwise if nacarat-body-completion-quip is false:
-			add "- Examine the body further" to L;
-		if examiner-nacarat-notable-asked is false and clue-nacarat-recording is false, add "- Ask the Vigiles examiner about his findings" to L;
-		if the Nacarat file is nowhere:
-			if clue-patientrecords-justinian is false:
-				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-			otherwise:
-				add "- Look up the patient records in Doctor Arturus's domicile" to L;
-	if Thugs Investigation is happening:
-		add "" to L;
-		add "[italic type]Sal and Piper[roman type]" to L;
-		if clue-sal-raven is false and the battered keyring is not carried:
-			add "- Examine Sal's body" to L;
-		otherwise if sal-body-completion-quip is false:
-			add "- Examine Sal's body further" to L;
-		if clue-piper-namelist is false and clue-piper-raven is false and clue-piper-stomach is false:
-			add "- Examine Piper's body" to L;
-		otherwise if piper-body-completion-quip is false:
-			add "- Examine Piper's body further" to L;
-		if examiner-thugs-notable-asked is false and (the battered keyring is not described or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
-		if the Nacarat file is nowhere:
-			if clue-patientrecords-justinian is false:
-				add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
-			otherwise:
-				add "- Look up the patient records in Doctor Arturus's domicile" to L;
-		otherwise if the Piper file is meticulously digested and cellar-access-granted is false:
-			add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
-		if cellar-keygiven is true and cellar-access-granted is false:
-			add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
-		otherwise if clue-giftnote is false and cellar-access-granted is true:
-			add "- Investigate the cellar of the flophouse" to L;
-	if Four Investigations is happening:
+				if Reden's Shack is visited:
+					add "- Investigate Reden's shack in Lower Riggertown for clues" to L;
+				if clue-reden-zoironest is true and Gangway is unvisited:
+					add "- Find out more about a pub involving a [']bird's nest[']" to L;
+		if Arturus Investigation is happening:
+			add "" to L;
+			add "[italic type]Doctor Arturus[roman type]" to L;
+			if 4inv-vigiles-permission is false:
+				add "- Get permission from the Vigiles to examine the body" to L;
+			otherwise if clue-arturus-gloves is false and clue-arturus-animus is false:
+				add "- Examine the body" to L;
+			otherwise if arturus-body-completion-quip is false:
+				add "- Examine the body further" to L;
+			if examiner-arturus-found-asked is false and clue-arturus-gloves is false, add "- Ask the Vigiles examiner about his findings" to L;
+			if clue-arturus-discovery-justinian is false, add "- Ask Justinian about the circumstances of death" to L;
+			if clue-arturus-coffeetable is false and clue-arturus-debt is false and clue-patientrecords is false:
+				if Arturus's Domicile is unvisited:
+					add "- Look around Doctor Arturus's domicile, in the Turris Infinita" to L;
+				otherwise:
+					add "- Continue investigating Doctor Arturus's domicile, in the Turris Infinita" to L;
+		if Meeting the Patients is happening:
+			add "" to L;
+			add "[italic type]Doctor Arturus's patients[roman type]" to L;
+			add "- Find out their identities" to L;
+			add "- Get permission from the Vigiles to examine the bodies" to L;
+			add "- Ask the Vigiles examiner about his findings" to L;
+			if the Nacarat file is nowhere:
+				if clue-patientrecords-justinian is false:
+					add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+				otherwise:
+					add "- Look up the patient records in Doctor Arturus's domicile" to L;
+			otherwise if the Piper file is meticulously digested:
+				add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
+		if Nacarat Investigation is happening:
+			add "" to L;
+			add "[italic type]Creditor Nacarat[roman type]" to L;
+			if clue-nacarat-stomach is false and clue-nacarat-pocketbook is false and clue-nacarat-recording is false and clue-nacarat-raven is false:
+				add "- Examine the body" to L;
+			otherwise if nacarat-body-completion-quip is false:
+				add "- Examine the body further" to L;
+			if examiner-nacarat-notable-asked is false and clue-nacarat-recording is false, add "- Ask the Vigiles examiner about his findings" to L;
+			if the Nacarat file is nowhere:
+				if clue-patientrecords-justinian is false:
+					add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+				otherwise:
+					add "- Look up the patient records in Doctor Arturus's domicile" to L;
+		if Thugs Investigation is happening:
+			add "" to L;
+			add "[italic type]Sal and Piper[roman type]" to L;
+			if clue-sal-raven is false and the battered keyring is not carried:
+				add "- Examine Sal's body" to L;
+			otherwise if sal-body-completion-quip is false:
+				add "- Examine Sal's body further" to L;
+			if clue-piper-namelist is false and clue-piper-raven is false and clue-piper-stomach is false:
+				add "- Examine Piper's body" to L;
+			otherwise if piper-body-completion-quip is false:
+				add "- Examine Piper's body further" to L;
+			if examiner-thugs-notable-asked is false and (the battered keyring is not described or clue-piper-namelist is false), add "- Ask the Vigiles examiner about his findings" to L;
+			if the Nacarat file is nowhere:
+				if clue-patientrecords-justinian is false:
+					add "- Ask Justinian where Doctor Arturus's patient records are kept" to L;
+				otherwise:
+					add "- Look up the patient records in Doctor Arturus's domicile" to L;
+			otherwise if the Piper file is meticulously digested and cellar-access-granted is false:
+				add "- Investigate the note in the [']Piper['] file about the Shanty Quarter" to L;
+			if cellar-keygiven is true and cellar-access-granted is false:
+				add "- Tell the flophouse landlord which room Sal's keyring unlocks" to L;
+			otherwise if clue-giftnote is false and cellar-access-granted is true:
+				add "- Investigate the cellar of the flophouse" to L;
 		let LM be a list of texts;
 		if clue-raven is true and clue-tradingcompany is false:
 			add "- Ask around about the meaning of the raven" to LM;
@@ -2814,6 +2824,8 @@ To say journal-text-objectives:
 			add "" to L;
 			add "[italic type]Miscellaneous[roman type]" to L;
 			add LM to L;
+	if Returning with More Questions is happening:
+		add "- Report back to Doctor Cavala's clinic" to L;
 	[---
 	END
 	---]
@@ -2824,6 +2836,13 @@ To say journal-text-objectives:
 			say "[line break][current objective]";
 
 Chapter 2.3.12.5 - Notes
+
+Day Two investigation tracking is a truth state that varies.
+When Four Investigations begins: now Day Two investigation tracking is true.
+
+To decide if miscellany is separated:
+	if Day Two investigation tracking is true, decide yes;
+	decide no.
 
 To say journal-text-notes:
 	let L be a list of texts;
@@ -2856,7 +2875,7 @@ To say journal-text-notes:
 	---]
 	if The Game is Afoot is happening:
 		add "- I remember that the Turris Infinita is east of the Via Terminalis junction, across the bridge from the clinic. " to L;
-	if Four Investigations is happening:
+	if Day Two investigation tracking is true:
 		let LFI be a list of texts; [List of Four Investigations]
 		let L2 be a list of texts;
 		if clue-airborne-vector is true, add "- I learned that the disease is unlikely to be airborne." to L2;
@@ -2869,14 +2888,18 @@ To say journal-text-notes:
 		REDEN INVESTIGATION
 		---]
 		now L2 is {};
-		if clue-crowsnest is true:
-			add "- I learned that Reden frequented a rooftop pub in the Shanty Quarter called the Crow's Nest." to L2;
-		otherwise if clue-reden-zoironest is true:
-			add "- I learned that Reden could have frequented a pub involving a [']bird's nest.[']" to L2;
 		if clue-reden-shack is true and Reden's Shack is unvisited:
 			add "- I learned that Reden could have stayed somewhere in Lower Riggertown." to L2;
 		if clue-reden-channelworks is true:
 			add "- I learned that Reden was once a Channelworks worker, and it reminded me that his clothes were unusually wet when he stumbled into Doctor Cavala's clinic." to L2;
+		if clue-reden-revisit is true:
+			add "- I learned that although Reden was fired from the Channelworks, he had a habit of revisiting it late at night while drunk." to L2;
+		if clue-reden-channelworkshistory is true:
+			add "- I learned that Reden kept in touch with his former colleagues through the Crow's Nest." to L2;
+		otherwise if clue-crowsnest is true:
+			add "- I learned that Reden frequented a rooftop pub in the Shanty Quarter called the Crow's Nest." to L2;
+		otherwise if clue-reden-zoironest is true:
+			add "- I learned that Reden could have frequented a pub involving a [']bird's nest.[']" to L2;
 		add "- I remember that Reden died on the night of the Third, two days ago." to L2;
 		if L2 is not {}:
 			if LFI is not {}, add "" to LFI;
@@ -2979,9 +3002,11 @@ To say journal-text-notes:
 	MUSINGS, MISCELLANEOUS
 	---]
 	let LM be a list of texts; [List of Miscellaneous]
-	if Four Investigations is happening:
+	if Day Two investigation tracking is true:
 		if clue-tradingcompany is true:
 			add "- I learned that the raven is the symbol of the Greater Corindia Trading Company, a criminal syndicate." to LM;
+		if clue-crowsnestemployer is true:
+			add "- I learned that the Crow's Nest pays protection money to the Trading Company." to LM;
 	if time is not critical and the enabled of bartender-dialogue-drink is true:
 		add "- I'm in the mood for a drink..." to LM;
 	[---
@@ -3009,7 +3034,7 @@ To say journal-text-notes:
 	if All Quiet on the Western Front is happening:
 		if journal-crucible-witnessed is false:
 			add "- I hope Doctor Cavala and Horatio will be all right at the clinic..." to LM;
-	if Four Investigations is happening and LM is not {}:
+	if miscellany is separated and LM is not {}:
 		add "[italic type]Miscellaneous[roman type]" at entry 1 in LM;
 		add "" at entry 1 in LM;
 	[---
@@ -3599,7 +3624,7 @@ When play begins (this is the print the introduction rule):
 	wait for any key;
 	say "[paragraph break]The vomiting came first, then the weakness of the knees -- you barely caught him as he keeled over you -- Doctor Cavala pulled him back before you were crushed by his weight. 'The surgery room!' she shouted, and together you half-carried half-dragged the goblin to the gurney and strapped him down. You hid behind the protection of your surgical mask, adjusted the lights as you had been drilled. Thoughts flitted across your mind -- flit -- flitting --";
 	wait for any key;
-	say "[paragraph break]'I've never operated on a goblin before,' you say, with a hint of panic in your voice. 'I did, in a way, on the Collegiate cadavers, but--'";
+	say "[paragraph break]'I've never operated on a goblin before,' you say, with a hint of panic in your voice. 'I did, in a way, on the Collegiate cadavers, but --'";
 	wait for any key;
 	say "[paragraph break]'Steady, girl.' Doctor Cavala snaps on her gloves and squeezes your shoulder. 'Remember your training. I need your help. Are you with me?'[run paragraph on]";
 	wait for any key;
@@ -3937,7 +3962,7 @@ cavala-redendead-ifonly	true	true	"'If only...'"	"'If only...'
 'I know,' you say bitterly. 'I... I just wish there was something we could do.'
 
 [if the player is wearing the surgical mask]Doctor Cavala holds out her hand. No words are needed. You pull off your surgical mask and hand it to her, unable to meet her gaze.[otherwise]Doctor Cavala's eyes flicker to the outline of your pendant, under your jacket, but she says nothing."	{cavala-redendead-catholicon, cavala-redendead-sawlight, cavala-redendead-whatnext}
-cavala-redendead-catholicon	false	true	"'The catholicon -- what [roman type]was[italic type] that?'"	"'The catholicon--'
+cavala-redendead-catholicon	false	true	"'The catholicon -- what [roman type]was[italic type] that?'"	"'The catholicon --'
 
 You glance at Reden, half expecting to see white fire in his eyes, and suppress a shudder.
 
@@ -4380,7 +4405,7 @@ dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-firstaid-home	true	false	""	""	{cavala-firstaid-doctor, cavala-firstaid-ohprimes}
 cavala-firstaid-doctor	true	false	"'Doctor...!'"	"'Doctor...!'
 
-'Be quiet and help me--'
+'Be quiet and help me --'
 
 [cavala-firstaid-examinewound]"	{}
 cavala-firstaid-ohprimes	true	false	"'Oh Primes...'"	"'Oh Primes...'
@@ -4423,7 +4448,7 @@ When First Aid on Cavala begins (this is the initialize First Aid on Cavala rule
 Section 3.3.5.4.3 - Step 1, Get the First Aid Bag
 
 Instead of talking to Doctor Cavala while the CSOFAOC is 1:
-	say "[one of]'Doctor--'
+	say "[one of]'Doctor --'
 
 'Get the first aid bag!' she hisses.[or]She doesn't look to be in any state to talk.[stopping]"
 	
@@ -4527,7 +4552,7 @@ First every turn when the CSOFAOC is 2 (this is the automatically bandage Doctor
 To dress and bandage Doctor Cavala's leg:
 	now the antiseptic dressing is nowhere;
 	now the elastic bandage is nowhere;
-	say "'There's no debris.' Doctor Cavala's voice is shaking. 'Remember. Apply pressure--'
+	say "'There's no debris.' Doctor Cavala's voice is shaking. 'Remember. Apply pressure --'
 
 She cries out as the dressing touches her wound. You force yourself to ignore her gasps, press down hard, loop the bandage tight. And natron sigils flare on the fabric: the wound is sealed.
 
@@ -4539,9 +4564,9 @@ She cries out as the dressing touches her wound. You force yourself to ignore he
 
 'Primes, it hurts. I... I think my tendon's gone.'
 
-[wait for any key]'You're still bleeding,' you tell her. 'I need to--'
+[wait for any key]'You're still bleeding,' you tell her. 'I need to --'
 
-'--raise my leg above chest level,' she finishes. 'I understand. Do it, Marid. Prop it up on the chair.'";
+'-- raise my leg above chest level,' she finishes. 'I understand. Do it, Marid. Prop it up on the chair.'";
 	now the CSOFAOC is 3;
 	now cavala-firstaid-event-timer is 0;
 	now Doctor Cavala is wearing the hermetically sealed bandage.
@@ -4574,7 +4599,7 @@ Instead of pushing, pulling, or taking Doctor Cavala when the CSOFAOC is 3 (this
 
 Doctor Cavala grits her teeth and screws her eyes shut. Her bloodstained trousers stick to your gloves. Her leg feels heavy and fragile in your hands, like a porcelain model that will shatter if you slip.
 
-Seconds pass before her leg finds its place, before you dare loosen your grip and let go--[paragraph break]";
+Seconds pass before her leg finds its place, before you dare loosen your grip and let go --[paragraph break]";
 	wait for any key;
 	say "You let go.[paragraph break]";
 	wait for any key;
@@ -4584,7 +4609,7 @@ You exhale. Something in your expression makes Doctor Cavala chuckle, and her la
 	wait for any key;
 	say "'The bleeding's stopped,' you say, wiping your gloves on your apron. 'I... I think.'
 
-'Then we've done the best we could,' Doctor Cavala replies. 'You've done well, Marid. Very well. I'm afraid this evening would have gone rather worse without you--'
+'Then we've done the best we could,' Doctor Cavala replies. 'You've done well, Marid. Very well. I'm afraid this evening would have gone rather worse without you --'
 
 She smirks at her own gallows humor, and looks morbidly satisfied.";
 	now the CSOFAOC is 4;
@@ -4613,7 +4638,7 @@ After reading out cavala-firstaid-yousafe:
 
 'I don't think she'll be coming back, if that's what you mean.' She holds up her cutter. 'You may rest assured that I'm a very good shot.'
 
-'But what about your injury?' you ask. 'Are you going to sleep on the floor? What if you need to relieve yourself? I -- I don't know if I'm comfortable leaving you here. Perhaps I should--'[paragraph break]";
+'But what about your injury?' you ask. 'Are you going to sleep on the floor? What if you need to relieve yourself? I -- I don't know if I'm comfortable leaving you here. Perhaps I should- -'[paragraph break]";
 	wait for any key;
 	now the clinic door is open;
 	now Horatio is in the Clinic;
@@ -4709,7 +4734,7 @@ She trails off. She takes another sip of tea, becoming quiet, pensive.
 
 To say clinic-interviewer-end:
 	wait for any key;
-	say "'Well,' the interviewer finally says. 'This has all been very fascinating -- but the hour is growing late, and we are no closer to discovering any answers. I shall recommend a better equipped team to join you tomorrow, Doctor. Until then--'[paragraph break]";
+	say "'Well,' the interviewer finally says. 'This has all been very fascinating -- but the hour is growing late, and we are no closer to discovering any answers. I shall recommend a better equipped team to join you tomorrow, Doctor. Until then --'[paragraph break]";
 	wait for any key;
 	now the front door of the clinic is closed;
 	say "The guards leave the clinic following a perfunctory sending-off. You are left in the company of Doctor Cavala and Horatio, who have settled down in the waiting area for the long haul.[look pending]".
@@ -4848,11 +4873,11 @@ Doctor Cavala lifts a hand. 'I'm obviously not in any condition to operate,' she
 'I'll help Doctor Cavala where I can,' Horatio adds. 'Since I'll be here and all.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-abouthoratio, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-abouthoratio	true	true	"'How is Horatio doing?'"	"'How is Horatio doing?'
 
-'Your friend, isn't he?' Doctor Cavala raises an eyebrow. 'He hasn't broken anything, so I suppose that's a plus--'
+'Your friend, isn't he?' Doctor Cavala raises an eyebrow. 'He hasn't broken anything, so I suppose that's a plus --'
 
-'--Hey!--'
+'-- Hey! --'
 
-'--but he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
+'-- but he's a good lad.' She smiles. 'Eager to learn, and not afraid of hands-on work. I expect we'll get on swimmingly.'"	{cavalahoratio-whf-feelingbetter, cavalahoratio-whf-aboutclinic, cavalahoratio-whf-speakhoratio, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-fancy	true	true	"'Fancy seeing you here, Horatio.'"	"'Fancy seeing you here, Horatio.'
 
 'It's good to see you too, Marid.' His expression grows grave for a moment. 'When the call came in, I thought... I was worried about you. Now that I'm here, I'm -- I'm just glad you're okay.'
@@ -4860,7 +4885,7 @@ cavalahoratio-whf-fancy	true	true	"'Fancy seeing you here, Horatio.'"	"'Fancy se
 You can't help but smile. Even a buffoon like him can be sweet sometimes."	{cavalahoratio-whf-howdoing, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-howdoing	true	true	"'How are you doing?...'"	"'How are you doing?' you ask Horatio. 'I recall you saying you wanted to see some [italic type]action[roman type] in the Vigiles...'
 
-He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd hoped for. Still--' He nods. 'I feel like I'm making a difference here, like I'm doing something worthwhile. How often does anyone get the chance to say that?'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
+He chuckles. 'I guess I'm eating my words now. Tonight was a lot more than I'd hoped for. Still...' He nods. 'I feel like I'm making a difference here, like I'm doing something worthwhile. How often does anyone get the chance to say that?'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-nomess, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
 cavalahoratio-whf-nomess	true	true	"'Try not to mess anything up.'"	"You punch Horatio's shoulder. 'Try not to mess anything up.'
 
 He grins. 'I won't.'"	{cavalahoratio-whf-fancy, cavalahoratio-whf-howdoing, cavalahoratio-whf-speakcavala, cavalahoratio-whf-goodbye}
@@ -4946,7 +4971,7 @@ Last after going to the Clinic when Bad News from Cavala is happening (this is t
 		say "'Not yet,' you say.[paragraph break]";
 	say "She passes the newspaper to you. 'Take a look at this.'[paragraph break]";
 	wait for any key;
-	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic--[roman type][paragraph break]";
+	say "[italic type]DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic --[roman type][paragraph break]";
 	wait for any key;
 	say "A chill grips your spine.[paragraph break]";
 	wait for any key;
@@ -4972,7 +4997,7 @@ cavala-badnews-whatdo	true	false	"'What do we do now?'"	"'What do we do now?'
 
 Doctor Cavala folds her arms. Her expression seethes with disquiet, with the agitation of an invalid accustomed to physical activity.
 
-'Recent events have backed us into a corner,' she says. 'I can't do much of anything, on account of my injury. Horatio's hands are full with matters around the clinic. That leaves only one person to look into the situation--'
+'Recent events have backed us into a corner,' she says. 'I can't do much of anything, on account of my injury. Horatio's hands are full with matters around the clinic. That leaves only one person to look into the situation --'
 
 [wait for any key]'Myself,' you say.
 
@@ -5011,7 +5036,7 @@ To say cavala-badnews-onit-text:
 	wait for any key;
 	say "The pen is delivered. Doctor Cavala signs a small piece of paper, then seals it with a sigil-brand and hands it to you.[paragraph break]";
 	wait for any key;
-	say "'This is my signum,' she says. 'It's proof that you're acting on my behalf, for anyone who asks. And another thing--'[paragraph break]";
+	say "'This is my signum,' she says. 'It's proof that you're acting on my behalf, for anyone who asks. And another thing --'[paragraph break]";
 	wait for any key;
 	say "She has Horatio retrieve a sleek instrument from her desk. It is orichalcum, threaded with tiny magnification lenses, and your eyes widen as he places it in your palm.[paragraph break]";
 	wait for any key;
@@ -5031,7 +5056,7 @@ Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
 The day-two copy of the Libri Liberi is a proper-named thing.
 The printed name is "[if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise if Day Three has ended]Fifth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
-The description is "[if time is critical]The newspaper can't help you.[otherwise]'DOCTOR FOUND DEAD IN HIS OWN HOME.' Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic.".
+The description is "DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic.".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
 Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
@@ -5911,7 +5936,7 @@ saliunca-right	true	false	"'I suppose you are right...'"	"You close your eyes.
 
 [wait for any key]'Oh, you poor, poor girl,' she murmurs, laying a hand on your arm. 'It's the clinic, isn't it? I can't imagine -- oh, the things Doctor Cavala must have you do. It's no way for a young lady to live, Marid, no way for a lady to live.
 
-'But if it's your choice, your calling--' She squeezes your arm. 'The [italic type]ars vitalis[roman type] is a very noble pursuit, Marid. Very brave. Tending to the sick, saving lives and all that--'
+'But if it's your choice, your calling...' She squeezes your arm. 'The [italic type]ars vitalis[roman type] is a very noble pursuit, Marid. Very brave. Tending to the sick, saving lives and all that --'
 
 [wait for any key]You tense up."	{saliunca-outburst, saliunca-havetogo}
 saliunca-wrong	true	false	"'I don't believe that for a second...'"	"'I don't believe that for a second,' you say. 'The pigeons may be pests, but [italic type]poisoning[roman type] them? That's too cruel. There must be some other way.'
@@ -5927,7 +5952,7 @@ saliunca-wrong	true	false	"'I don't believe that for a second...'"	"'I don't bel
 'And suppose I'm right, and there isn't?' She frowns. 'You've got some nerve telling me off, young lady, when all I've heard out of you is talk. Talk won't get you anywhere. Don't tell me you're squeamish about killing a few birds -- or is that what the Physicians['] College taught you?'
 
 [wait for any key]You tense up."	{saliunca-outburst, saliunca-havetogo}
-saliunca-outburst	true	false	"'What would a hag like [roman type]you[italic type] possibly know about the Art?...'"	"[italic type]What would--[roman type]
+saliunca-outburst	true	false	"'What would a hag like [roman type]you[italic type] possibly know about the Art?...'"	"[italic type]What would --[roman type]
 
 [wait for any key]No. You start. You catch yourself.
 
@@ -6074,7 +6099,7 @@ The sound is "It's not making any sound."
 Understand "bird" or "half-hidden" or "half" or "hidden" as the single pigeon.
 
 First before doing anything other than listening when the current action involves the single pigeon:
-	say "You take a step closer--[paragraph break]";
+	say "You take a step closer --[paragraph break]";
 	wait for any key;
 	say "The pigeon twitches.[paragraph break]";
 	wait for any key;
@@ -6419,23 +6444,23 @@ bartender-dialogue-dayone	false	true	"'Someone almost killed Doctor Cavala [if D
 
 The bartender sets down the glass he's polishing. He looks at you.
 
-'It was so close.' you say quietly. 'She didn't know. There was a mutant woman who'd come into the clinic wielding a sword, and... and they fought. There was blood on the floor, blood everywhere, and -- and Doctor Cavala--'
+'It was so close.' you say quietly. 'She didn't know. There was a mutant woman who'd come into the clinic wielding a sword, and... and they fought. There was blood on the floor, blood everywhere, and -- and Doctor Cavala --'
 
 You close your eyes.
 
 'She almost didn't make it.'"	{bartender-dialogue-dayone2-1, bartender-dialogue-dayone2-2}
-bartender-dialogue-dayone2-1	true	false	"'I was so scared...'"	"'I was so scared. I saw the gash that'd been torn in her leg. She was bleeding out. I... I grabbed the first aid bag, and--'
+bartender-dialogue-dayone2-1	true	false	"'I was so scared...'"	"'I was so scared. I saw the gash that'd been torn in her leg. She was bleeding out. I... I grabbed the first aid bag, and --'
 
 Your voice cracks.
 
-'--I don't know. My hands were moving on their own. It seemed so easy at the time, but-- but--'
+'-- I don't know. My hands were moving on their own. It seemed so easy at the time, but -- but --'
 
 You feel the tears welling up, the sting and the panic and the terror engulfing you all over again."	{bartender-dialogue-dayone3-1, bartender-dialogue-dayone3-2}
-bartender-dialogue-dayone2-2	true	false	"'The Vigiles were useless...'"	"'The Vigiles were useless. They didn't even come until everything was over. Doctor Cavala was [italic type]there,[roman type] and she was going to [italic type]die,[roman type] and--'
+bartender-dialogue-dayone2-2	true	false	"'The Vigiles were useless...'"	"'The Vigiles were useless. They didn't even come until everything was over. Doctor Cavala was [italic type]there,[roman type] and she was going to [italic type]die,[roman type] and --'
 
 Your voice cracks.
 
-'--And I had to save her. I took the first aid bag and put my hands on her leg and-- and--'
+'-- And I had to save her. I took the first aid bag and put my hands on her leg and -- and --'
 
 You feel the tears welling up, the sting and the panic and the terror engulfing you all over again."	{bartender-dialogue-dayone3-1, bartender-dialogue-dayone3-2}
 bartender-dialogue-dayone3-1	true	false	"<Cry.>"	"You cry.
@@ -6454,14 +6479,14 @@ You're shaking. You're gripping your glass so tightly you're afraid it will shat
 [wait for any key]You take a deep breath and wipe the wetness from your eyes. You take a fortifying swig from your glass."	{bartender-dialogue-dayone4-1, bartender-dialogue-dayone4-2}
 bartender-dialogue-dayone4-1	true	false	"'I'm going to do better next time...'"	"'I'm going to do better next time,' you whisper. 'I'm going to [italic type]be[roman type] better. I don't know why misfortune keeps following me, but I'm going to be stronger than it the next time, and the next.
 
-'I'm going to overcome this. For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
+'I'm going to overcome this. For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened --'
 
 [wait for any key][if Day One is happening]You look at your bloodstained gloves[otherwise]You touch your pendant[end if].
 
 'I can't allow it to have happened in vain.'"	{bartender-dialogue-finishdrink}
 bartender-dialogue-dayone4-2	true	false	"'I'm going to find whoever did this...'"	"'I'm going to find whoever did this,' you whisper. 'I don't know who they are, or what they want, or why they want to spread this death and suffering. But I [italic type]will[roman type] hunt them down. And I [italic type]will[roman type] find them.
 
-'For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened--'
+'For Doctor Cavala and Horatio. For my parents who died so that I could live. I'm going to live, and I'm going to survive, and I'm going to find out what's really going on. Because... because after everything... everything that's happened --'
 
 [wait for any key][if Day One is happening]You look at your bloodstained gloves[otherwise]You touch your pendant[end if].
 
@@ -6742,7 +6767,7 @@ You close your eyes and drift in that listless limbo between wakefulness and slu
 	wait for any key;
 	say "You barely notice when the world melts away -- when it dissolves, fades, becomes a haze of images and memories.[paragraph break]";
 	wait for any key;
-	say "Your last thought before you fall asleep is a quiet realization--[paragraph break]";
+	say "Your last thought before you fall asleep is a quiet realization --[paragraph break]";
 	wait for any key;
 	say "the ticking in your mind is the sound of teeth.[paragraph break]";
 	wait for any key;
@@ -6789,18 +6814,18 @@ horatio-d2msg-opendoor	true	true	"<Open the door.>"	"[if the enabled of horatio-
 'Marid! So you [italic type]do[roman type] live here.' He looks relieved. 'Marid, listen. There's been trouble. Doctor Cavala wants you to come down to the clinic as soon as you can.'"	{horatio-d2msg-whatsgoingon, horatio-d2msg-whattrouble, horatio-d2msg-bethere}
 horatio-d2msg-whatsgoingon	true	false	"'What's going on?'"	"You're wide awake now. 'What's going on?'
 
-'We've gotten wind of more deaths in the Channelworks District.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic--'
+'We've gotten wind of more deaths in the Channelworks District.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic --'
 
-[wait for any key]'Oh Primes--'
+[wait for any key]'Oh Primes --'
 
 'I know. Come down as soon as you can. The doctor will fill you in.'
 
 [wait for any key]Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
 horatio-d2msg-whattrouble	true	false	"'Trouble? What kind of trouble?'"	"You're wide awake now. 'Trouble? What kind of trouble?'
 
-'Big trouble.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]We've gotten wind of more deaths in the Channelworks District, and Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic--'
+'Big trouble.[if the enabled of horatio-d2msg-opendoor is false]' Horatio grimaces. '[otherwise] [end if]We've gotten wind of more deaths in the Channelworks District, and Doctor Cavala thinks they all died of the same disease as Reden. People are saying it's an epidemic --'
 
-[wait for any key]'Oh Primes--'
+[wait for any key]'Oh Primes --'
 
 'I know. Come down as soon as you can. The doctor will fill you in.'
 
@@ -7114,7 +7139,7 @@ exterminators-profession-known is a truth state that varies.
 After examining the exterminators: now exterminators-profession-known is true; continue the action.
 
 Instead of talking to the exterminators:
-	say "[one of]'Excuse me--'
+	say "[one of]'Excuse me --'
 
 'Not now, miss,' the foremost of the men says gruffly. 'We're investigating reports about a dangerous infestation of acidic slimes. Not to worry, you understand. We'll have this sorted out in a jiffy and be on our way.'[or]'I really need to get to Riggertown,' you say. 'Could you let me through, just this once?'
 
@@ -7533,7 +7558,7 @@ Rule for writing a paragraph about the porter during Day One:
 			say "The porter smiles coldly as you enter. 'Welcome to the Turris Infinita. Do you require assistance?'";
 			now porter-firstgreeting-quipped is true;
 		otherwise:
-			say "[one of]'Welcome to--' The porter breaks off. 'Oh. It's you again.'[or]The porter regards you coolly and silently.[stopping]";
+			say "[one of]'Welcome to --' The porter breaks off. 'Oh. It's you again.'[or]The porter regards you coolly and silently.[stopping]";
 	otherwise:
 		say "The porter regards you coolly and silently.";
 
@@ -7705,7 +7730,7 @@ Some dialogue branches are defined by the Table of Porter Game Afoot Dialogue.
 
 Table of Porter Game Afoot Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-porter-afoot-home	true	false	""	"'I am sorry to inform you that the Turris Infinita is now [italic type]closed.[roman type]' The porter regards you humorlessly. 'There is to be no trespassing -- no idle journalism--'
+porter-afoot-home	true	false	""	"'I am sorry to inform you that the Turris Infinita is now [italic type]closed.[roman type]' The porter regards you humorlessly. 'There is to be no trespassing -- no idle journalism --'
 
 [wait for any key]Her lower lip curls.
 
@@ -7713,7 +7738,7 @@ porter-afoot-home	true	false	""	"'I am sorry to inform you that the Turris Infin
 porter-afoot-bhome	true	false	""	"[italic type]'You,'[roman type] the porter hisses. 'I should have known you would come back.'"	{porter-afoot-charmed, porter-afoot-apology, porter-afoot-business}
 porter-afoot-charmed	true	true	"'I'm charmed.'"	"'I'm charmed.'
 
-A hollow smile. 'I'm glad we could come to an understanding. Now, unless you have a good reason I shouldn't evict you this moment--'"	{porter-afoot-whyclosed, porter-afoot-apology, porter-afoot-business}
+A hollow smile. 'I'm glad we could come to an understanding. Now, unless you have a good reason I shouldn't evict you this moment --'"	{porter-afoot-whyclosed, porter-afoot-apology, porter-afoot-business}
 porter-afoot-whyclosed	false	true	"'Why is the Turris Infinita closed?'"	"'Why is the Turris Infinita closed?'
 
 The porter folds her arms. 'I don't owe you an explanation. You, on the other hand...'"	{porter-afoot-charmed, porter-afoot-business}
@@ -7725,20 +7750,20 @@ porter-afoot-business	true	false	"'I'm here on business.'"	"'I'm here on busines
 She rolls her eyes. 'You and every dullard that comes through these doors. Do I look as though I give a whit about your business? Which part of [']no trespassing['] do you not comprehend?'"	{porter-afoot-unreasonable, porter-afoot-showsignum}
 porter-afoot-unreasonable	true	false	"'You're being completely unreasonable!'"	"'You're being completely unreasonable!'
 
-The porter laughs. 'Unreasonable? Oh, that's rich! As if you had any inkling -- a mud-soaked vagrant like you--'
+The porter laughs. 'Unreasonable? Oh, that's rich! As if you had any inkling -- a mud-soaked vagrant like you --'
 
 She leans back at her desk, and flashes you the most infuriating smirk.
 
 'I have no obligation,' she tells you, 'to provide you [italic type]anything[roman type].'"	{porter-afoot-showsignum, porter-afoot-actuallyfuckyou}
 porter-afoot-actuallyfuckyou	true	false	"'You know what? Screw you.' <Trash her desk.>"	"'You know what? [italic type]Screw you.'[roman type]
 
-'Wha--'
+'Wha --'
 
 You sweep the contents of her desk onto the floor. Pens, papers, tacks, inkpots -- all tumble in a sloshing splattering mess. The floor is carpeted in a remarkable stygian shade of ink.
 
 [wait for any key]The gargoyles wrench your arms behind your back. The porter gives you a slowly erupting volcano of a glare.
 
-[wait for any key][italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking--'[roman type]
+[wait for any key][italic type]'You,'[roman type] she says. 'You [italic type]miserable fucking --'[roman type]
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 porter-afoot-showsignum	true	false	"'Doctor Cavala has authorized me...' <Present the signum.>"	"You hold up the signum. 'Doctor Cavala has authorized me to investigate the death of Doctor Arturus in her stead. If you have a problem with that, you can take it up with Doctor Cavala.'
@@ -7747,7 +7772,7 @@ The porter's gaze falls on the slip of paper in your hand. The corner of her mou
 
 [wait for any key]'Is that so?' she says. 'I believe I [italic type]shall[roman type] take the matter up with her. Thank you for the kind offer, and [italic type]do[roman type] inform the good doctor to arrange a meeting at her earliest convenience. Until then... the gargoyles will escort you to the door.'
 
-[wait for any key]Your face flushes. 'You--'
+[wait for any key]Your face flushes. 'You --'
 
 [Justinian's glorious entrance]"	{justinian-afoot-thanks, justinian-afoot-goodtosee, justinian-afoot-flirt}
 
@@ -7770,11 +7795,11 @@ To say Justinian's glorious entrance:
 	say "'Marid?' He furrows his brow. '[italic type]Excubitores![roman type] Unhand this woman. She is a guest.'[paragraph break]";
 	say "The gargoyles release you and vanish into the rafters. The porter looks accusingly at him.[paragraph break]";
 	wait for any key;
-	say "'Doctor Justinian,' she says. 'This is [italic type]exceedingly[roman type] irregular--'[paragraph break]";
+	say "'Doctor Justinian,' she says. 'This is [italic type]exceedingly[roman type] irregular --'[paragraph break]";
 	wait for any key;
 	say "'Regulations be damned,' he replies. 'This is my [italic type]friend,[roman type] porter. I don't care what she's done. We'll have words about this later.'[paragraph break]";
 	wait for any key;
-	say "'But--'[paragraph break]";
+	say "'But --'[paragraph break]";
 	say "He holds up a hand, and the porter falls silent.[paragraph break]";
 	wait for any key;
 	say "'Good,' he says.[paragraph break]";
@@ -7800,7 +7825,7 @@ justinian-afoot-goodtosee	true	false	"'It's good to see you, Doctor Justinian.'"
 Oh Primes, are you [italic type]blushing?[roman type] You're making a fool of yourself--
 
 'It's just Justinian, remember?' He smiles. 'Come with me. We can speak more freely in the clinic proper...'[line break][justinian-afoot-toclinic]"	{justinian-afoot-sorryabout, justinian-afoot-cantbelieve, justinian-afoot-cavalasentme}
-justinian-afoot-flirt	true	false	"'I wouldn't miss a chance to see you, Doctor Justinian.'"	"[italic type]I wo--[roman type]
+justinian-afoot-flirt	true	false	"'I wouldn't miss a chance to see you, Doctor Justinian.'"	"[italic type]I wo --[roman type]
 
 No! No no no! That's much too forward. You wouldn't be caught dead saying that."	{justinian-afoot-thanks, justinian-afoot-goodtosee}
 
@@ -7837,7 +7862,7 @@ Why are you blushing at a time like this? What is [italic type]wrong[roman type]
 [wait for any key]Justinian leans forward and clasps his hands. 'Marid,' he says. 'I wish I could be of more help, but I'm afraid last night took its toll on me -- I'm as clueless as you are. I don't know what I can provide that you don't already know...'
 
 [wait for any key]You try to compose your thoughts."	{justinian-afoot-encourage, justinian-afoot-discovery, justinian-afoot-patients, justinian-afoot-disease, justinian-afoot-assassin, justinian-afoot-lookaround}
-justinian-afoot-encourage	true	true	"'I believe in you, Justinian.'"	"[italic type]I--[roman type]
+justinian-afoot-encourage	true	true	"'I believe in you, Justinian.'"	"[italic type]I --[roman type]
 
 You can already feel the blood rising in your cheeks. Justinian-- you-- no. No!
 
@@ -7926,7 +7951,7 @@ Rule for writing a paragraph about the porter when Four Investigations is happen
 		
 Instead of examining the porter during Four Investigations, say "She looks peeved."
 Instead of attacking or cutting the porter when the tremendous mess is in the Turris Infinita, say "There's no need. She's already received her comeuppance."
-Instead of talking to the porter when Four Investigations is happening, say "[one of]'Excuse me--'
+Instead of talking to the porter when Four Investigations is happening, say "[one of]'Excuse me --'
 
 She doesn't acknowledge your presence[or]The porter is ignoring you[stopping]."
 
@@ -8127,7 +8152,7 @@ Chapter 3.17.2.3 - Day-One Copy of the Libri Liberi
 
 The day-one copy of the Libri Liberi is a proper-named thing.
 The printed name is "[if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise if Day Two has ended]Fourth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
-The description is "[if time is critical]The newspaper can't help you.[otherwise]The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
+The description is "The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
 The scent is "[if the current day is Day One]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-one copy of the Libri Liberi.
 Understand "today's" or "today" as the day-one copy of the Libri Liberi when the current day is Day One.
@@ -8414,7 +8439,7 @@ Understand "watchman" as the borderpost watchmen.
 Instead of talking to the borderpost watchmen, say "You'd feel like a fool yelling at the battlements."
 
 The keystone clock is faraway scenery in Miller's Gate. The indefinite article is "the".
-The description is "It's still quite early."
+The description is "It's still early."
 Understand "giant" or "time" as the keystone clock.
 
 Some clattering carriageways are scenery in Miller's Gate.
@@ -8607,7 +8632,7 @@ Instead of kissing the censor during The Censor's Nap:
 
 Then a funny look comes over him. Gradually he stirs. His eyes meet yours.
 
-'Angels and archons!' he splutters, sitting bolt upright. 'What-- what was--'[line break]";
+'Angels and archons!' he splutters, sitting bolt upright. 'What -- what was --'[line break]";
 	now the censor is awake;
 	start a dialogue with the censor using dialogue censor-woken.
 	
@@ -8724,14 +8749,14 @@ He gets up and vanishes into one of the side doorways of the basilica, muttering
 
 [wait for any key]After an appreciable wait, he emerges from the doorway flush-faced and triumphant.
 
-[wait for any key]'Seventh on Layabout Row,' he proclaims, 'Upper Riggertown. Property under the name of Zoiro and Koriph. And his place of employment, which I've taken the liberty to look up, is the Riggertown Mechanistry. Here, let me write it down for you--'
+[wait for any key]'Seventh on Layabout Row,' he proclaims, 'Upper Riggertown. Property under the name of Zoiro and Koriph. And his place of employment, which I've taken the liberty to look up, is the Riggertown Mechanistry. Here, let me write it down for you --'
 
 [wait for any key]He scribbles on a scrap of paper, hands it to you, and sits back down at his desk looking eminently satisfied.
 
 'There we go,' he says. 'Now was there anything else you needed?'"	{censor-woken-documents, censor-woken-detour, censor-woken-thanks}
 censor-woken-detour	false	true	"'The footpath from the Via Terminalis to Riggertown is blocked...'"	"'The footpath from the Via Terminalis to Riggertown is blocked,' you say. 'Do you know if there's any other way to get to Riggertown?'
 
-'Hm. Yes, I recall issuing the license. The footpath...' The censor's eyes light up. 'Ah! You could take Cadaver Walk -- by way of the Shanty Quarter. It's just down the Via Mercurii from here--'
+'Hm. Yes, I recall issuing the license. The footpath...' The censor's eyes light up. 'Ah! You could take Cadaver Walk -- by way of the Shanty Quarter. It's just down the Via Mercurii from here --'
 
 He frowns.
 
@@ -8917,7 +8942,7 @@ The fortune-teller continues to smile. He spreads his hands, and the deck of car
 'The cards tell me all I need to know. I can see the thoughts and dreams that trouble you. What should you do? Where will you go? The Fates can show us all these things and more.'"	{teller-dontknowme, teller-cards, teller-work, teller-patrons, teller-reading, teller-anothertime}
 teller-dontknowme	true	false	"'You don't know me.'"	"You narrow your eyes. 'You don't know me.'
 
-The fortune-teller bows his head. 'My apologies. We are strangers, of course. I don't presume to know the challenges you face--'
+The fortune-teller bows his head. 'My apologies. We are strangers, of course. I don't presume to know the challenges you face --'
 
 He pauses mid-shuffle, the gilding on the cards glittering.
 
@@ -9075,7 +9100,7 @@ teller-work4	true	false	"<Watch him reveal the rest of the river.>"	"'We have se
 
 [wait for any key]The fortune-teller turns over the lower course, revealing it to be another dark and disturbing illustration; but upside-down, so that you can only see a bone-white figure.
 
-[wait for any key]'Ah!' he declares. 'The Ghost appears, but inverted. The dire message it brings is not heard, and the course of fate is not changed. And that brings us to our final card, the delta--'
+[wait for any key]'Ah!' he declares. 'The Ghost appears, but inverted. The dire message it brings is not heard, and the course of fate is not changed. And that brings us to our final card, the delta --'
 
 [wait for any key]The delta is a storm at sea, heaving with rain-lashed ships and alive with forked lightning. Above all in the pitch-black sky is a terrible sphere that can only be the [italic type]Luna[roman type].
 
@@ -9090,7 +9115,7 @@ The fortune-teller grows sober. 'Dreams,' he says. 'Nightmares. They show us tru
 
 He casts his hands apart, scattering the top cards of the deck with the sudden motion, and at first you wonder if he's dropped them by accident. But when the loose cards come to rest, they have landed in an deliberate, intricate pattern -- a cross.
 
-[wait for any key]'The corners,' he says, tapping the cards at the end of each of the four arms. 'The spokes,' he continues, moving inward in counter-clockwise fashion. 'And the nexus--'
+[wait for any key]'The corners,' he says, tapping the cards at the end of each of the four arms. 'The spokes,' he continues, moving inward in counter-clockwise fashion. 'And the nexus --'
 
 He taps the two cards in the center, one laid perpendicular over the other, and you nod transfixed.
 
@@ -9193,7 +9218,7 @@ teller-past5	true	false	"<Watch him reveal the destination.>"	"He holds the uppe
 
 [wait for any key]A storm at sea, heaving with rain-lashed ships and alive with forked lightning. Above all in the pitch-black sky is a terrible sphere that can only be the [italic type]Luna[roman type].
 
-[wait for any key]'The fate--' he breathes. 'The Tempest.'
+[wait for any key]'The fate,' he breathes. 'The Tempest.'
 
 He clasps his hands and leans heavily on the table. For a long while, he is silent."	{teller-isee, teller-whatmean}
 teller-isee	true	false	"'...I see.'"	"'...I see,' you say at last.
@@ -9228,7 +9253,7 @@ He starts. He meets your eye for the first time -- his irises are the color of s
 
 He picks up his cards, one by one, and shuffles them away and out of sight.
 
-'Drivel or not -- well. The cards have fallen as the Fates have willed them. But there are many interpretations... and perhaps I have not seen the one that is true. Only time will tell. But I have lingered too long--'
+'Drivel or not -- well. The cards have fallen as the Fates have willed them. But there are many interpretations... and perhaps I have not seen the one that is true. Only time will tell. But I have lingered too long --'
 
 [wait for any key]The wind grasps his hood, making its edges billow.
 
@@ -9269,7 +9294,7 @@ He gets to his feet. You rise, your mind buzzing with questions. 'Wait!' you cry
 And he vanishes with a whirl of his cloak, leaving only a whiff of incense on the wind.
 
 [wait for any key]It's a while before you notice the sounds of the city around you again."	{}
-teller-waitgrab	true	false	"<Grab him.>"	"He gets to his feet. You lunge after him. 'Wait!' you cry. 'Wait--'
+teller-waitgrab	true	false	"<Grab him.>"	"He gets to his feet. You lunge after him. 'Wait!' you cry. 'Wait --'
 
 [wait for any key]Your fingertips brush empty air.
 
@@ -9464,7 +9489,7 @@ mazerobbers-okaymoney	true	false	"'Okay...' <Take out your purse.>"	"[take-out-p
 mazerobbers-okayscalpel	true	false	"'Okay...' <Take out your scalpel.>"	"[take-out-purse-text]"	{}
 mazerobbers-grabknife	true	false	"<Try to grab the knife.>"	"You twist and lash out with your elbow. Something cracks.
 
-'Agh! You little--'
+'Agh! You little --'
 
 He lunges at you. No time to think. You grab his arm -- twist the other way --
 
@@ -9472,34 +9497,34 @@ He lunges at you. No time to think. You grab his arm -- twist the other way --
 
 The knife falls into a drain. He grasps for it. You step on his hand.
 
-[wait for any key]'Oh Primes,' comes another voice. 'Who -- you're -- you're the girl from the clinic. Oh Primes--'
+[wait for any key]'Oh Primes,' comes another voice. 'Who -- you're -- you're the girl from the clinic. Oh Primes --'
 
 You glance up. There's an accomplice. He's backing away.
 
 Your assailant has struggled to his feet. His hand is bleeding. His arm is broken.
 
-[wait for any key]'--oh Primes. I'm sorry. We didn't--'
+[wait for any key]'-- oh Primes. I'm sorry. We didn't --'
 
-'--we didn't know. Please don't--'
+'-- we didn't know. Please don't --'
 
-'--don't tell the Doc--'
+'-- don't tell the Doc --'
 
 [wait for any key]They take off at a run. Their footsteps vanish into the crowd, into the din of the underworld.
 
 You are alone once more."	{}
 mazerobbers-scalpelstab	true	false	"<Stab blindly with your scalpel.>"	"You draw your scalpel -- twist -- stab at chest height. You feel something tear. He screams.
 
-[wait for any key]'Who...' splutters another voice. 'Who -- you're -- you're the girl from the clinic. Oh Primes--'
+[wait for any key]'Who...' splutters another voice. 'Who -- you're -- you're the girl from the clinic. Oh Primes --'
 
 You turn. There's an accomplice. He's frozen in shock.
 
 [wait for any key]Your assailant has backed away from you. There's a spreading stain on his shirt. His face is deathly pale.
 
-[wait for any key]'Oh Primes. I'm sorry. We didn't--'
+[wait for any key]'Oh Primes. I'm sorry. We didn't --'
 
-'--we didn't know. Please don't--'
+'-- we didn't know. Please don't --'
 
-'--don't tell the Doc--'
+'-- don't tell the Doc --'
 
 [wait for any key]They take off at a run. Their footsteps vanish into the crowd, into the din of the underworld.
 
@@ -9514,15 +9539,15 @@ You reach into your jacket. The knife point trembles -- his hands are shaking. Y
 
 [wait for any key]'I don't know what you're talking about,' your assailant growls.
 
-'No. Look. I swear she's the girl from the clinic. The [italic type]Doc's[roman type] clinic. She's got the tattoos and everything--'
+'No. Look. I swear she's the girl from the clinic. The [italic type]Doc's[roman type] clinic. She's got the tattoos and everything --'
 
 [wait for any key]The knife recedes.
 
-'Oh Primes.' The voice sounds panicked. 'Oh Primes. I'm sorry. We didn't know. Please don't--'
+'Oh Primes.' The voice sounds panicked. 'Oh Primes. I'm sorry. We didn't know. Please don't --'
 
-'Please don't tell anyone. We just--'
+'Please don't tell anyone. We just --'
 
-'Don't tell the Doc--'
+'Don't tell the Doc --'
 
 [wait for any key]They take off at a run. Their footsteps vanish into the crowd, into the din of the underworld.
 
@@ -10451,7 +10476,7 @@ zoiro-mechanistry-bedirect	true	false	"<Be direct.>"	"'It's about your brother, 
 
 Zoiro leans forward. 'Why? What happened to him?'
 
-'He staggered into Doctor Cavala's clinic last night. He was suffering from an acute illness that Doctor Cavala couldn't identify -- and he-- he--'
+'He staggered into Doctor Cavala's clinic last night. He was suffering from an acute illness that Doctor Cavala couldn't identify -- and he -- he --'
 
 [wait for any key]You look down.
 
@@ -10474,9 +10499,9 @@ Zoiro's eyes widen. 'He -- he wasn't sick at all when I saw him last.'
 
 You take a breath, force yourself to make eye contact.
 
-'Doctor Cavala tried to stabilize him, but the affliction was unlike anything we'd ever known. And he--'
+'Doctor Cavala tried to stabilize him, but the affliction was unlike anything we'd ever known. And he --'
 
-'--Oh Primes--'
+'-- Oh Primes --'
 
 [wait for any key]You look away.
 
@@ -10493,9 +10518,9 @@ Zoiro's eyes widen. 'He -- he wasn't sick at all when I saw him last.'
 
 [wait for any key]You take a breath, keep your eyes fixed on him.
 
-'His heart and lungs had failed. He was hemorrhaging badly. We rushed him to the surgery room, but-- but--'
+'His heart and lungs had failed. He was hemorrhaging badly. We rushed him to the surgery room, but -- but --'
 
-'--Oh Primes--'
+'-- Oh Primes --'
 
 [wait for any key]You look away.
 
@@ -10516,7 +10541,7 @@ Koriph puts a hand on his shoulder.[paragraph break]";
 
 Table of Zoiro Mechanistry Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	 choices
-zoiro-mechanistry-sosorry	true	true	"'I'm sorry...'"	"'I'm--'
+zoiro-mechanistry-sosorry	true	true	"'I'm sorry...'"	"'I'm --'
 
 You blink back tears.
 
@@ -10561,7 +10586,7 @@ Zoiro looks down, and is quiet.
 A pause, uncertain.
 
 [wait for any key]'Where is his body now?'"	{zoiro-mechanistry-iusmedici, zoiro-mechanistry-unrecoverable}
-zoiro-mechanistry-iusmedici	true	false	"'We're dissecting his body...'"	"'We're... we're dissecting his body,' you tell him. 'Doctor Cavala has invoked the [italic type]ius medici[roman type]--'
+zoiro-mechanistry-iusmedici	true	false	"'We're dissecting his body...'"	"'We're... we're dissecting his body,' you tell him. 'Doctor Cavala has invoked the [italic type]ius medici[roman type] --'
 
 'The what?'
 
@@ -10578,7 +10603,7 @@ zoiro-mechanistry-unrecoverable	true	false	"'We couldn't recover his body...'"	"
 
 Zoiro grimaces. He exhales heavily.
 
-[wait for any key]'Forget it,' he says at last. 'We said our goodbyes a long time ago. The pieces, or the slurry, or whatever it is... you can keep it. Just promise me--'
+[wait for any key]'Forget it,' he says at last. 'We said our goodbyes a long time ago. The pieces, or the slurry, or whatever it is... you can keep it. Just promise me --'
 
 [wait for any key]He clenches his fists.
 
@@ -10717,8 +10742,10 @@ Instead of knocking on the front door of Zoiro's house:
 	if the front door of Zoiro's house is locked:
 		if Cavala's Errands is happening:
 			say "There is no response. Zoiro must not be home at the moment.";
-		otherwise:
+		otherwise if Reden Investigation has not ended:
 			say "There is no response. Perhaps you should come back later.";
+		otherwise:
+			say "There is no response.";
 	otherwise:
 		say "'Come in!' you hear Zoiro call."
 
@@ -10726,6 +10753,10 @@ Part 3.28.4 - VII Layabout Row during Day Two
 
 When Reden Investigation begins (this is the unlock the door to Zoiro's house rule):
 	now the front door of Zoiro's house is unlocked.
+	
+When Reden Investigation ends (this is the lock Zoiro's door again rule):
+	now the front door of Zoiro's house is closed;
+	now the front door of Zoiro's house is locked.
 
 Book 3.29 - Arturus's Clinic
 
@@ -10982,7 +11013,7 @@ Instead of examining Doctor Arturus's gloves:
 		say "You get a loupe and a pair of tweezers, and carefully -- very carefully -- you inspect Doctor Arturus's bloodstained gloves.[paragraph break]";
 		say "Your heart hammers in your ears. Your breath condenses on the tarpaulins.[paragraph break]";
 		wait for any key;
-		say "[italic type]There! Is that--[roman type][paragraph break]";
+		say "[italic type]There! Is that --[roman type][paragraph break]";
 		wait for any key;
 		say "Nothing.[paragraph break]";
 		wait for any key;
@@ -11215,7 +11246,7 @@ The glyph flickers aglow, coursing with stained quicksilver, and the inscription
 	wait for any key;
 	say "The crash of shards shattering.[paragraph break]";
 	wait for any key;
-	say "'Creditor?' you hear Doctor Arturus's voice echo. 'Are you feeling quite all right? Perhaps we should--'[paragraph break]";
+	say "'Creditor?' you hear Doctor Arturus's voice echo. 'Are you feeling quite all right? Perhaps we should --'[paragraph break]";
 	wait for any key;
 	say "The words are drowned out by coughing. You hear the sound of friction on fabric, growing louder and louder.[paragraph break]";
 	wait for any key;
@@ -11583,7 +11614,7 @@ After taking the battered keyring when the battered keyring is undescribed:
 	if keyring-permission-granted is false:
 		say "You glance at Examiner Velox. 'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'
 
-'Well--' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
+'Well --' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
 
 [wait for any key]'I will,' you reply. 'Thank you.'
 
@@ -12100,7 +12131,7 @@ examiner-thugs-notable	true	false	"'Is there anything I should be aware of[if ex
 'We found some things in their pockets,' the examiner says. 'You may wish to look at their possessions... although I am uncertain, personally, how relevant they are to this series of deaths.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-keyring, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thugs-keyring	false	true	"'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'"	"'There's a keyring on Sal's body. Do you mind if I borrow it for a while?'
 
-'Well--' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
+'Well --' His mustache wriggles. 'You are not [italic type]officially[roman type] permitted, Servator, but if you believe it will further your investigation... let us agree that my attention is divided, focused elsewhere. Just be sure to return it to the basilica when you are finished.'
 
 'I will,' you reply. 'Thank you.'"	{examiner-thugs-id, examiner-thugs-timeofdeath, examiner-thugs-circum, examiner-thugs-notable, examiner-arturus-ask, examiner-nacarat-ask, examiner-thanksbye}
 examiner-thanksbye	true	false	"'I'll keep investigating.'"	"'I'll keep investigating.'
@@ -13167,7 +13198,7 @@ Instead of going north in Rats' Run, say "Climb into the sewage pipe? You'd rath
 The dismembered pigeon is a neuter creature animal in Rats' Run. "Nearby, a dismembered pigeon floats in the water."
 
 First before doing anything when the current action involves the dismembered pigeon:
-	say "You take a step closer--[paragraph break]";
+	say "You take a step closer --[paragraph break]";
 	wait for any key;
 	say "The pigeon's remaining eye snaps open. It twitches madly.[paragraph break]";
 	wait for any key;
@@ -13512,7 +13543,7 @@ The landlord hisses. The coils tighten, and you feel the keyring being pried fro
 
 [italic type]'Honest. Good. Saves trouble.'[roman type]
 
-[wait for any key]'Please,' you say desperately. 'Please. I need to get into that room--'
+[wait for any key]'Please,' you say desperately. 'Please. I need to get into that room --'
 
 The landlord holds up the keyring, gingerly, almost tenderly. Saliva runs from its beak and oozes down the wire.
 
@@ -13533,7 +13564,7 @@ To say landlord-wronganswer:
 	wait for any key;
 	say "[italic type]'You guess. You not know. Pathetic.'[roman type][paragraph break]";
 	wait for any key;
-	say "'I'm sorry!' you wail. 'Oh Primes -- I'm sorry I guessed--'[paragraph break]";
+	say "'I'm sorry!' you wail. 'Oh Primes -- I'm sorry I guessed --'[paragraph break]";
 	say "[italic type]'Pathetic.'[roman type][paragraph break]";
 	wait for any key;
 	say "The landlord flings you to the ground and you collapse clutching your bruised forearm. With its other arm it holds up the keyring, gingerly, almost tenderly.[paragraph break]";
@@ -13611,9 +13642,9 @@ The landlord regards you wordlessly, and your lips feel suddenly dry. You're no 
 
 [wait for any key]A crescent opens up in the landlord's body, a ring of grinning white teeth. [italic type]'You see. You know.'[roman type]
 
-[wait for any key]Then it says a word that doesn't -- doesn't quite [italic type]register[roman type] in your mind. Your head feels fuzzy for a second, and you -- you [italic type]blink--[roman type]
+[wait for any key]Then it says a word that doesn't -- doesn't quite [italic type]register[roman type] in your mind. Your head feels fuzzy for a second, and you -- you [italic type]blink --[roman type]
 
-[wait for any key]--Where did that trapdoor come from?
+[wait for any key]-- Where did that trapdoor come from?
 
 [wait for any key]There's a trapdoor to the south where there was carpet just moments ago. It's cut into the floor, with a half-eaten ladder descending into darkness.
 
@@ -14064,7 +14095,7 @@ There is a shift in the air. [The Webster] starts, and looks at you with somethi
 [wait for any key]'Reden,' he says. 'Where did you hear that name?'"	{webster-d2-avictim, webster-d2-watchedhimdie}
 webster-d2-avictim	true	false	"'He's one of the victims I'm investigating.'"	"'He's one of the victims I'm investigating.'
 
-'Primes,' [the Webster] whispers. 'He's dead, then. I... I never imagined--'
+'Primes,' [the Webster] whispers. 'He's dead, then. I... I never imagined --'
 
 [wait for any key]He shakes his head and falls silent. His hands ball into fists, exposing knuckles covered with angry scars."	{webster-d2-condolences, webster-d2-youknewhim}
 webster-d2-watchedhimdie	true	false	"'I watched him die in Doctor Cavala's clinic.'"	"'I watched him die in Doctor Cavala's clinic.'
@@ -14127,13 +14158,19 @@ To say webster-d2-accept:
 
 'Don't thank me.' He shakes his head. 'This is for Reden's sake. If I die tomorrow... I can tell him I died making a difference in the end.'[paragraph break]";
 	wait for any key;
-	say "'I--'
+	say "'I --'
 
 'Just go. Please.'[paragraph break]";
 	wait for any key;
 	say "You don't have to be told twice. With a final lingering look at the bouncer on his perch, you push past him, and onward, upward, into the tavern at the edge of the sky. ";
 	now Webster is sufficiently-convinced;
 	move the player to the Crow's Nest, without printing a room description.
+	
+Instead of talking to Webster when Day Two is happening and the enabled of webster-d2-urname is false and the enabled of webster-d2-curiouslegs is false and the enabled of webster-d2-raven is false (this is the no more Day Two Webster dialogue rule):
+	if the Crow's Nest is visited:
+		say "You can't think of anything to talk about.";
+	otherwise:
+		say "You haven't found anything you could use to convince him. Perhaps you should follow other leads in your journal for now.";
 
 Book 3.37 - Crow's Nest
 
@@ -14149,8 +14186,6 @@ The scent is "This place is soaked in alcohol and wood grain."
 The exit reminder is "The exit is below."
 
 Before examining down in the Crow's Nest, try examining the view of the Gangway instead.
-
-Instead of looking when the location is the Crow's Nest: to be continued.
 
 Part 3.37.1 - Scenery
 
@@ -14202,7 +14237,7 @@ Instead of looking under the Daemon's Wheel, say "It's bolted to the bar."
 Instead of searching the Daemon's Wheel, say "The wheel is marked with prizes in varying denominations."
 
 Instead of turning the Daemon's Wheel:
-	say "You give the wheel a spin. [one of]Disappointingly, it lands on a blank space.[or]It lands on a space marked 'One Libra.'[or]It lands on a space marked 'Twenty Librae.'[or]It lands on a space marked 'Free Drink.'[or]It lands on a space marked 'One Talent.'[or]It lands on a space marked 'Five Talents.'[or]It lands on a space marked 'On the House.'[paragraph break]'Congratulations,' [the Crow] deadpans. 'You won. Lucky you.'[as decreasingly likely outcomes]";
+	say "You give the wheel a spin. [one of]Disappointingly, it lands on a blank space.[or]It lands on a space marked 'One Libra.'[or]It lands on a space marked 'Twenty Librae.'[or]It lands on a space marked 'Free Drink.'[or]It lands on a space marked 'One Talent.'[or]It lands on a space marked 'Five Talents.'[or]It lands on a space marked 'On the House.'[paragraph break]'Congratulations,' [the Crow] deadpans.[as decreasingly likely outcomes]";
 
 The Crow's Nest kitchenware is faraway scenery in the Crow's Nest.
 The description is "Just the usual day-to-day things found in every public house."
@@ -14218,7 +14253,7 @@ Does the player mean doing something with the listening device: it is unlikely.
 
 Part 3.37.3 - Crow
 
-Crow is an improper-named hostile human woman in the Crow's Nest. "A disaffected young woman lounges behind the bar, chewing on a stick of gum and idly spinning a [italic type]rota fortunae[roman type] with her finger."
+Crow is an improper-named hostile human woman in the Crow's Nest. "[if the enabled of crow-d2-intro is true]A disaffected young woman lounges behind the bar, chewing on a stick of gum and idly spinning a [italic type]rota fortunae[roman type] with her finger[otherwise]Crow sits quietly behind the bar[end if]."
 The printed name is "[if Crow is proper-named]Crow[otherwise]bartender[end if]".
 The description is "She's dressed in a disheveled shirt, wearing a hairpin of feathers and bones."
 The scent is "'Do you mind?' [the Crow] snaps."
@@ -14231,12 +14266,26 @@ The description is "At least you assume it's gum."
 The sound is "She's chewing on it rather ferociously."
 The stick of chewing gum has some text called the faraway response. The faraway response is "That appears to be in [the Crow]'s mouth at the moment."
 
+The waste bin is a scenery container in the Crow's Nest.
+The scent is "You've smelled many unlikely things in the course of this investigation, but you think you'll give this a pass."
+Instead of searching or examining the waste bin: say "It's full of unprepossessing gray lumps."; now the unprepossessing gray lumps are in the waste bin.
+Instead of emptying the waste bin into, say "You'd really rather not."
+Instead of inserting something into the waste bin, say "You're loath to put your hand anywhere close to the bin."
+Instead of taking the waste bin, say "You can't imagine why you would need this."
+
+Some unprepossessing gray lumps are faraway scenery.
+The description is "Gum. Pre-chewed."
+The unprepossessing gray lumps have some text called the faraway response. The faraway response is "You'd really rather not."
+Understand "grey" or "lump" or "chewed/chewing" or "gum" as the unprepossessing gray lumps.
+Before smelling the unprepossessing gray lumps, try smelling the waste bin instead.
+
 The disheveled shirt is a thing worn by Crow.
 The description is "You don't think she particularly cares about her appearance."
+Understand "loop/loops" or "trouser/trousers" or "crow's" as the disheveled shirt.
 
 The feathered hairpin is a thing worn by Crow.
 The description is "It's rather morbid."
-Understand "feather/feathers" or "bone/bones" or "of" or "hair" or "pin" as the feathered hairpin.
+Understand "feather/feathers" or "bone/bones" or "of" or "hair" or "pin" or "crow's" as the feathered hairpin.
 
 Crow's stool is a scenery supporter in the Crow's Nest.
 The description is "[The Crow]'s sitting on it."
@@ -14251,7 +14300,7 @@ Some dialogue branches are defined by the Table of Crow Day Two Dialogue.
 
 Table of Crow Day Two Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-crow-d2-intro	true	false	""	"You approach the bartender. She doesn't bother looking up from the countertop.
+crow-d2-intro	true	true	""	"You approach the bartender. She doesn't bother looking up from the countertop.
 
 'So,' she says. 'You got past Webster. Makes me wonder why I hire him at all.'"	{crow-d2-doyougreet, crow-d2-hi, crow-d2-aboutreden}
 crow-d2-doyougreet	true	true	"'Do you greet all your customers like that?'"	"'Do you greet all your customers like that?'
@@ -14269,25 +14318,25 @@ crow-d2-immarid	true	true	"'I'm Marid.'"	"'I'm Marid.'
 She shrugs."	{crow-d2-doyougreet, crow-d2-aboutreden}
 crow-d2-aboutreden	true	false	"'I'm here about Reden.'"	"'I'm here about Reden.'
 
-[The Crow] swivels slowly around on her stool. She gets up and paces back and forth, hooking her thumbs in the loops of her trousers.
+[The Crow] spits her gum into the bin beside her. She gets up and paces back and forth, hooking her thumbs in the loops of her trousers.
 
 'Yeah,' she says. 'I heard.'
 
 [wait for any key]Her eyes flicker to the device behind the bar, flared like a foghorn. She brushes the sigiled feathers in its bell, sending them fluttering, whispering.
 
-[wait for any key]'You hear all kinds of things on the wind,' she says."	{crow-d2-youheardeverything, crow-d2-thenyouknow}
+[wait for any key]'You hear all kinds of things on the wind.'"	{crow-d2-youheardeverything, crow-d2-thenyouknow}
 crow-d2-youheardeverything	true	false	"'You heard everything?'"	"'You heard everything?' you ask.
 
 'I heard enough.'
 
-[wait for any key]She uncorks a bottle and mixes a drink -- a rich dark rum you can smell from across the bar. She pours out a glass for herself. Then she retrieves another, raises it with a sidelong arch of her brow.
+[wait for any key]She uncorks a bottle and mixes a drink, a rich dark rum you can smell from across the bar. She pours out a glass for herself -- then she retrieves another, raises it with a sidelong arch of her brow.
 
 [wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
 crow-d2-thenyouknow	true	false	"'Then you know why I'm here.'"	"'Then you know why I'm here.'
 
 'Mm.'
 
-[wait for any key]She uncorks a bottle and mixes a drink -- a rich dark rum you can smell from across the bar. She pours out a glass for herself. Then she retrieves another, raises it with a sidelong arch of her brow.
+[wait for any key]She uncorks a bottle and mixes a drink, a rich dark rum you can smell from across the bar. She pours out a glass for herself -- then she retrieves another, raises it with a sidelong arch of her brow.
 
 [wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
 crow-d2-drinkplz	true	false	"'Please.'"	"'Please.'
@@ -14296,7 +14345,7 @@ She fills another glass and pushes it across the countertop. You take a sip -- i
 
 'I'm impressed,' she says. 'Not a lot of people around here with the stomach for that.'
 
-[wait for any key]She takes a long swig from her own glass. For a long while she is silent, absorbed in her own thoughts.
+She takes a long swig from her own glass. For a long while she is silent, absorbed in her own thoughts.
 
 [wait for any key]'Reden,' she finally says. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-nodrink	true	false	"'I'm fine.'"	"'I'm fine.'
@@ -14305,7 +14354,7 @@ crow-d2-nodrink	true	false	"'I'm fine.'"	"'I'm fine.'
 
 She corks the bottle and settles back onto her stool. Through hooded eyes she studies your expression, like a languid predator studying its prey.
 
-[wait for any key]A long moment passes before she finally speaks.
+A long moment passes before she finally speaks.
 
 [wait for any key]'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-wineplz	true	false	"'I'm more of a spiced wine person, actually.'"	"'I'm more of a spiced wine person, actually.'
@@ -14314,18 +14363,149 @@ She rolls her eyes, but fetches another bottle from under the counter and pours 
 
 'Don't drink it all at once,' she mutters.
 
-'Um, thanks.'
+'Um. Thanks.'
 
 [wait for any key]She shakes her head and takes a long swig from her own tumbler. For a long while she is silent, absorbed in her own thoughts.
 
 [wait for any key]'Reden,' she finally says. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
-crow-d2-hecamehere	true	false	"'I understand he frequented this place.'"	"'I understand he frequented this place.'"	{}
-crow-d2-youknewhim	true	false	"'Were you on good terms with him?'"	"'Were you on good terms with him?'"	{}
-crow-d2-whatwashelike	true	false	"'Can you tell me what he was like?'"	"'Can you tell me what he was like?'"	{}
+crow-d2-hecamehere	true	true	"'I understand [if Crow is referring to Reden]he[otherwise]Reden[end if] frequented this place.'"	"'I understand he frequented this place.'
 
-[The super important thing you need to learn from Crow is Reden's history. She provides context for the revelation in Day Three of the secret lab and says something like 'he was nobody, we're nobody.' You learn from her that Reden became obsessed with the past when he was drunk, and kept going back to the Channelworks.
+'Frequented?' She chuckles. 'More like he lived here. Between you and me, I don't think he had anywhere else to go.
 
-Through Crow, Marid also learns a bit about the history of the Crow's Nest, and the change of management about a month ago. Crow talks about Sal and Piper and how they came in complaining they were out of work because of someone called Carnicer. She's surprised to learn that they died too.]
+'His heart, though, was always elsewhere. You could see it in his eyes. He was always thinking back on old history... stuck in the past.'"	{crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-stuckinthepast	false	true	"'[if Crow is referring to Reden]He[otherwise]Reden[end if] was stuck in the past?'"	"'[if Crow is referring to Reden]He[otherwise]Reden[end if] was stuck in the past?'
+
+She gazes at you intently. 'He was. He didn't tell anyone -- wasn't the kind to go on drunken tirades, unlike me --'
+
+She looks down and chuckles softly.
+
+'But I always saw, when he was a few bottles in, that look in his eyes. He was always thinking, thinking of going back. And then he'd say he was done for the night, and he'd lope off and down the gangway... but I don't think he was ever going home. Not really.'"	{crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-wheredhego	false	true	"'Where do you think [if Crow is referring to Reden]he[otherwise]Reden[end if] went when he was drunk?'"	"'Where do you think [if Crow is referring to Reden]he[otherwise]Reden[end if] went when he was drunk?'
+
+'There's only one place he could have gone,' she says quietly. 'Back to the past. Back to where it all started.
+
+'Back to the Channelworks.'
+
+[wait for any key]There is a silence that settles. You make a mental note of this information."	{crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-youknewhim	true	true	"'Were you on good terms with him?[if Crow is not referring to Reden] Reden, I mean.[end if]'"	"'Were you on good terms with him?[if Crow is not referring to Reden] Reden, I mean.[end if]'
+
+She shrugs. 'I suppose I was. Webster -- he made it sound like we were chums, didn't he? We were, in a way. The three of us, just raging against the unfairness of the world...'
+
+She takes another swig."	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-soundslikehistory	false	true	"'It sounds like the three of you have history.'"	"'It sounds like the three of you have history.'
+
+'That's a mild way to put it.' She looks at her painted nails. 'The three of us... we built each other. We shaped each other.
+
+'On the night shift it was just the three of us in the whole of the Channelworks... we were the whole world to each other back then. Can you imagine? The three of us, kings and queen of the Channelworks? And now... now we're nobody.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-whathappened	false	true	"'What happened with the Channelworks?'"	"'What happened with the Channelworks?'
+
+She shakes her head. 'Everything. It all started there. I... I don't know how I can tell you.
+
+'It was late. Webster asked for a whiskey, to keep his bones warm, and I... I just gave it to him.
+
+'Next day I heard he'd slipped and walked into the rubbish grinder.'
+
+[wait for any key]'Oh Primes...'
+
+She looks into your eyes. 'I got found out after that,' she says. 'The whiskey, I mean. And then Reden took the heat, too, for supplying me. All three of us got handed our letters on that day.'
+
+It's a while before you can compose your thoughts.
+
+[wait for any key]'Sorry,' [the Crow] says. 'That got dark fast.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+crow-d2-whatwashelike	true	true	"Could you tell me what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'"	"'Could you tell me... what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'
+
+[The Crow] looks into her glass, and her reflection stares up at her.
+
+'Of all of us,' she says, 'he was the most... detached from the world. I always had the Crow's Nest to keep me busy, even after everything happened. Webster had me to stay in touch. Reden... I offered him a job, but he never took up the offer. He just stayed here, going through bottles and bottles of cheap wine.
+
+'I never had the heart to charge him.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-endqns}
+crow-d2-aboutcrowsnest	false	true	"'Could you tell me more about the Crow's Nest?'"	"'Could you tell me more about the Crow's Nest?'
+
+'Oh, it's nothing special.' She waves her hand dismissively. 'Time was, there was an employee refectory I ran in the Channelworks... I ran the after-dark shift, together with the reception. I served drinks when the commissary wasn't looking.
+
+'Now... the surroundings have changed, and my employer's a little less strict. But otherwise it's just like old times.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-newemployer, crow-d2-endqns}
+crow-d2-newemployer	false	true	"'You have a new employer?'"	"'You have a new employer?'
+
+[The Crow]'s expression darkens. She takes a swig from her glass.
+
+'Yeah,' she says. 'It wasn't like I had a choice. Place like the Channelworks District, there's only two avenues of employment you have as a bartender. You either work for the Council of Works -- and for people like me, that's off the table -- or you pay your dues to the big fat raven.'
+
+[wait for any key]'The[if clue-tradingcompany is true] Company,' you say.
+
+Her lips are thin. 'I didn't have a choice. You take what employment you can get -- even if it means serving literal sapient trash[otherwise]... raven?'
+
+'You don't know?' She laughs out loud. 'Oh Primes. Someone get me an adult -- you have [italic type]no idea[roman type] what you're getting yourself into[end if].'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-raven, crow-d2-endqns}
+crow-d2-raven	false	true	"'Please. I need to know what [']the raven['] means.'"	"'Please,' you say. 'I need to know what [']the raven['] means.'
+
+She shakes her head incredulously.
+
+'Listen,' she says. 'I'm only telling you because you'll get yourself killed otherwise. No one, and I mean [italic type]no one[roman type] hears about this. Are we clear on that?'
+
+[wait for any key]'Crystal,' you say.
+
+She leans in.
+
+'The Greater Corindia Trading Company,' she breathes. 'Great merchant syndicate. All rotten to the core. You don't hear about them because they control what you hear. And the raven... the raven is their symbol.
+
+[wait for any key]'Got it?'
+
+You nod mutely.
+
+'Good.' She leans back. 'If anyone asks, I was flirting with you.'
+
+[wait for any key]'I don't --'
+
+'Shush.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-endqns}
+crow-d2-endqns	false	true	"'That's all the questions I have...'"	"'That's all the questions I have,' you say. 'Thank you, [if Crow is improper-named]ma'am --'
+
+'Crow.'
+
+'Thank you, [end if]Crow. You've been very helpful.'
+
+She drains the last of her glass, and runs a hand through her hair. For the first time since you've met her, she does not quite meet your eye.
+
+[wait for any key]'You know,' she whispers, 'I still feel numb inside. Maybe it's the rum -- I keep thinking Reden's going to climb up the gangway any moment, asking for a bottle of the Bilious Canal's finest...'
+
+She stares at the bottom of her glass.
+
+[wait for any key]'We both know that's not going to happen. Is it?'"	{crow-d2-endfeel, crow-d2-endpromise, crow-d2-endsilence}
+crow-d2-endfeel	true	false	"'...I know what you mean.'"	"'...I know what you mean.'
+
+She looks into your eyes. Her gaze is intense at first, like a sky split by thunder -- then it subsides, mists, and she turns her gaze downward.
+
+'Yeah,' she says, very softly. 'I think you do.'
+
+She closes her eyes and a tear runs down her cheek, staining it dark in the light.
+
+[wait for any key]'I should get back to bartending,' she says. 'It... it was nice talking to you.'"	{crow-d2-goodbye, crow-d2-leaveyou}
+crow-d2-endpromise	true	false	"'Doctor Cavala and I will get to the bottom of this. I promise.'"	"'Doctor Cavala and I will get to the bottom of this. I promise.'
+
+She looks into your eyes. Her gaze is intense at first, like a sky split by thunder -- then it mists, quivers, and she turns her gaze downward before you can see it falter.
+
+'Yeah,' she says. 'All right.'
+
+She closes her eyes and a tear runs down her cheek, staining it dark in the light.
+
+[wait for any key]'I should get back to bartending,' she says, very softly. 'It... it was nice talking to you.'"	{crow-d2-goodbye, crow-d2-leaveyou}
+crow-d2-endsilence	true	false	"<Remain silent.>"	"You don't know what to say.
+
+She looks into your eyes. Her gaze is intense at first, like a sky split by thunder -- then it subsides, mists, and she turns her gaze downward.
+
+'Yeah,' she says, very softly. 'I didn't think so.'
+
+She closes her eyes and a tear runs down her cheek, staining it dark in the light.
+
+[wait for any key]'I should get back to bartending,' she says. 'It... it was was nice talking to you.'"	{crow-d2-goodbye, crow-d2-leaveyou}
+crow-d2-goodbye	true	false	"'Goodbye.'"	"'Goodbye.'
+
+You get up from the bar, conscious of yourself, of the quiet. You wonder if you perhaps shouldn't have asked so many questions --
+
+But it's too late now. Sometimes you must hurt someone before they can truly be healed.[line break][look pending]"	{}
+crow-d2-leaveyou	true	false	"'I'll leave you to it.'"	"'I'll leave you to it.'
+
+You get up from the bar, conscious of yourself, of the quiet. You wonder if you perhaps shouldn't have asked so many questions --
+
+But it's too late now. Sometimes you must hurt someone before they can truly be healed.[line break][look pending]"	{}
 
 The home dialogue branch of Crow is crow-d2-intro.
 
@@ -14338,6 +14518,44 @@ After reading out crow-d2-hi:
 	now the conversational partner text is "Talking to Crow";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line.
+	
+Crow can be referring to Reden. Crow is referring to Reden. [This marks whether Marid says 'he' or 'Reden' in her questions. Yes this is important shut up]
+	
+After reading out crow-d2-hecamehere: now Crow is referring to Reden; now the enabled of crow-d2-stuckinthepast is true.
+After reading out crow-d2-stuckinthepast: now Crow is referring to Reden; now the enabled of crow-d2-wheredhego is true.
+After reading out crow-d2-wheredhego: now Crow is not referring to Reden; now clue-reden-revisit is true; check for Crow Day Two dialogue completion.
+After reading out crow-d2-youknewhim: now Crow is not referring to Reden; now the enabled of crow-d2-soundslikehistory is true.
+After reading out crow-d2-soundslikehistory: now Crow is not referring to Reden; now the enabled of crow-d2-whathappened is true.
+After reading out crow-d2-whathappened: now Crow is not referring to Reden; now clue-reden-channelworkshistory is true; check for Crow Day Two dialogue completion.
+After reading out crow-d2-whatwashelike: now Crow is referring to Reden; now the enabled of crow-d2-aboutcrowsnest is true.
+After reading out crow-d2-aboutcrowsnest: now Crow is not referring to Reden; now the enabled of crow-d2-newemployer is true.
+
+After reading out crow-d2-newemployer:
+	now Crow is not referring to Reden;
+	if clue-tradingcompany is false, now the enabled of crow-d2-raven is true;
+	now clue-crowsnestemployer is true;
+	check for Crow Day Two dialogue completion.
+	
+After reading out crow-d2-raven: now Crow is not referring to Reden; discover the Trading Company connection; check for Crow Day Two dialogue completion.
+
+To check for Crow Day Two dialogue completion:
+	if clue-reden-revisit is true and
+	clue-reden-channelworkshistory is true and
+	clue-crowsnestemployer is true and
+	clue-tradingcompany is true:
+		now the enabled of crow-d2-endqns is true.
+	
+After reading out crow-d2-endqns:
+	now Crow is friendly;
+	now the stick of chewing gum is nowhere;
+	now the unprepossessing gray lumps are in the waste bin;
+	now Crow is proper-named;
+	now the conversational partner text is "Talking to Crow";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line.
+	
+Instead of talking to Crow when the home dialogue branch of Crow is crow-d2-intro and the enabled of crow-d2-intro is false:
+	say "You don't think she's in the mood to talk."
 
 Book of the Rest
 
