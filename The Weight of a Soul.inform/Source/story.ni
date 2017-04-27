@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 260417.
+The release number is 270417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -174,6 +174,8 @@ When play begins (this is the new final question options rule):
 	now the final question wording entry is ">[bold type]quit[roman type]";
 	choose row 5 in the Table of Final Question Options;
 	now the final question wording entry is ">[bold type]undo[roman type] the last command";
+	
+The print the final prompt rule response (A) is ">[run paragraph on]".
 
 Part 1.1.7 - Debug Messages - Release for testing
 
@@ -215,7 +217,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to endoscope[roman type]";
 	say "[line break]>[bold type]skip to bodies[roman type]";
 	say "[line break]>[bold type]skip to cellar[roman type]";
-	say "[line break]>[bold type]skip to crow[roman type]";
+	[say "[line break]>[bold type]skip to crow[roman type]";]
 	
 To to be continued:
 	clear the screen;
@@ -14111,7 +14113,7 @@ webster-d2-foralloursakes	true	false	"'For all our sakes.'"	"'For all our sakes.
 He takes a deep breath. The gears in his spine turn.
 
 [webster-d2-accept][look pending]"	{}
-webster-d2-silent	true	false	"<Remain silent.>"	"You remain silent, your heart in your throat.
+webster-d2-silent	true	false	"<Remain silent.>"	"Your heart in your throat.
 
 He takes a deep breath.
 
@@ -14147,6 +14149,8 @@ The scent is "This place is soaked in alcohol and wood grain."
 The exit reminder is "The exit is below."
 
 Before examining down in the Crow's Nest, try examining the view of the Gangway instead.
+
+Instead of looking when the location is the Crow's Nest: to be continued.
 
 Part 3.37.1 - Scenery
 
