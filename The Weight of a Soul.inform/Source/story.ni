@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 280417.
+The release number is 300417.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,11 +54,7 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Returning with More Questions
-- Write the prompt
-- Close everything during RwMQ
-
-- Write Reconstruction
+- Write Doctor Cavala's dialogue for RwMQ
 
 - Write Walking Home in Suspense
 
@@ -833,6 +829,8 @@ To say cavala-description:
 			say "She's looking at her cards with a cool, unreadable expression. ";
 		otherwise:
 			say "She looks frankly irritated that she's bedridden. ";
+	otherwise if Returning with More Questions is happening:
+		say "Her expression is as world-weary as it's ever been. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -5363,6 +5361,20 @@ card
 "The Azoth"
 "The Fool"
 
+Chapter 3.3.6.3 - Clinic during Returning with More Questions
+
+The romance novel is a thing.
+The description is "[italic type]Furopolis Nights; or, The Confessions of a Desirous Housemaid.[roman type]".
+Understand "book" or "furopolis" or "nights" or "or" or "confessions" or "of" or "desirous" or "housemaid" as the romance novel.
+Instead of searching the romance novel, say "You're not sure you want to."
+
+When Returning with More Questions begins:
+	now the romance novel is carried by Doctor Cavala;
+	now Horatio is nowhere.
+
+Rule for writing a paragraph about Doctor Cavala during Returning with More Questions:
+	say "Doctor Cavala is curled up in her makeshift bed, aimlessly flipping through a romance novel[if the previous location is not the Clinic]. She glances up at you as you enter[end if].";
+
 Book 3.4 - Mortuary
 
 The Mortuary is a proper-named room. "The odor of tinctured camphor is overwhelming in this gloomy subterranean chamber. Shelves along the walls house organs in jars of formaldehyde. Deeper in, cadavers are organized in labeled niches, embalmed and awaiting cremation.
@@ -7001,6 +7013,15 @@ First every turn when the location is the West Street and The Game is Afoot is h
 	say "'That poor doctor!' you overhear someone in the crowd say. 'What is the world coming to?...'";
 	now weststreet-gameafoot-quipped is true;
 	now ambience suppression is true.
+	
+Chapter 3.9.4.1 - Hubbub during Returning with More Questions
+
+weststreet-rwmq-quipped is a truth state that varies.
+
+First every turn when the location is the West Street and Returning with More Questions is happening and weststreet-rwmq-quipped is false:
+	say "You think you see the landlord in the crowd, or something that looks like it -- but no. The vision passes.";
+	now weststreet-rwmq-quipped is true;
+	now ambience suppression is true.
 
 Book 3.10 - Crooked Alley
 
@@ -7957,6 +7978,12 @@ She doesn't acknowledge your presence[or]The porter is ignoring you[stopping]."
 
 When Four Investigations ends (this is the despawn the tremendous mess rule):
 	now the tremendous mess is nowhere.
+	
+Chapter 3.16.6.3 - Closing the Turris Infinita after Four Investigations
+	
+When Four Investigations ends:
+	now the ornate double doors are closed;
+	now the ornate double doors are locked.
 
 Book 3.17 - Grand Forum
 
@@ -8439,7 +8466,7 @@ Understand "watchman" as the borderpost watchmen.
 Instead of talking to the borderpost watchmen, say "You'd feel like a fool yelling at the battlements."
 
 The keystone clock is faraway scenery in Miller's Gate. The indefinite article is "the".
-The description is "It's still early."
+The description is "The hours sweep past, unchanging."
 Understand "giant" or "time" as the keystone clock.
 
 Some clattering carriageways are scenery in Miller's Gate.
@@ -9756,6 +9783,12 @@ Before going to the Shanty Quarter when Day Two is happening and shantyquarter-d
 	say "You take a deep breath.[paragraph break]";
 	wait for any key;
 	now shantyquarter-daytwo-quipped is true.
+
+shantyquarter-rwmq-quipped is a truth state that varies.
+	
+Every turn when the location is the Shanty Quarter and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
+	say "It's getting late out; soon it will be too dark to find your way. You should go back and tell Doctor Cavala what you've learned."
+	now shantyquarter-rwmq-quipped is true.
 
 Book 3.23 - Cadaver Walk
 
