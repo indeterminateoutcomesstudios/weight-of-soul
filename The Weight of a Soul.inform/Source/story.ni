@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 300417.
+The release number is 020517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -2674,7 +2674,7 @@ I don't know what to think. All I can do is make my way there and talk to Justin
 	otherwise if Returning with More Questions is happening:
 		say "I've learned so much about the victims, and I have a better idea of how the disease works... but it still feels like there's so much I'm missing, just dancing out of sight. What's really going on in the Channelworks District? What else have I been unable to see?
 
-It's too late for me to do anything but return to Doctor Cavala for now, but one thing is for certain -- I don't think this is an ordinary epidemic. Not any more. ";
+It's too late for me to do anything but return to Doctor Cavala -- but one thing is for certain. I don't think this is the epidemic we believed it was. Not any more. ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -3492,6 +3492,9 @@ Chapter 3.1.3.2 - Riggertown Ambience
 Some Riggertown ambience is a privately-named ambience object.
 The associated table is the Table of Day One Riggertown Ambience.
 
+When Day Two begins:
+	now the associated table of the Riggertown ambience is the Table of Day Two Riggertown Ambience.
+
 Table of Day One Riggertown Ambience
 happening
 "Some goblin schoolchildren meander around your legs."
@@ -3521,6 +3524,39 @@ happening
 "Far off, someone says a prayer to the Trismegistus."
 "The lights flicker. An alchemist runs up and administers a fresh injection of phlogiston."
 "A goblin housewife runs past, chasing after an irritable house-lizard."
+"You hear glass shattering somewhere, followed by an indistinct curse."
+"A horn honks."
+"Someone steps in a foul-smelling puddle and curses."
+"A breeze whips by, [if the tinkling windchimes are in the location]sending the windchimes to and fro[otherwise]smelling of turpentine[end if]."
+
+Table of Day Two Riggertown Ambience
+happening
+"Some goblin schoolchildren totter past, whispering."
+"You hear a mourning chant from some distant cathedral."
+"For a moment, you smell smoke on the wind."
+"A boy walks past doing a handstand."
+"A pair of engineers walk past in fireproof masks."
+"A drunk staggers past."
+"A tiny mechanical spider skitters along the handrail and out of sight."
+"A piece of the landing falls off with a clang."
+"A group of goblins runs past."
+"A fly buzzes past."
+"Three workmen shuffle past you carrying a coffin."
+"There is a sudden quiet in the crowd -- then the bustle begins again, as though nothing had happened."
+"A forlorn crate bobs down the canal and rolls out of sight."
+"A blob of spit flies out of someone's doorway, splattering the rim of a dirty spitoon."
+"An inkblot ooze burbles along and slithers up a drainpipe."
+"Something stalks an alley in the corner of your eye -- but no. It's just a trick of the light."
+"A gobliness bumps into your pant leg, rubs her head, and continues along the landing."
+"A ball bearing rolls down the walkway. Someone in the crowd kicks it off the landing and into the canal."
+"Some pigeons scatter squawking out of an alley."
+"A pair of housewives pass by, awash in the murmur of gossip."
+"A cockroach crawls past along the underside of the rail."
+"Someone brushes your elbow, and your hairs stand on end from the galvanic discharge."
+"Someone tosses the contents of their chamberpot into the canal."
+"Far off, someone is sobbing."
+"The lights flicker."
+"A goblin housewife runs past, chasing after a frightened house-lizard."
 "You hear glass shattering somewhere, followed by an indistinct curse."
 "A horn honks."
 "Someone steps in a foul-smelling puddle and curses."
@@ -5373,7 +5409,7 @@ When Returning with More Questions begins:
 	now Horatio is nowhere.
 
 Rule for writing a paragraph about Doctor Cavala during Returning with More Questions:
-	say "Doctor Cavala is curled up in her makeshift bed, aimlessly flipping through a romance novel[if the previous location is not the Clinic]. She glances up at you as you enter[end if].";
+	say "Doctor Cavala is curled up in her makeshift bed, aimlessly flipping through a romance novel.";
 
 Book 3.4 - Mortuary
 
@@ -7339,7 +7375,7 @@ Part 3.14.2 - Junction during Day Two
 Chapter 3.14.2.1 - The Black Banner
 
 The trailing black banner is a fixed in place faraway thing.
-"Above the Turris Infinita, a black banner casts its trailing shadow across the sky."
+"[if the ornate double doors are unlocked]Above the Turris Infinita, a black banner casts its trailing shadow across the sky[otherwise]The doors of the Turris Infinita are closed and locked for the night[end if]."
 The description is "A black banner is traditionally put up when the head of the house has died."
 The sound is "It flaps disconsolately."
 Understand "shadow" or "mourning-banner" or "mourning" as the trailing black banner.
@@ -7984,6 +8020,11 @@ Chapter 3.16.6.3 - Closing the Turris Infinita after Four Investigations
 When Four Investigations ends:
 	now the ornate double doors are closed;
 	now the ornate double doors are locked.
+	
+Before approaching when the ornate double doors are locked:
+	if the noun is the Turris Infinita or the noun is Arturus's Clinic or the noun is Arturus's Domicile or the noun is Arturus's Study:
+		say "The Turris Infinita is closed this time of day.";
+		stop the action.
 
 Book 3.17 - Grand Forum
 
@@ -9786,8 +9827,9 @@ Before going to the Shanty Quarter when Day Two is happening and shantyquarter-d
 
 shantyquarter-rwmq-quipped is a truth state that varies.
 	
-Every turn when the location is the Shanty Quarter and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
-	say "It's getting late out; soon it will be too dark to find your way. You should go back and tell Doctor Cavala what you've learned."
+Every turn when the location is in Outdoors and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
+	wait for any key;
+	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to cavala's clinic[roman type].)";
 	now shantyquarter-rwmq-quipped is true.
 
 Book 3.23 - Cadaver Walk
@@ -13160,6 +13202,12 @@ Zoiro shrugs. 'I can't say that it does.'
 		now zoiro-mourning-raven-quipped is true;
 	otherwise:
 		say "You can't think of anything else to ask him about."
+		
+Chapter 3.32.2.2 - Closing Zoiro's Residence after Four Investigations
+
+Before approaching Zoiro's Residence when the front door of Zoiro's house is locked:
+	say "You doubt Zoiro is receiving visitors this time of day.";
+	stop the action.
 
 Book 3.33 - Rats' Run
 
@@ -14376,7 +14424,7 @@ crow-d2-drinkplz	true	false	"'Please.'"	"'Please.'
 
 She fills another glass and pushes it across the countertop. You take a sip -- it's powerful stuff, warm in your throat all the way down.
 
-'I'm impressed,' she says. 'Not a lot of people around here with the stomach for that.'
+[wait for any key]'I'm impressed,' she says. 'Not a lot of people around here with the stomach for that.'
 
 She takes a long swig from her own glass. For a long while she is silent, absorbed in her own thoughts.
 
@@ -14387,9 +14435,9 @@ crow-d2-nodrink	true	false	"'I'm fine.'"	"'I'm fine.'
 
 She corks the bottle and settles back onto her stool. Through hooded eyes she studies your expression, like a languid predator studying its prey.
 
-A long moment passes before she finally speaks.
+[wait for any key]A long moment passes before she finally speaks.
 
-[wait for any key]'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
+'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-wineplz	true	false	"'I'm more of a spiced wine person, actually.'"	"'I'm more of a spiced wine person, actually.'
 
 She rolls her eyes, but fetches another bottle from under the counter and pours you a sparkling white spirit. The powders are still settling as she hands you the glass.
@@ -14419,7 +14467,7 @@ crow-d2-wheredhego	false	true	"'Where do you think [if Crow is referring to Rede
 
 'Back to the Channelworks.'
 
-[wait for any key]There is a silence that settles. You make a mental note of this information."	{crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+There is a silence that settles. You make a mental note of this information."	{crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
 crow-d2-youknewhim	true	true	"'Were you on good terms with him?[if Crow is not referring to Reden] Reden, I mean.[end if]'"	"'Were you on good terms with him?[if Crow is not referring to Reden] Reden, I mean.[end if]'
 
 She shrugs. 'I suppose I was. Webster -- he made it sound like we were chums, didn't he? We were, in a way. The three of us, just raging against the unfairness of the world...'
@@ -14434,22 +14482,24 @@ crow-d2-whathappened	false	true	"'What happened with the Channelworks?'"	"'What 
 
 She shakes her head. 'Everything. It all started there. I... I don't know how I can tell you.
 
-'It was late. Webster asked for a whiskey, to keep his bones warm, and I... I just gave it to him.
+[wait for any key]'It was late. Webster asked for a whiskey, to keep his bones warm, and I... I just gave it to him.
 
-'Next day I heard he'd slipped and walked into the rubbish grinder.'
+[wait for any key]'Next day I heard he'd slipped and walked into the rubbish grinder.'
 
 [wait for any key]'Oh Primes...'
 
 She looks into your eyes. 'I got found out after that,' she says. 'The whiskey, I mean. And then Reden took the heat, too, for supplying me. All three of us got handed our letters on that day.'
 
-It's a while before you can compose your thoughts.
+[wait for any key]It's a while before you can compose your thoughts.
 
-[wait for any key]'Sorry,' [the Crow] says. 'That got dark fast.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+'Sorry,' [the Crow] says. 'That got dark fast.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
 crow-d2-whatwashelike	true	true	"Could you tell me what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'"	"'Could you tell me... what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'
 
 [The Crow] looks into her glass, and her reflection stares up at her.
 
-'Of all of us,' she says, 'he was the most... detached from the world. I always had the Crow's Nest to keep me busy, even after everything happened. Webster had me to stay in touch. Reden... I offered him a job, but he never took up the offer. He just stayed here, going through bottles and bottles of cheap wine.
+'Of all of us,' she says, 'he was the most... detached from the world. I always had the Crow's Nest to keep me busy, even after everything happened. Webster had me to stay in touch. Reden...
+
+[wait for any key]'I offered him a job, but he never took up the offer. He just stayed here, going through bottles and bottles of cheap wine.
 
 'I never had the heart to charge him.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-endqns}
 crow-d2-aboutcrowsnest	false	true	"'Could you tell me more about the Crow's Nest?'"	"'Could you tell me more about the Crow's Nest?'
@@ -14465,7 +14515,7 @@ crow-d2-newemployer	false	true	"'You have a new employer?'"	"'You have a new emp
 
 [wait for any key]'The[if clue-tradingcompany is true] Company,' you say.
 
-Her lips are thin. 'I didn't have a choice. You take what employment you can get -- even if it means serving literal sapient trash[otherwise]... raven?'
+Her lips are thin. 'I didn't have a choice. You take what employment you can get, even if it means kissing someone's hobnailed boots[otherwise]... raven?'
 
 'You don't know?' She laughs out loud. 'Oh Primes. Someone get me an adult -- you have [italic type]no idea[roman type] what you're getting yourself into[end if].'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-raven, crow-d2-endqns}
 crow-d2-raven	false	true	"'Please. I need to know what [']the raven['] means.'"	"'Please,' you say. 'I need to know what [']the raven['] means.'
@@ -14501,7 +14551,7 @@ She drains the last of her glass, and runs a hand through her hair. For the firs
 
 She stares at the bottom of her glass.
 
-[wait for any key]'We both know that's not going to happen. Is it?'"	{crow-d2-endfeel, crow-d2-endpromise, crow-d2-endsilence}
+[wait for any key]'But we both know that's not going to happen. Isn't it?'"	{crow-d2-endfeel, crow-d2-endpromise, crow-d2-endsilence}
 crow-d2-endfeel	true	false	"'...I know what you mean.'"	"'...I know what you mean.'
 
 She looks into your eyes. Her gaze is intense at first, like a sky split by thunder -- then it subsides, mists, and she turns her gaze downward.
