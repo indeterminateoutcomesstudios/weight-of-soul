@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 020517.
+The release number is 030517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -5413,7 +5413,7 @@ Some dialogue branches are defined by the Table of Cavala RWMQ Dialogue.
 
 Table of Cavala RWMQ Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-cavala-rwmq-home	true	false	""	"Doctor Cavala looks up from a yellow-back novel as you enter. She gives you a nod and snaps the book shut.
+cavala-rwmq-home	true	false	""	"Doctor Cavala is curled up in her makeshift bed, aimlessly flipping through a yellow-back novel. As you enter, she snaps the book shut and gives you a nod.
 
 [wait for any key]'Marid,' she says. 'I was wondering when you'd be back.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-howru	true	true	"'How are you holding up, Doctor?'"	"'How are you holding up, Doctor?'
@@ -5459,7 +5459,7 @@ Table of Cavala RWMQ Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 cavala-rwmq-conclusion1a	true	true	"'It has to be airborne.'"	"'It has to be airborne,' you say.
 
-Doctor Cavala frowns. 'Are you sure about that? The degeneration of the lungs suggests that, certainly, but an airborne disease would have had many more victims -- symptoms develop in hours, not weeks. The creditor and the thugs would have spread the disease to countless citizens during the day, and we'd have heard about the epidemic much earlier.'"	{cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
+Doctor Cavala frowns. 'Are you sure about that? The degeneration of the lungs suggests that, certainly, but an airborne disease would have had many more victims -- the symptoms develop in hours, not weeks. The creditor and the thugs would have spread the disease to countless citizens during the day, and we'd have heard about the epidemic much earlier.'"	{cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
 cavala-rwmq-conclusion1b	true	true	"'It's contracted internally, through ingestion.'"	"'It's contracted internally, through ingestion.'
 
 'A strong hypothesis,' Doctor Cavala replies. '[if clue-ingestion-vector is true]The findings of your endoscopies certainly seem to corroborate it[otherwise]It certainly seems like the creditor and the thugs met their demise that way[end if]. But consider Doctor Arturus -- did he really ingest something that was contaminated? He was a magister of the [italic type]ars vitalis[roman type], after all, and would have taken precautions to avoid such a careless mistake. From what you described, it sounds more like he was infected through his hands --'
@@ -5472,11 +5472,11 @@ cavala-rwmq-conclusion1c	true	true	"'It's spread through skin contact.'"	"'It's 
 'Do you think so?' She purses her lips. 'Clearly, Doctor Arturus could have contracted the affliction that way... it's not unthinkable that Reden could have as well. But Nacarat and the thugs? From your description of the bodies, there wasn't any point of contact -- [if clue-ingestion-vector is true]given the results of your endoscopies, ingestion seems a far more likely vector for them[otherwise]there has to be another way, outside of simple touch[end if].'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1d}
 cavala-rwmq-conclusion1d	true	false	"'It's transmitted by both ingestion and skin contact.'"	"'It's transmitted by both ingestion and skin contact.'
 
-'Yes.' She nods. 'I believe that to be the only explanation for the evidence you've gathered. Nacarat and the thugs were probably killed by something they ingested -- and Doctor Arturus was almost certainly infected through his hands, though I can't fathom why he would have been handling a patient without his gloves. Perhaps if he was present at the outset of symptoms...'
+'Yes.' She nods. 'I believe that to be the only explanation for the evidence you've gathered. Nacarat and the thugs were killed by something they ingested -- and Doctor Arturus was almost certainly infected through his hands, though I can't fathom why he would have been handling a patient without his gloves. Perhaps if he was present at the outset of symptoms...'
 
-She looks to the curtain of the surgery room, and runs a gloved hand through her hair.
+She glances at the curtain of the surgery room, and runs a gloved hand through her hair.
 
-[wait for any key]'In any case,' she says, 'the transmission vector seems to be clear. It requires close contact with an infected individual, and that implies close ties between the victims. From what you've learned --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
+[wait for any key]'In any case,' she continues, 'the transmission vector seems to be clear. It requires close contact with an infected individual, and that implies close ties between the victims. From what you've learned --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
 
 Section 3.3.6.3.3 - Conclusion 2 (The Connection Between Victims)
 
@@ -5493,18 +5493,24 @@ Doctor Cavala grimaces. 'That's not saying much in this district,' she replies. 
 
 [wait for any key]'Even Reden frequented the Crow's Nest,' you point out. 'That's a front for the Trading Company, too.'
 
-She rubs her chin thoughtfully. 'It's possible,' she says. 'It's possible that the Company had something to do with the outbreak of the disease. But there are aspects of this theory that don't quite fit.
+She rubs her chin thoughtfully. 'It's possible,' she says. 'It's possible that the Company had something to do with the outbreak of the disease. But there are aspects of this theory that don't quite gel.
 
 [wait for any key]'The Company is a business first and foremost -- so why would an affliction like this come into the picture? They deal in protection rackets, not plagues and poisons; even Nacarat and the thugs were among the victims. I can see how their ties might have caused the affliction to [italic type]spread[roman type]... but which one of them was patient zero?
 
 [wait for any key]'It's not the full picture, Marid. I have the feeling there was something else they had in common.'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
 cavala-rwmq-conclusion2c	true	false	"'All of them drank wine.'"	"'All of them drank wine,' you say.
 
-T
+Doctor Cavala opens her mouth -- then she pauses, closes it again.
 
-B
+'Now that you mention it,' she says. 'That [italic type]is[roman type] odd. Reden was a heavy drinker. Doctor Arturus had been hosting Creditor Nacarat. And there was that bottle you found beneath the flophouse. The affliction can be transmitted through ingestion --'
 
-A"	{}
+[wait for any key]'Do you think it's the [italic type]wine[roman type] that's killing them?' you ask.
+
+She furrows her brow. 'It's certainly possible. A contaminant could be hidden in a dark wine and remain undetected, masked by the color and aroma. It would certainly explain why there have been so few victims. It wouldn't be a contagion -- it would be a case of [italic type]poisoning[roman type]. If only certain bottles of wine were contaminated... Marid, did you notice anything in common about the bottles of wine?'
+
+[wait for any key]You shake your head. 'They were all different labels. Different manufacturers. Reden didn't even drink red wine.'
+
+'That's deeply troubling.' She looks at her injured leg. 'If there doesn't appear to be any correlation between these poisonings, but the victims are all connected by the same symptoms...'"	{cavala-rwmq-conclusion3a, cavala-rwmq-conclusion3b, cavala-rwmq-conclusion3c}
 cavala-rwmq-conclusion2d	true	true	"'All of them had been to the Shanty Quarter.'"	"'All of them had been to the Shanty Quarter.'
 
 'Is that so?' Doctor Cavala furrows her brow. 'Sal and Piper, certainly. We know that Reden went to the Crow's Nest. Doctor Arturus might have contracted the affliction from his patients... but did you ever learn if Creditor Nacarat had been to the Shanty Quarter?'
@@ -5513,9 +5519,44 @@ You think for a moment. 'He... could have visited the Crow's Nest as well?'
 
 She shakes her head. 'Think about it. Being seen in the Shanty Quarter, among thieves and lepers, would have destroyed his reputation as a financial businessman. More than that -- why haven't we heard of any other deaths in the Shanty Quarter? You've been there. You would have seen if anyone was exhibiting similar symptoms, and Crow or Webster would have mentioned it if there had been others. It couldn't possibly have started in the Shanty Quarter and only affected four people.'
 
-[wait for any key]'I didn't see any signs of the disease,' you admit. 'The squatters weren't bleeding black or anything like that.'
+[wait for any key]'I didn't see any signs of the disease,' you admit. 'The squatters weren't bleeding black or anything like that --'
 
-She inclines her head. 'We know that the symptoms surface quickly. If it wasn't the Shanty Quarter, it must have been something else --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c}
+She inclines her head. 'We know that the symptoms surface quickly. If it wasn't the Shanty Quarter, it must have been something else.'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c}
+
+Section 3.3.6.3.3 - Conclusion 3 (Foul Play)
+
+Table of Cavala RWMQ Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-rwmq-conclusion3a	true	true	"'You think the cause is undetectable.'"	"'You think the cause is undetectable.'
+
+She purses her lips. 'That is one possibility. But consider this, Marid: what are the odds that a chance contaminant is both undetectable and lethal? Not even the boiling plague kills its victims this fast. No, there is another possibility that is far more likely --'"	{cavala-rwmq-conclusion3b, cavala-rwmq-conclusion3c}
+cavala-rwmq-conclusion3b	true	true	"'You think it could surface anywhere.'"	"'You think it could surface anywhere.'
+
+She frowns. 'I should hope not. If it's something that affects [italic type]all[roman type] wine, there would certainly be many more reports coming in. It wouldn't be isolated to the Channelworks District, to just the few victims we have on our hands. Think, Marid --'"	{cavala-rwmq-conclusion3a, cavala-rwmq-conclusion3c}
+cavala-rwmq-conclusion3c	true	false	"'You think foul play is involved.'"	"'You think foul play is involved.'
+
+Doctor Cavala crosses her arms. Her eyes trace the bandages around her destroyed tendon.
+
+'Suppose we assume that this is deliberate,' she says. 'That this is part of someone's larger agenda. Many things fall into place -- the attack on my clinic, the connection to the Trading Company, the fast-acting and improbably lethal affliction. Until now, we've been operating under the assumption that this is a simple epidemic, one that obeys statistics and adheres to the precepts of medicine. But what if that isn't the case? What if this is, in reality, a series of murders?'
+
+[wait for any key]You stare at her with growing unease. 'Then... then that would be beyond us. It would be a matter for the Vigiles.'
+
+She nods grimly. 'And if this is true, Marid... whoever is behind this has it out for me. Perhaps the culprit wishes to bury the evidence, silence the doctors in the district who have a chance of stopping them --'
+
+[wait for any key]'That means Justinian is in danger.'
+
+'And you as well.' Doctor Cavala shakes her head. 'I'm sorry, Marid. If I had known earlier, I would never have sent you out on your own.'
+
+[wait for any key]The revelation seems to have filled the doctor with purpose. She takes on a businesslike demeanor, crisply checking off items on her fingers.
+
+'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible and notify the Vigiles via Horatio. The quarantine should prevent the culprit from leaving the district, buying us some time to work on a cure...'"	{cavala-rwmq-quarantine}
+
+Section 3.3.6.3.4 - Wrapping Up
+
+Table of Cavala RWMQ Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-rwmq-whatifwrong	true	true	"'Maybe we're jumping to conclusions...'"	"''"	{}
+cavala-rwmq-quarantine	true	true	"'Quarantine?'"	"''"	{}
 
 Book 3.4 - Mortuary
 
@@ -10331,7 +10372,7 @@ Before removing the empty wine bottles from something, try taking the empty wine
 Instead of drinking or opening the empty wine bottles, say "All of the bottles are empty. Besides, you aren't sure you'd want to drink any."
 Instead of closing the empty wine bottles, say "You don't see any corks here."
 Instead of inserting something into the empty wine bottles, say "That seems entirely unwise."
-Instead of inserting the endoscope into the empty wine bottles, say "You see some reddish wine stains around the base of the bottles, but nothing out of the ordinary."
+Instead of inserting the endoscope into the empty wine bottles, say "You see some clear wine stains around the base of the bottles, but nothing out of the ordinary."
 Instead of searching the empty wine bottles, say "Nothing about these bottles seems out of the ordinary."
 Instead of taking the empty wine bottles, say "You don't need any of these bottles."
 
