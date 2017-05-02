@@ -829,8 +829,6 @@ To say cavala-description:
 			say "She's looking at her cards with a cool, unreadable expression. ";
 		otherwise:
 			say "She looks frankly irritated that she's bedridden. ";
-	otherwise if Returning with More Questions is happening:
-		say "Her expression is as world-weary as it's ever been. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -2672,9 +2670,7 @@ I don't know what to think. All I can do is make my way there and talk to Justin
 	otherwise if Four Investigations is happening:
 		say "I've made my choice. I have a job to do -- and I'm going to finish it. ";
 	otherwise if Returning with More Questions is happening:
-		say "I've learned so much about the victims, and I have a better idea of how the disease works... but it still feels like there's so much I'm missing, just dancing out of sight. What's really going on in the Channelworks District? What else have I been unable to see?
-
-It's too late for me to do anything but return to Doctor Cavala -- but one thing is for certain. I don't think this is the epidemic we believed it was. Not any more. ";
+		say "I've learned so much about the victims, and I have a better idea of how the disease works... but it still feels like there's so much I'm missing, just dancing out of sight. What's really going on in the Channelworks District? What else have I been unable to see? ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -4079,7 +4075,7 @@ The Clinic is a proper-named room. "[if Cavala's Errands has not ended]Doctor Ca
 
 A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east."
 The scent is "You smell a hint of calomel from the surgery room."
-Understand "doctor/doctor's" or "cavala/cavala's" as the Clinic.
+Understand "dr/doctor/doctor's" or "cavala/cavala's" as the Clinic.
 
 The simple-name is "Doctor Cavala's clinic".
 The scent is "You smell a hint of calomel from the surgery room."
@@ -5399,17 +5395,127 @@ card
 
 Chapter 3.3.6.3 - Clinic during Returning with More Questions
 
-The romance novel is a thing.
+The yellow-back novel is a thing.
 The description is "[italic type]Furopolis Nights; or, The Confessions of a Desirous Housemaid.[roman type]".
-Understand "book" or "furopolis" or "nights" or "or" or "confessions" or "of" or "desirous" or "housemaid" as the romance novel.
-Instead of searching the romance novel, say "You're not sure you want to."
+Understand "yellowback/back" or "yellow" or "book" or "furopolis" or "nights" or "or" or "confessions" or "of" or "desirous" or "housemaid" as the yellow-back novel.
+Instead of searching or taking the yellow-back novel, say "You briefly consider asking if you could borrow it, then decide the embarrassment isn't worth satisfying your curiosity."
 
 When Returning with More Questions begins:
-	now the romance novel is carried by Doctor Cavala;
+	now the yellow-back novel is carried by Doctor Cavala;
 	now Horatio is nowhere.
 
 Rule for writing a paragraph about Doctor Cavala during Returning with More Questions:
-	say "Doctor Cavala is curled up in her makeshift bed, aimlessly flipping through a romance novel.";
+	start a dialogue with Doctor Cavala using dialogue cavala-rwmq-home.
+	
+Section 3.3.6.3.1 - Cavala Synthesis Dialogue
+
+Some dialogue branches are defined by the Table of Cavala RWMQ Dialogue.
+
+Table of Cavala RWMQ Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-rwmq-home	true	false	""	"Doctor Cavala looks up from a yellow-back novel as you enter. She gives you a nod and snaps the book shut.
+
+[wait for any key]'Marid,' she says. 'I was wondering when you'd be back.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-howru	true	true	"'How are you holding up, Doctor?'"	"'How are you holding up, Doctor?'
+
+'I'm fine,' she says. 'It's a bit dull here, especially since Horatio's refused to play any more crucible with me, but it's nothing I haven't endured before.'"	{cavala-rwmq-horatiocrucible, cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-horatiocrucible	true	true	"'He's refusing to play crucible?'"	"'He's refusing to play crucible?'
+
+She smirks. 'Something about running out of cash on hand, as I recall.'"	{cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-whereshoratio	true	true	"'Where's Horatio?'"	"'Where's Horatio?'
+
+'He's popped back home for a shower,' she replies. 'Don't worry -- I told him to go home and freshen up. He'll be back soon enough.'"	{cavala-rwmq-howru, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-whatreading	true	true	"'...What are you reading?'"	"'...What are you reading?'
+
+'This?' Doctor Cavala holds up the yellow-back. 'It's a romance novel.'
+
+'Oh.'
+
+There is an awkward pause."	{cavala-rwmq-anygood, cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-anygood	true	true	"'...Is it any good?'"	"'...Is it any good?'
+
+'Not really,' she admits. 'But there are worse ways to spend an evening.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
+cavala-rwmq-aboutinvestigation	true	false	"'About the things you told me to investigate...'"	"'About the things you told me to investigate...'
+
+Doctor Cavala's expression hardens. She sits up straighter, and listens as you relate your account of the day's events.
+
+You tell her about your run-in with the Turris Infinita security. The chill of Doctor Arturus's clinic, and the silent stare of the departed -- the macabre sights reflected in endoscopic lenses. You tell her of the doctor's correspondence; the web of intrigue and not-quite-coincidence that bound him; the lives that labored in the shadow of black wings. And through it all, like a pervasive pathogen, the darkness seeps and drips coppery from your words.
+
+[wait for any key]Doctor Cavala is silent as she takes in everything you've told her.
+
+[wait for any key]'Marid.'
+
+She takes a deep breath.
+
+'This is everything I'd asked for and more. You've taken great pains to acquire this information -- you've done the Channelworks District a great service. If I'd known the investigation would take you into the Shanty Quarter...'
+
+[wait for any key]She trails off, shaking her head.
+
+'Regardless. You've uncovered a wealth of information pertaining to the affliction. The transmission vector, for starters --'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
+
+Section 3.3.6.3.2 - Conclusion 1 (The Transmission Vector)
+
+Table of Cavala RWMQ Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-rwmq-conclusion1a	true	true	"'It has to be airborne.'"	"'It has to be airborne,' you say.
+
+Doctor Cavala frowns. 'Are you sure about that? The degeneration of the lungs suggests that, certainly, but an airborne disease would have had many more victims -- symptoms develop in hours, not weeks. The creditor and the thugs would have spread the disease to countless citizens during the day, and we'd have heard about the epidemic much earlier.'"	{cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
+cavala-rwmq-conclusion1b	true	true	"'It's contracted internally, through ingestion.'"	"'It's contracted internally, through ingestion.'
+
+'A strong hypothesis,' Doctor Cavala replies. '[if clue-ingestion-vector is true]The findings of your endoscopies certainly seem to corroborate it[otherwise]It certainly seems like the creditor and the thugs met their demise that way[end if]. But consider Doctor Arturus -- did he really ingest something that was contaminated? He was a magister of the [italic type]ars vitalis[roman type], after all, and would have taken precautions to avoid such a careless mistake. From what you described, it sounds more like he was infected through his hands --'
+
+'He couldn't have been infected through his gloves,' you say. 'Otherwise both of us would be dead.'
+
+She raises her eyebrows. 'But he could have been infected through his [italic type]hands[roman type].'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1d}
+cavala-rwmq-conclusion1c	true	true	"'It's spread through skin contact.'"	"'It's spread through skin contact.'
+
+'Do you think so?' She purses her lips. 'Clearly, Doctor Arturus could have contracted the affliction that way... it's not unthinkable that Reden could have as well. But Nacarat and the thugs? From your description of the bodies, there wasn't any point of contact -- [if clue-ingestion-vector is true]given the results of your endoscopies, ingestion seems a far more likely vector for them[otherwise]there has to be another way, outside of simple touch[end if].'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1d}
+cavala-rwmq-conclusion1d	true	false	"'It's transmitted by both ingestion and skin contact.'"	"'It's transmitted by both ingestion and skin contact.'
+
+'Yes.' She nods. 'I believe that to be the only explanation for the evidence you've gathered. Nacarat and the thugs were probably killed by something they ingested -- and Doctor Arturus was almost certainly infected through his hands, though I can't fathom why he would have been handling a patient without his gloves. Perhaps if he was present at the outset of symptoms...'
+
+She looks to the curtain of the surgery room, and runs a gloved hand through her hair.
+
+[wait for any key]'In any case,' she says, 'the transmission vector seems to be clear. It requires close contact with an infected individual, and that implies close ties between the victims. From what you've learned --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
+
+Section 3.3.6.3.3 - Conclusion 2 (The Connection Between Victims)
+
+Table of Cavala RWMQ Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
+cavala-rwmq-conclusion2a	true	true	"'All of them were patients of Doctor Arturus.'"	"'All of them were patients of Doctor Arturus,' you say.
+
+Doctor Cavala gives you a look. 'Don't be silly,' she says. 'The thugs were already exhibiting symptoms before they were admitted to the clinic. Or are you suggesting they were exhibiting some other disease, and subsequently contracted the black-blooded affliction? I doubt Doctors Arturus and Justinian would be so lax as to allow cross-infection within their own clinic.
+
+'And what of Reden? As far as we know, he never set foot inside the Turris Infinita. There has to be something else that connects the victims.'"	{cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
+cavala-rwmq-conclusion2b	true	true	"'All of them were linked to the Greater Corindia Trading Company.'"	"'All of them were linked to the Greater Corindia Trading Company.'
+
+Doctor Cavala grimaces. 'That's not saying much in this district,' she replies. 'Even I've had to deal with them in the past. But you're right. [if clue-ravens-sighted > 0]The raven symbols you found on Doctor Arturus's patients all but confirm their connection to the Company[otherwise]It isn't a stretch to imagine that the creditor and the thugs were connected to the biggest criminal syndicate in the city[end if]... and if [if clue-arturus-debt is true]the message you found on Doctor Arturus's correspondence is genuine[otherwise]Doctor Arturus was the first physician they sought out[end if], he must have had dealings with the underworld as well.'
+
+[wait for any key]'Even Reden frequented the Crow's Nest,' you point out. 'That's a front for the Trading Company, too.'
+
+She rubs her chin thoughtfully. 'It's possible,' she says. 'It's possible that the Company had something to do with the outbreak of the disease. But there are aspects of this theory that don't quite fit.
+
+[wait for any key]'The Company is a business first and foremost -- so why would an affliction like this come into the picture? They deal in protection rackets, not plagues and poisons; even Nacarat and the thugs were among the victims. I can see how their ties might have caused the affliction to [italic type]spread[roman type]... but which one of them was patient zero?
+
+[wait for any key]'It's not the full picture, Marid. I have the feeling there was something else they had in common.'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
+cavala-rwmq-conclusion2c	true	false	"'All of them drank wine.'"	"'All of them drank wine,' you say.
+
+T
+
+B
+
+A"	{}
+cavala-rwmq-conclusion2d	true	true	"'All of them had been to the Shanty Quarter.'"	"'All of them had been to the Shanty Quarter.'
+
+'Is that so?' Doctor Cavala furrows her brow. 'Sal and Piper, certainly. We know that Reden went to the Crow's Nest. Doctor Arturus might have contracted the affliction from his patients... but did you ever learn if Creditor Nacarat had been to the Shanty Quarter?'
+
+You think for a moment. 'He... could have visited the Crow's Nest as well?'
+
+She shakes her head. 'Think about it. Being seen in the Shanty Quarter, among thieves and lepers, would have destroyed his reputation as a financial businessman. More than that -- why haven't we heard of any other deaths in the Shanty Quarter? You've been there. You would have seen if anyone was exhibiting similar symptoms, and Crow or Webster would have mentioned it if there had been others. It couldn't possibly have started in the Shanty Quarter and only affected four people.'
+
+[wait for any key]'I didn't see any signs of the disease,' you admit. 'The squatters weren't bleeding black or anything like that.'
+
+She inclines her head. 'We know that the symptoms surface quickly. If it wasn't the Shanty Quarter, it must have been something else --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c}
 
 Book 3.4 - Mortuary
 
@@ -9829,7 +9935,7 @@ shantyquarter-rwmq-quipped is a truth state that varies.
 	
 Every turn when the location is in Outdoors and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
 	wait for any key;
-	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to cavala's clinic[roman type].)";
+	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to dr cavala's clinic[roman type].)";
 	now shantyquarter-rwmq-quipped is true.
 
 Book 3.23 - Cadaver Walk
@@ -10839,7 +10945,7 @@ There is a proper-named room called Arturus's Clinic.
 The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work[first time]. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy[only].
 
 An arch to the west leads back to the Turris Infinita foyer."
-Understand "doctor" or "arturus/arturus'" as Arturus's Clinic.
+Understand "dr/doctor" or "arturus/arturus'" as Arturus's Clinic.
 
 The simple-name is "Doctor Arturus's clinic".
 The sound is "It's quiet."
@@ -10968,8 +11074,9 @@ Does the player mean inserting the endoscope into something that is enclosed by 
 Chapter 3.29.2.2 - Doctor Arturus
 
 Doctor Arturus is a dead undescribed man.
+Understand "dr" as Doctor Arturus.
 Understand "arturus's body/corpse/cadaver" or "victim" as Doctor Arturus.
-Understand "arturus" or "doctor's" or "arturus'" as something enclosed by Doctor Arturus.
+Understand "arturus" or "dr/doctor's" or "arturus'" as something enclosed by Doctor Arturus.
 
 Does the player mean doing something with Doctor Arturus: it is very likely.
 Does the player mean inserting the endoscope into Doctor Arturus: it is very likely.
@@ -12328,7 +12435,7 @@ Arturus's Domicile is a proper-named room. "This suspended mansion echoes with a
 
 A study lies to the north. The hydraulic lift leads back down to the foyer."
 It is above the hydraulic lift.
-Understand "doctor" or "arturus/arturus'" as Arturus's Domicile.
+Understand "dr/doctor" or "arturus/arturus'" as Arturus's Domicile.
 
 The simple-name is "Doctor Arturus's domicile".
 The sound is "You hear ticking from the study."
@@ -12503,7 +12610,7 @@ There is a proper-named room called Arturus's Study. "A chamber decked with agin
 A rosewood desk stands in the heart of the room. Beside it, there is a storage cabinet."
 
 It is north of Arturus's Domicile.
-Understand "doctor" or "arturus'" as Arturus's Study.
+Understand "dr/doctor" or "arturus/arturus'" as Arturus's Study.
 
 The simple-name is "Doctor Arturus's study".
 The sound is "You hear the ticking of the clock."
