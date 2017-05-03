@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 030517.
+The release number is 040517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,9 +54,10 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Doctor Cavala's dialogue for RwMQ
-
 - Write Walking Home in Suspense
+- Write West End during it
+- Put something in the Dormitory Block
+- Write sleep cinematic
 
 - Write Midnight
 - Write Day Three
@@ -343,6 +344,10 @@ Thugs Investigation ends when sal-body-completion-quip is true and piper-body-co
 
 There is a scene called Returning with More Questions. [Marid returns to the Clinic with all that she's learned.]
 Returning with More Questions begins when Four Investigations ends.
+Returning with More Questions ends when clues-consolidated is true.
+
+Walking Home in Suspense is a scene.
+Walking Home in Suspense begins when Returning with More Questions ends.
 
 Chapter 1.2.1.4 - Midnight
 
@@ -913,6 +918,7 @@ To decide whether time is critical:
 	if Returning to a Break-In is happening and Carnicer is in the Clinic, decide yes;
 	if Averting Cavala's Assassination is happening, decide yes;
 	if First Aid on Cavala is happening, decide yes;
+	if Walking Home in Suspense is happening, decide yes;
 	if Midnight is happening, decide yes;
 	decide no.
 
@@ -925,6 +931,7 @@ To decide whether time is not critical:
 To decide whether it is night:
 	if Prologue is happening, decide yes;
 	if Walking Home in Fear is happening, decide yes;
+	if Walking Home in Suspense is happening, decide yes;
 	if Midnight is happening, decide yes;
 	decide no.
 
@@ -998,6 +1005,8 @@ Instead of examining the player:
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
+	
+Instead of examining the player when Walking Home in Suspense is happening: say inventory-text.
 
 Instead of taking inventory (this is the custom inventory rule): say inventory-text.
 
@@ -1314,7 +1323,7 @@ Instead of tying something to something, say "You can't tie those."
 Instead of waking up, say "This is not a dream."
 Instead of rubbing or swinging, say "Nothing happens."
 Instead of throwing something at something, say "That won't accomplish anything."
-Instead of sleeping, say "[if time is critical]Sleep is the last thing on your mind right now.[otherwise if Walking Home in Darkness is happening or Walking Home in Fear is happening]You would prefer to sleep in the comfort of your dormitory.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
+Instead of sleeping, say "[if Walking Home in Suspense is happening]You would prefer to sleep in your dormitory room.[otherwise if time is critical]Sleep is the last thing on your mind right now.[otherwise if it is night]You would prefer to sleep in the comfort of your dormitory room.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
 After waiting when time is critical, say "This is no time for inaction."
 
 Last before pushing something to: if the noun is not pushable between rooms, try pushing the noun instead.
@@ -2242,7 +2251,7 @@ I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fit
 
 To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host of people whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
-Thanks again to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks again to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -2298,7 +2307,7 @@ The bio-description of Doctor Arturus is "A reclusive doctor in his waning years
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
-The bio-description of Justinian is "Doctor Arturus's protégé, a driven young man who was your senior at the Physician's College. You have a crush on him, though you'd never admit it."
+The bio-description of Justinian is "Doctor Arturus's protégé, and your senior at the Physicians['] College. You have a crush on him, though you'd never admit it."
 
 When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
 The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do financial businessman."
@@ -2309,8 +2318,10 @@ The bio-description of Sal is "Two of Doctor Arturus's patients. A notorious pai
 
 Chapter 2.3.11.4 - Map
 
+Figure of Map is the file "Map.jpg" ("A street map of the Channelworks District.").
+
 To say map-text:
-	say "Sorry, this feature is not yet implemented."
+	display Figure of Map.
 
 Chapter 2.3.11.5 - Hints
 
@@ -2588,6 +2599,8 @@ clue-piper-stomach is a truth state that varies.
 
 journal-crucible-witnessed is a truth state that varies.
 
+clues-consolidated is a truth state that varies.
+
 Chapter 2.3.12.2 - Date
 	
 To say journal-text-date:
@@ -2671,6 +2684,10 @@ I don't know what to think. All I can do is make my way there and talk to Justin
 		say "I've made my choice. I have a job to do -- and I'm going to finish it. ";
 	otherwise if Returning with More Questions is happening:
 		say "I've learned so much about the victims, and I have a better idea of how the disease works... but it still feels like there's so much I'm missing, just dancing out of sight. What's really going on in the Channelworks District? What else have I been unable to see? ";
+	otherwise if Walking Home in Suspense is happening:
+		say "I'm tired. I'm not thinking straight. Maybe... maybe I have less of a handle on myself than I thought I did.
+
+I think I'll take a rest. Like Doctor Cavala asked me to. ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -2820,6 +2837,8 @@ To say journal-text-objectives:
 			add LM to L;
 	if Returning with More Questions is happening:
 		add "- Report back to Doctor Cavala's clinic" to L;
+	if Walking Home in Suspense is happening:
+		add "- Go home and get some sleep" to L;
 	[---
 	END
 	---]
@@ -2833,6 +2852,7 @@ Chapter 2.3.12.5 - Notes
 
 Day Two investigation tracking is a truth state that varies.
 When Four Investigations begins: now Day Two investigation tracking is true.
+When Walking Home in Suspense begins: now Day Two investigation tracking is false.
 
 To decide if miscellany is separated:
 	if Day Two investigation tracking is true, decide yes;
@@ -3384,15 +3404,13 @@ Some Upper Perioch ambience is a privately-named inactive ambience object.
 The associated table is the Table of Day One Upper Perioch Ambience.
 
 When Day One begins: now the Upper Perioch ambience is active.
-
 When Walking Home in Fear begins: now the Upper Perioch ambience is inactive.
 
 When Day Two begins:
 	now the Upper Perioch ambience is active;
 	now the associated table of the Upper Perioch ambience is the Table of Day Two Upper Perioch Ambience.
 
-When Midnight begins: now the Upper Perioch ambience is inactive.
-
+When Walking Home in Suspense begins: now the Upper Perioch ambience is inactive.
 When Day Three begins: now the Upper Perioch ambience is active.
 
 Table of Day One Upper Perioch Ambience
@@ -4076,6 +4094,7 @@ The Clinic is a proper-named room. "[if Cavala's Errands has not ended]Doctor Ca
 A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east."
 The scent is "You smell a hint of calomel from the surgery room."
 Understand "dr/doctor/doctor's" or "cavala/cavala's" as the Clinic.
+Does the player mean approaching the Clinic: it is likely. [As opposed to Arturus's Clinic.]
 
 The simple-name is "Doctor Cavala's clinic".
 The scent is "You smell a hint of calomel from the surgery room."
@@ -5395,13 +5414,13 @@ card
 
 Chapter 3.3.6.3 - Clinic during Returning with More Questions
 
-The yellow-back novel is a thing.
+[The yellow-back novel is a thing.
 The description is "[italic type]Furopolis Nights; or, The Confessions of a Desirous Housemaid.[roman type]".
 Understand "yellowback/back" or "yellow" or "book" or "furopolis" or "nights" or "or" or "confessions" or "of" or "desirous" or "housemaid" as the yellow-back novel.
-Instead of searching or taking the yellow-back novel, say "You briefly consider asking if you could borrow it, then decide the embarrassment isn't worth satisfying your curiosity."
+Instead of searching or taking the yellow-back novel, say "You briefly consider asking if you could borrow it, then decide the embarrassment isn't worth satisfying your curiosity."]
 
 When Returning with More Questions begins:
-	now the yellow-back novel is carried by Doctor Cavala;
+	[now the yellow-back novel is carried by Doctor Cavala;]
 	now Horatio is nowhere.
 
 Rule for writing a paragraph about Doctor Cavala during Returning with More Questions:
@@ -5437,7 +5456,7 @@ cavala-rwmq-anygood	true	true	"'...Is it any good?'"	"'...Is it any good?'
 'Not really,' she admits. 'But there are worse ways to spend an evening.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-aboutinvestigation	true	false	"'About the things you told me to investigate...'"	"'About the things you told me to investigate...'
 
-Doctor Cavala's expression hardens. She sits up straighter, and listens as you relate your account of the day's events.
+Doctor Cavala's expression hardens. You settle down beside her, and she sits up to listen to your account of the day's events.
 
 You tell her about your run-in with the Turris Infinita security. The chill of Doctor Arturus's clinic, and the silent stare of the departed -- the macabre sights reflected in endoscopic lenses. You tell her of the doctor's correspondence; the web of intrigue and not-quite-coincidence that bound him; the lives that labored in the shadow of black wings. And through it all, like a pervasive pathogen, the darkness seeps and drips coppery from your words.
 
@@ -5506,7 +5525,7 @@ Doctor Cavala opens her mouth -- then she pauses, closes it again.
 
 [wait for any key]'Do you think it's the [italic type]wine[roman type] that's killing them?' you ask.
 
-She furrows her brow. 'It's certainly possible. A contaminant could be hidden in a dark wine and remain undetected, masked by the color and aroma. It would certainly explain why there have been so few victims. It wouldn't be a contagion -- it would be a case of [italic type]poisoning[roman type]. If only certain bottles of wine were contaminated... Marid, did you notice anything in common about the bottles of wine?'
+She furrows her brow. 'It's certainly possible. A contaminant could be hidden in a dark wine and remain undetected, masked by the color and aroma. It would certainly explain why there have been so few victims. It wouldn't be a contagion -- it would be a case of [italic type]poisoning[roman type]. If only certain bottles of wine were contaminated... Marid, did you notice anything in common about the bottles?'
 
 [wait for any key]You shake your head. 'They were all different labels. Different manufacturers. Reden didn't even drink red wine.'
 
@@ -5537,26 +5556,84 @@ cavala-rwmq-conclusion3c	true	false	"'You think foul play is involved.'"	"'You t
 
 Doctor Cavala crosses her arms. Her eyes trace the bandages around her destroyed tendon.
 
-'Suppose we assume that this is deliberate,' she says. 'That this is part of someone's larger agenda. Many things fall into place -- the attack on my clinic, the connection to the Trading Company, the fast-acting and improbably lethal affliction. Until now, we've been operating under the assumption that this is a simple epidemic, one that obeys statistics and adheres to the precepts of medicine. But what if that isn't the case? What if this is, in reality, a series of murders?'
+'Suppose we assume that this is deliberate,' she says. 'That this is part of someone's larger agenda. Many things fall into place -- the attack on my clinic, the connection to the Trading Company, the fast-acting and improbably lethal affliction.
+
+'Until now, we've been operating under the assumption that this is a simple epidemic, one that obeys statistics and adheres to the precepts of medicine... but what if that isn't the case? What if this is, in reality, a series of murders?'
 
 [wait for any key]You stare at her with growing unease. 'Then... then that would be beyond us. It would be a matter for the Vigiles.'
 
-She nods grimly. 'And if this is true, Marid... whoever is behind this has it out for me. Perhaps the culprit wishes to bury the evidence, silence the doctors in the district who have a chance of stopping them --'
+She nods grimly. 'Correct. And if this is true, Marid... whoever is behind this has it out for me. Perhaps the culprit wishes to bury the evidence, silence the doctors in the district who have a chance of stopping them --'
 
-[wait for any key]'That means Justinian is in danger.'
+[wait for any key]'Then Doctor Justinian is in danger.'
 
-'And you as well.' Doctor Cavala shakes her head. 'I'm sorry, Marid. If I had known earlier, I would never have sent you out on your own.'
+'And you as well.' Doctor Cavala shakes her head. 'I'm sorry, Marid. If I had known earlier, I would never have sent you out on your own...'
 
 [wait for any key]The revelation seems to have filled the doctor with purpose. She takes on a businesslike demeanor, crisply checking off items on her fingers.
 
-'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible and notify the Vigiles via Horatio. The quarantine should prevent the culprit from leaving the district, buying us some time to work on a cure...'"	{cavala-rwmq-quarantine}
+'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible and notify the Vigiles via Horatio. The quarantine should prevent the culprit from leaving the district, buying us some time to work on a cure. And as for you, Marid --'
+
+[wait for any key]She looks at you, and something causes her to falter. She closes her eyes. Her words catch in her throat.
+
+[wait for any key]'Go home and rest,' she says. 'You've done your part. I'll handle things from here on.'"	{cavala-rwmq-yesdr, cavala-rwmq-wanttohelp}
 
 Section 3.3.6.3.4 - Wrapping Up
 
 Table of Cavala RWMQ Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-cavala-rwmq-whatifwrong	true	true	"'Maybe we're jumping to conclusions...'"	"''"	{}
-cavala-rwmq-quarantine	true	true	"'Quarantine?'"	"''"	{}
+cavala-rwmq-yesdr	true	false	"'Yes, Doctor.'"	"You look at your feet.
+
+'Yes, Doctor,' you say, softly, quietly.
+
+Her eyes linger on you -- on the tattoos that run like tears down your neck and fade into your pendant.
+
+[wait for any key]She exhales.
+
+'Go,' she says. 'Go home, Marid. Take care of yourself.'
+
+[wait for any key]You rise from the waiting chairs. There is a dull ache in your shoulders. You give Doctor Cavala one last look as you prepare to depart for the night.
+
+'Good night,' you tell her.
+
+[wait for any key]You can't bring yourself to meet her gaze.[line break][look pending]"	{}
+cavala-rwmq-wanttohelp	true	false	"'No. I want to help.'"	"'No,' you tell her firmly. 'I want to help.'
+
+A long, tense silence -- and Doctor Cavala shakes her head.
+
+[wait for any key]'I appreciate all that you've done, Marid. But this is bigger than we'd imagined. It's bigger than any of us. Upon my conscience, I will not allow you to put yourself in danger.
+
+'Get some sleep. Take a sabbatical. Let me and the Vigiles handle this.'"	{cavala-rwmq-yesdr, cavala-rwmq-wanttohelp2}
+cavala-rwmq-wanttohelp2	true	false	"'No. I'm going to help you.'"	"'No. I'm going to help you.'
+
+[italic type]'Marid.'[roman type]
+
+[wait for any key]You realize that in all the months you've worked here, you've never heard Doctor Cavala raise her voice.
+
+[wait for any key]She takes a deep breath.
+
+[wait for any key]'Marid,' she says. 'This is not a friendly request. This is a command from Doctor to Servator. I will [italic type]not[roman type] allow you to put yourself in danger. Do you understand me? This is not medical research. It's a [italic type]murder case.[roman type] I'm only going to say this once...'"	{cavala-rwmq-yesdr, cavala-rwmq-wanttohelp3}
+cavala-rwmq-wanttohelp3	true	false	"'No! I refuse!"	"'No!' you yell. 'No! I -- I --'
+
+[italic type]I don't want to lose you, too.[roman type]
+
+[wait for any key]What?
+
+[wait for any key]What -- you didn't --
+
+[wait for any key]You don't... you don't mean that. That isn't what you...
+
+[wait for any key]You...
+
+[wait for any key]You squeeze your eyes shut and blink back tears.
+
+[wait for any key]You feel Doctor Cavala's gaze boring into you. Burning. Judging.
+
+[wait for any key]'Marid.' Her voice is a whisper. 'Don't do this.'"	{cavala-rwmq-yesdr}
+
+After reading out cavala-rwmq-yesdr:
+	now clues-consolidated is true;
+	now the front door of the clinic is closed;
+	move the player to the West End, without printing a room description;
+	follow the scene changing rules.
 
 Book 3.4 - Mortuary
 
@@ -9976,7 +10053,7 @@ shantyquarter-rwmq-quipped is a truth state that varies.
 	
 Every turn when the location is in Outdoors and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
 	wait for any key;
-	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to dr cavala's clinic[roman type].)";
+	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to clinic[roman type].)";
 	now shantyquarter-rwmq-quipped is true.
 
 Book 3.23 - Cadaver Walk

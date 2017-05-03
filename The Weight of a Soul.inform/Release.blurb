@@ -17,11 +17,12 @@ cover "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
 picture 1 "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
 release file "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Cover.jpg"
 release file "C:\Program Files (x86)\Inform 7\Internal\Miscellany\Small Cover.jpg"
+picture 3 "C:\Users\KeeYong\Documents\Inform\Projects\weight-of-soul\The Weight of a Soul.materials\Figures\Map.jpg" "A street map of the Channelworks District."
 
 ! Placeholder variables
 
 placeholder [IFID] = "40583C4F-E40B-4BAA-881D-D7F842F7069F"
-placeholder [RELEASE] = "30517"
+placeholder [RELEASE] = "40517"
 placeholder [YEAR] = "2017"
 placeholder [TITLE] = "The Weight of a Soul"
 placeholder [AUTHOR] = "Chin Kee Yong"
@@ -47,7 +48,7 @@ template path "C:\Users\KeeYong\Documents\Inform\Templates"
 template path "C:\Program Files (x86)\Inform 7\Internal\Templates"
 css
 website "Marid"
-status instruction ||&nbsp;<a href="source:story.ni#line80"><img border=0 src=inform:/doc_images/Reveal.png></a>||
+status instruction ||&nbsp;<a href="source:story.ni#line81"><img border=0 src=inform:/doc_images/Reveal.png></a>||
 status alternative ||Using 'Release along with cover art', to provide something more distinctive than the default artwork above&nbsp;<a href=inform:/doc403.html><img border=0 src=inform:/doc_images/help.png></a>||
 status alternative ||Using 'Release along with a file of "Such-and-Such" called "whatever.pdf"', perhaps to add a manual, or a welcoming note&nbsp;<a href=inform:/doc401.html><img border=0 src=inform:/doc_images/help.png></a>||
 status alternative ||Using 'Release along with the source text'&nbsp;<a href=inform:/doc412.html><img border=0 src=inform:/doc_images/help.png></a>||
