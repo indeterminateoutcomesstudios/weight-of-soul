@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 040517.
+The release number is 070517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -55,7 +55,6 @@ Volume 1 - Preamble
 [---TO DO---
 
 - Write Walking Home in Suspense
-- Write West End during it
 - Put something in the Dormitory Block
 - Write sleep cinematic
 
@@ -153,6 +152,9 @@ Rule for printing the name of a room (called the room in question) while the pla
 	say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][printed name of the room in question][end if]";
 
 Rule for printing the name of a room (called the room in question) while asking which do you mean:
+	say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][printed name of the room in question][end if]";
+	
+Rule for printing the name of a room (called the room in question) while clarifying the parser's choice of something:
 	say "[if the simple-name of the room in question is not empty][simple-name of the room in question][otherwise][printed name of the room in question][end if]";
 
 The can't approach our current location rule response (A) is "You are already in [if the simple-name of the location is not empty][simple-name of the location][otherwise][printed name of the location][end if]."
@@ -870,7 +872,7 @@ To say horatio-description:
 		otherwise:
 			say "He looks more bored than anything. ";
 	otherwise:
-		say "He looks bemused, as though at a loss.";
+		say "He looks bemused, as though at a loss. ";
 
 Chapter 1.3.3.3 - Carnicer
 
@@ -904,7 +906,7 @@ Instead of attacking, cutting, or pushing Justinian:
 Instead of knocking on, pulling, searching, swinging, squeezing, taking, or turning Justinian:
 	say "[one of]No. No! That would -- that would be much too forward.[or]You can't bring yourself to.[stopping]";
 
-Book 1.4 - Scene Flags
+Book 1.4 - When Time is Critical, When It is Night
 
 ["When time is critical" - This is used to flag the player at certain tense times so that comedic and relaxed responses don't trigger.]
 
@@ -918,7 +920,6 @@ To decide whether time is critical:
 	if Returning to a Break-In is happening and Carnicer is in the Clinic, decide yes;
 	if Averting Cavala's Assassination is happening, decide yes;
 	if First Aid on Cavala is happening, decide yes;
-	if Walking Home in Suspense is happening, decide yes;
 	if Midnight is happening, decide yes;
 	decide no.
 
@@ -3021,7 +3022,7 @@ To say journal-text-notes:
 			add "- I learned that the raven is the symbol of the Greater Corindia Trading Company, a criminal syndicate." to LM;
 		if clue-crowsnestemployer is true:
 			add "- I learned that the Crow's Nest pays protection money to the Trading Company." to LM;
-	if time is not critical and the enabled of bartender-dialogue-drink is true:
+	if time is not critical and the public house door is unlocked and the enabled of bartender-dialogue-drink is true:
 		add "- I'm in the mood for a drink..." to LM;
 	[---
 	MUSINGS, PROLOGUE
@@ -5456,9 +5457,9 @@ cavala-rwmq-anygood	true	true	"'...Is it any good?'"	"'...Is it any good?'
 'Not really,' she admits. 'But there are worse ways to spend an evening.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-aboutinvestigation	true	false	"'About the things you told me to investigate...'"	"'About the things you told me to investigate...'
 
-Doctor Cavala's expression hardens. You settle down beside her, and she sits up to listen to your account of the day's events.
+Doctor Cavala's expression hardens. You settle down beside her, and she listens rapt to your account of the day's events.
 
-You tell her about your run-in with the Turris Infinita security. The chill of Doctor Arturus's clinic, and the silent stare of the departed -- the macabre sights reflected in endoscopic lenses. You tell her of the doctor's correspondence; the web of intrigue and not-quite-coincidence that bound him; the lives that labored in the shadow of black wings. And through it all, like a pervasive pathogen, the darkness seeps and drips coppery from your words.
+You tell her about your run-in with the Turris Infinita security. The chill of Doctor Arturus's clinic, the silent stare of the departed -- the macabre sights reflected in endoscopic lenses. You tell her of the doctor's correspondence; the web of intrigue and not-quite-coincidence that bound him; the lives that labored in the shadow of black wings. And through it all, like a pervasive pathogen, the darkness seeps and drips coppery from your words.
 
 [wait for any key]Doctor Cavala is silent as she takes in everything you've told her.
 
@@ -5470,7 +5471,7 @@ She takes a deep breath.
 
 [wait for any key]She trails off, shaking her head.
 
-'Regardless. You've uncovered a wealth of information pertaining to the affliction. The transmission vector, for starters --'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
+'Regardless. You've uncovered a wealth of information pertaining to the affliction. We are now able to draw several conclusions. The transmission vector, for starters --'"	{cavala-rwmq-conclusion1a, cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
 
 Section 3.3.6.3.2 - Conclusion 1 (The Transmission Vector)
 
@@ -5495,7 +5496,7 @@ cavala-rwmq-conclusion1d	true	false	"'It's transmitted by both ingestion and ski
 
 She glances at the curtain of the surgery room, and runs a gloved hand through her hair.
 
-[wait for any key]'In any case,' she continues, 'the transmission vector seems to be clear. It requires close contact with an infected individual, and that implies close ties between the victims. From what you've learned --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
+[wait for any key]'In any case,' she continues, 'the transmission vector seems to be clear. It requires proximity to an infected individual, and that implies close ties between the victims. From what you've learned --'"	{cavala-rwmq-conclusion2a, cavala-rwmq-conclusion2b, cavala-rwmq-conclusion2c, cavala-rwmq-conclusion2d}
 
 Section 3.3.6.3.3 - Conclusion 2 (The Connection Between Victims)
 
@@ -5525,11 +5526,13 @@ Doctor Cavala opens her mouth -- then she pauses, closes it again.
 
 [wait for any key]'Do you think it's the [italic type]wine[roman type] that's killing them?' you ask.
 
-She furrows her brow. 'It's certainly possible. A contaminant could be hidden in a dark wine and remain undetected, masked by the color and aroma. It would certainly explain why there have been so few victims. It wouldn't be a contagion -- it would be a case of [italic type]poisoning[roman type]. If only certain bottles of wine were contaminated... Marid, did you notice anything in common about the bottles?'
+She furrows her brow. 'It's certainly possible. A contaminant could be hidden in a dark wine and remain undetected, masked by the color and aroma. It would certainly explain why there have been so few victims. It wouldn't be an epidemic -- it would be a [italic type]poisoning[roman type]. If only certain bottles of wine were contaminated... Marid, did you notice anything in common about the bottles?'
 
 [wait for any key]You shake your head. 'They were all different labels. Different manufacturers. Reden didn't even drink red wine.'
 
-'That's deeply troubling.' She looks at her injured leg. 'If there doesn't appear to be any correlation between these poisonings, but the victims are all connected by the same symptoms...'"	{cavala-rwmq-conclusion3a, cavala-rwmq-conclusion3b, cavala-rwmq-conclusion3c}
+'That's deeply troubling.' She looks at her injured leg. 'If there doesn't appear to be any correlation between these poisonings, but the victims are all connected by the same symptoms...'
+
+[wait for any key]She falls silent, engrossed in thought."	{cavala-rwmq-conclusion3a, cavala-rwmq-conclusion3b, cavala-rwmq-conclusion3c}
 cavala-rwmq-conclusion2d	true	true	"'All of them had been to the Shanty Quarter.'"	"'All of them had been to the Shanty Quarter.'
 
 'Is that so?' Doctor Cavala furrows her brow. 'Sal and Piper, certainly. We know that Reden went to the Crow's Nest. Doctor Arturus might have contracted the affliction from his patients... but did you ever learn if Creditor Nacarat had been to the Shanty Quarter?'
@@ -5546,31 +5549,31 @@ Section 3.3.6.3.3 - Conclusion 3 (Foul Play)
 
 Table of Cavala RWMQ Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-cavala-rwmq-conclusion3a	true	true	"'You think the cause is undetectable.'"	"'You think the cause is undetectable.'
+cavala-rwmq-conclusion3a	true	true	"'You think the cause is undetectable?'"	"'You think the cause is undetectable?'
 
 She purses her lips. 'That is one possibility. But consider this, Marid: what are the odds that a chance contaminant is both undetectable and lethal? Not even the boiling plague kills its victims this fast. No, there is another possibility that is far more likely --'"	{cavala-rwmq-conclusion3b, cavala-rwmq-conclusion3c}
-cavala-rwmq-conclusion3b	true	true	"'You think it could surface anywhere.'"	"'You think it could surface anywhere.'
+cavala-rwmq-conclusion3b	true	true	"'You think it could surface anywhere?'"	"'You think it could surface anywhere?'
 
 She frowns. 'I should hope not. If it's something that affects [italic type]all[roman type] wine, there would certainly be many more reports coming in. It wouldn't be isolated to the Channelworks District, to just the few victims we have on our hands. Think, Marid --'"	{cavala-rwmq-conclusion3a, cavala-rwmq-conclusion3c}
-cavala-rwmq-conclusion3c	true	false	"'You think foul play is involved.'"	"'You think foul play is involved.'
+cavala-rwmq-conclusion3c	true	false	"'You think foul play is involved?'"	"'You think foul play is involved?'
 
 Doctor Cavala crosses her arms. Her eyes trace the bandages around her destroyed tendon.
 
 'Suppose we assume that this is deliberate,' she says. 'That this is part of someone's larger agenda. Many things fall into place -- the attack on my clinic, the connection to the Trading Company, the fast-acting and improbably lethal affliction.
 
-'Until now, we've been operating under the assumption that this is a simple epidemic, one that obeys statistics and adheres to the precepts of medicine... but what if that isn't the case? What if this is, in reality, a series of murders?'
+'Until now, we've been operating under the assumption that this is a simple infection, one that obeys statistics and adheres to the precepts of medicine... but what if that isn't the case? What if this is, in reality, a series of murders?'
 
-[wait for any key]You stare at her with growing unease. 'Then... then that would be beyond us. It would be a matter for the Vigiles.'
+[wait for any key]You regard her with growing unease. 'Then... then that would be beyond us. It would be a matter for the Vigiles.'
 
-She nods grimly. 'Correct. And if this is true, Marid... whoever is behind this has it out for me. Perhaps the culprit wishes to bury the evidence, silence the doctors in the district who have a chance of stopping them --'
+She nods grimly. 'Correct. And if this is true, Marid... whoever is behind this has it out for me. The culprit might be looking to bury the evidence, silence the doctors in the district who have a chance of stopping them --'
 
-[wait for any key]'Then Doctor Justinian is in danger.'
+[wait for any key]'That means Doctor Justinian is in danger.'
 
 'And you as well.' Doctor Cavala shakes her head. 'I'm sorry, Marid. If I had known earlier, I would never have sent you out on your own...'
 
-[wait for any key]The revelation seems to have filled the doctor with purpose. She takes on a businesslike demeanor, crisply checking off items on her fingers.
+[wait for any key]She shifts in her makeshift bed, wincing as the dressing on her leg chafes. Her shoulders are tense as she begins checking items off her fingers.
 
-'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible and notify the Vigiles via Horatio. The quarantine should prevent the culprit from leaving the district, buying us some time to work on a cure. And as for you, Marid --'
+'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible, and warn the Vigiles by way of Horatio. The quarantine will buy us some time to track down the culprit. As for you, Marid --'
 
 [wait for any key]She looks at you, and something causes her to falter. She closes her eyes. Her words catch in her throat.
 
@@ -5588,11 +5591,11 @@ Her eyes linger on you -- on the tattoos that run like tears down your neck and 
 
 [wait for any key]She exhales.
 
-'Go,' she says. 'Go home, Marid. Take care of yourself.'
+[wait for any key]'Go,' she says. 'Go home, Marid. Take care of yourself.'
 
 [wait for any key]You rise from the waiting chairs. There is a dull ache in your shoulders. You give Doctor Cavala one last look as you prepare to depart for the night.
 
-'Good night,' you tell her.
+[wait for any key]'Good night,' you tell her.
 
 [wait for any key]You can't bring yourself to meet her gaze.[line break][look pending]"	{}
 cavala-rwmq-wanttohelp	true	false	"'No. I want to help.'"	"'No,' you tell her firmly. 'I want to help.'
@@ -5610,14 +5613,12 @@ cavala-rwmq-wanttohelp2	true	false	"'No. I'm going to help you.'"	"'No. I'm goin
 
 [wait for any key]She takes a deep breath.
 
-[wait for any key]'Marid,' she says. 'This is not a friendly request. This is a command from Doctor to Servator. I will [italic type]not[roman type] allow you to put yourself in danger. Do you understand me? This is not medical research. It's a [italic type]murder case.[roman type] I'm only going to say this once...'"	{cavala-rwmq-yesdr, cavala-rwmq-wanttohelp3}
-cavala-rwmq-wanttohelp3	true	false	"'No! I refuse!"	"'No!' you yell. 'No! I -- I --'
+[wait for any key]'Marid,' she says. 'This is not a friendly request. This is a command from Doctor to Servator. I will [italic type]not[roman type] allow you to wager your life on this. Do you understand me?'"	{cavala-rwmq-yesdr, cavala-rwmq-wanttohelp3}
+cavala-rwmq-wanttohelp3	true	false	"'No! I refuse!'"	"'No!' you yell. 'No! I -- I don't --'
 
-[italic type]I don't want to lose you, too.[roman type]
+[italic type]I don't want to lose anyone else.[roman type]
 
-[wait for any key]What?
-
-[wait for any key]What -- you didn't --
+[wait for any key]What? What -- you didn't --
 
 [wait for any key]You don't... you don't mean that. That isn't what you...
 
@@ -5627,7 +5628,11 @@ cavala-rwmq-wanttohelp3	true	false	"'No! I refuse!"	"'No!' you yell. 'No! I -- I
 
 [wait for any key]You feel Doctor Cavala's gaze boring into you. Burning. Judging.
 
-[wait for any key]'Marid.' Her voice is a whisper. 'Don't do this.'"	{cavala-rwmq-yesdr}
+[wait for any key]'Marid.'
+
+[wait for any key]Her voice is a whisper.
+
+[wait for any key]'Don't do this.'"	{cavala-rwmq-yesdr}
 
 After reading out cavala-rwmq-yesdr:
 	now clues-consolidated is true;
@@ -5935,19 +5940,31 @@ Before searching the gap between buildings, try examining the gap between buildi
 
 After going through the gap between buildings while the player is staid: say "You shuffle through the gap..."; continue the action.
 
-Part 3.5.3 - West End during Prologue
+Part 3.5.3 - West End during Night
 
-Instead of going to Via Terminalis West Street when it is night, say "It's dangerous to go out at night."
-Instead of going to the Crooked Alley when it is night, say "It's dangerous to go out at night."
+Instead of going to Via Terminalis West Street when the location is the West End and it is night, say "It's dangerous to go out at night."
+Instead of going to the Crooked Alley when the location is the West End and it is night, say "It's dangerous to go out at night."
 
 The burgeoning rain is faraway scenery in Via Terminalis West End. The indefinite article is "the".
 The description is "More than mist, but less than rain."
 The burgeoning rain has some text called the faraway response. The faraway response is "The rain is barely there."
 Understand "beginning/beginnings" or "of" as the burgeoning rain.
 
-When Prologue ends: now the burgeoning rain is nowhere.
-When Walking Home in Fear begins: now the burgeoning rain is in the West End.
-When Day One ends: now the burgeoning rain is nowhere.
+To cue the rain:
+	now the burgeoning rain is in the West End;
+	now Via Terminalis West Street is goto-impassable;
+	now the Crooked Alley is goto-impassable.
+	
+To cue the sunshine:
+	now the burgeoning rain is nowhere;
+	now Via Terminalis West Street is goto-passable;
+	now the Crooked Alley is goto-passable.
+
+When Prologue ends: cue the sunshine.
+When Walking Home in Fear begins: cue the rain.
+When Day One ends: cue the sunshine.
+When Walking Home in Suspense begins: cue the rain.
+When Day Two ends: cue the sunshine.
 
 Part 3.5.4 - West End during Day One
 
@@ -6003,11 +6020,21 @@ Before approaching a room during Bad News from Cavala:
 	if the noun is not Marid's Room and the noun is not West End and the noun is not West Street and the noun is not Clinic:
 		say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
+Chapter 3.5.4.2 - During Walking Home in Suspense
+
+Before going to the Clinic when the location is the West End and Walking Home in Suspense is happening, say "You don't feel like going back." instead.
+
+Instead of approaching when Walking Home in Suspense is happening:
+	if the noun is the Clinic or the noun is the Mortuary or the noun is the Surgery Room:
+		say "You don't feel like going back.";
+	otherwise:
+		continue the action.
+
 Book 3.6 - Dormitory Block
 
 The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
-From here, you can go up to your dormitory room[unless Nine to Five Zombie is happening or Bad News from Cavala is happening], visit the public house to the west,[end unless] or exit the building to the south."
+[if the public house door is locked]The public house is closed tonight. You can only[otherwise]From here, you can[end if] go up to your dormitory room[unless Nine to Five Zombie is happening or Bad News from Cavala is happening or the public house door is locked], visit the public house to the west,[end unless] or exit the building to the south."
 The Dormitory Block is north of the West End.
 Understand "dorm" as the Dormitory Block.
 
@@ -6047,9 +6074,10 @@ Instead of looking under the atrium, say "Beyond the atrium are the public house
 
 The view of the public house is faraway scenery in the Dormitory Block. The printed name is "public house".
 The description is "A refuge from the troubles of the world, at least for some."
-The sound is "You hear the hubbub of conversation, intermittently sprinkled with laughter."
-The scent is "You smell the welcoming aroma of hot food."
+The sound is "[if the public house door is unlocked]You hear the hubbub of conversation, intermittently sprinkled with laughter[otherwise]It's quiet[end if]."
+The scent is "[if the public house door is unlocked]You smell the welcoming aroma of hot food[otherwise]The smell of cooking grease clings.[end if]."
 Understand "pub" or "downstairs public" as the view of the public house.
+Does the player mean doing something with the view of the public house: it is likely. [As opposed to the door of the public house.]
 Before entering the view of the public house, try going west instead.
 
 Some dormitory domiciles are a faraway backdrop in the Dormitory Block.
@@ -6397,6 +6425,10 @@ Chapter 3.6.4.1 - During Bad News from Cavala
 
 Before going west in Dormitory Block during Bad News from Cavala, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting." instead.
 
+Chapter 3.6.4.2 - During Walking Home in Suspense
+
+Before going west in Dormitory Block during Walking Home in Suspense, try examining the public house door instead.
+
 Book 3.7 - Public House
 
 There is a proper-named room called the Public House. "Tucked away in the shadow of the domiciles, this cozy establishment offers a retreat from the [if it is night]melancholy of the night[otherwise]bustle of the day[end if]. Other patrons are scattered at the tables, engaged in drinking and conversation, while in the corner a solitary clockwork musician plays. The door is to the east."
@@ -6434,7 +6466,7 @@ The description is "[if the player is in the Public House]It leads out to the at
 The sound is "[if the player is in the Public House]It's quiet outside.[otherwise]You hear the sounds of the public house."
 Understand "to" as the public house door.
 Understand "exit" as the public house door when the location is the Public House.
-Instead of knocking on the public house door, say "There's no need; the public house is open for business."
+Instead of knocking on the public house door when the public house door is unlocked, say "There's no need; the public house is open for business."
 
 Part 3.7.3 - Dining Tables
 
@@ -6788,15 +6820,30 @@ Part 3.7.8 - Public House during Nine to Five Zombie
 
 Instead of approaching the Public House when Nine to Five Zombie is happening, say "Doctor Cavala is at the clinic. You shouldn't keep her waiting."
 
+Part 3.7.9 - Public House during Walking Home in Suspense
+
+When Walking Home in Suspense begins:
+	now the public house door is closed;
+	now the public house door is locked.
+	
+When Walking Home in Suspense ends:
+	now the public house door is unlocked.
+	
+Instead of examining the public house door when the public house door is locked: say "The door is locked."
+Before opening or entering the public house door when the public house door is locked, try examining the public house door instead.
+
+Instead of listening to the public house door when the public house door is locked: say "You hear nothing."
+Instead of searching the public house door when the public house door is locked: say "It's dark inside."
+
 Book 3.8 - Marid's Room
 
-Marid's Room is a proper-named room. "[if time is not critical]Though this space of yours is small, you have done your best to furnish it with the comforts of home. [end if]In one corner is a dressing table, piled with stationery and assorted toiletries, and in another is the kitchenette. The only door leads back downstairs to the atrium."
+Marid's Room is a proper-named room. "[if time is not critical and Walking Home in Suspense is not happening]Though this space of yours is small, you have done your best to furnish it with the comforts of home. [end if]In one corner is a dressing table, piled with stationery and assorted toiletries, and in another is the kitchenette. The only door leads back downstairs to the atrium."
 Understand "my" or "own" or "house/home/dormitory/dorm/domicile" as Marid's Room. 
 
 The simple-name is "your dormitory room".
-The sound is "[if time is critical]Your heartbeat hammers in your ears.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
-The scent is "[if time is critical]You smell your own sweat, your own fear.[otherwise]Your room smells clean enough."
-The exit reminder is "[if time is critical]You can't go that way.[otherwise]You can take the stairs down to the atrium."
+The sound is "[if Midnight is happening]Your heartbeat hammers in your ears.[otherwise]The muffled sounds of adjoining domiciles can be heard through the walls."
+The scent is "[if Midnight is happening]You smell your own sweat, your own fear.[otherwise]Your room smells clean enough."
+The exit reminder is "[if Midnight is happening]You can't go that way.[otherwise]You can take the stairs down to the atrium."
 
 Before examining north in Marid's Room, try searching the dormitory window instead.
 Before examining down in Marid's Room, try searching the dormitory window instead.
@@ -6938,13 +6985,13 @@ Instead of inserting something into the cold closet, say "[if time is critical]T
 
 Part 3.8.5 - Marid's Bed
 
-Marid's bed is a privately-named enterable fixed in place supporter in Marid's Room. "[if time is critical]Moonlight streams through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
+Marid's bed is a privately-named enterable fixed in place supporter in Marid's Room. "[if Midnight is happening]Moonlight streams through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
 The printed name is "your bed".
-The description is "[if time is critical]You could easily climb out the window using your bed as a step.[otherwise]It looks warm and inviting."
+The description is "[if time is critical]You could easily climb out the window using your bed as a step.[otherwise if Walking Home in Suspense is happening]You want to curl up and shut out the world.[otherwise]It looks warm and inviting."
 Understand "my" or "marid's" or "bed" or "bedding" or "mattress" as Marid's bed.
 
-Instead of bed-making Marid's bed, say "[if time is critical]This is not the time.[otherwise if Walking Home in Darkness is happening]It's usual to make one's bed [italic type]after[roman type] one has slept in it.[otherwise]Your bed is already made."
-Instead of entering Marid's bed, try sleeping.
+Instead of bed-making Marid's bed, say "[if time is critical]This is not the time.[otherwise if it is night]It's usual to make one's bed [italic type]after[roman type] one has slept in it.[otherwise]Your bed is already made."
+Instead of climbing or entering Marid's bed, try sleeping.
 Instead of inserting the endoscope into Marid's bed, say "Nothing is in the bedding. You'd know if there was."
 Instead of pushing, pulling, or turning Marid's bed, say "[if time is critical]You can't possibly move any of the furniture in time.[otherwise]There's no need to rearrange the furniture."
 Instead of knocking on or touching Marid's bed, say "[if time is critical]This is not the time.[otherwise]The mattress is soft and springy."
@@ -6956,7 +7003,7 @@ Part 3.8.6 - Dormitory Window
 [Eventually, Marid is going to have to abscond through this window for Midnight.]
 
 The dormitory window is an open unopenable scenery door. It is north of Marid's Room and south of the Placeholder Chase Area.
-The description is "It's a simple square opening without a pane or a grille. A shadowed rooftop can be seen through it."
+The description is "A square opening without a pane or a grille. A shadowed rooftop can be seen through it."
 The sound is "[if time is critical]This is not the time.[otherwise]You hear the murmuring of the city."
 The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the condemned block from here, a trace of its ash lingers in the air."
 Understand "dorm" as the dormitory window.
@@ -7047,7 +7094,7 @@ You close your eyes and drift in that listless limbo between wakefulness and slu
 	
 Part 3.8.10 - Marid's Room during Day Two
 
-Chapter 3.8.9.1 - Rude Awakening
+Chapter 3.8.10.1 - Rude Awakening
 
 To unveil Day Two:
 	clear the screen;
@@ -7109,6 +7156,34 @@ horatio-d2msg-bethere	true	true	"'I'll be there.'"	"'I'll be there.'
 Horatio[if the enabled of horatio-d2msg-opendoor is false] disappears[otherwise]'s footsteps disappear[end if] down the stairs. You hurry through your morning routine and slip your boots on."	{}
 
 After reading out horatio-d2msg-opendoor: now the dormitory room door is open.
+
+Chapter 3.8.10.2 - Go to Sleep, Marid (Again) (Redux)
+
+First instead of sleeping in Marid's Room during Walking Home in Suspense (this is the Day Two sleeping in Marid's bed rule):
+	say "You sit down on the edge of your bed. The sweat and stress of the day cling to you, pool in the shadows behind your eyes.[paragraph break]";
+	wait for any key;
+	say "Doctor Cavala is right. This is no longer a medical investigation -- it's a murder investigation. You should take a break. Leave matters to those qualified to handle them.[paragraph break]";
+	wait for any key;
+	say "But you can't get the thoughts out of your head. The images. Everything that you've seen and done... it [italic type]clings[roman type] to you. Creeps within you.[paragraph break]";
+	wait for any key;
+	say "So do you drift [italic type]down[roman type] and [italic type]down[roman type] into [italic type]darkness, thinking of corpses staring, pigeons twitching[roman type] --[paragraph break]";
+	wait for any key;
+	say "-- [italic type]burnt-out lamps in broken housing[roman type] --[paragraph break]";
+	wait for any key;
+	say "-- [italic type]burning burning burning burni[roman type] --[paragraph break]";
+	wait for any key;
+	unveil Midnight.
+	
+Part 3.8.11.3 - Marid's Room during Midnight
+
+Chapter 3.8.11.3.1 - Intro
+
+To unveil Midnight:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
+	center "M I D N I G H T";
+	wait for any key;
+	to be continued.
 
 Book 3.9 - Via Terminalis, West Street
 

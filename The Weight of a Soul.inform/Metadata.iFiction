@@ -18,8 +18,8 @@
         <releases>
             <attached>
                 <release>
-                    <releasedate>2017-05-04</releasedate>
-                    <version>40517</version>
+                    <releasedate>2017-05-07</releasedate>
+                    <version>70517</version>
                     <compiler>Inform 7</compiler>
                     <compilerversion>6M62</compilerversion>
                 </release>
@@ -28,11 +28,11 @@
         <colophon>
             <generator>Inform 7</generator>
             <generatorversion>6M62</generatorversion>
-            <originated>2017-05-04</originated>
+            <originated>2017-05-07</originated>
         </colophon>
         <glulx>
-            <serial>170504</serial>
-            <release>40517</release>
+            <serial>170507</serial>
+            <release>70517</release>
             <compiler>Inform 7 build 6M62</compiler>
         </glulx>
     </story>
