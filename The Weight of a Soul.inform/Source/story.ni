@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 070517.
+The release number is 110517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,11 +54,14 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Walking Home in Suspense
-- Put something in the Dormitory Block
-- Write sleep cinematic
-
 - Write Midnight
+
+- Write the Carnicer countdown
+
+- Write Rooftop Pursuit
+- Write Highway to Hell
+- Write Can't Catch a Bloody Break
+
 - Write Day Three
 - Write Day Four
 - Write Epilogue
@@ -221,6 +224,9 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to cellar[roman type]";
 	say "[line break]>[bold type]skip to crow[roman type]";
 	say "[line break]>[bold type]skip investigation[roman type]";
+	say line break;
+	say "[line break][italic type]Midnight[roman type]";
+	say "[line break]>[bold type]skip to midnight[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -239,6 +245,8 @@ Book 1.2 - Days and Scenes
 Part 1.2.1 - Scene Definitions
 
 ['The Weight of a Soul' uses days to demarcate the acts of the story, here implemented as overarching scenes.]
+
+start-of-day is a number that varies. [This is a silly hack.]
 
 Chapter 1.2.1.1 - Prologue
 
@@ -294,8 +302,7 @@ First Aid on Cavala ends when the CSOFAOC is 4.
 
 Walking Home in Fear is a scene. [Marid goes home after fixing Doctor Cavala's leg.]
 Walking Home in Fear begins when First Aid on Cavala ends.
-start-of-day-two is a truth state that varies. [This is a silly hack.]
-Walking Home in Fear ends when start-of-day-two is true.
+Walking Home in Fear ends when start-of-day is 2.
 
 Chapter 1.2.1.3 - Day Two
 
@@ -303,6 +310,7 @@ Chapter 1.2.1.3 - Day Two
 
 Day Two is a scene.
 Day Two begins when Day One ends.
+Day Two ends when Walking Home in Suspense ends.
 
 Bad News from Cavala is a scene. [Cavala lays the exposition on Marid.]
 Bad News from Cavala begins when Day Two begins.
@@ -348,8 +356,9 @@ There is a scene called Returning with More Questions. [Marid returns to the Cli
 Returning with More Questions begins when Four Investigations ends.
 Returning with More Questions ends when clues-consolidated is true.
 
-Walking Home in Suspense is a scene.
+Walking Home in Suspense is a scene. [Marid goes home after that.]
 Walking Home in Suspense begins when Returning with More Questions ends.
+Walking Home in Suspense ends when Carnicer is in Marid's Room.
 
 Chapter 1.2.1.4 - Midnight
 
@@ -357,6 +366,16 @@ Chapter 1.2.1.4 - Midnight
 
 Midnight is a scene.
 Midnight begins when Day Two ends.
+
+Cornered in the Dorm is a scene. [Marid is woken by Carnicer in her dormitory room and panics.]
+Cornered in the Dorm begins when Midnight begins.
+Cornered in the Dorm ends when the location is not Marid's Room.
+
+The Rooftop Pursuit is a scene. [Marid flees Carnicer across the rooftops of the Condemned Block.]
+
+Highway to Hell is a scene. [Marid continues fleeing through the Condemned Block while avoiding the deadly aether-daemons that lurk there and hallucinating like crazy. Ends with her luring Carnicer to her doom.]
+
+Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 
 Chapter 1.2.1.5 - Day Three
 
@@ -541,7 +560,7 @@ To skip past Day One:
 	if First Aid on Cavala has not ended:
 		skip past First Aid on Cavala;
 	move the player to Marid's Room, without printing a room description;
-	now start-of-day-two is true;
+	now start-of-day is 2;
 	follow the scene changing rules.
 	
 To skip past Bad News from Cavala:
@@ -652,6 +671,16 @@ To skip past the rest of Four Investigations:
 	move the player to the Shanty Quarter, without printing a room description;
 	follow the scene changing rules.
 	
+To skip to Midnight:
+	if Four Investigations has not ended:
+		skip past the rest of Four Investigations;
+	now clues-consolidated is true;
+	now the front door of the clinic is closed;
+	move the player to the West End, without printing a room description;
+	follow the scene changing rules;
+	move the player to Marid's Room, without printing a room description;
+	unveil Midnight.
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -751,6 +780,12 @@ Check skipping Four Investigations when Four Investigations has ended: say "You 
 Carry out skipping Four Investigations:
 	skip past the rest of Four Investigations;
 	try looking.
+	
+Skipping to Midnight is an action applying to nothing.
+Understand "skip to midnight" as skipping to Midnight.
+Check skipping to Midnight when Day Two has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to Midnight:
+	skip to Midnight.
 	
 Book 1.3 - People
 
@@ -878,11 +913,21 @@ Chapter 1.3.3.3 - Carnicer
 
 Carnicer is an undescribed hostile improper-named mutant woman.
 The printed name is "assassin".
+The scent is "The scent of blood."
 Understand "hooded" or "assassin" or "killer" or "butcher" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The poisoned blade is carried by Carnicer.
-Understand "sword" as the poisoned blade.
+The description of Carnicer is "She's walking towards you."
+
+Carnicer's blade is an improper-named thing. It is carried by Carnicer.
+The printed name is "assassin's blade".
+The description is "Serrated."
+Understand "sword" as Carnicer's blade.
+
+Carnicer's smile is an improper-named thing. It is part of Carnicer.
+The printed name is "assassin's smile".
+The description is "You can't look away."
+Understand "grin" or "tooth/teeth" or "hood/cloak" as Carnicer's smile.
 
 Chapter 1.3.3.4 - Justinian
 
@@ -1635,6 +1680,8 @@ Carry out brushing your teeth (this is the standard brushing your teeth rule):
 			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
 		otherwise if Walking Home in Fear is happening:
 			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
+		otherwise if Walking Home in Suspense is happening:
+			say "[one of]You brush your teeth.[or]You've already brushed your teeth.[stopping]";
 		otherwise:
 			say "You've already brushed your teeth.";
 	otherwise:
@@ -1648,7 +1695,7 @@ Carry out combing your hair (this is the standard combing your hair rule):
 	if time is critical:
 		say "This is not the time.";
 	otherwise if the location is Marid's Room:
-		if Walking Home in Darkness is happening or Walking Home in Fear is happening:
+		if Walking Home in Darkness is happening or Walking Home in Fear is happening or Walking Home in Suspense is happening:
 			say "There isn't much point. Your hair will get messed up when you sleep.";
 		otherwise:
 			say "You've already combed your hair.";
@@ -1671,6 +1718,8 @@ Carry out filing your nails (this is the standard filing your nails rule):
 	otherwise if the location is Marid's Room and Walking Home in Darkness is happening:
 		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
 	otherwise if the location is Marid's Room and Walking Home in Fear is happening:
+		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
+	otherwise if the location is Marid's Room and Walking Home in Suspense is happening:
 		say "[one of]You file your nails.[or]You've already filed your nails.[stopping]";
 	otherwise:
 		say "You've already filed your nails.";
@@ -4356,7 +4405,9 @@ Before doing anything when Averting Cavala's Assassination is happening (this is
 		distract Carnicer by crying out;
 	otherwise if the current action involves Carnicer:
 		distract Carnicer by attacking her;
-	otherwise if the current action involves the poisoned blade:
+	otherwise if the current action involves Carnicer's blade:
+		distract Carnicer by attacking her;
+	otherwise if the current action involves Carnicer's smile:
 		distract Carnicer by attacking her;
 	otherwise:
 		distract Carnicer by moving;
@@ -5571,7 +5622,7 @@ She nods grimly. 'Correct. And if this is true, Marid... whoever is behind this 
 
 'And you as well.' Doctor Cavala shakes her head. 'I'm sorry, Marid. If I had known earlier, I would never have sent you out on your own...'
 
-[wait for any key]She shifts in her makeshift bed, wincing as the dressing on her leg chafes. Her shoulders are tense as she begins checking items off her fingers.
+[wait for any key]She shifts in her makeshift bed, wincing as the dressing on her leg chafes. Her shoulders are tense as she checks items off her fingers.
 
 'If our conclusion is correct, time is of the essence. I will correspond with Doctor Justinian as soon as possible, and warn the Vigiles by way of Horatio. The quarantine will buy us some time to track down the culprit. As for you, Marid --'
 
@@ -7104,7 +7155,7 @@ To unveil Day Two:
 	[to be continued;
 	stop;]
 	clear the screen;
-	now start-of-day-two is true;
+	now start-of-day is 2;
 	follow the scene changing rules;
 	say "A knocking at the door jolts you awake.[paragraph break]";
 	say "'Marid?' comes Horatio's voice.";
@@ -7176,14 +7227,129 @@ First instead of sleeping in Marid's Room during Walking Home in Suspense (this 
 	
 Part 3.8.11.3 - Marid's Room during Midnight
 
-Chapter 3.8.11.3.1 - Intro
+Chapter 3.8.11.3.1 - An Assassin Comes a-Knocking
 
 To unveil Midnight:
 	clear the screen;
 	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
 	center "M I D N I G H T";
 	wait for any key;
-	to be continued.
+	clear the screen;
+	now Carnicer is in Marid's Room;
+	follow the scene changing rules;
+	say "You open your eyes.[paragraph break]";
+	wait for any key;
+	say "You're covered in sweat and your breathing is ragged. A nightmare?[paragraph break]";
+	wait for any key;
+	say "You'll have time to ponder that later. Someone is knocking on your door.";
+	start a dialogue saying "" using dialogue carnicer-intro.
+	
+Chapter 3.8.11.3.2 - Dialogue Ensues
+	
+Some dialogue branches are defined by the Table of Carnicer Dialogue.
+
+Table of Carnicer Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+carnicer-intro	true	false	""	""	{carnicer-ignore, carnicer-answer}
+carnicer-ignore	true	false	"<Ignore the knocking.>"	"The knocking continues."	{carnicer-ignore, carnicer-answer}
+carnicer-answer	true	false	"<Answer the door.>"	"You clamber out of bed, pull your jacket close, and shuffle up to the door."	{carnicer-peek, carnicer-whosthere, carnicer-horatio, carnicer-opendoor}
+carnicer-peek	true	true	"<Look through the peephole.>"	"You look through the peephole.
+
+You can't make out anything. All you can see is a misty gray."	{carnicer-hello, carnicer-whosthere, carnicer-horatio, carnicer-opendoor}
+carnicer-whosthere	true	true	"'Who's there?'"	"'Who's there?'
+
+There is no response."	{carnicer-peek, carnicer-hello, carnicer-horatio, carnicer-opendoor}
+carnicer-horatio	true	true	"'Horatio?'"	"'Horatio?'
+
+There is no response."	{carnicer-peek, carnicer-hello, carnicer-whosthere, carnicer-opendoor}
+carnicer-hello	false	false	"'Hello?'"	"'Hello?'
+
+There is no response and
+
+[wait for any key]your door handle [italic type]explodes[roman type] outward sending sawdust flying and a claw reaches up and [italic type]rips[roman type] the wood out of its housing like
+
+[wait for any key]so
+
+[wait for any key]many
+
+[wait for any key]teeth.
+
+[Carnicer says hi]"	{}
+carnicer-opendoor	true	true	"<Open the door.>"	"You open the door a crack and
+
+[wait for any key]a claw curls around the edge and [italic type]rips[roman type] the wood off its hinges. From the darkness something lopes and it has
+
+[wait for any key]so
+
+[wait for any key]many
+
+[wait for any key]teeth.
+
+[Carnicer says hi]"	{}
+
+To say Carnicer says hi:
+	wait for any key;
+	say "'Hello,' the assassin whispers.[paragraph break]";
+	wait for any key;
+	say "She draws her sword and kicks in the remaining pieces of your door. Beneath her hood she's smiling, grinning a rictus grin. Or maybe her mouth is fixed that way. ";
+	
+After reading out carnicer-whosthere: now the enabled of carnicer-hello is true.
+	
+Chapter 3.8.11.3.3 - The Carnicer Countdown
+
+[Carnicer toys with you and chats for a few turns before killing you. Her dialogue is different if you TALK TO her.]
+
+The Carnicer countdown is a number that varies.
+bantered-with-carnicer is a truth state that varies.
+
+Every turn while Cornered in the Dorm is happening (this is the advance the Carnicer countdown rule):
+	increment the Carnicer countdown;
+	report Carnicer's banter;
+	if the Carnicer countdown is 7:
+		end the story saying "You have died".
+	
+To report Carnicer's banter:
+	choose row Carnicer countdown in the Table of Carnicer Banter;
+	if bantered-with-carnicer is true:
+		say "[dialogue response entry][paragraph break]";
+	otherwise:
+		say "[happening entry][paragraph break]";
+		
+First before doing anything while Cornered in the Dorm is happening (this is the tick bantered-with-carnicer rule):
+	if the current action is talking to Carnicer:
+		now bantered-with-carnicer is true;
+		stop;
+	otherwise:
+		now bantered-with-carnicer is false;
+		continue the action.
+	
+Report asking for help during Cornered in the Dorm (this is the show bantz after help menu rule): report Carnicer's banter.
+Report asking for commands during Cornered in the Dorm (this is the show bantz after commands menu rule): report Carnicer's banter.
+Report asking for journal during Cornered in the Dorm (this is the show bantz after journal menu rule): report Carnicer's banter.
+Report asking for characters during Cornered in the Dorm (this is the show bantz after characters menu rule): report Carnicer's banter.
+Report asking for map during Cornered in the Dorm (this is the show bantz after map menu rule): report Carnicer's banter.
+Report asking for hints during Cornered in the Dorm (this is the show bantz after hints menu rule): report Carnicer's banter.
+
+Table of Carnicer Banter
+index	happening	dialogue response
+1	"[wait for any key]'You've been a lot of trouble, you know.' She cocks her head. 'Asking dangerous questions. Getting dangerous answers.'"	""
+2	"Carnicer Bantz 1"	"Carnicer Counter-bantz 1"
+3	"Carnicer Bantz 2"	"Carnicer Counter-bantz 2"
+4	"Carnicer Bantz 3"	"Carnicer Counter-bantz 3"
+5	"Carnicer Bantz 4"	"Carnicer Counter-bantz 4"
+6	"Carnicer Bantz 5"	"Carnicer Counter-bantz 5"
+7	"Carnicer Bantz: Killing You Edition"	"Carnicer Counter-bantz: Killing You Edition"
+
+Chapter 3.8.11.3.4 - Actions During Cornered in the Dorm
+	
+Instead of crying during Cornered in the Dorm:
+	say "You cry."
+
+Instead of screaming during Cornered in the Dorm:
+	say "You scream."
+
+Instead of listening to Carnicer during Cornered in the Dorm:
+	do nothing.
 
 Book 3.9 - Via Terminalis, West Street
 
