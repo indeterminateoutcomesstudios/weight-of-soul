@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 110517.
+The release number is 140517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -56,9 +56,8 @@ Volume 1 - Preamble
 
 - Write Midnight
 
-- Write the Carnicer countdown
-
 - Write Rooftop Pursuit
+
 - Write Highway to Hell
 - Write Can't Catch a Bloody Break
 
@@ -227,6 +226,7 @@ To say skip-commands-text:
 	say line break;
 	say "[line break][italic type]Midnight[roman type]";
 	say "[line break]>[bold type]skip to midnight[roman type]";
+	say "[line break]>[bold type]skip to rooftop[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -371,7 +371,8 @@ Cornered in the Dorm is a scene. [Marid is woken by Carnicer in her dormitory ro
 Cornered in the Dorm begins when Midnight begins.
 Cornered in the Dorm ends when the location is not Marid's Room.
 
-The Rooftop Pursuit is a scene. [Marid flees Carnicer across the rooftops of the Condemned Block.]
+Rooftop Pursuit is a scene. [Marid flees Carnicer across the rooftops of the Condemned Block.]
+Rooftop Pursuit begins when Cornered in the Dorm ends.
 
 Highway to Hell is a scene. [Marid continues fleeing through the Condemned Block while avoiding the deadly aether-daemons that lurk there and hallucinating like crazy. Ends with her luring Carnicer to her doom.]
 
@@ -422,7 +423,7 @@ Chapter 1.2.2.2 - Constructing the Status Line
 
 Table of Normal Status
 left	central	right
-" [location]"	""	"[if the current day is Prologue or the current day is Epilogue][otherwise][current day]"
+" [location]"	""	"[if the current day is Prologue or the current day is Midnight or the current day is Epilogue][otherwise][current day]"
 
 Table of Dialogue Status
 left	central	right
@@ -560,6 +561,7 @@ To skip past Day One:
 	if First Aid on Cavala has not ended:
 		skip past First Aid on Cavala;
 	move the player to Marid's Room, without printing a room description;
+	now the dormitory room door is closed;
 	now start-of-day is 2;
 	follow the scene changing rules.
 	
@@ -679,7 +681,16 @@ To skip to Midnight:
 	move the player to the West End, without printing a room description;
 	follow the scene changing rules;
 	move the player to Marid's Room, without printing a room description;
-	unveil Midnight.
+	now the dormitory room door is closed;
+	
+To skip Cornered in the Dorm:
+	if Day Two has not ended:
+		skip to Midnight;
+	now Carnicer is in Marid's Room;
+	follow the scene changing rules;
+	move the player to Pursuit Part One, without printing a room description;
+	now Carnicer is in Pursuit Part One;
+	follow the scene changing rules;
 	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
@@ -785,7 +796,15 @@ Skipping to Midnight is an action applying to nothing.
 Understand "skip to midnight" as skipping to Midnight.
 Check skipping to Midnight when Day Two has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to Midnight:
-	skip to Midnight.
+	skip to Midnight;
+	unveil Midnight.
+	
+Skipping to rooftop is an action applying to nothing.
+Understand "skip to rooftop" as skipping to rooftop.
+Check skipping to rooftop when Pursuit Part One is visited: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to rooftop:
+	skip Cornered in the Dorm;
+	try looking.
 	
 Book 1.3 - People
 
@@ -914,10 +933,10 @@ Chapter 1.3.3.3 - Carnicer
 Carnicer is an undescribed hostile improper-named mutant woman.
 The printed name is "assassin".
 The scent is "The scent of blood."
-Understand "hooded" or "assassin" or "killer" or "butcher" as Carnicer.
+Understand "hooded" or "assassin" or "killer" or "butcher" or "claw/claws/head" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The description of Carnicer is "She's walking towards you."
+The description of Carnicer is "She's far too close for comfort."
 
 Carnicer's blade is an improper-named thing. It is carried by Carnicer.
 The printed name is "assassin's blade".
@@ -1048,6 +1067,8 @@ The scent of yourself is "[if time is critical]This is not the time.[otherwise]Y
 Instead of examining the player:
 	if the location is Maze Part Two:
 		say "Fortunately, the knife didn't penetrate your jacket. You're unhurt. ";
+	otherwise if Midnight is happening:
+		say "You're deathly terrified. ";
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
@@ -2381,6 +2402,7 @@ title	subtable	description	toggle
 "Prologue"	Table of Prologue Hints	--	--
 "Day One"	Table of Day One Hints	--	--
 "Day Two"	Table of Day Two Hints	--	--
+"Midnight"	Table of Midnight Hints	--	--
 "Back"	--	--	quit rule
 
 Section 2.3.11.5.1 - General Hints
@@ -2482,6 +2504,21 @@ hint	used
 "If you search his lodgings, you'll find an important clue."
 "Reden's shack is to the west of Lower Riggertown."
 "Once you've examined the drink coupons, you can return to [the Webster] and tell him what you've learned."
+
+Section 2.3.11.5.5 - Midnight Hints
+
+Table of Midnight Hints
+title	subtable	description	toggle
+"I'm cornered in my room!"	Table of Cornered Hints	--	hint toggle rule
+"Back"	--	--	quit rule
+
+Table of Cornered Hints
+hint	used
+"You need to get out of there."	a number
+"The door isn't an option."
+"Take a look around. Is there any other way you could escape?"
+"Try the window."
+">[bold type]go east[roman type]."
 
 Chapter 2.3.11.6 - Summoning the Help Menu
 
@@ -2738,6 +2775,11 @@ I don't know what to think. All I can do is make my way there and talk to Justin
 		say "I'm tired. I'm not thinking straight. Maybe... maybe I have less of a handle on myself than I thought I did.
 
 I think I'll take a rest. Like Doctor Cavala asked me to. ";
+	[---
+	MIDNIGHT
+	---]
+	otherwise if Cornered in the Dorm is happening or Rooftop Pursuit is happening:
+		say "Oh Primes oh Primes oh Primes oh Primes";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -2889,6 +2931,11 @@ To say journal-text-objectives:
 		add "- Report back to Doctor Cavala's clinic" to L;
 	if Walking Home in Suspense is happening:
 		add "- Go home and get some sleep" to L;
+	[---
+	MIDNIGHT
+	---]
+	if Cornered in the Dorm is happening or Rooftop Pursuit is happening:
+		add "- Escape from the assassin" to L;
 	[---
 	END
 	---]
@@ -3122,7 +3169,7 @@ Instead of examining up in Outdoors, try examining the sky.
 Before listening to something that is part of the sky, try listening to the sky instead.
 
 The sky is a faraway backdrop in Outdoors. The indefinite article is "the".
-The description is "[if it is night]Shrouded among the clouds and the constellations, the [italic type]Luna[roman type] presides from its throne.[otherwise]The clouds huddle overhead in suspense."
+The description is "[if time is critical]Distant and uncaring.[otherwise if it is night]Shrouded among the clouds and the constellations, the [italic type]Luna[roman type] presides from its throne.[otherwise]The clouds huddle overhead in suspense."
 The sound is "The [if it is night]night is[otherwise]clouds are[end if] quiet."
 The sky has some text called the faraway response. The faraway response of the sky is "The heavens are beyond your reach."
 Understand "heaven" or "heavens" or "day/night/daylight" or "weather" or "overcast" or "desolate" as the sky.
@@ -3132,12 +3179,12 @@ The description is "[if it is night]They are dark shapes in a darker sky.[otherw
 Understand "dark" or "shapes" as the clouds.
 
 The Luna is scenery part of the sky. The printed name is "[italic type]Luna[roman type]". The indefinite article is "the".
-The description is "Theories abound on the nature of that alabaster sphere, but none can deny its beauty."
-Understand "moon" or "alabaster" or "sphere" or "throne" as the Luna.
+The description is "[if time is critical]The moon is bright.[otherwise]Theories abound on the nature of that alabaster sphere, but none can deny its beauty."
+Understand "moon/moonlight" or "alabaster" or "sphere" or "throne" as the Luna.
 Instead of searching the Luna, say "The [italic type]Luna[roman type] has no answers to give."
 
 Some constellations are scenery part of the sky. The indefinite article is "the".
-The description is "The Ouroboros, the Hierophant, the Alembicus Major..."
+The description is "[if time is critical]You don't have time for that now.[otherwise]The Ouroboros, the Hierophant, the Alembicus Major..."
 Understand "ouroboros" or "hierophant" or "alembicus" or "major" or "constellation" or "star" or "stars" as the constellations.
 Before searching the constellations, try examining the constellations instead.
 
@@ -6896,7 +6943,7 @@ The sound is "[if Midnight is happening]Your heartbeat hammers in your ears.[oth
 The scent is "[if Midnight is happening]You smell your own sweat, your own fear.[otherwise]Your room smells clean enough."
 The exit reminder is "[if Midnight is happening]You can't go that way.[otherwise]You can take the stairs down to the atrium."
 
-Before examining north in Marid's Room, try searching the dormitory window instead.
+Before examining east in Marid's Room, try searching the dormitory window instead.
 Before examining down in Marid's Room, try searching the dormitory window instead.
 Before examining outside in Marid's Room, try searching the dormitory window instead.
 
@@ -6915,15 +6962,33 @@ Understand "comfort/comforts" or "of" or "home" or "furnishing" or "space" or "s
 
 Part 3.8.2 - Dormitory Room Door
 
-The dormitory room door is a scenery door. The dormitory room door is above the Dormitory Block and below Marid's Room. The printed name is "door to your dormitory room".
-The description is "A simple wooden door."
+The dormitory room door is a scenery door.
+The dormitory room door is above the Dormitory Block and below Marid's Room.
+The printed name is "door to your dormitory room".
+
+The dormitory room door can be broken or unbroken. The dormitory room door is unbroken.
+
+When Midnight begins (this is the RIP Marid's door rule):
+	now the dormitory room door is broken;
+	now the dormitory room door is open;
+	now the dormitory room door is better left open.
+
+The description is "[if the dormitory room door is broken]It's in shambles.[otherwise]A simple wooden door."
 Understand "my" or "marid's" or "to" or "simple" or "wooden" or "dorm" or "latch" or "peephole" as the dormitory room door.
 Understand "exit" as the dormitory room door when the location is Marid's Room.
 
 Before turning the dormitory room door, try opening the dormitory room door instead.
-Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Room]What an odd idea.[otherwise]You live alone; there's no need to knock."
+Instead of knocking on the dormitory room door, say "[if time is critical]This is not the time.[otherwise if the dormitory room door is broken]There isn't much of a door left to knock on.[otherwise if the location is Marid's Room]What an odd idea.[otherwise]You live alone; there's no need to knock."
 Instead of searching the dormitory room door, say "[if time is critical]You don't have time for that.[otherwise if the location is Marid's Room]You peer around outside, but find nothing of interest.[otherwise]You'd have to go in to take a closer look."
-Instead of inserting the endoscope into the dormitory room door, say "You could just use the peephole."
+Instead of inserting the endoscope into the dormitory room door when the dormitory room door is unbroken, say "You could just use the peephole."
+
+Instead of locking the dormitory room door with, say "You've gotten so used to locking and unlocking the door that you don't think about it consciously."
+Instead of unlocking the dormitory room door with, try locking the dormitory room door with the second noun.
+
+Instead of opening the dormitory room door when the dormitory room door is broken, say "There isn't much of a door left to open."
+Instead of closing the dormitory room door when the dormitory room door is broken, say "There isn't much of a door left to close."
+Instead of locking the dormitory room door with when the dormitory room door is broken, say "There isn't much of a door left to lock."
+Instead of unlocking the dormitory room door with when the dormitory room door is broken, say "There isn't much of a door left to unlock."
 
 Part 3.8.3 - Dressing Table
 
@@ -7036,13 +7101,13 @@ Instead of inserting something into the cold closet, say "[if time is critical]T
 
 Part 3.8.5 - Marid's Bed
 
-Marid's bed is a privately-named enterable fixed in place supporter in Marid's Room. "[if Midnight is happening]Moonlight streams through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
+Marid's bed is a privately-named enterable fixed in place supporter in Marid's Room. "[if Midnight is happening]Moonlight streams from the east, through the window above your bed.[otherwise]Your bed is at the end of the room, beside the window."
 The printed name is "your bed".
 The description is "[if time is critical]You could easily climb out the window using your bed as a step.[otherwise if Walking Home in Suspense is happening]You want to curl up and shut out the world.[otherwise]It looks warm and inviting."
 Understand "my" or "marid's" or "bed" or "bedding" or "mattress" as Marid's bed.
 
 Instead of bed-making Marid's bed, say "[if time is critical]This is not the time.[otherwise if it is night]It's usual to make one's bed [italic type]after[roman type] one has slept in it.[otherwise]Your bed is already made."
-Instead of climbing or entering Marid's bed, try sleeping.
+Instead of climbing or entering Marid's bed when Midnight is not happening, try sleeping.
 Instead of inserting the endoscope into Marid's bed, say "Nothing is in the bedding. You'd know if there was."
 Instead of pushing, pulling, or turning Marid's bed, say "[if time is critical]You can't possibly move any of the furniture in time.[otherwise]There's no need to rearrange the furniture."
 Instead of knocking on or touching Marid's bed, say "[if time is critical]This is not the time.[otherwise]The mattress is soft and springy."
@@ -7053,7 +7118,7 @@ Part 3.8.6 - Dormitory Window
 
 [Eventually, Marid is going to have to abscond through this window for Midnight.]
 
-The dormitory window is an open unopenable scenery door. It is north of Marid's Room and south of the Placeholder Chase Area.
+The dormitory window is an open unopenable scenery door. It is east of Marid's Room.
 The description is "A square opening without a pane or a grille. A shadowed rooftop can be seen through it."
 The sound is "[if time is critical]This is not the time.[otherwise]You hear the murmuring of the city."
 The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the condemned block from here, a trace of its ash lingers in the air."
@@ -7065,7 +7130,7 @@ Instead of knocking on or touching the dormitory window, say "There's no pane or
 Before going through the dormitory window when Midnight is not happening, say "[if Midnight has not happened]There might one day be an extraordinary situation when you would consider braving the fall. Today is not that day.[otherwise]The memories are still fresh. You have no desire to relive them." instead.
 
 The view of the shadowed rooftop is faraway scenery in Marid's Room.
-The description is "It might be the roof of one of the condemned buildings north of here."
+The description is "It might be the roof of one of the condemned buildings east of here."
 Understand "roof" or "condemned" or "condemned building" as the rooftop view.
 Before entering the rooftop view, try entering the dormitory window instead.
 
@@ -7131,6 +7196,9 @@ Instead of listening to Marid's Room during Nine to Five Zombie, say "The bells 
 Chapter 3.8.9.1 - Go to Sleep, Marid (Again)
 
 First instead of sleeping in Marid's Room during Walking Home in Fear (this is the Day One sleeping in Marid's bed rule):
+	if the dormitory room door is open:
+		say "(first closing the door to your dormitory room)[command clarification break]";
+		now the dormitory room door is closed;
 	say "You change out of your clothes and curl up beneath the sheets. But sleep does not come easily.
 
 You close your eyes and drift in that listless limbo between wakefulness and slumber. A ticking like a clock echoes in your mind, behind your eyelids, like a promise you've forgotten and cannot remember.[paragraph break]";
@@ -7211,6 +7279,9 @@ After reading out horatio-d2msg-opendoor: now the dormitory room door is open.
 Chapter 3.8.10.2 - Go to Sleep, Marid (Again) (Redux)
 
 First instead of sleeping in Marid's Room during Walking Home in Suspense (this is the Day Two sleeping in Marid's bed rule):
+	if the dormitory room door is open:
+		say "(first closing the door to your dormitory room)[command clarification break]";
+		now the dormitory room door is closed;
 	say "You sit down on the edge of your bed. The sweat and stress of the day cling to you, pool in the shadows behind your eyes.[paragraph break]";
 	wait for any key;
 	say "Doctor Cavala is right. This is no longer a medical investigation -- it's a murder investigation. You should take a break. Leave matters to those qualified to handle them.[paragraph break]";
@@ -7255,7 +7326,7 @@ carnicer-ignore	true	false	"<Ignore the knocking.>"	"The knocking continues."	{c
 carnicer-answer	true	false	"<Answer the door.>"	"You clamber out of bed, pull your jacket close, and shuffle up to the door."	{carnicer-peek, carnicer-whosthere, carnicer-horatio, carnicer-opendoor}
 carnicer-peek	true	true	"<Look through the peephole.>"	"You look through the peephole.
 
-You can't make out anything. All you can see is a misty gray."	{carnicer-hello, carnicer-whosthere, carnicer-horatio, carnicer-opendoor}
+That's odd. You can't make out anything. All you can see is a misty gray."	{carnicer-hello, carnicer-whosthere, carnicer-horatio, carnicer-opendoor}
 carnicer-whosthere	true	true	"'Who's there?'"	"'Who's there?'
 
 There is no response."	{carnicer-peek, carnicer-hello, carnicer-horatio, carnicer-opendoor}
@@ -7306,7 +7377,15 @@ Every turn while Cornered in the Dorm is happening (this is the advance the Carn
 	increment the Carnicer countdown;
 	report Carnicer's banter;
 	if the Carnicer countdown is 7:
-		end the story saying "You have died".
+		say "There is a numbness.[paragraph break]";
+		wait for any key;
+		say "You find you cannot move. You have been impaled through the gut.[paragraph break]";
+		wait for any key;
+		say "'Good night,' the assassin whispers.[paragraph break]";
+		wait for any key;
+		say "The last thing you see is her receding shadow, before the blood loss overcomes you, and then --[paragraph break]";
+		wait for any key;
+		end the story saying "Darkness".
 	
 To report Carnicer's banter:
 	choose row Carnicer countdown in the Table of Carnicer Banter;
@@ -7332,24 +7411,63 @@ Report asking for hints during Cornered in the Dorm (this is the show bantz afte
 
 Table of Carnicer Banter
 index	happening	dialogue response
-1	"[wait for any key]'You've been a lot of trouble, you know.' She cocks her head. 'Asking dangerous questions. Getting dangerous answers.'"	""
-2	"Carnicer Bantz 1"	"Carnicer Counter-bantz 1"
-3	"Carnicer Bantz 2"	"Carnicer Counter-bantz 2"
-4	"Carnicer Bantz 3"	"Carnicer Counter-bantz 3"
-5	"Carnicer Bantz 4"	"Carnicer Counter-bantz 4"
-6	"Carnicer Bantz 5"	"Carnicer Counter-bantz 5"
-7	"Carnicer Bantz: Killing You Edition"	"Carnicer Counter-bantz: Killing You Edition"
+1	"[wait for any key]'You've been a lot of trouble, you know. Asking dangerous questions. Getting dangerous answers.'"	""
+2	"The assassin walks towards you. Calmly. Unhurriedly."	"'W-What do you want?'
 
-Chapter 3.8.11.3.4 - Actions During Cornered in the Dorm
+The assassin walks towards you. Calmly. Unhurriedly."
+3	"'You weren't my first choice, you know.' She giggles. 'At first we thought killing the doctor would be the end of it...'"	"'Get away from me!'
+
+'You weren't my first choice, you know.' She giggles. 'At first we thought killing the doctor would be the end of it...'"
+4	"'But then [italic type]you[roman type] came.' She runs a lazy claw along her sword. 'So spunky. So quiet and [italic type]determined[roman type].'"	"'Doctor Cavala won't be happy about this.'
+
+The assassin shrugs. 'Who cares about [italic type]her?[roman type] Don't you know, Marid dear? It's all about [italic type]you[roman type] now...'"
+5	"'He's head over heels for you, you know.' The assassin taps the tip of her blade. '[italic type]He[roman type] wouldn't let me lay a finger on you. So I decided to take things into my own hands...'"	"'Me? W-What about me?'
+
+'He's head over heels for you, you know.' The assassin taps the tip of her blade. '[italic type]He[roman type] wouldn't let me lay a finger on you. So I decided to take things into my own hands...'"
+6	"Her smile draws ever closer. 'You've given me a challenge. Quite the run. I'm sorry it all has to end so soon.'"	"'You'll never get away with this.'
+
+Her smile draws ever closer. 'You've given me a challenge. Quite the run. I'm sorry it all has to end so soon.'"
+7	"A flash. 'So then --'"	"'Why...'"
+
+Chapter 3.8.11.3.4 - Actions during Cornered in the Dorm
 	
-Instead of crying during Cornered in the Dorm:
-	say "You cry."
+Before approaching during Cornered in the Dorm, say "Yes, but how?" instead.
 
-Instead of screaming during Cornered in the Dorm:
-	say "You scream."
+Instead of crying during Cornered in the Dorm, say "You cry."
 
-Instead of listening to Carnicer during Cornered in the Dorm:
-	do nothing.
+First before going down during Cornered in the Dorm: say "You won't be getting past her any time soon." instead.
+
+First before going outside during Cornered in the Dorm: say "Yes, but how?" instead.
+
+Before jumping during Cornered in the Dorm, try going east instead.
+
+Instead of listening to Carnicer during Cornered in the Dorm, do nothing.
+
+First before opening the dormitory room door during Cornered in the Dorm: say "You won't be getting past her any time soon." instead.
+
+After entering Marid's bed during Cornered in the Dorm, say "You scramble onto your bed."
+
+Instead of getting off Marid's bed during Cornered in the Dorm, say "You can't. She's nearly upon you."
+
+Before opening a container during Cornered in the Dorm, say "The assassin bats your hand away." instead.
+
+Instead of screaming during Cornered in the Dorm, say "You scream."
+
+Instead of waiting during Cornered in the Dorm, do nothing.
+
+Chapter 3.8.11.3.5 - Escaping during Cornered in the Dorm
+
+Instead of going east during Cornered in the Dorm:
+	say "You take a step back. Another. Your heel scrapes against the bed frame.[paragraph break]";
+	wait for any key;
+	say "You're only going to get one chance at this.[paragraph break]";
+	wait for any key;
+	say "The assassin cocks her head. 'So then --'[paragraph break]";
+	wait for any key;
+	say "You kick off and [italic type]jump[roman type]. The wind slams into you, howling around you, clawing at your hair as you fall and fall and fall and [italic type]land[roman type] clumsily on the black tile --[paragraph break]";
+	wait for any key;
+	now the player is in Pursuit Part One;
+	now Carnicer is in Pursuit Part One.
 
 Book 3.9 - Via Terminalis, West Street
 
@@ -15105,6 +15223,44 @@ After reading out crow-d2-endqns:
 	
 Instead of talking to Crow when the home dialogue branch of Crow is crow-d2-intro and the enabled of crow-d2-intro is false:
 	say "You don't think she's in the mood to talk."
+
+Book 3.38 - Rooftop Pursuit
+
+[Rooftop Pursuit is a quickfire series of locations in which you have to go in the right direction immediately or you die.]
+
+Part 3.38.1 - Pursuit Part One (Rooftop)
+
+Pursuit Part One is a room. "[first time]You roll, twist, force yourself into a run. [only]Your knees are aching. The air is freezing, stinging your cheeks. Your boots dislodge old and broken tiles, sending them hurtling off the roof into the mist below.
+
+A balcony lies to the east. Behind you is a clattering, a shrieking that is not human."
+The printed name is "Rooftop".
+It is east of the dormitory window.
+
+The sky, the high-rise buildings, and the mist are in Pursuit Part One.
+
+The Pursuit Part One vignette is scenery in Pursuit Part One.
+Understand "clattering/shrieking" or "tile/tiles/roof/rooftop" or "foot/feet/knee/knees/boot/boots/leg/legs" as the Pursuit Part One vignette.
+
+The inviting balcony is scenery in Pursuit Part One.
+
+First before doing anything when the location is Pursuit Part One (this is the Pursuit Part One action rule):
+	if we are looking:
+		continue the action;
+	otherwise if we are going east or
+	we are going inside or
+	we are climbing the inviting balcony or
+	we are entering the inviting balcony:
+		say "Success!";
+		now the player is in Pursuit Part Two;
+		now Carnicer is in Pursuit Part Two;
+	otherwise:
+		say "Failure!";
+		end the story saying "You have died";
+	stop.
+	
+Part 3.38.1 - Pursuit Part Two
+
+Pursuit Part Two is a room.
 
 Book of the Rest
 
