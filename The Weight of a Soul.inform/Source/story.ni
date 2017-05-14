@@ -1165,7 +1165,7 @@ Rule for clarifying the parser's choice of the natron jacket: say "(your natron 
 
 Instead of attacking, burning, or cutting the natron jacket, say "You only have the one jacket. You can't afford to damage it."
 Instead of looking under the natron jacket, say "Under your natron jacket are your pendant and blouse."
-Instead of taking off the natron jacket, say "There's no reason to remove your jacket."
+Instead of taking off the natron jacket, say "[if time is critical]This is not the time.[otherwise if the location is Marid's Room and it is night]You'll take off your jacket when you go to bed.[otherwise]There's no reason to remove your jacket."
 Instead of tying the natron jacket to something, say "Your clothes are too close-fitting to tie anything with."
 Instead of tying something to the natron jacket, say "Your clothes are too close-fitting to tie anything with."
 
@@ -1623,6 +1623,7 @@ Understand "sit at [something]" as entering.
 Understand "sit down on/at [something]" as entering.
 Understand "slap [something]" as attacking.
 Understand "stab [something]" as cutting.
+Understand "steal [something]" as taking.
 Understand "step on/in [something]" as entering.
 Understand "straighten [something]" as turning.
 Understand "study [something]" as examining.
@@ -1767,7 +1768,7 @@ Carry out going home:
 	if Marid's Room is visited:
 		try approaching Marid's Room;
 	otherwise:
-		say "That isn't a place you've visited[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
+		say "That isn't a place you've visited in this game yet[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
 
 Knocking on is an action applying to one thing. Understand "knock on/-- [something]" or "tap [something]" as knocking on.
 Check knocking on an openable door: say "There is no response."; stop the action.
@@ -1849,7 +1850,7 @@ Rule for printing a parser error when the latest parser error is the not a verb 
 	
 Rule for printing a parser error when the latest parser error is the noun did not make sense in that context error (this is the new did not make sense in that context rule):
 	if the player's command includes "go/revisit/return":
-		say "That isn't a place you've visited[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise]." instead;
+		say "That isn't a place you've visited in this game yet[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise]." instead;
 	otherwise:
 		say "That is either not important or not something you can see.[line break][if look-reminder-printed is false][line break](Type >[bold type]look[roman type] or a blank command to examine your surroundings.)";
 		now look-reminder-printed is true.
@@ -2338,7 +2339,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Lewis, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -6271,7 +6272,7 @@ Instead of taking the breadcrumbs, say "You would need a broom for that."
 Instead of pushing, pulling, rubbing, squeezing, touching, or turning the breadcrumbs, say "[if the breadcrumbs are in the wicker basket]It's hard to do that while the basket is with [the Saliunca].[otherwise]You aren't sure what that would accomplish."
 		
 Some living-pigeons are an undescribed privately-named creature animal in the Dormitory Block. The printed name is "pigeons".
-The description is "They are white and black and every shade of grey."
+The description is "They are white and black and every shade of gray."
 The sound is "They flap and coo."
 Understand "bird/birds" or "pigeon/pigeons" as the living-pigeons.
 Instead of attacking, cutting, or scaring the living-pigeons, say "You scare some of the pigeons away, but they return shortly after."
@@ -9840,7 +9841,7 @@ He taps the two cards in the center, one laid perpendicular over the other, and 
 His gold-gloved hand hovers over the top left corner. 'Shall we begin?'"	{teller-past2}
 teller-past2	true	false	"<Watch him reveal the corners.>"	"With great showmanship, he turns over the first card.
 
-[wait for any key]Some kind of hound or beast stares out at you, with smoke-grey fur and menacing slitted eyes. The visage is unfamiliar, terrifying.
+[wait for any key]Some kind of hound or beast stares out at you, with smoke-gray fur and menacing slitted eyes. The visage is unfamiliar, terrifying.
 
 'The Wolf,' says the fortune-teller. 'It represents danger, and the fear that comes with isolation.'
 
@@ -15012,7 +15013,7 @@ Instead of taking the waste bin, say "You can't imagine why you would need this.
 Some unprepossessing gray lumps are faraway scenery.
 The description is "Gum. Pre-chewed."
 The unprepossessing gray lumps have some text called the faraway response. The faraway response is "You'd really rather not."
-Understand "grey" or "lump" or "chewed/chewing" or "gum" as the unprepossessing gray lumps.
+Understand "gray" or "lump" or "chewed/chewing" or "gum" as the unprepossessing gray lumps.
 Before smelling the unprepossessing gray lumps, try smelling the waste bin instead.
 
 The disheveled shirt is a thing worn by Crow.
