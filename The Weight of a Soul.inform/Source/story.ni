@@ -74,7 +74,7 @@ Part 1.1.1 - Use Options
 Use American dialect and the serial comma.
 Use MAX_ARRAYS of 20000.
 Use MAX_DICT_ENTRIES of 4000.
-Use MAX_NUM_STATIC_STRINGS of 40000.
+Use MAX_NUM_STATIC_STRINGS of 60000.
 Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
 Use MAX_STATIC_DATA of 1440000.
@@ -2290,7 +2290,7 @@ To say about-this-game-text:
 
 [italic type]The Weight of a Soul[roman type] is an interactive fiction game set in the world of Solphos. It takes place some years after my short story [italic type]The Guiding Light[roman type], and is an indirect sequel to it. There are callbacks and references scattered throughout this game for those already familiar with the setting, but don't worry if you're new to the whole thing: the game is designed so that anyone can enjoy it regardless of prior experience.
 
-This game was written and compiled in Inform, a design system for interactive fiction using human-readable programming language. Inform 7 was created by Graham Nelson with contributions from countless talented writers and programmers, and this game is deeply indebted to all of their efforts. More information can be found at [bold type]inform7.com[roman type].";
+This game was written and compiled in Inform 7, a design system for interactive fiction using human-readable programming language. More information can be found at [bold type]inform7.com[roman type].";
 
 To say how-to-play-text:
 	say "[bold type]How to play[roman type]
@@ -2314,7 +2314,7 @@ To say useful-commands-text:
 
 >[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type]) allows you to interact with someone.
 
->[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can also >[bold type]enter (something)[roman type] or >[bold type]exit[roman type].[paragraph break]";
+>[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can >[bold type]put (something) in[roman type] or [bold type]on (something else)[roman type].[paragraph break]";
 	say ">[bold type]go (direction)[roman type] (>[bold type](direction)[roman type]) allows you to navigate the world. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type].
 
 >[bold type]sleep[roman type] advances the story at the end of each in-game day.
@@ -2338,12 +2338,12 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Lewis, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host of people whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Lewis, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
-Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks again to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
-[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to drop me a line: as of this writing, I am reachable at [bold type]chinkeeyong@gmail.com[roman type].";
+[italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to email me at [bold type]chinkeeyong@gmail.com[roman type].";
 
 Chapter 2.3.11.2 - Journal
 
@@ -3718,6 +3718,7 @@ Some shelves of medical supplies are a scenery supporter in the Surgery Room.
 Understand "vials" or "and" or "shelf" as the shelves of medical supplies.
 Instead of examining or searching the shelves of medical supplies, say "[if a described thing is on the shelves of medical supplies]Nestled among the medical supplies, you spy [a list of described things on the shelves of medical supplies].[otherwise]You spy nothing useful on the shelves, well-stocked though they are."
 Instead of entering the shelves of medical supplies, say "There's no need; you can reach all the shelves quite easily."
+Instead of taking the shelves of medical supplies, say "[if Reden's Surgery is happening]You can't take all the supplies. You'll have to be more discerning.[otherwise]You don't need any of these supplies right now."
 
 Part 3.2.2 - Calomel Curtain
 
@@ -7045,7 +7046,7 @@ Instead of searching or taking the toiletries, say "[if time is critical]Nothing
 
 A miscellaneous-desk-item is a kind of thing.
 A miscellaneous-desk-item is usually scenery.
-Before doing anything when time is critical and the current action involves a miscellaneous-desk-item: say "That won't save you."
+Before doing anything when time is critical and (the noun is a miscellaneous-desk-item or  the second noun is a miscellaneous-desk-item): say "That won't save you."
 Instead of taking a miscellaneous-desk-item, say "You don't need that right now."
 Instead of looking under a miscellaneous-desk-item, say "That's on the dressing table."
 
