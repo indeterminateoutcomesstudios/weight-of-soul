@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 140517.
+The release number is 150517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -898,6 +898,7 @@ The description is "[if First Aid on Cavala is happening and Doctor Cavala is we
 The scent is "[if First Aid on Cavala is happening]The scent of blood is thick.[otherwise]You smell the calomel in the dressing."
 Understand "left" or "thigh/knee/tendon" or "cut/gash/wound/tear/injury" or "blood/bloody/bleeding" or "trouser/trousers" as Doctor Cavala's leg.
 Before bandaging Doctor Cavala's leg with, try bandaging Doctor Cavala with the second noun instead.
+Instead of taking off Doctor Cavala's leg, say "Taking off Doctor Cavala's trousers might cause more trauma. You have to stop the bleeding first."
 Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, squeezing, swinging, taking, touching, or turning Doctor Cavala's leg, say "[if time is critical]This is not the time.[otherwise]That would worsen her injury."
 
 The hermetically sealed bandage is a wearable thing.
@@ -917,7 +918,7 @@ Understand "vigile" as Horatio.
 
 To say horatio-description:
 	if Cavala's Errands is happening:
-		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have his around. ";
+		say "Vigile Horatio is a childhood friend of yours. He's always been a bit dense, but you're glad to have him around. ";
 	otherwise if Walking Home in Fear is happening:
 		say "At least he seems to be making himself useful. ";
 	otherwise if All Quiet on the Western Front is happening:
@@ -1159,6 +1160,9 @@ Part 2.2.2 - Natron Jacket
 The natron jacket is worn by the player. The indefinite article is "your".
 The description is "A utilitarian white garment, lined and sealed with alchemical sigils against contamination. It effectively shields its wearer against most communicable diseases."
 The scent is "The jacket has a distinct lack of smell."
+
+Rule for clarifying the parser's choice of the natron jacket: say "(your natron jacket)".
+
 Instead of attacking, burning, or cutting the natron jacket, say "You only have the one jacket. You can't afford to damage it."
 Instead of looking under the natron jacket, say "Under your natron jacket are your pendant and blouse."
 Instead of taking off the natron jacket, say "There's no reason to remove your jacket."
@@ -1171,11 +1175,16 @@ Understand "sigil" as the alchemical sigils.
 Instead of looking under the sigils, say "The sigils are part of the jacket."
 Before searching the sigils, try examining the sigils instead.
 
+Rule for clarifying the parser's choice of the alchemical sigils: say "(the sigils on your jacket)".
+
 Part 2.2.3 - Marid's Clothes
 
 Some clothes are worn by the player. The indefinite article of the clothes is "your".
 The description is "Simple garb, but it keeps the wind and moisture out."
 Understand "garb" or "blouse" or "glove/gloves" or "apron" or "pants/trousers" or "pocket/pockets" or "boot/boots" or "shoe/shoes" or "sock/socks" as the clothes.
+
+Rule for clarifying the parser's choice of the clothes: say "(your clothes)".
+Does the player mean doing something to the clothes: it is unlikely.
 
 Before smelling the clothes, try smelling the player instead.
 Instead of attacking or burning the clothes, say "[if time is critical]This is not the time.[otherwise]What an odd idea."
@@ -1238,6 +1247,8 @@ The practitioner's badge is a key-item carried by the player. The indefinite art
 The description is "This burnished badge bears the symbol of a snake coiling around a staff, certifying you as a qualified apprentice of the [italic type]ars vitalis[roman type]."
 Understand "burnished" or "symbol" or "snake" or "staff" as the practitioner's badge.
 
+Rule for clarifying the parser's choice of the practitioner's badge: say "(your practitioner's badge)".
+
 Instead of attacking or cutting the practitioner's badge, say "The badge is far too valuable to risk damaging."
 Instead of giving the practitioner's badge to someone, say "[if time is critical]This is not the time.[otherwise]You earned this badge. You'll keep it."
 Instead of rubbing the practitioner's badge, say "[if time is critical]This is not the time.[otherwise]You polish your badge a little."
@@ -1250,6 +1261,8 @@ The scalpel is a key-item carried by the player. The indefinite article is "your
 The description is "This elegant blade was a graduation gift from the Physicians['] College. It measures just over twenty centimeters long, and holds a finely graduated orichalcum edge."
 The scent is "You smell the otherworldly tang of orichalcum."
 Understand "elegant" or "blade" or "orichalcum" or "edge" as the scalpel.
+
+Rule for clarifying the parser's choice of the scalpel: say "(your scalpel)".
 
 Instead of attacking the scalpel, say "[if time is critical]This is not the time.[otherwise]Your scalpel is far too valuable to risk damaging."
 Instead of cutting the scalpel, say "[if time is critical]This is not the time.[otherwise]A futile exercise in topology."
@@ -1267,6 +1280,8 @@ The purse is a key-item carried by the player. The indefinite article is "your".
 The description is "A simple cloth purse. It's slightly worn from age."
 The scent is "Its scent has been leached from the constant proximity to natron-inscribed notes."
 Understand "money" or "cash" or "libra/librae/talent/talents" or "[number] libra/librae/talent/talents" as the purse.
+
+Rule for clarifying the parser's choice of the purse: say "(your purse)".
 
 Before removing the purse from the purse, try opening the purse instead.
 Instead of dropping the purse, say "[if time is critical]This is not the time.[otherwise]You prefer to keep your money close at hand."
@@ -1572,11 +1587,13 @@ Understand "upstairs" as up. Understand "downstairs" as down.
 
 Chapter 2.3.2.3 - Action Synonyms
 
+Understand "apply [other things] on/to [something]" as putting it on.
 Understand "arrange [something]" as pushing.
 Understand "climb through/into/in/inside/on/onto/to [something]" as entering.
 Understand "descend into/through/on/in/inside/-- [something]" as entering.
 Understand "dissect [something]" as cutting.
 Understand "fall asleep" as sleeping.
+Understand "feed [something preferably held] in/into/inside [something]" as inserting it into.
 Understand "find [text] in [something]" as consulting it about (with nouns reversed).
 Understand "get inside [something]" as entering.
 Understand "go back/-- to sleep" as sleeping.
@@ -1810,7 +1827,8 @@ Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[o
 Understand "step with care" as a mistake ("[if the location is Maze Part Four]You can't bring yourself to.[otherwise]Always.").
 Understand "stoop" as a mistake ("[if time is critical]This is not the time.[otherwise]You stoop.").
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
-Understand "type [text]" as a mistake ("[if the correspondence machine is in the location]None of the alphanumeric keys are working.[otherwise]There's nothing here that you can type on.").
+Understand "tidy [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood for housework.").
+Understand "type [text]" as a mistake ("[if the correspondence machine is in the location]None of the alphanumeric keys are working. Only the playback key appears to be functional.[otherwise]There's nothing here that you can type on.").
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
 
 Part 2.3.4 - New Parser Error Messages
@@ -1981,7 +1999,7 @@ Chapter 2.3.9.2 - Tearing Out Inform Dialogue
 
 Understand the commands "ask" and "tell" and "say" and "answer" and "yes" and "no" and "sorry" as something new.
 
-Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" or "yes" or "no" or "sorry" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)").
+Understand "ask [text]" or "tell [text]" or "answer [text]" or "say [text]" or "insult [text]" or "compliment [text]" or "flirt [text]" or "greet [text]" or "whisper [text]" or "wave at/to [text]" or "report [text]" or "hello" or "hi" or "ok" or "okay" or "nod" or "shake head" or "wave" or "yes" or "no" or "sorry" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)").
 
 Understand "wave hello" or "wave hello [text]" or "wave goodbye" or "wave goodbye [text]" as a mistake ("(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"). [Because OF COURSE wxd tried this]
 
@@ -2320,7 +2338,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host of people whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Lewis, Liangdeng, Luel, Mabbu, Miss G, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host of people whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks again to Emily Short for various extensions that do backstage heavy lifting for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player: I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -5771,7 +5789,7 @@ Before examining or smelling the odor of tinctured camphor, try smelling the loc
 Instead of doing anything other than examining or smelling to the odor of tinctured camphor, say "You can only smell it."
 
 Some shelves of organs are a scenery supporter in the Mortuary.
-The description is "Each jar is meticulously labeled with names and dates."
+The description is "The jars are meticulously labeled with names and dates."
 Understand "organ" or "shelf" or "jar/jars" or "formaldehyde" or "eyeball/eyeballs" or "kidney/kidneys" or "liver/livers" or "name/names" or "date/dates" as the shelves of organs.
 Instead of entering the shelves of organs, say "The shelves wouldn't support your weight."
 Instead of searching the shelves of organs, say "There are twenty or thirty jars here. They contain eyeballs, kidneys, livers, and so on."
@@ -7018,17 +7036,59 @@ Before searching the mirror, try examining the mirror instead.
 
 On the dressing table is a scenery thing called the pile of miscellaneous stationery and toiletries.
 The description of the pile is "[if time is critical]None of these things matter right now.[otherwise]On the one hand, your pens, ink, medical texts, rent payments, paper correspondence; on the other, your toothbrush, toothpowder, comb, nail file, and other necessities of day-to-day living."
-Understand "toiletry" or "assorted" or "my" or "marid's" as the toiletries.
+Understand "toiletry" or "assorted" or "my" or "marid's" or "necessity/necessities" as the toiletries.
 
 Instead of looking under the toiletries, say "[if time is critical]Nothing.[otherwise]Under the stationery and toiletries is the dressing table."
 Instead of pushing, pulling, or turning the toiletries, say "[if time is critical]That won't accomplish anything.[otherwise]That would just make a mess."
 Instead of rubbing the toiletries, say "[if time is critical]This is not the time.[otherwise]You don't really have anywhere else to put your things."
 Instead of searching or taking the toiletries, say "[if time is critical]Nothing here will help you.[otherwise]You don't need any of these things right now."
 
-Some specific-pile-items are a privately-named scenery thing part of the toiletries. The printed name is "miscellaneous stationery and toiletries".
-Understand "pen/pens" or "ink" or "medical" or "text/texts" or "rent" or "payment/payments" or "paper/papers" or "correspondence" or "toothbrush" or "toothpowder" or "comb" or "nail" or "file" or "necessity/necessities" or "and" or "my" or "marid's" as the specific-pile-items.
-Before doing anything to the specific-pile-items, say "[if time is critical]That won't save you.[otherwise]That's not something you need to be concerned with." instead.
-Before doing anything when the second noun is the specific-pile-items, say "[if time is critical]That won't save you.[otherwise]That's not something you need to be concerned with." instead.
+A miscellaneous-desk-item is a kind of thing.
+A miscellaneous-desk-item is usually scenery.
+Before doing anything when time is critical and the current action involves a miscellaneous-desk-item: say "That won't save you."
+Instead of taking a miscellaneous-desk-item, say "You don't need that right now."
+Instead of looking under a miscellaneous-desk-item, say "That's on the dressing table."
+
+Some writing materials are a miscellaneous-desk-item on the dressing table.
+The description is "For signing your name on documents, mostly."
+The scent is "Smells inky."
+Understand "pen/pens" or "ink/inkpot" or "material" as the writing materials.
+
+Some apprentice medical texts are a miscellaneous-desk-item on the dressing table.
+The description is "Your old school texts. You reread them from time to time as a refresher."
+The scent is "The texts smell musty."
+Understand "text" or "school" or "homework" as the apprentice medical texts.
+Instead of searching the apprentice medical texts, say "You flip through the texts, but they shed no light on the nature of the affliction."
+
+Some rent payments are a miscellaneous-desk-item on the dressing table.
+The description is "At least the rent here is cheap."
+Understand "payment" as the rent payments.
+
+The paper correspondence is a miscellaneous-desk-item on the dressing table. The indefinite article is "some".
+The description is "One of these days you'll tidy up all this junk mail."
+Understand "junk" or "mail" as the paper correspondence.
+
+The wooden toothbrush is a miscellaneous-desk-item on the dressing table.
+The description is "It's just a regular wooden toothbrush."
+Understand "brush" as the wooden toothbrush.
+Before taking the wooden toothbrush, try brushing your teeth instead.
+
+The can of toothpowder is a miscellaneous-desk-item on the dressing table.
+The description is "Saleratus and hartshorn. It cleans your teeth well enough, and you've learned to endure the taste."
+The scent is "It smells... powdery, for lack of a better term."
+Understand "powder" as the can of toothpowder.
+Before taking or opening the can of toothpowder, try brushing your teeth instead.
+Instead of searching the can of toothpowder, say "Nothing but toothpowder in there."
+Instead of closing the can of toothpowder, say "It's already closed."
+Instead of eating or tasting the can of toothpowder, say "You taste enough of the stuff when you brush your teeth."
+
+The hair comb is a miscellaneous-desk-item on the dressing table.
+The description is "Just a simple hair comb."
+Before taking the hair comb, try combing your hair instead.
+
+The nail file is a miscellaneous-desk-item on the dressing table.
+The description is "It's important for students of the [italic type]ars vitalis[roman type] to keep their nails trimmed."
+Before taking the nail file, try filing your nails instead.
 
 Chapter 3.8.3.2 - Drawers
 
@@ -7515,7 +7575,7 @@ The hanging banner is an open unopenable scenery door. It is southwest of the We
 The description is "The banner is an advertisement for a night market, now three weeks out of date. You can't see much behind it."
 The scent is "You smell a hint of foul smoke coming from the alley."
 Understand "advertisement" or "alley" as the hanging banner.
-Instead of searching the hanging banner, say "You can't see much behind the banner."
+Instead of searching or looking under the hanging banner, say "You can't see much behind the banner."
 Instead of touching the hanging banner, say "The banner is ragged and covered in dust."
 
 After going through the hanging banner while the player is staid: say "You duck under the banner..."; continue the action.
@@ -7669,7 +7729,7 @@ The rubbish is scenery in the Crooked Alley. The indefinite article is "some". T
 Instead of pushing or pulling the rubbish, say "You find nothing of interest."
 Instead of taking the rubbish, say "You've no use for any of it."
 
-Some smoking vents are scenery in the Crooked Alley. The description is "The south wall of the alley is lined with fume-spewing vents." Understand "south/-- wall" or "fume/smoke" or "spewing" or "fume-spewing" or "underground" or "distillery/distilleries" as the smoking vents.
+Some smoking vents are scenery in the Crooked Alley. The description is "The south wall of the alley is lined with fume-spewing vents." Understand "south/-- wall" or "fume/fumes/smoke" or "spewing" or "fume-spewing" or "underground" or "distillery/distilleries" as the smoking vents.
 Instead of opening or entering the smoking vents, say "You don't think that will be very productive."
 Instead of searching the smoking vents, say "You can't see much through the smoke."
 Instead of inserting the endoscope into the smoking vents, say "You can't see much through the smoke."
@@ -7773,6 +7833,9 @@ Before smelling the exterminators, try smelling the dangerous alchemical apparat
 Understand "exterminator" or "in work/-- coat/coats" or "workman/workmen" or "civic" or "work" as the exterminators.
 Instead of attacking or cutting the exterminators, say "That seems more likely to land you in prison than in Riggertown."
 Instead of kissing or squeezing the exterminators, say "[one of]You give the nearest of the men a peck on the cheek, but he remains unmoved. 'I'm flattered, miss,' he says, 'but I can't let you through.'[or]You've already tried that.[stopping]".
+Instead of giving the practitioner's badge to the exterminators, say "[one of]'I'm a doctor's apprentice,' you say.
+
+'That's well and good, miss, but I still can't let you through.'[or]You've already tried that.[stopping]".
 Instead of giving the purse to the exterminators, say "You don't have nearly enough money on you for a bribe."
 
 exterminators-profession-known is a truth state that varies.
@@ -7804,7 +7867,7 @@ Understand "equipment" or "demijohn/demijohns" or "hose/hoses" or "substance/sub
 The work cordon is privately-named scenery in Following the Canal.
 The printed name is "cordon".
 The description is "It doesn't look like you'll be getting through it."
-Understand "cordon" as the work cordon.
+Understand "cordon/cordons" as the work cordon.
 Before smelling the work cordon, try smelling the dangerous alchemical apparatus instead.
 Before climbing or entering the work cordon, try going south instead.
 
@@ -9002,7 +9065,8 @@ Understand "bar/bars/barred" or "horn/horns" or "crescent shaped/-- window" as t
 Instead of entering the crescent-shaped window, say "The window is barred."
 Instead of cutting the crescent-shaped window, say "You scratch at the bars for a few minutes, but find them too thick and too closely spaced to saw through efficiently."
 Instead of searching the crescent-shaped window, say "Through the window you see only darkness."
-Instead of inserting something that is not the endoscope into the crescent-shaped window, say "The window is barred."
+Instead of inserting something into the crescent-shaped window, say "The window is barred."
+Instead of inserting the endoscope into the crescent-shaped window, say "You thread the endoscope into the window, but fail to make out anything in the darkness."
 
 Part 3.18.3 - Graffiti and Crescent Keyhole
 
@@ -10367,7 +10431,7 @@ Before entering the glimmer of sunlight, try going west instead.
 marid-kneeling-in-maze is a truth state that varies.
 
 Instead of going in Maze Part Four (this is the exiting the Shanty Maze rule):
-	if the noun is west:
+	if the noun is west or the noun is outside:
 		if marid-kneeling-in-maze is true:
 			say "You get to your feet.[paragraph break]";
 			now marid-kneeling-in-maze is false;
@@ -10381,7 +10445,7 @@ Instead of going in Maze Part Four (this is the exiting the Shanty Maze rule):
 		say "You don't stop until you feel the sun on your face once more.[paragraph break]";
 		wait for any key;
 		now the player is in Cadaver Walk;
-	otherwise if the noun is up or the noun is outside and marid-kneeling-in-maze is true:
+	otherwise if the noun is up and marid-kneeling-in-maze is true:
 		say "You get to your feet.";
 		now marid-kneeling-in-maze is false;
 	otherwise if the noun is up:
@@ -11346,6 +11410,7 @@ The sound is "[if Day One is happening]Nobody seems to be home.[otherwise]You he
 The scent is "You smell leftovers. Something fried."
 Understand "home" or "zoiro's" or "koriph's" or "residence" as the rustic little house.
 Before entering the rustic little house, try going west instead.
+Does the player mean doing something with the rustic little house: it is likely. [As opposed to the front door.]
 
 Some other houses along Layabout Row are scenery in VII Layabout Row.
 The description is "These suburbs are home to the majority of the Channelworks District's goblin population."
@@ -11383,13 +11448,13 @@ Instead of tying something to the tarnished old pull-bell, say "That won't accom
 
 Instead of swinging the tarnished old pull-bell:
 	if the front door of Zoiro's house is locked:
-		say "The bell clatters noisily, but no one answers the door.";
+		say "The bell clatters noisily, but no one answers the door. Perhaps they aren't at home.";
 	otherwise:
 		say "The bell clatters noisily. 'Come in!' you hear Zoiro call."
 
 Part 3.28.2 - Front Door of Zoiro's House
 
-The front door of Zoiro's house is a lockable locked scenery door.
+The front door of Zoiro's house is a lockable locked scenery door. The printed name is "front door".
 It is west of VII Layabout Row and east of Zoiro's Residence.
 The description is "The plaque on the front door informs you that this house is the residence of Zoiro and Koriph."
 Understand "plaque" or "koriph's" or "residence" as the front door of Zoiro's house.
@@ -11399,7 +11464,7 @@ Does the player mean doing something with the front door of Zoiro's house: it is
 Instead of knocking on the front door of Zoiro's house:
 	if the front door of Zoiro's house is locked:
 		if Cavala's Errands is happening:
-			say "There is no response. Zoiro must not be home at the moment.";
+			say "There is no response. Perhaps they aren't at home.";
 		otherwise if Reden Investigation has not ended:
 			say "There is no response. Perhaps you should come back later.";
 		otherwise:
@@ -13377,12 +13442,17 @@ Instead of inserting the ticker-tape reel into something:
 		say "You return the reel to the box.";
 		now the ticker-tape reel is nowhere;
 	otherwise if the second noun is the feed wheel:
-		say "You thread the ticker tape into the feed wheel, which it fits perfectly.";
-		now the ticker-tape reel is on the feed wheel;
+		if the ticker-tape reel is on the feed wheel:
+			say "The ticker tape is already in the feed wheel.";
+		otherwise:
+			say "You thread the ticker tape into the feed wheel, which it fits perfectly.";
+			now the ticker-tape reel is on the feed wheel;
 	otherwise:
 		say "You shouldn't leave the ticker tape lying around here."
 		
 Before putting the ticker-tape reel on the feed wheel, try inserting the ticker-tape reel into the feed wheel instead.
+Before giving the ticker-tape reel to the feed wheel, try inserting the ticker-tape reel into the feed wheel instead.
+Before giving the ticker-tape reel to the correspondence machine, try inserting the ticker-tape reel into the correspondence machine instead.
 
 After taking the ticker-tape reel when the ticker-tape reel is in the feed wheel:
 	say "You pull the ticker tape out of the feed wheel."
