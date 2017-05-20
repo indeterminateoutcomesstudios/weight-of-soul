@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 150517.
+The release number is 200517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -56,16 +56,14 @@ Volume 1 - Preamble
 
 - Write Midnight
 
-- Write Rooftop Pursuit
+- Write Monster House
 
 - Write Highway to Hell
 - Write Can't Catch a Bloody Break
 
 - Write Day Three
 - Write Day Four
-- Write Epilogue
-
-- Implement the Map]
+- Write Epilogue]
 
 Book 1.1 - Miscellany
 
@@ -371,10 +369,14 @@ Cornered in the Dorm is a scene. [Marid is woken by Carnicer in her dormitory ro
 Cornered in the Dorm begins when Midnight begins.
 Cornered in the Dorm ends when the location is not Marid's Room.
 
-Rooftop Pursuit is a scene. [Marid flees Carnicer across the rooftops of the Condemned Block.]
+Rooftop Pursuit is a scene. [Marid flees Carnicer through the Condemned Block.]
 Rooftop Pursuit begins when Cornered in the Dorm ends.
+Rooftop Pursuit ends when the location is Gruetown.
 
-Highway to Hell is a scene. [Marid continues fleeing through the Condemned Block while avoiding the deadly aether-daemons that lurk there and hallucinating like crazy. Ends with her luring Carnicer to her doom.]
+Monster House is a scene. [Marid falls into a pit full of aether-daemons and has to figure out how to escape.]
+Monster House begins when Rooftop Pursuit ends.
+
+Highway to Hell is a scene. [Marid lures Carnicer to her doom.]
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 
@@ -1068,8 +1070,10 @@ The scent of yourself is "[if time is critical]This is not the time.[otherwise]Y
 Instead of examining the player:
 	if the location is Maze Part Two:
 		say "Fortunately, the knife didn't penetrate your jacket. You're unhurt. ";
-	otherwise if Midnight is happening:
+	otherwise if Cornered in the Dorm is happening:
 		say "You're deathly terrified. ";
+	otherwise if Monster House is happening:
+		say "You hurt all over. At least nothing seems to be broken. ";
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
@@ -1250,7 +1254,7 @@ Understand "burnished" or "symbol" or "snake" or "staff" as the practitioner's b
 Rule for clarifying the parser's choice of the practitioner's badge: say "(your practitioner's badge)".
 
 Instead of attacking or cutting the practitioner's badge, say "The badge is far too valuable to risk damaging."
-Instead of giving the practitioner's badge to someone, say "[if time is critical]This is not the time.[otherwise]You earned this badge. You'll keep it."
+Instead of giving the practitioner's badge to someone, say "[if time is critical]This is not the time.[otherwise]You don't think the badge will convince [the second noun] of anything."
 Instead of rubbing the practitioner's badge, say "[if time is critical]This is not the time.[otherwise]You polish your badge a little."
 Instead of looking under or turning the practitioner's badge, say "[if time is critical]This is not the time.[otherwise]There's nothing on the reverse of the badge. The clip broke off some months ago."
 Instead of wearing the practitioner's badge, say "[if time is critical]This is not the time.[otherwise]The clip of the badge broke off some months ago, and so you've had to keep it in your pocket instead."
@@ -1817,7 +1821,7 @@ Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be m
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
-Understand "undress" as a mistake ("[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire.").
+Understand "undress" or "strip" as a mistake ("[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire.").
 Understand "use [text]" as a mistake ("(You'll have to use a more specific verb than that.)").
 Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
@@ -2298,7 +2302,7 @@ To say how-to-play-text:
 
 This is a work of interactive fiction. It is a game about solving puzzles and investigating mysteries. You play the part of Marid, a doctor's apprentice, and your actions in the coming days could determine the fate of the Channelworks District.
 
-The > symbol indicates a command prompt. When a > is displayed, you can type commands for Marid to follow, in the form >[bold type]go west[roman type] or >[bold type]take lantern[roman type], and she will go along as far as she is able and willing. A list of commands can be found in the help menu.
+The > symbol indicates a command prompt. When a > is displayed, you can type commands for Marid to follow, in the form >[bold type]go west[roman type] or >[bold type]take lantern[roman type], and she will go along as far as she is able and willing. Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.
 
 If you are talking to someone, you will instead be prompted to choose from a list of possible responses, in the form [italic type]'1) Say hello; 2) Say goodbye.'[roman type] In this case, you should choose one of the responses by typing the corresponding number.
 
@@ -2315,7 +2319,7 @@ To say useful-commands-text:
 
 >[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type]) allows you to interact with someone.
 
->[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can >[bold type]put (something) in[roman type] or [bold type]on (something else)[roman type].[paragraph break]";
+>[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can also >[bold type]put (something) in[roman type] or [bold type]on (something else)[roman type].[paragraph break]";
 	say ">[bold type]go (direction)[roman type] (>[bold type](direction)[roman type]) allows you to navigate the world. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type].
 
 >[bold type]sleep[roman type] advances the story at the end of each in-game day.
@@ -2799,6 +2803,8 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 	---]
 	otherwise if Cornered in the Dorm is happening or Rooftop Pursuit is happening:
 		say "Oh Primes oh Primes oh Primes oh Primes";
+	otherwise if Monster House is happening:
+		say "I... I don't know if I'm going mad. I don't know if I can trust my senses anymore. All I can do is keep my wits about me and try to survive this. ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -2955,6 +2961,11 @@ To say journal-text-objectives:
 	---]
 	if Cornered in the Dorm is happening or Rooftop Pursuit is happening:
 		add "- Escape from the assassin" to L;
+	if Monster House is happening:
+		if the location is Gruetown:
+			add "- Find a light source" to L;
+		otherwise:
+			add "- Find a way out of the condemned block" to L;
 	[---
 	END
 	---]
@@ -5223,12 +5234,12 @@ To say cavala-badnews-onit-text:
 Section 3.3.6.1.3 - Day-Two Copy of the Libri Liberi
 
 The day-two copy of the Libri Liberi is a proper-named thing.
-The printed name is "[if the current day is Day Two]today's[otherwise if the current day is Day Three]yesterday's[otherwise if Day Three has ended]Fifth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
+The printed name is "[if Midnight has not ended]today's[otherwise if Day Three has not ended]yesterday's[otherwise]Fifth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
 The description is "DOCTOR FOUND DEAD IN HIS OWN HOME. Doctor Arturus, the renowned pathologist of the Channelworks District, was found dead this morning. Black blood was observed running from his eyes and mouth, a symptom shared by several patients he had recently received. Doctor Justinian, who discovered the body, expressed fears that his colleague's death could mark the beginning of a dangerous epidemic.".
 The scent is "[if the current day is Day Two]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-two copy of the Libri Liberi.
-Understand "today's" or "today" as the day-two copy of the Libri Liberi when the current day is Day Two.
-Understand "yesterday's" or "yesterday" as the day-two copy of the Libri Liberi when the current day is Day Three.
+Understand "today's" or "today" as the day-two copy of the Libri Liberi when Midnight has not ended.
+Understand "yesterday's" or "yesterday" as the day-two copy of the Libri Liberi when Midnight has ended and Day Three has not ended.
 Understand "fifth/five/5th/5/v" or "of" or "aquaria" as the day-two copy of the Libri Liberi when Day Three has ended.
 
 Instead of searching the day-two copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
@@ -6091,7 +6102,16 @@ Chapter 3.5.4.1 - Blocking the Way during Nine to Five Zombie
 Instead of going to Via Terminalis West Street during Nine to Five Zombie, say "But the clinic is in the other direction."
 Instead of going to the Crooked Alley during Nine to Five Zombie, say "But the clinic is in the other direction."
 
-Chapter 3.5.4.2 - Seeing Carnicer during Returning to a Break-In
+Chapter 3.5.4.2 - Map Quip during Cavala's Errands
+
+westend-errands-mapquipped is a truth state that varies.
+
+First every turn when the location is the West End and Cavala's Errands is happening and westend-errands-mapquipped is false (this is the West End map quip rule):
+	say "(Type >[bold type]map[roman type] to view a map of the Channelworks District.)";
+	now ambience suppression is true;
+	now westend-errands-mapquipped is false.
+
+Chapter 3.5.4.3 - Seeing Carnicer during Returning to a Break-In
 
 When Returning to a Break-In begins (this is the spawn Carnicer for the break-in rule):
 	now Carnicer is in the West End.
@@ -7047,7 +7067,7 @@ Instead of searching or taking the toiletries, say "[if time is critical]Nothing
 
 A miscellaneous-desk-item is a kind of thing.
 A miscellaneous-desk-item is usually scenery.
-Before doing anything when time is critical and (the noun is a miscellaneous-desk-item or  the second noun is a miscellaneous-desk-item): say "That won't save you."
+Before doing anything when time is critical and (the noun is a miscellaneous-desk-item or  the second noun is a miscellaneous-desk-item): say "That won't save you." instead.
 Instead of taking a miscellaneous-desk-item, say "You don't need that right now."
 Instead of looking under a miscellaneous-desk-item, say "That's on the dressing table."
 
@@ -7424,7 +7444,9 @@ To say Carnicer says hi:
 	wait for any key;
 	say "'Hello,' the assassin whispers.[paragraph break]";
 	wait for any key;
-	say "She draws her sword and kicks in the remaining pieces of your door. Beneath her hood she's smiling, grinning a rictus grin. Or maybe her mouth is fixed that way. ";
+	say "She draws her sword and kicks in the remaining pieces of your door. Beneath her hood she's smiling, grinning a rictus grin. Or maybe her mouth is fixed that way.[paragraph break]";
+	wait for any key;
+	say "You back away slowly. ";
 	
 After reading out carnicer-whosthere: now the enabled of carnicer-hello is true.
 	
@@ -8867,12 +8889,12 @@ When Day One ends (this is the despawn the newsboy rule):
 Chapter 3.17.2.3 - Day-One Copy of the Libri Liberi
 
 The day-one copy of the Libri Liberi is a proper-named thing.
-The printed name is "[if the current day is Day One]today's[otherwise if the current day is Day Two]yesterday's[otherwise if Day Two has ended]Fourth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
+The printed name is "[if Day One has not ended]today's[otherwise if Day Two has not ended]yesterday's[otherwise]Fourth of Aquaria[end if] copy of the [italic type]Libri Liberi[roman type]".
 The description is "The headline article reads 'DEBATE: IS ANIMUS POWER ETHICAL?' It documents the little-understood discipline of animology and the recent controversy surrounding post-mortem animus donation."
 The scent is "[if the current day is Day One]The ink is still fresh.[otherwise]It smells of ink."
 Understand "newspaper/news/paper" or "headline/headlines" or "article/articles" as the day-one copy of the Libri Liberi.
-Understand "today's" or "today" as the day-one copy of the Libri Liberi when the current day is Day One.
-Understand "yesterday's" or "yesterday" as the day-one copy of the Libri Liberi when the current day is Day Two.
+Understand "today's" or "today" as the day-one copy of the Libri Liberi when Day One has not ended.
+Understand "yesterday's" or "yesterday" as the day-one copy of the Libri Liberi when Day One has ended and Day Two has not ended.
 Understand "fourth/four/4th/4/iv" or "of" or "aquaria" as the day-one copy of the Libri Liberi when Day Two has ended.
 
 Instead of searching the day-one copy of the Libri Liberi, say "[if time is critical]This is not the time.[otherwise]You flip through the newspaper for a while, but there isn't much of interest beyond the main headline."
@@ -15298,7 +15320,9 @@ Instead of talking to Crow when the home dialogue branch of Crow is crow-d2-intr
 
 Book 3.38 - Rooftop Pursuit
 
-[Rooftop Pursuit is a quickfire series of locations in which you have to go in the right direction immediately or you die.]
+[Rooftop Pursuit is a quickfire series of locations in which you have to go in the right direction immediately or you die. N.B. Actually you don't die. No wait actually you do die if you screw up more than one turn in a row.]
+
+pursuit-last-chance is a truth state that varies.
 
 Part 3.38.1 - Pursuit Part One (Rooftop)
 
@@ -15310,7 +15334,7 @@ It is east of the dormitory window.
 
 The sky, the high-rise buildings, and the mist are in Pursuit Part One.
 
-The Pursuit Part One vignette is scenery in Pursuit Part One.
+The Pursuit Part One vignette is privately-named scenery in Pursuit Part One.
 Understand "clattering/shrieking" or "tile/tiles/roof/rooftop" or "foot/feet/knee/knees/boot/boots/leg/legs" as the Pursuit Part One vignette.
 
 The inviting balcony is scenery in Pursuit Part One.
@@ -15322,17 +15346,209 @@ First before doing anything when the location is Pursuit Part One (this is the P
 	we are going inside or
 	we are climbing the inviting balcony or
 	we are entering the inviting balcony:
-		say "Success!";
+		say "You scramble over the[line break]";
 		now the player is in Pursuit Part Two;
 		now Carnicer is in Pursuit Part Two;
-	otherwise:
-		say "Failure!";
+		now pursuit-last-chance is false;
+	otherwise if pursuit-last-chance is true:
+		say "You don't get another chance to hesitate before the assassin skewers you through the heart.";
 		end the story saying "You have died";
+	otherwise if we are going:
+		say "You almost trip.";
+		now pursuit-last-chance is true;
+	otherwise if we are approaching:
+		say "You need to get away from the assassin first.";
+		now pursuit-last-chance is true;
+	otherwise if we are examining or looking under or searching or taking inventory:
+		say "There's no time to look.";
+		now pursuit-last-chance is true;
+	otherwise if we are attacking Carnicer or we are cutting Carnicer:
+		say "Impossible.";
+		now pursuit-last-chance is true;
+	otherwise if we are screaming or we are talking to:
+		say "You haven't the breath.";
+		now pursuit-last-chance is true;
+	otherwise if we are listening:
+		say "Your heartbeat hammers in your ears.";
+		now pursuit-last-chance is true;
+	otherwise if we are smelling:
+		say "You gasp for air.";
+		now pursuit-last-chance is true;
+	otherwise:
+		say "This is not the time.";
+		now pursuit-last-chance is true;
 	stop.
 	
-Part 3.38.1 - Pursuit Part Two
+Part 3.38.2 - Pursuit Part Two (Railing)
 
-Pursuit Part Two is a room.
+Pursuit Part Two is a room. "[first time]and tumble panting across the rotting woodwork. [only]The balustrade shudders with your footfalls, tears away as you frantically grasp for purchase. Behind you, a terrible bulk splinters the flooring and catches up to you with dreadful certainty.
+
+South you glimpse a doorway."
+The printed name is "Railing".
+
+The sky, the high-rise buildings, and the mist are in Pursuit Part Two.
+
+The Pursuit Part Two vignette is privately-named scenery in Pursuit Part Two.
+Understand "rot/rotting" or "wood/woodwork" or "balustrade/baluster/balusters" or "railing/rail/rails/handrail/handrails" or "terrible" or "bulk" or "splinter/splinters" as the Pursuit Part Two vignette.
+
+The inviting doorway is scenery in Pursuit Part Two. Understand "door" as the inviting doorway.
+
+First before doing anything when the location is Pursuit Part Two (this is the Pursuit Part Two action rule):
+	if we are looking:
+		continue the action;
+	otherwise if we are going south or
+	we are going inside or
+	we are entering the inviting doorway:
+		now the player is in Pursuit Part Three;
+		now Carnicer is in Pursuit Part Three;
+		now pursuit-last-chance is false;
+	otherwise if pursuit-last-chance is true:
+		say "You don't get another chance to hesitate before the assassin skewers you through the heart.";
+		end the story saying "You have died";
+	otherwise if we are going:
+		say "You almost trip.";
+		now pursuit-last-chance is true;
+	otherwise if we are approaching:
+		say "You need to get away from the assassin first.";
+		now pursuit-last-chance is true;
+	otherwise if we are examining or looking under or searching or taking inventory:
+		say "There's no time to look.";
+		now pursuit-last-chance is true;
+	otherwise if we are attacking Carnicer or we are cutting Carnicer:
+		say "Impossible.";
+		now pursuit-last-chance is true;
+	otherwise if we are screaming or we are talking to:
+		say "You haven't the breath.";
+		now pursuit-last-chance is true;
+	otherwise if we are listening:
+		say "Your heartbeat hammers in your ears.";
+		now pursuit-last-chance is true;
+	otherwise if we are smelling:
+		say "You gasp for air.";
+		now pursuit-last-chance is true;
+	otherwise:
+		say "This is not the time.";
+		now pursuit-last-chance is true;
+	stop.
+	
+Part 3.38.3 - Pursuit Part Three (Black Gallery)
+
+Pursuit Part Three is a room. "The hall is thick with ash. Moonlight lances through shattered walls. You run blindly through unlit passages, fumbling, your lungs burning as claws rip through the timber and plaster behind you.
+
+There is no escape except to the south."
+The printed name is "Black Gallery".
+
+The sky is in Pursuit Part Three.
+
+The Pursuit Part Three vignette is privately-named scenery in Pursuit Part Three.
+Understand "gallery/hall/hallway/passage/passages" or "shattered" or "wall/walls" or "unlit" or "timber" or "plaster" as the Pursuit Part Three vignette.
+
+First before doing anything when the location is Pursuit Part Three (this is the Pursuit Part Three action rule):
+	if we are looking:
+		continue the action;
+	otherwise if we are going south or
+	we are going inside:
+		say "You run and run and run and[line break]";
+		now the player is in Pursuit Part Four;
+		now Carnicer is in Pursuit Part Four;
+		now pursuit-last-chance is false;
+	otherwise if pursuit-last-chance is true:
+		say "You don't get another chance to hesitate before the assassin skewers you through the heart.";
+		end the story saying "You have died";
+	otherwise if we are going:
+		say "You almost trip.";
+		now pursuit-last-chance is true;
+	otherwise if we are approaching:
+		say "You need to get away from the assassin first.";
+		now pursuit-last-chance is true;
+	otherwise if we are examining or looking under or searching or taking inventory:
+		say "There's no time to look.";
+		now pursuit-last-chance is true;
+	otherwise if we are attacking Carnicer or we are cutting Carnicer:
+		say "Impossible.";
+		now pursuit-last-chance is true;
+	otherwise if we are screaming or we are talking to:
+		say "You haven't the breath.";
+		now pursuit-last-chance is true;
+	otherwise if we are listening:
+		say "Your heartbeat hammers in your ears.";
+		now pursuit-last-chance is true;
+	otherwise if we are smelling:
+		say "You gasp for air.";
+		now pursuit-last-chance is true;
+	otherwise:
+		say "This is not the time.";
+		now pursuit-last-chance is true;
+	stop.
+	
+Part 3.38.4 - Pursuit Part Four (Burning Gallery)
+
+Pursuit Part Four is a room. "[italic type][one of]t[or]T[stopping]he hall is on fire and the beams are crashing down pinning you choking your lungs and you know it's not real but you're screaming and your jacket is burning
+
+and there is no escape no escape no escape except to the south.[roman type]".
+The printed name is "Burning Gallery".
+
+The Pursuit Part Four vignette is privately-named scenery in Pursuit Part Four.
+Understand "gallery/hall/hallway/passage/passages" or "fire" or "beam/beams" as the Pursuit Part Four vignette.
+
+First before doing anything when the location is Pursuit Part Four (this is the Pursuit Part Four action rule):
+	if we are looking:
+		continue the action;
+	otherwise if we are going south or
+	we are going inside:
+		say "[italic type]You reach out and[roman type][paragraph break]";
+		wait for any key;
+		say "[italic type]watch[roman type][paragraph break]";
+		wait for any key;
+		say "[italic type]your[roman type][paragraph break]";
+		wait for any key;
+		say "[italic type]father[roman type][paragraph break]";
+		wait for any key;
+		say "[italic type]burn[roman type][paragraph break]";
+		wait for any key;
+		say "screaming your name as she claws through the fallen beams smashing them with the hilt of her sword. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
+		wait for any key;
+		to be continued;
+		stop;
+		[say "[bold type]Darkness[roman type][paragraph break]";
+		wait for any key;
+		clear the screen;
+		move the player to Gruetown, without printing a room description;
+		say line break;
+		wait for any key;
+		say "Everything hurts.[paragraph break]";
+		wait for any key;
+		say "Sounds are echoing in the dark. The assassin's voice, calling out for you. Other things.[paragraph break]";
+		wait for any key;
+		say "Did you get away? Where... what is this place?[paragraph break]";
+		wait for any key;
+		say "You grit your teeth and force yourself to get up. You need help. You need to get out of here.";]
+	otherwise if pursuit-last-chance is true:
+		say "[italic type]You freeze for just a moment longer and[roman type][paragraph break]";
+		say "the assassin skewers you through the heart.";
+		end the story saying "You have died";
+	otherwise if we are approaching:
+		say "[italic type]You can't remember where that is.[roman type][line break]";
+		now pursuit-last-chance is true;
+	otherwise if we are screaming or we are talking to or we are smelling:
+		say "[italic type]You can't breathe.[roman type][line break]";
+		now pursuit-last-chance is true;
+	otherwise if we are listening:
+		say "[italic type]Someone's calling your name.[roman type][line break]";
+		now pursuit-last-chance is true;
+	otherwise:
+		say "[italic type]You can't.[roman type][line break]";
+		now pursuit-last-chance is true;
+	stop.
+	
+Book 3.39 - Monster House
+
+Part 3.39.1 - Gruetown
+
+Gruetown is a room. "It is pitch black, and you can't see a thing.
+
+All you can make out is some kind of metal shape at your feet."
+The printed name is "Darkness".
 
 Book of the Rest
 
