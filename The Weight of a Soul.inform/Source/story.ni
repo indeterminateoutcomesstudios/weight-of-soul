@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 200517.
+The release number is 220517.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -77,6 +77,7 @@ Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 400000.
 Use MAX_STATIC_DATA of 1440000.
 Use MAX_SYMBOLS of 60000.
+Use MAX_VERBS of 511.
 Release along with a "Marid" website and the "SpookyQuixe" interpreter.
 
 Part 1.1.2 - Extensions
@@ -1102,9 +1103,11 @@ Before searching the player, try taking inventory instead.
 Before looking under the player, try looking instead.
 Before pushing the player to, try going the second noun instead.
 Before showing something to the player, try examining the noun instead.
+Before waking the player, try waking up instead.
 Instead of attacking or cutting the player, say "[if time is critical]This is not the time.[otherwise]Self-harm won't accomplish anything."
 Instead of burning the player, say "No."
 Before giving something to the player, say "[if time is critical]This is not the time.[otherwise]Don't be silly." instead.
+Instead of dropping the player, say "[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a gymnast's apprentice."
 Instead of kissing, pushing, pulling, or taking the player, say "[if time is critical]This is not the time.[otherwise]What a strange notion."
 Instead of knocking on or touching the player, say "You feel nothing unexpected."
 Instead of rubbing the player, say "[if time is critical]This is not the time.[otherwise]You don't get much cleaner."
@@ -1114,7 +1117,7 @@ Instead of turning the player, say "[if time is critical]This is not the time.[o
 
 Part 2.1.2 - Marid's Tattoos
 
-The alchemical tattoos are part of the player. The indefinite article of the alchemical tattoos is "your". The description of the alchemical tattoos is "Your father gave you these tattoos when you were a young child, as is tradition in some alchemical families. Even now, the flowing, circuitous lines remind you of him." Understand "my" or "marid's" or "face/skin" or "neck" or "tattoo" or "flowing" or "circuitous" or "lines" or "line" as the alchemical tattoos.
+Some alchemical tattoos are part of the player. The indefinite article of the alchemical tattoos is "your". The description of the alchemical tattoos is "Your father gave you these tattoos when you were a young child, as is tradition in some alchemical families. Even now, the flowing, circuitous lines remind you of him." Understand "my" or "marid's" or "face/skin" or "neck" or "tattoo" or "flowing" or "circuitous" or "lines" or "line" as the alchemical tattoos.
 
 Instead of knocking on, looking under, searching, or touching the alchemical tattoos, say "[if time is critical]This is not the time.[otherwise]Your feel the faintest tingle of power beneath your skin."
 
@@ -1124,7 +1127,7 @@ Before doing anything other than examining, knocking on, looking under, rubbing,
 
 Part 2.1.3 - Marid's Eyes
 
-Marid's eyes are a thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if time is critical]This is not the time.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
+Marid's eyes are a plural-named thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if time is critical]Your eyes are working fine.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
 
 Before searching Marid's eyes, try examining Marid's eyes instead.
 Instead of attacking, burning, cutting, pushing, or pulling Marid's eyes, say "No."
@@ -1174,7 +1177,7 @@ Instead of tying the natron jacket to something, say "Your clothes are too close
 Instead of tying something to the natron jacket, say "Your clothes are too close-fitting to tie anything with."
 
 Some alchemical sigils are a fixed in place thing part of the natron jacket.
-The description is "[if time is critical]This is not the time.[otherwise]You're no sigiler, but nothing seems out of the ordinary."
+The description is "[if time is critical]There's no time for that now.[otherwise]You're no sigiler, but nothing seems out of the ordinary."
 Understand "sigil" as the alchemical sigils.
 Instead of looking under the sigils, say "The sigils are part of the jacket."
 Before searching the sigils, try examining the sigils instead.
@@ -1230,16 +1233,16 @@ Instead of examining the pendant (this is the custom pendant description rule):
 	otherwise:
 		say "He's in there somewhere. Sleeping."
 		
-The sound of the animus pendant is "[if time is critical]This is not the time.[otherwise]You hear the barest susurrus, as though a man was breathing in his sleep."
+The sound of the animus pendant is "[if time is critical]Not now.[otherwise]You hear the barest susurrus, as though a man was breathing in his sleep."
 
-Instead of pushing, pulling, rubbing, squeezing, taking, touching, or turning the animus pendant, say "[if time is critical]This is not the time.[otherwise]The weight of the pendant is comforting."
+Instead of pushing, pulling, rubbing, squeezing, taking, touching, or turning the animus pendant, say "[if time is critical]Not now.[otherwise]The weight of the pendant is comforting."
 Instead of attacking, burning, or cutting the pendant, say "No."
-Instead of looking under the animus pendant, say "[if time is critical]This is not the time.[otherwise]You're wearing it."
-Instead of giving the animus pendant to someone, say "[if time is critical]This is not the time.[otherwise]You will never part with this pendant."
-Instead of kissing the animus pendant, say "[if time is critical]This is not the time.[otherwise]You pull the pendant out from under your jacket and give it a kiss for luck."
+Instead of looking under the animus pendant, say "[if time is critical]Not now.[otherwise]You're wearing it."
+Instead of giving the animus pendant to someone, say "[if time is critical]This is not the time.[otherwise]That won't accomplish anything."
+Instead of kissing the animus pendant, say "[if time is critical]Not now.[otherwise]You pull the pendant out from under your jacket and give it a kiss for luck."
 Instead of inserting something into the animus pendant, say "The animus pendant isn't that kind of receptacle."
 Instead of removing something from the animus pendant, say "You could not remove your father's imprint from the crystal any more than you could remove your tattoos from your skin."
-Instead of searching the animus pendant, say "[if time is critical]This is not the time.[otherwise]Your father's animus is imprinted in the crystal."
+Instead of searching the animus pendant, say "[if time is critical]Not now.[otherwise]Your father's animus is imprinted in the crystal."
 Instead of talking to the animus pendant, say "[if time is critical]This is not the time.[otherwise]You only wish he could hear."
 Instead of knocking on or taking off the animus pendant, say "[if time is critical]This is not the time.[otherwise]You don't want to."
 
@@ -1395,6 +1398,44 @@ Instead of looking under Doctor Cavala's signum, say "[if time is critical]This 
 
 Instead of giving Doctor Cavala's signum to Doctor Cavala, say "[if time is critical]This is not the time.[otherwise]Doctor Cavala rolls her eyes."
 
+Part 2.2.13 - Animus Lantern
+
+The animus lantern is a lit key-item.
+The description is "A phylactery cathode in a glass-and-iron housing. It glitters with the cold light of the bound aurora within."
+The sound is "You hear the quiet hum of the bound animus."
+The scent is "The scent of ozone surrounds it."
+Understand "lamp" or "glass" or "iron" or "housing" as the animus lantern.
+
+Before burning the animus lantern, try switching on the animus lantern instead.
+Before extinguishing the animus lantern, try switching off the animus lantern instead.
+Instead of looking under the animus lantern, say "That's where the fuse is."
+Instead of opening or closing the animus lantern, say "This lantern isn't the kind that opens."
+Instead of rubbing the animus lantern, say "You wipe condensation from the glass."
+Instead of searching the animus lantern, say "Inside the lantern is a bound animus."
+Instead of switching on the animus lantern, say "The lantern is already lit."
+Instead of switching off the animus lantern, say "[if time is critical]Not now.[otherwise]You consider extinguishing the lantern, but the fuse is old and damaged. You decide not to switch it off in case you aren't able to switch it on again when you need to."
+Instead of touching the animus lantern, say "The lantern is cold to the touch."
+Instead of talking to the animus lantern, say "[if time is critical]This is not the time.[otherwise]The aurora can't hear you."
+
+The phylactery cathode is a faraway thing. It is part of the animus lantern.
+The description is "Once, it was someone's soul. Now, it is power immaterial."
+Understand "bound" or "animus/aurora/soul" or "cold" or "light" or "crystal" as the phylactery cathode.
+
+The phylactery cathode has some text called the faraway response. The faraway response is "It's dangerous to touch a phylactery cathode without training."
+
+Before listening to the phylactery cathode, try listening to the animus lantern instead.
+Before smelling the phylactery cathode, try smelling the animus lantern instead.
+Before burning or switching on the phylactery cathode, try switching on the animus lantern instead.
+Before extinguishing or switching off the phylactery cathode, try switching off the animus lantern instead.
+Before talking to the phylactery cathode, try talking to the animus lantern instead.
+Instead of searching the phylactery cathode, say "An otherworldly light shines forth."
+Instead of looking under the phylactery cathode, say "The crystal is mounted in the lantern housing."
+
+The fuse glyph is part of the animus lantern.
+The description is "The fuse glyph is scratched and half worn away from age."
+Before switching on the fuse glyph, try switching on the animus lantern instead.
+Before attacking, pushing, rubbing, switching off, or touching the fuse glyph, try switching off the animus lantern instead.
+
 Book 2.3 - Actions
 
 Part 2.3.1 - New Block Responses
@@ -1402,7 +1443,7 @@ Part 2.3.1 - New Block Responses
 Instead of attacking or cutting, say "That won't accomplish anything."
 Instead of burning, say "No. No burning."
 Instead of climbing, say "[regarding the noun][They're] not something you can climb."
-Instead of drinking, say "[regarding the noun][They're] not something you can drink."
+Instead of drinking, say "[if time is critical]This is not the time.[otherwise][regarding the noun][They're] not something you can drink."
 Instead of jumping, say "There's no reason to jump on the spot."
 Instead of tasting, say "[if time is critical]This is not the time.[otherwise]That can't be hygienic."
 Instead of tying something to something, say "You can't tie those."
@@ -1413,6 +1454,13 @@ Instead of sleeping, say "[if Walking Home in Suspense is happening]You would pr
 After waiting when time is critical, say "This is no time for inaction."
 
 Last before pushing something to: if the noun is not pushable between rooms, try pushing the noun instead.
+
+Last check eating:
+	if time is critical:
+		say "This is not the time.";
+		stop the action;
+	otherwise:
+		continue the action.
 
 Last instead of swinging a scenery thing: say "[regarding the noun][They're] not something you can swing."
 Last instead of swinging a fixed in place thing: say "[regarding the noun][They] [are] fixed in place."
@@ -1437,6 +1485,7 @@ topic
 
 Table of Severe Swear Words
 topic
+"bastard/bitch"
 "damn/damned/dammit"
 "fuck/fucking"
 "hell"
@@ -1598,6 +1647,7 @@ Understand "descend into/through/on/in/inside/-- [something]" as entering.
 Understand "dissect [something]" as cutting.
 Understand "fall asleep" as sleeping.
 Understand "feed [something preferably held] in/into/inside [something]" as inserting it into.
+Understand "fiddle with [something]" as touching. [thanx niklor]
 Understand "find [text] in [something]" as consulting it about (with nouns reversed).
 Understand "get inside [something]" as entering.
 Understand "go back/-- to sleep" as sleeping.
@@ -1607,11 +1657,13 @@ Understand "jump through/into/in/inside/on/onto/at/to [something]" as entering.
 Understand "kick [something]" as attacking.
 Understand "lick [something]" as tasting.
 Understand "lift [things]" as taking.
+Understand "look around" as looking.
 Understand "look behind/beside [something]" as looking under.
 Understand "l behind/beside [something]" as looking under.
 Understand "look for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "l for [text] in [something]" as consulting it about (with nouns reversed).
 Understand "load" as restoring the game.
+Understand "observe [something]" as examining.
 Understand "order [something]" as buying.
 Understand "poke [something]" as pushing.
 Understand "prop up/-- [other things] up/-- on/onto [something]" as putting it on.
@@ -1636,6 +1688,8 @@ Understand "thread [something preferably held] into [something]" as inserting it
 Understand "turn [something] to [text]" as setting it to.
 Understand "unravel [something]" as opening.
 Understand "untie [something]" as opening.
+
+Understand the command "provide" as "give". [thanx mown]
 
 Before attacking, cutting, kissing, knocking on, pushing, pulling, rubbing, searching, smelling, swinging, squeezing, touching, or turning something worn by an other living person (called the wearer) (this is the redirect actions from other people's clothing to the wearer rule): now the noun is the wearer.
 
@@ -1738,8 +1792,12 @@ Carry out combing your hair (this is the standard combing your hair rule):
 	if time is critical:
 		say "This is not the time.";
 	otherwise if the location is Marid's Room:
-		if Walking Home in Darkness is happening or Walking Home in Fear is happening or Walking Home in Suspense is happening:
-			say "There isn't much point. Your hair will get messed up when you sleep.";
+		if Walking Home in Darkness is happening:
+			say "[one of]You comb your hair.[or]You've already combed your hair.[stopping]";
+		otherwise if Walking Home in Fear is happening:
+			say "[one of]You comb your hair.[or]You've already combed your hair.[stopping]";
+		otherwise if Walking Home in Suspense is happening:
+			say "[one of]You comb your hair.[or]You've already combed your hair.[stopping]";
 		otherwise:
 			say "You've already combed your hair.";
 	otherwise:
@@ -2343,7 +2401,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -3490,6 +3548,13 @@ Instead of attacking, pushing, pulling, squeezing, swinging, or turning the Bili
 
 The view of the Gangway is a faraway backdrop.
 The description is "It spirals from the earth to the heavens."
+
+The pervasive ash is a faraway backdrop. The indefinite article is "the".
+The description is "You hate this smell."
+The sound is "Silence."
+The pervasive ash has some text called the faraway response. The faraway response is "The ash is too fine to interact with."
+Understand "air" or "smoke/smog" or "wind" as the pervasive ash.
+Before smelling the pervasive ash, try examining the pervasive ash instead.
 
 Part 3.1.3 - Ambience
 
@@ -6229,7 +6294,7 @@ The description is "There is little privacy that these walls offer."
 Before listening to the plaster walls, try listening to the domiciles instead.
 The scent is "The walls smell of burnt gypsum."
 Understand "burnt" or "gypsum" as the plaster walls.
-Instead of attacking or cutting the plaster walls, say "The landlord would have your head."
+Instead of attacking or cutting the plaster walls, say "The landowner would have your head."
 
 Some crumbling stairs are scenery in the Dormitory Block.
 The description is "Well-worn stairs lead up to the domiciles."
@@ -7446,7 +7511,7 @@ To say Carnicer says hi:
 	wait for any key;
 	say "She draws her sword and kicks in the remaining pieces of your door. Beneath her hood she's smiling, grinning a rictus grin. Or maybe her mouth is fixed that way.[paragraph break]";
 	wait for any key;
-	say "You back away slowly. ";
+	say "'You've been a lot of trouble, you know. Asking dangerous questions. Getting dangerous answers.' ";
 	
 After reading out carnicer-whosthere: now the enabled of carnicer-hello is true.
 	
@@ -7459,13 +7524,14 @@ bantered-with-carnicer is a truth state that varies.
 
 Every turn while Cornered in the Dorm is happening (this is the advance the Carnicer countdown rule):
 	increment the Carnicer countdown;
+	if the Carnicer countdown is 1, wait for any key;
 	report Carnicer's banter;
 	if the Carnicer countdown is 7:
 		say "There is a numbness.[paragraph break]";
 		wait for any key;
 		say "You find you cannot move. You have been impaled through the gut.[paragraph break]";
 		wait for any key;
-		say "'Good night,' the assassin whispers.[paragraph break]";
+		say "'Good night, Marid,' she whispers.[paragraph break]";
 		wait for any key;
 		say "The last thing you see is her receding shadow, before the blood loss overcomes you, and then --[paragraph break]";
 		wait for any key;
@@ -7495,7 +7561,7 @@ Report asking for hints during Cornered in the Dorm (this is the show bantz afte
 
 Table of Carnicer Banter
 index	happening	dialogue response
-1	"[wait for any key]'You've been a lot of trouble, you know. Asking dangerous questions. Getting dangerous answers.'"	""
+1	"You back away slowly."	""
 2	"The assassin walks towards you. Calmly. Unhurriedly."	"'W-What do you want?'
 
 The assassin walks towards you. Calmly. Unhurriedly."
@@ -7505,7 +7571,7 @@ The assassin walks towards you. Calmly. Unhurriedly."
 4	"'But then [italic type]you[roman type] came.' She runs a lazy claw along her sword. 'So spunky. So quiet and [italic type]determined[roman type].'"	"'Doctor Cavala won't be happy about this.'
 
 The assassin shrugs. 'Who cares about [italic type]her?[roman type] Don't you know, Marid dear? It's all about [italic type]you[roman type] now...'"
-5	"'He's head over heels for you, you know.' The assassin taps the tip of her blade. '[italic type]He[roman type] wouldn't let me lay a finger on you. So I decided to take things into my own hands...'"	"'Me? W-What about me?'
+5	"'He's head over heels for you, you know.' The assassin taps the tip of her blade. '[italic type]He[roman type] wouldn't let me lay a finger on you. So I decided to take things into my own hands...'"	"'Me? What about me?'
 
 'He's head over heels for you, you know.' The assassin taps the tip of her blade. '[italic type]He[roman type] wouldn't let me lay a finger on you. So I decided to take things into my own hands...'"
 6	"Her smile draws ever closer. 'You've given me a challenge. Quite the run. I'm sorry it all has to end so soon.'"	"'You'll never get away with this.'
@@ -15332,6 +15398,8 @@ A balcony lies to the east. Behind you is a clattering, a shrieking that is not 
 The printed name is "Rooftop".
 It is east of the dormitory window.
 
+The exit reminder is "East. You hope."
+
 The sky, the high-rise buildings, and the mist are in Pursuit Part One.
 
 The Pursuit Part One vignette is privately-named scenery in Pursuit Part One.
@@ -15386,6 +15454,8 @@ Pursuit Part Two is a room. "[first time]and tumble panting across the rotting w
 South you glimpse a doorway."
 The printed name is "Railing".
 
+The exit reminder is "South."
+
 The sky, the high-rise buildings, and the mist are in Pursuit Part Two.
 
 The Pursuit Part Two vignette is privately-named scenery in Pursuit Part Two.
@@ -15438,6 +15508,8 @@ Pursuit Part Three is a room. "The hall is thick with ash. Moonlight lances thro
 There is no escape except to the south."
 The printed name is "Black Gallery".
 
+The exit reminder is "South."
+
 The sky is in Pursuit Part Three.
 
 The Pursuit Part Three vignette is privately-named scenery in Pursuit Part Three.
@@ -15448,7 +15520,6 @@ First before doing anything when the location is Pursuit Part Three (this is the
 		continue the action;
 	otherwise if we are going south or
 	we are going inside:
-		say "You run and run and run and[line break]";
 		now the player is in Pursuit Part Four;
 		now Carnicer is in Pursuit Part Four;
 		now pursuit-last-chance is false;
@@ -15483,10 +15554,12 @@ First before doing anything when the location is Pursuit Part Three (this is the
 	
 Part 3.38.4 - Pursuit Part Four (Burning Gallery)
 
-Pursuit Part Four is a room. "[italic type][one of]t[or]T[stopping]he hall is on fire and the beams are crashing down pinning you choking your lungs and you know it's not real but you're screaming and your jacket is burning
+Pursuit Part Four is a room. "[italic type]The hall is on fire and the beams are crashing down pinning you choking your lungs and you know it's not real but you're screaming and your jacket is burning
 
 and there is no escape no escape no escape except to the south.[roman type]".
 The printed name is "Burning Gallery".
+
+The exit reminder is "[italic type]South.[roman type][line break]".
 
 The Pursuit Part Four vignette is privately-named scenery in Pursuit Part Four.
 Understand "gallery/hall/hallway/passage/passages" or "fire" or "beam/beams" as the Pursuit Part Four vignette.
@@ -15506,14 +15579,13 @@ First before doing anything when the location is Pursuit Part Four (this is the 
 		wait for any key;
 		say "[italic type]burn[roman type][paragraph break]";
 		wait for any key;
-		say "screaming your name as she claws through the fallen beams smashing them with the hilt of her sword. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
-		wait for any key;
-		to be continued;
-		stop;
-		[say "[bold type]Darkness[roman type][paragraph break]";
+		say "screaming your name as she claws and smashes through the fallen beams. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
 		wait for any key;
 		clear the screen;
 		move the player to Gruetown, without printing a room description;
+		say "[line break][bold type]Darkness[roman type][paragraph break]";
+		wait for any key;
+		clear the screen;
 		say line break;
 		wait for any key;
 		say "Everything hurts.[paragraph break]";
@@ -15522,7 +15594,9 @@ First before doing anything when the location is Pursuit Part Four (this is the 
 		wait for any key;
 		say "Did you get away? Where... what is this place?[paragraph break]";
 		wait for any key;
-		say "You grit your teeth and force yourself to get up. You need help. You need to get out of here.";]
+		say "You grit your teeth and force yourself to get up.[paragraph break]";
+		wait for any key;
+		say "You need help. You need to get out of here.";
 	otherwise if pursuit-last-chance is true:
 		say "[italic type]You freeze for just a moment longer and[roman type][paragraph break]";
 		say "the assassin skewers you through the heart.";
@@ -15543,12 +15617,60 @@ First before doing anything when the location is Pursuit Part Four (this is the 
 	
 Book 3.39 - Monster House
 
+The Midnight Zone is a region. [Not to be confused with the Twilight Zone.]
+
+Before approaching when the location is in the Midnight Zone:
+	if the noun is not in the Midnight Zone:
+		say "You'll have to find a way out of this place first.";
+		stop the action.
+
 Part 3.39.1 - Gruetown
 
-Gruetown is a room. "It is pitch black, and you can't see a thing.
+Gruetown is a room in the Midnight Zone. "It is pitch dark, and you can't see a thing.
 
 All you can make out is some kind of metal shape at your feet."
 The printed name is "Darkness".
+
+The sound is "You hear only your heartbeat."
+The scent is "The air is choked with ash."
+The exit reminder is "You can't see any."
+
+Instead of approaching in Gruetown, say "You don't know which way is out."
+Instead of going inside in Gruetown, say "You don't know which way that is."
+Instead of going outside in Gruetown, say "You don't know which way that is."
+Instead of going in Gruetown, say "[one of]Just as you take a step, your foot strikes a metal object on the ground[or]Perhaps you should investigate the metal thing you nearly tripped over first[stopping]."
+
+Instead of dropping something carried by the player in Gruetown, say "You'd best hold on to your possessions until you can see where you're going."
+
+The pervasive ash is in Gruetown.
+
+The impenetrable darkness is faraway scenery in Gruetown. The indefinite article is "the".
+The description is "All you can make out is some kind of metal shape at your feet."
+The impenetrable darkness has some text called the faraway response. The faraway response is "An impossible notion."
+Before listening to the impenetrable darkness, try listening to the location instead.
+Before smelling the impenetrable darkness, try smelling the location instead.
+Before searching or looking under the impenetrable darkness, try examining the impenetrable darkness instead.
+Instead of talking to the impenetrable darkness, say "'Hello?'".
+
+The darkened metal shape is scenery in Gruetown.
+Understand "floor/ground" or "object/thing" or "on/at" or "my/marid's" or "feet" as the darkened metal shape.
+
+Instead of examining, looking under, pushing, pulling, rubbing, searching, squeezing, taking, touching, or turning the darkened metal shape (this is the finding the animus lantern rule):
+	say "A trick of the light?[paragraph break]";
+	say "You grope in the dark and your fingers close around cold iron. A handle -- a bulb -- a fuse?[paragraph break]";
+	wait for any key;
+	say "An animus lantern.[paragraph break]";
+	wait for any key;
+	say "You strike the fuse and the bound aurora awakens. It flickers to attention, chilling the fingertips of your gloves, tracing the area in otherworldly dancing light.[paragraph break]";
+	wait for any key;
+	now the player carries the animus lantern;
+	now the darkened metal shape is nowhere;
+	move the player to the Calefactory, without printing a room description;
+	try looking.
+	
+Part 3.39.2 - Calefactory
+
+The Calefactory is a room in the Midnight Zone.
 
 Book of the Rest
 
