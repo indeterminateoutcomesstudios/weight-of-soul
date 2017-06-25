@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 220517.
+The release number is 250617.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -74,7 +74,7 @@ Use MAX_ARRAYS of 20000.
 Use MAX_DICT_ENTRIES of 4000.
 Use MAX_NUM_STATIC_STRINGS of 60000.
 Use MAX_OBJECTS of 1280.
-Use MAX_PROP_TABLE_SIZE of 400000.
+Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_STATIC_DATA of 1440000.
 Use MAX_SYMBOLS of 60000.
 Use MAX_VERBS of 511.
@@ -226,6 +226,7 @@ To say skip-commands-text:
 	say "[line break][italic type]Midnight[roman type]";
 	say "[line break]>[bold type]skip to midnight[roman type]";
 	say "[line break]>[bold type]skip to rooftop[roman type]";
+	say "[line break]>[bold type]skip to calefactory[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -445,7 +446,7 @@ Rule for constructing the status line:
 		fill status bar with Table of Normal Status;
 	rule succeeds.
 	
-Part 1.2.3 - Skipping Scenes - Release for testing
+Part 1.2.3 - Skip Commands - Release for testing
 
 To skip past Reden's Surgery:
 	now Reden is dead;
@@ -695,6 +696,16 @@ To skip Cornered in the Dorm:
 	now Carnicer is in Pursuit Part One;
 	follow the scene changing rules;
 	
+To skip Rooftop Pursuit:
+	if Cornered in the Dorm has not ended:
+		skip Cornered in the Dorm;
+	move the player to Gruetown, without printing a room description;
+	follow the scene changing rules;
+	now the player carries the animus lantern;
+	now the darkened metal shape is nowhere;
+	move the player to the Calefactory, without printing a room description;
+	follow the scene changing rules;
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -807,6 +818,13 @@ Understand "skip to rooftop" as skipping to rooftop.
 Check skipping to rooftop when Pursuit Part One is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to rooftop:
 	skip Cornered in the Dorm;
+	try looking.
+	
+Skipping to calefactory is an action applying to nothing.
+Understand "skip to calefactory" as skipping to calefactory.
+Check skipping to calefactory when Rooftop Pursuit has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to calefactory:
+	skip Rooftop Pursuit;
 	try looking.
 	
 Book 1.3 - People
@@ -1739,7 +1757,7 @@ Before consulting something that is not consultable about something (this is the
 
 Understand "possession" as a thing enclosed by a person.
 
-Part 2.3.3 - New Miscellaneous Actions
+Part 2.3.3 - New Actions
 
 Bandaging it with is an action applying to two things.
 Understand "bandage [something]" as bandaging it with.
@@ -1842,7 +1860,7 @@ Check scaring the player: say "[if time is critical]This is not the time.[otherw
 Check scaring a friendly person: say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."; stop the action.
 Check scaring a hostile person: say "That seems unlikely to be effective."; stop the action.
 
-Screaming is an action applying to nothing. Understand "yell" or "holler for/-- the/-- guard/guards/--" or "shout" or "scream" as screaming.
+Screaming is an action applying to nothing. Understand "yell" or "holler for/-- the/-- guard/guards/--" or "shout" or "scream" or "call out" or "cry out" as screaming.
 Check screaming: say "No. You have to keep your cool."; stop the action.
 
 Singing is an action applying to nothing. Understand "sing" or "hum" as singing.
@@ -1879,9 +1897,6 @@ Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be m
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
-Understand "undress" or "strip" as a mistake ("[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire.").
-Understand "use [text]" as a mistake ("(You'll have to use a more specific verb than that.)").
-Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
 Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Yup.[otherwise]You mutter an oath under your breath.").
 Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("(Type >[bold type]journal[roman type] for a reminder of the information you've come across.)").
@@ -1892,6 +1907,9 @@ Understand "stoop" as a mistake ("[if time is critical]This is not the time.[oth
 Understand "throw up" or "vomit" or "barf" or "lose my/-- lunch" as a mistake ("You're made of sterner stuff than that.").
 Understand "tidy [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]You aren't in the mood for housework.").
 Understand "type [text]" as a mistake ("[if the correspondence machine is in the location]None of the alphanumeric keys are working. Only the playback key appears to be functional.[otherwise]There's nothing here that you can type on.").
+Understand "undress" or "strip" as a mistake ("[if time is critical]This is not the time.[otherwise if the location is Marid's Room]You don't need a change of clothes at the moment.[otherwise]You'd rather remain in proper attire.").
+Understand "use [text]" as a mistake ("You'll have to use a more specific verb than that.").
+Understand "whistle" as a mistake ("[if time is critical]This is not the time.[otherwise]You don't know how to whistle.").
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
 
 Part 2.3.4 - New Parser Error Messages
@@ -2301,9 +2319,11 @@ Last before doing anything when the player is engaged in endoscopy (this is the 
 [Since the before stage doesn't run for out of world actions, this still allows saving, loading, asking for help, and so on.]
 		
 endoscopy-exit-tutorial-quipped is a truth state that varies.
-Before reading a command when the player is engaged in endoscopy and endoscopy-exit-tutorial-quipped is false and the room down from the endoscopic location is not a room:
-	say "(Type >[bold type]out[roman type] to end the endoscopy.)";
-	now endoscopy-exit-tutorial-quipped is true.
+	
+To quip the endoscopy exit tutorial:
+	if endoscopy-exit-tutorial-quipped is false:
+		say "(Type >[bold type]out[roman type] to end the endoscopy.)";
+		now endoscopy-exit-tutorial-quipped is true.
 
 Chapter 2.3.10.3 - Starting and Ending an Endoscopy
 
@@ -2401,7 +2421,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -11948,6 +11968,7 @@ Here, the animic skeins were not loosened. They were ripped apart.
 [wait for any key]What are you looking at here? What kind of disease attacks the [italic type]soul?[roman type][line break]";
 		now clue-airborne-vector is true;
 		now clue-arturus-animus is true;
+		quip the endoscopy exit tutorial;
 	otherwise:
 		say "The fragments shine weakly, painfully, unable to fade away."
 		
@@ -12227,7 +12248,8 @@ Every turn when the endoscopic location is nacarat-endoscopy-stomach and clue-na
 		say "There's too little evidence. You have to keep investigating.";
 		now clue-ingestion-vector is true;
 	otherwise:
-		say "That isn't at all comforting. It raises more questions than it answers."
+		say "That isn't at all comforting. It raises more questions than it answers.";
+	quip the endoscopy exit tutorial;
 	
 Creditor Nacarat's stomach interior is scenery in nacarat-endoscopy-stomach.
 The printed name is "Creditor Nacarat's stomach".
@@ -12711,7 +12733,8 @@ Every turn when the endoscopic location is piper-endoscopy-stomach and clue-pipe
 		say "You don't know. All you can do is keep investigating.";
 		now clue-ingestion-vector is true;
 	otherwise:
-		say "Not a comforting thought. It raises more questions than it answers."
+		say "Not a comforting thought. It raises more questions than it answers.";
+	quip the endoscopy exit tutorial;
 	
 The undigested bile is scenery in piper-endoscopy-stomach. The indefinite article is "some".
 The description is "Acid. Mucus. Chyme."
@@ -15552,19 +15575,70 @@ First before doing anything when the location is Pursuit Part Three (this is the
 		now pursuit-last-chance is true;
 	stop.
 	
-Part 3.38.4 - Pursuit Part Four (Burning Gallery)
+Part 3.38.4 - Pursuit Part Four (Smoldering Gallery)
 
-Pursuit Part Four is a room. "[italic type]The hall is on fire and the beams are crashing down pinning you choking your lungs and you know it's not real but you're screaming and your jacket is burning
+Pursuit Part Four is a room. "The hall is thick with [italic type]smoke[roman type]. Moonlight lances through [italic type]scorched[roman type] walls. You run blindly through [italic type]burning[roman type] passages, fumbling, your lungs [italic type]melting[roman type] as [italic type]flames[roman type] rip through the timber and plaster behind you.
+
+[italic type]There is no escape except to the south.[roman type]".
+The printed name is "Smoldering Gallery".
+
+The exit reminder is "South."
+
+The sky is in Pursuit Part Four.
+
+The Pursuit Part Four vignette is privately-named scenery in Pursuit Part Four.
+Understand "gallery/hall/hallway/passage/passages" or "fire/smoke/scorched/flame/flames/burning" or "wall/walls" or "timber" or "plaster" as the Pursuit Part Four vignette.
+
+First before doing anything when the location is Pursuit Part Four (this is the Pursuit Part Four action rule):
+	if we are looking:
+		continue the action;
+	otherwise if we are going south or
+	we are going inside:
+		now the player is in Pursuit Part Five;
+		now Carnicer is in Pursuit Part Five;
+		now pursuit-last-chance is false;
+	otherwise if pursuit-last-chance is true:
+		say "You don't get another chance to hesitate before the assassin skewers you through the heart.";
+		end the story saying "You have died";
+	otherwise if we are going:
+		say "You almost trip.";
+		now pursuit-last-chance is true;
+	otherwise if we are approaching:
+		say "You need to get away from the assassin first.";
+		now pursuit-last-chance is true;
+	otherwise if we are examining or looking under or searching or taking inventory:
+		say "There's no time to look.";
+		now pursuit-last-chance is true;
+	otherwise if we are attacking Carnicer or we are cutting Carnicer:
+		say "Impossible.";
+		now pursuit-last-chance is true;
+	otherwise if we are screaming or we are talking to:
+		say "You haven't the breath.";
+		now pursuit-last-chance is true;
+	otherwise if we are listening:
+		say "Your heartbeat hammers in your ears.";
+		now pursuit-last-chance is true;
+	otherwise if we are smelling:
+		say "You gasp for air.";
+		now pursuit-last-chance is true;
+	otherwise:
+		say "This is not the time.";
+		now pursuit-last-chance is true;
+	stop.
+	
+Part 3.38.5 - Pursuit Part Five (Burning Gallery)
+
+Pursuit Part Five is a room. "[italic type]The hall is on fire and the beams are crashing down pinning you choking your lungs and you know it's not real but you're screaming and your jacket is burning
 
 and there is no escape no escape no escape except to the south.[roman type]".
 The printed name is "Burning Gallery".
 
 The exit reminder is "[italic type]South.[roman type][line break]".
 
-The Pursuit Part Four vignette is privately-named scenery in Pursuit Part Four.
-Understand "gallery/hall/hallway/passage/passages" or "fire" or "beam/beams" as the Pursuit Part Four vignette.
+The Pursuit Part Five vignette is privately-named scenery in Pursuit Part Five.
+Understand "gallery/hall/hallway/passage/passages" or "fire" or "beam/beams" as the Pursuit Part Five vignette.
 
-First before doing anything when the location is Pursuit Part Four (this is the Pursuit Part Four action rule):
+First before doing anything when the location is Pursuit Part Five (this is the Pursuit Part Five action rule):
 	if we are looking:
 		continue the action;
 	otherwise if we are going south or
@@ -15657,6 +15731,7 @@ Understand "floor/ground" or "object/thing" or "on/at" or "my/marid's" or "feet"
 
 Instead of examining, looking under, pushing, pulling, rubbing, searching, squeezing, taking, touching, or turning the darkened metal shape (this is the finding the animus lantern rule):
 	say "A trick of the light?[paragraph break]";
+	wait for any key;
 	say "You grope in the dark and your fingers close around cold iron. A handle -- a bulb -- a fuse?[paragraph break]";
 	wait for any key;
 	say "An animus lantern.[paragraph break]";
@@ -15670,7 +15745,77 @@ Instead of examining, looking under, pushing, pulling, rubbing, searching, squee
 	
 Part 3.39.2 - Calefactory
 
-The Calefactory is a room in the Midnight Zone.
+The Calefactory is a room in the Midnight Zone. "You've landed in some kind of underground heating room, long abandoned. The floor is seared with scorch marks. The corpses of piping and machinery litter the area, reclaimed by rust and layers of fine black soot.
+
+Above dangles a destroyed chute. To the west there is a blast door, with a wheel-shaped handle fitted nearby."
+
+The sound is "You hear distant footsteps above."
+The scent is "The odor of ash pervades the room."
+The exit reminder is "It looks like the blast door to the south is the only way out."
+
+Before examining west in the Calefactory, try searching the blast door instead.
+Before examining outside in the Calefactory, try examining the blast door instead.
+Before examining up in the Calefactory, try examining the destroyed chute instead.
+
+Before going up in the Calefactory, try entering the destroyed chute instead.
+Before going down in the Calefactory, try entering the scorched floor instead.
+Before going outside in the Calefactory, try going west instead.
+
+Chapter 3.39.2.1 - Scenery
+
+The scorched floor is scenery in the Calefactory.
+The description is "Darkness billows from the walls and scars the ground."
+The scent is "You take a breath and start coughing."
+Understand "scorch" or "mark/marks" or "underground" or "heating" or "room/calefactory" or "darkness" or "cement" as the scorched floor.
+Instead of rubbing the scorched floor, say "No amount of rubbing will remove these scars."
+Instead of attacking, entering, looking under, pushing, pulling, searching, touching, or turning the scorched floor, say "You kick at the floor experimentally, but it's cement all the way through."
+
+Some defunct machines are scenery in the Calefactory.
+The description is "Gnarled, unrecognizable shapes."
+The scent is "You don't want to put your nose anywhere near that soot."
+Understand "pipe/pipes/piping" or "machine/machinery" or "rust" or "corpse/corpses" or "area" or "shape/shapes" as the defunct machines.
+Before climbing or entering the defunct machines, try entering the destroyed chute instead.
+Instead of rubbing or touching the defunct machines, say "You'd only dirty your gloves further."
+Instead of switching on or switching off the defunct machines, say "This calefactory ceased working decades ago."
+
+Some layers of fine black soot are scenery in the Calefactory.
+The description is "The fire is gone. The fire is past[first time]. That's what you tell yourself[only]."
+The scent is "You don't want to inhale any of that."
+Understand "ash" or "layer" or "fire" as the layers of fine black soot.
+Instead of rubbing, taking, or touching the layers of fine black soot, say "You'd only dirty your gloves further."
+Instead of looking under the layers of fine black soot, say "The soot blankets everything around here."
+
+The destroyed chute is faraway scenery in the Calefactory.
+The description is "It doesn't look like climbing back up is an option."
+Understand "broken/broken-down" as the destroyed chute.
+Before listening to the destroyed chute, try listening to the location instead.
+Instead of climbing or entering the destroyed chute, say "You doubt you could scale the broken-down chute. And even if you did, the assassin is still somewhere above."
+
+The blast door is a closed better left open scenery door. It is west of the Calefactory.
+The description is "A natron-infused slab of metal. [if the blast door is open]It's currently open[otherwise]It looks like the wheel nearby will open it[end if]."
+The sound is "You can't hear anything through the door."
+Understand "natron-infused" or "slab" or "of" or "metal" as the blast door.
+Instead of opening the blast door when the blast door is closed, say "It looks like turning the wheel will open the door."
+Before closing the blast door when the blast door is open, try turning the wheel-shaped handle instead.
+Instead of searching the blast door, say "[if the blast door is open]The light of your lantern vanishes into darkness that way[otherwise]You can't see beyond the closed blast door[end if]."
+
+The wheel-shaped handle is scenery in the Calefactory.
+The description is "A rusted hydraulic wheel."
+Understand "hydraulic" or "wheel" or "shaped" or "rusted" as the wheel-shaped handle.
+
+Instead of turning the wheel-shaped handle:
+	if the blast door is closed:
+		say "You grip the wheel and turn with all your might. There is a groaning, a painful screeching sound, as rust cracks and crumbles from the base of the handle.[paragraph break]";
+		wait for any key;
+		say "Slowly, excruciatingly slowly, the blast door grinds open.";
+		now the blast door is open;
+	otherwise:
+		say "You don't think you have the strength to turn the wheel back.";
+		
+Part 3.39.3 - Service Hallway
+
+The Service Hallway is a room in the Midnight Zone.
+It is west of the blast door.
 
 Book of the Rest
 
