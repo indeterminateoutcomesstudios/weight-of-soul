@@ -15034,7 +15034,7 @@ The sound is "Snatches of conversation escape the wind."
 The scent is "This place is soaked in alcohol and wood grain."
 The exit reminder is "The exit is below."
 
-Before examining a direction in the Crow's Nest, say "You're a long way from the ground."
+Before examining a direction in the Crow's Nest, say "You're a long way from the ground." instead.
 
 Part 3.37.1 - Scenery
 
