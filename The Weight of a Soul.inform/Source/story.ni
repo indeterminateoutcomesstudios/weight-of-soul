@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 250617.
+The release number is 030817.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -1200,7 +1200,7 @@ Understand "sigil" as the alchemical sigils.
 Instead of looking under the sigils, say "The sigils are part of the jacket."
 Before searching the sigils, try examining the sigils instead.
 
-Rule for clarifying the parser's choice of the alchemical sigils: say "(the sigils on your jacket)".
+Rule for clarifying the parser's choice of the alchemical sigils: say "(the alchemical sigils on your jacket)".
 
 Part 2.2.3 - Marid's Clothes
 
@@ -1334,7 +1334,7 @@ Instead of tying something to the cloth, say "The cloth isn't large enough to ti
 
 Part 2.2.9 - Surgical Mask
 
-[This is just for cutscenes where it makes sense for Marid to have to wear a mask. It isn't part of her normal kit.]
+[This is just for Reden's Surgery where it makes sense for Marid to have to wear a mask. It isn't part of her normal kit.]
 
 The surgical mask is worn by the player.
 The description is "It's a crude bandana that covers your nose and mouth when worn."
@@ -1418,7 +1418,8 @@ Instead of giving Doctor Cavala's signum to Doctor Cavala, say "[if time is crit
 
 Part 2.2.13 - Animus Lantern
 
-The animus lantern is a lit key-item.
+The animus lantern is a key-item.
+After printing the name of the animus lantern while taking inventory (this is the pretend the lantern is lit rule): say " (providing light)".
 The description is "A phylactery cathode in a glass-and-iron housing. It glitters with the cold light of the bound aurora within."
 The sound is "You hear the quiet hum of the bound animus."
 The scent is "The scent of ozone surrounds it."
@@ -1428,7 +1429,7 @@ Before burning the animus lantern, try switching on the animus lantern instead.
 Before extinguishing the animus lantern, try switching off the animus lantern instead.
 Instead of looking under the animus lantern, say "That's where the fuse is."
 Instead of opening or closing the animus lantern, say "This lantern isn't the kind that opens."
-Instead of rubbing the animus lantern, say "You wipe condensation from the glass."
+Instead of rubbing the animus lantern, say "You wipe the condensation from the glass."
 Instead of searching the animus lantern, say "Inside the lantern is a bound animus."
 Instead of switching on the animus lantern, say "The lantern is already lit."
 Instead of switching off the animus lantern, say "[if time is critical]Not now.[otherwise]You consider extinguishing the lantern, but the fuse is old and damaged. You decide not to switch it off in case you aren't able to switch it on again when you need to."
@@ -1439,7 +1440,7 @@ The phylactery cathode is a faraway thing. It is part of the animus lantern.
 The description is "Once, it was someone's soul. Now, it is power immaterial."
 Understand "bound" or "animus/aurora/soul" or "cold" or "light" or "crystal" as the phylactery cathode.
 
-The phylactery cathode has some text called the faraway response. The faraway response is "It's dangerous to touch a phylactery cathode without training."
+The phylactery cathode has some text called the faraway response. The faraway response is "It's dangerous to touch a phylactery cathode."
 
 Before listening to the phylactery cathode, try listening to the animus lantern instead.
 Before smelling the phylactery cathode, try smelling the animus lantern instead.
@@ -1696,6 +1697,7 @@ Understand "shuffle [something]" as swinging.
 Understand "sit at [something]" as entering.
 Understand "sit down on/at [something]" as entering.
 Understand "slap [something]" as attacking.
+Understand "spin [something]" as turning.
 Understand "stab [something]" as cutting.
 Understand "steal [something]" as taking.
 Understand "step on/in [something]" as entering.
@@ -2472,14 +2474,14 @@ The bio-description of Zoiro is "The brother of Reden. An assembly-worker who is
 
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???[roman type] (the assassin)".
-The bio-description of Carnicer is "A mutant woman who broke into Doctor Cavala's clinic and tried to kill her. Her true motives remain unknown."
+The bio-description of Carnicer is "A mutant woman who [if Day Two has not ended]broke into Doctor Cavala's clinic and tried to kill her[otherwise]is trying to kill you and Doctor Cavala[end if]. Her true motives remain unknown."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
 The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease; now he is dead of the same contagion."
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
-The bio-description of Justinian is "Doctor Arturus's protégé, and your senior at the Physicians['] College. You have a crush on him, though you'd never admit it."
+The bio-description of Justinian is "Doctor Arturus's protégé, and your once-senior at the Physicians['] College. You have a crush on him, though you'd never admit it."
 
 When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
 The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do financial businessman."
@@ -10585,7 +10587,6 @@ Before going to the Shanty Quarter when Day Two is happening and shantyquarter-d
 shantyquarter-rwmq-quipped is a truth state that varies.
 	
 Every turn when the location is in Outdoors and Returning with More Questions is happening and shantyquarter-rwmq-quipped is false (this is the Returning with More Questions prompt rule):
-	wait for any key;
 	say "It's getting dark out. You should return and tell Doctor Cavala what you've learned.[paragraph break](You can >[bold type]go to[roman type] a place you've visited before to quickly travel there. For instance, >[bold type]go to clinic[roman type].)";
 	now shantyquarter-rwmq-quipped is true.
 
@@ -15033,7 +15034,7 @@ The sound is "Snatches of conversation escape the wind."
 The scent is "This place is soaked in alcohol and wood grain."
 The exit reminder is "The exit is below."
 
-Before examining down in the Crow's Nest, try examining the view of the Gangway instead.
+Before examining a direction in the Crow's Nest, say "You're a long way from the ground."
 
 Part 3.37.1 - Scenery
 
@@ -15049,7 +15050,7 @@ The sound is "The rags billow."
 Understand "sail/sails" or "rag/rags/ragged" as the sail-rags.
 
 Some cobbled-together furnishings are fixed in place scenery in the Crow's Nest.
-The description is "There is half a method to the madness, as though the builders had followed a half-forgotten blueprint."
+The description is "There's half a method to the madness, as though the builders had followed a half-forgotten blueprint."
 Understand "discarded" or "block/blocks" or "beam/beams" or "table/tables" or "landing/landings" or "madness" as the cobbled-together furnishings.
 Instead of entering the cobbled-together furnishings, say "You're standing in the Crow's Nest."
 
@@ -15177,7 +15178,7 @@ crow-d2-youheardeverything	true	false	"'You heard everything?'"	"'You heard ever
 
 'I heard enough.'
 
-[wait for any key]She uncorks a bottle and mixes a drink, a rich dark rum you can smell from across the bar. She pours out a glass for herself -- then she retrieves another, raises it with a sidelong arch of her brow.
+She uncorks a bottle and mixes a drink, a rich dark rum you can smell from across the bar. She pours out a glass for herself -- then she retrieves another, raises it with a sidelong arch of her brow.
 
 [wait for any key]'Drink?' she asks."	{crow-d2-drinkplz, crow-d2-nodrink, crow-d2-wineplz}
 crow-d2-thenyouknow	true	false	"'Then you know why I'm here.'"	"'Then you know why I'm here.'
@@ -15204,7 +15205,7 @@ She corks the bottle and settles back onto her stool. Through hooded eyes she st
 
 [wait for any key]A long moment passes before she finally speaks.
 
-'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
+[wait for any key]'Reden,' she says quietly. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-wineplz	true	false	"'I'm more of a spiced wine person, actually.'"	"'I'm more of a spiced wine person, actually.'
 
 She rolls her eyes, but fetches another bottle from under the counter and pours you a sparkling white spirit. The powders are still settling as she hands you the glass.
@@ -15249,7 +15250,7 @@ crow-d2-whathappened	false	true	"'What happened with the Channelworks?'"	"'What 
 
 She shakes her head. 'Everything. It all started there. I... I don't know how I can tell you.
 
-[wait for any key]'It was late. Webster asked for a whiskey, to keep his bones warm, and I... I just gave it to him.
+'It was late. Webster asked for a whiskey, to keep his bones warm, and I... I just gave it to him.
 
 [wait for any key]'Next day I heard he'd slipped and walked into the rubbish grinder.'
 
@@ -15259,7 +15260,7 @@ She looks into your eyes. 'I got found out after that,' she says. 'The whiskey, 
 
 [wait for any key]It's a while before you can compose your thoughts.
 
-'Sorry,' [the Crow] says. 'That got dark fast.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
+[wait for any key]'Sorry,' [the Crow] says. 'That got dark fast.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-whatwashelike, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-raven, crow-d2-endqns}
 crow-d2-whatwashelike	true	true	"Could you tell me what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'"	"'Could you tell me... what [if Crow is referring to Reden]he[otherwise]Reden[end if] was like?'
 
 [The Crow] looks into her glass, and her reflection stares up at her.
@@ -15268,7 +15269,7 @@ crow-d2-whatwashelike	true	true	"Could you tell me what [if Crow is referring to
 
 [wait for any key]'I offered him a job, but he never took up the offer. He just stayed here, going through bottles and bottles of cheap wine.
 
-'I never had the heart to charge him.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-endqns}
+[wait for any key]'I never had the heart to charge him.'"	{crow-d2-hecamehere, crow-d2-stuckinthepast, crow-d2-wheredhego, crow-d2-youknewhim, crow-d2-soundslikehistory, crow-d2-whathappened, crow-d2-aboutcrowsnest, crow-d2-newemployer, crow-d2-endqns}
 crow-d2-aboutcrowsnest	false	true	"'Could you tell me more about the Crow's Nest?'"	"'Could you tell me more about the Crow's Nest?'
 
 'Oh, it's nothing special.' She waves her hand dismissively. 'Time was, there was an employee refectory I ran in the Channelworks... I ran the after-dark shift, together with the reception. I served drinks when the commissary wasn't looking.
