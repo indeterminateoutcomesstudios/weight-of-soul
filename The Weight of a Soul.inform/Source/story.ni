@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 030817.
+The release number is 050817.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -78,6 +78,7 @@ Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_STATIC_DATA of 1440000.
 Use MAX_SYMBOLS of 60000.
 Use MAX_VERBS of 511.
+Use SYMBOLS_CHUNK_SIZE of 10000.
 Release along with a "Marid" website and the "SpookyQuixe" interpreter.
 
 Part 1.1.2 - Extensions
@@ -1438,7 +1439,7 @@ Instead of talking to the animus lantern, say "[if time is critical]This is not 
 
 The phylactery cathode is a faraway thing. It is part of the animus lantern.
 The description is "Once, it was someone's soul. Now, it is power immaterial."
-Understand "bound" or "animus/aurora/soul" or "cold" or "light" or "crystal" as the phylactery cathode.
+Understand "bound" or "animus/aurora/soul" or "cold" or "light" or "lantern-light" or "crystal" as the phylactery cathode.
 
 The phylactery cathode has some text called the faraway response. The faraway response is "It's dangerous to touch a phylactery cathode."
 
@@ -15769,7 +15770,7 @@ The description is "Darkness billows from the walls and scars the ground."
 The scent is "You take a breath and start coughing."
 Understand "scorch" or "mark/marks" or "underground" or "heating" or "room/calefactory" or "darkness" or "cement" as the scorched floor.
 Instead of rubbing the scorched floor, say "No amount of rubbing will remove these scars."
-Instead of attacking, entering, looking under, pushing, pulling, searching, touching, or turning the scorched floor, say "You kick at the floor experimentally, but it's cement all the way through."
+Instead of attacking, entering, looking under, pushing, pulling, searching, squeezing, touching, or turning the scorched floor, say "You kick at the floor experimentally, but it's cement all the way through."
 
 Some defunct machines are scenery in the Calefactory.
 The description is "Gnarled, unrecognizable shapes."
@@ -15793,9 +15794,9 @@ Before listening to the destroyed chute, try listening to the location instead.
 Instead of climbing or entering the destroyed chute, say "You doubt you could scale the broken-down chute. And even if you did, the assassin is still somewhere above."
 
 The blast door is a closed better left open scenery door. It is west of the Calefactory.
-The description is "A natron-infused slab of metal. [if the blast door is open]It's currently open[otherwise]It looks like the wheel nearby will open it[end if]."
+The description is "A forbidding slab of metal. [if the blast door is open]It's currently open[otherwise]It looks like the wheel nearby will open it[end if]."
 The sound is "You can't hear anything through the door."
-Understand "natron-infused" or "slab" or "of" or "metal" as the blast door.
+Understand "forbidding" or "slab" or "of" or "metal" as the blast door.
 Instead of opening the blast door when the blast door is closed, say "It looks like turning the wheel will open the door."
 Before closing the blast door when the blast door is open, try turning the wheel-shaped handle instead.
 Instead of searching the blast door, say "[if the blast door is open]The light of your lantern vanishes into darkness that way[otherwise]You can't see beyond the closed blast door[end if]."
@@ -15808,15 +15809,62 @@ Instead of turning the wheel-shaped handle:
 	if the blast door is closed:
 		say "You grip the wheel and turn with all your might. There is a groaning, a painful screeching sound, as rust cracks and crumbles from the base of the handle.[paragraph break]";
 		wait for any key;
-		say "Slowly, excruciatingly slowly, the blast door grinds open.";
+		say "The blast door grinds open.";
 		now the blast door is open;
 	otherwise:
-		say "You don't think you have the strength to turn the wheel back.";
+		say "The wheel seems to be stuck in place.";
 		
 Part 3.39.3 - Service Hallway
 
-The Service Hallway is a room in the Midnight Zone.
+[This room is part of a little puzzle with Belowstairs. There are aether-daemons infesting Belowstairs, which impose a time limit on getting through the blast door. You can retreat to the Service Hallway to reset the time limit.]
+
+The Service Hallway is a room in the Midnight Zone. "Something is off about this creaking hall, this bending passage that seems to fold inward. The pipes pass in and out of shadow, traced by your lantern-light, writ large in the cold gray darkness.
+
+To the east is the blast door you emerged from. To the north, the hall widens and distends."
 It is west of the blast door.
+
+The simple-name is "service hallway".
+The sound is "The air is deadened, muffled."
+The scent is "You smell ozone and dust."
+The exit reminder is "You can return east to the calefactory, or venture north down the hall."
+
+Instead of examining north in the Service Hallway, say "Something is very wrong about this place."
+Before examining east in the Service Hallway, try searching the blast door instead.
+
+Before going outside in the Service Hallway, try going north instead.
+Before going inside in the Service Hallway, say "Do you mean going east (to the calefactory) or north (below stairs)?"
+
+Chapter 3.39.3.1 - Scenery
+
+The disorienting geometry is scenery in the Service Hallway. The indefinite article is "the".
+The description is "You feel a little sick, as though whatever is affecting the hallway is also affecting you."
+The sound is "It's a sound metal shouldn't make."
+Understand "creaking" or "bend/bending" or "hall/passage" or "fold/folding" or "shadow/shadows" or "cold" or "gray" or "darkness" as the disorienting geometry.
+Before entering the disorienting geometry, try going north instead.
+Instead of pushing, pulling, rubbing, squeezing, touching, or turning the disorienting geometry, say "[one of]Your hands start to throb as they near the walls. You pull them back, your heart hammering[or]You're not doing that again[stopping]."
+Instead of looking under or searching the disorienting geometry, say "You can't seem to focus on the geometry of this place."
+
+Some twisted pipes are part of the disorienting geometry.
+The description is "The pipes are parallel. The pipes intersect."
+Before listening to the twisted pipes, try listening to the disorienting geometry instead.
+Before pushing, pulling, rubbing, squeezing, touching, or turning the twisted pipes, try touching the disorienting geometry instead.
+Before looking under or searching the twisted pipes, try searching the disorienting geometry instead.
+
+Chapter 3.39.3.2 - Belowstairs Puzzle Foreshadowing
+
+belowstairs-puzzle-foreshadowing-shown is a truth state that varies.
+
+Every turn when the location is the Service Hallway and belowstairs-puzzle-foreshadowing-shown is false:
+	say "[wait for any key]And there is something -- something [italic type]moving[roman type] there --[paragraph break]";
+	. Then it is gone.";
+	now belowstairs-puzzle-foreshadowing-shown is true.
+
+Part 3.39.4 - Belowstairs
+
+Belowstairs is a room in the Midnight Zone.
+
+It is north of the Service Hallway.
+The simple-name is "belowstairs".
 
 Book of the Rest
 
