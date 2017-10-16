@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 050817.
+The release number is 161017.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -3612,6 +3612,10 @@ Every turn (this is the ambience rule):
 					sort the associated table of the relevant ambience in random order;
 	otherwise:	
 		now ambience suppression is false.
+		
+First report going (this is the suppress ambience when entering a room for the first time rule):
+	if the location is unvisited:
+		now ambience suppression is true.
 
 Chapter 3.1.3.1 - Upper Perioch Ambience
 
@@ -3841,7 +3845,7 @@ Understand "sober" or "mechanical" or "bed" or "drawer" or "drawers" or "side" o
 
 Instead of examining the gurney, say "It's a sober mechanical bed with various devices and surgical implements attached.[if Reden is on the gurney] [reden-gurney-description].[otherwise if a described thing is on the gurney][line break]On the gurney [is-are a list of described things on the gurney]."
 
-The attached surgical implements are part of the gurney. Understand "devices" or "device" or "implement" or "strap" or "straps" or "hook" as the implements. Instead of doing anything with the implements, say "You don't think anything useful will result from fiddling with the gurney devices."
+Some attached surgical implements are part of the gurney. Understand "devices" or "device" or "implement" or "strap" or "straps" or "hook" as the implements. Instead of doing anything with the implements, say "You don't think anything useful will result from fiddling with the gurney devices."
 
 Instead of entering the gurney, say "The gurney is for patients. It isn't a toy."
 Instead of searching the gurney, say "You find nothing useful in the mechanical drawers."
@@ -4039,7 +4043,7 @@ Table of Reden's Surgical Procedure (continued)
 index	happening	spawned items	item required
 5	"You tiptoe -- grab the inhaler -- press the device into Doctor Cavala's waiting palm. She shakes it experimentally and nods at you before raising the inhaler to Reden's lips with a [italic type]hiss...[roman type]
 
-The goblin's pupils begin to dilate. 'Easy now,' Doctor Cavala mutters--
+The goblin's pupils begin to dilate. 'Easy now,' Doctor Cavala mutters --
 
 [wait for any key]His head bucks violently. Doctor Cavala drops the inhaler and the bulb shatters all over the floor. 'Primes!' she hisses. 'Marid, can you get me another dose?'"	--	--
 6	"'That was the last one,' you yell back, trying not to breathe in any of the fumes.
@@ -4862,7 +4866,7 @@ Before pushing, pulling, or taking Doctor Cavala when the first aid bag is carri
 Instead of pushing, pulling, or taking Doctor Cavala when the CSOFAOC is 3 (this is the raise Doctor Cavala's leg for first aid rule):
 	now the first aid bag is undescribed;
 	now the first aid bag is closed;
-	say "Taken--
+	say "Taken --
 
 Doctor Cavala grits her teeth and screws her eyes shut. Her bloodstained trousers stick to your gloves. Her leg feels heavy and fragile in your hands, like a porcelain model that will shatter if you slip.
 
@@ -6026,7 +6030,7 @@ Doctor Cavala frowns. 'According to my file, he has a brother in Riggertown by t
 'It is. Turn right at the bridge and you'll see it.' She pauses. 'And another thing -- check whether anyone in Riggertown is exhibiting similar symptoms. The cause of the affliction has yet to be determined.'"	 {cavala-errands-documents, cavala-errands-youdoing, cavala-errands-onit}
 cavala-errands-youdoing	true	true	"'What will you be doing?'"	"'What will you be doing?' you ask.
 
-Doctor Cavala inclines her head at the [if the location is the Mortuary]slab[otherwise]stairs to the mortuary[end if]. 'I intend to spend today studying Reden's affliction. It is definitively not in the Alchemical Library. I've already left correspondence for Doctor Arturus, who I expect shall join me in the afternoon; in the meantime, I am compiling post-mortem observations and studying the mechanism by which Reden has died. If all goes well, we should be able to present our findings to the medical community by the end of the week.'"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-onit}
+Doctor Cavala inclines her head at the [if the location is the Mortuary]slab[otherwise]stairs to the mortuary[end if]. 'When not receiving patients, you mean? I intend to spend the day studying Reden's affliction. I've already left correspondence for Doctor Arturus, who I expect shall join me in the afternoon; in the meantime, I am compiling post-mortem observations and studying the mechanism by which Reden has died. If all goes well, we should be able to present our findings to the medical community by the end of the week.'"	 {cavala-errands-documents, cavala-errands-nextofkin, cavala-errands-onit}
 cavala-errands-onit	true	false	"'I'm on it, Doctor.'"	"'I'm on it, Doctor.'
 
 She nods and presses the bundle of documentation into your hands. 'Remember: first, deliver the documents to the basilica; second, look for Zoiro in Riggertown. Report back to me when you're done.'
@@ -6197,7 +6201,7 @@ westend-errands-mapquipped is a truth state that varies.
 First every turn when the location is the West End and Cavala's Errands is happening and westend-errands-mapquipped is false (this is the West End map quip rule):
 	say "(Type >[bold type]map[roman type] to view a map of the Channelworks District.)";
 	now ambience suppression is true;
-	now westend-errands-mapquipped is false.
+	now westend-errands-mapquipped is true.
 
 Chapter 3.5.4.3 - Seeing Carnicer during Returning to a Break-In
 
@@ -6574,9 +6578,10 @@ Instead of knocking on the char-golem, say "Clank."
 Instead of pushing, pulling, swinging, taking, or turning the char-golem, say "The golem is many times your weight."
 Instead of talking to the char-golem, say "Golems aren't sapient. You'd sooner get a response out of a lamp-post."
 
-The big burlap bag is a thing carried by the Council of Works char-golem.
+The big burlap bag is a thing part of the Council of Works char-golem.
 The description is "It's just a big burlap bag."
 The scent is "You smell dead pigeons and strychnia."
+Instead of pushing, pulling, rubbing, squeezing, taking, or turning the big burlap bag, say "You don't really want to touch the bag."
 
 Some dead pigeons are a scenery thing.
 The description is "Each carcass is contorted strangely, as though frozen in an instant of convulsion."
@@ -6918,7 +6923,7 @@ bartender-dialogue-finishdrink	true	false	"<Finish your drink.>"	"You down the l
 
 The bartender takes the empty glass, and you feel a little better for having confided in him."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
 bartender-dialogue-finishdrinksilent	true	false	"<Finish your drink in silence.>"	"The bartender takes the empty glass with an understanding nod."	{bartender-dialogue-tip, bartender-dialogue-goodbye}
-bartender-dialogue-tip	true	true	"<Tip the bartender.>"	"You tip the bartender and he bows."	{bartender-dialogue-goodbye}
+bartender-dialogue-tip	true	false	"<Tip the bartender.>"	"You tip the bartender and he bows."	{bartender-dialogue-goodbye}
 bartender-dialogue-nevermind	true	false	"'Actually, never mind.'"	"'Actually, never mind.'
 
 You stand up. The bartender shrugs and goes back to his business."	{}
@@ -15649,11 +15654,9 @@ First before doing anything when the location is Pursuit Part Five (this is the 
 		wait for any key;
 		say "[italic type]watch[roman type][paragraph break]";
 		wait for any key;
-		say "[italic type]your[roman type][paragraph break]";
+		say "[italic type]him[roman type][paragraph break]";
 		wait for any key;
-		say "[italic type]father[roman type][paragraph break]";
-		wait for any key;
-		say "[italic type]burn[roman type][paragraph break]";
+		say "[italic type]die[roman type][paragraph break]";
 		wait for any key;
 		say "screaming your name as she claws and smashes through the fallen beams. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
 		wait for any key;
@@ -15856,15 +15859,25 @@ belowstairs-puzzle-foreshadowing-shown is a truth state that varies.
 
 Every turn when the location is the Service Hallway and belowstairs-puzzle-foreshadowing-shown is false:
 	say "[wait for any key]And there is something -- something [italic type]moving[roman type] there --[paragraph break]";
-	. Then it is gone.";
+	say "No. Gone. It's gone.";
 	now belowstairs-puzzle-foreshadowing-shown is true.
 
 Part 3.39.4 - Belowstairs
 
-Belowstairs is a room in the Midnight Zone.
+Belowstairs is a room in the Midnight Zone. "The floor falls away here. The path is shredded and broken. In another time this might have been the servants['] quarters: the remains of furniture and domestic objects are strewn across this distorted space. But the seams of reality are showing here, and an otherworldly pulsing darkness seeps forth that makes your eyes throb.
+
+On the east end of the area is the door to a service lift. Beside it is a hydraulic wheel. To the south, you can see the service hallway you entered from."
 
 It is north of the Service Hallway.
 The simple-name is "belowstairs".
+
+belowstairs-firstlook-specialdescription is a truth state that varies.
+Every turn when the player is in Belowstairs and belowstairs-firstlook-specialdescription is false:
+	wait for any key;
+	say "You've seen places like this before. When the foundations of a magical building is damaged, it tears the fabric of the world, exposing the irrational dimensions that lie beyond. And [italic type]things[roman type] crawl through the cracks that are not quite alive.[paragraph break]";
+	wait for any key;
+	say "You'd best not linger here.";
+	now belowstairs-firstlook-specialdescription is true.
 
 Book of the Rest
 
