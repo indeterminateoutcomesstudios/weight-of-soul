@@ -1303,7 +1303,7 @@ Instead of swinging the scalpel, say "[if time is critical]That won't help you.[
 Part 2.2.7 - Purse
 
 The purse is a key-item carried by the player. The indefinite article is "your".
-The description is "A simple cloth purse. It's slightly worn from age."
+The description is "You don't carry much money with you. Just enough to buy food and other necessities."
 The scent is "Its scent has been leached from the constant proximity to natron-inscribed notes."
 Understand "money" or "cash" or "libra/librae/talent/talents" or "[number] libra/librae/talent/talents" as the purse.
 
@@ -1311,13 +1311,12 @@ Rule for clarifying the parser's choice of the purse: say "(your purse)".
 
 Before removing the purse from the purse, try opening the purse instead.
 Instead of dropping the purse, say "[if time is critical]This is not the time.[otherwise]You prefer to keep your money close at hand."
-Instead of opening the purse, say "[if time is critical]This is not the time.[otherwise]You only ever open your purse when you're buying something."
+Instead of opening or searching the purse, say "[if time is critical]This is not the time.[otherwise]You only ever open your purse when you're buying something."
 Instead of giving the purse to an other person, say "[if time is critical]This is not the time.[otherwise]You don't have [italic type]that[roman type] much money to spare."
 Instead of inserting the purse into something, say "[if time is critical]This is not the time.[otherwise]You prefer to keep your money close at hand."
 Instead of inserting the purse into the purse, say "[if time is critical]This is not the time.[otherwise]Your purse already contains all the money you have on you."
 Instead of inserting something into the purse, say "[if time is critical]This is not the time.[otherwise]The only thing that belongs in your purse is money."
 Instead of putting the purse on something, say "[if time is critical]This is not the time.[otherwise]You prefer to keep your money close at hand."
-Instead of searching the purse, say "[if time is critical]This is not the time.[otherwise]You don't carry much money with you. Just enough to buy food and other necessities."
 
 Part 2.2.8 - Antiseptic Cloth
 
@@ -4406,7 +4405,7 @@ Instead of knocking on the clinic door:
 Part 3.3.3 - Pigeonholes
 
 There is a plural-named consultable scenery container in the Clinic called the pigeonholes of medication and patient records.
-The description is "You can search for medication or patient records in the pigeonholes."
+The description is "You could look up medication or patient records in the pigeonholes."
 Understand "gridlike" or "medication" or "record" or "inhaler" or "inhalers" or "pigeon" or "hole" or "holes" as the pigeonholes.
 Instead of searching the pigeonholes when the pigeonholes contain nothing, say "There is far too much to go through here. You will have to search for a specific medication or patient record."
 Instead of taking the pigeonholes, say "You don't need to take anything from the pigeonholes."
@@ -6435,9 +6434,9 @@ saliunca-orphan	true	true	"'Living by myself isn't [roman type]that[italic type]
 
 'Oh, I don't doubt you can look after yourself, love,' Saliunca quickly adds. 'I'm -- We're only worried for you, is all; just a spot of neighborly worry. It isn't easy for an -- for a young lady to -- to live like you do.'
 
-An awkward pause.
+[wait for any key]An awkward pause.
 
-'I appreciate the concern,' you say eventually, 'but you shouldn't worry. I get by, in my own way.'"	{saliunca-pigeons, saliunca-seeingyou}
+[wait for any key]'I appreciate the concern,' you say eventually, 'but you shouldn't worry. I get by, in my own way.'"	{saliunca-pigeons, saliunca-seeingyou}
 saliunca-pigeons	true	false	"'Do you feed the pigeons often?'"	"You gesture at the flock surrounding her. 'Do you feed the pigeons often?'
 
 Saliunca cackles. 'Feed them?' she says. 'I suppose you could say that, in a way. Yes, I feed them; but if you think I harbor any love for the pigeons, you would be quite mistaken. I'm poisoning the pigeons, you see, love -- feeding them poison!'"	{saliunca-poison, saliunca-thenkilling, saliunca-whydoit}
