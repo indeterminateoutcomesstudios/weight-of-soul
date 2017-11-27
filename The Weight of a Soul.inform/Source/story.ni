@@ -6662,7 +6662,9 @@ Before going west in Dormitory Block during Walking Home in Suspense, try examin
 
 Book 3.7 - Public House
 
-There is a proper-named room called the Public House. "Tucked away in the shadow of the domiciles, this cozy establishment offers a retreat from the [if it is night]melancholy of the night[otherwise]bustle of the day[end if]. Other patrons are scattered at the tables, engaged in drinking and conversation, while in the corner a solitary clockwork musician plays. The door is to the east."
+There is a proper-named room called the Public House. "Tucked away in the shadow of the domiciles, this cozy establishment offers a retreat from the [if it is night]melancholy of the night[otherwise]bustle of the day[end if]. Other patrons are scattered at the tables, engaged in drinking and conversation, while in the corner a solitary clockwork musician plays.
+
+The door is to the east."
 
 The simple-name is "the public house".
 The sound is "Music and conversation intermingle with one another."
@@ -7651,7 +7653,7 @@ Book 3.9 - Via Terminalis, West Street
 
 Via Terminalis West Street is a proper-named room in Outdoors. "You are adrift in the bustle of crowds and carriages, a raucous river that runs through the blood-vessel streets. Signage advertises a profusion of shops and services amid the sounds of leather rollers and stitching machines. In the distant mist, the Bilious Canal spills from the Channelworks into the heart of the city.
 
-The Via runs from west to southeast, where it bridges the canal. A condemned block is visible to the north. A hanging banner obscures an alley to the southwest, and a footpath follows the canal to the south."
+You can follow the Via to the west, or to the southeast where it bridges the canal. A condemned block is visible to the north. A hanging banner obscures an alley to the southwest, while a footpath follows the canal to the south."
 It is east of the West End.
 The printed name is "Via Terminalis, West Street".
 
@@ -7847,11 +7849,11 @@ The rubbish is scenery in the Crooked Alley. The indefinite article is "some". T
 Instead of pushing or pulling the rubbish, say "You find nothing of interest."
 Instead of taking the rubbish, say "You've no use for any of it."
 
-Some smoking vents are scenery in the Crooked Alley. The description is "The south wall of the alley is lined with fume-spewing vents." Understand "south/-- wall" or "fume/fumes/smoke" or "spewing" or "fume-spewing" or "underground" or "distillery/distilleries" as the smoking vents.
+Some smoking vents are scenery in the Crooked Alley. The description is "The south wall of the alley is lined with fume-spewing vents." Understand "south/-- wall" or "vent" or "fume/fumes/smoke" or "spewing" or "fume-spewing" or "underground" or "distillery/distilleries" as the smoking vents.
 Instead of opening or entering the smoking vents, say "You don't think that will be very productive."
 Instead of searching the smoking vents, say "You can't see much through the smoke."
 Instead of inserting the endoscope into the smoking vents, say "You can't see much through the smoke."
-Instead of smelling the smoking vents, say "Breathing in the smoke makes you feel ill, and you stop for fear of poisoning yourself."
+Instead of smelling the smoking vents, say "Breathing in the smoke makes you feel ill. You stop for fear of poisoning yourself."
 Instead of listening to the smoking vents, say "You hear bubbling, hissing, clanking."
 
 There is a plural-named scenery thing in the Crooked Alley called some pipes and corners. The description is "It seems like the alley is nothing but pipes and corners."
