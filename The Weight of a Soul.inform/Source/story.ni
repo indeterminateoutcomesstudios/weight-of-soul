@@ -4007,7 +4007,7 @@ You glance up at the shelves ringing the surgery room."	{soporific, vivific}	--
 4	"'...unnerving. I've never seen anything like it.' Doctor Cavala shakes her head before glancing to you. 'Marid. Did you find the soporific? Give it to me.'"	--	soporific
 
 The soporific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer soporifer[roman type]". The terse appellation is "the soporific".
-The description is "This must be the soporific Doctor Cavala is looking for.[paragraph break](You can type >[bold type]take soporific[roman type] to retrieve it.)[line break]".
+The description is "This must be the soporific Doctor Cavala is looking for.[paragraph break](You can type >[bold type]take soporific[roman type] to retrieve it.)"
 Understand "inhaler" or "labeled" or "aer" or "soporifer" as the soporific.
 	
 The vivific inhaler is a purely-surgical-necessity. The printed name is "inhaler labeled [italic type]aer vivificans[roman type]".

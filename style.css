@@ -11,6 +11,7 @@ body
 {
 	font-family: EB Garamond, Georgia, Palatino, "Times New Roman", Times, serif;
 	font-size: 100%;
+    background-color: #222;
 	-webkit-text-size-adjust: none;
 }
 
@@ -423,10 +424,11 @@ Styles for play.html
 #gameport
 {
 	color: #FFF;
+    max-width: 1024px;
 	bottom: 0px;
 	left: 0px;
 	line-height: 1.4;
-	margin: 0px;
+	margin: auto;
 	position: absolute;
 	right: 0px;
 	top: 0px;
