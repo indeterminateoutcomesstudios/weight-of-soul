@@ -4,12 +4,12 @@ Standard CSS file for use with Standard.html and Standard-Source.html.
 
 */
 
-@import url('https://fonts.googleapis.com/css?family=Libre Baskerville');
+@import url('https://fonts.googleapis.com/css?family=EB Garamond');
 @import url('https://fonts.googleapis.com/css?family=Oxygen Mono');
 
 body
 {
-	font-family: Libre Baskerville, Georgia, Palatino, "Times New Roman", Times, serif;
+	font-family: EB Garamond, Georgia, Palatino, "Times New Roman", Times, serif;
 	font-size: 100%;
 	-webkit-text-size-adjust: none;
 }
@@ -41,13 +41,13 @@ Best color schemes are likely to vary depending on cover art.
 a
 {
 	text-decoration: none;
-	color: #336;
+	color: #447;
 }
 
 a:visited
 {
 	text-decoration: none;
-	color: #336;
+	color: #447;
 }
 
 a:hover
@@ -416,7 +416,7 @@ Styles for play.html
 	bottom: 1em;
 	right: 2.5em;
 	text-align: right;
-	font-size: 80%;
+    font-weight: bold;
 	position: absolute;
 }
 

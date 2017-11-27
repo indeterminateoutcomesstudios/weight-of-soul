@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 161017.
+The release number is 271117.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -839,7 +839,7 @@ A person can be friendly or hostile. A person is usually friendly. [This flag co
 
 Understand "person" as a person. Understand "people" as the plural of a person. Understand "man" as a male person. Understand "men" as the plural of a male person. Understand "woman" as a female person. Understand "women" as the plural of a female person.
 
-A person can be living or dead. A person is usually living. Understand "dead" or "body" or "corpse" or "cadaver" or "stiff" as a dead person. 
+A person can be living or dead. A person is usually living. Understand "dead" or "body" or "corpse" or "cadaver" as a dead person. 
 
 Race is a kind of value. The races are human, goblin, mutant, mixed-race, and creature. A person has a race. The race of a person is usually human. Understand the race property as describing a person.
 Understand "humans" as the plural of a human person. Understand "goblins" as the plural of a goblin person. Understand "mutants" as the plural of a mutant person.
@@ -1146,7 +1146,7 @@ Before doing anything other than examining, knocking on, looking under, rubbing,
 
 Part 2.1.3 - Marid's Eyes
 
-Marid's eyes are a plural-named thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if time is critical]Your eyes are working fine.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
+Marid's eyes are a plural-named thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if the location is Belowstairs]This place makes your eyes hurt.[otherwise if time is critical]Your eyes are working fine.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
 
 Before searching Marid's eyes, try examining Marid's eyes instead.
 Instead of attacking, burning, cutting, pushing, or pulling Marid's eyes, say "No."
@@ -4325,6 +4325,7 @@ Before examining north in the Clinic, try searching the calomel curtain instead.
 Before examining east in the Clinic, try searching the clinic front door instead.
 Before examining outside in the Clinic, try searching the clinic front door instead.
 Before examining down in the Clinic, try examining the stairs to the mortuary instead.
+Instead of examining inside in the Clinic, say "It's unclear where you want to look."
 Before going outside in the Clinic, try going east instead.
 
 Part 3.3.1 - Scenery
@@ -15803,6 +15804,7 @@ Understand "forbidding" or "slab" or "of" or "metal" as the blast door.
 Instead of opening the blast door when the blast door is closed, say "It looks like turning the wheel will open the door."
 Before closing the blast door when the blast door is open, try turning the wheel-shaped handle instead.
 Instead of searching the blast door, say "[if the blast door is open]The light of your lantern vanishes into darkness that way[otherwise]You can't see beyond the closed blast door[end if]."
+Before unlocking the blast door with the wheel-shaped handle, try turning the wheel-shaped handle instead.
 
 The wheel-shaped handle is scenery in the Calefactory.
 The description is "A rusted hydraulic wheel."
@@ -15866,18 +15868,65 @@ Part 3.39.4 - Belowstairs
 
 Belowstairs is a room in the Midnight Zone. "The floor falls away here. The path is shredded and broken. In another time this might have been the servants['] quarters: the remains of furniture and domestic objects are strewn across this distorted space. But the seams of reality are showing here, and an otherworldly pulsing darkness seeps forth that makes your eyes throb.
 
-On the east end of the area is the door to a service lift. Beside it is a hydraulic wheel. To the south, you can see the service hallway you entered from."
+The service hallway lies south. East you see the door to a service lift, and beside it, a hydraulic wheel."
 
 It is north of the Service Hallway.
+
 The simple-name is "belowstairs".
+The sound is "The sound here travels in strange ways. You can scarcely recognize your heartbeat."
+The scent is "The air here is tortured."
+The exit reminder is "The service hallway is to the south, while the service lift is to the east."
+The going-in disambiguation is "Do you mean going south (to the service hallway) or going east (to the service lift)?"
+
+Before examining south in Belowstairs, try examining the view of the service hallway instead.
+Before examining east in Belowstairs, try examining the service lift instead.
+Instead of examining inside in Belowstairs, say "It's unclear where you want to look."
+
+Before going up in Belowstairs, try entering the service lift instead.
 
 belowstairs-firstlook-specialdescription is a truth state that varies.
 Every turn when the player is in Belowstairs and belowstairs-firstlook-specialdescription is false:
 	wait for any key;
-	say "You've seen places like this before. When the foundations of a magical building is damaged, it tears the fabric of the world, exposing the irrational dimensions that lie beyond. And [italic type]things[roman type] crawl through the cracks that are not quite alive.[paragraph break]";
+	say "You've seen places like this before. When the foundations of an enchanted building is damaged, it tears the fabric of the world, exposing the irrational dimensions that lie beyond. And [italic type]things[roman type] crawl through the cracks that are not quite alive.[paragraph break]";
 	wait for any key;
 	say "You'd best not linger here.";
 	now belowstairs-firstlook-specialdescription is true.
+	
+Chapter 3.39.4.1 - Scenery
+
+The distorted space is faraway scenery in Belowstairs.
+The description is "The laws of nature are tattered here. Abused."
+The sound is "A silence deader than silence."
+The distorted space has some text called the faraway response. The faraway response is "The processes of life depend on the laws of reality. Interacting with anything here would be mortally unwise."
+Understand "floor" or "path" or "shredded/broken" or "furniture" or "domestic" or "objects" or "distortion" or "remains" or "aether/aetheric/ether/etheric" or "servants" or "quarters" as the distorted space.
+
+The otherworldly darkness is faraway scenery in Belowstairs.
+The description is "Your brain refuses to see what lies there, in the not-shadow."
+The sound is "Your brain refuses to acknowledge the sound."
+The otherworldly darkness has some text called the faraway response. The faraway response is "You may only be an apprentice of the [italic type]ars vitalis[roman type], but you are certain that that would kill you."
+Understand "shadow/shadows/not-shadow" or "pulsing" or "seam/seams" or "of/-- reality" as the otherworldly darkness.
+
+The view of the service hallway is faraway scenery in Belowstairs.
+The description is "The distortion is less intense there."
+The sound is "Creaking."
+Before entering the view of the service hallway, try going south instead.
+
+The service lift is a closed openable enterable scenery container in Belowstairs.
+The description is "The lights are still flickering. It might be your way out of here."
+The sound is "You hear the hum of galvanism."
+The scent is "The tang of metal is almost a relief."
+Understand "door to/--" or "light/lights" as the service lift.
+Before unlocking the service lift with the hydraulic wheel, try turning the hydraulic wheel instead.
+Instead of opening the service lift, say "It looks like the door is operated with the hydraulic wheel nearby."
+Instead of searching the service lift, say "The door of the service lift is closed."
+
+Chapter 3.39.4.2 - The Very Onerous Hydraulic Wheel
+
+The hydraulic wheel is scenery in Belowstairs.
+
+Chapter 3.39.4.3 - The Aether-Daemons
+
+Some aether-daemons are an undescribed creature person in Belowstairs.
 
 Book of the Rest
 
