@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 271117.
+The release number is 011217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -228,6 +228,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to midnight[roman type]";
 	say "[line break]>[bold type]skip to rooftop[roman type]";
 	say "[line break]>[bold type]skip to calefactory[roman type]";
+	say "[line break]>[bold type]skip to service lift[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -378,8 +379,10 @@ Rooftop Pursuit ends when the location is Gruetown.
 
 Monster House is a scene. [Marid falls into a pit full of aether-daemons and has to figure out how to escape.]
 Monster House begins when Rooftop Pursuit ends.
+Monster House ends when the location is the Service Lift Room.
 
 Highway to Hell is a scene. [Marid lures Carnicer to her doom.]
+Highway to Hell begins when Monster House ends.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 
@@ -707,6 +710,12 @@ To skip Rooftop Pursuit:
 	move the player to the Calefactory, without printing a room description;
 	follow the scene changing rules;
 	
+To skip Monster House:
+	if the Calefactory is not visited:
+		skip Rooftop Pursuit;
+	move the player to the Service Lift Room, without printing a room description;
+	follow the scene changing rules;
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -826,6 +835,13 @@ Understand "skip to calefactory" as skipping to calefactory.
 Check skipping to calefactory when Rooftop Pursuit has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to calefactory:
 	skip Rooftop Pursuit;
+	try looking.
+	
+Skipping to service lift is an action applying to nothing.
+Understand "skip to service lift" as skipping to service lift.
+Check skipping to service lift when the Calefactory is visited: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to service lift:
+	skip Monster House;
 	try looking.
 	
 Book 1.3 - People
@@ -2885,6 +2901,8 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 		say "Oh Primes oh Primes oh Primes oh Primes";
 	otherwise if Monster House is happening:
 		say "I... I don't know if I'm going mad. I don't know if I can trust my senses anymore. All I can do is keep my wits about me and try to survive this. ";
+	otherwise if Highway to Hell is happening:
+		say "I'm scared. I don't know how long I can keep this up. Part of me wants to just lie down and sleep... but I know that I have to keep moving. I have to keep going. I have to. ";
 
 Chapter 2.3.12.4 - Objectives
 
@@ -3046,6 +3064,8 @@ To say journal-text-objectives:
 			add "- Find a light source" to L;
 		otherwise:
 			add "- Find a way out of the condemned block" to L;
+	if Highway to Hell is happening:
+		add "- Find a way out of the condemned block" to L;
 	[---
 	END
 	---]
@@ -15754,7 +15774,7 @@ Part 3.39.2 - Calefactory
 
 The Calefactory is a room in the Midnight Zone. "You've landed in some kind of underground heating room, long abandoned. The floor is seared with scorch marks. The corpses of piping and machinery litter the area, reclaimed by rust and layers of fine black soot.
 
-Above dangles a destroyed chute. To the west there is a blast door, with a wheel-shaped handle fitted nearby."
+Above dangles a destroyed chute. To the west there is [if the blast door is closed]a closed[otherwise]an open[end if] blast door, with a wheel-shaped handle fitted nearby."
 
 The sound is "You hear distant footsteps above."
 The scent is "The odor of ash pervades the room."
@@ -15856,42 +15876,53 @@ Before listening to the twisted pipes, try listening to the disorienting geometr
 Before pushing, pulling, rubbing, squeezing, touching, or turning the twisted pipes, try touching the disorienting geometry instead.
 Before looking under or searching the twisted pipes, try searching the disorienting geometry instead.
 
-Chapter 3.39.3.2 - Belowstairs Puzzle Foreshadowing
+Chapter 3.39.3.2 - Belowstairs Puzzle Hints
 
 belowstairs-puzzle-foreshadowing-shown is a truth state that varies.
 
 Every turn when the location is the Service Hallway and belowstairs-puzzle-foreshadowing-shown is false:
-	say "[wait for any key]And there is something -- something [italic type]moving[roman type] there --[paragraph break]";
+	wait for any key;
+	say "And there is something -- something [italic type]moving[roman type] there --[paragraph break]";
 	say "No. Gone. It's gone.";
 	now belowstairs-puzzle-foreshadowing-shown is true.
+	
+belowstairs-puzzle-hint-shown is a truth state that varies.
+
+Every turn when the location is the Service Hallway and aether-daemons-sighted is true and belowstairs-puzzle-hint-shown is false:
+	wait for any key;
+	say "You take a moment to catch your breath and collect your thoughts. It seems those creatures will attack if you stay in the next room for too long.";
+	now belowstairs-puzzle-hint-shown is true.
 
 Part 3.39.4 - Belowstairs
 
-Belowstairs is a room in the Midnight Zone. "The floor falls away here. The path is shredded and broken. In another time this might have been the servants['] quarters: the remains of furniture and domestic objects are strewn across this distorted space. But the seams of reality are showing here, and an otherworldly pulsing darkness seeps forth that makes your eyes throb.
+Belowstairs is a room in the Midnight Zone. "The floor falls away here. The path is shredded and broken. In another time this might have been the servants['] quarters: the remains of furniture and domestic objects are strewn across this distorted space. But the seams of reality are showing here, and an otherworldly pulsing darkness seeps forth that makes your eyes throb[one of][or].
 
-The service hallway lies south. East you see the door to a service lift, and beside it, a hydraulic wheel."
+The service hallway lies south. East you see the door to a service lift, and beside it, a hydraulic wheel[stopping]."
+
+belowstairs-firstlook-specialdescription is a truth state that varies.
+Every turn when the player is in Belowstairs and belowstairs-firstlook-specialdescription is false:
+	wait for any key;
+	say "You've seen places like this before. When the foundations of an enchanted building are damaged, it tears the fabric of the world, exposing the irrational dimensions that lie beyond. And [italic type]things[roman type] crawl through the cracks that are not quite alive.[paragraph break]";
+	wait for any key;
+	say "You'd best not linger here.[paragraph break]";
+	wait for any key;
+	say "The service hallway lies south. East you see the door to a service lift, and beside it, a hydraulic wheel.";
+	now belowstairs-firstlook-specialdescription is true.
 
 It is north of the Service Hallway.
 
 The simple-name is "belowstairs".
-The sound is "The sound here travels in strange ways. You can scarcely recognize your heartbeat."
+The sound is "Sound here travels in strange ways. You can scarcely recognize your heartbeat."
 The scent is "The air here is tortured."
 The exit reminder is "The service hallway is to the south, while the service lift is to the east."
 The going-in disambiguation is "Do you mean going south (to the service hallway) or going east (to the service lift)?"
 
 Before examining south in Belowstairs, try examining the view of the service hallway instead.
-Before examining east in Belowstairs, try examining the service lift instead.
+Before examining east in Belowstairs, try examining the belowstairs service lift instead.
 Instead of examining inside in Belowstairs, say "It's unclear where you want to look."
 
-Before going up in Belowstairs, try entering the service lift instead.
-
-belowstairs-firstlook-specialdescription is a truth state that varies.
-Every turn when the player is in Belowstairs and belowstairs-firstlook-specialdescription is false:
-	wait for any key;
-	say "You've seen places like this before. When the foundations of an enchanted building is damaged, it tears the fabric of the world, exposing the irrational dimensions that lie beyond. And [italic type]things[roman type] crawl through the cracks that are not quite alive.[paragraph break]";
-	wait for any key;
-	say "You'd best not linger here.";
-	now belowstairs-firstlook-specialdescription is true.
+Before going up in Belowstairs, try entering the belowstairs service lift instead.
+Before going east in Belowstairs, try entering the belowstairs service lift instead.
 	
 Chapter 3.39.4.1 - Scenery
 
@@ -15905,29 +15936,124 @@ The otherworldly darkness is faraway scenery in Belowstairs.
 The description is "Your brain refuses to see what lies there, in the not-shadow."
 The sound is "Your brain refuses to acknowledge the sound."
 The otherworldly darkness has some text called the faraway response. The faraway response is "You may only be an apprentice of the [italic type]ars vitalis[roman type], but you are certain that that would kill you."
-Understand "shadow/shadows/not-shadow" or "pulsing" or "seam/seams" or "of/-- reality" as the otherworldly darkness.
+Understand "shadow/shadows/not-shadow" or "pulsing" or "seam/seams" or "of/-- reality" or "stonework" as the otherworldly darkness.
 
 The view of the service hallway is faraway scenery in Belowstairs.
 The description is "The distortion is less intense there."
 The sound is "Creaking."
 Before entering the view of the service hallway, try going south instead.
 
-The service lift is a closed openable enterable scenery container in Belowstairs.
+The belowstairs service lift is a closed openable enterable scenery container in Belowstairs.
 The description is "The lights are still flickering. It might be your way out of here."
 The sound is "You hear the hum of galvanism."
 The scent is "The tang of metal is almost a relief."
-Understand "door to/--" or "light/lights" as the service lift.
-Before unlocking the service lift with the hydraulic wheel, try turning the hydraulic wheel instead.
-Instead of opening the service lift, say "It looks like the door is operated with the hydraulic wheel nearby."
-Instead of searching the service lift, say "The door of the service lift is closed."
+Understand "door to/--" or "light/lights" as the belowstairs service lift.
+Before unlocking the belowstairs service lift with the hydraulic wheel, try turning the hydraulic wheel instead.
+Instead of entering the belowstairs service lift, say "The door is closed. The nearby wheel seems to be the only way to open it."
+Instead of opening the belowstairs service lift, say "It looks like the door is operated with the hydraulic wheel nearby."
+Instead of searching the belowstairs service lift, say "The door of the service lift is closed."
 
-Chapter 3.39.4.2 - The Very Onerous Hydraulic Wheel
+Chapter 3.39.4.2 - The Aether-Daemons
+
+Some aether-daemons are an undescribed faraway creature person in Belowstairs.
+The description is "You won't look. You can't look."
+The sound is "You can't focus on the sound. Not now."
+The aether-daemons have some text called the faraway response. The faraway response is "No."
+Understand "aether" or "daemon" or "claw/claws" or "leg/legs" or "monster/monsters/creature/creatures" or "them" as the aether-daemons.
+
+The aether-daemon doom clock is initially 0.
+aether-daemons-sighted is a truth state that varies.
+
+Every turn when the aether-daemons are in the location (this is the spooky scary aether-daemons rule):
+	if the aether-daemon doom clock is:
+		-- 1:
+			say "You hear things stirring in the darkness.";
+		-- 2:
+			say "The noises are growing louder. Claws and legs are creeping into the light.";
+			now aether-daemons-sighted is true;
+		-- 3:
+			say "Limbs scratch at reality's seams. Eyes push through the stonework. Teeth float through the air, gnashing, approaching.";
+		-- 4:
+			say "They're very near now. They're all around you. They're brushing your neck, raking your back, pulling your hair, closing in, closing and you need to [italic type]run[roman type] or you will [italic type]die[roman type] --[line break]";
+	increment the aether-daemon doom clock;
+			
+First before doing anything when the aether-daemon doom clock >= 5 (this is the aether-daemons kill Marid rule):
+	if the current action is going south, continue the action;
+	if the current action is turning the hydraulic wheel and the times turned of the hydraulic wheel is 4, continue the action;
+	say "-- and before you can do anything else, anything, there is a thrust and an impact and a sudden, sudden coldness.[paragraph break]";
+	wait for any key;
+	say "Teeth are ripping into your skin.[paragraph break]";
+	wait for any key;
+	say "It hurts. It hurts so much. Your eyes are tearing up. You can't think. You feel sick. You need to throw up --[paragraph break]";
+	wait for any key;
+	end the story saying "Relief never comes";
+	stop the action.
+	
+Chapter 3.39.4.3 - The Very Onerous Hydraulic Wheel
 
 The hydraulic wheel is scenery in Belowstairs.
+The description is "An obsolete, rusted crank-wheel that seems to be connected to the service lift door. You pray it's still working."
+The scent is "It smells of rust and decay."
+Understand "crank/crank-wheel" or "handle" as the hydraulic wheel.
+Instead of attacking or cutting the hydraulic wheel, say "No[first time]. If you break the wheel, you're never getting out of here[only]."
+Instead of knocking on, pushing, pulling, rubbing, squeezing, swinging, or touching the hydraulic wheel, say "It looks like you can operate the wheel by turning it."
 
-Chapter 3.39.4.3 - The Aether-Daemons
+The hydraulic wheel has a number called the times turned.
 
-Some aether-daemons are an undescribed creature person in Belowstairs.
+Instead of turning the hydraulic wheel (this is the turning the very onerous hydraulic wheel rule):
+	increment the times turned of the hydraulic wheel;
+	if the times turned of the hydraulic wheel is:
+		-- 1:
+			say "You grip the wheel, and with incredible effort, turn it a couple of degrees[one of]. But the door is barely budging -- you suspect you will have to give the wheel a few more good heaves. [or]... [stopping][line break]";
+		-- 2:
+			say "You grit your teeth and shift the wheel another couple of degrees...";
+		-- 3:
+			say "You squeeze your eyes shut and throw your weight into it. You can feel the wheel shifting, moving faster...";
+		-- 4:
+			say "Your muscles are aching. Your palms are sweating. The door is opening. Just... a bit more...";
+		-- 5:
+			now the aether-daemon doom clock is 0;
+			cathartically escape from the aether-daemons.
+	
+Before going south when the location is Belowstairs (this is the reset the hydraulic wheel and aether-daemons rule):
+	if the aether-daemon doom clock > 1:
+		say "You break and run for your life";
+		if the times turned of the hydraulic wheel is not 0:
+			say ". The hydraulic wheel spins back to its starting position";
+	otherwise if the times turned of the hydraulic wheel is not 0:
+		say "As you let go of the hydraulic wheel, it spins back to its starting position";
+	now the aether-daemon doom clock is 0;
+	now the times turned of the hydraulic wheel is 0;
+	say ".";
+	
+Chapter 3.39.4.4 - Cathartically Escaping from the Aether-Daemons
+
+To cathartically escape from the aether-daemons:
+	say "You scream as the wheel shifts suddenly. The service lift door opens.[paragraph break]";
+	wait for any key;
+	say "You stumble into it, pushing past mandibles and slithering things, searching frantically for the control panel, mashing the button with your gloved fingers as the aether-daemons close --[paragraph break]";
+	wait for any key;
+	say "The lift lurches. The door slams shut. There is a squelch as an alien limb is severed, and slides wetly to the floor.[paragraph break]";
+	wait for any key;
+	say "You take a deep breath.[paragraph break]";
+	wait for any key;
+	say "With a final yell, you stomp on the limb with your boot. You stomp, and you stomp, and you keep stomping until you cannot distinguish it from the smears on the metal.[paragraph break]";
+	wait for any key;
+	say "And at last you dare to rest.[paragraph break]";
+	wait for any key;
+	center "* * *";
+	say paragraph break;
+	wait for any key;
+	now the player is in the Service Lift Room.
+	
+Book 3.40 - Highway to Hell
+
+Part 3.40.1 - Service Lift Room
+
+The Service Lift Room is a room in the Midnight Zone. "You're in a service lift."
+
+The printed name is "Service Lift".
+The simple-name is "the service lift".
 
 Book of the Rest
 
