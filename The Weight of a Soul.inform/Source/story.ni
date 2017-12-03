@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 011217.
+The release number is 031217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,11 +54,11 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Midnight
+- Lay out Marid's trap -- get LoS of the assassin, then bait her down the elevator shaft
+- The assassin is just around the corner waiting in the dining hall. She rushes after Marid when aggroed. You have to slam and lock the door to delay her.
+- This gives you enough time to climb up the maintenance shaft and get down to the other side of the elevator.
+- The assassin sees you, rushes after you, is trapped in the falling elevator and gets rekt.
 
-- Write Monster House
-
-- Write Highway to Hell
 - Write Can't Catch a Bloody Break
 
 - Write Day Three
