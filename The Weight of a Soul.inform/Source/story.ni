@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 031217.
+The release number is 071217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -15680,7 +15680,7 @@ First before doing anything when the location is Pursuit Part Five (this is the 
 		wait for any key;
 		say "[italic type]die[roman type][paragraph break]";
 		wait for any key;
-		say "screaming your name as she claws and smashes through the fallen beams. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
+		say "screaming your name as she writhes and claws and smashes through the fallen beams. You blink back tears -- you inhale ash -- and tumble through the only exit you see, tread empty air, fall screaming down a broken down chute into[paragraph break]";
 		wait for any key;
 		clear the screen;
 		move the player to Gruetown, without printing a room description;
@@ -16033,11 +16033,11 @@ To cathartically escape from the aether-daemons:
 	wait for any key;
 	say "You stumble into it, pushing past mandibles and slithering things, searching frantically for the control panel, mashing the button with your gloved fingers as the aether-daemons close --[paragraph break]";
 	wait for any key;
-	say "The lift lurches. The door slams shut. There is a squelch as an alien limb is severed, and slides wetly to the floor.[paragraph break]";
+	say "The lift lurches. The door slams shut. There is a crack as an alien limb is severed, and slides wetly to the floor.[paragraph break]";
 	wait for any key;
 	say "You take a deep breath.[paragraph break]";
 	wait for any key;
-	say "With a final yell, you stomp on the limb with your boot. You stomp, and you stomp, and you keep stomping until you cannot distinguish it from the smears on the metal.[paragraph break]";
+	say "You stomp on the limb with your boot. You stomp, and you stomp, and you stomp, and you keep stomping until you cannot distinguish the limb from smears on the metal.[paragraph break]";
 	wait for any key;
 	say "And at last you dare to rest.[paragraph break]";
 	wait for any key;
@@ -16050,10 +16050,82 @@ Book 3.40 - Highway to Hell
 
 Part 3.40.1 - Service Lift Room
 
-The Service Lift Room is a room in the Midnight Zone. "You're in a service lift."
+The Service Lift Room is a room in the Midnight Zone. "The lift has ground to a halt here, suspended between doorways. You are acutely aware of the creaking of the ancient mechanisms; the gentle sway of the platform as it hangs from its thread.
+
+To the west, the doorway opens up into a large kitchen, while to the east a cobwebbed scullery can be seen."
 
 The printed name is "Service Lift".
 The simple-name is "the service lift".
+The sound is "You hear the lift creaking under your weight."
+The scent is "This place smells of rust and abandonment."
+The exit reminder is "You can enter the kitchen to the west or the scullery to the east."
+The going-in disambiguation is "Do you mean going west (to the kitchen) or going east (to the scullery)?"
+
+Before examining west in the Service Lift Room, try examining the view of the abandoned kitchen instead.
+Before examining east in the Service Lift Room, try examining the view of the scullery instead.
+Instead of examining inside in the Service Lift Room, say "It's unclear where you want to look."
+Instead of examining outside in the Service Lift Room, say "It's unclear where you want to look."
+
+Before going outside in the Service Lift Room, try going inside instead.
+Instead of going up in the Service Lift Room, say "The lift will not ascend any higher."
+Instead of going down in the Service Lift Room, say "You really don't want to go back down there."
+
+Instead of jumping in the Service Lift Room, say "This service lift hasn't been maintained in years. You don't fancy testing its capabilities."
+
+Chapter 3.40.1.1 - Scenery
+
+The service lift platform is scenery in the Service Lift Room.
+The description is "Thank the Primes that this thing worked when it did."
+Before listening to the service lift platform, try listening to the location instead.
+Before smelling the service lift platform, try smelling the location instead.
+Understand "thread" or "metal" as the service lift platform.
+Before getting off the service lift platform, try going inside instead.
+Before attacking, cutting, knocking on, pushing, pulling, swinging, or turning the service lift platform, try jumping instead.
+Before removing something from the service lift platform, try taking the noun instead.
+Before inserting something into the service lift platform, try dropping the noun instead.
+Before putting something on the service lift platform, try dropping the noun instead.
+Instead of entering the service lift platform, say "You are already in the service lift."
+
+Some ancient mechanisms are faraway scenery in the Service Lift Room.
+The description is "You don't think it would be a good idea to rely on the lift mechanisms again."
+The ancient mechanisms have some text called the faraway response. The faraway response is "You doubt anything will be accomplished by fiddling with the lift controls."
+Understand "service/-- lift/-- control/controls" or "panel" or "service/-- lift/-- button/buttons" or "service/-- lift/-- door/doors" or "lift/-- mechanism/mechanisms" as the ancient mechanisms.
+
+The view of the scullery is faraway scenery in the Service Lift Room.
+The description is "Cobwebs glitter like filigree in the darkness."
+Understand "doorway/doorways" or "cobweb/cobwebs/web/webs/cobwebbed/webbed" or "darkness" or "filigree" as the view of the scullery.
+
+The view of the abandoned kitchen is faraway scenery in the Service Lift Room.
+The description is "Featureless countertops swim in and out of your lantern-light."
+The sound is "It's quiet."
+Understand "doorway/doorways" or "large" or "counter/countertop/counters/countertops" as the view of the abandoned kitchen.
+
+Part 3.40.2 - Scullery
+
+There is a room in the Midnight Zone called the Scullery.
+It is east of the Service Lift Room.
+
+Part 3.40.3 - Hoistway
+
+The Hoistway is a room in the Midnight Zone.
+It is above the Scullery.
+
+Part 3.40.4 - Abandoned Kitchen
+
+There is a room in the Midnight Zone called the Abandoned Kitchen.
+It is west of the Service Lift Room.
+
+Part 3.40.5 - Collapsed Corridor
+
+The Collapsed Corridor is a room in the Midnight Zone.
+It is south of the Abandoned Kitchen.
+
+Part 3.40.6 - Court of Stars
+
+The Court of Stars is a room in the Midnight Zone.
+It is south of the Collapsed Corridor.
+
+
 
 Book of the Rest
 
