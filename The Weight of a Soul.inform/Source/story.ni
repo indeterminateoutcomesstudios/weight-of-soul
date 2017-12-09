@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 071217.
+The release number is 091217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -54,10 +54,7 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Lay out Marid's trap -- get LoS of the assassin, then bait her down the elevator shaft
-- The assassin is just around the corner waiting in the dining hall. She rushes after Marid when aggroed. You have to slam and lock the door to delay her.
-- This gives you enough time to climb up the maintenance shaft and get down to the other side of the elevator.
-- The assassin sees you, rushes after you, is trapped in the falling elevator and gets rekt.
+- Write Highway to Hell
 
 - Write Can't Catch a Bloody Break
 
@@ -3591,12 +3588,9 @@ Instead of attacking, pushing, pulling, squeezing, swinging, or turning the Bili
 The view of the Gangway is a faraway backdrop.
 The description is "It spirals from the earth to the heavens."
 
-The pervasive ash is a faraway backdrop. The indefinite article is "the".
-The description is "You hate this smell."
-The sound is "Silence."
-The pervasive ash has some text called the faraway response. The faraway response is "The ash is too fine to interact with."
-Understand "air" or "smoke/smog" or "wind" as the pervasive ash.
-Before smelling the pervasive ash, try examining the pervasive ash instead.
+The view of the service lift is a faraway backdrop.
+The description is "The darkness is broken by flickering illumination."
+Understand "light/lights" or "illumination" as the view of the service lift.
 
 Part 3.1.3 - Ambience
 
@@ -15743,7 +15737,12 @@ Instead of going in Gruetown, say "[one of]Just as you take a step, your foot st
 
 Instead of dropping something carried by the player in Gruetown, say "You'd best hold on to your possessions until you can see where you're going."
 
-The pervasive ash is in Gruetown.
+The pervasive ash is faraway scenery in Gruetown. The indefinite article is "the".
+The description is "You hate this smell."
+The sound is "Silence."
+The pervasive ash has some text called the faraway response. The faraway response is "The ash is too fine to interact with."
+Understand "air" or "smoke/smog" or "wind" as the pervasive ash.
+Before smelling the pervasive ash, try examining the pervasive ash instead.
 
 The impenetrable darkness is faraway scenery in Gruetown. The indefinite article is "the".
 The description is "All you can make out is some kind of metal shape at your feet."
@@ -16085,6 +16084,7 @@ Before removing something from the service lift platform, try taking the noun in
 Before inserting something into the service lift platform, try dropping the noun instead.
 Before putting something on the service lift platform, try dropping the noun instead.
 Instead of entering the service lift platform, say "You are already in the service lift."
+Instead of looking under the service lift platform, say "You can't see under the platform, and frankly, have no inclination to."
 
 Some ancient mechanisms are faraway scenery in the Service Lift Room.
 The description is "You don't think it would be a good idea to rely on the lift mechanisms again."
@@ -16094,20 +16094,94 @@ Understand "service/-- lift/-- control/controls" or "panel" or "service/-- lift/
 The view of the scullery is faraway scenery in the Service Lift Room.
 The description is "Cobwebs glitter like filigree in the darkness."
 Understand "doorway/doorways" or "cobweb/cobwebs/web/webs/cobwebbed/webbed" or "darkness" or "filigree" as the view of the scullery.
+Before entering the view of the scullery, try going east instead.
 
 The view of the abandoned kitchen is faraway scenery in the Service Lift Room.
 The description is "Featureless countertops swim in and out of your lantern-light."
 The sound is "It's quiet."
 Understand "doorway/doorways" or "large" or "counter/countertop/counters/countertops" as the view of the abandoned kitchen.
+Before entering the view of the abandoned kitchen, try going west instead.
 
 Part 3.40.2 - Scullery
 
-There is a room in the Midnight Zone called the Scullery.
+There is a room in the Midnight Zone called the Scullery. "Your footsteps squelch in this stale, cramped space; the cobwebs here glitter with moisture and silk-wrapped things. Through your lamp-light flit flies, disturbed by your movements, crowding upon moldy plates and slime-encrusted piping.
+
+A crooked ladder leads up to a maintenance shaft. The lights of the service lift glow to the west."
+
 It is east of the Service Lift Room.
+
+The simple-name is "the scullery".
+The sound is "You hear the flies buzzing."
+The scent is "It smells awful in here."
+The exit reminder is "You can go up to the hoistway or west to the service lift."
+The going-in disambiguation is "Do you mean going up (to the hoistway) or going west (to the service lift)?"
+
+Before examining up in the Scullery, try examining the view of the hoistway instead.
+Before examining west in the Scullery, try examining the view of the service lift instead.
+Instead of examining inside in the Scullery, say "It's unclear where you want to look."
+Instead of examining outside in the Scullery, say "It's unclear where you want to look."
+
+Before going outside in the Scullery, try going inside instead.
+
+scullery-spider-jumpscare-triggered is a truth state that varies.
+Every turn when the location is the Scullery and Highway to Hell is happening (this is the Scullery spider jump scare rule):
+	if a random chance of 1 in 20 succeeds:
+		say "You catch a glimpse of a spider in the corner of your vision.";
+		now scullery-spider-jumpscare-triggered is true.
+
+Chapter 3.40.2.1 - Scenery
+
+The view of the service lift is in the Scullery.
+Before entering the view of the service lift when the location is the Scullery, try going west instead.
+
+The accumulated filth is faraway scenery in the Scullery.
+The description is "Nothing in this scullery is clean."
+Before listening to the accumulated filth, try listening to the location instead.
+The accumulated filth has some text called the faraway response. The faraway response is "You really, really don't want to."
+Understand "stale" or "cramped" or "space" or "scullery" or "slime" or "moisture" or "slime-encrusted/encrusted" or "piping/pipe/pipes" or "mold/mould" or "moldy/mouldy" or "plate/plates" or "coat/coating" as the accumulated filth.
+
+Some glittering cobwebs are scenery in the Scullery.
+The description is "Spiderwebs crisscross this place. They are caught in the light of your animus lantern; they insinuate themselves among your clothes and hair."
+The scent is "You can't imagine why you would do such a thing."
+Understand "spider/-- web/webs" or "cobweb" or "spiderweb/spiderwebs" as the glittering cobwebs.
+Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, or touching the glittering cobwebs, say "You brush a few cobwebs out of your path."
+Instead of entering the glittering cobwebs, say "You are already among them."
+Instead of looking under or searching the glittering cobwebs, say "Behind the cobwebs are more cobwebs."
+Instead of taking the cobwebs, say "The cobwebs disintegrate between your fingers."
+
+The unseen spider is faraway scenery in the Scullery.
+The description is "[if scullery-spider-jumpscare-triggered is false]You don't see any spiders[otherwise]You don't know where the spider went[end if]."
+The vision of a spider has some text called the faraway response. The faraway response is "[if scullery-spider-jumpscare-triggered is false]You don't see any spiders[otherwise]You don't know where the spider went[end if]."
+Understand "spiders" or "vision" or "glimpse" or "corner of/--" as the unseen spider.
+
+There is a plural-named scenery thing in the Scullery called the silk-wrapped things.
+The description is "It seems an ecosystem has developed in this place."
+The scent is "You can't imagine why you would do such a thing."
+Understand "silk" or "wrap/wrapped/wraps" or "prey" as the silk-wrapped things.
+Instead of attacking, cutting, knocking on, pushing, pulling, rubbing, taking, or touching the silk-wrapped things, say "You see no reason to touch those."
+
+Some bloated flies are faraway scenery in the Scullery.
+The description is "They nest here, feeding, multiplying."
+The sound is "The buzzing is starting to give you a migraine."
+The bloated flies have some text called the faraway response. The faraway response is "The flies swarm out of reach."
+Understand "fly" or "swarm" as the bloated flies.
+Instead of talking to the bloated flies, say "You almost hear a susurrus of a reply."
+
+The crooked ladder is scenery in the Scullery.
+The description is "The rungs glisten with a coating you are loathe to identify."
+Understand "rung/rungs" as the crooked ladder.
+Before climbing or entering the crooked ladder, try going up instead.
+Instead of rubbing or touching the crooked ladder, say "[one of]A little slime sticks to your gloves. You hurriedly brush it off before it seeps in[or]You don't want to touch the ladder more than is necessary[stopping]."
+Instead of pushing, pulling, swinging, taking, or turning the crooked ladder, say "That's fixed in place."
+
+The view of the hoistway is faraway scenery in the Scullery.
+The description is "It leads to the service lift hoistway."
+Understand "maintenance" or "shaft" as the view of the hoistway.
+Before entering the view of the hoistway, try going up instead.
 
 Part 3.40.3 - Hoistway
 
-The Hoistway is a room in the Midnight Zone.
+There is a room in the Midnight Zone called the Hoistway.
 It is above the Scullery.
 
 Part 3.40.4 - Abandoned Kitchen
