@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 091217.
+The release number is 111217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -16181,8 +16181,14 @@ Before entering the view of the hoistway, try going up instead.
 
 Part 3.40.3 - Hoistway
 
-There is a room in the Midnight Zone called the Hoistway.
+There is a room in the Midnight Zone called the Hoistway. "It is cramped and dark and hard to move. You are prone on your elbows, wedged within unfeeling stone, and your eyes hurt from the too-close lantern-light. Behind you your boots tread empty air, exposed.
+
+The ladder is below."
+
 It is above the Scullery.
+
+The simple-name is "the hoistway".
+
 
 Part 3.40.4 - Abandoned Kitchen
 
