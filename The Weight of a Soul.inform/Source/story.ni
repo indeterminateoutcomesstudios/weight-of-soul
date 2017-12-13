@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 111217.
+The release number is 131217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -1159,7 +1159,7 @@ Before doing anything other than examining, knocking on, looking under, rubbing,
 
 Part 2.1.3 - Marid's Eyes
 
-Marid's eyes are a plural-named thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if the location is Belowstairs]This place makes your eyes hurt.[otherwise if time is critical]Your eyes are working fine.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
+Marid's eyes are a plural-named thing that is part of yourself. The printed name of Marid's eyes is "your eyes". The description of Marid's eyes is "[if the location is Belowstairs or the location is the Hoistway Access]This place makes your eyes hurt.[otherwise if time is critical]Your eyes are working fine.[otherwise if the location is Marid's Room]They are the eyes of one who has glimpsed death.[otherwise]Your eyes seem to be working fine." Understand "my" or "eye" as Marid's eyes.
 
 Before searching Marid's eyes, try examining Marid's eyes instead.
 Instead of attacking, burning, cutting, pushing, or pulling Marid's eyes, say "No."
@@ -1450,7 +1450,7 @@ Instead of touching the animus lantern, say "The lantern is cold to the touch."
 Instead of talking to the animus lantern, say "[if time is critical]This is not the time.[otherwise]The aurora can't hear you."
 
 The phylactery cathode is a faraway thing. It is part of the animus lantern.
-The description is "Once, it was someone's soul. Now, it is power immaterial."
+The description is "[if the location is the Hoistway Access]It's painfully close[otherwise]Once, it was someone's soul. Now, it is power immaterial[end if]."
 Understand "bound" or "animus/aurora/soul" or "cold" or "light" or "lantern-light" or "crystal" as the phylactery cathode.
 
 The phylactery cathode has some text called the faraway response. The faraway response is "It's dangerous to touch a phylactery cathode."
@@ -16077,7 +16077,7 @@ The service lift platform is scenery in the Service Lift Room.
 The description is "Thank the Primes that this thing worked when it did."
 Before listening to the service lift platform, try listening to the location instead.
 Before smelling the service lift platform, try smelling the location instead.
-Understand "thread" or "metal" as the service lift platform.
+Understand "metal" as the service lift platform.
 Before getting off the service lift platform, try going inside instead.
 Before attacking, cutting, knocking on, pushing, pulling, swinging, or turning the service lift platform, try jumping instead.
 Before removing something from the service lift platform, try taking the noun instead.
@@ -16090,6 +16090,12 @@ Some ancient mechanisms are faraway scenery in the Service Lift Room.
 The description is "You don't think it would be a good idea to rely on the lift mechanisms again."
 The ancient mechanisms have some text called the faraway response. The faraway response is "You doubt anything will be accomplished by fiddling with the lift controls."
 Understand "service/-- lift/-- control/controls" or "panel" or "service/-- lift/-- button/buttons" or "service/-- lift/-- door/doors" or "lift/-- mechanism/mechanisms" as the ancient mechanisms.
+
+The sense of the hoistway cable system is faraway scenery in the Service Lift Room.
+The description is "You can't see the cables through the roof of the service lift, but you can hear their disrepair, their distension."
+The sound is "The cables are groaning."
+The sense of the hoistway cable system has some text called the faraway response. The faraway response is "You'd have to find the maintenance access to be able to touch the cables."
+Understand "cables" or "creaking" or "thread" or "rope/ropes" or "roof" as the sense of the hoistway cable system.
 
 The view of the scullery is faraway scenery in the Service Lift Room.
 The description is "Cobwebs glitter like filigree in the darkness."
@@ -16113,10 +16119,10 @@ It is east of the Service Lift Room.
 The simple-name is "the scullery".
 The sound is "You hear the flies buzzing."
 The scent is "It smells awful in here."
-The exit reminder is "You can go up to the hoistway or west to the service lift."
-The going-in disambiguation is "Do you mean going up (to the hoistway) or going west (to the service lift)?"
+The exit reminder is "You can go up to the hoistway access or west to the service lift."
+The going-in disambiguation is "Do you mean going up (to the hoistway access) or going west (to the service lift)?"
 
-Before examining up in the Scullery, try examining the view of the hoistway instead.
+Before examining up in the Scullery, try examining the view of the hoistway access instead.
 Before examining west in the Scullery, try examining the view of the service lift instead.
 Instead of examining inside in the Scullery, say "It's unclear where you want to look."
 Instead of examining outside in the Scullery, say "It's unclear where you want to look."
@@ -16174,21 +16180,95 @@ Before climbing or entering the crooked ladder, try going up instead.
 Instead of rubbing or touching the crooked ladder, say "[one of]A little slime sticks to your gloves. You hurriedly brush it off before it seeps in[or]You don't want to touch the ladder more than is necessary[stopping]."
 Instead of pushing, pulling, swinging, taking, or turning the crooked ladder, say "That's fixed in place."
 
-The view of the hoistway is faraway scenery in the Scullery.
-The description is "It leads to the service lift hoistway."
-Understand "maintenance" or "shaft" as the view of the hoistway.
-Before entering the view of the hoistway, try going up instead.
+The view of the hoistway access is faraway scenery in the Scullery.
+The description is "It appears to be for maintaining the service lift."
+Understand "maintenance" or "shaft" as the view of the hoistway access.
+Before entering the view of the hoistway access, try going up instead.
 
-Part 3.40.3 - Hoistway
+Part 3.40.3 - Hoistway Access
 
-There is a room in the Midnight Zone called the Hoistway. "It is cramped and dark and hard to move. You are prone on your elbows, wedged within unfeeling stone, and your eyes hurt from the too-close lantern-light. Behind you your boots tread empty air, exposed.
+There is a room in the Midnight Zone called the Hoistway Access. "It is cramped and dark and hard to move. You are prone on your elbows, wedged between unfeeling bricks, and your eyes hurt from the too-close lantern-light. Behind you your boots tread empty air.
 
 The ladder is below."
 
 It is above the Scullery.
 
-The simple-name is "the hoistway".
+The simple-name is "the hoistway access".
+The sound is "Your breathing echoes here."
+The scent is "Grease and neglect."
+The exit reminder is "You can drop down into the scullery."
 
+Before examining west in the Hoistway Access, try examining the hoistway cable system instead.
+Instead of examining down in the Hoistway Access, say "You crane your head around but can't get a good look."
+Before examining outside in the Hoistway Access, try examining down instead.
+Before examining east in the Hoistway Access, try examining down instead.
+
+Before going east in the Hoistway Access, try going down instead.
+Before going outside in the Hoistway Access, try going down instead.
+
+Instead of going west in the Hoistway Access, say "It's quite a drop to the roof of the lift, and you aren't sure if you'd be able to climb back up."
+Before jumping in the Hoistway, try going west instead.
+
+After going to the Hoistway Access:
+	say "You squeeze into the shaft...";
+	continue the action.
+	
+After going from the Hoistway Access:
+	say "You retreat out of the shaft...";
+	continue the action.
+
+Chapter 3.40.3.1 - Scenery
+
+Some unfeeling bricks are scenery in the Hoistway Access.
+The description is "Even for your physique, this place is claustrophobic."
+Understand "brick" or "stone" or "texture" or "maintenance" or "shaft" as the unfeeling bricks.
+Instead of pushing the unfeeling bricks, say "The stone won't give."
+
+Marid's elbows are faraway plural-named scenery in the Hoistway Access. The printed name is "your elbows".
+The description is "At least your jacket eases the pressure somewhat."
+Marid's elbows have some text called the faraway response. The faraway response is "Don't be silly."
+Instead of attacking or cutting Marid's elbows, say "No."
+Instead of looking under Marid's elbows, say "You are all too familiar with the texture of the stone under your elbows."
+Understand "elbow" or "arm/arms" or "pressure" as Marid's elbows.
+
+The empty air is faraway scenery in the Hoistway Access. The indefinite article is "some".
+The description is "The architect of this place made little concession for workmen."
+The empty air has some text called the faraway response. The faraway response is "It's just air, with as much physicality as you'd expect."
+
+The distant service lift is faraway scenery in the Hoistway Access.
+The description is "It looks much less safe from up here."
+
+The ladder back to the scullery is faraway scenery in the Hoistway Access.
+The description is "The ladder leads back to the scullery."
+The ladder back to the scullery has some text called the faraway response. The faraway response is "You'd have to climb down from the maintenance shaft first."
+
+Chapter 3.40.3.2 - Cable System
+
+The hoistway cable system is a fixed in place thing in the Hoistway Access. "Ahead of you is the rope system from which the service lift sways, and its counterweight, hanging by a rotting thread."
+The description is "The cables are moth-eaten and decrepit. A cut from your scalpel, and the slightest shock would send the service lift plummeting."
+The scent is "An awful, faint odor emanates from the cables."
+Understand "rope/ropes/cables" or "thread" or "rotting" or "pulley/pulleys" or "housing" as the hoistway cable system.
+Instead of pushing, pulling, swinging, or turning the hoistway cable system, say "You reach out and tug on the cables, but can't find the leverage to move them in any significant way."
+Instead of looking under the hoistway cable system, say "The cable system is holding the service lift up."
+Instead of taking the hoistway cable system, say "You would need some rather specialized equipment to separate the cable system from its housing. Cutting it would be easier."
+Instead of knocking on, touching, or rubbing the hoistway cable system, say "You can feel parts of the ropes that have been eaten away, as though by thousands of tiny mandibles."
+
+The massive counterweight is scenery part of the hoistway cable system.
+The description is "A massive leaden weight. If you cut it free, the slightest shock would send the service lift plummeting."
+Understand "leaden/lead" or "weight" or "counter" as the massive counterweight.
+Instead of pushing, pulling, swinging, or turning the massive counterweight, say "You reach out and push, but can't exert any leverage from here."
+Instead of looking under the massive counterweight, say "The counterweight hangs in its own hoistway, which descends beside the service lift."
+Instead of taking the massive counterweight, say "That seems exceedingly unlikely."
+Instead of knocking on, touching, or rubbing the massive counterweight, say "The lead is cold and grimy."
+
+Before attacking or cutting the massive counterweight, try attacking the hoistway cable system instead.
+
+Chapter 3.40.3.3 - Cutting the Cables
+
+The hoistway cable system can be intact or sabotaged.
+
+Instead of attacking or cutting the hoistway cable system:
+	say "Kablammo!"
 
 Part 3.40.4 - Abandoned Kitchen
 
