@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 131217.
+The release number is 151217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -16272,8 +16272,27 @@ Instead of attacking or cutting the hoistway cable system:
 
 Part 3.40.4 - Abandoned Kitchen
 
-There is a room in the Midnight Zone called the Abandoned Kitchen.
+There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither and cling to your boots.
+
+To the east is the service lift, and to the south is a collapsed corridor."
 It is west of the Service Lift Room.
+
+The simple-name is "the abandoned kitchen".
+The sound is "You hardly dare to breathe in this silence."
+The scent is "Dust."
+The exit reminder is "You can go east to the service lift or south to the collapsed corridor."
+
+Before going outside in the Abandoned Kitchen, try going south instead.
+Before going inside in the Abandoned Kitchen, try going east instead.
+
+Before examining outside in the Abandoned Kitchen, try examining the view of the collapsed corridor instead.
+Before examining east in the Abandoned Kitchen, try examining the view of the service lift instead.
+Before examining inside in the Abandoned Kitchen, try examining the view of the service lift instead.
+
+Chapter 3.40.4.1 - Scenery
+
+The view of the service lift is in the Abandoned Kitchen.
+Before entering the view of the service lift when the location is the Abandoned Kitchen, try going east instead.
 
 Part 3.40.5 - Collapsed Corridor
 
