@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 151217.
+The release number is 221217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -16140,7 +16140,7 @@ Chapter 3.40.2.1 - Scenery
 The view of the service lift is in the Scullery.
 Before entering the view of the service lift when the location is the Scullery, try going west instead.
 
-The accumulated filth is faraway scenery in the Scullery.
+The accumulated filth is faraway scenery in the Scullery. The indefinite article is "some".
 The description is "Nothing in this scullery is clean."
 Before listening to the accumulated filth, try listening to the location instead.
 The accumulated filth has some text called the faraway response. The faraway response is "You really, really don't want to."
@@ -16272,9 +16272,9 @@ Instead of attacking or cutting the hoistway cable system:
 
 Part 3.40.4 - Abandoned Kitchen
 
-There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither and cling to your boots.
+There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither among your battered boots, and cling to them.
 
-To the east is the service lift, and to the south is a collapsed corridor."
+To the east is the service lift; to the south is a collapsed corridor."
 It is west of the Service Lift Room.
 
 The simple-name is "the abandoned kitchen".
@@ -16293,6 +16293,40 @@ Chapter 3.40.4.1 - Scenery
 
 The view of the service lift is in the Abandoned Kitchen.
 Before entering the view of the service lift when the location is the Abandoned Kitchen, try going east instead.
+
+The thinly streaming light is faraway scenery in the Abandoned Kitchen. The indefinite article is "some".
+The description is "The light here is coming from the collapsed corridor ahead."
+The thinly streaming light has some text called the faraway response. The faraway response is "It's just light, no more tangible than a dream."
+Understand "thin" or "stream/streams of/--" as the thinly streaming light.
+
+Some dirt-choked basins are scenery in the Abandoned Kitchen.
+The description is "You aren't keen on testing the plumbing."
+The scent is "Rust, earth, concrete."
+Understand "basin" or "dirt" or "choked" or "plumbing" or "grime/rust" or "patch/patches" as the dirt-choked basins.
+Instead of searching the dirt-choked basins, say "There are some patches of grime and rust, left over from the time these basins were in use."
+Instead of touching the dirt-choked basins, say "Cold. Dry."
+Instead of looking under the dirt-choked basins, say "The basins are built into the countertops."
+Instead of inserting something into the dirt-choked basins, say "You have no inclination to leave your things here."
+
+Some dust-coated countertops are scenery in the Abandoned Kitchen.
+The description is "Covered in ash, perhaps. Or the castoffs of vermin."
+The scent is "You'd rather not. Who knows what's settled on these countertops."
+Understand "counter/countertop" or "top/tops" or "dust" or "coated" as the dust-coated countertops.
+Instead of knocking on, rubbing, or touching the dust-coated countertops, say "All you get is a dusty glove for your efforts."
+Instead of searching the dust-covered countertops, say "Nothing but dust."
+Instead of entering the dust-coated countertops, say "You aren't particularly keen on sitting on those, nor are you confident that they will support your weight."
+Instead of putting something on the dust-coated countertops, say "You have no inclination to leave your things here."
+
+The snowlike ash is scenery in the Abandoned Kitchen. The indefinite article is "some".
+The description is "Cold white specks."
+The sound is "Your footsteps are muffled by the ash."
+The scent is "That can't be healthy to inhale."
+Understand "ashes" or "snow" or "castoff/castoffs" or "speck/specks" or "plume/plumes of/--" as the snowlike ash.
+Instead of knocking on, looking under, rubbing, searching, or touching the snowlike ash, say "Digging around in the ash reveals nothing."
+
+The view of the collapsed corridor is faraway scenery in the Abandoned Kitchen.
+The description is "The shapes of the walls crumble, there."
+Before entering the view of the collapsed corridor, try going south instead.
 
 Part 3.40.5 - Collapsed Corridor
 
