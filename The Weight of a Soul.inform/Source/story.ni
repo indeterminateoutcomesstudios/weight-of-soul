@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 221217.
+The release number is 261217.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -701,6 +701,8 @@ To skip Rooftop Pursuit:
 	if Cornered in the Dorm has not ended:
 		skip Cornered in the Dorm;
 	move the player to Gruetown, without printing a room description;
+	now Carnicer is in the Abandoned Kitchen;
+	now Carnicer is faraway;
 	follow the scene changing rules;
 	now the player carries the animus lantern;
 	now the darkened metal shape is nowhere;
@@ -876,24 +878,24 @@ Instead of looking under something carried by an other living person (called the
 Instead of looking under something worn by an other living person (called the wearer), say "[regarding the noun][They're] what [the wearer] [are] wearing."
 
 Instead of eating a living person, say "What a strange notion."
-Instead of taking an other living person (this is the new can't take people response rule): say "[regarding the noun]You lack the strength, even if [they] allowed you to."
+Instead of taking an other living non-faraway person (this is the new can't take people response rule): say "[regarding the noun]You lack the strength, even if [they] allowed you to."
 
-Instead of attacking, cutting, knocking on, or pushing an other friendly living person (this is the can't hurt friendly people rule): say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."
-Instead of kissing, pulling, rubbing, searching, smelling, swinging, squeezing, touching, or turning an other friendly living person (this is the block actions on friendly people rule): say "[if time is critical]This is not the time.[otherwise]You aren't [italic type]that[roman type] friendly with [the noun]."
+Instead of attacking, cutting, knocking on, or pushing an other friendly non-faraway living person (this is the can't hurt friendly people rule): say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."
+Instead of kissing, pulling, rubbing, searching, smelling, swinging, squeezing, touching, or turning an other friendly non-faraway living person (this is the block actions on friendly people rule): say "[if time is critical]This is not the time.[otherwise]You aren't [italic type]that[roman type] friendly with [the noun]."
 
-Instead of attacking or cutting an other hostile living person (this is the can't hurt hostile people rule): say "You doubt that would end well for you."
-Instead of knocking on, pulling, pushing, smelling, squeezing, touching, or turning an other hostile living person (this is the can't provoke hostile people rule): say "You doubt that would go over well with [the noun]."
-Instead of kissing, rubbing, or searching an other hostile living person (this is the block actions on hostile people rule), say "You doubt [the noun] will let you do that."
+Instead of attacking or cutting an other hostile non-faraway living person (this is the can't hurt hostile people rule): say "You doubt that would end well for you."
+Instead of knocking on, pulling, pushing, smelling, squeezing, touching, or turning an other hostile non-faraway living person (this is the can't provoke hostile people rule): say "You doubt that would go over well with [the noun]."
+Instead of kissing, rubbing, or searching an other hostile non-faraway living person (this is the block actions on hostile people rule), say "You doubt [the noun] will let you do that."
 
 Instead of eating a dead person, say "What a revolting notion."
 Instead of eating something that is part of a dead person, say "What a revolting notion."
 Instead of giving something to a dead person, say "You won't get much of a response."
-Instead of pushing, pulling, or turning a dead person, say "That won't accomplish anything."
-Instead of swinging or taking a dead person, say "You lack the strength."
-Instead of searching a dead person, say "You find nothing of interest."
-Instead of knocking on, squeezing, or touching a dead person, say "[regarding the noun][They] [are] still."
+Instead of pushing, pulling, or turning a dead non-faraway person, say "That won't accomplish anything."
+Instead of swinging or taking a dead non-faraway person, say "You lack the strength."
+Instead of searching a non-faraway dead person, say "You find nothing of interest."
+Instead of knocking on, squeezing, or touching a non-faraway dead person, say "[regarding the noun][They] [are] still."
 Instead of kissing a dead person, say "An ill-advised, if romantic, notion."
-Instead of waking a dead person, say "[regarding the noun][Theirs] is a sleep from which there is no awakening."
+Instead of waking a dead non-faraway person, say "[regarding the noun][Theirs] is a sleep from which there is no awakening."
 
 Part 1.3.3 - Recurring Characters
 
@@ -972,7 +974,9 @@ The scent is "The scent of blood."
 Understand "hooded" or "assassin" or "killer" or "butcher" or "claw/claws/head" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The description of Carnicer is "She's far too close for comfort."
+The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise if carnicer-chase-happening is false]She's just waiting. Smiling[otherwise]She's gaining on you[end if]."
+
+Carnicer has some text called the faraway response. The faraway response is "You didn't come this far to commit suicide."
 
 Carnicer's blade is an improper-named thing. It is carried by Carnicer.
 The printed name is "assassin's blade".
@@ -1064,7 +1068,7 @@ Book 1.6 - Faraway Things
 
 [This game has a lot of scenery that you can see but not interact with. This is a tag for those things to consolidate all the instead rules into a single rule.]
 
-A thing can be faraway. A thing is usually not faraway.
+A thing can be faraway or non-faraway. A thing is usually non-faraway.
 
 Last instead of doing something (this is the can't generally interact with faraway things rule):
 	let N be an object;
@@ -2626,6 +2630,8 @@ Section 2.3.11.5.5 - Midnight Hints
 Table of Midnight Hints
 title	subtable	description	toggle
 "I'm cornered in my room!"	Table of Cornered Hints	--	hint toggle rule
+"The monsters in the basement keep eating me!"	Table of Daemon Hints	--	hint toggle rule
+"How do I escape through the corridor without being caught?"	Table of Corridor Hints	--	hint toggle rule
 "Back"	--	--	quit rule
 
 Table of Cornered Hints
@@ -2635,6 +2641,26 @@ hint	used
 "Take a look around. Is there any other way you could escape?"
 "Try the window."
 ">[bold type]go east[roman type]."
+
+Table of Daemon Hints
+hint	used
+"The creatures will attack you if you stay in the room for too long."	a number
+"You have to open the door to the service lift within the time limit."
+"What action will open the door?"
+"You have to >[bold type]turn[roman type] the wheel to open it."
+"Just once isn't enough. You have to do it multiple times."
+
+Table of Corridor Hints
+hint	used
+"You have to get through the corridor to escape the abandoned block."	a number
+"To do that, you'll have to get rid of the assassin."
+"She starts chasing you as soon as you get her attention, though."
+"What if you set a trap for her?"
+"Is there anything in her path that you could sabotage?"
+"That service lift seems rather unsafe."
+"You can get to the cables by climbing up into the hoistway access."
+"If you >[bold type]cut[roman type] the cables, the lift will fall when the assassin enters it."
+"Now, if you get her attention and run through the lift, she'll fall to her demise."
 
 Chapter 2.3.11.6 - Summoning the Help Menu
 
@@ -6327,8 +6353,8 @@ Before entering the view of the public house, try going west instead.
 Some dormitory domiciles are a faraway backdrop in the Dormitory Block.
 The description is "Here live friends and foes, neighbors and strangers, and only a door's width apart."
 The sound is "You hear the sounds of everyday living."
-Understand "domicile" or "dorm/dorms" or "light/lights" or "of domicile/domiciles" or "washhouse" as the domiciles.
-Before entering the domiciles, try going up instead.
+Understand "domicile" or "dorm/dorms" or "light/lights" or "of domicile/domiciles" or "washhouse" as the dormitory domiciles.
+Before entering the dormitory domiciles, try going up instead.
 
 Some flimsy plaster walls are a backdrop in the Dormitory Block.
 The description is "There is little privacy that these walls offer."
@@ -7138,6 +7164,11 @@ Instead of opening the dormitory room door when the dormitory room door is broke
 Instead of closing the dormitory room door when the dormitory room door is broken, say "There isn't much of a door left to close."
 Instead of locking the dormitory room door with when the dormitory room door is broken, say "There isn't much of a door left to lock."
 Instead of unlocking the dormitory room door with when the dormitory room door is broken, say "There isn't much of a door left to unlock."
+
+Before going when the location is the Dormitory Block (this is the remember to close Marid's room door rule):
+	if the door gone through is not the dormitory room door and the dormitory room door is open:
+		if the player is staid, say "(first closing the door to your dormitory room)";
+		now the dormitory room door is closed.
 
 Part 3.8.3 - Dressing Table
 
@@ -8356,8 +8387,7 @@ Before listening to the view of the Via Terminalis in the Turris Infinita, try l
 Before entering the view of the Via Terminalis in the Turris Infinita, try going west instead.
 
 Before going when the location is the Via Terminalis Junction or the location is the Turris Infinita (this is the remember to close the Turris doors rule):
-	let D be the door the noun from the location;
-	if D is not the ornate double doors and the ornate double doors are open:
+	if the door gone through is not the ornate double doors and the ornate double doors are open:
 		if the player is staid, say "(first closing the ornate double doors)";
 		now the ornate double doors are closed.
 
@@ -15678,6 +15708,8 @@ First before doing anything when the location is Pursuit Part Five (this is the 
 		wait for any key;
 		clear the screen;
 		move the player to Gruetown, without printing a room description;
+		now Carnicer is in the Abandoned Kitchen;
+		now Carnicer is faraway;
 		say "[line break][bold type]Darkness[roman type][paragraph break]";
 		wait for any key;
 		clear the screen;
@@ -15958,7 +15990,7 @@ Some aether-daemons are an undescribed faraway creature person in Belowstairs.
 The description is "You won't look. You can't look."
 The sound is "You can't focus on the sound. Not now."
 The aether-daemons have some text called the faraway response. The faraway response is "No."
-Understand "aether" or "daemon" or "claw/claws" or "leg/legs" or "monster/monsters/creature/creatures" or "them" as the aether-daemons.
+Understand "aether" or "daemon" or "claw/claws" or "leg/legs" or "limb/limbs" or "eye/eyes" or "tooth/teeth" or "monster/monsters/creature/creatures" or "them" as the aether-daemons.
 
 The aether-daemon doom clock is initially 0.
 aether-daemons-sighted is a truth state that varies.
@@ -15977,7 +16009,7 @@ Every turn when the aether-daemons are in the location (this is the spooky scary
 	increment the aether-daemon doom clock;
 			
 First before doing anything when the aether-daemon doom clock >= 5 (this is the aether-daemons kill Marid rule):
-	if the current action is going south, continue the action;
+	if the current action is going, continue the action;
 	if the current action is turning the hydraulic wheel and the times turned of the hydraulic wheel is 4, continue the action;
 	say "-- and before you can do anything else, anything, there is a thrust and an impact and a sudden, sudden coldness.[paragraph break]";
 	wait for any key;
@@ -16034,9 +16066,7 @@ To cathartically escape from the aether-daemons:
 	wait for any key;
 	say "The lift lurches. The door slams shut. There is a crack as an alien limb is severed, and slides wetly to the floor.[paragraph break]";
 	wait for any key;
-	say "You take a deep breath.[paragraph break]";
-	wait for any key;
-	say "You stomp on the limb with your boot. You stomp, and you stomp, and you stomp, and you keep stomping until you cannot distinguish the limb from smears on the metal.[paragraph break]";
+	say "You stomp on the limb with your boot. You stomp, and you stomp, and you stomp, and you keep stomping until you can't distinguish the limb from the other smears on the metal.[paragraph break]";
 	wait for any key;
 	say "And at last you dare to rest.[paragraph break]";
 	wait for any key;
@@ -16091,11 +16121,11 @@ The description is "You don't think it would be a good idea to rely on the lift 
 The ancient mechanisms have some text called the faraway response. The faraway response is "You doubt anything will be accomplished by fiddling with the lift controls."
 Understand "service/-- lift/-- control/controls" or "panel" or "service/-- lift/-- button/buttons" or "service/-- lift/-- door/doors" or "lift/-- mechanism/mechanisms" as the ancient mechanisms.
 
-The sense of the hoistway cable system is faraway scenery in the Service Lift Room.
+The sense of the hoistway cables is faraway scenery in the Service Lift Room.
 The description is "You can't see the cables through the roof of the service lift, but you can hear their disrepair, their distension."
 The sound is "The cables are groaning."
-The sense of the hoistway cable system has some text called the faraway response. The faraway response is "You'd have to find the maintenance access to be able to touch the cables."
-Understand "cables" or "creaking" or "thread" or "rope/ropes" or "roof" as the sense of the hoistway cable system.
+The sense of the hoistway cables has some text called the faraway response. The faraway response is "You'd have to find the maintenance access to be able to touch the cables."
+Understand "cable" or "system" or "creaking" or "thread" or "rope/ropes" or "roof" as the sense of the hoistway cables.
 
 The view of the scullery is faraway scenery in the Service Lift Room.
 The description is "Cobwebs glitter like filigree in the darkness."
@@ -16108,9 +16138,14 @@ The sound is "It's quiet."
 Understand "doorway/doorways" or "large" or "counter/countertop/counters/countertops" as the view of the abandoned kitchen.
 Before entering the view of the abandoned kitchen, try going west instead.
 
+Some unpleasant smears are faraway scenery in the Service Lift Room.
+The description is "You'll be having nightmares of this, you're sure."
+The unpleasant smears have some text called the faraway response. The faraway response is "You don't really want to."
+Understand "smear" as the unpleasant smears.
+
 Part 3.40.2 - Scullery
 
-There is a room in the Midnight Zone called the Scullery. "Your footsteps squelch in this stale, cramped space; the cobwebs here glitter with moisture and silk-wrapped things. Through your lamp-light flit flies, disturbed by your movements, crowding upon moldy plates and slime-encrusted piping.
+There is a room in the Midnight Zone called the Scullery. "Your footsteps squelch in this stale, cramped space. The cobwebs here glitter with moisture and silk-wrapped things. Through your lamp-light flit flies, disturbed by your movements, crowding upon moldy plates and slime-encrusted piping.
 
 A crooked ladder leads up to a maintenance shaft. The lights of the service lift glow to the west."
 
@@ -16214,7 +16249,7 @@ After going to the Hoistway Access:
 	continue the action.
 	
 After going from the Hoistway Access:
-	say "You retreat out of the shaft...";
+	say "You drop down from the shaft.";
 	continue the action.
 
 Chapter 3.40.3.1 - Scenery
@@ -16244,7 +16279,7 @@ The ladder back to the scullery has some text called the faraway response. The f
 
 Chapter 3.40.3.2 - Cable System
 
-The hoistway cable system is a fixed in place thing in the Hoistway Access. "Ahead of you is the rope system from which the service lift sways, and its counterweight, hanging by a rotting thread."
+The hoistway cable system is a fixed in place thing in the Hoistway Access. "Ahead of you, you see the rope system from which the service lift sways. Nearby the counterweight hangs by a rotting thread."
 The description is "The cables are moth-eaten and decrepit. A cut from your scalpel, and the slightest shock would send the service lift plummeting."
 The scent is "An awful, faint odor emanates from the cables."
 Understand "rope/ropes/cables" or "thread" or "rotting" or "pulley/pulleys" or "housing" as the hoistway cable system.
@@ -16272,9 +16307,9 @@ Instead of attacking or cutting the hoistway cable system:
 
 Part 3.40.4 - Abandoned Kitchen
 
-There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither among your battered boots, and cling to them.
+There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither among your battered boots, and cling to them[if abandonedkitchen-firstlook-specialdescription is true].
 
-To the east is the service lift; to the south is a collapsed corridor."
+To the east is the service lift; to the south is a collapsed corridor[end if][if abandonedkitchen-firstlook-specialdescription is true and Carnicer is in the Abandoned Kitchen].[paragraph break]The assassin paces back and forth just beyond[end if].".
 It is west of the Service Lift Room.
 
 The simple-name is "the abandoned kitchen".
@@ -16285,6 +16320,7 @@ The exit reminder is "You can go east to the service lift or south to the collap
 Before going outside in the Abandoned Kitchen, try going south instead.
 Before going inside in the Abandoned Kitchen, try going east instead.
 
+Before examining south in the Abandoned Kitchen, try examining the view of the collapsed corridor instead.
 Before examining outside in the Abandoned Kitchen, try examining the view of the collapsed corridor instead.
 Before examining east in the Abandoned Kitchen, try examining the view of the service lift instead.
 Before examining inside in the Abandoned Kitchen, try examining the view of the service lift instead.
@@ -16313,7 +16349,7 @@ The description is "Covered in ash, perhaps. Or the castoffs of vermin."
 The scent is "You'd rather not. Who knows what's settled on these countertops."
 Understand "counter/countertop" or "top/tops" or "dust" or "coated" as the dust-coated countertops.
 Instead of knocking on, rubbing, or touching the dust-coated countertops, say "All you get is a dusty glove for your efforts."
-Instead of searching the dust-covered countertops, say "Nothing but dust."
+Instead of searching the dust-coated countertops, say "Nothing but dust."
 Instead of entering the dust-coated countertops, say "You aren't particularly keen on sitting on those, nor are you confident that they will support your weight."
 Instead of putting something on the dust-coated countertops, say "You have no inclination to leave your things here."
 
@@ -16325,15 +16361,38 @@ Understand "ashes" or "snow" or "castoff/castoffs" or "speck/specks" or "plume/p
 Instead of knocking on, looking under, rubbing, searching, or touching the snowlike ash, say "Digging around in the ash reveals nothing."
 
 The view of the collapsed corridor is faraway scenery in the Abandoned Kitchen.
-The description is "The shapes of the walls crumble, there."
+The description is "[if Carnicer is in the Abandoned Kitchen]The assassin is there[otherwise]The shapes of the walls crumble, there[end if]."
 Before entering the view of the collapsed corridor, try going south instead.
 
-Part 3.40.5 - Collapsed Corridor
+Chapter 3.40.4.2 - Sighting Carnicer
 
-The Collapsed Corridor is a room in the Midnight Zone.
+abandonedkitchen-firstlook-specialdescription is a truth state that varies.
+Every turn when the player is in the Abandoned Kitchen and abandonedkitchen-firstlook-specialdescription is false:
+	say "To the east is the service lift; to the south is a collapsed corridor. You approach to get a better look and --[paragraph break]";
+	wait for any key;
+	say "[italic type]There.[paragraph break][roman type]";
+	wait for any key;
+	say "She's there. The assassin. She stalks the collapsed corridor, humming tunelessly, playing with the edge of her sword. She doesn't seem to have noticed you.[paragraph break]";
+	wait for any key;
+	say "If you get her attention, you'd best have a plan to survive it.";
+	now abandonedkitchen-firstlook-specialdescription is true.
+
+Instead of listening when the location is the Abandoned Kitchen and Carnicer is in the Abandoned Kitchen (this is the shitty Carnicer humming rule):
+	if the noun is Carnicer:
+		say "She's humming tunelessly to herself.";
+	otherwise:
+		say "All you can hear is the assassin's humming.";
+
+Part 3.40.5 - Trapping Carnicer
+
+carnicer-chase-happening is a truth state that varies. carnicer-chase-happening is false.
+
+Part 3.40.6 - Collapsed Corridor
+
+There is a room in the Midnight Zone called the Collapsed Corridor.
 It is south of the Abandoned Kitchen.
 
-Part 3.40.6 - Court of Stars
+Part 3.40.7 - Court of Stars
 
 The Court of Stars is a room in the Midnight Zone.
 It is south of the Collapsed Corridor.
