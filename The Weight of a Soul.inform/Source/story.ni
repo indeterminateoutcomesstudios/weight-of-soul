@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 261217.
+The release number is 090117.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -974,7 +974,7 @@ The scent is "The scent of blood."
 Understand "hooded" or "assassin" or "killer" or "butcher" or "claw/claws/head" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise if carnicer-chase-happening is false]She's just waiting. Smiling[otherwise]She's gaining on you[end if]."
+The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise if carnicer-chase-happening is false]She's just waiting. Waiting[otherwise]She's gaining on you[end if]."
 
 Carnicer has some text called the faraway response. The faraway response is "You didn't come this far to commit suicide."
 
@@ -2408,41 +2408,39 @@ At other times, there may be no command prompt provided at all, such as during a
 To say useful-commands-text:
 	say "[bold type]A list of useful commands[roman type]
 
->[bold type]look[roman type] (>[bold type]l[roman type] or a blank command) provides a description of your surroundings.
+>[bold type]look[roman type][line break][italic type]Look around and get a description of your current surroundings. The command 'look' can be shortened to 'l' or simply a blank command.[roman type]
 
->[bold type]examine (something)[roman type] (>[bold type]x (something)[roman type] or simply >[bold type](something)[roman type]) provides you with a closer look at whatever it is you're examining. You can examine practically anything, including yourself.
+>[bold type]examine (something)[roman type][line break][italic type]Examine something for a more detailed description. You can examine practically anything, including yourself. The command 'examine' can be shortened to 'x' or simply typing the name of the object.[roman type]
 
->[bold type]inventory[roman type] (>[bold type]i[roman type]) tells you what items you're wearing or carrying.
+>[bold type]inventory[roman type][line break][italic type]Take inventory of the items you're wearing or carrying. The command 'inventory' can be shortened to 'i'.[roman type]
 
->[bold type]talk to (someone)[roman type] (>[bold type]t (someone)[roman type]) allows you to interact with someone.
+>[bold type]talk to (someone)[roman type][line break][italic type]Strike up a conversation with someone. The command 'talk to' can be shortened to 't'.[roman type]
 
->[bold type]take (something)[roman type], >[bold type]drop (something)[roman type], >[bold type]open (something)[roman type], and >[bold type]close (something)[roman type] can be used to manipulate things around you. You can also >[bold type]put (something) in[roman type] or [bold type]on (something else)[roman type].[paragraph break]";
-	say ">[bold type]go (direction)[roman type] (>[bold type](direction)[roman type]) allows you to navigate the world. The directions are each of the eight compass directions, plus [bold type]up[roman type], [bold type]down[roman type], [bold type]in[roman type] and [bold type]out[roman type]. [bold type]Northwest[roman type] can be abbreviated to [bold type]nw[roman type].
+>[bold type]take/drop (something)[roman type], >[bold type]open/close (something)[roman type], >[bold type]put (something) on/in (something else)[roman type][line break][italic type]These commands can be used to manipulate items and the world around you.[roman type][paragraph break]";
+	say ">[bold type]go (direction)[roman type][line break][italic type]Move to a new location in the world. The directions are each of the eight compass directions, plus up, down, in, and out. 'Northwest' can be abbreviated to 'NW'. You can also omit the command 'go' and just type a direction to go in.[roman type]
 
->[bold type]sleep[roman type] advances the story at the end of each in-game day.
+>[bold type]sleep[roman type][line break][italic type]Sleep in your bed at the end of an in-game day, starting the next chapter of the story.[roman type]
 
->[bold type]go to (place)[roman type] lets you quickly travel to a place you've visited before.
+>[bold type]go to (location)[roman type][line break][italic type]Quickly travel to a location you've visited before.[roman type]
 
->[bold type]help[roman type] opens the help menu. >[bold type]commands[roman type] (>[bold type]c[roman type]), >[bold type]journal[roman type] (>[bold type]j[roman type]), >[bold type]characters[roman type] (>[bold type]ch[roman type]), >[bold type]map[roman type] (>[bold type]m[roman type]), and >[bold type]hints[roman type] can be used as shortcuts to display those menu pages.
+>[bold type]help[roman type], >[bold type]commands[roman type], >[bold type]journal[roman type], >[bold type]characters[roman type], >[bold type]map[roman type], >[bold type]hints[roman type][line break][italic type]Open the help menu, or quickly check one of the pages within it. 'Commands' can be shortened to 'c', 'journal' can be shortened to 'j', 'characters' can be shortened to 'ch', and 'map' can be shortened to 'm'.[roman type]
 
->[bold type]undo[roman type] takes back your last command. >[bold type]again[roman type] (>[bold type]g[roman type]) repeats it.
+>[bold type]undo[roman type][line break][italic type]Take back your last command, rewinding the game to an earlier state.[roman type]
 
->[bold type]save[roman type] allows you to create a saved game, while >[bold type]restore[roman type] restores a game you've saved.
-
->[bold type]quit[roman type] exits the game.
+>[bold type]save[roman type], >[bold type]restore[roman type], >[bold type]quit[roman type][line break][italic type]Create or restore a saved game, or exit the game once you're done playing.[roman type]
 
 The game recognizes a good deal of synonyms and miscellaneous commands not listed here. Feel free to experiment.";
 
 To say credits-text:
 	say "[bold type]Acknowledgements[roman type]
 
-[italic type]The Weight of a Soul[roman type] was written by Chin Kee Yong a.k.a. CKY, a Singaporean artist, writer, game designer, and coffee addict. It is my first serious foray into interactive fiction.
+[italic type]The Weight of a Soul[roman type] was written by Chin Kee Yong a.k.a. CKY, a Singaporean game designer. It is my first serious foray into interactive fiction.
 
-I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to Aaarrrgh, Barinellos, Brentain, Hidetsugu, Huey, Keeper, Luna, OL, Raven, razor, Ruwin, and Tevish: you've been wonderful co-creators and stewards of the Expanded Multiverse. Your creativity and positivity are what inspire me to keep going.
+I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
 
 To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
-Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game dev community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
+Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to email me at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -16079,7 +16077,7 @@ Book 3.40 - Highway to Hell
 
 Part 3.40.1 - Service Lift Room
 
-The Service Lift Room is a room in the Midnight Zone. "The lift has ground to a halt here, suspended between doorways. You are acutely aware of the creaking of the ancient mechanisms; the gentle sway of the platform as it hangs from its thread.
+The Service Lift Room is a room in the Midnight Zone. "The lift has ground to a halt here, suspended between doorways. You are acutely aware of the creaking of the ancient mechanisms; the gentle cant of the platform within its cradle.
 
 To the west, the doorway opens up into a large kitchen, while to the east a cobwebbed scullery can be seen."
 
@@ -16121,11 +16119,11 @@ The description is "You don't think it would be a good idea to rely on the lift 
 The ancient mechanisms have some text called the faraway response. The faraway response is "You doubt anything will be accomplished by fiddling with the lift controls."
 Understand "service/-- lift/-- control/controls" or "panel" or "service/-- lift/-- button/buttons" or "service/-- lift/-- door/doors" or "lift/-- mechanism/mechanisms" as the ancient mechanisms.
 
-The sense of the hoistway cables is faraway scenery in the Service Lift Room.
-The description is "You can't see the cables through the roof of the service lift, but you can hear their disrepair, their distension."
-The sound is "The cables are groaning."
-The sense of the hoistway cables has some text called the faraway response. The faraway response is "You'd have to find the maintenance access to be able to touch the cables."
-Understand "cable" or "system" or "creaking" or "thread" or "rope/ropes" or "roof" as the sense of the hoistway cables.
+The presence of the suspension system is faraway scenery in the Service Lift Room.
+The description is "An invisible enchantment, powered by failing runes, is all that suspends this lift."
+The sound is "It's a kind of song, but not one humans can hear."
+The presence of the suspension system has some text called the faraway response. The faraway response is "You'd have to find a maintenance shaft to get access to the suspension system."
+Understand "invisible" or "enchantment" or "rune/runes" or "failing" or "cradle" as the presence of the suspension system.
 
 The view of the scullery is faraway scenery in the Service Lift Room.
 The description is "Cobwebs glitter like filigree in the darkness."
@@ -16166,7 +16164,7 @@ Before going outside in the Scullery, try going inside instead.
 
 scullery-spider-jumpscare-triggered is a truth state that varies.
 Every turn when the location is the Scullery and Highway to Hell is happening (this is the Scullery spider jump scare rule):
-	if a random chance of 1 in 20 succeeds:
+	if a random chance of 1 in 13 succeeds:
 		say "You catch a glimpse of a spider in the corner of your vision.";
 		now scullery-spider-jumpscare-triggered is true.
 
@@ -16222,7 +16220,7 @@ Before entering the view of the hoistway access, try going up instead.
 
 Part 3.40.3 - Hoistway Access
 
-There is a room in the Midnight Zone called the Hoistway Access. "It is cramped and dark and hard to move. You are prone on your elbows, wedged between unfeeling bricks, and your eyes hurt from the too-close lantern-light. Behind you your boots tread empty air.
+There is a room in the Midnight Zone called the Hoistway Access. "It is cramped and dark and hard to move. You are prone on your elbows, wedged between unfeeling bricks, and your eyes hurt from the too-close lantern-light.
 
 The ladder is below."
 
@@ -16233,7 +16231,7 @@ The sound is "Your breathing echoes here."
 The scent is "Grease and neglect."
 The exit reminder is "You can drop down into the scullery."
 
-Before examining west in the Hoistway Access, try examining the hoistway cable system instead.
+Before examining west in the Hoistway Access, try examining the hoistway suspension system instead.
 Instead of examining down in the Hoistway Access, say "You crane your head around but can't get a good look."
 Before examining outside in the Hoistway Access, try examining down instead.
 Before examining east in the Hoistway Access, try examining down instead.
@@ -16256,19 +16254,15 @@ Chapter 3.40.3.1 - Scenery
 
 Some unfeeling bricks are scenery in the Hoistway Access.
 The description is "Even for your physique, this place is claustrophobic."
-Understand "brick" or "stone" or "texture" or "maintenance" or "shaft" as the unfeeling bricks.
+Understand "brick" or "stone" or "texture" or "maintenance" or "shaft" or "abyss" as the unfeeling bricks.
 Instead of pushing the unfeeling bricks, say "The stone won't give."
 
 Marid's elbows are faraway plural-named scenery in the Hoistway Access. The printed name is "your elbows".
 The description is "At least your jacket eases the pressure somewhat."
-Marid's elbows have some text called the faraway response. The faraway response is "Don't be silly."
+Marid's elbows have some text called the faraway response. The faraway response is "This is not the time."
 Instead of attacking or cutting Marid's elbows, say "No."
 Instead of looking under Marid's elbows, say "You are all too familiar with the texture of the stone under your elbows."
 Understand "elbow" or "arm/arms" or "pressure" as Marid's elbows.
-
-The empty air is faraway scenery in the Hoistway Access. The indefinite article is "some".
-The description is "The architect of this place made little concession for workmen."
-The empty air has some text called the faraway response. The faraway response is "It's just air, with as much physicality as you'd expect."
 
 The distant service lift is faraway scenery in the Hoistway Access.
 The description is "It looks much less safe from up here."
@@ -16277,32 +16271,22 @@ The ladder back to the scullery is faraway scenery in the Hoistway Access.
 The description is "The ladder leads back to the scullery."
 The ladder back to the scullery has some text called the faraway response. The faraway response is "You'd have to climb down from the maintenance shaft first."
 
-Chapter 3.40.3.2 - Cable System
+Chapter 3.40.3.2 - Suspension System
 
-The hoistway cable system is a fixed in place thing in the Hoistway Access. "Ahead of you, you see the rope system from which the service lift sways. Nearby the counterweight hangs by a rotting thread."
-The description is "The cables are moth-eaten and decrepit. A cut from your scalpel, and the slightest shock would send the service lift plummeting."
-The scent is "An awful, faint odor emanates from the cables."
-Understand "rope/ropes/cables" or "thread" or "rotting" or "pulley/pulleys" or "housing" as the hoistway cable system.
-Instead of pushing, pulling, swinging, or turning the hoistway cable system, say "You reach out and tug on the cables, but can't find the leverage to move them in any significant way."
-Instead of looking under the hoistway cable system, say "The cable system is holding the service lift up."
-Instead of taking the hoistway cable system, say "You would need some rather specialized equipment to separate the cable system from its housing. Cutting it would be easier."
-Instead of knocking on, touching, or rubbing the hoistway cable system, say "You can feel parts of the ropes that have been eaten away, as though by thousands of tiny mandibles."
+[This was originally a system of cables you could cut, but magical glyphs are just way cooler and help to provide some worldbuilding despite the grittiness of this location. Using magic also allows me to handwave the reason that Marid can walk through the lift but Carnicer can't.]
 
-The massive counterweight is scenery part of the hoistway cable system.
-The description is "A massive leaden weight. If you cut it free, the slightest shock would send the service lift plummeting."
-Understand "leaden/lead" or "weight" or "counter" as the massive counterweight.
-Instead of pushing, pulling, swinging, or turning the massive counterweight, say "You reach out and push, but can't exert any leverage from here."
-Instead of looking under the massive counterweight, say "The counterweight hangs in its own hoistway, which descends beside the service lift."
-Instead of taking the massive counterweight, say "That seems exceedingly unlikely."
-Instead of knocking on, touching, or rubbing the massive counterweight, say "The lead is cold and grimy."
-
-Before attacking or cutting the massive counterweight, try attacking the hoistway cable system instead.
+The hoistway suspension system is a fixed in place thing in the Hoistway Access. "Engraved before you are the glyphs that conduct the galvanism of the service lift, and barely -- just barely -- keep it from plummeting away into the abyss."
+The description is "The glyphs are decrepit and fragile. A scratch from your scalpel would turn the lift into a deathtrap for the unwary."
+The scent is "A charred odor emanates from the suspension."
+Understand "glyph/glyphs" or "galvanism" or "power" or "invisible" or "enchantment" or "cradle" or "stabilizing" as the hoistway suspension system.
+Instead of pushing, knocking on, touching, or rubbing the hoistway suspension system, say "You can feel the tortured power spiraling endlessly within the stone."
+Instead of looking under the hoistway suspension system, say "The service lift lies below, cradled by the stabilizing enchantment that the glyphs form."
 
 Chapter 3.40.3.3 - Cutting the Cables
 
-The hoistway cable system can be intact or sabotaged.
+The hoistway suspension system can be intact or sabotaged.
 
-Instead of attacking or cutting the hoistway cable system:
+Instead of attacking or cutting the hoistway suspension system:
 	say "Kablammo!"
 
 Part 3.40.4 - Abandoned Kitchen
@@ -16382,6 +16366,9 @@ Instead of listening when the location is the Abandoned Kitchen and Carnicer is 
 		say "She's humming tunelessly to herself.";
 	otherwise:
 		say "All you can hear is the assassin's humming.";
+
+Before going east in the Abandoned Kitchen when Carnicer is in the Abandoned Kitchen and carnicer-chase-happening is false:
+	say "You slip away as silently as you can manage.";
 
 Part 3.40.5 - Trapping Carnicer
 
