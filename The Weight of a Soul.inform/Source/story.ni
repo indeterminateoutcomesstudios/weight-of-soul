@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 090117.
+The release number is 100117.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -16373,6 +16373,28 @@ Before going east in the Abandoned Kitchen when Carnicer is in the Abandoned Kit
 Part 3.40.5 - Trapping Carnicer
 
 carnicer-chase-happening is a truth state that varies. carnicer-chase-happening is false.
+
+First before doing something when the location is the Abandoned Kitchen and carnicer-chase-happening is false (this is the how to get Carnicer's attention rule):
+	if the current action is going south:
+		get Carnicer's attention;
+	otherwise if the current action is attacking Carnicer:
+		get Carnicer's attention;
+	otherwise if the current action is cutting Carnicer:
+		get Carnicer's attention;
+	otherwise if the current action is knocking on Carnicer:
+		get Carnicer's attention;
+	otherwise if the current action is pushing Carnicer:
+		get Carnicer's attention;
+	otherwise if the current action is talking to Carnicer:
+		get Carnicer's attention, verbally;
+	otherwise if the current action is screaming:
+		get Carnicer's attention, verbally;
+	otherwise:
+		continue the action;
+	stop the action.
+
+To get Carnicer's attention, verbally:
+	say "Alakazam!"
 
 Part 3.40.6 - Collapsed Corridor
 
