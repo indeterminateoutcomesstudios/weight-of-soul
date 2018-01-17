@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 130117.
+The release number is 170117.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2017.
 
@@ -986,6 +986,11 @@ Carnicer's smile is an improper-named thing. It is part of Carnicer.
 The printed name is "assassin's smile".
 The description is "You can't look away."
 Understand "grin" or "tooth/teeth" or "hood/cloak" or "assassin's" as Carnicer's smile.
+
+Rule for writing a paragraph about Carnicer:
+	if Highway to Hell is happening:
+		if Carnicer is in the Abandoned Kitchen:
+			say "In the corridor, the assassin paces back and forth."
 
 Chapter 1.3.3.4 - Justinian
 
@@ -2647,6 +2652,7 @@ hint	used
 "What action will open the door?"
 "You have to >[bold type]turn[roman type] the wheel to open it."
 "Just once isn't enough. You have to do it multiple times."
+"If you start turning the wheel immediately after you enter the room, you'll open the door just in time to escape."
 
 Table of Corridor Hints
 hint	used
@@ -2656,9 +2662,15 @@ hint	used
 "What if you set a trap for her?"
 "Is there anything in her path that you could sabotage?"
 "That service lift seems rather unsafe."
-"You can get to the cables by climbing up into the hoistway access."
-"If you >[bold type]cut[roman type] the cables, the lift will fall when the assassin enters it."
-"Now, if you get her attention and run through the lift, she'll fall to her demise."
+"You can get to the suspension system by climbing up into the hoistway access."
+"If you >[bold type]cut[roman type] the glyphs, the lift will fall when anyone steps in it."
+"But if you do that, you need to make sure you can get back through the lift yourself."
+"Is there anything you could use as a bridge?"
+"The ladder might work."
+"If you >[bold type]take[roman type] the ladder and >[bold type]drop[roman type] it in the service lift, you'll make it safe to traverse."
+"But now you need something else to climb on to reach the maintenance shaft."
+"You can >[bold type]take[roman type] the kitchen stool and >[bold type]drop[roman type] it in the scullery to use as a step."
+"Now you can sabotage the lift, confront the assassin, and lead her to her demise."
 
 Chapter 2.3.11.6 - Summoning the Help Menu
 
@@ -3613,15 +3625,14 @@ The view of the Gangway is a faraway backdrop.
 The description is "It spirals from the earth to the heavens."
 
 The view of the service lift is a faraway backdrop.
-The description is "[if the service lift platform is intact]The darkness is broken by flickering illumination[otherwise if the service lift platform is sabotaged]You could probably clear it with a running jump[otherwise]It's a long way down[end if]."
+The description is "[if the service lift platform is intact]The darkness is broken by flickering illumination[otherwise if the service lift platform is sabotaged]You've laid a ladder across the gap, allowing you to cross safely[otherwise]It's a long way down[end if]."
 Understand "platform" as the view of the service lift.
 Understand "light/lights" or "illumination" as the view of the service lift when the service lift platform is intact.
+Understand "ladder" or "rickety" as the view of the service lift when the service lift platform is not intact.
 Understand "sabotaged" as the view of the service lift when the service lift platform is sabotaged.
 Understand "shaft" as the view of the service lift when the service lift platform is gone.
-Before jumping when the view of the service lift is in the location and the service lift platform is gone, try entering the view of the service lift instead.
-Before going down when the view of the service lift is in the location and the service lift platform is gone, try entering the view of the service lift instead.
-Instead of entering the view of the service lift when the service lift platform is sabotaged, say "The lift won't support your weight now that you've sabotaged it."
-Instead of entering the view of the service lift when the service lift platform is gone, say "You didn't come all this way to die now."
+Instead of jumping when the view of the service lift is in the location and the service lift platform is not intact, say "You're not going to jump into the service lift shaft, if that's what you mean."
+Instead of going down when the view of the service lift is in the location and the service lift platform is gone, say "You didn't come all this way to die now."
 
 Part 3.1.3 - Ambience
 
@@ -16165,7 +16176,7 @@ Part 3.40.2 - Scullery
 
 There is a room in the Midnight Zone called the Scullery. "Your footsteps squelch in this stale, cramped space. The cobwebs here glitter with moisture and silk-wrapped things. Through your lamp-light flit flies, disturbed by your movements, crowding upon moldy plates and slime-encrusted piping.
 
-A crooked ladder leads up to a maintenance shaft. [if the service lift platform is intact]The lights of the service lift glow to the west[otherwise if the service lift platform is sabotaged]Past the sabotaged lift to the west, you see the abandoned kitchen[otherwise]The abandoned kitchen lies to the west, through the service lift shaft[end if]."
+A maintenance shaft gapes above you. [if the service lift platform is intact]The lights of the service lift glow to the west[otherwise if the service lift platform is sabotaged]Through the sabotaged lift to the west, you see the abandoned kitchen[otherwise]The abandoned kitchen lies to the west, through the service lift shaft[end if]."
 
 It is east of the Service Lift Room.
 
@@ -16188,11 +16199,11 @@ Instead of examining outside in the Scullery, say "It's unclear where you want t
 Before going outside in the Scullery, try going inside instead.
 
 Instead of going west when the location is the Scullery and the service lift platform is not intact:
-	say "You carefully jump across the [if the service lift platform is sabotaged]platform[otherwise]shaft[end if]...";
+	say "The ladder creaks as you crawl across it...";
 	now the player is in the Abandoned Kitchen.
 
 scullery-spider-jumpscare-triggered is a truth state that varies.
-Every turn when the location is the Scullery and Highway to Hell is happening and ambience suppression is false (this is the Scullery spider jump scare rule):
+Every turn when the location is the Scullery and Highway to Hell is happening and ambience suppression is false and scullery-spider-jumpscare-triggered is false (this is the Scullery spider jump scare rule):
 	if a random chance of 1 in 13 succeeds:
 		say "You catch a glimpse of a spider in the corner of your vision.";
 		now scullery-spider-jumpscare-triggered is true.
@@ -16236,23 +16247,75 @@ The bloated flies have some text called the faraway response. The faraway respon
 Understand "fly" or "swarm" as the bloated flies.
 Instead of talking to the bloated flies, say "You almost hear a susurrus of a reply."
 
-The crooked ladder is scenery in the Scullery.
-The description is "The rungs glisten with a coating you are loathe to identify."
-Understand "rung/rungs" as the crooked ladder.
-Before climbing or entering the crooked ladder, try going up instead.
-Instead of rubbing or touching the crooked ladder, say "[one of]A little slime sticks to your gloves. You hurriedly brush it off before it seeps in[or]You don't want to touch the ladder more than is necessary[stopping]."
-Instead of pushing, pulling, swinging, taking, or turning the crooked ladder, say "That's fixed in place."
-
 The view of the hoistway access is faraway scenery in the Scullery.
 The description is "[if the service lift platform is intact]It appears to be for maintaining the service lift[otherwise]It looks even more claustrophobic from the outside[end if]."
-Understand "maintenance" or "shaft" as the view of the hoistway access.
+Understand "maintenance" or "shaft" or "wall" as the view of the hoistway access.
 Before entering the view of the hoistway access, try going up instead.
+
+Chapter 3.40.2.2 - Rickety Ladder
+
+The rickety ladder is a thing in the Scullery.
+The description is "A long wooden ladder. You pray it will support your weight."
+Understand "wood/wooden" or "long" as the rickety ladder.
+
+Rule for writing a paragraph about the rickety ladder:
+	if the rickety ladder is in the Scullery:
+		if the kitchen stool is in the Scullery:
+			say "A rickety ladder and a kitchen stool provide access to the maintenance shaft.";
+			now the kitchen stool is mentioned;
+		otherwise:
+			say "A rickety ladder leans against the wall, providing access to the maintenance shaft.";
+	otherwise if the rickety ladder is in the Service Lift Room:
+		say "A rickety ladder has been laid across the lift, neatly bridging the gap between the doorways.";
+	otherwise:
+		say "A rickety ladder lies abandoned on the floor."
+
+Before climbing or entering the rickety ladder:
+	if the rickety ladder is in the Scullery:
+		try going up;
+	otherwise:
+		say "There's nothing to climb up to here.";
+	stop the action.
+
+Before putting the rickety ladder on the view of the hoistway access, try dropping the rickety ladder instead.
+Before inserting the rickety ladder into the view of the hoistway access, try dropping the rickety ladder instead.
+
+Before putting the rickety ladder on the view of the service lift, say "You'll need to get into the service lift to do that."
+Before inserting the rickety ladder into the view of the service lift, say "You'll need to get into the service lift to do that."
+Before throwing the rickety ladder at the view of the service lift, say "That could go very wrong. You should put it down carefully to make sure it's aligned."
+	
+Chapter 3.40.2.3 - Maintenance Shaft Access
+
+[I decided to add another puzzle here to break up the gameplay. The lift will fall if you step in it, which means you have to use the ladder from the scullery to bridge the gap. But without the ladder, you can't access the maintenance shaft. The solution is to get a stool from the kitchen to climb on.]
+	
+After dropping the rickety ladder:
+	if the location is the Scullery:
+		say "You prop the ladder up so that it leads to the maintenance shaft.";
+	otherwise if the location is the Service Lift Room:
+		say "You place the ladder across the lift so that it bridges the gap between the doorways.";
+	otherwise:
+		continue the action.
+
+After dropping the kitchen stool when the location is the Scullery:
+	say "You place the kitchen stool underneath the maintenance shaft."
+		
+Instead of going up when the location is the Scullery and the rickety ladder is not in the Scullery and the kitchen stool is not in the Scullery:
+	say "[one of]You try to scramble up to the maintenance shaft, but can't get a good grip. You need something to climb on[or]You can't reach the maintenance shaft without something to climb on[stopping]."
+		
+Before jumping when the location is the Scullery and the rickety ladder is not in the Scullery and the kitchen stool is not in the Scullery:
+	try going up instead.
+	
+Instead of going up when the location is the Scullery and the player carries the rickety ladder:
+	say "There's no way you could fit in there carrying this ladder."
+	
+Instead of going up when the location is the Scullery and the player carries the kitchen stool:
+	say "You can't both climb the ladder and hold on to the kitchen stool."
 
 Part 3.40.3 - Hoistway Access
 
 There is a room in the Midnight Zone called the Hoistway Access. "It is cramped and dark and hard to move. You are prone on your elbows, wedged between unfeeling bricks, and your eyes hurt from the too-close lantern-light.
 
-The ladder is below."
+The scullery is below."
 
 It is above the Scullery.
 
@@ -16297,9 +16360,9 @@ Understand "elbow" or "arm/arms" or "pressure" as Marid's elbows.
 The distant service lift is faraway scenery in the Hoistway Access.
 The description is "It looks much less safe from up here."
 
-The ladder back to the scullery is faraway scenery in the Hoistway Access.
-The description is "The ladder leads back to the scullery."
-The ladder back to the scullery has some text called the faraway response. The faraway response is "You'd have to climb down from the maintenance shaft first."
+The way back to the scullery is faraway scenery in the Hoistway Access.
+The description is "You can climb back down to the scullery."
+The way back to the scullery has some text called the faraway response. The faraway response is "You'd have to climb down from the maintenance shaft first."
 
 Chapter 3.40.3.2 - Suspension System
 
@@ -16319,9 +16382,9 @@ Chapter 3.40.3.3 - Cutting the Glyphs
 Instead of attacking or cutting the hoistway suspension system (this is the sabotaging the service lift rule):
 	if Carnicer is not in the Abandoned Kitchen:
 		say "That would untether the service lift and turn it into a deathtrap. You're not sure that's quite warranted at the moment.";
+	otherwise if the rickety ladder is not in the Service Lift Room:
+		say "Hold on. Before you sabotage the lift, you should make sure there's a way for you to get back across.";
 	otherwise if the service lift platform is intact:
-		say "There's... there's no other way, is there?[paragraph break]";
-		wait for any key;
 		say "You draw your scalpel from your pocket. You steel yourself, and with as much force as you can manage in these cramped quarters, gouge a scratch right through the center line --[paragraph break]";
 		wait for any key;
 		say "[italic type]A flash[roman type]. Your hair is buffeted by the discharge. You hear metal scraping, lurching, as its binding forces spontaneously fail.[paragraph break]";
@@ -16337,7 +16400,7 @@ Part 3.40.4 - Abandoned Kitchen
 
 There is a room in the Midnight Zone called the Abandoned Kitchen. "Light streams thinly here, between dirt-choked basins and dust-coated countertops. Your steps raise plumes of snowlike ash, which slither among your battered boots, and cling to them.
 
-To the east is the [if the service lift platform is gone]scullery, through the service lift shaft[otherwise]service lift[end if]; to the south is a collapsed corridor[if Carnicer is in the Abandoned Kitchen].[paragraph break]The assassin paces back and forth just beyond[end if].".
+To the east is the [if the service lift platform is not intact]scullery, across the rickety ladder[otherwise]service lift[end if]; to the south is a collapsed corridor."
 It is west of the Service Lift Room.
 
 The simple-name is "the abandoned kitchen".
@@ -16359,14 +16422,13 @@ Before examining east in the Abandoned Kitchen:
 Before examining inside in the Abandoned Kitchen, try examining east instead.
 
 Instead of going east when the location is the Abandoned Kitchen and the service lift platform is not intact:
-	say "You carefully jump across the [if the service lift platform is sabotaged]platform[otherwise]shaft[end if]...";
+	say "The ladder creaks as you crawl across it...";
 	now the player is in the Scullery.
 
 Chapter 3.40.4.1 - Scenery
 
 The view of the service lift is in the Abandoned Kitchen.
-Before entering the view of the service lift when the location is the Abandoned Kitchen and the service lift platform is intact, try going east instead.
-Before jumping when the location is the Abandoned Kitchen and the service lift platform is sabotaged, try going east instead.
+Before entering the view of the service lift when the location is the Abandoned Kitchen, try going east instead.
 
 The thinly streaming light is faraway scenery in the Abandoned Kitchen. The indefinite article is "some".
 The description is "The light here is coming from the collapsed corridor ahead."
@@ -16402,11 +16464,37 @@ The view of the collapsed corridor is faraway scenery in the Abandoned Kitchen.
 The description is "[if Carnicer is in the Abandoned Kitchen]The assassin is there[otherwise]The shapes of the walls crumble, there[end if]."
 Before entering the view of the collapsed corridor, try going south instead.
 
-Chapter 3.40.4.2 - Sighting Carnicer
+Chapter 3.40.4.2 - Kitchen Stool
+
+The kitchen stool is a portable enterable supporter in the Abandoned Kitchen.
+The description is "A fragile thing, riddled with the marks of woodlice."
+Understand "forlorn" or "mark/marks" as the kitchen stool.
+
+Before taking the kitchen stool when something is on the kitchen stool:
+	say "(first taking your things from the kitchen stool)";
+	repeat with nuisance running through things on the kitchen stool:
+		try silently taking the nuisance;
+
+Rule for writing a paragraph about the kitchen stool:
+	if the kitchen stool is in the Scullery:
+		say "A kitchen stool has been placed under the maintenance shaft, providing access.";
+	otherwise:
+		say "Nearby is a forlorn kitchen stool."
+		
+Instead of pushing or pulling the kitchen stool, say "The stool is small enough that you can simply pick it up."
+Instead of putting something on the kitchen stool when the kitchen stool is carried, say "That seems a great deal more inconvenient than using your coat pockets."
+
+Before entering the kitchen stool when the kitchen stool is in the Scullery, try going up instead.
+
+Before putting the kitchen stool on the view of the hoistway access, try dropping the kitchen stool instead.
+Before inserting the kitchen stool into the view of the hoistway access, try dropping the kitchen stool instead.
+
+Chapter 3.40.4.3 - Sighting Carnicer
 
 abandonedkitchen-sighted-carnicer is a truth state that varies.
 Instead of going south when the location is the Abandoned Kitchen and Highway to Hell is happening and abandonedkitchen-sighted-carnicer is false:
 	now Carnicer is in the Abandoned Kitchen;
+	now Carnicer is described;
 	now Carnicer is faraway;
 	say "You approach to get a better look and --[paragraph break]";
 	wait for any key;
@@ -16450,7 +16538,12 @@ First before doing something when the location is the Abandoned Kitchen and Carn
 	stop the action.
 
 To get Carnicer's attention, verbally:
-	say "Alakazam!"
+	if verbally:
+		say "The assassin turns her head at the sound of your voice --[paragraph break]";
+	otherwise:
+		say "You take a step. The assassin turns her head --[paragraph break]";
+	wait for any key;
+	say "-- [italic type]her lips peel from a carnival of teeth[roman type] --[paragraph break]";
 
 Part 3.40.6 - Collapsed Corridor
 
