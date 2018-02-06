@@ -2,9 +2,9 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 170117.
+The release number is 060218.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
-The story creation year is 2017.
+The story creation year is 2018.
 
 [
 
@@ -15808,7 +15808,7 @@ Instead of examining, looking under, pushing, pulling, rubbing, searching, squee
 	wait for any key;
 	say "An animus lantern.[paragraph break]";
 	wait for any key;
-	say "You strike the fuse and the bound aurora awakens. It flickers to attention, chilling the fingertips of your gloves, tracing the area in otherworldly dancing light.[paragraph break]";
+	say "You pick it up and strike the fuse. The bound aurora flickers to attention, chilling the fingertips of your gloves, tracing the area in otherworldly dancing light.[paragraph break]";
 	wait for any key;
 	now the player carries the animus lantern;
 	now the darkened metal shape is nowhere;
@@ -16172,6 +16172,14 @@ Chapter 3.40.1.3 - Service Lift States
 
 The service lift platform can be intact, sabotaged, or gone.
 
+Chapter 3.40.1.4 - Ladder Hint
+
+lift-ladder-bridge-hinted is a truth state that varies.
+
+Every turn when the location is the Service Lift Room and the rickety ladder is carried by the player and lift-ladder-bridge-hinted is false and Hoistway Access is visited:
+	say "It occurs to you that if you were to put down the rickety ladder here, it would bridge the width of the service lift.";
+	now lift-ladder-bridge-hinted is true.
+
 Part 3.40.2 - Scullery
 
 There is a room in the Midnight Zone called the Scullery. "Your footsteps squelch in this stale, cramped space. The cobwebs here glitter with moisture and silk-wrapped things. Through your lamp-light flit flies, disturbed by your movements, crowding upon moldy plates and slime-encrusted piping.
@@ -16247,7 +16255,7 @@ The bloated flies have some text called the faraway response. The faraway respon
 Understand "fly" or "swarm" as the bloated flies.
 Instead of talking to the bloated flies, say "You almost hear a susurrus of a reply."
 
-The view of the hoistway access is faraway scenery in the Scullery.
+The view of the hoistway access is faraway scenery in the Scullery. The printed name is "maintenance shaft".
 The description is "[if the service lift platform is intact]It appears to be for maintaining the service lift[otherwise]It looks even more claustrophobic from the outside[end if]."
 Understand "maintenance" or "shaft" or "wall" as the view of the hoistway access.
 Before entering the view of the hoistway access, try going up instead.
@@ -16255,14 +16263,13 @@ Before entering the view of the hoistway access, try going up instead.
 Chapter 3.40.2.2 - Rickety Ladder
 
 The rickety ladder is a thing in the Scullery.
-The description is "A long wooden ladder. You pray it will support your weight."
-Understand "wood/wooden" or "long" as the rickety ladder.
+The description is "A long wooden ladder. It'll probably support your weight."
+Understand "wood/wooden" or "old" as the rickety ladder.
 
 Rule for writing a paragraph about the rickety ladder:
 	if the rickety ladder is in the Scullery:
 		if the kitchen stool is in the Scullery:
 			say "A rickety ladder and a kitchen stool provide access to the maintenance shaft.";
-			now the kitchen stool is mentioned;
 		otherwise:
 			say "A rickety ladder leans against the wall, providing access to the maintenance shaft.";
 	otherwise if the rickety ladder is in the Service Lift Room:
@@ -16277,6 +16284,7 @@ Before climbing or entering the rickety ladder:
 		say "There's nothing to climb up to here.";
 	stop the action.
 
+Does the player mean putting the rickety ladder on the view of the hoistway access: it is very likely.
 Before putting the rickety ladder on the view of the hoistway access, try dropping the rickety ladder instead.
 Before inserting the rickety ladder into the view of the hoistway access, try dropping the rickety ladder instead.
 
@@ -16309,7 +16317,7 @@ Instead of going up when the location is the Scullery and the player carries the
 	say "There's no way you could fit in there carrying this ladder."
 	
 Instead of going up when the location is the Scullery and the player carries the kitchen stool:
-	say "You can't both climb the ladder and hold on to the kitchen stool."
+	say "There's no way you could fit in there carrying this kitchen stool."
 
 Part 3.40.3 - Hoistway Access
 
@@ -16364,6 +16372,10 @@ The way back to the scullery is faraway scenery in the Hoistway Access.
 The description is "You can climb back down to the scullery."
 The way back to the scullery has some text called the faraway response. The faraway response is "You'd have to climb down from the maintenance shaft first."
 
+The unseen force of friction is faraway scenery in the Hoistway Access.
+The description is "A force liable to fail, if given the push."
+The unseen force of friction has some text called the faraway response. The faraway response is "Impossible."
+
 Chapter 3.40.3.2 - Suspension System
 
 [This was originally a system of cables you could cut, but magical glyphs are just way cooler and help to provide some worldbuilding despite the grittiness of this location.]
@@ -16377,13 +16389,20 @@ Instead of looking under the hoistway suspension system, say "[if the service li
 
 Does the player mean doing something with the hoistway suspension system: it is very likely.
 
+service-lift-weaponization-hinted is a truth state that varies.
+
+After examining the hoistway suspension system:
+	if the service lift platform is intact and abandonedkitchen-sighted-carnicer is true and service-lift-weaponization-hinted is false:
+		say "...Or, perhaps, a weapon you could use.";
+		now service-lift-weaponization-hinted is true;
+
 Chapter 3.40.3.3 - Cutting the Glyphs
 
 Instead of attacking or cutting the hoistway suspension system (this is the sabotaging the service lift rule):
 	if Carnicer is not in the Abandoned Kitchen:
 		say "That would untether the service lift and turn it into a deathtrap. You're not sure that's quite warranted at the moment.";
 	otherwise if the rickety ladder is not in the Service Lift Room:
-		say "Hold on. Before you sabotage the lift, you should make sure there's a way for you to get back across.";
+		say "[first time]Hold on. [only]Before you sabotage the lift, you should make sure there's a way for you to get back across.";
 	otherwise if the service lift platform is intact:
 		say "You draw your scalpel from your pocket. You steel yourself, and with as much force as you can manage in these cramped quarters, gouge a scratch right through the center line --[paragraph break]";
 		wait for any key;
@@ -16467,7 +16486,7 @@ Before entering the view of the collapsed corridor, try going south instead.
 Chapter 3.40.4.2 - Kitchen Stool
 
 The kitchen stool is a portable enterable supporter in the Abandoned Kitchen.
-The description is "A fragile thing, riddled with the marks of woodlice."
+The description is "A fragile thing, riddled with the marks of absent woodlice."
 Understand "forlorn" or "mark/marks" as the kitchen stool.
 
 Before taking the kitchen stool when something is on the kitchen stool:
@@ -16477,12 +16496,15 @@ Before taking the kitchen stool when something is on the kitchen stool:
 
 Rule for writing a paragraph about the kitchen stool:
 	if the kitchen stool is in the Scullery:
-		say "A kitchen stool has been placed under the maintenance shaft, providing access.";
+		if the rickety ladder is in the Scullery:
+			now the kitchen stool is mentioned;
+		otherwise:
+			say "A kitchen stool has been placed under the maintenance shaft, providing access.";
 	otherwise:
 		say "Nearby is a forlorn kitchen stool."
 		
 Instead of pushing or pulling the kitchen stool, say "The stool is small enough that you can simply pick it up."
-Instead of putting something on the kitchen stool when the kitchen stool is carried, say "That seems a great deal more inconvenient than using your coat pockets."
+Instead of putting something on the kitchen stool when the kitchen stool is carried, say "That seems a great deal more inconvenient than simply using your coat pockets."
 
 Before entering the kitchen stool when the kitchen stool is in the Scullery, try going up instead.
 
