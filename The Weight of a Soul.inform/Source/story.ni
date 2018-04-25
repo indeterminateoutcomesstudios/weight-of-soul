@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 060218.
+The release number is 260418.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -380,8 +380,10 @@ Monster House ends when the location is the Service Lift Room.
 
 Highway to Hell is a scene. [Marid lures Carnicer to her doom.]
 Highway to Hell begins when Monster House ends.
+Highway to Hell ends when Carnicer is dead.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
+Can't Catch a Bloody Break begins when Highway to Hell ends.
 
 Chapter 1.2.1.5 - Day Three
 
@@ -713,6 +715,16 @@ To skip Monster House:
 	move the player to the Service Lift Room, without printing a room description;
 	follow the scene changing rules;
 	
+To skip Highway to Hell:
+	if the Service Lift Room is not visited:
+		skip Monster House;
+	now Carnicer is dead;
+	now Carnicer is nowhere;
+	now the kitchen stool is nowhere;
+	now the rickety ladder is nowhere;
+	move the player to the Collapsed Corridor, without printing a room description;
+	follow the scene changing rules;
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -972,7 +984,7 @@ The scent is "The scent of blood."
 Understand "hooded" or "assassin" or "killer" or "butcher" or "claw/claws/head" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise if carnicer-chase-happening is false]You know she's waiting for you[otherwise]She's gaining on you[end if]."
+The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise]You know she's waiting for you[end if]."
 
 Carnicer has some text called the faraway response. The faraway response is "You didn't come this far to commit suicide."
 
@@ -1706,7 +1718,7 @@ Understand "load" as restoring the game.
 Understand "observe [something]" as examining.
 Understand "order [something]" as buying.
 Understand "poke [something]" as pushing.
-Understand "prop up/-- [other things] up/-- on/onto [something]" as putting it on.
+Understand "prop up/-- [other things] up/-- on/onto/under [something]" as putting it on.
 Understand "put [something preferably held] down [something]" as inserting it into.
 Understand "raise [something]" as pulling.
 Understand "ring [something]" as swinging.
@@ -1921,6 +1933,7 @@ Understand "find [text]" or "look for [text]" as a mistake ("You'll have to be m
 Understand "follow" or "follow [text]" or "go after [text]" as a mistake ("You'll have to specify which direction you want to go in.").
 Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("[if time is critical]This is not the time.[otherwise]That seems exceedingly unwise.").
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
+Understand "put [other things] under [something]" as putting it on.
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
 Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Yup.[otherwise]You mutter an oath under your breath.").
 Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("(Type >[bold type]journal[roman type] for a reminder of the information you've come across.)").
@@ -2936,7 +2949,9 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 		say "I... I don't know if I'm going mad. I don't know if I can trust my senses anymore. All I can do is keep my wits about me and try to survive this. ";
 	otherwise if Highway to Hell is happening:
 		say "I'm scared. I don't know how long I can keep this up. Part of me wants to just lie down and sleep... but I know that I have to keep moving. I have to keep going. I have to. ";
-
+	otherwise if Can't Catch a Bloody Break is happening:
+		say "I'm so tired. I... I... ";
+		
 Chapter 2.3.12.4 - Objectives
 
 To say journal-text-objectives:
@@ -3098,6 +3113,8 @@ To say journal-text-objectives:
 		otherwise:
 			add "- Find a way out of the condemned block" to L;
 	if Highway to Hell is happening:
+		add "- Find a way out of the condemned block" to L;
+	if Can't Catch a Bloody Break is happening:
 		add "- Find a way out of the condemned block" to L;
 	[---
 	END
@@ -3625,14 +3642,10 @@ The view of the Gangway is a faraway backdrop.
 The description is "It spirals from the earth to the heavens."
 
 The view of the service lift is a faraway backdrop.
-The description is "[if the service lift platform is intact]The darkness is broken by flickering illumination[otherwise if the service lift platform is sabotaged]You've laid a ladder across the gap, allowing you to cross safely[otherwise]It's a long way down[end if]."
+The description is "[if the service lift platform is intact]The darkness is broken by flickering illumination[otherwise]You've laid a ladder across the gap, allowing you to cross safely[end if]."
 Understand "platform" as the view of the service lift.
 Understand "light/lights" or "illumination" as the view of the service lift when the service lift platform is intact.
-Understand "ladder" or "rickety" as the view of the service lift when the service lift platform is not intact.
-Understand "sabotaged" as the view of the service lift when the service lift platform is sabotaged.
-Understand "shaft" as the view of the service lift when the service lift platform is gone.
-Instead of jumping when the view of the service lift is in the location and the service lift platform is not intact, say "You're not going to jump into the service lift shaft, if that's what you mean."
-Instead of going down when the view of the service lift is in the location and the service lift platform is gone, say "You didn't come all this way to die now."
+Understand "ladder" or "rickety" or "sabotaged" as the view of the service lift when the service lift platform is sabotaged.
 
 Part 3.1.3 - Ambience
 
@@ -16170,7 +16183,7 @@ Chapter 3.40.1.3 - Service Lift States
 
 [Marid sabotages the lift to solve a puzzle that kills Carnicer. Once the lift is sabotaged, Marid no longer enters the service lift room, instead moving directly past it.]
 
-The service lift platform can be intact, sabotaged, or gone.
+The service lift platform can be intact or sabotaged. The service lift platform is intact.
 
 Chapter 3.40.1.4 - Ladder Hint
 
@@ -16195,12 +16208,7 @@ The exit reminder is "You can go up to the hoistway access or west to the [if th
 The going-in disambiguation is "Do you mean going up (to the hoistway access) or going west (to the [if the service lift platform is intact]service lift[otherwise]abandoned kitchen[end if])?"
 
 Before examining up in the Scullery, try examining the view of the hoistway access instead.
-Before examining west in the Scullery:
-	if the service lift platform is gone:
-		try examining the view of the abandoned kitchen;
-	otherwise:
-		try examining the view of the service lift;
-	stop the action.
+Before examining west in the Scullery, try examining the view of the service lift instead.
 Instead of examining inside in the Scullery, say "It's unclear where you want to look."
 Instead of examining outside in the Scullery, say "It's unclear where you want to look."
 
@@ -16367,6 +16375,7 @@ Understand "elbow" or "arm/arms" or "pressure" as Marid's elbows.
 
 The distant service lift is faraway scenery in the Hoistway Access.
 The description is "It looks much less safe from up here."
+Before attacking or cutting the distant service lift, say "[if the service lift platform is intact]The lift is out of reach, but you could perhaps tamper with the glyphs instead[otherwise]You've already sabotaged the lift[end if]." instead.
 
 The way back to the scullery is faraway scenery in the Hoistway Access.
 The description is "You can climb back down to the scullery."
@@ -16380,12 +16389,12 @@ Chapter 3.40.3.2 - Suspension System
 
 [This was originally a system of cables you could cut, but magical glyphs are just way cooler and help to provide some worldbuilding despite the grittiness of this location.]
 
-The hoistway suspension system is a fixed in place thing in the Hoistway Access. "[if the service lift platform is intact]Engraved before you are the glyphs that conduct the galvanism of the service lift, and barely -- just barely -- keep it from plummeting away into the abyss[otherwise if the service lift platform is sabotaged]You've scratched out the glyphs that were once inscribed here. Friction is all that keeps the lift from falling now[otherwise]You've scratched out the glyphs that were once inscribed here. The service lift is gone[end if]."
+The hoistway suspension system is a fixed in place thing in the Hoistway Access. "[if the service lift platform is intact]Engraved before you are the glyphs that conduct the galvanism of the service lift, and barely -- just barely -- keep it from plummeting away into the abyss[otherwise]You've scratched out the glyphs that were once inscribed here. Friction is all that keeps the lift from falling now[end if]."
 The description is "The glyphs are [if the service lift platform is intact]worn and decrepit. A few scratches from your scalpel, and the lift would become a deathtrap for the unwary[otherwise]unreadable[end if]."
 The scent is "A charred odor emanates from the suspension."
 Understand "glyph/glyphs" or "galvanism" or "power" or "invisible" or "enchantment" or "cradle" or "stabilizing" or "scratch/scratches" as the hoistway suspension system.
 Instead of pushing, knocking on, touching, or rubbing the hoistway suspension system, say "[if the service lift platform is intact]You can feel the tortured power spiraling endlessly within the stone[otherwise]The stone is inert[end if]."
-Instead of looking under the hoistway suspension system, say "[if the service lift platform is gone]The service lift is gone[otherwise]The service lift lies below[end if]."
+Instead of looking under the hoistway suspension system, say "The service lift lies below."
 
 Does the player mean doing something with the hoistway suspension system: it is very likely.
 
@@ -16393,7 +16402,7 @@ service-lift-weaponization-hinted is a truth state that varies.
 
 After examining the hoistway suspension system:
 	if the service lift platform is intact and abandonedkitchen-sighted-carnicer is true and service-lift-weaponization-hinted is false:
-		say "...Or, perhaps, a weapon you could use.";
+		say "...You might be able to use that. Maybe.";
 		now service-lift-weaponization-hinted is true;
 
 Chapter 3.40.3.3 - Cutting the Glyphs
@@ -16432,16 +16441,10 @@ Before going inside in the Abandoned Kitchen, try going east instead.
 
 Before examining south in the Abandoned Kitchen, try examining the view of the collapsed corridor instead.
 Before examining outside in the Abandoned Kitchen, try examining the view of the collapsed corridor instead.
-Before examining east in the Abandoned Kitchen:
-	if the service lift platform is gone:
-		try examining the view of the scullery;
-	otherwise:
-		try examining the view of the service lift;
-	stop the action.
+Before examining east in the Abandoned Kitchen, try examining the view of the service lift instead.
 Before examining inside in the Abandoned Kitchen, try examining east instead.
 
 Instead of going east when the location is the Abandoned Kitchen and the service lift platform is not intact:
-	say "The ladder creaks as you crawl across it...";
 	now the player is in the Scullery.
 
 Chapter 3.40.4.1 - Scenery
@@ -16505,6 +16508,20 @@ Rule for writing a paragraph about the kitchen stool:
 		
 Instead of pushing or pulling the kitchen stool, say "The stool is small enough that you can simply pick it up."
 Instead of putting something on the kitchen stool when the kitchen stool is carried, say "That seems a great deal more inconvenient than simply using your coat pockets."
+Instead of climbing the kitchen stool:
+	if the kitchen stool is carried by the player:
+		if the location is the Scullery:
+			now the kitchen stool is in the Scullery;
+			move the player to the Hoistway Access, silently;
+			say "You place the stool underneath the maintenance shaft and use it as a step.";
+			try looking;
+		otherwise:
+			say "You can't both be holding the stool and standing on it."
+	otherwise:
+		if the location is the Scullery:
+			try going up;
+		otherwise:
+			say "There's nothing to climb up to."
 
 Before entering the kitchen stool when the kitchen stool is in the Scullery, try going up instead.
 
@@ -16514,7 +16531,7 @@ Before inserting the kitchen stool into the view of the hoistway access, try dro
 Chapter 3.40.4.3 - Sighting Carnicer
 
 abandonedkitchen-sighted-carnicer is a truth state that varies.
-Instead of going south when the location is the Abandoned Kitchen and Highway to Hell is happening and abandonedkitchen-sighted-carnicer is false:
+Instead of going south when the location is the Abandoned Kitchen and abandonedkitchen-sighted-carnicer is false:
 	now Carnicer is in the Abandoned Kitchen;
 	now Carnicer is described;
 	now Carnicer is faraway;
@@ -16533,14 +16550,12 @@ Instead of listening when the location is the Abandoned Kitchen and Carnicer is 
 	otherwise:
 		say "All you can hear is the assassin's humming.";
 
-Before going east in the Abandoned Kitchen when Carnicer is in the Abandoned Kitchen and carnicer-chase-happening is false and the service lift is intact:
+Before going east in the Abandoned Kitchen when Carnicer is in the Abandoned Kitchen:
 	say "You slip away as silently as you can manage.";
 
-Part 3.40.5 - Trapping Carnicer
+Part 3.40.5 - Getting Carnicer's Attention
 
-carnicer-chase-happening is a truth state that varies. carnicer-chase-happening is false.
-
-First before doing something when the location is the Abandoned Kitchen and Carnicer is in the Abandoned Kitchen and carnicer-chase-happening is false (this is the how to get Carnicer's attention rule):
+First before doing something when the location is the Abandoned Kitchen and Carnicer is in the Abandoned Kitchen and Highway to Hell is happening (this is the how to get Carnicer's attention rule):
 	if the current action is going south:
 		get Carnicer's attention;
 	otherwise if the current action is attacking Carnicer:
@@ -16561,18 +16576,52 @@ First before doing something when the location is the Abandoned Kitchen and Carn
 
 To get Carnicer's attention, verbally:
 	if verbally:
-		say "The assassin turns her head at the sound of your voice --[paragraph break]";
+		say "You cry out. The assassin turns her head --[paragraph break]";
 	otherwise:
 		say "You take a step. The assassin turns her head --[paragraph break]";
 	wait for any key;
 	say "-- [italic type]her lips peel from a carnival of teeth[roman type] --[paragraph break]";
+	wait for any key;
+	say "You break and run. The kitchen is a blur. You crash through the service lift -- send it lurching with your footfalls -- tear through the viscous cobwebs. All the while she gains, gains with impossible speed upon you, until --[paragraph break]";
+	wait for any key;
+	if the service lift platform is sabotaged:
+		say "-- wood splinters --[paragraph break]";
+		wait for any key;
+		say "-- metal fails and reality [italic type]turns[roman type].[paragraph break]";
+		wait for any key;
+		say "The lift has been dislodged from its unnatural suspension. The ladder lies in splinters under the assassin's feet. Now, shackled again to the chains of gravitation, that whole unwieldy apparatus has begun to collapse; and the assassin, just moments behind you, has been caught up in its descent.[paragraph break]";
+		wait for any key;
+		say "Her smile falters. She tenses. Stops.[paragraph break]";
+		wait for any key;
+		say "'No --'[paragraph break]";
+		wait for any key;
+		say "And the cacophony, the wailing gnashing whirlwind, it bears her into the abyss, and hurtles down and down and down and down and down where you cannot hear her scream, where reality ends and her screams end and are consumed.[paragraph break]";
+		wait for any key;
+		say "You close your eyes.[paragraph break]";
+		wait for any key;
+		center "* * *";
+		say paragraph break;
+		wait for any key;
+		now Carnicer is dead;
+		now Carnicer is nowhere;
+		now the kitchen stool is nowhere;
+		now the player is in the Collapsed Corridor;
+	otherwise:
+		say "A dead end. A stone wall. There is nothing further this way; nowhere else you can hide.[paragraph break]";
+		wait for any key;
+		say "You don't know why you thought there would be.[paragraph break]";
+		wait for any key;
+		end the story saying "The end comes swiftly";
+		
 
-Part 3.40.6 - Collapsed Corridor
+Book 3.41 - Can't Catch a Bloody Break
+		
+Part 3.41.1 - Collapsed Corridor
 
 There is a room in the Midnight Zone called the Collapsed Corridor.
 It is south of the Abandoned Kitchen.
 
-Part 3.40.7 - Court of Stars
+Part 3.41.2 - Court of Stars
 
 The Court of Stars is a room in the Midnight Zone.
 It is south of the Collapsed Corridor.
