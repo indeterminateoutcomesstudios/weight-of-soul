@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 260418.
+The release number is 300418.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -57,6 +57,8 @@ Volume 1 - Preamble
 - Write Highway to Hell
 
 - Write Can't Catch a Bloody Break
+
+--- END OF WEEK---
 
 - Write Day Three
 - Write Day Four
