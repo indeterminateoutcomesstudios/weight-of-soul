@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 300418.
+The release number is 020518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -53,8 +53,6 @@ You have been warned.
 Volume 1 - Preamble
 
 [---TO DO---
-
-- Write Highway to Hell
 
 - Write Can't Catch a Bloody Break
 
@@ -228,6 +226,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to rooftop[roman type]";
 	say "[line break]>[bold type]skip to calefactory[roman type]";
 	say "[line break]>[bold type]skip to service lift[roman type]";
+	say "[line break]>[bold type]skip to collapsed corridor[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -850,9 +849,16 @@ Carry out skipping to calefactory:
 	
 Skipping to service lift is an action applying to nothing.
 Understand "skip to service lift" as skipping to service lift.
-Check skipping to service lift when the Calefactory is visited: say "You have already passed that checkpoint."; stop the action.
+Check skipping to service lift when the Service Lift Room is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to service lift:
 	skip Monster House;
+	try looking.
+	
+Skipping to collapsed corridor is an action applying to nothing.
+Understand "skip to collapsed corridor" as skipping to collapsed corridor.
+Check skipping to collapsed corridor when the Collapsed Corridor is visited: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to collapsed corridor:
+	skip Highway to Hell;
 	try looking.
 	
 Book 1.3 - People
@@ -2395,9 +2401,9 @@ Part 2.3.11 - Help Menu
 
 Table of the Help Menu
 title	subtable	description	toggle
+"List of Commands"	--	"[useful-commands-text]"	--
 "About This Game"	--	"[about-this-game-text]"	--
 "How to Play"	--	"[how-to-play-text]"	--
-"List of Commands"	--	"[useful-commands-text]"	--
 "Journal"	--	"[journal-text]"	--
 "Characters"	--	"[characters-text]"	--
 "Map"	--	"[map-text]"	--
@@ -2426,13 +2432,13 @@ If you are talking to someone, you will instead be prompted to choose from a lis
 At other times, there may be no command prompt provided at all, such as during a dramatic pause in the text. When this happens, press any key to continue.";
 
 To say useful-commands-text:
-	say "[bold type]A list of useful commands[roman type]
+	say "[bold type]A list of useful commands[roman type][line break](You can type >[bold type]commands[roman type] or >[bold type]c[roman type] to bring up this page at any time.)
 
 >[bold type]look[roman type][line break][italic type]Look around and get a description of your current surroundings. The command 'look' can be shortened to 'l' or simply a blank command.[roman type]
 
 >[bold type]examine (something)[roman type][line break][italic type]Examine something for a more detailed description. You can examine practically anything, including yourself. The command 'examine' can be shortened to 'x' or simply typing the name of the object.[roman type]
 
->[bold type]inventory[roman type][line break][italic type]Take inventory of the items you're wearing or carrying. The command 'inventory' can be shortened to 'i'.[roman type]
+>[bold type]inventory[roman type][line break][italic type]Check the items you're wearing or carrying. The command 'inventory' can be shortened to 'i'.[roman type]
 
 >[bold type]talk to (someone)[roman type][line break][italic type]Strike up a conversation with someone. The command 'talk to' can be shortened to 't'.[roman type]
 
@@ -2952,7 +2958,7 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 	otherwise if Highway to Hell is happening:
 		say "I'm scared. I don't know how long I can keep this up. Part of me wants to just lie down and sleep... but I know that I have to keep moving. I have to keep going. I have to. ";
 	otherwise if Can't Catch a Bloody Break is happening:
-		say "I'm so tired. I... I... ";
+		say "I'm so tired. ";
 		
 Chapter 2.3.12.4 - Objectives
 
@@ -16328,6 +16334,13 @@ Instead of going up when the location is the Scullery and the player carries the
 	
 Instead of going up when the location is the Scullery and the player carries the kitchen stool:
 	say "There's no way you could fit in there carrying this kitchen stool."
+	
+Chapter 3.40.2.4 - Carnicer's Taunt
+
+scullery-carnicer-taunted is a truth state that varies.
+Every turn when the location is the Scullery and the service lift platform is sabotaged and scullery-carnicer-taunted is false (this is the Carnicer's taunt in the scullery rule):
+	say "Distantly, you hear the assassin's mocking laughter.";
+	now scullery-carnicer-taunted is true.
 
 Part 3.40.3 - Hoistway Access
 
@@ -16404,7 +16417,7 @@ service-lift-weaponization-hinted is a truth state that varies.
 
 After examining the hoistway suspension system:
 	if the service lift platform is intact and abandonedkitchen-sighted-carnicer is true and service-lift-weaponization-hinted is false:
-		say "...You might be able to use that. Maybe.";
+		say "...Or a trap that could be laid for a pursuer.";
 		now service-lift-weaponization-hinted is true;
 
 Chapter 3.40.3.3 - Cutting the Glyphs
@@ -16514,11 +16527,11 @@ Instead of climbing the kitchen stool:
 	if the kitchen stool is carried by the player:
 		if the location is the Scullery:
 			now the kitchen stool is in the Scullery;
-			move the player to the Hoistway Access, silently;
+			move the player to the Hoistway Access, without printing a room description;
 			say "You place the stool underneath the maintenance shaft and use it as a step.";
 			try looking;
 		otherwise:
-			say "You can't both be holding the stool and standing on it."
+			say "You can't both be holding the stool and standing on it.";
 	otherwise:
 		if the location is the Scullery:
 			try going up;
@@ -16577,6 +16590,13 @@ First before doing something when the location is the Abandoned Kitchen and Carn
 	stop the action.
 
 To get Carnicer's attention, verbally:
+	if the service lift platform is intact:
+		say "Are you sure you want to get the assassin's attention?[line break]Please answer yes or no.>";
+		if the player consents:
+			say line break;
+		otherwise:
+			say "You decide not to take the risk.";
+			stop;
 	if verbally:
 		say "You cry out. The assassin turns her head --[paragraph break]";
 	otherwise:
@@ -16591,13 +16611,13 @@ To get Carnicer's attention, verbally:
 		wait for any key;
 		say "-- metal fails and reality [italic type]turns[roman type].[paragraph break]";
 		wait for any key;
-		say "The lift has been dislodged from its unnatural suspension. The ladder lies in splinters under the assassin's feet. Now, shackled again to the chains of gravitation, that whole unwieldy apparatus has begun to collapse; and the assassin, just moments behind you, has been caught up in its descent.[paragraph break]";
+		say "The lift has been dislodged from its unnatural suspension. Its arcane skeins have entangled the assassin in their coils. Now, shackled again to the chains of gravitation, that whole unwieldy apparatus has begun to collapse, and the assassin as been caught up in its descent.[paragraph break]";
 		wait for any key;
 		say "Her smile falters. She tenses. Stops.[paragraph break]";
 		wait for any key;
 		say "'No --'[paragraph break]";
 		wait for any key;
-		say "And the cacophony, the wailing gnashing whirlwind, it bears her into the abyss, and hurtles down and down and down and down and down where you cannot hear her scream, where reality ends and her screams end and are consumed.[paragraph break]";
+		say "And the cacophony, the wailing gnashing whirlwind, it bears her into the abyss where you cannot hear her scream -- where reality ends, where all things end and are consumed.[paragraph break]";
 		wait for any key;
 		say "You close your eyes.[paragraph break]";
 		wait for any key;
@@ -16617,11 +16637,25 @@ To get Carnicer's attention, verbally:
 		
 
 Book 3.41 - Can't Catch a Bloody Break
+
+First before doing anything when Can't Catch a Bloody Break is happening:
+	if the current action is not looking and the current action is not going:
+		say "You can't seem to focus right now.";
+		stop the action.
 		
 Part 3.41.1 - Collapsed Corridor
 
-There is a room in the Midnight Zone called the Collapsed Corridor.
+There is a room in the Midnight Zone called the Collapsed Corridor. "Your footsteps feel strangely heavy as you walk down this final hall. You are acutely aware of your own breathing.
+
+You can see the light, just up ahead. Just a little further, to the south."
 It is south of the Abandoned Kitchen.
+The exit reminder is "South; the light is south."
+
+Instead of going north when the location is the Collapsed Corridor and Can't Catch a Bloody Break is happening:
+	say "There is nothing left for you there."
+	
+Instead of going south when the location is the Collapsed Corridor and Can't Catch a Bloody Break is happening:
+	to be continued.
 
 Part 3.41.2 - Court of Stars
 
