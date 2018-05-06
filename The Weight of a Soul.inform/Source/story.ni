@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 020518.
+The release number is 060518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -2464,7 +2464,7 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -16197,7 +16197,7 @@ Chapter 3.40.1.4 - Ladder Hint
 
 lift-ladder-bridge-hinted is a truth state that varies.
 
-Every turn when the location is the Service Lift Room and the rickety ladder is carried by the player and lift-ladder-bridge-hinted is false and Hoistway Access is visited:
+Every turn when the location is the Service Lift Room and the rickety ladder is carried by the player and lift-ladder-bridge-hinted is false:
 	say "It occurs to you that if you were to put down the rickety ladder here, it would bridge the width of the service lift.";
 	now lift-ladder-bridge-hinted is true.
 
@@ -16334,13 +16334,6 @@ Instead of going up when the location is the Scullery and the player carries the
 	
 Instead of going up when the location is the Scullery and the player carries the kitchen stool:
 	say "There's no way you could fit in there carrying this kitchen stool."
-	
-Chapter 3.40.2.4 - Carnicer's Taunt
-
-scullery-carnicer-taunted is a truth state that varies.
-Every turn when the location is the Scullery and the service lift platform is sabotaged and scullery-carnicer-taunted is false (this is the Carnicer's taunt in the scullery rule):
-	say "Distantly, you hear the assassin's mocking laughter.";
-	now scullery-carnicer-taunted is true.
 
 Part 3.40.3 - Hoistway Access
 
@@ -16430,7 +16423,7 @@ Instead of attacking or cutting the hoistway suspension system (this is the sabo
 	otherwise if the service lift platform is intact:
 		say "You draw your scalpel from your pocket. You steel yourself, and with as much force as you can manage in these cramped quarters, gouge a scratch right through the center line --[paragraph break]";
 		wait for any key;
-		say "[italic type]A flash[roman type]. Your hair is buffeted by the discharge. You hear metal scraping, lurching, as its binding forces spontaneously fail.[paragraph break]";
+		say "[italic type]A shock[roman type]. You can feel enchantments disintegrating, unraveling around your fingers. You sense the lift grow heavy as its binding forces wither and fail.[paragraph break]";
 		wait for any key;
 		say "You scratch the glyphs a few more times. When you're finished, your scalpel is noticeably hotter. You clean the edge and let it cool before stowing it. You try not to think about the fact that you're plotting to murder someone.";
 		now the view of the abandoned kitchen is in the Scullery;
@@ -16615,7 +16608,7 @@ To get Carnicer's attention, verbally:
 		wait for any key;
 		say "Her smile falters. She tenses. Stops.[paragraph break]";
 		wait for any key;
-		say "'No --'[paragraph break]";
+		say "'I -- you -- [italic type]what[roman type] --'[paragraph break]";
 		wait for any key;
 		say "And the cacophony, the wailing gnashing whirlwind, it bears her into the abyss where you cannot hear her scream -- where reality ends, where all things end and are consumed.[paragraph break]";
 		wait for any key;
@@ -16639,30 +16632,66 @@ To get Carnicer's attention, verbally:
 Book 3.41 - Can't Catch a Bloody Break
 
 First before doing anything when Can't Catch a Bloody Break is happening:
-	if the current action is not looking and the current action is not going:
+	if the current action is examining south or the current action is examining the collapsed-corridor-light:
+		say "It's so close.";
+	otherwise if the current action is looking or the current action is going or the current action involves the collapsed-corridor-light:
+		continue the action;
+	otherwise if the current action is waiting:
+		say "You can't stop now.";
+	otherwise if the current action is listening:
+		say "Your breathing haunts you.";
+	otherwise if the current action is smelling:
+		say "You breathe in.";
+	otherwise if collapsed-corridor-stumbled is true:
+		say "You don't have time for that right now.";
+	otherwise:
 		say "You can't seem to focus right now.";
-		stop the action.
+	stop the action.
 		
 Part 3.41.1 - Collapsed Corridor
 
-There is a room in the Midnight Zone called the Collapsed Corridor. "Your footsteps feel strangely heavy as you walk down this final hall. You are acutely aware of your own breathing.
+There is a room in the Midnight Zone called the Collapsed Corridor. "Your footsteps feel strangely heavy as you walk down this final hall. The dust -- your footfalls -- your heartbeat -- they throb in time with every breath.
 
-You can see the light, just up ahead. Just a little further, to the south."
+You can see the light just up ahead. Just a little further. To the south."
 It is south of the Abandoned Kitchen.
 The exit reminder is "South; the light is south."
+	
+Some difficult-to-focus-on-scenery are proper-named scenery in the Collapsed Corridor.
+The printed name of the difficult-to-focus-on-scenery is "trying to focus".
+Understand "blood" or "dust" or "fog" or "footfall/footfalls" or "footstep/footsteps" or "heartbeat" or "final" or "hall" as the difficult-to-focus-on-scenery.
+Does the player mean doing something with the difficult-to-focus-on-scenery: it is very likely.
+
+The collapsed-corridor-light is scenery in the Collapsed Corridor.
+The printed name of the collapsed-corridor-light is "light ahead".
+Understand "light" or "ahead" as the collapsed-corridor-light.
+Does the player mean doing something with the collapsed-corridor-light: it is very likely.
 
 Instead of going north when the location is the Collapsed Corridor and Can't Catch a Bloody Break is happening:
-	say "There is nothing left for you there."
+	say "You haven't the will to go back."
 	
+collapsed-corridor-stumbled is a truth state that varies.
 Instead of going south when the location is the Collapsed Corridor and Can't Catch a Bloody Break is happening:
-	to be continued.
-
-Part 3.41.2 - Court of Stars
-
-The Court of Stars is a room in the Midnight Zone.
-It is south of the Collapsed Corridor.
-
-
+	if collapsed-corridor-stumbled is false:
+		say "You --[paragraph break]";
+		wait for any key;
+		say "You stumble a little. You pick yourself up, blink the fog out of your eyes. You don't feel quite so well at the moment.[paragraph break]";
+		wait for any key;
+		say "Is that...[paragraph break]";
+		wait for any key;
+		say "Is that blood? Is it yours?[paragraph break]";
+		wait for any key;
+		say "It doesn't matter. You can't stop now. You have to keep going.";
+		now collapsed-corridor-stumbled is true;
+	otherwise:
+		say "You take a wobbly step.[paragraph break]";
+		wait for any key;
+		say "And another.[paragraph break]";
+		wait for any key;
+		say "Step by step, with agonizing certainty, you push onward.[paragraph break]";
+		wait for any key;
+		say "[bold type]Abandoned Block[roman type][line break]";
+		say "You emerge into a sea of lights, of sweeping clouds and hazy twinkling stars. The city of Furopolis rises all around you, and it has never been more beautiful nor a more welcome sight: you realize the light of the stars is rippling and wavering through your tears.";
+		to be continued.
 
 Book of the Rest
 
