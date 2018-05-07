@@ -56,6 +56,10 @@ Volume 1 - Preamble
 
 - Write Vision Quest
 
+- This is an important storytelling moment because it's Marid's "catharsis" where she is reborn with the ability to see new shit
+- Marid relives the fire and Lumina's rescue. Lumina then transforms into a copy of herself and says "It's time to go." Marid refuses. Other!Marid: "Why?"
+- Marid multiple choice: "It's not just about me." "I need to know." "I'm not done yet."
+
 --- END OF WEEK---
 
 - Write Day Three
@@ -227,6 +231,7 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to calefactory[roman type]";
 	say "[line break]>[bold type]skip to service lift[roman type]";
 	say "[line break]>[bold type]skip to collapsed corridor[roman type]";
+	say "[line break]>[bold type]skip to vision[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -385,6 +390,7 @@ Highway to Hell ends when Carnicer is dead.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 Can't Catch a Bloody Break begins when Highway to Hell ends.
+Can't Catch a Bloody Break ends when the location is Father's Laboratory.
 
 Vision Quest is a scene. [Marid has a vision on the edge between life and death.]
 Vision Quest begins when Can't Catch a Bloody Break ends.
@@ -729,6 +735,14 @@ To skip Highway to Hell:
 	move the player to the Collapsed Corridor, without printing a room description;
 	follow the scene changing rules;
 	
+To skip Can't Catch a Bloody Break:
+	if the Collapsed Corridor is not visited:
+		skip Highway to Hell;
+	now everything enclosed by the player is in the temporary inventory holder;
+	now the clothes are worn by the player;
+	move the player to Father's Laboratory, without printing a room description;
+	follow the scene changing rules;
+	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
 Check skipping Reden's surgery when Reden's surgery has ended: say "You have already passed that checkpoint."; stop the action.
@@ -862,6 +876,13 @@ Understand "skip to collapsed corridor" as skipping to collapsed corridor.
 Check skipping to collapsed corridor when the Collapsed Corridor is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to collapsed corridor:
 	skip Highway to Hell;
+	try looking.
+	
+Skipping to vision is an action applying to nothing.
+Understand "skip to vision" as skipping to vision.
+Check skipping to vision when Father's Laboratory is visited: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to vision:
+	skip Can't Catch a Bloody Break;
 	try looking.
 	
 Book 1.3 - People
@@ -1138,6 +1159,8 @@ Instead of examining the player:
 		say "You're deathly terrified. ";
 	otherwise if Monster House is happening:
 		say "You hurt all over. At least nothing seems to be broken. ";
+	otherwise if Vision Quest is happening:
+		say "You're thirteen years old; a bit frail for your age, but otherwise healthy. ";
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
@@ -2867,6 +2890,9 @@ clues-consolidated is a truth state that varies.
 Chapter 2.3.12.2 - Date
 	
 To say journal-text-date:
+	if Vision Quest is happening:
+		say "Nineteenth of Lux, Mercuritum X";
+		stop;
 	if the current day is:
 		-- Prologue:
 			say "Third";
@@ -2962,6 +2988,8 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 		say "I'm scared. I don't know how long I can keep this up. Part of me wants to just lie down and sleep... but I know that I have to keep moving. I have to keep going. I have to. ";
 	otherwise if Can't Catch a Bloody Break is happening:
 		say "I'm so tired. ";
+	otherwise if Vision Quest is happening:
+		say "I remember what happened today. I used to dream of it every night -- it made itself known to me in visions. Tonight, perhaps, I'm viewing it for the last time. ";
 		
 Chapter 2.3.12.4 - Objectives
 
@@ -3127,6 +3155,8 @@ To say journal-text-objectives:
 		add "- Find a way out of the condemned block" to L;
 	if Can't Catch a Bloody Break is happening:
 		add "- Find a way out of the condemned block" to L;
+	if Vision Quest is happening:
+		add "- See the night through" to L;
 	[---
 	END
 	---]
@@ -15788,6 +15818,10 @@ Before approaching when the location is in the Midnight Zone:
 	if the noun is not in the Midnight Zone:
 		say "You'll have to find a way out of this place first.";
 		stop the action.
+		
+Before approaching when the noun is in the Midnight Zone and Midnight is not happening:
+	say "You're not going back there.";
+	stop the action.
 
 Part 3.39.1 - Gruetown
 
@@ -16709,11 +16743,32 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		clear the screen;
 		say line break;
 		wait for any key;
-		to be continued.
+		now everything enclosed by the player is in the temporary inventory holder;
+		now the clothes are worn by the player;
+		now the player is in Father's Laboratory.
 		
 Book 3.42 - Vision Quest
 
-[TBA]
+Before approaching when Vision Quest is happening:
+	say "You can't escape from who you are.";
+	stop the action.
+
+Part 3.42.1 - Defining Father's Laboratory
+
+Father's Laboratory is a room.
+The exit reminder is "You can't escape from who you are.";
+
+Before approaching Father's Laboratory:
+	say "There are some places you can't go back to.";
+	stop the action.
+
+Part 3.42.2 - Temporary Inventory Holder
+
+The temporary inventory holder is a container.
+
+Part 3.42.3 - Father
+
+Father is a man in Father's Laboratory.
 
 Book of the Rest
 
