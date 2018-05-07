@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 060518.
+The release number is 070518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -54,7 +54,7 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Can't Catch a Bloody Break
+- Write Vision Quest
 
 --- END OF WEEK---
 
@@ -385,6 +385,9 @@ Highway to Hell ends when Carnicer is dead.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 Can't Catch a Bloody Break begins when Highway to Hell ends.
+
+Vision Quest is a scene. [Marid has a vision on the edge between life and death.]
+Vision Quest begins when Can't Catch a Bloody Break ends.
 
 Chapter 1.2.1.5 - Day Three
 
@@ -16647,8 +16650,6 @@ First before doing anything when Can't Catch a Bloody Break is happening:
 	otherwise:
 		say "You can't seem to focus right now.";
 	stop the action.
-		
-Part 3.41.1 - Collapsed Corridor
 
 There is a room in the Midnight Zone called the Collapsed Corridor. "Your footsteps feel strangely heavy as you walk down this final hall. The dust -- your footfalls -- your heartbeat -- they throb in time with every breath.
 
@@ -16676,8 +16677,6 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		wait for any key;
 		say "You stumble a little. You pick yourself up, blink the fog out of your eyes. You don't feel quite so well at the moment.[paragraph break]";
 		wait for any key;
-		say "Is that...[paragraph break]";
-		wait for any key;
 		say "Is that blood? Is it yours?[paragraph break]";
 		wait for any key;
 		say "It doesn't matter. You can't stop now. You have to keep going.";
@@ -16689,9 +16688,32 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		wait for any key;
 		say "Step by step, with agonizing certainty, you push onward.[paragraph break]";
 		wait for any key;
-		say "[bold type]Abandoned Block[roman type][line break]";
-		say "You emerge into a sea of lights, of sweeping clouds and hazy twinkling stars. The city of Furopolis rises all around you, and it has never been more beautiful nor a more welcome sight: you realize the light of the stars is rippling and wavering through your tears.";
+		now the Condemned Block is visited;
+		say "[bold type]Condemned Block[roman type][line break]";
+		say "You emerge into a sea of lights, of sweeping clouds and hazy twinkling stars. The city of Furopolis rises all around you, and it has never been more beautiful nor a more welcome sight: you realize the light of the stars is rippling and wavering through your tears.[paragraph break]";
+		wait for any key;
+		say "Why, then, are your feet so leaden, when the city is so close?[paragraph break]";
+		wait for any key;
+		say "You make your way towards the gate that divides you from the world. Freedom is so near, now, here. There is a workman's access sealed by a thin padlock -- with shivering scalpel you press, and cut, and slowly separate the lock from its bonds...[paragraph break]";
+		wait for any key;
+		say "But the work will take an eternity, with this iron padlock, and this tiny blade. And your consciousness wavers and you are so, so tired.[paragraph break]";
+		wait for any key;
+		say "No. You --[paragraph break]";
+		wait for any key;
+		say "-- you slump to your knees, the scalpel slipping from your fingers. It's growing cold, now. Harder to see. The pavement about you is flecked with something like blood or rain.[paragraph break]";
+		wait for any key;
+		say "Perhaps you should take a rest. Just a short one.[paragraph break]";
+		wait for any key;
+		say "You clasp your pendant to your heart and close your eyes.[paragraph break]";
+		wait for any key;
+		clear the screen;
+		say line break;
+		wait for any key;
 		to be continued.
+		
+Book 3.42 - Vision Quest
+
+[TBA]
 
 Book of the Rest
 
