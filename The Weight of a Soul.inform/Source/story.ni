@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 070518.
+The release number is 100518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -390,7 +390,7 @@ Highway to Hell ends when Carnicer is dead.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 Can't Catch a Bloody Break begins when Highway to Hell ends.
-Can't Catch a Bloody Break ends when the location is Father's Laboratory.
+Can't Catch a Bloody Break ends when the location is Vision Part One.
 
 Vision Quest is a scene. [Marid has a vision on the edge between life and death.]
 Vision Quest begins when Can't Catch a Bloody Break ends.
@@ -740,7 +740,7 @@ To skip Can't Catch a Bloody Break:
 		skip Highway to Hell;
 	now everything enclosed by the player is in the temporary inventory holder;
 	now the clothes are worn by the player;
-	move the player to Father's Laboratory, without printing a room description;
+	move the player to Vision Part One, without printing a room description;
 	follow the scene changing rules;
 	
 Skipping Reden's surgery is an action applying to nothing.
@@ -880,7 +880,7 @@ Carry out skipping to collapsed corridor:
 	
 Skipping to vision is an action applying to nothing.
 Understand "skip to vision" as skipping to vision.
-Check skipping to vision when Father's Laboratory is visited: say "You have already passed that checkpoint."; stop the action.
+Check skipping to vision when Vision Part One is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to vision:
 	skip Can't Catch a Bloody Break;
 	try looking.
@@ -16745,30 +16745,43 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		wait for any key;
 		now everything enclosed by the player is in the temporary inventory holder;
 		now the clothes are worn by the player;
-		now the player is in Father's Laboratory.
+		now the player is in Vision Part One.
 		
 Book 3.42 - Vision Quest
+	
+Marid's Vision is a region.
 
-Before approaching when Vision Quest is happening:
-	say "You can't escape from who you are.";
-	stop the action.
-
-Part 3.42.1 - Defining Father's Laboratory
-
-Father's Laboratory is a room.
-The exit reminder is "You can't escape from who you are.";
-
-Before approaching Father's Laboratory:
+Before approaching a room in Marid's Vision:
 	say "There are some places you can't go back to.";
 	stop the action.
+	
+Before going when the location is in Marid's Vision:
+	say "You can't escape who you are.";
+	stop the action.
 
-Part 3.42.2 - Temporary Inventory Holder
+Before approaching when the location is in Marid's Vision:
+	say "You can't escape who you are.";
+	stop the action.
+
+Part 3.42.1 - Temporary Inventory Holder
 
 The temporary inventory holder is a container.
 
-Part 3.42.3 - Father
+Part 3.42.2 - Vision Part One
 
-Father is a man in Father's Laboratory.
+Vision Part One is a room in Marid's Vision. "There is a familiarity about this place, although your father rarely allows you inside. The aroma of his favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
+The printed name is "Father's Laboratory".
+Understand "father's" or "laboratory" as Vision Part One.
+The sound is ""
+The scent is ""
+
+Chapter 3.42.2.1 - Scenery
+
+[Athanor - a chemical furnace]
+
+Chapter 3.42.2.2 - Father
+
+Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
 
 Book of the Rest
 
