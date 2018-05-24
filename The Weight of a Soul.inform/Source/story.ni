@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 100518.
+The release number is 250518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -16756,11 +16756,11 @@ Before approaching a room in Marid's Vision:
 	stop the action.
 	
 Before going when the location is in Marid's Vision:
-	say "You can't escape who you are.";
+	say "There's nowhere else to go.";
 	stop the action.
 
 Before approaching when the location is in Marid's Vision:
-	say "You can't escape who you are.";
+	say "That place is from another time.";
 	stop the action.
 
 Part 3.42.1 - Temporary Inventory Holder
@@ -16769,19 +16769,30 @@ The temporary inventory holder is a container.
 
 Part 3.42.2 - Vision Part One
 
-Vision Part One is a room in Marid's Vision. "There is a familiarity about this place, although your father rarely allows you inside. The aroma of his favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
+Vision Part One is a room in Marid's Vision. "There is a familiarity about this place, although you are rarely allowed inside. The aroma of your father's favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
 The printed name is "Father's Laboratory".
 Understand "father's" or "laboratory" as Vision Part One.
-The sound is ""
-The scent is ""
+The sound is "The athanors bubble merrily."
+Before smelling when the location is Vision Part One, try smelling Father's favorite tea instead.
 
 Chapter 3.42.2.1 - Scenery
 
-[Athanor - a chemical furnace]
+Father's favorite tea is faraway scenery in Vision Part One.
+The description is "A swirling dark cardamom blend."
+The scent is "The smoky scent of cardamom fills the laboratory."
+Father's favorite tea has some text called the faraway response. The faraway response is "You shouldn't; Father always hates it when you meddle with his things."
+Understand "aroma" or "favourite" or "cardamom" or "scent" or "my" as Father's favorite tea.
+
+Some ink-blotted corkboards are faraway scenery in Vision Part One.
+The description is "Someday you will go to the Institute and learn to scribe these arcane formulae, as your father did."
+The scent is "Carbon and bone."
+Understand "cork" or "board/corkboard" or "ink" or "blot/blots/blotted" as the ink-blotted corkboards.
 
 Chapter 3.42.2.2 - Father
 
 Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
+The description is "He's alive. Lively. Warm."
+Understand "my" as Father.
 
 Book of the Rest
 
