@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 250518.
+The release number is 290518.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -738,7 +738,8 @@ To skip Highway to Hell:
 To skip Can't Catch a Bloody Break:
 	if the Collapsed Corridor is not visited:
 		skip Highway to Hell;
-	now everything enclosed by the player is in the temporary inventory holder;
+	now everything worn by the player is in the temporary inventory holder;
+	now everything carried by the player is in the temporary inventory holder;
 	now the clothes are worn by the player;
 	move the player to Vision Part One, without printing a room description;
 	follow the scene changing rules;
@@ -1160,7 +1161,7 @@ Instead of examining the player:
 	otherwise if Monster House is happening:
 		say "You hurt all over. At least nothing seems to be broken. ";
 	otherwise if Vision Quest is happening:
-		say "You're thirteen years old; a bit frail for your age, but otherwise healthy. ";
+		do nothing;
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
@@ -16743,7 +16744,8 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		clear the screen;
 		say line break;
 		wait for any key;
-		now everything enclosed by the player is in the temporary inventory holder;
+		now everything worn by the player is in the temporary inventory holder;
+		now everything carried by the player is in the temporary inventory holder;
 		now the clothes are worn by the player;
 		now the player is in Vision Part One.
 		
@@ -16755,13 +16757,48 @@ Before approaching a room in Marid's Vision:
 	say "There are some places you can't go back to.";
 	stop the action.
 	
-Before going when the location is in Marid's Vision:
-	say "There's nowhere else to go.";
-	stop the action.
-
-Before approaching when the location is in Marid's Vision:
-	say "That place is from another time.";
-	stop the action.
+Last before doing anything when the location is in Marid's Vision:
+	if the current action is looking:
+		continue the action;
+	else if the current action is examining:
+		continue the action;
+	else if the current action is talking to:
+		continue the action;
+	else if the current action is taking inventory:
+		continue the action;
+	else if the current action is listening to:
+		say "Everything sounds so far away.";
+		stop the action;
+	else if the current action is touching or the current action is rubbing:
+		say "You can't seem to feel anything.";
+		stop the action;
+	else if the current action is taking or the current action is pushing or the current action is pulling or the current action is turning or the current action is swinging or the current action is jumping or the current action is knocking on:
+		say "You are unable to exert any force.";
+		stop the action;
+	else if the current action is screaming or the current action is singing:
+		say "You lack the breath.";
+		stop the action;
+	else if the current action is attacking or the current action is cutting:
+		say "You lack the will.";
+		stop the action;
+	else if the current action is crying:
+		say "Tears roll down your cheeks.";
+		stop the action;
+	else if the current action is smelling:
+		say "The air you inhale is weightless.";
+		stop the action;
+	else if the current action is waking up or the current action is sleeping:
+		say "You are somewhere between sleep and consciousness.";
+		stop the action;
+	else if the current action is going:
+		say "There's nowhere else to go.";
+		stop the action;
+	else if the current action is approaching:
+		say "You don't know the way.";
+		stop the action;
+	else:
+		say "You cannot do that now.";
+		stop the action;
 
 Part 3.42.1 - Temporary Inventory Holder
 
@@ -16772,27 +16809,110 @@ Part 3.42.2 - Vision Part One
 Vision Part One is a room in Marid's Vision. "There is a familiarity about this place, although you are rarely allowed inside. The aroma of your father's favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
 The printed name is "Father's Laboratory".
 Understand "father's" or "laboratory" as Vision Part One.
-The sound is "The athanors bubble merrily."
-Before smelling when the location is Vision Part One, try smelling Father's favorite tea instead.
 
 Chapter 3.42.2.1 - Scenery
 
 Father's favorite tea is faraway scenery in Vision Part One.
-The description is "A swirling dark cardamom blend."
-The scent is "The smoky scent of cardamom fills the laboratory."
-Father's favorite tea has some text called the faraway response. The faraway response is "You shouldn't; Father always hates it when you meddle with his things."
-Understand "aroma" or "favourite" or "cardamom" or "scent" or "my" as Father's favorite tea.
+The description is "The tea swirls in and out of perception."
+Understand "aroma" or "favourite" or "my" as Father's favorite tea.
 
-Some ink-blotted corkboards are faraway scenery in Vision Part One.
-The description is "Someday you will go to the Institute and learn to scribe these arcane formulae, as your father did."
-The scent is "Carbon and bone."
-Understand "cork" or "board/corkboard" or "ink" or "blot/blots/blotted" as the ink-blotted corkboards.
+Some ink-blotted corkboards are scenery in Vision Part One.
+The description is "The markings writhe and change, never quite coalescing into formulae."
+Understand "cork" or "board/corkboard" or "ink" or "blot/blots/blotted" or "marking/markings/mark/marks" or "formula/formulae" as the ink-blotted corkboards.
+
+Some bubbling athanors are scenery in Vision Part One.
+The description is "A foreboding heat emanates from the furnaces."
+Understand "athanor" or "furnace/furnaces" or "bubble/bubbles" as the bubbling athanors.
+
+Some soaring laboratory rafters are scenery in Vision Part One.
+The description is "They're too bright."
+Understand "alchemical" or "line/lines" or "rafter" or "power" or "light/lights" as the soaring laboratory rafters.
+
+The workstation decanter is scenery in Vision Part One.
+The description is "The implements, the liquids -- they all seem to blur together."
+Understanding "spirit" or "work" or "implement/implements" or "liquid/liquids" as the workstation decanter.
 
 Chapter 3.42.2.2 - Father
 
 Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
-The description is "He's alive. Lively. Warm."
+The description is "He's still alive. Lively. Warm."
 Understand "my" as Father.
+The home dialogue branch of Father is visionp1-home.
+
+Chapter 3.42.2.3 - Vision Part One Dialogue
+
+Some dialogue branches are defined by the Table of Vision Part One Dialogue.
+
+Table of Vision Part One Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+visionp1-home	true	false	""	"Your breath catches in your throat."	{visionp1-howalive, visionp1-liveyou, visionp1-comeback}
+visionp1-howalive	true	false	"'How are you alive?'"	"Tears well up in your eyes. You blink them back, but they keep coming.
+
+'How are you alive?'
+
+He turns around and smiles. He's so young. You'd almost forgotten his face."	{visionp1-missedyou, visionp1-dontdo, visionp1-dontleave}
+visionp1-loveyou	true	false	"'I love you.'"	"Tears well up in your eyes. You blink them back, but they keep coming.
+
+'I love you.'
+
+He turns around and smiles. He's so young. You'd almost forgotten his face."	{visionp1-missedyou, visionp1-dontdo, visionp1-dontleave}
+visionp1-comeback	true	false	"'Please come back.'"	"Tears well up in your eyes. You blink them back, but they keep coming.
+
+'Please come back.'
+
+He turns around and smiles. He's so young. You'd almost forgotten his face."	{visionp1-missedyou, visionp1-dontdo, visionp1-dontleave}
+visionp1-missedyou	true	false	"'I missed you so much.'"	"'I -- I --'
+
+You can't do this. You choke. Your hands are trembling.
+
+Father's eyes soften. 'Is something wrong?'"	{visionp1-dadlisten, visionp1-pleaselisten, visionp1-runnow}
+visionp1-dontdo	true	false	"'Don't do this to me.'"	"'Don't -- don't --'
+
+You can't do this. You choke. Your hands are trembling.
+
+Father's eyes soften. 'Is something wrong?'"	{visionp1-dadlisten, visionp1-pleaselisten, visionp1-runnow}
+visionp1-dontleave	true	false	"'Don't leave me again.'"	"'Don't -- don't --'
+
+You can't do this. You choke. Your hands are trembling.
+
+Father's eyes soften. 'Is something wrong?'"	{visionp1-dadlisten, visionp1-pleaselisten, visionp1-runnow}
+visionp1-dadlisten	true	false	"'Father, you have to listen to me.'"	"'F-Father. You have to listen to me. Please...'
+
+He's not listening. The power lines have surged. A thump rocks the laboratory -- flames are licking at the lids of the athanors, and smoke is starting to fill the room.
+
+'Marid...' he breathes."	{visionp1-please2, visionp1-hughim, visionp1-cry}
+visionp1-pleaselisten	true	false	"'Please listen to me.'"	"'P-Please. Please just listen to me. Please...'
+
+He's not listening. The power lines have surged. A thump rocks the laboratory -- flames are licking at the lids of the athanors, and smoke is starting to fill the room.
+
+'Marid...' he breathes."	{visionp1-please2, visionp1-hughim, visionp1-cry}
+visionp1-runnow	true	false	"'You have to run while you still can.'"	"'Y-You have to run. Please. While you... while you still...'
+
+He's not listening. The power lines have surged. A thump rocks the laboratory -- flames are licking at the lids of the athanors, and smoke is starting to fill the room.
+
+'Marid...' he breathes."	{visionp1-please2, visionp1-hughim, visionp1-cry}
+visionp1-please2	true	false	"'Please...'"	"'Please...'
+
+[visionp1-fatherdies]"	{}
+visionp1-hughim	true	false	"<Hug him.>"	"You reach out, but it is already too late.
+
+[visionp1-fatherdies]"	{}
+visionp1-cry	true	false	"<Cry.>"	"You close your eyes, and tears fall.
+
+[visionp1-fatherdies]"	{}
+
+To say visionp1-fatherdies:
+	say "You've had this dream a thousand times. Each time, it ends the same way. Each time, you are powerless to prevent it.[paragraph break]";
+	wait for any key;
+	say "The athanor closest to your father explodes. Glass shatters. A plume of fire erupts, and you are both thrown back from the blast. You are dimly aware of porcelain pieces, scattered across the desk, shimmering in the intense heat.[paragraph break]";
+	wait for any key;
+	say "You struggle to focus. Your father is calling your name. You see him then: bleeding out, barely recognizable. Another beaker falls to the floor and shatters. You can't breathe -- you force yourself up, unsteady, tottering towards your father, toward the flames...[paragraph break]";
+	wait for any key;
+	say "'Marid, go!' he screams. 'Just go! Run! Get help...'[paragraph break]";
+	wait for any key;
+	say "";
+
+
 
 Book of the Rest
 
