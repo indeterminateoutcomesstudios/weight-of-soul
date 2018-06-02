@@ -16917,7 +16917,7 @@ She stands up -- and so do you. The ruins of your father's laboratory flicker, f
 
 'Onward,' your other self says. 'You've suffered enough. It's time to move on.'
 
-[visionp1-maridconsidersdeath]"	{visionp1-takingmeaway}
+And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars."	{visionp1-lookup, visionp1-takingmeaway}
 visionp1-whoru	true	false	"'Who are you?'"	"'Who are you?'
 
 'You know who I am.'
@@ -16926,10 +16926,18 @@ She stands up -- and so do you. The ruins of your father's laboratory flicker, f
 
 'You're free now, Marid,' your other self says. 'You've suffered enough. It's time to move on.'
 
-[wait for any key][visionp1-maridconsidersdeath]"	{visionp1-takingmeaway}
-visionp1-takingmeaway	true	false	"'You're taking me away.'"	"'You're taking me away,' you say.
+[wait for any key]And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars."	{visionp1-lookup, visionp1-takingmeaway, visionp1-iwanttogo}
+visionp1-lookup	true	true	"<Watch the stars.>"	"You watch the stars. In this time outside of time, you watch.
 
-Sh."	{}
+There is a beauty to the movement of the world; of the souls that orbit it. You remember, now, where you've seen this before: an eternity ago, in Doctor Cavala's surgery room, you caught a glimpse of that animic light. But here, now, that same light washes over you, and you feel yourself being drawn to it like a river to the sea."	{visionp1-takingmeaway, visionp1-iwanttogo}
+visionp1-takingmeaway	true	true	"'You're taking me away.'"	"'You're taking me away,' you say.
+
+She nods."	{visionp1-lookup, visionp1-iwanttogo}
+visionp1-iwanttogo	false	false	"'I want to go...'"	"'I want to go. I want to leave it all behind...'
+
+Your other self is silent.
+
+[wait for any key]'...But I can't,' you say. 'I can't go. Not like this.'"	{}
 
 The home dialogue branch of Father is visionp1-home.
 
@@ -16971,10 +16979,8 @@ After reading out visionp1-goingtomeetdad:
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
 	
-To say visionp1-maridconsidersdeath:
-	say "And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars.[paragraph break]";
-	wait for any key;
-	say ""
+After reading out visionp1-lookup: now the enabled of visionp1-iwanttogo is true.
+After reading out visionp1-takingmeaway: now the enabled of visionp1-iwanttogo is true.
 
 
 
