@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 290518.
+The release number is 020618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -16830,14 +16830,13 @@ Understand "alchemical" or "line/lines" or "rafter" or "power" or "light/lights"
 
 The workstation decanter is scenery in Vision Part One.
 The description is "The implements, the liquids -- they all seem to blur together."
-Understanding "spirit" or "work" or "implement/implements" or "liquid/liquids" as the workstation decanter.
+Understand "spirit" or "work" or "implement/implements" or "liquid/liquids" as the workstation decanter.
 
 Chapter 3.42.2.2 - Father
 
 Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
 The description is "He's still alive. Lively. Warm."
 Understand "my" as Father.
-The home dialogue branch of Father is visionp1-home.
 
 Chapter 3.42.2.3 - Vision Part One Dialogue
 
@@ -16845,7 +16844,7 @@ Some dialogue branches are defined by the Table of Vision Part One Dialogue.
 
 Table of Vision Part One Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-visionp1-home	true	false	""	"Your breath catches in your throat."	{visionp1-howalive, visionp1-liveyou, visionp1-comeback}
+visionp1-home	true	false	""	"Your breath catches in your throat."	{visionp1-howalive, visionp1-loveyou, visionp1-comeback}
 visionp1-howalive	true	false	"'How are you alive?'"	"Tears well up in your eyes. You blink them back, but they keep coming.
 
 'How are you alive?'
@@ -16893,13 +16892,46 @@ He's not listening. The power lines have surged. A thump rocks the laboratory --
 'Marid...' he breathes."	{visionp1-please2, visionp1-hughim, visionp1-cry}
 visionp1-please2	true	false	"'Please...'"	"'Please...'
 
-[visionp1-fatherdies]"	{}
-visionp1-hughim	true	false	"<Hug him.>"	"You reach out, but it is already too late.
+[visionp1-fatherdies]"	{visionp1-wheredad}
+visionp1-hughim	true	false	"<Grab his hand.>"	"You reach out, but it is already too late.
 
-[visionp1-fatherdies]"	{}
+[visionp1-fatherdies]"	{visionp1-wheredad}
 visionp1-cry	true	false	"<Cry.>"	"You close your eyes, and tears fall.
 
-[visionp1-fatherdies]"	{}
+[visionp1-fatherdies]"	{visionp1-wheredad}
+visionp1-wheredad	true	false	"'Where is my father?'"	"'Where... where is my father?' you ask weakly.
+
+The woman looks away.
+
+'Hush,' she replies. 'Don't exert yourself.'"	{visionp1-goingtomeetdad}
+visionp1-goingtomeetdad	true	false	"'Are you going to take me to see him?'"	"'Are you going to take me to see him?'
+
+She doesn't respond, not for a while. Instead she kneels and places a hand upon your cheek, inspecting you like a broken sculpture. Her face is a mask, tattooed and impossible to read -- and you find that you know it well.
+
+[wait for any key]Her face is your own.
+
+[wait for any key]'It's time,' the other you says. 'It's time to go.'"	{visionp1-gowhere, visionp1-whoru}
+visionp1-gowhere	true	false	"'Where are we going?'"	"'Where are we going?'
+
+She stands up -- and so do you. The ruins of your father's laboratory flicker, fade, and collapse into ash; it piles among your feet with the skeletons of your past.
+
+'Onward,' your other self says. 'You've suffered enough. It's time to move on.'
+
+[visionp1-maridconsidersdeath]"	{visionp1-takingmeaway}
+visionp1-whoru	true	false	"'Who are you?'"	"'Who are you?'
+
+'You know who I am.'
+
+She stands up -- and so do you. The ruins of your father's laboratory flicker, fade, and collapse into ash; it piles among your feet with the skeletons of your past.
+
+'You're free now, Marid,' your other self says. 'You've suffered enough. It's time to move on.'
+
+[wait for any key][visionp1-maridconsidersdeath]"	{visionp1-takingmeaway}
+visionp1-takingmeaway	true	false	"'You're taking me away.'"	"'You're taking me away,' you say.
+
+Sh."	{}
+
+The home dialogue branch of Father is visionp1-home.
 
 To say visionp1-fatherdies:
 	say "You've had this dream a thousand times. Each time, it ends the same way. Each time, you are powerless to prevent it.[paragraph break]";
@@ -16908,9 +16940,41 @@ To say visionp1-fatherdies:
 	wait for any key;
 	say "You struggle to focus. Your father is calling your name. You see him then: bleeding out, barely recognizable. Another beaker falls to the floor and shatters. You can't breathe -- you force yourself up, unsteady, tottering towards your father, toward the flames...[paragraph break]";
 	wait for any key;
-	say "'Marid, go!' he screams. 'Just go! Run! Get help...'[paragraph break]";
+	say "'Marid, go!' he screams. 'Just go! Run! Get help... get help... g...'[paragraph break]";
 	wait for any key;
-	say "";
+	now the conversational partner text is "";
+	now right alignment depth is 14;
+	redraw status line;
+	say "His words are stolen away. They vanish with him in the smoke and the fire. You feel yourself slipping away -- feel the world buckling and crashing around you, as you stumble amidst the twisted metal and the ash --[paragraph break]";
+	wait for any key;
+	say "-- [italic type]excruciating pain[roman type] --[paragraph break]";
+	wait for any key;
+	say "-- and then a long [paragraph break]";
+	wait for any key;
+	say "dark [paragraph break]";
+	wait for any key;
+	say "silence.[paragraph break]";
+	wait for any key;
+	clear the screen;
+	say line break;
+	wait for any key;
+	say "Your senses return in bits and pieces.[paragraph break]";
+	wait for any key;
+	say "Something cool and metallic is pressed to your lips. You jolt awake -- you cough up soot, your parched throat cracking from the exertion. Standing over you, in the darkness, is a woman all in white. ";
+	wait for any key;
+	now the conversational partner text is "Talking to the woman in white";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	
+After reading out visionp1-goingtomeetdad:
+	now the conversational partner text is "Talking to yourself";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	
+To say visionp1-maridconsidersdeath:
+	say "And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars.[paragraph break]";
+	wait for any key;
+	say ""
 
 
 
