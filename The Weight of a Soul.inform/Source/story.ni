@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 020618.
+The release number is 100618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -16827,6 +16827,7 @@ Understand "athanor" or "furnace/furnaces" or "bubble/bubbles" as the bubbling a
 Some soaring laboratory rafters are scenery in Vision Part One.
 The description is "They're too bright."
 Understand "alchemical" or "line/lines" or "rafter" or "power" or "light/lights" as the soaring laboratory rafters.
+Does the player mean doing something with the soaring laboratory rafters: it is likely.
 
 The workstation decanter is scenery in Vision Part One.
 The description is "The implements, the liquids -- they all seem to blur together."
@@ -16837,6 +16838,9 @@ Chapter 3.42.2.2 - Father
 Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
 The description is "He's still alive. Lively. Warm."
 Understand "my" as Father.
+
+Before attacking, cutting or pushing Father, say "You could never do such a thing." instead.
+Before kissing, rubbing, squeezing, or touching Father, say "He ruffles your hair." instead.
 
 Chapter 3.42.2.3 - Vision Part One Dialogue
 
@@ -16906,19 +16910,21 @@ The woman looks away.
 'Hush,' she replies. 'Don't exert yourself.'"	{visionp1-goingtomeetdad}
 visionp1-goingtomeetdad	true	false	"'Are you going to take me to see him?'"	"'Are you going to take me to see him?'
 
-She doesn't respond, not for a while. Instead she kneels and places a hand upon your cheek, inspecting you like a broken sculpture. Her face is a mask, tattooed and impossible to read -- and you find that you know it well.
+She doesn't respond. Not for a while. Instead she kneels and places a hand upon your cheek, inspecting you like a broken sculpture. Her face is a mask, tattooed and impossible to read -- and you find that you know it well.
 
-[wait for any key]Her face is your own.
+[wait for any key]After all, the face is your own.
 
-[wait for any key]'It's time,' the other you says. 'It's time to go.'"	{visionp1-gowhere, visionp1-whoru}
-visionp1-gowhere	true	false	"'Where are we going?'"	"'Where are we going?'
+[wait for any key]'It's time,' the other you says. 'It's time to go.'"	{visionp1-gowhere, visionp1-whoru, visionp1-notready}
+visionp1-gowhere	true	false	"'Where are we going?'"	"'Where... where are we going?'
 
-She stands up -- and so do you. The ruins of your father's laboratory flicker, fade, and collapse into ash; it piles among your feet with the skeletons of your past.
+She stands up -- and so do you. The ruins of your father's laboratory flicker, fade, and collapse into ash; it scatters and piles among your feet with the skeletons of your past.
 
 'Onward,' your other self says. 'You've suffered enough. It's time to move on.'
 
-And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars."	{visionp1-lookup, visionp1-takingmeaway}
-visionp1-whoru	true	false	"'Who are you?'"	"'Who are you?'
+And she points up -- up into the great aether, where the sparks of countless souls twinkle like stars.
+
+[wait for any key]You imagine that your father is among them."	{visionp1-lookup, visionp1-takingmeaway}
+visionp1-whoru	true	false	"'Who are you?'"	"'Who... who are you?'
 
 'You know who I am.'
 
@@ -16926,18 +16932,64 @@ She stands up -- and so do you. The ruins of your father's laboratory flicker, f
 
 'You're free now, Marid,' your other self says. 'You've suffered enough. It's time to move on.'
 
-[wait for any key]And she points up -- up into the night sky, where the sparks of countless souls twinkle like stars."	{visionp1-lookup, visionp1-takingmeaway, visionp1-iwanttogo}
-visionp1-lookup	true	true	"<Watch the stars.>"	"You watch the stars. In this time outside of time, you watch.
+[wait for any key]And she points up -- up into the great aether, where the sparks of countless souls twinkle like stars.
 
-There is a beauty to the movement of the world; of the souls that orbit it. You remember, now, where you've seen this before: an eternity ago, in Doctor Cavala's surgery room, you caught a glimpse of that animic light. But here, now, that same light washes over you, and you feel yourself being drawn to it like a river to the sea."	{visionp1-takingmeaway, visionp1-iwanttogo}
+[wait for any key]You imagine that your father is among them."	{visionp1-lookup, visionp1-takingmeaway, visionp1-iwanttogo}
+visionp1-notready	true	false	"'I'm not ready.'"	"'I'm... I'm not ready...'
+
+She stands up -- and so do you. The ruins of your father's laboratory flicker, fade, and collapse into ash; it piles among your feet with the skeletons of your past.
+
+'You're free now, Marid,' your other self says. 'You've suffered enough. It's time to move on.'
+
+[wait for any key]And she points up -- up into the great aether, where the sparks of countless souls twinkle like stars.
+
+[wait for any key]You imagine that your father is among them."	{visionp1-lookup, visionp1-takingmeaway, visionp1-iwanttogo}
+visionp1-lookup	true	true	"<Gaze at the stars.>"	"You watch the stars. In this time outside of time, you watch.
+
+There is a beauty to the movement of the world; of the souls that orbit it. You remember where you've seen it before: an eternity ago, in Doctor Cavala's surgery room, you caught a glimpse of that animic light.
+
+But here, now, the light washes over you, and you feel yourself being drawn to it like a river to the sea."	{visionp1-takingmeaway, visionp1-iwanttogo}
 visionp1-takingmeaway	true	true	"'You're taking me away.'"	"'You're taking me away,' you say.
 
-She nods."	{visionp1-lookup, visionp1-iwanttogo}
-visionp1-iwanttogo	false	false	"'I want to go...'"	"'I want to go. I want to leave it all behind...'
+She nods. You feel a chill run down your spine."	{visionp1-lookup, visionp1-iwanttogo}
+visionp1-iwanttogo	false	false	"'I want to go...'"	"'I want to go,' you admit. 'I want to leave it all behind...'
 
-Your other self is silent.
+You lower your gaze. Your other self is silent. 
 
-[wait for any key]'...But I can't,' you say. 'I can't go. Not like this.'"	{}
+[wait for any key]'...But I can't,' you finish. 'I can't go. Not like this.'
+
+[wait for any key]The animic light bears down upon you, harsh, questioning. It is difficult to stand beneath its weight -- to stand tall before the jury of numberless souls.
+
+[wait for any key]Your other self cocks her head. 'Why?'
+
+[wait for any key]You take a deep breath."	{visionp1-notjustme, visionp1-needtoknow, visionp1-notdoneyet}
+visionp1-notjustme	true	false	"'It's not just about me...'"	"'...It's not just about me.'
+
+You remember those moments, frozen in time and etched in memory. Laughing with Horatio on the Via Terminalis. Consoling Zoiro about his brother's death.
+
+[wait for any key]'I'm caught up in something. I -- I don't know what. But I know that it's big, bigger than all of us. And it's going to touch the lives of a hundred more, or a thousand more, before it ends.
+
+[wait for any key]'And... and maybe for the first time in my life... I can do something. To save them. To make a difference.'
+
+[visionp1-maridfaceoff]"	{}
+visionp1-needtoknow	true	false	"'I need to know...'"	"'...I need to know.'
+
+You remember those moments, frozen in time and etched in memory. The black trails from Reden's eyes. The sign of the raven upon the dead.
+
+[wait for any key]'I'm caught up in something. I -- I don't know what. But I know that it's big, bigger than all of us. And it's going to take the lives of a hundred more, or a thousand more, before it ends.
+
+[wait for any key]'I have to find out what's happening. I have to find the truth. Before it's too late, and... and...'
+
+[visionp1-maridfaceoff]"	{}
+visionp1-notdoneyet	true	false	"'I'm not done yet...'"	"'...I'm not done yet.'
+
+You remember those moments, frozen in time and etched in memory. The bodies arrayed upon the medical slabs. The smell of smoke and smoldering flesh.
+
+[wait for any key]'I'm caught up in something. I -- I don't know what. But I know that it's big, bigger than all of us. And it's going to take the lives of a hundred more, or a thousand more, before it ends.
+
+[wait for any key]'I can't just stand by and give up. I have to... I have to keep going. I have to keep trying. I have to...'
+
+[visionp1-maridfaceoff]"	{}
 
 The home dialogue branch of Father is visionp1-home.
 
@@ -16966,11 +17018,12 @@ To say visionp1-fatherdies:
 	clear the screen;
 	say line break;
 	wait for any key;
-	say "Your senses return in bits and pieces.[paragraph break]";
+	say "Your senses return in fragments and echoes.[paragraph break]";
 	wait for any key;
-	say "Something cool and metallic is pressed to your lips. You jolt awake -- you cough up soot, your parched throat cracking from the exertion. Standing over you, in the darkness, is a woman all in white. ";
+	say "Something cold and numbing is pressed to your lips. You awaken -- you cough up dust, your parched throat cracking from the exertion. Standing over you, in the darkness, is a woman all in white. ";
 	wait for any key;
 	now the conversational partner text is "Talking to the woman in white";
+	now the printed name of Vision Part One is "";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
 	
@@ -16981,6 +17034,38 @@ After reading out visionp1-goingtomeetdad:
 	
 After reading out visionp1-lookup: now the enabled of visionp1-iwanttogo is true.
 After reading out visionp1-takingmeaway: now the enabled of visionp1-iwanttogo is true.
+
+To say visionp1-maridfaceoff:
+	wait for any key;
+	say "You look at your other self, trying desperately not to cry. And she looks at you.[paragraph break]";
+	wait for any key;
+	say "And her eyes are alight with white fire.[paragraph break]";
+	wait for any key;
+	say "[italic type]'Vive,'[roman type] she commands. [italic type]'Vide.'[roman type][paragraph break]";
+	wait for any key;
+	say "And you feel yourself rising up, up into the lights, and you gasp for air, and you breathe, and you [italic type]see[roman type] --[paragraph break]";
+	wait for any key;
+	now Day Three unveiling pending is true.
+	
+Day Three unveiling pending is a truth state that varies. Day Three unveiling pending is false.
+	
+Every turn when Vision Quest is happening and Day Three unveiling pending is true:
+	now Day Three unveiling pending is false;
+	unveil Day Three.
+	
+To unveil Day Three:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
+	center "D A Y   T H R E E";
+	wait for any key;
+	to be continued;
+	[clear the screen;
+	now start-of-day is 3;
+	follow the scene changing rules;
+	say "A knocking at the door jolts you awake.[paragraph break]";
+	say "'Marid?' comes Horatio's voice.";
+	start a dialogue with Horatio using dialogue horatio-d2msg-home.]
+	
 
 
 
