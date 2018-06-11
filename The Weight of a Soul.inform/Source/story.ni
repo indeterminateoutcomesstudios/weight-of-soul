@@ -54,15 +54,21 @@ Volume 1 - Preamble
 
 [---TO DO---
 
-- Write Vision Quest
+DAY THREE
 
-- This is an important storytelling moment because it's Marid's "catharsis" where she is reborn with the ability to see new shit
-- Marid relives the fire and Lumina's rescue. Lumina then transforms into a copy of herself and says "It's time to go." Marid refuses. Other!Marid: "Why?"
-- Marid multiple choice: "It's not just about me." "I need to know." "I'm not done yet."
+---I See Dead People---
 
---- END OF WEEK---
+This is another of those large exploration scenes. The Channelwork has been put under quarantine (rations xd) and the roads are blocked off forcing Marid to take an alternate route. However she can also see ghosts, which opens up more of the city Metroidvania style.
 
-- Write Day Three
+Basic flowchart:
+- Marid wakes up in Cavala's clinic and gets the rundown. We get our first tutorial of talking to ghosts by speaking with Reden's ghost.
+- Reden's ghost is strangely broken but we get an image of where he was before he died: somewhere in a canal. This can only mean one of the Channelworks pipes, which we will later see is "Reden's Haunt."
+- The way between VT west end and VT west street is blocked, but Marid can circumvent it through the alley.
+- Marid can talk to Carnicer's ghost (slightly frayed from the reality bending) which results in her learning a little bit about the operation, but not Justinian's identity.
+- The way east across the canal is blocked, both Cadaver Walk and the VT bridge. However we can now go into Canalside Steps and take the iron door, which leads us through a short puzzle room (Hidden Passage) into a secret mutant church (Church of One Thousand Faces). Here they are doing weird pre-science cult stuff in worship of the hydra Anu Vah. She can speak with ghosts and church leaders who explain that this is the only way for them to worship in the face of brutal persecution.
+- Marid heads north from there and ends up in the belly of the Channelworks where she finds Reden's Haunt. She realizes that this black liquid is leaking from inside, which she follows to discover Noctis Storage and Justinian's notes on the thing. She has to search around to find the key to snoop deeper inside the Channelworks complex.
+- Heading up from Noctis Storage she encounters Doctor Serpens and has to hide to not be murdered. Soon however Justinian arrives and talks Serpens down. Marid is found by Justinian... and imprisoned. CUE VILLAIN MONOLOGUE! CUE DAY 4!
+
 - Write Day Four
 - Write Epilogue]
 
@@ -3305,7 +3311,7 @@ To say journal-text-notes:
 			if clue-piper-raven is true:
 				add "- I found a raven symbol on Piper's throwing knives." to L2;
 		if clue-piper-namelist is true:
-			add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been blanked out." to L2;
+			add "- I found a list of names that suggested Piper had been collecting debts. The reverse side of the paper had been intentionally blanked out." to L2;
 		if the battered keyring is described and the Cellar is unvisited:
 			if cellar-keygiven is true:
 				add "- I found a battered keyring on Sal's belt, and learned that it unlocks a room in a Shanty Quarter flophouse." to L2;
