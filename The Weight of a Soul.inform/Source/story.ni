@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 100618.
+The release number is 120618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -377,6 +377,7 @@ Chapter 1.2.1.4 - Midnight
 
 Midnight is a scene.
 Midnight begins when Day Two ends.
+Midnight ends when Vision Quest ends.
 
 Cornered in the Dorm is a scene. [Marid is woken by Carnicer in her dormitory room and panics.]
 Cornered in the Dorm begins when Midnight begins.
@@ -396,10 +397,11 @@ Highway to Hell ends when Carnicer is dead.
 
 Can't Catch a Bloody Break is a scene. [Marid subsequently bleeds out and falls unconscious.]
 Can't Catch a Bloody Break begins when Highway to Hell ends.
-Can't Catch a Bloody Break ends when the location is Vision Part One.
+Can't Catch a Bloody Break ends when the location is Marid's Vision.
 
 Vision Quest is a scene. [Marid has a vision on the edge between life and death.]
 Vision Quest begins when Can't Catch a Bloody Break ends.
+Vision Quest ends when the location is the Clinic.
 
 Chapter 1.2.1.5 - Day Three
 
@@ -407,6 +409,9 @@ Chapter 1.2.1.5 - Day Three
 
 Day Three is a scene.
 Day Three begins when Midnight ends.
+
+Heroes Never Die is a scene. [Marid wakes up to Doctor Cavala and learns about the new situation in the district. She speaks to Reden's ghost.]
+Heroes Never Die begins when Day Three begins.
 
 Chapter 1.2.1.6 - Day Four
 
@@ -744,11 +749,16 @@ To skip Highway to Hell:
 To skip Can't Catch a Bloody Break:
 	if the Collapsed Corridor is not visited:
 		skip Highway to Hell;
-	now everything worn by the player is in the temporary inventory holder;
-	now everything carried by the player is in the temporary inventory holder;
+	now everything worn by the player is in the temporary-inventory-holder;
+	now everything carried by the player is in the temporary-inventory-holder;
 	now the clothes are worn by the player;
-	move the player to Vision Part One, without printing a room description;
+	move the player to Marid's Vision, without printing a room description;
 	follow the scene changing rules;
+	
+To skip past Day Two:
+	if Marid's Vision is not visited:
+		skip Can't Catch a Bloody Break;
+	unveil Day Three;
 	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
@@ -887,10 +897,16 @@ Carry out skipping to collapsed corridor:
 	
 Skipping to vision is an action applying to nothing.
 Understand "skip to vision" as skipping to vision.
-Check skipping to vision when Vision Part One is visited: say "You have already passed that checkpoint."; stop the action.
+Check skipping to vision when Marid's Vision is visited: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to vision:
 	skip Can't Catch a Bloody Break;
 	try looking.
+	
+Skipping to day three is an action applying to nothing.
+Understand "skip to day three" as skipping to day three.
+Check skipping to day three when Day Two has ended: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to day three:
+	skip past Day Two.
 	
 Book 1.3 - People
 
@@ -1167,7 +1183,8 @@ Instead of examining the player:
 	otherwise if Monster House is happening:
 		say "You hurt all over. At least nothing seems to be broken. ";
 	otherwise if Vision Quest is happening:
-		do nothing;
+		say inventory-text;
+		stop;
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
 	say "[paragraph break][inventory-text]".
@@ -5977,6 +5994,28 @@ After reading out cavala-rwmq-yesdr:
 	now the front door of the clinic is closed;
 	move the player to the West End, without printing a room description;
 	follow the scene changing rules.
+	
+Part 3.3.7 - Clinic during Day Three
+
+Chapter 3.3.7.1 - Clinic during Heroes Never Die
+
+To unveil Day Three:
+	clear the screen;
+	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
+	center "D A Y   T H R E E";
+	wait for any key;
+	clear the screen;
+	move the player to the Clinic, without printing a room description;
+	now the natron jacket is worn by the player;
+	now the animus pendant is worn by the player;
+	now the clothes are nowhere;
+	now the clothes are worn by the player;
+	repeat with item running through things in the temporary-inventory-holder:
+		now the item is carried by the player;
+	follow the scene changing rules;
+	say "Dialogue with Doctor Cavala is supposed to happen now.";
+	
+
 
 Book 3.4 - Mortuary
 
@@ -16731,17 +16770,17 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		wait for any key;
 		now the Condemned Block is visited;
 		say "[bold type]Condemned Block[roman type][line break]";
-		say "You emerge into a sea of lights, of sweeping clouds and hazy twinkling stars. The city of Furopolis rises all around you, and it has never been more beautiful nor a more welcome sight: you realize the light of the stars is rippling and wavering through your tears.[paragraph break]";
+		say "You emerge into a sea of lights, of sweeping rain and hazy twinkling stars. The city of Furopolis rises all around you, and it has never been more beautiful nor a more welcome sight: you realize the light of the stars is rippling and wavering through your tears.[paragraph break]";
 		wait for any key;
 		say "Why, then, are your feet so leaden, when the city is so close?[paragraph break]";
 		wait for any key;
-		say "You make your way towards the gate that divides you from the world. Freedom is so near, now, here. There is a workman's access sealed by a thin padlock -- with shivering scalpel you press, and cut, and slowly separate the lock from its bonds...[paragraph break]";
+		say "Drenched, shivering, you make your way towards the gate that divides you from the world. Freedom is so close that you can taste it. There is a workman's access sealed by a thin padlock -- with trembling scalpel you press, and cut, and slowly separate the lock from its bonds...[paragraph break]";
 		wait for any key;
 		say "But the work will take an eternity, with this iron padlock, and this tiny blade. And your consciousness wavers and you are so, so tired.[paragraph break]";
 		wait for any key;
 		say "No. You --[paragraph break]";
 		wait for any key;
-		say "-- you slump to your knees, the scalpel slipping from your fingers. It's growing cold, now. Harder to see. The pavement about you is flecked with something like blood or rain.[paragraph break]";
+		say "-- you slump to your knees, the scalpel slipping from your fingers. It's growing cold, now. Harder to see. The pavement about you is flecked with something like blood or rainwater.[paragraph break]";
 		wait for any key;
 		say "Perhaps you should take a rest. Just a short one.[paragraph break]";
 		wait for any key;
@@ -16750,27 +16789,35 @@ Instead of going south when the location is the Collapsed Corridor and Can't Cat
 		clear the screen;
 		say line break;
 		wait for any key;
-		now everything worn by the player is in the temporary inventory holder;
-		now everything carried by the player is in the temporary inventory holder;
+		now everything worn by the player is in the temporary-inventory-holder;
+		now everything carried by the player is in the temporary-inventory-holder;
 		now the clothes are worn by the player;
-		now the player is in Vision Part One.
+		now the player is in Marid's Vision.
 		
 Book 3.42 - Vision Quest
-	
-Marid's Vision is a region.
 
-Before approaching a room in Marid's Vision:
+Part 3.42.1 - Temporary Inventory Holder
+
+The temporary-inventory-holder is a container.
+
+Part 3.42.2 - Marid's Vision
+
+Marid's Vision is a room. "There is a familiarity about this place, although you are rarely allowed inside. The aroma of your father's favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
+The printed name is "Father's Laboratory".
+Understand "father's" or "laboratory" as Marid's Vision.
+
+Before approaching Marid's Vision:
 	say "There are some places you can't go back to.";
 	stop the action.
 	
-Last before doing anything when the location is in Marid's Vision:
+Last before doing anything when the location is Marid's Vision:
 	if the current action is looking:
 		continue the action;
 	else if the current action is examining:
 		continue the action;
 	else if the current action is talking to:
 		continue the action;
-	else if the current action is taking inventory:
+	else if we are taking inventory:
 		continue the action;
 	else if the current action is listening to:
 		say "Everything sounds so far away.";
@@ -16806,53 +16853,43 @@ Last before doing anything when the location is in Marid's Vision:
 		say "You cannot do that now.";
 		stop the action;
 
-Part 3.42.1 - Temporary Inventory Holder
-
-The temporary inventory holder is a container.
-
-Part 3.42.2 - Vision Part One
-
-Vision Part One is a room in Marid's Vision. "There is a familiarity about this place, although you are rarely allowed inside. The aroma of your father's favorite tea mingles with that of ink-blotted corkboards and bubbling athanors; the alchemical lines, alight with power, swoop and soar above you into the rafters."
-The printed name is "Father's Laboratory".
-Understand "father's" or "laboratory" as Vision Part One.
-
 Chapter 3.42.2.1 - Scenery
 
-Father's favorite tea is faraway scenery in Vision Part One.
+Father's favorite tea is faraway scenery in Marid's Vision.
 The description is "The tea swirls in and out of perception."
 Understand "aroma" or "favourite" or "my" as Father's favorite tea.
 
-Some ink-blotted corkboards are scenery in Vision Part One.
+Some ink-blotted corkboards are scenery in Marid's Vision.
 The description is "The markings writhe and change, never quite coalescing into formulae."
 Understand "cork" or "board/corkboard" or "ink" or "blot/blots/blotted" or "marking/markings/mark/marks" or "formula/formulae" as the ink-blotted corkboards.
 
-Some bubbling athanors are scenery in Vision Part One.
+Some bubbling athanors are scenery in Marid's Vision.
 The description is "A foreboding heat emanates from the furnaces."
 Understand "athanor" or "furnace/furnaces" or "bubble/bubbles" as the bubbling athanors.
 
-Some soaring laboratory rafters are scenery in Vision Part One.
+Some soaring laboratory rafters are scenery in Marid's Vision.
 The description is "They're too bright."
 Understand "alchemical" or "line/lines" or "rafter" or "power" or "light/lights" as the soaring laboratory rafters.
 Does the player mean doing something with the soaring laboratory rafters: it is likely.
 
-The workstation decanter is scenery in Vision Part One.
+The workstation decanter is scenery in Marid's Vision.
 The description is "The implements, the liquids -- they all seem to blur together."
 Understand "spirit" or "work" or "implement/implements" or "liquid/liquids" as the workstation decanter.
 
 Chapter 3.42.2.2 - Father
 
-Father is a man in Vision Part One. "Father is decanting a spirit at his workstation."
+Father is a man in Marid's Vision. "Father is decanting a spirit at his workstation."
 The description is "He's still alive. Lively. Warm."
 Understand "my" as Father.
 
 Before attacking, cutting or pushing Father, say "You could never do such a thing." instead.
 Before kissing, rubbing, squeezing, or touching Father, say "He ruffles your hair." instead.
 
-Chapter 3.42.2.3 - Vision Part One Dialogue
+Chapter 3.42.2.3 - Vision Dialogue
 
-Some dialogue branches are defined by the Table of Vision Part One Dialogue.
+Some dialogue branches are defined by the Table of Vision Dialogue.
 
-Table of Vision Part One Dialogue
+Table of Vision Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 visionp1-home	true	false	""	"Your breath catches in your throat."	{visionp1-howalive, visionp1-loveyou, visionp1-comeback}
 visionp1-howalive	true	false	"'How are you alive?'"	"Tears well up in your eyes. You blink them back, but they keep coming.
@@ -17029,7 +17066,7 @@ To say visionp1-fatherdies:
 	say "Something cold and numbing is pressed to your lips. You awaken -- you cough up dust, your parched throat cracking from the exertion. Standing over you, in the darkness, is a woman all in white. ";
 	wait for any key;
 	now the conversational partner text is "Talking to the woman in white";
-	now the printed name of Vision Part One is "";
+	now the printed name of Marid's Vision is "";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
 	
@@ -17058,19 +17095,6 @@ Day Three unveiling pending is a truth state that varies. Day Three unveiling pe
 Every turn when Vision Quest is happening and Day Three unveiling pending is true:
 	now Day Three unveiling pending is false;
 	unveil Day Three.
-	
-To unveil Day Three:
-	clear the screen;
-	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
-	center "D A Y   T H R E E";
-	wait for any key;
-	to be continued;
-	[clear the screen;
-	now start-of-day is 3;
-	follow the scene changing rules;
-	say "A knocking at the door jolts you awake.[paragraph break]";
-	say "'Marid?' comes Horatio's voice.";
-	start a dialogue with Horatio using dialogue horatio-d2msg-home.]
 	
 
 
