@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 120618.
+The release number is 160618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -82,7 +82,7 @@ Use MAX_DICT_ENTRIES of 4000.
 Use MAX_NUM_STATIC_STRINGS of 60000.
 Use MAX_OBJECTS of 1280.
 Use MAX_PROP_TABLE_SIZE of 600000.
-Use MAX_STATIC_DATA of 1440000.
+Use MAX_STATIC_DATA of 2880000.
 Use MAX_SYMBOLS of 60000.
 Use MAX_VERBS of 511.
 Use SYMBOLS_CHUNK_SIZE of 10000.
@@ -1034,30 +1034,28 @@ To say horatio-description:
 Chapter 1.3.3.3 - Carnicer
 
 Carnicer is an undescribed hostile improper-named mutant woman.
-The printed name is "assassin".
+The printed name is "[if Carnicer is improper-named]assassin[otherwise]Carnicer[end if]".
 The scent is "The scent of blood."
 Understand "hooded" or "assassin" or "killer" or "butcher" or "claw/claws/head" as Carnicer.
 Understand "stranger" as Carnicer when Averting Cavala's Assassination is happening.
 
-The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise]You know she's waiting for you[end if]."
+The description of Carnicer is "[if Rooftop Pursuit has not ended]She's far too close for comfort[otherwise if Midnight has not ended]You know she's waiting for you[otherwise]Placeholder[end if]."
 
 Carnicer has some text called the faraway response. The faraway response is "You didn't come this far to commit suicide."
 
 Carnicer's blade is an improper-named thing. It is carried by Carnicer.
-The printed name is "assassin's blade".
+The printed name is "[Carnicer]'s blade".
 The description is "Serrated."
 Understand "sword" or "assassin's" as Carnicer's blade.
 Does the player mean doing something with Carnicer's blade: it is likely.
 
 Carnicer's smile is an improper-named thing. It is part of Carnicer.
-The printed name is "assassin's smile".
+The printed name is "[Carnicer]'s smile".
 The description is "You can't look away."
 Understand "grin" or "tooth/teeth" or "hood/cloak" or "assassin's" as Carnicer's smile.
 
-Rule for writing a paragraph about Carnicer:
-	if Highway to Hell is happening:
-		if Carnicer is in the Abandoned Kitchen:
-			say "In the corridor, the assassin paces back and forth."
+Rule for writing a paragraph about Carnicer when Highway to Hell is happening:
+	say "In the corridor, the assassin paces back and forth.";
 
 Chapter 1.3.3.4 - Justinian
 
@@ -5999,6 +5997,8 @@ Part 3.3.7 - Clinic during Day Three
 
 Chapter 3.3.7.1 - Clinic during Heroes Never Die
 
+Section 3.3.7.1.1 - Unveiling Day Three
+
 To unveil Day Three:
 	clear the screen;
 	say "[paragraph break][paragraph break][paragraph break][paragraph break][line break]";
@@ -6013,7 +6013,90 @@ To unveil Day Three:
 	repeat with item running through things in the temporary-inventory-holder:
 		now the item is carried by the player;
 	follow the scene changing rules;
-	say "Dialogue with Doctor Cavala is supposed to happen now.";
+	redraw status line;
+	say "-- you jolt awake, shuddering, blinking, coughing. Everything feels heavy. A pair of hands grips your shoulders, steadies you.[paragraph break]";
+	wait for any key;
+	say "'Is she awake?' a voice asks. Doctor Cavala's voice.[paragraph break]";
+	wait for any key;
+	say "'Yes,' comes the reply. Then again, closer: 'Marid? Can you hear me?'[paragraph break]";
+	wait for any key;
+	say "You open and close your eyes. There are strange patterns, echoes, swirling in your vision, infinitely long, and it hurts to see. It hurts to [italic type]see[roman type]...[paragraph break]";
+	wait for any key;
+	say "You slip back into unconsciousness.[paragraph break]";
+	wait for any key;
+	clear the screen;
+	wait for any key;
+	redraw status line;
+	say line break;
+	say "'...stabilizing...'[paragraph break]";
+	wait for any key;
+	clear the screen;
+	wait for any key;
+	redraw status line;
+	say line break;
+	say "Lights. You see lights.[paragraph break]";
+	wait for any key;
+	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the light it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the quality of the light, something strange...[paragraph break]";
+	wait for any key;
+	say "'Doctor?' you croak through parched lips.[paragraph break]";
+	wait for any key;
+	say "Marid!' a voice exclaims. 'Thank the Primes...'[paragraph break]";
+	say "A shadow falls across you; a hand grips your wrist close. And you turn your head to see the smiling face of Doctor Justinian.[paragraph break]";
+	wait for any key;
+	say "Wha -- what --";
+	wait for any key;
+	start a dialogue using dialogue d3open-home.
+	
+Section 3.3.7.1.2 - Day Three Opening Dialogue
+
+Some dialogue branches are defined by the Table of Day Three Opening Dialogue.
+
+Table of Day Three Opening Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+d3open-home	true	false	""	""	{d3open-panic, d3open-fantasize, d3open-greet}
+d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-fantasize, d3open-greet}
+d3open-fantasize	true	true	"<Fantasize.>"	"A series of entirely inappropriate images flashes through your mind."	{d3open-panic, d3open-greet}
+d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?' you finally bring yourself to say.
+
+'Thank the Primes.' He's checking your pulse now, leaning in to look at the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
+
+[wait for any key]You take a few deep breaths, trying to calm yourself. Neither of you speaks for a moment.
+
+[wait for any key]'I thought we'd lost you,' he says at last. 'The Vigiles found you bleeding out in the abandoned block... I heard your [italic type]door[roman type] was broken down. It boggles my mind that anyone could do a thing like this...
+
+'But what matters is that you're here now. You're safe.'
+
+[wait for any key]He smiles and squeezes your hand again, and you blush."	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-somethingstrange}
+d3open-gladyoucame	true	true	"'I'm glad you came.'"	"'I'm... I'm glad you came,' you whisper.
+
+'Me too,' Doctor Justinian replies. 'Me too.'"	{d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doctor Cavala?' you ask. 'Horatio?'
+
+'I'm right here,' Doctor Cavala answers. You crane your neck and -- yes, there she is, still confined to her makeshift cot. She shrugs.
+
+'I'd have said something earlier,' she says, 'but it looked like you were having a bit of a moment there and I didn't want to interrupt.'
+
+[wait for any key]'Doctor!' you protest, your cheeks burning.
+
+'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
+
+'You've been out for close to seven hours.' Doctor Justinian checks his pocket-watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-attacked	true	true	"'I was attacked by a mutant woman with a sword...'"	"'I was attacked by a mutant woman with a sword. The same person who broke in here the other night...'
+
+He nods grimly. 'I know. The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-carnicerdead	false	true	"'Carnicer is dead. I killed her in self-defense.'"	"'...Carnicer is dead,' you say. 'I killed her in self-defense.'
+
+'...Oh.' Doctor Justinian blinks. 'Well... I'm sure the captains will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-company, d3open-somethingstrange}
+d3open-company	false	true	"'Do you think the Trading Company is behind this?'"	"'Do you think the Trading Company is behind this?'
+
+He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
+d3open-somethingstrange	true	false	"'Is it just me, or is something strange about the light here?...'"	""	{}
+
+After reading out d3open-attacked:
+	now Carnicer is proper-named;
+	now the enabled of d3open-carnicerdead is true;
+	now the enabled of d3open-company is true.
 	
 
 
@@ -17001,11 +17084,9 @@ You lower your gaze. Your other self is silent.
 
 [wait for any key]'...But I can't,' you finish. 'I can't go. Not like this.'
 
-[wait for any key]The animic light bears down upon you, harsh, questioning. It is difficult to stand beneath its weight -- to stand tall before the jury of numberless souls.
+[wait for any key]The animic light bears down upon you, harsh, questioning. It is difficult to stand beneath its weight -- to stand tall before the jury of numberless eyes.
 
-[wait for any key]Your other self cocks her head. 'Why?'
-
-[wait for any key]You take a deep breath."	{visionp1-notjustme, visionp1-needtoknow, visionp1-notdoneyet}
+[wait for any key]Your other self cocks her head. 'Why?'"	{visionp1-notjustme, visionp1-needtoknow, visionp1-notdoneyet}
 visionp1-notjustme	true	false	"'It's not just about me...'"	"'...It's not just about me.'
 
 You remember those moments, frozen in time and etched in memory. Laughing with Horatio on the Via Terminalis. Consoling Zoiro about his brother's death.
