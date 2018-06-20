@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 160618.
+The release number is 200618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -405,13 +405,20 @@ Vision Quest ends when the location is the Clinic.
 
 Chapter 1.2.1.5 - Day Three
 
-[More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. Quarantine has also been enacted by Doctor Serpens. The clues lead her to Arturus's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
+[More deaths. Doctor Cavala is quite certain that a conspiracy is afoot, that the plague is not natural, and asks Marid to look for a common infection vector. Marid goes out and discovers a newfound affinity for aurorae, which she uses to glean clues by speaking with the ghosts of the departed. But the ghosts of those killed by Noctis are fragmented, unable to tell her much. Quarantine has also been enacted by Doctor Serpens. The clues lead her to Justinian's secret lab beneath the Channelworks, where she is promptly knocked out cold.]
 
 Day Three is a scene.
 Day Three begins when Midnight ends.
+Day Three ends when Spanner in the Works ends.
 
 Heroes Never Die is a scene. [Marid wakes up to Doctor Cavala and learns about the new situation in the district. She speaks to Reden's ghost.]
 Heroes Never Die begins when Day Three begins.
+
+I See Dead People is a scene. [Overall investigation scene.]
+I See Dead People begins when Heroes Never Die ends.
+
+Spanner in the Works is a scene. [Marid dicks around in the Channelworks.]
+Spanner in the Works begins when I See Dead People ends.
 
 Chapter 1.2.1.6 - Day Four
 
@@ -992,6 +999,8 @@ To say cavala-description:
 			say "She's looking at her cards with a cool, unreadable expression. ";
 		otherwise:
 			say "She looks frankly irritated that she's bedridden. ";
+	otherwise if Heroes Never Die is happening:
+		say "She appraises you cautiously. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -1061,23 +1070,34 @@ Chapter 1.3.3.4 - Justinian
 
 Justinian is a human man.
 The description is "[justinian-description]".
-The scent is "You can't get distracted by his cologne, not now."
+The scent is "[if time is critical]This is not the time[otherwise]You can't get distracted by his cologne, not now[end if]."
 Understand "doctor" or "justin" or "volontis" as Justinian.
 
 To say justinian-description:
 	if Four Investigations is happening:
 		say "His eyes are dark sunsets. ";
+	otherwise if Heroes Never Die is happening:
+		say "He looks uneasy. ";
 	otherwise:
 		say "You shouldn't look at him. You'll start fantasizing. ";
 	
 Instead of kissing, rubbing, or touching Justinian:
-	say "[one of]No. No! No. Yes -- [italic type]No![roman type][or]Absolutely not.[stopping]";
+	if time is critical:
+		say "This is not the time.";
+	otherwise:
+		say "[one of]No. No! No. Yes -- [italic type]No![roman type][or]Absolutely not.[stopping]";
 	
 Instead of attacking, cutting, or pushing Justinian:
-	say "[one of]What? No! Why would you even consider that?[or]Absolutely not.[stopping]";
+	if time is critical:
+		say "This is not the time.";
+	otherwise:
+		say "[one of]What? No! Why would you even consider that?[or]Absolutely not.[stopping]";
 
 Instead of knocking on, pulling, searching, swinging, squeezing, taking, or turning Justinian:
-	say "[one of]No. No! That would -- that would be much too forward.[or]You can't bring yourself to.[stopping]";
+	if time is critical:
+		say "This is not the time.";
+	otherwise:
+		say "[one of]No. No! That would -- that would be much too forward.[or]You can't bring yourself to.[stopping]";
 
 Book 1.4 - When Time is Critical, When It is Night
 
@@ -1094,6 +1114,7 @@ To decide whether time is critical:
 	if Averting Cavala's Assassination is happening, decide yes;
 	if First Aid on Cavala is happening, decide yes;
 	if Midnight is happening, decide yes;
+	if Heroes Never Die is happening, decide yes;
 	decide no.
 
 To decide whether time is not critical:
@@ -1558,7 +1579,7 @@ Instead of tying something to something, say "You can't tie those."
 Instead of waking up, say "This is not a dream."
 Instead of rubbing or swinging, say "Nothing happens."
 Instead of throwing something at something, say "That won't accomplish anything."
-Instead of sleeping, say "[if Walking Home in Suspense is happening]You would prefer to sleep in your dormitory room.[otherwise if time is critical]Sleep is the last thing on your mind right now.[otherwise if it is night]You would prefer to sleep in the comfort of your dormitory room.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
+Instead of sleeping, say "[if Heroes Never Die is happening]You can't.[otherwise if Walking Home in Suspense is happening]You would prefer to sleep in your dormitory room.[otherwise if time is critical]Sleep is the last thing on your mind right now.[otherwise if it is night]You would prefer to sleep in the comfort of your dormitory room.[otherwise if Nine to Five Zombie is happening]No, you have to report for work.[otherwise]It's too early to sleep."
 After waiting when time is critical, say "This is no time for inaction."
 
 Last before pushing something to: if the noun is not pushable between rooms, try pushing the noun instead.
@@ -1764,6 +1785,8 @@ Understand "insert [something preferably held] down [something]" as inserting it
 Understand "jump through/into/in/inside/on/onto/at/to [something]" as entering.
 Understand "kick [something]" as attacking.
 Understand "lick [something]" as tasting.
+Understand "lie down" as sleeping.
+Understand "lie down on [something]" as entering.
 Understand "lift [things]" as taking.
 Understand "look around" as looking.
 Understand "look behind/beside [something]" as looking under.
@@ -2563,7 +2586,7 @@ The bio-description of Zoiro is "The brother of Reden. An assembly-worker who is
 
 When Returning to a Break-In ends: add Carnicer to the list of discovered characters.
 The bio-name of Carnicer is "[if Carnicer is proper-named]Carnicer[otherwise]???[roman type] (the assassin)".
-The bio-description of Carnicer is "A mutant woman who [if Day Two has not ended]broke into Doctor Cavala's clinic and tried to kill her[otherwise]is trying to kill you and Doctor Cavala[end if]. Her true motives remain unknown."
+The bio-description of Carnicer is "A mutant woman who [if Day Two has not ended]broke into Doctor Cavala's clinic and tried to kill her[otherwise if Can't Catch a Bloody Break has not ended]is trying to kill you and Doctor Cavala[otherwise]tried to kill you and Doctor Cavala[end if]. [if Can't Catch a Bloody Break has not ended]Her true motives remain unknown[otherwise]You led her to her death in the abandoned block[end if]."
 
 When Bad News from Cavala ends: add Doctor Arturus to the list of discovered characters.
 The bio-description of Doctor Arturus is "A reclusive doctor in his waning years. Some of his patients had Reden's disease; now he is dead of the same contagion."
@@ -3012,6 +3035,11 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 		say "I'm so tired. ";
 	otherwise if Vision Quest is happening:
 		say "I remember what happened today. I used to dream of it every night -- it made itself known to me in visions. Tonight, perhaps, I'm viewing it for the last time. ";
+	[---
+	DAY THREE
+	---]
+	otherwise if Heroes Never Die is happening:
+		say "What on earth was that? What did I just [italic type]see?[roman type] ";
 		
 Chapter 2.3.12.4 - Objectives
 
@@ -3179,6 +3207,11 @@ To say journal-text-objectives:
 		add "- Find a way out of the condemned block" to L;
 	if Vision Quest is happening:
 		add "- See the night through" to L;
+	[---
+	DAY THREE
+	---]
+	if Heroes Never Die is happening:
+		add "- Pursue the apparition" to L;
 	[---
 	END
 	---]
@@ -4440,17 +4473,35 @@ Instead of doing anything other than giving something to something when the seco
 
 Book 3.3 - Clinic
 
-The Clinic is a proper-named room. "[if Cavala's Errands has not ended]Doctor Cavala's clinic is a small, unostentatious affair, neatly organized with little in the way of decoration. [end if]A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes[if  Cavala's Errands has not ended]; f[otherwise]. F[end if]urther on is the consulting study, home to a desk strewn with notes and diagrams.
-
-A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east."
-The scent is "You smell a hint of calomel from the surgery room."
+The Clinic is a proper-named room. "[clinic-description]".
 Understand "dr/doctor/doctor's" or "cavala/cavala's" as the Clinic.
 Does the player mean approaching the Clinic: it is likely. [As opposed to Arturus's Clinic.]
 
 The simple-name is "Doctor Cavala's clinic".
 The scent is "You smell a hint of calomel from the surgery room."
-The exit reminder is "You can go [if Walking Home in Darkness has ended]north to the surgery room, down to the mortuary, or [end if]east to the Via Terminalis."
+The exit reminder is "[if Heroes Never Die is happening]The surgery room calls to you[otherwise if Walking Home in Darkness has ended]You can go north to the surgery room, down to the mortuary, or east to the Via Terminalis[otherwise]You can go east to the Via Terminalis[end if]."
 The going-in disambiguation is "[if Walking Home in Darkness has ended]Do you mean going north (to the surgery room) or going down (to the mortuary)?[otherwise]You don't really want to go back in there."
+
+To say clinic-description:
+	if Heroes Never Die is happening:
+		say "The light you see is not quite of this world. It does not originate from the fluorescent lamps. Yet it radiates still, engulfing this place, leaving its imprints in chair and counter and tile.
+
+A long shadow falls from the north. From the surgery room.
+
+Doctor Cavala and Justinian watch you with concern. Neither of them appears to have noticed anything. ";
+		now Doctor Cavala is mentioned;
+		now Justinian is mentioned;
+		stop;
+	if Cavala's Errands has not ended:
+		say "Doctor Cavala's clinic is a small, unostentatious affair, neatly organized with little in the way of decoration. ";
+	say "A row of chairs faces the prescription counter, where the medication and patient records are sorted in gridlike pigeonholes";
+	if Cavala's Errands has not ended:
+		say "; f";
+	otherwise:
+		say ". F";
+	say "urther on is the consulting study, home to a desk strewn with notes and diagrams.
+
+A calomel curtain leads north to the surgery room, stairs lead down to the mortuary, and the front door lies east. ";
 
 Before examining north in the Clinic, try searching the calomel curtain instead.
 Before examining east in the Clinic, try searching the clinic front door instead.
@@ -4492,6 +4543,15 @@ Instead of taking the small brass handbell, say "You see little point in removin
 The view of the surgery room is faraway scenery in the Clinic.
 Before entering the view of the surgery room, try going north instead.
 Instead of doing anything when the current action is not entering and the current action involves the view of the surgery room, say "You can't perceive much of the surgery room from here."
+
+Some hardy fluorescent lamps are faraway scenery in the Clinic.
+The description is "Bright."
+Understand "lamp" as the hardy fluorescent lamps.
+
+Some nondescript floor tile is faraway scenery in the Clinic.
+The description is "The floor is kept clean, yet strangely it seems murky."
+The nondescript floor tile has some text called the faraway response. The faraway response is "You have better things to do."
+Understand "tiles" as the nondescript floor tile.
 
 Chapter 3.3.1.1 - Consulting Study
 
@@ -6013,6 +6073,7 @@ To unveil Day Three:
 	repeat with item running through things in the temporary-inventory-holder:
 		now the item is carried by the player;
 	follow the scene changing rules;
+	now Justinian is in the Clinic;
 	redraw status line;
 	say "-- you jolt awake, shuddering, blinking, coughing. Everything feels heavy. A pair of hands grips your shoulders, steadies you.[paragraph break]";
 	wait for any key;
@@ -6036,14 +6097,14 @@ To unveil Day Three:
 	say line break;
 	say "Lights. You see lights.[paragraph break]";
 	wait for any key;
-	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the light it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the quality of the light, something strange...[paragraph break]";
+	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the light it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the quality of the light. Something strange.[paragraph break]";
 	wait for any key;
 	say "'Doctor?' you croak through parched lips.[paragraph break]";
 	wait for any key;
 	say "Marid!' a voice exclaims. 'Thank the Primes...'[paragraph break]";
 	say "A shadow falls across you; a hand grips your wrist close. And you turn your head to see the smiling face of Doctor Justinian.[paragraph break]";
 	wait for any key;
-	say "Wha -- what --";
+	say "Wha -- what --[line break]";
 	wait for any key;
 	start a dialogue using dialogue d3open-home.
 	
@@ -6056,13 +6117,13 @@ dialogue branch	enabled	one-shot	prompt	description	choices
 d3open-home	true	false	""	""	{d3open-panic, d3open-fantasize, d3open-greet}
 d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-fantasize, d3open-greet}
 d3open-fantasize	true	true	"<Fantasize.>"	"A series of entirely inappropriate images flashes through your mind."	{d3open-panic, d3open-greet}
-d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?' you finally bring yourself to say.
+d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false or the enabled of d3open-fantasize is false] you finally bring yourself to say.[end if]
 
-'Thank the Primes.' He's checking your pulse now, leaning in to look at the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
+'Thank the Primes.' He's checking your pulse now, leaning in to check the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
 
 [wait for any key]You take a few deep breaths, trying to calm yourself. Neither of you speaks for a moment.
 
-[wait for any key]'I thought we'd lost you,' he says at last. 'The Vigiles found you bleeding out in the abandoned block... I heard your [italic type]door[roman type] was broken down. It boggles my mind that anyone could do a thing like this...
+[wait for any key]'I thought we'd lost you,' he says at last. 'The Vigiles found you bleeding out in the abandoned block... I heard your [italic type]door[roman type] was broken down. It boggles my mind that anyone could do a thing like this --
 
 'But what matters is that you're here now. You're safe.'
 
@@ -6078,25 +6139,70 @@ d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doc
 
 [wait for any key]'Doctor!' you protest, your cheeks burning.
 
-'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+[wait for any key]'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
 
 'You've been out for close to seven hours.' Doctor Justinian checks his pocket-watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-attacked	true	true	"'I was attacked by a mutant woman with a sword...'"	"'I was attacked by a mutant woman with a sword. The same person who broke in here the other night...'
 
-He nods grimly. 'I know. The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-carnicerdead	false	true	"'Carnicer is dead. I killed her in self-defense.'"	"'...Carnicer is dead,' you say. 'I killed her in self-defense.'
 
-'...Oh.' Doctor Justinian blinks. 'Well... I'm sure the captains will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-company, d3open-somethingstrange}
+'...Oh.' Doctor Justinian blinks. 'Well. I'm sure the captain will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-company, d3open-somethingstrange}
 d3open-company	false	true	"'Do you think the Trading Company is behind this?'"	"'Do you think the Trading Company is behind this?'
 
 He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
-d3open-somethingstrange	true	false	"'Is it just me, or is something strange about the light here?...'"	""	{}
+d3open-somethingstrange	true	false	"'Is it just me, or is something strange about the light here?...'"	"You try to focus on the light. It's out of place somehow, both here and not here -- shimmering and scintillating in a way that makes your head spin.
+
+'Is it just me,' you mumble, 'or is something strange about the... the...'
+
+[wait for any key]Your breath catches in your throat. Your brain refuses to comprehend what you are seeing.
+
+[wait for any key]'What's wrong?' Justinian asks, concerned."	{d3open-closeeyes, d3open-havetogo}
+d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You wrench your eyes shut.
+
+The image does not fade. It lingers. Approaches."	{d3open-havetogo}
+d3open-havetogo	true	false	"'I have to go.'"	"'I -- I have to go.'
+
+'Wait --'
+
+[wait for any key]You get up despite your body's aches and protests. The world swirls around you, feels unreal. Justinian raises a hand but does not stop you.
+
+[wait for any key]And you [italic type]see[roman type]. You still [italic type]see[roman type]. In all its horror.[paragraph break][look pending]"	{}
 
 After reading out d3open-attacked:
 	now Carnicer is proper-named;
 	now the enabled of d3open-carnicerdead is true;
 	now the enabled of d3open-company is true.
+	
+Section 3.3.7.1.3 - A Scene of Eldritch Light and Mild Concern
+
+Before going inside when the location is the Clinic and Heroes Never Die is happening:
+	try going north instead.
+	
+Some light not of this world is a faraway scenery thing.
+The description is "You can't look, and yet you [italic type]see[roman type]."
+The sound is "Soundless."
+The light not of this world has some text called the faraway response. The faraway response is "You don't know how you would begin."
+Understand "imprint/imprints" or "long" or "shadow" as the light not of this world.
+
+Instead of going through the clinic front door when Heroes Never Die is happening:
+	say "You can't leave. Not with this [italic type]light[roman type].";
+
+Instead of going through the mortuary stairs when Heroes Never Die is happening:
+	say "You can't go there. Not now.";
+
+Instead of talking to Doctor Cavala when Heroes Never Die is happening:
+	say "[one of]'Doctor, do you see it?'
+
+'Marid? I don't understand. What do you see?'
+
+You are at a loss for words.[or]'Marid? Are you all right?'[or]Words fail you.[stopping]";
+
+Instead of talking to Justinian when Heroes Never Die is happening:
+	say "[one of]'Doctor Justinian, please, didn't you see...'
+
+'Marid? Please, you have to lie down. You're not in your right mind...'[or]You cannot form the words.[stopping]";
 	
 
 
