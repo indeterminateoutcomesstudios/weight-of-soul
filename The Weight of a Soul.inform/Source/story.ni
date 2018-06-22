@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 200618.
+The release number is 230618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -926,7 +926,7 @@ A person can be friendly or hostile. A person is usually friendly. [This flag co
 
 Understand "person" as a person. Understand "people" as the plural of a person. Understand "man" as a male person. Understand "men" as the plural of a male person. Understand "woman" as a female person. Understand "women" as the plural of a female person.
 
-A person can be living or dead. A person is usually living. Understand "dead" or "body" or "corpse" or "cadaver" as a dead person. 
+A person can be living, dead, or ghostly. A person is usually living. Understand "dead" or "body" or "corpse" or "cadaver" as a dead person.  Understand "ghost" or "spirit" or "animus" as a ghostly person. 
 
 Race is a kind of value. The races are human, goblin, mutant, mixed-race, and creature. A person has a race. The race of a person is usually human. Understand the race property as describing a person.
 Understand "humans" as the plural of a human person. Understand "goblins" as the plural of a goblin person. Understand "mutants" as the plural of a mutant person.
@@ -969,6 +969,14 @@ Instead of knocking on, squeezing, or touching a non-faraway dead person, say "[
 Instead of kissing a dead person, say "An ill-advised, if romantic, notion."
 Instead of waking a dead non-faraway person, say "[regarding the noun][Theirs] is a sleep from which there is no awakening."
 
+Instead of eating a ghostly person, say "Unlikely."
+Instead of eating something that is part of a ghostly person, say "Unlikely."
+Instead of giving something to a ghostly person, say "The dead cannot accept gifts."
+Instead of knocking on, pushing, pulling, squeezing, swinging, taking, touching, or turning a ghostly non-faraway person, say "You grasp nothing but air."
+Instead of searching a ghostly person, say "You won't find anything for the living."
+Instead of kissing a ghostly person, say "Unlikely."
+Instead of waking a ghostly person, say "[regarding the noun][Theirs] is a sleep from which there is no awakening."
+
 Part 1.3.3 - Recurring Characters
 
 [These are important characters who show up several times in various locations throughout the game. They were originally listed in the location of their first appearance, but as the plot gets more convoluted and characters shift around more, placing these characters here makes them easier to keep track of.]
@@ -1000,7 +1008,7 @@ To say cavala-description:
 		otherwise:
 			say "She looks frankly irritated that she's bedridden. ";
 	otherwise if Heroes Never Die is happening:
-		say "She appraises you cautiously. ";
+		say "She's looking at you like you've swallowed a bee. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -1077,7 +1085,7 @@ To say justinian-description:
 	if Four Investigations is happening:
 		say "His eyes are dark sunsets. ";
 	otherwise if Heroes Never Die is happening:
-		say "He looks uneasy. ";
+		say "He returns your gaze uneasily. ";
 	otherwise:
 		say "You shouldn't look at him. You'll start fantasizing. ";
 	
@@ -3961,12 +3969,27 @@ happening
 
 Book 3.2 - Surgery Room
 
-The Surgery Room is a proper-named room. "You are in a cold cylindrical chamber, [if the surgical lamps are switched on]thrown into sharp focus by hovering[otherwise]devoid of light from the inactive[end if] surgical lamps. Shelves of vials and medical supplies crowd around you, leaving little room to misstep. A shimmering calomel curtain frames the exit to the south."
+The Surgery Room is a proper-named room. "[surgery-room-description]"
 
 The simple-name is "the surgery room".
 The sound is "It's quiet."
 The scent is "The room is layered in the scent of antiseptic solution and ozone."
 The exit reminder is "The only exit is south through the calomel curtain."
+
+To say surgery-room-description:
+	if Heroes Never Die is happening:
+		say "You are in a cold cylindrical chamber, pulsing in a thousand dimensions and illuminated from within. Dozens or hundreds of afterimages creep like specters at the edge of your vision. To the south, the exit is wreathed in calomel.
+
+A shimmering and fractured Reden sits upon the gurney. He looks at you with eyes that run black. ";
+		now Reden's animus is mentioned;
+		now the gurney is mentioned;
+		stop;
+	say "You are in a cold cylindrical chamber, ";
+	if the surgical lamps are switched on:
+		say "thrown into sharp focus by hovering";
+	otherwise:
+		say "devoid of light from the inactive";
+	say " surgical lamps. Shelves of vials and medical supplies crowd around you, leaving little room to misstep. A shimmering calomel curtain frames the exit to the south. "
 
 Before examining south in the Surgery Room, try searching the calomel curtain instead.
 Before examining outside in the Surgery Room, try searching the calomel curtain instead.
@@ -4000,7 +4023,12 @@ Instead of searching the calomel curtain, say "You can't see much through the ca
 Instead of touching the calomel curtain, say "Your hand tingles as it passes through the curtain."
 Instead of attacking, climbing, closing, knocking on, opening, pulling, pushing, rubbing, squeezing, swinging, taking, or turning the calomel curtain, say "The calomel curtain is an immaterial field of energy. It isn't a literal curtain."
 
-After going through the calomel curtain while the player is staid: say "A wave of warmth washes over you as you step through the calomel curtain."; continue the action. 
+After going through the calomel curtain while the player is staid:
+	if Heroes Never Die is happening:
+		say "The curtain parts.";
+	otherwise:
+		say "A wave of warmth washes over you as you step through the calomel curtain.";
+	continue the action. 
 
 Part 3.2.3 - Gurney
 
@@ -4471,6 +4499,35 @@ Instead of doing anything when the second noun is Reden during Reden's Surgery, 
 Instead of doing anything other than examining or listening to Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
 Instead of doing anything other than giving something to something when the second noun is Doctor Cavala during Reden's Surgery, say "You can't disturb Doctor Cavala, not now."
 
+Part 3.2.6 - Surgery Room during Heroes Never Die
+
+When Heroes Never Die begins (this is the spawn the Heroes Never Die stuff in the surgery room rule):
+	now the thousand pulsing dimensions are in the Surgery Room;
+	now the spectral afterimages are in the Surgery Room;
+	now Reden's animus is in the Surgery Room.
+
+When Heroes Never Die ends (this is the despawn the freaky Heroes Never Die stuff in the surgery room rule):
+	now the thousand pulsing dimensions are nowhere;
+	now the spectral afterimages are nowhere.
+
+Some thousand pulsing dimensions are a faraway scenery thing.
+The description is "Echoes? Imprints?"
+The thousand pulsing dimensions have some text called the faraway response. The faraway response of the thousand pulsing dimensions is "Your head hurts just thinking about that."
+Understand "dimension" or "chamber" or "illuminated" as the thousand pulsing dimensions.
+
+Some spectral afterimages are a faraway scenery thing.
+The description is "They have the shapes of people. Almost."
+The spectral afterimages have some text called the faraway response. The faraway response of the spectral afterimages is "You're not sure you want to."
+Understand "afterimage" or "image" or "specter/spectre/specters/spectres" or "edge" or "of/-- vision" as the spectral afterimages.
+
+Reden's animus is a ghostly goblin man. "You can sense Reden's animus lingering here."
+The description is "[if Heroes Never Die is happening]Between the cracks you can see his black heart pumping.[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes.[end if]."
+The scent is "He smells of alcohol and death."
+Understand "Reden" or "patient" or "fractured/shattered" or "shimmering" or "effigy" or "heart" or "black" as Reden's animus.
+
+Reden's ghostly eyes are part of Reden's animus.
+The description is "They are empty with decay."
+
 Book 3.3 - Clinic
 
 The Clinic is a proper-named room. "[clinic-description]".
@@ -4486,9 +4543,9 @@ To say clinic-description:
 	if Heroes Never Die is happening:
 		say "The light you see is not quite of this world. It does not originate from the fluorescent lamps. Yet it radiates still, engulfing this place, leaving its imprints in chair and counter and tile.
 
-A long shadow falls from the north. From the surgery room.
+A long shadow falls from the north, from the surgery room.
 
-Doctor Cavala and Justinian watch you with concern. Neither of them appears to have noticed anything. ";
+Doctor Cavala and Justinian watch you with concern[first time]. Neither of them appears to have noticed anything[only]. ";
 		now Doctor Cavala is mentioned;
 		now Justinian is mentioned;
 		stop;
@@ -4609,12 +4666,12 @@ topic	description
 "servator" or "marid" or "orpheia" or "me/self/myself"	"Your own medical record is little more than an informal note for accounting purposes, as your only treatment here -- for a bout of Midaes fever last month -- was self-prescribed."
 "doctor" or "cavala"	"Doctor Cavala has meticulously recorded her medical history starting from the day she opened this clinic six years ago. [if Cavala is incapacitated]Her most recent leg injury is here as well, complete with a sketch of the tendons damaged.[otherwise]It seems she has been mostly in health, except for a recurrent ache in her right shoulder from her soldiering days."
 "reden"	"On record are various minor illnesses typical for a goblin of his age: the homunculoid shingles, the common cold. There is no precedent for the sudden and dramatic affliction that took his life."
-"doctor/-- arturus"	"Doctor Arturus must be the prideful sort -- there are no records of him ever receiving treatment in this clinic."
+"doctor/-- arturus"	"Doctor Arturus must [if Day One has ended]have been[otherwise]be[end if] the prideful sort -- there are no records of him ever receiving treatment in this clinic."
 "doctor/-- justinian" or "doctor/-- volontis"	"You secretly hope to find a patient record for him, and are mildly disappointed when your search turns up nothing."
 "doctor/-- serpens"	"Doctor Serpens does not reside in the Channelworks District, and so would not be on record."
 "saliunca"	"It appears Saliunca is a long-time patron of this clinic. She suffers from a severe imbalance of the choleric temperament, leading to cataracts and incontinence."
 "horatio" or "vigile"	"Horatio is a regular patron of the clinic, mainly for injuries sustained during physical exercise."
-"censor" or "provis"	"There are no records on Censor Provis. He must visit Doctor Arturus's clinic instead."
+"censor" or "provis"	"There are no records on Censor Provis. He must [if Day One has ended]have visited[otherwise]visit[end if] Doctor Arturus's clinic instead."
 "donti"	"There's no reference to Donti here."
 "zoiro"	"Zoiro has come in for the common cold now and then."
 "koriph"	"It seems Koriph receives regular treatment here for an imbalance of phlegm. His file records a visit every month."
@@ -4623,7 +4680,7 @@ topic	description
 "sal" or "salio"	"You find that a man named Salio has come in for brawl-related injuries before, but he was thrown out by Doctor Cavala for disorderly conduct."
 "piper"	"There are records of someone named Piper with a recurring phlegmatic infection, but she stopped coming to this clinic a few months ago."
 "crow"	"There are no records on Crow."
-"webster"	"A man named Webster was admitted some years ago for a second-degree burn on his wrist."
+"webster"	"A man named Webster received emergency surgery here some time ago. Doctor Cavala appears to have waived the patient fee at considerable expense to herself."
 "inhaler/inhalers" or "aer" or "halitus"	"There are a few inhalers here, mainly for treating asthma and hay fever."
 "soporific" or "aer/-- soporifer" or "vivific" or "aer/-- vivificans"	"The more powerful medications are reserved for the surgery room."
 "catholicon" or "breath of catholicon" or "halitus/-- catholiconis"	"You doubt you will see another inhaler of the [italic type]halitus catholiconis[roman type] in your lifetime, let alone in these pigeonholes."
@@ -6161,7 +6218,7 @@ d3open-somethingstrange	true	false	"'Is it just me, or is something strange abou
 [wait for any key]'What's wrong?' Justinian asks, concerned."	{d3open-closeeyes, d3open-havetogo}
 d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You wrench your eyes shut.
 
-The image does not fade. It lingers. Approaches."	{d3open-havetogo}
+The image does not fade. It lingers."	{d3open-havetogo}
 d3open-havetogo	true	false	"'I have to go.'"	"'I -- I have to go.'
 
 'Wait --'
@@ -6177,7 +6234,7 @@ After reading out d3open-attacked:
 	
 Section 3.3.7.1.3 - A Scene of Eldritch Light and Mild Concern
 
-Before going inside when the location is the Clinic and Heroes Never Die is happening:
+Before going inside when the location is the Clinic and Heroes Never Die is happening (this is the going inside during Heroes Never Die means going to the surgery room rule):
 	try going north instead.
 	
 Some light not of this world is a faraway scenery thing.
@@ -6185,6 +6242,10 @@ The description is "You can't look, and yet you [italic type]see[roman type]."
 The sound is "Soundless."
 The light not of this world has some text called the faraway response. The faraway response is "You don't know how you would begin."
 Understand "imprint/imprints" or "long" or "shadow" as the light not of this world.
+When Heroes Never Die begins (this is the spawn the eldritch light in the Clinic rule):
+	now the light not of this world is in the Clinic.
+When Heroes Never Die ends (this is the despawn the eldritch light in the Clinic rule):
+	now the light not of this world is nowhere.
 
 Instead of going through the clinic front door when Heroes Never Die is happening:
 	say "You can't leave. Not with this [italic type]light[roman type].";
@@ -6197,12 +6258,12 @@ Instead of talking to Doctor Cavala when Heroes Never Die is happening:
 
 'Marid? I don't understand. What do you see?'
 
-You are at a loss for words.[or]'Marid? Are you all right?'[or]Words fail you.[stopping]";
+You are at a loss for words.[or]'Marid? Are you all right?'[or]This isn't the time for words.[stopping]";
 
 Instead of talking to Justinian when Heroes Never Die is happening:
 	say "[one of]'Doctor Justinian, please, didn't you see...'
 
-'Marid? Please, you have to lie down. You're not in your right mind...'[or]You cannot form the words.[stopping]";
+'Marid? Please, you have to lie down. You're not in your right mind...'[or]This isn't the time for words.[stopping]";
 	
 
 
