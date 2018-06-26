@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 230618.
+The release number is 260618.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -2193,7 +2193,12 @@ The null dialogue branch is a dialogue branch. The home dialogue branch of a per
 
 [If a branch has no children, it will end the dialogue upon being read out.]
 
+Wait for any key before prompt switch is a truth state that varies. [This is switched on when we want to wait for any key before providing the command prompt.]
+
 Look-pending switch is a truth state that varies. [This is switched on when we want to look after ending a dialogue.]
+
+To say wait for any key before prompt:
+	now the wait for any key before prompt switch is true.
 
 To say look pending:
 	follow the scene changing rules;
@@ -2227,12 +2232,11 @@ Rule for reading out a dialogue branch (called the current branch):
 	if the one-shot of the current branch is true, now the enabled of the current branch is false;
 			
 Last after reading out a dialogue branch (called the current branch) (this is the end the dialogue after reading out a dialogue branch with no choices rule): [This is separated from the main 'reading out' rule because the 'after reading out' rules may change the conditions of a scene change or what dialogue choices are available.]
-	if the number of entries in the choices of the current branch is 0:
-		end the dialogue;
-	otherwise:
-		change the available dialogue choices to have 0 entries;
-		repeat with current child running through the choices of current branch:
-			if the enabled of current child is true, add current child to the available dialogue choices.
+	change the available dialogue choices to have 0 entries;
+	repeat with current child running through the choices of current branch:
+		if the enabled of current child is true, add current child to the available dialogue choices;
+	if the number of entries in the available dialogue choices is 0:
+		end the dialogue; 		
 	
 Chapter 2.3.9.4 - Dialogue Command Prompt
 
@@ -2242,6 +2246,9 @@ To say dialogue-cmd-prompt:
 		end the dialogue;
 	otherwise:
 		say italic type;
+		if the wait for any key before prompt switch is true:
+			wait for any key;
+			now the wait for any key before prompt switch is false;
 		repeat with N running from 1 to the number of entries in the available dialogue choices:
 			say "[N]) [prompt of entry N in the available dialogue choices][line break]";
 		say roman type;
@@ -4019,7 +4026,7 @@ The scent is "It smells[if time is not critical], unsurprisingly,[end if] of cal
 Understand "immaterial" or "field" or "of" or "energy" as the calomel curtain.
 Understand "exit" as the calomel curtain when the location is the Surgery Room.
 
-Instead of searching the calomel curtain, say "You can't see much through the calomel curtain."
+Instead of searching the calomel curtain, say "[if Heroes Never Die is happening]A grim light shines through it[otherwise]You can't see much through the calomel curtain[end if]."
 Instead of touching the calomel curtain, say "Your hand tingles as it passes through the curtain."
 Instead of attacking, climbing, closing, knocking on, opening, pulling, pushing, rubbing, squeezing, swinging, taking, or turning the calomel curtain, say "The calomel curtain is an immaterial field of energy. It isn't a literal curtain."
 
@@ -4521,12 +4528,120 @@ The spectral afterimages have some text called the faraway response. The faraway
 Understand "afterimage" or "image" or "specter/spectre/specters/spectres" or "edge" or "of/-- vision" as the spectral afterimages.
 
 Reden's animus is a ghostly goblin man. "You can sense Reden's animus lingering here."
-The description is "[if Heroes Never Die is happening]Between the cracks you can see his black heart pumping.[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes.[end if]."
+The description is "[if Heroes Never Die is happening]His chest rises and falls[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes[end if]."
 The scent is "He smells of alcohol and death."
-Understand "Reden" or "patient" or "fractured/shattered" or "shimmering" or "effigy" or "heart" or "black" as Reden's animus.
+Understand "Reden" or "patient" or "fractured/shattered" or "shimmering" or "chest" as Reden's animus.
 
 Reden's ghostly eyes are part of Reden's animus.
-The description is "They are empty with decay."
+The description is "His eyes gaze into infinity."
+Understand "black" as Reden's ghostly eyes.
+Does the player mean doing something with Reden's ghostly eyes: it is very likely.
+
+Instead of going south when the location is the Surgery Room and Heroes Never Die is happening:
+	say "[one of]You briefly consider turning around and walking right back out. But no[or]You have to see this through[stopping].";
+	
+Instead of talking to Reden's animus when Heroes Never Die is happening:
+	start a dialogue with Reden's animus using dialogue reden-hnd-intro.
+	
+Chapter 3.2.6.1 - Reden's HND Dialogue
+
+Some dialogue branches are defined by the Table of Reden's HND Dialogue.
+
+Table of Reden's HND Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+reden-hnd-intro	true	false	""	"'H -- Hello?'
+
+Reden twitches, as though animated by a jolt of galvanism. Again. His empty eyes pivot in their sockets. He opens his mouth, but you cannot quite make out the words...
+
+[wait for any key]You feel a longing, a beckoning to listen closer.[wait for any key before prompt]"	{reden-hnd-hesitate, reden-hnd-listencloser}
+reden-hnd-hesitate	true	false	"<Hesitate.>"	"You briefly wonder if it's a good idea to open your ear to a dead man.
+
+Certainly, it has its dangers: the boundary between the living and the dead is one of the most sacred laws of the universe, and not to be broken lightly. You hear Doctor Cavala's words echoing in your memory: 'We are not animologists.'
+
+But somehow, in this place and time, you are not afraid."	{reden-hnd-listencloser}
+reden-hnd-listencloser	true	false	"<Listen closer.>"	"[reden-hnd-listencloser-text]"	{reden-hnd-hello, reden-hnd-callname}
+reden-hnd-hello	true	true	"'Hello?'"	"'Hello?'
+
+[italic type]...girl...[roman type]"	{reden-hnd-callname, reden-hnd-howspeaking, reden-hnd-breakingup, reden-hnd-pain}
+reden-hnd-callname	true	true	"'Reden?'"	"'Reden?'
+
+[italic type]...yes...[roman type]"	{reden-hnd-howspeaking, reden-hnd-breakingup, reden-hnd-pain}
+reden-hnd-howspeaking	true	true	"'How is it that I can speak with you?'"	"'How is it that I can speak with you?'
+
+[italic type]...must... be dead... ha ha...
+
+...didn't peg... for a chatty one...[roman type]"	{reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+reden-hnd-notdead	false	true	"'I'm not dead. At least, I don't think so.'"	"'I'm not dead. At least, I don't think so.'
+
+[italic type]...hmm...
+
+...don't know... then...[roman type]"	{reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+reden-hnd-breakingup	true	true	"'You're breaking up...'"	"'You're breaking up...'
+
+[italic type]...don't... know...
+
+...cracked... like an egg...
+
+...torn... part...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+reden-hnd-whatcaused	false	true	"'Do you have any idea what caused this?'"	"'Do you have any idea what caused this?'
+
+[italic type]...don't... know...
+
+...maybe... when... died...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+reden-hnd-pain	true	true	"'Are you in pain?'"	"'Are you in pain?'
+
+[italic type]...hurts...
+
+...million... pieces...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-waytohelp, reden-hnd-affliction}
+reden-hnd-waytohelp	false	true	"'Is there any way I could help?'"	"'Is there any way I could help?'
+
+[italic type]...doubt...
+
+...preciate... the thought...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-affliction}
+reden-hnd-affliction	false	true	"'Doctor Cavala and I have been investigating your affliction...'"	"'Doctor Cavala and I have been investigating your affliction...'
+
+You explain the progress you've made and the clues you've discovered, though you're not sure how much is getting through to Reden in this strange mode of communication.
+
+[wait for any key][italic type]...maybe...
+
+[wait for any key]...find the place... where... caught me...
+
+[wait for any key]...find it... Chan... works... find...
+
+[wait for any key]...
+
+[wait for any key]...ing there...[roman type]"	{reden-hnd-channelworks}
+reden-hnd-channelworks	true	true	"'The Channelworks?'"	"'The Channelworks?'
+
+[italic type]...yes...
+
+...remember...[roman type]"	{}
+
+To say reden-hnd-listencloser-text:
+	say "You close your eyes and focus. The light of the real world vanishes -- but the [italic type]other[roman type] light, that light that permeates the boundary, remains. You hold on to that light and follow it like a thread...[paragraph break]";
+	wait for any key;
+	say "And the world [italic type]shifts[roman type].[paragraph break]";
+	wait for any key;
+	clear only the main screen;
+	say line break;
+	say "[italic type]...broken...
+
+...hurts... everywhere...[roman type][wait for any key before prompt]";
+	
+After reading out reden-hnd-howspeaking:
+	now the enabled of reden-hnd-notdead is true.
+	
+After reading out reden-hnd-breakingup:
+	now the enabled of reden-hnd-whatcaused is true.
+	
+After reading out reden-hnd-whatcaused:
+	now the enabled of reden-hnd-affliction is true.
+	
+After reading out reden-hnd-pain:
+	now the enabled of reden-hnd-waytohelp is true.
+	
+After reading out reden-hnd-waytohelp:
+	now the enabled of reden-hnd-affliction is true.
 
 Book 3.3 - Clinic
 
@@ -6154,7 +6269,7 @@ To unveil Day Three:
 	say line break;
 	say "Lights. You see lights.[paragraph break]";
 	wait for any key;
-	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the light it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the quality of the light. Something strange.[paragraph break]";
+	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the shadows it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the color of the light. Something strange.[paragraph break]";
 	wait for any key;
 	say "'Doctor?' you croak through parched lips.[paragraph break]";
 	wait for any key;
@@ -6184,7 +6299,7 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 
 'But what matters is that you're here now. You're safe.'
 
-[wait for any key]He smiles and squeezes your hand again, and you blush."	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-somethingstrange}
+[wait for any key]He smiles and squeezes your hand again."	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-somethingstrange}
 d3open-gladyoucame	true	true	"'I'm glad you came.'"	"'I'm... I'm glad you came,' you whisper.
 
 'Me too,' Doctor Justinian replies. 'Me too.'"	{d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
@@ -6199,16 +6314,16 @@ d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doc
 [wait for any key]'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
 
-'You've been out for close to seven hours.' Doctor Justinian checks his pocket-watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+'You've been out for close to seven hours.' Doctor Justinian checks his pocket watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-attacked	true	true	"'I was attacked by a mutant woman with a sword...'"	"'I was attacked by a mutant woman with a sword. The same person who broke in here the other night...'
 
-He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-carnicerdead	false	true	"'Carnicer is dead. I killed her in self-defense.'"	"'...Carnicer is dead,' you say. 'I killed her in self-defense.'
 
-'...Oh.' Doctor Justinian blinks. 'Well. I'm sure the captain will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-company, d3open-somethingstrange}
+'...Oh.' Doctor Justinian blinks. 'Well. I'm sure the captain will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-company, d3open-somethingstrange}
 d3open-company	false	true	"'Do you think the Trading Company is behind this?'"	"'Do you think the Trading Company is behind this?'
 
-He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-gladyoucame, d3open-wherecavala, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
+He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
 d3open-somethingstrange	true	false	"'Is it just me, or is something strange about the light here?...'"	"You try to focus on the light. It's out of place somehow, both here and not here -- shimmering and scintillating in a way that makes your head spin.
 
 'Is it just me,' you mumble, 'or is something strange about the... the...'
@@ -6221,11 +6336,11 @@ d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You wrench your eyes shu
 The image does not fade. It lingers."	{d3open-havetogo}
 d3open-havetogo	true	false	"'I have to go.'"	"'I -- I have to go.'
 
-'Wait --'
+'Hold on --'
 
 [wait for any key]You get up despite your body's aches and protests. The world swirls around you, feels unreal. Justinian raises a hand but does not stop you.
 
-[wait for any key]And you [italic type]see[roman type]. You still [italic type]see[roman type]. In all its horror.[paragraph break][look pending]"	{}
+[wait for any key]And you [italic type]see[roman type]. You still [italic type]see[roman type]. In life as in death.[line break][look pending]"	{}
 
 After reading out d3open-attacked:
 	now Carnicer is proper-named;
@@ -6238,10 +6353,13 @@ Before going inside when the location is the Clinic and Heroes Never Die is happ
 	try going north instead.
 	
 Some light not of this world is a faraway scenery thing.
-The description is "You can't look, and yet you [italic type]see[roman type]."
-The sound is "Soundless."
+The description is "It has no shape, and yet you [italic type]see[roman type]."
+The sound is "Silence."
 The light not of this world has some text called the faraway response. The faraway response is "You don't know how you would begin."
-Understand "imprint/imprints" or "long" or "shadow" as the light not of this world.
+Understand "imprint/imprints" or "long" or "shadow" or "grim" as the light not of this world.
+Does the player mean doing something with the light not of this world:
+	it is very likely.
+
 When Heroes Never Die begins (this is the spawn the eldritch light in the Clinic rule):
 	now the light not of this world is in the Clinic.
 When Heroes Never Die ends (this is the despawn the eldritch light in the Clinic rule):
@@ -6263,7 +6381,7 @@ You are at a loss for words.[or]'Marid? Are you all right?'[or]This isn't the ti
 Instead of talking to Justinian when Heroes Never Die is happening:
 	say "[one of]'Doctor Justinian, please, didn't you see...'
 
-'Marid? Please, you have to lie down. You're not in your right mind...'[or]This isn't the time for words.[stopping]";
+'Marid? Please, you have to lie down. You haven't recovered...'[or]This isn't the time for words.[stopping]";
 	
 
 
@@ -14966,7 +15084,7 @@ Some cockroaches are faraway scenery in the Cellar.
 The description is "Cockroaches haven't scared you since you were a little girl. They are, however, deathly irritating things."
 The cockroaches have some text called the faraway response. The faraway response is "The cockroaches scurry away before you can get close."
 Understand "cockroach/roach/roaches/vermin" as the cockroaches.
-Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]Pow! You missed.[or]Slap! You missed.[or]Ha! Got one![or]Okay, that's enough. You can't spend the whole day killing cockroaches.[or]You can't spend the whole day killing cockroaches.[stopping]".
+Instead of attacking the cockroaches, say "[one of]Whap! You missed.[or]Pow! You missed.[or]Slap! You missed.[or]Ha! Got one![or]All right, that's enough. You can't spend the whole day killing cockroaches.[or]You can't spend the whole day killing cockroaches.[stopping]".
 
 Part 3.35.2 - The Incriminating Table
 
