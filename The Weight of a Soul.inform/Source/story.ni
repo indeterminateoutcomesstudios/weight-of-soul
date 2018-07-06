@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 260618.
+The release number is 060718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -65,7 +65,7 @@ Basic flowchart:
 - Reden's ghost is strangely broken but we get an image of where he was before he died: somewhere in a canal. This can only mean one of the Channelworks pipes, which we will later see is "Reden's Haunt."
 - The way between VT west end and VT west street is blocked, but Marid can circumvent it through the alley.
 - Marid can talk to Carnicer's ghost (slightly frayed from the reality bending) which results in her learning a little bit about the operation, but not Justinian's identity.
-- The way east across the canal is blocked, both Cadaver Walk and the VT bridge. However we can now go into Canalside Steps and take the iron door, which leads us through a short puzzle room (Hidden Passage) into a secret mutant church (Church of One Thousand Faces). Here they are doing weird pre-science cult stuff in worship of the hydra Anu Vah. She can speak with ghosts and church leaders who explain that this is the only way for them to worship in the face of brutal persecution.
+- The way east across the canal is blocked, both Cadaver Walk and the VT bridge. However we can now go into Canalside Steps and take the iron door, which leads us through a short puzzle room (Hidden Passage) into a secret mutant church (Church of One Thousand Faces). Here they are doing weird pre-science cult stuff in worship of the hydra Anu Va. She can speak with ghosts and church leaders who explain that this was the only way for them to worship in the face of brutal persecution.
 - Marid heads north from there and ends up in the belly of the Channelworks where she finds Reden's Haunt. She realizes that this black liquid is leaking from inside, which she follows to discover Noctis Storage and Justinian's notes on the thing. She has to search around to find the key to snoop deeper inside the Channelworks complex.
 - Heading up from Noctis Storage she encounters Doctor Serpens and has to hide to not be murdered. Soon however Justinian arrives and talks Serpens down. Marid is found by Justinian... and imprisoned. CUE VILLAIN MONOLOGUE! CUE DAY 4!
 
@@ -4526,11 +4526,12 @@ Some spectral afterimages are a faraway scenery thing.
 The description is "They have the shapes of people. Almost."
 The spectral afterimages have some text called the faraway response. The faraway response of the spectral afterimages is "You're not sure you want to."
 Understand "afterimage" or "image" or "specter/spectre/specters/spectres" or "edge" or "of/-- vision" as the spectral afterimages.
+Instead of talking to the spectral afterimages, say "You know, somehow, that they would not hear you."
 
 Reden's animus is a ghostly goblin man. "You can sense Reden's animus lingering here."
-The description is "[if Heroes Never Die is happening]His chest rises and falls[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes[end if]."
+The description is "[if Heroes Never Die is happening]He is cracked but somehow whole[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes[end if]."
 The scent is "He smells of alcohol and death."
-Understand "Reden" or "patient" or "fractured/shattered" or "shimmering" or "chest" as Reden's animus.
+Understand "Reden" or "patient" or "fractured/shattered/cracked" or "cracks" or "shimmering" as Reden's animus.
 
 Reden's ghostly eyes are part of Reden's animus.
 The description is "His eyes gaze into infinity."
@@ -4549,14 +4550,14 @@ Some dialogue branches are defined by the Table of Reden's HND Dialogue.
 
 Table of Reden's HND Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-reden-hnd-intro	true	false	""	"'H -- Hello?'
+reden-hnd-intro	true	false	""	"'H-Hello?'
 
 Reden twitches, as though animated by a jolt of galvanism. Again. His empty eyes pivot in their sockets. He opens his mouth, but you cannot quite make out the words...
 
 [wait for any key]You feel a longing, a beckoning to listen closer.[wait for any key before prompt]"	{reden-hnd-hesitate, reden-hnd-listencloser}
-reden-hnd-hesitate	true	false	"<Hesitate.>"	"You briefly wonder if it's a good idea to open your ear to a dead man.
+reden-hnd-hesitate	true	false	"<Hesitate.>"	"You briefly wonder if you should open your ear to a dead man.
 
-Certainly, it has its dangers: the boundary between the living and the dead is one of the most sacred laws of the universe, and not to be broken lightly. You hear Doctor Cavala's words echoing in your memory: 'We are not animologists.'
+Among the laws of the universe, the separation of the living and the dead is the most sacred. Doctor Cavala's voice comes to mind, echoing in admonishment: [italic type]We are not animologists.[roman type]
 
 But somehow, in this place and time, you are not afraid."	{reden-hnd-listencloser}
 reden-hnd-listencloser	true	false	"<Listen closer.>"	"[reden-hnd-listencloser-text]"	{reden-hnd-hello, reden-hnd-callname}
@@ -4568,65 +4569,94 @@ reden-hnd-callname	true	true	"'Reden?'"	"'Reden?'
 [italic type]...yes...[roman type]"	{reden-hnd-howspeaking, reden-hnd-breakingup, reden-hnd-pain}
 reden-hnd-howspeaking	true	true	"'How is it that I can speak with you?'"	"'How is it that I can speak with you?'
 
-[italic type]...must... be dead... ha ha...
+[italic type]...must... be dead...
 
 ...didn't peg... for a chatty one...[roman type]"	{reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
 reden-hnd-notdead	false	true	"'I'm not dead. At least, I don't think so.'"	"'I'm not dead. At least, I don't think so.'
 
-[italic type]...hmm...
-
-...don't know... then...[roman type]"	{reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+[italic type]...[roman type]"	{reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
 reden-hnd-breakingup	true	true	"'You're breaking up...'"	"'You're breaking up...'
 
 [italic type]...don't... know...
 
-...cracked... like an egg...
-
 ...torn... part...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-whatcaused, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
 reden-hnd-whatcaused	false	true	"'Do you have any idea what caused this?'"	"'Do you have any idea what caused this?'
 
-[italic type]...don't... know...
-
-...maybe... when... died...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
+[italic type]...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-pain, reden-hnd-waytohelp, reden-hnd-affliction}
 reden-hnd-pain	true	true	"'Are you in pain?'"	"'Are you in pain?'
 
-[italic type]...hurts...
-
-...million... pieces...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-waytohelp, reden-hnd-affliction}
+[italic type]...hurts...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-waytohelp, reden-hnd-affliction}
 reden-hnd-waytohelp	false	true	"'Is there any way I could help?'"	"'Is there any way I could help?'
 
-[italic type]...doubt...
+[italic type]...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-affliction}
+reden-hnd-affliction	false	false	"'Doctor Cavala and I have been investigating your affliction...'"	"'Doctor Cavala and I have been investigating your affliction...'
 
-...preciate... the thought...[roman type]"	{reden-hnd-howspeaking, reden-hnd-notdead, reden-hnd-breakingup, reden-hnd-whatcaused, reden-hnd-affliction}
-reden-hnd-affliction	false	true	"'Doctor Cavala and I have been investigating your affliction...'"	"'Doctor Cavala and I have been investigating your affliction...'
-
-You explain the progress you've made and the clues you've discovered, though you're not sure how much is getting through to Reden in this strange mode of communication.
+You do your best to explain what you've uncovered. You sense a presence following your train of thought, in bits and pieces, in half-remembered parts.
 
 [wait for any key][italic type]...maybe...
 
-[wait for any key]...find the place... where... caught me...
+[wait for any key]...find... where... caught...
 
-[wait for any key]...find it... Chan... works... find...
+[wait for any key]...Chan... works... find...[roman type][wait for any key before prompt]"	{reden-hnd-channelworks}
+reden-hnd-channelworks	true	false	"'The Channelworks?'"	"'The Channelworks?'
 
-[wait for any key]...
+[italic type]...[roman type]
 
-[wait for any key]...ing there...[roman type]"	{reden-hnd-channelworks}
-reden-hnd-channelworks	true	true	"'The Channelworks?'"	"'The Channelworks?'
+[wait for any key]You are assaulted by a vision. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
 
-[italic type]...yes...
+[wait for any key]The vision fades as quickly as it came.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
+reden-hnd-understand	true	true	"'I understand.'"	"'I understand.'
 
-...remember...[roman type]"	{}
+[italic type]...[roman type]"	{reden-hnd-findout}
+reden-hnd-dontunderstand	true	false	"'I don't understand.'"	"'I don't understand.'
+
+[italic type]...[roman type]"	{reden-hnd-findout}
+reden-hnd-findout	true	false	"'I'll find the place in the vision...'"	"'I -- I'll find the place in the vision. I'll find out what happened to you.'
+
+[italic type]...[roman type]"	{reden-hnd-promise, reden-hnd-goodbye}
+reden-hnd-promise	true	false	"'I promise.'"	"'I promise.'
+
+[italic type]...[roman type]
+
+[wait for any key][italic type]...thank you...[roman type][wait for any key before prompt]"	{reden-hnd-goodbye}
+reden-hnd-goodbye	true	true	"'Goodbye, Reden.'"	"'Goodbye, Reden.'
+
+[italic type]...[roman type]
+
+[wait for any key]The world [italic type]shifts[roman type]."	{}
 
 To say reden-hnd-listencloser-text:
 	say "You close your eyes and focus. The light of the real world vanishes -- but the [italic type]other[roman type] light, that light that permeates the boundary, remains. You hold on to that light and follow it like a thread...[paragraph break]";
 	wait for any key;
-	say "And the world [italic type]shifts[roman type].[paragraph break]";
+	say "And the world [italic type]shifts[roman type].";
 	wait for any key;
 	clear only the main screen;
 	say line break;
 	say "[italic type]...broken...
 
 ...hurts... everywhere...[roman type][wait for any key before prompt]";
+
+Every turn when Heroes Never Die is happening and the enabled of reden-hnd-goodbye is false:
+	wait for any key;
+	clear the screen;
+	now the conversational partner text is "";
+	now right alignment depth is 14;
+	now the command prompt is ">";
+	now the player is not engaged in dialogue;
+	now ambience suppression is true;
+	redraw status line;
+	say line break;
+	wait for any key;
+	say "You return gradually to your senses. The cold glare of the surgery room envelops you. The shelves, the gurney, the curtain: these things fall into their rightful place. The ghostly Reden is nowhere to be seen.[paragraph break]";
+	wait for any key;
+	say "And yet...[paragraph break]";
+	wait for any key;
+	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world is still here. If you look, if you focus, you know that you can peer beyond the curtain of the real. Perhaps that other world was always here, and you only lacked the eyes to see it.[paragraph break]";
+	wait for any key;
+	say "'Marid? Are you okay?'[paragraph break]";
+	wait for any key;
+	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney.";
+	start a dialogue with Justinian using dialogue hndexposition-home.
 	
 After reading out reden-hnd-howspeaking:
 	now the enabled of reden-hnd-notdead is true.
@@ -4642,6 +4672,19 @@ After reading out reden-hnd-pain:
 	
 After reading out reden-hnd-waytohelp:
 	now the enabled of reden-hnd-affliction is true.
+	
+Chapter 3.2.6.2 - HND Exposition Dialogue
+
+Some dialogue branches are defined by the Table of HND Exposition Dialogue.
+
+Table of HND Exposition Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-thinksawghost, hndexposition-itsnothing}
+hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say.
+
+He doesn't look convinced. 'Are you sure?'"	{hndexposition-thinksawghost}
+hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'"	{}
+hndexposition-itsnothing	true	false	"'It's nothing. I just had a chat with Reden.'"	"''"	{}
 
 Book 3.3 - Clinic
 
@@ -6274,11 +6317,11 @@ To unveil Day Three:
 	say "'Doctor?' you croak through parched lips.[paragraph break]";
 	wait for any key;
 	say "Marid!' a voice exclaims. 'Thank the Primes...'[paragraph break]";
-	say "A shadow falls across you; a hand grips your wrist close. And you turn your head to see the smiling face of Doctor Justinian.[paragraph break]";
+	say "A shadow falls across you; a hand grips your wrist close. You turn your head to see the smiling face of Doctor Justinian.[paragraph break]";
 	wait for any key;
 	say "Wha -- what --[line break]";
 	wait for any key;
-	start a dialogue using dialogue d3open-home.
+	start a dialogue with Justinian using dialogue d3open-home.
 	
 Section 3.3.7.1.2 - Day Three Opening Dialogue
 
@@ -6297,7 +6340,7 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 
 [wait for any key]'I thought we'd lost you,' he says at last. 'The Vigiles found you bleeding out in the abandoned block... I heard your [italic type]door[roman type] was broken down. It boggles my mind that anyone could do a thing like this --
 
-'But what matters is that you're here now. You're safe.'
+[wait for any key]'But what matters is that you're here now. You're safe.'
 
 [wait for any key]He smiles and squeezes your hand again."	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-somethingstrange}
 d3open-gladyoucame	true	true	"'I'm glad you came.'"	"'I'm... I'm glad you came,' you whisper.
