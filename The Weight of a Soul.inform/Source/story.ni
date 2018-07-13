@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 060718.
+The release number is 140718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -479,6 +479,8 @@ Rule for constructing the status line:
 	
 Part 1.2.3 - Skip Commands - Release for testing
 
+[These commands are used in playtesting to fast forward to a specific section of the game.]
+
 To skip past Reden's Surgery:
 	now Reden is dead;
 	now all purely-surgical-necessities are nowhere;
@@ -919,6 +921,8 @@ Book 1.3 - People
 
 Part 1.3.1 - Defining People
 
+[This game includes a lot of interacting with people, and Inform's boilerplate facilities in this regard are lacking. The setting also introduces some hurdles because people can be of different fantasy races. Here we lay the groundwork for that by assigning new properties to people and letting the player refer to people by their properties.]
+
 Definition: a person is other if it is not the player.
 Does the player mean doing something with the player: it is unlikely.
 
@@ -983,11 +987,17 @@ Part 1.3.3 - Recurring Characters
 
 Chapter 1.3.3.1 - Doctor Cavala
 
+[Doctor Cavala is a mentor/parent figure to Marid. She's tough, stoic, and competent -- qualities which Marid tried to emulate as she grew up.
+
+Initially she serves a questgiver role and gives the player direction while they're finding their feet. She's a little too active and competent for a mentor, and would usurp the story from Marid if she could, so she ends up incapacitated and forced to serve a support role halfway through the game.
+
+Doctor Cavala's name comes from the Latin "caballa" / French "cavalier." The goblin forewoman references this, calling her a "warhorse."]
+
 Doctor Cavala is a woman.
 The scent is "[if time is critical]Doctor Cavala is sweating.[otherwise]Doctor Cavala never wears perfume, owing to the danger of contamination during surgery."
 Understand "dark-skinned" or "physician" or "dr" as Cavala.
 
-Doctor Cavala can be able-bodied or incapacitated. She is able-bodied. [She becomes incapacitated later in the story, and certain descriptions need to reflect that.]
+Doctor Cavala can be able-bodied or incapacitated. She is able-bodied.
 
 The description of Doctor Cavala is "[first time]You came to know Doctor Cavala when she served with Lumina's volunteers during the troubles. Her clinic was your first choice for apprenticeship when you graduated. Since then you've watched her drag more than a few souls kicking from the brink of death -- and they won't be the last, not if she has anything to say about it.
 
@@ -1030,6 +1040,10 @@ Instead of bandaging Doctor Cavala with when Doctor Cavala is wearing the hermet
 
 Chapter 1.3.3.2 - Horatio
 
+[Horatio began as a throwaway character but has evolved into a contrast to Justinian, the main villain. (Spoilers!) Unlike Justinian, whose ambition leads him to instigate the events of the game, Horatio is just this happy-go-lucky dude who takes care of Marid and reminds her that she doesn't need some big quest to find happiness in her life.
+
+I'd like to pretend Horatio is named after the character in Hamlet but he was actually named after Horatio Hornblower. There's no real reason for this other than I thought it sounded like a Solphosian name.]
+
 Horatio is an undescribed man.
 The description is "[horatio-description]".
 The scent is "Horatio smells like sweat and ozone."
@@ -1049,6 +1063,10 @@ To say horatio-description:
 		say "He looks bemused, as though at a loss. ";
 
 Chapter 1.3.3.3 - Carnicer
+
+[Carnicer is the "miniboss" of the first half of the game. A lackey of the antagonist, she provides a sense of urgency in the game's beginning, and lets us toss in some action before Marid really knows what's going on. We also use her to remove Doctor Cavala from the playing field, and to give Marid superpowers from her near-death experience.
+
+Carnicer means "butcher" in Latin.]
 
 Carnicer is an undescribed hostile improper-named mutant woman.
 The printed name is "[if Carnicer is improper-named]assassin[otherwise]Carnicer[end if]".
@@ -1075,6 +1093,12 @@ Rule for writing a paragraph about Carnicer when Highway to Hell is happening:
 	say "In the corridor, the assassin paces back and forth.";
 
 Chapter 1.3.3.4 - Justinian
+
+[Justinian is the main antagonist of the game. He's a dark mirror to Marid: having gone through much of the same navel-gazing and agonizing over death, he's decided that he will be the master of his destiny and turn death into his own personal tool. In killing, he seeks to preserve life.
+
+Justinian has been a difficult character to write because a) we need to preserve the plot twist, and b) Marid has a raging fangirl crush on him. This means every interaction with Justinian has had like three layers of meaning.
+
+Justinian is named after Emperor Justinian of the Byzantine Empire, as befitting his ambition.]
 
 Justinian is a human man.
 The description is "[justinian-description]".
@@ -1140,7 +1164,7 @@ To decide whether it is night:
 
 Book 1.5 - Sounds, Scents
 
-[This saves us a lot of instead rules and hopefully cuts down on action-processing time.]
+[I want to provide unique descriptions for smelling, listening, and so on. This saves us a lot of instead rules and hopefully cuts down on action-processing time.]
 
 A room has some text called the sound.
 A thing has some text called the sound.
@@ -1196,6 +1220,8 @@ The can't reach inside rooms rule response (A) is "That's too far away."
 Volume 2 - The Player
 
 Book 2.1 - Marid
+
+[Marid is the player character. She's inquisitive and determined, two must-have attributes for any mystery protagonist. The plot of The Weight of a Soul is a coming of age story for her, and shows how she comes to terms with her childhood trauma and how she eventually comes to see the value of life.]
 
 Yourself is female. Understand "servator" or "marid" or "orpheia" or "yourself" as yourself. Understand "marid's" or "my" as a thing when yourself has the item described.
 
@@ -1767,7 +1793,7 @@ Include
 ]; 
 -) instead of "Reading the Command" in "Parser.i6t".
 
-Section 2.3.2.1.2 - Contextual Keyword Commands
+Section 2.3.2.1.2 - Blue Lacuna Style Examining
 
 Understand "[something]" as examining.
 
@@ -2103,6 +2129,8 @@ Rule for issuing the response text of the opening doors before entering rule res
 
 Part 2.3.7 - Emptying It Into
 
+[For some reason, I implemented this for a single object in the middle of nowhere that doesn't actually provide any clues. And isn't a container, for that matter.]
+
 Emptying it into is an action applying to two things.
 Understand "empty [something preferably held]" as emptying it into.
 Understand "empty [something preferably held] in/into/on/onto/over [something]" as emptying it into.
@@ -2172,6 +2200,8 @@ First instead of going when the noun is inside and the going-in disambiguation o
 	say "[going-in disambiguation of the location][line break]".
 
 Part 2.3.9 - Dialogue System
+
+[In case you didn't realize, this game has a lot of talking. I decided to go with Planescape: Torment style multiple choice dialogue because let's be real, ASK/TELL is the least fun topic-guessing gameplay ever devised.]
 
 Chapter 2.3.9.1 - Dialogue Branches
 
@@ -2504,7 +2534,7 @@ To say about-this-game-text:
 
 [italic type]The Weight of a Soul[roman type] is an interactive fiction game set in the world of Solphos. It takes place some years after my short story [italic type]The Guiding Light[roman type], and is an indirect sequel to it. There are callbacks and references scattered throughout this game for those already familiar with the setting, but don't worry if you're new to the whole thing: the game is designed so that anyone can enjoy it regardless of prior experience.
 
-This game was written and compiled in Inform 7, a design system for interactive fiction using human-readable programming language. More information can be found at [bold type]inform7.com[roman type].";
+This game was written and compiled in Inform 7. More information can be found at [bold type]inform7.com[roman type].";
 
 To say how-to-play-text:
 	say "[bold type]How to play[roman type]
@@ -2550,9 +2580,13 @@ To say credits-text:
 
 I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
 
-To everyone who's ever given feedback on this game -- everyone mentioned above, plus Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!) -- thank you for setting aside your time to help make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+Thanks to everyone who's ever given feedback on this game: Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!). Your time has helped to make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
-Thanks to Shanflower for the beautiful map of the Channelworks District. Thanks to Emily Short for the extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
+Shanflower drew the map of the Channelworks District.
+
+Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt w, of intfiction.org, helped with some programming tricks.
+
+Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to email me at [bold type]chinkeeyong@gmail.com[roman type].";
@@ -3450,6 +3484,10 @@ To say journal-text-notes:
 
 
 Volume 3 - The Channelworks District
+
+[The Channelworks District was designed to be a microcosm of Furopolis. I wanted the game to highlight many facets of the same city: rich vs. poor, magitech vs. improvised materials, lawful vs. unlawful. The four quarters of the Channelworks District were designed to evoke that.
+
+I had a canal run through the district and define it because I think canals are cool.]
 
 Book 3.1 - Miscellany
 
@@ -4604,7 +4642,7 @@ reden-hnd-channelworks	true	false	"'The Channelworks?'"	"'The Channelworks?'
 
 [wait for any key]You are assaulted by a vision. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
 
-[wait for any key]The vision fades as quickly as it came.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
+[wait for any key]The vision fades as quickly as it arrived, leaving more questions than answers.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
 reden-hnd-understand	true	true	"'I understand.'"	"'I understand.'
 
 [italic type]...[roman type]"	{reden-hnd-findout}
@@ -4623,7 +4661,7 @@ reden-hnd-goodbye	true	true	"'Goodbye, Reden.'"	"'Goodbye, Reden.'
 
 [italic type]...[roman type]
 
-[wait for any key]The world [italic type]shifts[roman type]."	{}
+[wait for any key]The current buoys you upward. The world [italic type]shifts[roman type]."	{}
 
 To say reden-hnd-listencloser-text:
 	say "You close your eyes and focus. The light of the real world vanishes -- but the [italic type]other[roman type] light, that light that permeates the boundary, remains. You hold on to that light and follow it like a thread...[paragraph break]";
@@ -4647,15 +4685,18 @@ Every turn when Heroes Never Die is happening and the enabled of reden-hnd-goodb
 	redraw status line;
 	say line break;
 	wait for any key;
-	say "You return gradually to your senses. The cold glare of the surgery room envelops you. The shelves, the gurney, the curtain: these things fall into their rightful place. The ghostly Reden is nowhere to be seen.[paragraph break]";
+	say "You return gradually to your senses. The cold glare of the surgery room envelops you. The shelves, the gurney, the curtain: these things fall into their rightful place, and your body of flesh and blood within it.[paragraph break]";
+	wait for any key;
+	say "As your sense of self returns, you look instinctively to the center of the room -- but the ghostly Reden is nowhere to be seen.[paragraph break]";
 	wait for any key;
 	say "And yet...[paragraph break]";
 	wait for any key;
-	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world is still here. If you look, if you focus, you know that you can peer beyond the curtain of the real. Perhaps that other world was always here, and you only lacked the eyes to see it.[paragraph break]";
+	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world still remains, inviting you to look beyond the curtain. Perhaps the other world was always here, and you only lacked the eyes to see it.[paragraph break]";
 	wait for any key;
 	say "'Marid? Are you okay?'[paragraph break]";
 	wait for any key;
 	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney.";
+	move the player to the Clinic, without printing a room description;
 	start a dialogue with Justinian using dialogue hndexposition-home.
 	
 After reading out reden-hnd-howspeaking:
@@ -4679,12 +4720,50 @@ Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 
 Table of HND Exposition Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-thinksawghost, hndexposition-itsnothing}
-hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say.
+hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-vision, hndexposition-thinksawghost}
+hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say, rather unconvincingly.
 
-He doesn't look convinced. 'Are you sure?'"	{hndexposition-thinksawghost}
-hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'"	{}
-hndexposition-itsnothing	true	false	"'It's nothing. I just had a chat with Reden.'"	"''"	{}
+He doesn't look convinced. 'Are you sure? You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
+hndexposition-justtrick	true	false	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
+
+Justinian gives you a long look.
+
+[wait for any key]'All right,' he says eventually. 'In that case... you really do need to rest. You look like someone with far too much on your mind.'
+
+[wait for any key]The two of you exit the surgery room in silence. Doctor Cavala watches you closely as you take your seat.
+
+[wait for any key]'Marid,' she begins. 'If you're--'
+
+[wait for any key][hnd-serpens-entrance]"	{}
+hndexposition-vision	true	false	"'I think I just had one of my visions.'"	"'I think I just had one of my... my visions.'
+
+'Visions? What do you mean? What did you see?'
+
+You swallow. 'I...'
+
+[wait for any key]'That's enough, Justinian,' Doctor Cavala interjects. 'There's no need to interrogate her. Let her settle down, and she'll tell you if and when she has a mind to.'
+
+[wait for any key]Justinian relents. As the two of you return to the clinic proper, you give Doctor Cavala a look of gratitude.
+
+[wait for any key]'Now, Marid,' she says as you take your seat. 'If you're--'
+
+[wait for any key][hnd-serpens-entrance]"	{}
+hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
+
+Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
+
+[wait for any key]'I spoke with the animus of a patient,' you tell him. 'At least, I think that's what it was. It felt too real to be a vision -- it wasn't like any hallucination I've ever experienced. Or read about.'
+
+[wait for any key]Justinian falls silent. He opens and closes his mouth, unable to muster a reply.
+
+[wait for any key]As the two of you exit the surgery room, Doctor Cavala watches you intently. She clears her throat as you take your seat.
+
+[wait for any key]'Marid,' she begins. 'If you're--'
+
+[wait for any key][hnd-serpens-entrance]"	{}
+
+To say hnd-serpens-entrance:
+	say "The door of the clinic rattles open."
 
 Book 3.3 - Clinic
 
@@ -5189,7 +5268,7 @@ Does the player mean doing something with the antiseptic dressing when First Aid
 An elastic bandage is a key-item in the first aid bag.
 The printed name is "bandage".
 The description is "You need it to bandage Doctor Cavala's leg."
-The scent is "It smells a bit musty, but that's the last thing on your mind at the moment."
+The scent is "It smells a bit musty, but that's the last thing you care about at the moment."
 Understand "bandages" or "fabric" as the elastic bandage.
 Instead of dropping the elastic bandage when the antiseptic dressing is carried, say "No. You can't fumble now."
 Does the player mean doing something with the elastic bandage when First Aid on Cavala is happening: it is very likely.
@@ -5339,7 +5418,7 @@ After reading out cavala-firstaid-yousafe:
 	now the conversational partner text is "Talking to the interviewer";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "It takes the better part of an hour to sort everything out with the Vigiles. You're interviewed by a bored-looking patrolwoman, and given a steaming mug of tea to wash away the foul taste of the evening's events. An agreement is made: Doctor Cavala will remain under official protection for the time being, with Horatio assigned as a personal assistant-cum-bodyguard.[paragraph break]";
+	say "It takes the better part of an hour to sort everything out with the Vigiles. You're interviewed by a bored-looking patrolwoman, and given a steaming mug of tea to wash away the foul taste of the evening's events. An agreement is made: Doctor Cavala will remain under official protection for the time being, with Horatio assigned as a personal assistant and bodyguard.[paragraph break]";
 	wait for any key;
 	say "'...and you're saying you have no idea who the assailant was?' the interviewer is asking. 'Surely you must have made an enemy of [italic type]someone.'[roman type][paragraph break]";
 	wait for any key;
@@ -5369,7 +5448,7 @@ Doctor Cavala shakes her head. 'Not [italic type]pro bono.[roman type] Arturus a
 
 The interviewer cocks an eyebrow. 'And you provide your services to these... elements?'
 
-'I uphold the oath, madam,' Doctor Cavala replies. 'How I do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
+'I uphold the oath, madam,' Doctor Cavala replies. 'How I choose to do so is my own business.'"	{clinic-interviewer-anecdote, clinic-interviewer-somethingsmells}
 clinic-interviewer-somethingsmells	true	false	"'Something definitely smells about this incident...'"	"'Something definitely smells about this incident. Who would want to attack Doctor Cavala? And why attack now, of all times?'
 
 The doctor falls silent. The interviewer's eyes dart between you.
@@ -6354,7 +6433,10 @@ d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doc
 
 [wait for any key]'Doctor!' you protest, your cheeks burning.
 
-[wait for any key]'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+[wait for any key]'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-thanks	true	true	"'...Thank you.'"	"'...Thank you.'
+
+Doctor Justinian meets your eye and smiles."	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
 
 'You've been out for close to seven hours.' Doctor Justinian checks his pocket watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
@@ -6374,9 +6456,9 @@ d3open-somethingstrange	true	false	"'Is it just me, or is something strange abou
 [wait for any key]Your breath catches in your throat. Your brain refuses to comprehend what you are seeing.
 
 [wait for any key]'What's wrong?' Justinian asks, concerned."	{d3open-closeeyes, d3open-havetogo}
-d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You wrench your eyes shut.
+d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You close your eyes, but the image does not fade.
 
-The image does not fade. It lingers."	{d3open-havetogo}
+It lingers."	{d3open-havetogo}
 d3open-havetogo	true	false	"'I have to go.'"	"'I -- I have to go.'
 
 'Hold on --'
@@ -6408,11 +6490,11 @@ When Heroes Never Die begins (this is the spawn the eldritch light in the Clinic
 When Heroes Never Die ends (this is the despawn the eldritch light in the Clinic rule):
 	now the light not of this world is nowhere.
 
-Instead of going through the clinic front door when Heroes Never Die is happening:
-	say "You can't leave. Not with this [italic type]light[roman type].";
+Before going through the clinic front door when Heroes Never Die is happening:
+	say "You can't leave. Not with this [italic type]light[roman type]." instead.
 
-Instead of going through the mortuary stairs when Heroes Never Die is happening:
-	say "You can't go there. Not now.";
+Before going through the mortuary stairs when Heroes Never Die is happening:
+	say "You can't go there. Not now." instead.
 
 Instead of talking to Doctor Cavala when Heroes Never Die is happening:
 	say "[one of]'Doctor, do you see it?'
