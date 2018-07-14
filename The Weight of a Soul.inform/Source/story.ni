@@ -1130,6 +1130,12 @@ Instead of knocking on, pulling, searching, swinging, squeezing, taking, or turn
 		say "This is not the time.";
 	otherwise:
 		say "[one of]No. No! That would -- that would be much too forward.[or]You can't bring yourself to.[stopping]";
+		
+Chapter 1.3.3.5 - Doctor Serpens
+
+[Doctor Serpens is another minor antagonist. He's a corrupt "establishment man" who has agreed to join Justinian's plan for the opportunity to advance his career. Narratively, he serves the purpose of escalating the stakes after Carnicer's death, and provides a decoy villain to mask the twist of Justinian being the antagonist.]
+
+Doctor Serpens is a hostile human man.
 
 Book 1.4 - When Time is Critical, When It is Night
 
@@ -2650,6 +2656,10 @@ The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A 
 When Meeting the Patients ends: add Sal to the list of discovered characters.
 The bio-name of Sal is "Sal and Piper".
 The bio-description of Sal is "Two of Doctor Arturus's patients. A notorious pair of underworld thugs."
+
+When Heroes Never Die ends: add Doctor Serpens to the list of discovered characters.
+The bio-name of Doctor Serpens is "Doctor Serpens".
+The bio-description of Doctor Serpens is "The pathologist overseeing the quarantine of the Channelworks District."
 
 Chapter 2.3.11.4 - Map
 
@@ -4716,6 +4726,8 @@ After reading out reden-hnd-waytohelp:
 	
 Chapter 3.2.6.2 - HND Exposition Dialogue
 
+Section 3.2.6.2.1 - B.C. (Before Cerpens)
+
 Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 
 Table of HND Exposition Dialogue
@@ -4734,7 +4746,7 @@ Justinian gives you a long look.
 
 [wait for any key]'Marid,' she begins. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
 hndexposition-vision	true	false	"'I think I just had one of my visions.'"	"'I think I just had one of my... my visions.'
 
 'Visions? What do you mean? What did you see?'
@@ -4747,7 +4759,7 @@ You swallow. 'I...'
 
 [wait for any key]'Now, Marid,' she says as you take your seat. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
 hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
 
 Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
@@ -4760,10 +4772,41 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
 [wait for any key]'Marid,' she begins. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
+
+Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, M.D.
 
 To say hnd-serpens-entrance:
-	say "The door of the clinic rattles open."
+	say "The door of the clinic rattles open. A tall man in a coat slithers in. He cranes his neck to and fro, like a searching predator, before finally settling his gaze on the man beside you.[paragraph break]";
+	wait for any key;
+	say "'Justinian!' he rasps. 'There you are, you rat. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
+	wait for any key;
+	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
+	wait for any key;
+	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting['] -- it's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your fool behind.'[paragraph break]";
+	wait for any key;
+	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll talk more later.'[paragraph break]";
+	wait for any key;
+	now the conversational partner text is "";
+	redraw status line;
+	say "You watch them depart. A small group of Vigiles salutes the doctors as they exit, and escorts them down the street and out of sight.[paragraph break]";
+	wait for any key;
+	now the conversational partner text is "Talking to Doctor Cavala";
+	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
+	redraw status line;
+	say "'Good old Doctor Serpens,' Doctor Cavala mutters. 'Eleven years on and still a curmudgeon.'[paragraph break]";
+	
+Section 3.2.6.2.3 - A.D. (In the year of our Serpens)
+
+Table of HND Exposition Dialogue
+dialogue branch	enabled	one-shot	prompt	description	choices
+hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?'"	{hndexposition-youknowserpens}
+hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'"	{hndexposition-whoserpens}
+hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
+
+[italic type]'Touché.'[roman type] A smile tugs at her lips. 'I suppose eleven years will make a curmudgeon of anyone.'"	{hndexposition-whoserpens, hndexposition-youknowserpens}
+	
+
 
 Book 3.3 - Clinic
 
