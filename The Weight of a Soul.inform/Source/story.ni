@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 140718.
+The release number is 170718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -4746,7 +4746,7 @@ Justinian gives you a long look.
 
 [wait for any key]'Marid,' she begins. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-vision	true	false	"'I think I just had one of my visions.'"	"'I think I just had one of my... my visions.'
 
 'Visions? What do you mean? What did you see?'
@@ -4759,7 +4759,7 @@ You swallow. 'I...'
 
 [wait for any key]'Now, Marid,' she says as you take your seat. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
 
 Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
@@ -4768,16 +4768,16 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
 [wait for any key]Justinian falls silent. He opens and closes his mouth, unable to muster a reply.
 
-[wait for any key]As the two of you exit the surgery room, Doctor Cavala watches you intently. She clears her throat as you take your seat.
+[wait for any key]As the two of you exit the surgery room, you notice Doctor Cavala watching you intently. She clears her throat as you take your seat.
 
 [wait for any key]'Marid,' she begins. 'If you're--'
 
-[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon}
+[wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 
 Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, M.D.
 
 To say hnd-serpens-entrance:
-	say "The door of the clinic rattles open. A tall man in a coat slithers in. He cranes his neck to and fro, like a searching predator, before finally settling his gaze on the man beside you.[paragraph break]";
+	say "The door of the clinic rattles open. A tall, gray-haired man slithers in. He cranes his neck to and fro, squinting through clouded eyes, before bringing his gaze to bear on the man beside you.[paragraph break]";
 	wait for any key;
 	say "'Justinian!' he rasps. 'There you are, you rat. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
 	wait for any key;
@@ -4794,17 +4794,26 @@ To say hnd-serpens-entrance:
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "'Good old Doctor Serpens,' Doctor Cavala mutters. 'Eleven years on and still a curmudgeon.'[paragraph break]";
+	say "Beside you, Doctor Cavala sighs. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.'[paragraph break]";
 	
 Section 3.2.6.2.3 - A.D. (In the year of our Serpens)
 
 Table of HND Exposition Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?'"	{hndexposition-youknowserpens}
-hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'"	{hndexposition-whoserpens}
+hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
+
+'I'm surprised you haven't heard of him,' she replies. 'He's one of the foremost experts on physiology -- a close rival of Doctor Arturus, back when they were both still practicing.' She grimaces. 'I'd catch up with him, but he's never been much for pleasantries, I'm afraid.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'
+
+'Long before your time.' Her voice sounds wistful. 'I apprenticed under him at the [italic type]Valetudinarium[roman type] That was what, twenty-three years ago? Before I enlisted...
+
+'Anyway, I was a little older then than you are now. Full of fire. Popular with the boys. But Serpens? He looked and acted exactly the same back then -- only with more hair on his head. And he was the hardest drill sergeant I ever served under: always complaining about this or that, never satisfied unless our noses were up against the grindstone.'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
-[italic type]'Touché.'[roman type] A smile tugs at her lips. 'I suppose eleven years will make a curmudgeon of anyone.'"	{hndexposition-whoserpens, hndexposition-youknowserpens}
+[italic type]'Touché.'[roman type] A smile tugs at her lips. 'I suppose he rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+hndexposition-aboutemergency	true	true	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
+
+"	{}
 	
 
 
@@ -14867,7 +14876,7 @@ Part 3.34.2 - Flophouse during Day Two
 
 Chapter 3.34.2.1 - The Landlord
 
-[This character is a reference to XS, one of the best and most twisted questmistresses I've ever encountered on /tg/.]
+[This character is a reference to the writings of XS, one of the best and most twisted questmistresses I've ever encountered on /tg/.]
 
 The landlord is a neuter mutant person in the Flophouse. "In the reception office, a nightmarish many-armed creature crouches, and pores obsessively over an assortment of keys."
 The description is "There's something deeply unnatural about the way it moves. You have to look away before you get a headache."
