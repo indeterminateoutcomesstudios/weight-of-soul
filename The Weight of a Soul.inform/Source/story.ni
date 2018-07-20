@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 170718.
+The release number is 200718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -4726,7 +4726,7 @@ After reading out reden-hnd-waytohelp:
 	
 Chapter 3.2.6.2 - HND Exposition Dialogue
 
-Section 3.2.6.2.1 - B.C. (Before Cerpens)
+Section 3.2.6.2.1 - BC (Before Cerpens)
 
 Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 
@@ -4774,7 +4774,7 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 
-Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, M.D.
+Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, MD
 
 To say hnd-serpens-entrance:
 	say "The door of the clinic rattles open. A tall, gray-haired man slithers in. He cranes his neck to and fro, squinting through clouded eyes, before bringing his gaze to bear on the man beside you.[paragraph break]";
@@ -4796,9 +4796,9 @@ To say hnd-serpens-entrance:
 	redraw status line;
 	say "Beside you, Doctor Cavala sighs. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.'[paragraph break]";
 	
-Section 3.2.6.2.3 - A.D. (In the year of our Serpens)
+Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
-Table of HND Exposition Dialogue
+Table of HND Exposition Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
 
