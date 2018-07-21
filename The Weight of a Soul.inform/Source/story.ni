@@ -80,7 +80,7 @@ Use American dialect and the serial comma.
 Use MAX_ARRAYS of 20000.
 Use MAX_DICT_ENTRIES of 4000.
 Use MAX_NUM_STATIC_STRINGS of 60000.
-Use MAX_OBJECTS of 1280.
+Use MAX_OBJECTS of 1920.
 Use MAX_PROP_TABLE_SIZE of 600000.
 Use MAX_STATIC_DATA of 2880000.
 Use MAX_SYMBOLS of 60000.
@@ -995,13 +995,13 @@ Doctor Cavala's name comes from the Latin "caballa" / French "cavalier." The gob
 
 Doctor Cavala is a woman.
 The scent is "[if time is critical]Doctor Cavala is sweating.[otherwise]Doctor Cavala never wears perfume, owing to the danger of contamination during surgery."
-Understand "dark-skinned" or "physician" or "dr" as Cavala.
+Understand "dark-skinned" or "surgeon" or "dr" as Cavala.
 
 Doctor Cavala can be able-bodied or incapacitated. She is able-bodied.
 
 The description of Doctor Cavala is "[first time]You came to know Doctor Cavala when she served with Lumina's volunteers during the troubles. Her clinic was your first choice for apprenticeship when you graduated. Since then you've watched her drag more than a few souls kicking from the brink of death -- and they won't be the last, not if she has anything to say about it.
 
-Doctor Cavala is a dark-skinned physician in her early forties, sharp and regal of bearing. [only][cavala-description]".
+Doctor Cavala is a dark-skinned surgeon in her early forties, sharp and regal of bearing. [only][cavala-description]".
 
 To say cavala-description:
 	if Reden's Surgery is happening:
@@ -2627,7 +2627,7 @@ The bio-name of yourself is "Servator Marid Orpheia[roman type] (yourself)".
 The bio-description of yourself is "A seventeen-year-old graduate of the Physicians['] College, currently apprenticed to Doctor Cavala. You have taken care of yourself ever since your parents died four years ago."
 
 When play begins: add Doctor Cavala to the list of discovered characters.
-The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vitalis.[roman type] A former army doctor and a physician of commanding skill[if Doctor Cavala is incapacitated]. She is currently injured following a mysterious break-in[end if]."
+The bio-description of Doctor Cavala is "Your mentor in the [italic type]ars vitalis.[roman type] A former army doctor and a surgeon of commanding skill[if Doctor Cavala is incapacitated]. She is currently injured following a mysterious break-in[end if]."
 
 When Reden's Surgery ends: add Reden to the list of discovered characters.
 The bio-description of Reden is "A goblin bum who died in Doctor Cavala's surgery room of an hitherto unknown affliction."
@@ -4167,7 +4167,7 @@ When play begins (this is the print the introduction rule):
 first-message-and-help-text-shown is a truth state that varies.
 
 Before reading a command while first-message-and-help-text-shown is false (this is the print the first surgical procedure message and new player help text rule):
-		say "[happening in row 1 of the Table of Reden's Surgical Procedure][paragraph break](New players should type >[bold type]help[roman type].)";
+		say "[happening in row 1 of the Table of Reden's Surgical Procedure][paragraph break](Type >[bold type]c[roman type] for a list of commands. For more information, type >[bold type]help[roman type].)";
 		now first-message-and-help-text-shown is true.
 
 Chapter 3.2.5.1 - Reden's Surgical Procedure
@@ -4511,7 +4511,7 @@ You sigh and pull off your mask. 'But what happens next?'
 
 [wait for any key][end if]'It's a unique situation, to be sure.' Doctor Cavala [if the player is wearing the surgical mask]takes the mask from you and [end if]begins to pace around the gurney. 'For any other disease, our course would be straightforward. Log the death. Inform the family. Check for symptoms. Do our best to contain the contagion. Easier said than done, but at least it would be straightforward.
 
-[wait for any key]'Now Reden has died of an illness I cannot identify. And I've seen a lot of illnesses, Marid.' She studies her gloved hands, stained black with blood.  'In the morning I will reference the [italic type]Alchemical Library of Fluids[roman type] and contact my colleagues for help... but we must be prepared for the possibility that we are dealing with an unknown affliction.
+[wait for any key]'Now Reden has died of an illness I can't identify. And I've seen a lot of illnesses, Marid.' She studies her gloved hands, stained black with blood.  'In the morning I will reference the [italic type]Alchemical Library of Fluids[roman type] and contact my colleagues for help... but we must be prepared for the possibility that we are dealing with an unknown affliction.
 
 [wait for any key]'For now, we proceed with caution.' She gives you a curt nod. 'After you clean up the surgery room, Marid, you may retire for the night. You've been a good assistant. As for myself... I will begin on the paperwork, and on the task of moving the body to the mortuary.'"	{cavala-redendead-goodbye, cavala-redendead-help}
 cavala-redendead-goodbye	true	false	"'Yes, Doctor.'"	"'Yes, Doctor.'
@@ -4652,14 +4652,14 @@ reden-hnd-channelworks	true	false	"'The Channelworks?'"	"'The Channelworks?'
 
 [wait for any key]You are assaulted by a vision. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
 
-[wait for any key]The vision fades as quickly as it arrived, leaving more questions than answers.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
+[wait for any key]It's gone as quickly as it arrived.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
 reden-hnd-understand	true	true	"'I understand.'"	"'I understand.'
 
 [italic type]...[roman type]"	{reden-hnd-findout}
 reden-hnd-dontunderstand	true	false	"'I don't understand.'"	"'I don't understand.'
 
 [italic type]...[roman type]"	{reden-hnd-findout}
-reden-hnd-findout	true	false	"'I'll find the place in the vision...'"	"'I -- I'll find the place in the vision. I'll find out what happened to you.'
+reden-hnd-findout	true	false	"'I'll find the place in the vision. I'll find out what happened to you.'"	"'I -- I'll find the place in the vision. I'll find out what happened to you.'
 
 [italic type]...[roman type]"	{reden-hnd-promise, reden-hnd-goodbye}
 reden-hnd-promise	true	false	"'I promise.'"	"'I promise.'
@@ -4692,20 +4692,20 @@ Every turn when Heroes Never Die is happening and the enabled of reden-hnd-goodb
 	now the command prompt is ">";
 	now the player is not engaged in dialogue;
 	now ambience suppression is true;
-	redraw status line;
 	say line break;
 	wait for any key;
-	say "You return gradually to your senses. The cold glare of the surgery room envelops you. The shelves, the gurney, the curtain: these things fall into their rightful place, and your body of flesh and blood within it.[paragraph break]";
+	redraw status line;
+	say "You return gradually to your senses. The cold glare of the surgery room envelops you. The shelves, the gurney, the curtain: these things fall into their rightful place, and your body of flesh and blood among them.[paragraph break]";
 	wait for any key;
-	say "As your sense of self returns, you look instinctively to the center of the room -- but the ghostly Reden is nowhere to be seen.[paragraph break]";
+	say "As your sense of self returns, you look instinctively to the center of the room -- but the ghostly Reden is nowhere to be seen. The gurney is empty.[paragraph break]";
 	wait for any key;
 	say "And yet...[paragraph break]";
 	wait for any key;
-	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world still remains, inviting you to look beyond the curtain. Perhaps the other world was always here, and you only lacked the eyes to see it.[paragraph break]";
+	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world still remains, inviting you to look beyond the curtain. Perhaps that other world was always here, and you only lacked the eyes to see it.[paragraph break]";
 	wait for any key;
 	say "'Marid? Are you okay?'[paragraph break]";
 	wait for any key;
-	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney.";
+	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney. ";
 	move the player to the Clinic, without printing a room description;
 	start a dialogue with Justinian using dialogue hndexposition-home.
 	
@@ -4735,7 +4735,7 @@ dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-vision, hndexposition-thinksawghost}
 hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say, rather unconvincingly.
 
-He doesn't look convinced. 'Are you sure? You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
+'Are you sure?' he asks. 'You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
 hndexposition-justtrick	true	false	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
 
 Justinian gives you a long look.
@@ -4779,22 +4779,22 @@ Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, MD
 To say hnd-serpens-entrance:
 	say "The door of the clinic rattles open. A tall, gray-haired man slithers in. He cranes his neck to and fro, squinting through clouded eyes, before bringing his gaze to bear on the man beside you.[paragraph break]";
 	wait for any key;
-	say "'Justinian!' he rasps. 'There you are, you rat. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
+	say "'Justinian!' he rasps. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
-	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting['] -- it's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your fool behind.'[paragraph break]";
+	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
 	wait for any key;
-	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll talk more later.'[paragraph break]";
+	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll see each other again.'[paragraph break]";
 	wait for any key;
 	now the conversational partner text is "";
 	redraw status line;
-	say "You watch them depart. A small group of Vigiles salutes the doctors as they exit, and escorts them down the street and out of sight.[paragraph break]";
+	say "They depart. A small group of Vigiles salutes the doctors as they exit, and escorts them down the street and out of sight.[paragraph break]";
 	wait for any key;
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "Beside you, Doctor Cavala sighs. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.'[paragraph break]";
+	say "Beside you, Doctor Cavala sighs. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
 	
 Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
@@ -4802,18 +4802,58 @@ Table of HND Exposition Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
 
-'I'm surprised you haven't heard of him,' she replies. 'He's one of the foremost experts on physiology -- a close rival of Doctor Arturus, back when they were both still practicing.' She grimaces. 'I'd catch up with him, but he's never been much for pleasantries, I'm afraid.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'I'm surprised you haven't heard of him,' she replies. 'He's one of the foremost experts on physiology -- a close rival of Doctor Arturus, back when they were both still practicing. I'd catch up with him, but he's never been one for pleasantries, I'm afraid.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'
 
-'Long before your time.' Her voice sounds wistful. 'I apprenticed under him at the [italic type]Valetudinarium[roman type] That was what, twenty-three years ago? Before I enlisted...
+'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty-three years ago? Before I enlisted...
 
-'Anyway, I was a little older then than you are now. Full of fire. Popular with the boys. But Serpens? He looked and acted exactly the same back then -- only with more hair on his head. And he was the hardest drill sergeant I ever served under: always complaining about this or that, never satisfied unless our noses were up against the grindstone.'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'In any case, I was a little older then than you are now. Full of fire and energy. But Serpens? He looked and acted exactly the same back then -- only with more hair on his head. And he was the hardest drill sergeant I ever served under: always complaining about this or that, never satisfied unless our noses were up against the grindstone.'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
-[italic type]'Touché.'[roman type] A smile tugs at her lips. 'I suppose he rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
-hndexposition-aboutemergency	true	true	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
+[italic type]'Touché.'[roman type] A smile tugs at her lips. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
-"	{}
+Doctor Cavala's demeanor grows serious. 'Right. I'd almost forgotten to tell you. Much has changed in the district while you were out. Take a look outside.'
+
+[wait for any key]She tilts her head at the door. Following her gaze, you see the shadows of robed soldiers through the glass.
+
+[wait for any key]'The death toll of the affliction has climbed into the double digits,' she says. 'The entire district is in a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
+
+[wait for any key]'No one can leave the district until a cure has been produced by the Court, or until everyone up and down the canal is dead.'"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
+
+Doctor Cavala nods grimly. 'Sulfur, mercury, and natron indeed. What a time to be alive.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+hndexposition-checkpoints	true	true	"'What did you mean by checkpoints?'"	"'What did you mean by checkpoints?'
+
+'The Vigiles have divided the district into cells,' she replies. 'You were around during the Golden Reckoning, were you not, Marid?'
+
+[wait for any key]You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
+
+'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a method to forestall the spread of the disease as much as possible while a cure is found.'
+
+[wait for any key]'And no one is allowed to move between these cells?' you ask.
+
+'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here after eight. He's needed for the inquest, which is the only reason Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+hndexposition-foodwater	true	true	"'What about food and water? Or correspondence?'"	"'What about food and water? Or correspondence?'
+
+'We can still receive items from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can pass along messages through the Vigiles network too, though obviously nothing material can be sent out.'
+
+[wait for any key]She pauses.
+
+[wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so. While you still have the chance.'
+
+[wait for any key]'...I will,' you reply."	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affliction?'"	"'So this inquest is to find a cure for the affliction?'
+
+'Indeed,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but I didn't want to subject you to even more stress... and as for me, well, it's a bit hard to conduct research from a stretcher.
+
+'Regardless, I've given them all the information that we gathered over the past two days. I suppose that's as much help as we can be in our current state.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
+hndexposition-murders	true	true	"'Didn't we establish that the deaths were murders, not a result of infection?'"	"'Didn't we establish that the deaths were murders, not a result of infection?'
+
+'That was the hypothesis, yes.' Doctor Cavala frowns. 'It remains to be seen if it holds true for this new crop of dead bodies.
+
+'Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of contamination, or of transmission in some capacity. From the death toll we're seeing, it seems very likely that the affliction is contagious. The quarantine, then, is a safety measure.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'"	{}
 	
 
 
@@ -5012,7 +5052,7 @@ Instead of talking to Doctor Cavala during Walking Home in Darkness:
 
 Doctor Cavala is giving you a look. You trail off, suddenly embarrassed.
 
-[wait for any key]'Please, Marid,' she replies wearily. 'I'm a physician, not a veterinarian. I know tonight has been hard on you, but... could you just leave me to my paperwork? Please?'
+[wait for any key]'Please, Marid,' she replies wearily. 'I'm a surgeon, not a veterinarian. I know tonight has been hard on you, but... could you just leave me to my paperwork? Please?'
 
 [wait for any key]You look at your feet. 'I -- I'm sorry, Doctor. I won't do it again.'
 
@@ -6443,7 +6483,7 @@ To unveil Day Three:
 	say line break;
 	say "Lights. You see lights.[paragraph break]";
 	wait for any key;
-	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the shadows it must be mid-afternoon, around the time of your usual lunch break. But there's something off about the color of the light. Something strange.[paragraph break]";
+	say "You force your heavy eyelids to open. You're staring at the ceiling of Doctor Cavala's clinic. From the shadows it must be afternoon, around the time of your usual lunch break. But there's something off about the color of the light. Something strange.[paragraph break]";
 	wait for any key;
 	say "'Doctor?' you croak through parched lips.[paragraph break]";
 	wait for any key;
@@ -6485,13 +6525,13 @@ d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doc
 
 [wait for any key]'Doctor!' you protest, your cheeks burning.
 
-[wait for any key]'Of course, of course,' she chuckles. 'In any case... I've been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+[wait for any key]'Of course, of course,' she chuckles. 'In any case... I have been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-thanks	true	true	"'...Thank you.'"	"'...Thank you.'
 
-Doctor Justinian meets your eye and smiles."	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+Doctor Justinian meets your eyes and smiles."	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
 
-'You've been out for close to seven hours.' Doctor Justinian checks his pocket watch. 'You've been fading in and out ever since they brought you in from the rain. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+Doctor Justinian checks his pocket watch. 'The guards found you in the abandoned block... seven hours ago? You've been fading in and out ever since. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-attacked	true	true	"'I was attacked by a mutant woman with a sword...'"	"'I was attacked by a mutant woman with a sword. The same person who broke in here the other night...'
 
 He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
