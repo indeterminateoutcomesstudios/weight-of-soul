@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 200718.
+The release number is 220718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -1242,7 +1242,7 @@ Instead of examining the player:
 	otherwise if Monster House is happening:
 		say "You hurt all over. At least nothing seems to be broken. ";
 	otherwise if Vision Quest is happening:
-		say inventory-text;
+		say "You're thirteen years old.";
 		stop;
 	otherwise:
 		say "You feel alert and well. [if time is critical]O[otherwise]Slightly o[end if]n edge, perhaps, but that's nothing unusual considering the circumstances. ";
@@ -2358,7 +2358,7 @@ Understand "shout at [something]" as talking to.
 Understand "speak to/with/-- [something]" as talking to.
 Understand "yell at [something]" as talking to.
 
-Does the player mean talking to something that is not a person: it is unlikely.
+Does the player mean talking to a person: it is likely.
 
 Check talking to something that is not a living person (this is the can't talk to inanimate objects rule): say "You won't get much of a response." instead.
 
@@ -2571,7 +2571,7 @@ To say useful-commands-text:
 
 >[bold type]go to (location)[roman type][line break][italic type]Quickly travel to a location you've visited before.[roman type]
 
->[bold type]help[roman type], >[bold type]commands[roman type], >[bold type]journal[roman type], >[bold type]characters[roman type], >[bold type]map[roman type], >[bold type]hints[roman type][line break][italic type]Open the help menu, or quickly check one of the pages within it. 'Commands' can be shortened to 'c', 'journal' can be shortened to 'j', 'characters' can be shortened to 'ch', and 'map' can be shortened to 'm'.[roman type]
+>[bold type]help[roman type], >[bold type]commands[roman type], >[bold type]journal[roman type], >[bold type]characters[roman type], >[bold type]map[roman type], >[bold type]hints[roman type][line break][italic type]Open the help menu, or quickly check one of its pages. 'Commands' can be shortened to 'c', 'journal' can be shortened to 'j', 'characters' can be shortened to 'ch', and 'map' can be shortened to 'm'.[roman type]
 
 >[bold type]undo[roman type][line break][italic type]Take back your last command, rewinding the game to an earlier state.[roman type]
 
@@ -3093,7 +3093,7 @@ I think I'll take a rest. Like Doctor Cavala asked me to. ";
 	otherwise if Can't Catch a Bloody Break is happening:
 		say "I'm so tired. ";
 	otherwise if Vision Quest is happening:
-		say "I remember what happened today. I used to dream of it every night -- it made itself known to me in visions. Tonight, perhaps, I'm viewing it for the last time. ";
+		say "I remember what happened today. I used to dream of it every night -- it made itself known to me in visions. Tonight, perhaps, I'm seeing it for the last time. ";
 	[---
 	DAY THREE
 	---]
@@ -3270,7 +3270,7 @@ To say journal-text-objectives:
 	DAY THREE
 	---]
 	if Heroes Never Die is happening:
-		add "- Pursue the apparition" to L;
+		add "- Confront the apparition" to L;
 	[---
 	END
 	---]
@@ -4579,7 +4579,7 @@ Instead of talking to the spectral afterimages, say "You know, somehow, that the
 Reden's animus is a ghostly goblin man. "You can sense Reden's animus lingering here."
 The description is "[if Heroes Never Die is happening]He is cracked but somehow whole[otherwise]You focus and his image appears in your mind: shimmering, shattered, with black-blooded eyes[end if]."
 The scent is "He smells of alcohol and death."
-Understand "Reden" or "patient" or "fractured/shattered/cracked" or "cracks" or "shimmering" as Reden's animus.
+Understand "Reden" or "patient" or "fractured/shattered/cracked" or "cracks" or "shimmering" or "apparition" as Reden's animus.
 
 Reden's ghostly eyes are part of Reden's animus.
 The description is "His eyes gaze into infinity."
@@ -4602,7 +4602,7 @@ reden-hnd-intro	true	false	""	"'H-Hello?'
 
 Reden twitches, as though animated by a jolt of galvanism. Again. His empty eyes pivot in their sockets. He opens his mouth, but you cannot quite make out the words...
 
-[wait for any key]You feel a longing, a beckoning to listen closer.[wait for any key before prompt]"	{reden-hnd-hesitate, reden-hnd-listencloser}
+[wait for any key]You feel a longing, a beckoning to listen closer."	{reden-hnd-hesitate, reden-hnd-listencloser}
 reden-hnd-hesitate	true	false	"<Hesitate.>"	"You briefly wonder if you should open your ear to a dead man.
 
 Among the laws of the universe, the separation of the living and the dead is the most sacred. Doctor Cavala's voice comes to mind, echoing in admonishment: [italic type]We are not animologists.[roman type]
@@ -4652,7 +4652,7 @@ reden-hnd-channelworks	true	false	"'The Channelworks?'"	"'The Channelworks?'
 
 [wait for any key]You are assaulted by a vision. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
 
-[wait for any key]It's gone as quickly as it arrived.[wait for any key before prompt]"	{reden-hnd-understand, reden-hnd-dontunderstand}
+[wait for any key]It's gone as quickly as it arrived."	{reden-hnd-understand, reden-hnd-dontunderstand}
 reden-hnd-understand	true	true	"'I understand.'"	"'I understand.'
 
 [italic type]...[roman type]"	{reden-hnd-findout}
@@ -4733,10 +4733,10 @@ Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 Table of HND Exposition Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-vision, hndexposition-thinksawghost}
-hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say, rather unconvincingly.
+hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say.
 
-'Are you sure?' he asks. 'You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
-hndexposition-justtrick	true	false	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
+He doesn't look convinced. 'Are you sure? You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
+hndexposition-justtrick	true	true	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
 
 Justinian gives you a long look.
 
@@ -4764,11 +4764,11 @@ hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think
 
 Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
-[wait for any key]'I spoke with the animus of a patient,' you tell him. 'At least, I think that's what it was. It felt too real to be a vision -- it wasn't like any hallucination I've ever experienced. Or read about.'
+[wait for any key]'I know what I said,' you tell him. 'I think... I think I spoke to a dead man. It felt too real to be a vision -- it wasn't like any hallucination I've ever experienced.'
 
 [wait for any key]Justinian falls silent. He opens and closes his mouth, unable to muster a reply.
 
-[wait for any key]As the two of you exit the surgery room, you notice Doctor Cavala watching you intently. She clears her throat as you take your seat.
+[wait for any key]As the two of you exit the surgery room, Doctor Cavala watches you intently. She clears her throat as you take your seat.
 
 [wait for any key]'Marid,' she begins. 'If you're--'
 
@@ -4777,13 +4777,15 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, MD
 
 To say hnd-serpens-entrance:
-	say "The door of the clinic rattles open. A tall, gray-haired man slithers in. He cranes his neck to and fro, squinting through clouded eyes, before bringing his gaze to bear on the man beside you.[paragraph break]";
+	say "Doctor Cavala is interrupted by footsteps approaching the doorway. You barely have time to look before the door swings open, admitting a tall, gray-haired man in a grubby coat.[paragraph break]";
 	wait for any key;
-	say "'Justinian!' he rasps. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
+	say "'Justinian!' he hisses. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
 	wait for any key;
-	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
+	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I... I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
-	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
+	say "The man called Serpens narrows his eyes.[paragraph break]";
+	wait for any key;
+	say "'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll see each other again.'[paragraph break]";
 	wait for any key;
@@ -4794,7 +4796,9 @@ To say hnd-serpens-entrance:
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "Beside you, Doctor Cavala sighs. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
+	say "Beside you, Doctor Cavala sighs.[paragraph break]";
+	wait for any key;
+	say "'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
 	
 Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
@@ -4805,21 +4809,19 @@ hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Se
 'I'm surprised you haven't heard of him,' she replies. 'He's one of the foremost experts on physiology -- a close rival of Doctor Arturus, back when they were both still practicing. I'd catch up with him, but he's never been one for pleasantries, I'm afraid.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'
 
-'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty-three years ago? Before I enlisted...
-
-'In any case, I was a little older then than you are now. Full of fire and energy. But Serpens? He looked and acted exactly the same back then -- only with more hair on his head. And he was the hardest drill sergeant I ever served under: always complaining about this or that, never satisfied unless our noses were up against the grindstone.'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty-three years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
 [italic type]'Touché.'[roman type] A smile tugs at her lips. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
-Doctor Cavala's demeanor grows serious. 'Right. I'd almost forgotten to tell you. Much has changed in the district while you were out. Take a look outside.'
+Doctor Cavala's demeanor grows serious. 'Right. We haven't told you. Much has changed in the district while you were out -- take a look outside.'
 
-[wait for any key]She tilts her head at the door. Following her gaze, you see the shadows of robed soldiers through the glass.
+[wait for any key]She tilts her head at the door. You follow her gaze, and the shadows of robed soldiers can be seen through the glass.
 
 [wait for any key]'The death toll of the affliction has climbed into the double digits,' she says. 'The entire district is in a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
 
-[wait for any key]'No one can leave the district until a cure has been produced by the Court, or until everyone up and down the canal is dead.'"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'No one can leave the district until a cure has been produced by the Court, or until everyone up and down the canal is dead.'[wait for any key before prompt]"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
 
 Doctor Cavala nods grimly. 'Sulfur, mercury, and natron indeed. What a time to be alive.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
@@ -4840,9 +4842,7 @@ hndexposition-foodwater	true	true	"'What about food and water? Or correspondence
 
 [wait for any key]She pauses.
 
-[wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so. While you still have the chance.'
-
-[wait for any key]'...I will,' you reply."	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so. While you still have the chance.'"	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affliction?'"	"'So this inquest is to find a cure for the affliction?'
 
 'Indeed,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but I didn't want to subject you to even more stress... and as for me, well, it's a bit hard to conduct research from a stretcher.
@@ -4852,8 +4852,30 @@ hndexposition-murders	true	true	"'Didn't we establish that the deaths were murde
 
 'That was the hypothesis, yes.' Doctor Cavala frowns. 'It remains to be seen if it holds true for this new crop of dead bodies.
 
-'Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of contamination, or of transmission in some capacity. From the death toll we're seeing, it seems very likely that the affliction is contagious. The quarantine, then, is a safety measure.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
-hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'"	{}
+'Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of transmission. From the death toll we're seeing, it seems very likely that the affliction is contagious. The quarantine is a safety measure.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'
+
+Doctor Cavala purses her lips. 'That's the question I have been pondering,' she says. 'Before all this, I was resigned to wait in the clinic until everything blew over... but you know, Marid, let's talk about you.'
+
+She gives you an appraising look. Her eyes search yours.
+
+[wait for any key]'Just what did you see in the surgery room after you woke up?'"	{hndexposition-lie, hndexposition-truth}
+hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
+
+You fidget. There is a long silence.
+
+[wait for any key]'Marid,' Doctor Cavala eventually says, 'I trust you, but you are a very, very, very bad liar.'
+
+[wait for any key]You cringe.
+
+[wait for any key]'Please.' Her expression softens. 'Marid, we've known each other for a long time. Tell me what happened in there.'"	{hndexposition-truth}
+hndexposition-truth	true	false	"<Tell her the truth.>"	"You tell her the truth.
+
+You tell her about the pulsating light and the curtain that shrouds the world. You tell her about the things you saw on the edge of life and death. And you tell her about how you spoke to Reden, cracks and all, and agreed to honor his final request in this realm.
+
+[wait for any key]As you finish, Doctor Cavala takes a deep breath. She exhales.
+
+[wait for any key]"	{}
 	
 
 
@@ -4935,7 +4957,7 @@ The description is "Bright."
 Understand "lamp" as the hardy fluorescent lamps.
 
 Some nondescript floor tile is faraway scenery in the Clinic.
-The description is "The floor is kept clean, yet strangely it seems murky."
+The description is "The floor is kept clean."
 The nondescript floor tile has some text called the faraway response. The faraway response is "You have better things to do."
 Understand "tiles" as the nondescript floor tile.
 
@@ -4992,7 +5014,7 @@ Instead of consulting the pigeonholes about a topic listed in the Table of the P
 	
 Table of the Pigeonholes
 topic	description
-"servator" or "marid" or "orpheia" or "me/self/myself"	"Your own medical record is little more than an informal note for accounting purposes, as your only treatment here -- for a bout of Midaes fever last month -- was self-prescribed."
+"servator" or "marid" or "orpheia" or "me/self/myself"	"Your own medical record is little more than an informal account, as your only treatment here -- for a bout of Midaes fever last month -- was self-prescribed."
 "doctor" or "cavala"	"Doctor Cavala has meticulously recorded her medical history starting from the day she opened this clinic six years ago. [if Cavala is incapacitated]Her most recent leg injury is here as well, complete with a sketch of the tendons damaged.[otherwise]It seems she has been mostly in health, except for a recurrent ache in her right shoulder from her soldiering days."
 "reden"	"On record are various minor illnesses typical for a goblin of his age: the homunculoid shingles, the common cold. There is no precedent for the sudden and dramatic affliction that took his life."
 "doctor/-- arturus"	"Doctor Arturus must [if Day One has ended]have been[otherwise]be[end if] the prideful sort -- there are no records of him ever receiving treatment in this clinic."
@@ -17476,7 +17498,7 @@ Some dialogue branches are defined by the Table of Vision Dialogue.
 
 Table of Vision Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-visionp1-home	true	false	""	"Your breath catches in your throat."	{visionp1-howalive, visionp1-loveyou, visionp1-comeback}
+visionp1-home	true	false	""	""	{visionp1-howalive, visionp1-loveyou, visionp1-comeback}
 visionp1-howalive	true	false	"'How are you alive?'"	"Tears well up in your eyes. You blink them back, but they keep coming.
 
 'How are you alive?'
@@ -17622,9 +17644,9 @@ The home dialogue branch of Father is visionp1-home.
 To say visionp1-fatherdies:
 	say "You've had this dream a thousand times. Each time, it ends the same way. Each time, you are powerless to prevent it.[paragraph break]";
 	wait for any key;
-	say "The athanor closest to your father explodes. Glass shatters. A plume of fire erupts, and you are both thrown back from the blast. You are dimly aware of porcelain pieces, scattered across the desk, shimmering in the intense heat.[paragraph break]";
+	say "The athanor closest to your father explodes. Glass shatters. A plume of fire erupts, and both of you are thrown back from the blast. You are dimly aware of porcelain pieces, scattered across the desk, shimmering in the intense heat.[paragraph break]";
 	wait for any key;
-	say "You struggle to focus. Your father is calling your name. You see him then: bleeding out, barely recognizable. Another beaker falls to the floor and shatters. You can't breathe -- you force yourself up, unsteady, tottering towards your father, toward the flames...[paragraph break]";
+	say "Your father is calling your name. You see him then: bleeding out, barely recognizable. Another beaker falls to the floor and shatters. You can't breathe -- you force yourself up, unsteady, tottering towards your father, toward the flames...[paragraph break]";
 	wait for any key;
 	say "'Marid, go!' he screams. 'Just go! Run! Get help... get help... g...'[paragraph break]";
 	wait for any key;
