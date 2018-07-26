@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 220718.
+The release number is 260718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -4733,7 +4733,7 @@ Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 Table of HND Exposition Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-vision, hndexposition-thinksawghost}
-hndexposition-imfine	true	false	"'I'm fine.'"	"'I'm fine,' you say.
+hndexposition-imfine	true	false	"'I'm fine.'"	"'I -- I'm fine,' you say.
 
 He doesn't look convinced. 'Are you sure? You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
 hndexposition-justtrick	true	true	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
@@ -4777,15 +4777,13 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, MD
 
 To say hnd-serpens-entrance:
-	say "Doctor Cavala is interrupted by footsteps approaching the doorway. You barely have time to look before the door swings open, admitting a tall, gray-haired man in a grubby coat.[paragraph break]";
+	say "Doctor Cavala is interrupted by footsteps approaching the doorway. You barely have time to look before the door swings open and a gray-haired man in a grubby coat slithers in.[paragraph break]";
 	wait for any key;
-	say "'Justinian!' he hisses. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
+	say "'Justinian!' the man rasps. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost the Court?'[paragraph break]";
 	wait for any key;
-	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I... I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
+	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
-	say "The man called Serpens narrows his eyes.[paragraph break]";
-	wait for any key;
-	say "'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
+	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll see each other again.'[paragraph break]";
 	wait for any key;
@@ -4796,9 +4794,7 @@ To say hnd-serpens-entrance:
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "Beside you, Doctor Cavala sighs.[paragraph break]";
-	wait for any key;
-	say "'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
+	say "Beside you, Doctor Cavala shakes her head. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
 	
 Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
@@ -4827,15 +4823,15 @@ hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
 Doctor Cavala nods grimly. 'Sulfur, mercury, and natron indeed. What a time to be alive.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-checkpoints	true	true	"'What did you mean by checkpoints?'"	"'What did you mean by checkpoints?'
 
-'The Vigiles have divided the district into cells,' she replies. 'You were around during the Golden Reckoning, were you not, Marid?'
+'The Vigiles have divided the district into cells,' she replies. 'You were around during the Golden Reckoning, were you not?'
 
 [wait for any key]You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
 
-'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a method to forestall the spread of the disease as much as possible while a cure is found.'
+[wait for any key]'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease as much as possible while a cure is found.'
 
 [wait for any key]'And no one is allowed to move between these cells?' you ask.
 
-'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here after eight. He's needed for the inquest, which is the only reason Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here after eight. He's needed for the inquest, which is the only reason Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-foodwater	true	true	"'What about food and water? Or correspondence?'"	"'What about food and water? Or correspondence?'
 
 'We can still receive items from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can pass along messages through the Vigiles network too, though obviously nothing material can be sent out.'
@@ -4850,16 +4846,14 @@ hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affl
 'Regardless, I've given them all the information that we gathered over the past two days. I suppose that's as much help as we can be in our current state.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
 hndexposition-murders	true	true	"'Didn't we establish that the deaths were murders, not a result of infection?'"	"'Didn't we establish that the deaths were murders, not a result of infection?'
 
-'That was the hypothesis, yes.' Doctor Cavala frowns. 'It remains to be seen if it holds true for this new crop of dead bodies.
-
-'Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of transmission. From the death toll we're seeing, it seems very likely that the affliction is contagious. The quarantine is a safety measure.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+'That was the hypothesis, yes.' Doctor Cavala frowns. 'It remains to be seen if it holds true for this new crop of dead bodies. Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of transmission.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
 hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'
 
-Doctor Cavala purses her lips. 'That's the question I have been pondering,' she says. 'Before all this, I was resigned to wait in the clinic until everything blew over... but you know, Marid, let's talk about you.'
+Doctor Cavala purses her lips. 'That's the question I have been pondering,' she says. 'Before all this, I was resigned to wait in the clinic until everything blew over... but now that you've woken up, Marid, there's something I need to ask you.'
 
-She gives you an appraising look. Her eyes search yours.
+She turns her head and regards you coolly. Her eyes are searching -- appraising.
 
-[wait for any key]'Just what did you see in the surgery room after you woke up?'"	{hndexposition-lie, hndexposition-truth}
+[wait for any key]'Just what did you see back there in the surgery room?'"	{hndexposition-lie, hndexposition-truth}
 hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
 
 You fidget. There is a long silence.
@@ -4868,14 +4862,21 @@ You fidget. There is a long silence.
 
 [wait for any key]You cringe.
 
-[wait for any key]'Please.' Her expression softens. 'Marid, we've known each other for a long time. Tell me what happened in there.'"	{hndexposition-truth}
+'Please.' Her expression softens. 'Marid, we've known each other for a long time. Tell me what happened in there.'"	{hndexposition-truth}
 hndexposition-truth	true	false	"<Tell her the truth.>"	"You tell her the truth.
 
-You tell her about the pulsating light and the curtain that shrouds the world. You tell her about the things you saw on the edge of life and death. And you tell her about how you spoke to Reden, cracks and all, and agreed to honor his final request in this realm.
+You tell her about the pulsating light and the curtain that shrouds the world. You tell her about the things you saw on the edge of life and death. And you tell her about how you spoke with Reden, cracks and all, and agreed to honor his final request in this realm.
 
 [wait for any key]As you finish, Doctor Cavala takes a deep breath. She exhales.
 
-[wait for any key]"	{}
+[wait for any key]'You...' she begins. 'I...'
+
+[wait for any key]She shakes her head. She reaches out with her hand, gently grasps your chin. She pulls you closer and looks into the whites of your eyes.
+
+[wait for any key]'Impossible,' she breathes."	{hndexposition-urawizard1a, hndexposition-urawizard1b, hndexposition-urawizard1c}
+hndexposition-urawizard1a	true	false	"'Doctor?'"	"'D-Doctor?'"	{}
+hndexposition-urawizard1b	true	false	"<Remain silent.>"	"You hold your breath."	{}
+hndexposition-urawizard1c	true	false	"<Pull away.>"	"You pull away from her. She tenses slightly, but does nothing to stop you."	{}
 	
 
 
