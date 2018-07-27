@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 260718.
+The release number is 270718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -767,7 +767,21 @@ To skip Can't Catch a Bloody Break:
 To skip past Day Two:
 	if Marid's Vision is not visited:
 		skip Can't Catch a Bloody Break;
+	follow the scene changing rules;
+	now Justinian is in the Clinic;
 	unveil Day Three;
+	
+To skip the wake-up call and Reden's ghost:
+	if Marid's Vision is not visited:
+		skip Can't Catch a Bloody Break;
+		move the player to the Clinic, without printing a room description;
+		now the natron jacket is worn by the player;
+		now the animus pendant is worn by the player;
+		now the clothes are worn by the player;
+		repeat with item running through things in the temporary-inventory-holder:
+			now the item is carried by the player;
+		now Carnicer is proper-named;
+	now the enabled of reden-hnd-goodbye is false;
 	
 Skipping Reden's surgery is an action applying to nothing.
 Understand "skip surgery" as skipping Reden's surgery.
@@ -916,6 +930,12 @@ Understand "skip to day three" as skipping to day three.
 Check skipping to day three when Day Two has ended: say "You have already passed that checkpoint."; stop the action.
 Carry out skipping to day three:
 	skip past Day Two.
+	
+Skipping to serpens is an action applying to nothing.
+Understand "skip to serpens" as skipping to serpens.
+Check skipping to serpens when the enabled of reden-hnd-goodbye is false: say "You have already passed that checkpoint."; stop the action.
+Carry out skipping to serpens:
+	skip the wake-up call and Reden's ghost.
 	
 Book 1.3 - People
 
@@ -4790,6 +4810,7 @@ To say hnd-serpens-entrance:
 	now the conversational partner text is "";
 	redraw status line;
 	say "They depart. A small group of Vigiles salutes the doctors as they exit, and escorts them down the street and out of sight.[paragraph break]";
+	now Justinian is nowhere;
 	wait for any key;
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
@@ -4874,9 +4895,32 @@ You tell her about the pulsating light and the curtain that shrouds the world. Y
 [wait for any key]She shakes her head. She reaches out with her hand, gently grasps your chin. She pulls you closer and looks into the whites of your eyes.
 
 [wait for any key]'Impossible,' she breathes."	{hndexposition-urawizard1a, hndexposition-urawizard1b, hndexposition-urawizard1c}
-hndexposition-urawizard1a	true	false	"'Doctor?'"	"'D-Doctor?'"	{}
-hndexposition-urawizard1b	true	false	"<Remain silent.>"	"You hold your breath."	{}
-hndexposition-urawizard1c	true	false	"<Pull away.>"	"You pull away from her. She tenses slightly, but does nothing to stop you."	{}
+hndexposition-urawizard1a	true	false	"'Doctor?'"	"'D-Doctor?'
+
+Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
+
+'[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
+hndexposition-urawizard1b	true	false	"<Remain silent.>"	"You hold your breath.
+
+Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
+
+[wait for any key]'[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
+hndexposition-urawizard1c	true	false	"<Pull away.>"	"You pull away from her. She tenses slightly, but does nothing to stop you.
+
+'[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
+hndexposition-necromanteia	true	true	"'[roman type][']Necromanteia[']?[italic type]'"	"[italic type]'[']N-Necromanteia[']?'[roman type]
+
+'Also known as Ulrexes's syndrome.' Doctor Cavala rubs her temples. 'An extremely rare condition of the soul. Last recorded hundreds of years ago, in a book that no longer exists... some scholars dispute that it is even possible. That one can walk the paths of both the living and the dead.
+
+'But if what you say is true, then you are living, breathing proof.'"	{hndexposition-mysoul, hndexposition-thegift}
+hndexposition-mysoul	true	true	"'What has happened to my soul?'"	"'What has happened to my soul?' you ask.
+
+'I don't know,' she replies. 'Nothing like this has ever been reported in modern history. We would need to call in an animologist -- possibly a priest...'"	{hndexposition-thegift}
+hndexposition-thegift	true	false	"'[']The gift[']? Is this a gift?'"	"'[']The gift[']? Is this a gift?'
+
+Doctor Cavala rubs her hands together. 'If you saw what you think you saw -- spoke to who you think you spoke to -- then you can communicate with the departed. You can make dead men talk, Marid. This changes everything -- if the Vigiles examiners knew of your ability...'
+
+"	{}
 	
 
 
@@ -6477,7 +6521,6 @@ To unveil Day Three:
 	move the player to the Clinic, without printing a room description;
 	now the natron jacket is worn by the player;
 	now the animus pendant is worn by the player;
-	now the clothes are nowhere;
 	now the clothes are worn by the player;
 	repeat with item running through things in the temporary-inventory-holder:
 		now the item is carried by the player;
