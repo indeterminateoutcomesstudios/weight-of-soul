@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 270718.
+The release number is 280718.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -4670,7 +4670,7 @@ reden-hnd-channelworks	true	false	"'The Channelworks?'"	"'The Channelworks?'
 
 [italic type]...[roman type]
 
-[wait for any key]You are assaulted by a vision. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
+[wait for any key]A vision assaults you. A canal splits and runs off. A sewer heaves with misery and regret. You sit and drink, waiting, waiting for an answer that will never come --
 
 [wait for any key]It's gone as quickly as it arrived."	{reden-hnd-understand, reden-hnd-dontunderstand}
 reden-hnd-understand	true	true	"'I understand.'"	"'I understand.'
@@ -4753,7 +4753,7 @@ Some dialogue branches are defined by the Table of HND Exposition Dialogue.
 Table of HND Exposition Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-home	true	false	""	""	{hndexposition-imfine, hndexposition-vision, hndexposition-thinksawghost}
-hndexposition-imfine	true	false	"'I'm fine.'"	"'I -- I'm fine,' you say.
+hndexposition-imfine	true	false	"'I'm fine.'"	"'I-I'm fine,' you say.
 
 He doesn't look convinced. 'Are you sure? You -- you looked as though you were sleepwalking, or caught in a dream...'"	{hndexposition-justtrick, hndexposition-vision, hndexposition-thinksawghost}
 hndexposition-justtrick	true	true	"'I thought I saw something, but it was just a trick of the light.'"	"'I thought I saw something,' you tell him, 'but it was just a trick of the light.'
@@ -4846,9 +4846,9 @@ hndexposition-checkpoints	true	true	"'What did you mean by checkpoints?'"	"'What
 
 'The Vigiles have divided the district into cells,' she replies. 'You were around during the Golden Reckoning, were you not?'
 
-[wait for any key]You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
+You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
 
-[wait for any key]'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease as much as possible while a cure is found.'
+'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease as much as possible while a cure is found.'
 
 [wait for any key]'And no one is allowed to move between these cells?' you ask.
 
@@ -4892,15 +4892,15 @@ You tell her about the pulsating light and the curtain that shrouds the world. Y
 
 [wait for any key]'You...' she begins. 'I...'
 
-[wait for any key]She shakes her head. She reaches out with her hand, gently grasps your chin. She pulls you closer and looks into the whites of your eyes.
+[wait for any key]She shakes her head. She reaches out with her hand, gently grasps your chin. She looks into the whites of your eyes.
 
 [wait for any key]'Impossible,' she breathes."	{hndexposition-urawizard1a, hndexposition-urawizard1b, hndexposition-urawizard1c}
-hndexposition-urawizard1a	true	false	"'Doctor?'"	"'D-Doctor?'
+hndexposition-urawizard1a	true	false	"'Doctor?'"	"'Doctor?'
 
 Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
 
 '[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
-hndexposition-urawizard1b	true	false	"<Remain silent.>"	"You hold your breath.
+hndexposition-urawizard1b	true	false	"<Hold your breath.>"	"You hold your breath.
 
 Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
 
@@ -4908,19 +4908,28 @@ Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder e
 hndexposition-urawizard1c	true	false	"<Pull away.>"	"You pull away from her. She tenses slightly, but does nothing to stop you.
 
 '[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
-hndexposition-necromanteia	true	true	"'[roman type][']Necromanteia[']?[italic type]'"	"[italic type]'[']N-Necromanteia[']?'[roman type]
+hndexposition-necromanteia	true	true	"'[']Necromanteia[']?'"	"'[']Necromanteia[']?'
 
-'Also known as Ulrexes's syndrome.' Doctor Cavala rubs her temples. 'An extremely rare condition of the soul. Last recorded hundreds of years ago, in a book that no longer exists... some scholars dispute that it is even possible. That one can walk the paths of both the living and the dead.
+'Also known as Ulrexes's syndrome,' she replies. 'An extremely rare condition of the soul. Last recorded hundreds of years ago, in a book that no longer exists... some scholars dispute that it is even possible. That one can walk the paths of both the living and the dead.
 
-'But if what you say is true, then you are living, breathing proof.'"	{hndexposition-mysoul, hndexposition-thegift}
+'But if what you say is true, then you are living, breathing proof.'"	{hndexposition-howknow, hndexposition-mysoul, hndexposition-thegift}
+hndexposition-howknow	true	true	"'Where did you learn of this condition?'"	"'Where did you learn of this condition?'
+
+Doctor Cavala looks at her fingernails, and pauses.
+
+'...The first time I lost a patient.' Her voice is quiet. 'I was looking for answers. I did some research, in the [italic type]Alchemical Library[roman type] and elsewhere. All I found was a myth, a legend that might never have existed.'"	{hndexposition-mysoul, hndexposition-thegift}
 hndexposition-mysoul	true	true	"'What has happened to my soul?'"	"'What has happened to my soul?' you ask.
 
-'I don't know,' she replies. 'Nothing like this has ever been reported in modern history. We would need to call in an animologist -- possibly a priest...'"	{hndexposition-thegift}
+'I don't know.' She rubs her temples. 'Nothing like this has ever been reported in modern history. We would need to call in an animologist -- possibly a priest...'"	{hndexposition-howknow, hndexposition-thegift}
 hndexposition-thegift	true	false	"'[']The gift[']? Is this a gift?'"	"'[']The gift[']? Is this a gift?'
 
-Doctor Cavala rubs her hands together. 'If you saw what you think you saw -- spoke to who you think you spoke to -- then you can communicate with the departed. You can make dead men talk, Marid. This changes everything -- if the Vigiles examiners knew of your ability...'
+Doctor Cavala nods. 'If you saw what you think you saw -- spoke to who you think you spoke to -- then you can communicate with the departed. You can make dead men talk, Marid. This changes everything. If the Vigiles examiners knew of your ability...'
 
-"	{}
+[wait for any key]'I -- I don't know how much I can do,' you tell her. 'I barely heard anything. And Reden seemed like... like he'd been torn apart...'
+
+[wait for any key]She falls silent. She leans back into her cot and exhales, as though she was dealing with a problematic patient.
+
+[wait for any key]''"	{}
 	
 
 
@@ -6538,12 +6547,14 @@ To unveil Day Three:
 	say "You slip back into unconsciousness.[paragraph break]";
 	wait for any key;
 	clear the screen;
+	say line break;
 	wait for any key;
 	redraw status line;
 	say line break;
 	say "'...stabilizing...'[paragraph break]";
 	wait for any key;
 	clear the screen;
+	say line break;
 	wait for any key;
 	redraw status line;
 	say line break;
@@ -6585,13 +6596,13 @@ d3open-gladyoucame	true	true	"'I'm glad you came.'"	"'I'm... I'm glad you came,'
 'Me too,' Doctor Justinian replies. 'Me too.'"	{d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doctor Cavala?' you ask. 'Horatio?'
 
-'I'm right here,' Doctor Cavala answers. You crane your neck and -- yes, there she is, still confined to her makeshift cot. She shrugs.
+'I'm right here,' Doctor Cavala answers. You crane your neck and -- yes, there she is, still confined to her makeshift cot. She turns her palms up in a shrug.
 
 'I'd have said something earlier,' she says, 'but it looked like you were having a bit of a moment there and I didn't want to interrupt.'
 
 [wait for any key]'Doctor!' you protest, your cheeks burning.
 
-[wait for any key]'Of course, of course,' she chuckles. 'In any case... I have been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+[wait for any key]'Of course, of course.' She chuckles. 'In any case... I have been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-thanks	true	true	"'...Thank you.'"	"'...Thank you.'
 
 Doctor Justinian meets your eyes and smiles."	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
@@ -17670,7 +17681,7 @@ You remember those moments, frozen in time and etched in memory. The black trail
 
 [wait for any key]'I'm caught up in something. I -- I don't know what. But I know that it's big, bigger than all of us. And it's going to take the lives of a hundred more, or a thousand more, before it ends.
 
-[wait for any key]'I have to find out what's happening. I have to find the truth. Before it's too late, and... and...'
+[wait for any key]'I have to find out what's happening. I have to find the truth. Before it's too late, and... and... I...'
 
 [visionp1-maridfaceoff]"	{}
 visionp1-notdoneyet	true	false	"'I'm not done yet...'"	"'...I'm not done yet.'
