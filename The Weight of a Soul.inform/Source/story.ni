@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 290718.
+The release number is 030818.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -2532,7 +2532,6 @@ To end the endoscopy, followed by looking:
 	say "You withdraw upward...[paragraph break]";
 	wait for any key;
 	now the player is not engaged in endoscopy;
-	now the endoscopic location is nowhere;
 	now right alignment depth is 14;
 	clear the screen;
 	redraw status line;
@@ -4900,7 +4899,7 @@ hndexposition-urawizard1a	true	false	"'Doctor?'"	"'Doctor?'
 Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
 
 '[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
-hndexposition-urawizard1b	true	false	"<Hold your breath.>"	"You hold your breath.
+hndexposition-urawizard1b	true	false	"<Let her examine you.>"	"You hold your breath.
 
 Doctor Cavala releases her grasp, very, very slowly. There is a look of wonder etched on her face.
 
@@ -4910,14 +4909,14 @@ hndexposition-urawizard1c	true	false	"<Pull away.>"	"You pull away from her. She
 '[italic type]Necromanteia,[roman type]' she whispers. 'I never thought I would meet one with the gift in my lifetime... and never in a million years would I have guessed that it would be you.'"	{hndexposition-necromanteia, hndexposition-thegift}
 hndexposition-necromanteia	true	true	"'[']Necromanteia[']?'"	"'[']Necromanteia[']?'
 
-'Also known as Ulrexes's syndrome,' she replies. 'A mythical condition of the soul. Last recorded hundreds of years ago, in a book that no longer exists... some scholars dispute that it is even possible. That one can walk the paths of both the living and the dead.
+'Also known as Ulrexes's syndrome...' She shakes her head. 'A mythical condition of the soul. Last recorded hundreds of years ago, in a book that no longer exists -- some scholars dispute that it is even possible. That one can walk the paths of both the living and the dead.
 
 'But if what you say is true, then you are living, breathing proof.'"	{hndexposition-howknow, hndexposition-mysoul, hndexposition-thegift}
 hndexposition-howknow	true	true	"'Where did you learn of this condition?'"	"'Where did you learn of this condition?'
 
 Doctor Cavala looks at her fingernails, and becomes very quiet.
 
-'...The first time I lost a patient,' she says. 'I was looking for answers. I did some research, in the [italic type]Alchemical Library[roman type] and elsewhere. All I found was a legend that might never have existed.'"	{hndexposition-mysoul, hndexposition-thegift}
+'The first time I lost a patient,' she says, 'I went looking for answers. I did my own research, in the [italic type]Alchemical Library[roman type] and elsewhere. All I found was a myth, a legend that might never have existed. Until now.'"	{hndexposition-mysoul, hndexposition-thegift}
 hndexposition-mysoul	true	true	"'What has happened to my soul?'"	"'What has happened to my soul?' you ask.
 
 'I don't know.' She rubs her temples. 'Nothing like this has ever been reported in modern history. We would need to call in an animologist -- possibly a priest...'"	{hndexposition-howknow, hndexposition-thegift}
@@ -4927,9 +4926,14 @@ Doctor Cavala looks at you intently. 'If you saw what you think you saw -- spoke
 
 [wait for any key]'I -- I don't know how much I can do,' you tell her. 'I barely heard anything. And Reden seemed like he... he had been torn apart...'
 
-[wait for any key]She falls silent. She leans back into her cot and exhales, as though she was dealing with a problematic patient.
+[wait for any key]She falls silent. She leans back into her cot and exhales; the afternoon light plays on her face and in her hands.
 
-[wait for any key]''"	{}
+[wait for any key]'These are desperate times,' she eventually says. 'I trust your abilities, Marid. Even if you don't trust yourself. And you have the potential to do great good in this crisis. You said that Reden gave you a vision -- if you could find out where he contracted the affliction, you could trace it to its source and end it. You could end the epidemic.'
+
+[wait for any key]Your heart skips a beat."	{hndexposition-really}
+hndexposition-really	true	true	"'Do you really think so?'"	"'Do you really think so?'
+
+She nods. 'I do, Marid. I really do.'"	{}
 	
 
 
