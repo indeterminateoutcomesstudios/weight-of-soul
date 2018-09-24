@@ -3737,7 +3737,7 @@ The offal is a faraway backdrop. The indefinite article is "some".
 The description is "There is no sanitation here."
 The scent is "Nightsoil, rotten food, and the acrid stench of smoke."
 The offal has some text called the faraway response. The faraway response is "You're not touching that."
-Understand "refuse" or "waste" or "stench" or "and" or "heap/heaps" or "nightsoil" or "rotten/rotting/rotted" or "food" or "acrid" or "smoke" or "garbage" or "fire/fires" as the offal.
+Understand "refuse" or "waste" or "stench" or "and" or "heap/heaps" or "nightsoil" or "rotten/rotting/rotted" or "food" or "acrid" or "smoke" or "rubbish" or "fire/fires" as the offal.
 Instead of eating, drinking, or tasting the offal, say "No."
 
 Some slum-dwellers are a backdrop.
@@ -11329,12 +11329,12 @@ To send Marid into the fire:
 	wait for any key;
 	move the player to Maze Part Four, without printing a room description;
 	say "[bold type][Maze Part Four][roman type][line break]";
-	say "A garbage fire, roaring and acrid and unmistakably fecal. The flames are green and blue from alchemical decomposition, and dead bodies feed the fire and stoke its insatiable hunger with their animii.[paragraph break]";
+	say "A rubbish fire, roaring and acrid and unmistakably fecal. The flames are green and blue from alchemical decomposition, and dead bodies feed the fire and stoke its insatiable hunger with their animii.[paragraph break]";
 	wait for any key;
 	say "You sink to your knees.";
 	now marid-kneeling-in-maze is true.
 
-Maze Part Four is a privately-named room in the Shanty Maze. "A garbage fire, and the green and blue flames lick at your jacket and sting your eyes raw with tears.
+Maze Part Four is a privately-named room in the Shanty Maze. "A rubbish fire. The green and blue flames lick at your jacket and sting your eyes raw with tears.
 
 But somewhere far to the west, you think you see sunlight."
 
@@ -11349,22 +11349,22 @@ Instead of examining a direction in Maze Part Four:
 	otherwise:
 		say "There is nothing for you there."
 
-The garbage fire is faraway scenery in Maze Part Four.
+The rubbish fire is faraway scenery in Maze Part Four.
 The description is "The fire burns."
 The sound is "Flames."
 The scent is "Smoke."
-The garbage fire has some text called the faraway response. The faraway response is "No."
-Understand "green" or "and" or "blue" or "flame/flames" or "dead" or "body/bodies" or "animus/animii" or "corpse/corpses" as the garbage fire.
+The rubbish fire has some text called the faraway response. The faraway response is "No."
+Understand "green" or "and" or "blue" or "flame/flames" or "dead" or "body/bodies" or "animus/animii" or "corpse/corpses" as the rubbish fire.
 
-Instead of approaching when the garbage fire is in the location, say "That seems an eternity away, now."
-Instead of attacking or cutting the player when the garbage fire is in the location, say "No."
-Instead of burning when the garbage fire is in the location, say "No."
-Instead of crying when the garbage fire is in the location, say "You cry."
-Instead of jumping when the garbage fire is in the location, say "You can't bring yourself to."
-Instead of examining the player when the garbage fire is in the location, say "You are not okay."
-Instead of doing something with something (called the held item) enclosed by the player when the garbage fire is in the location, say "[regarding the held item][They] [don't] matter."
-Instead of taking inventory when the garbage fire is in the location, say "It doesn't matter."
-Instead of waiting when the garbage fire is in the location, say "Every second is an eternity."
+Instead of approaching when the rubbish fire is in the location, say "That seems an eternity away, now."
+Instead of attacking or cutting the player when the rubbish fire is in the location, say "No."
+Instead of burning when the rubbish fire is in the location, say "No."
+Instead of crying when the rubbish fire is in the location, say "You cry."
+Instead of jumping when the rubbish fire is in the location, say "You can't bring yourself to."
+Instead of examining the player when the rubbish fire is in the location, say "You are not okay."
+Instead of doing something with something (called the held item) enclosed by the player when the rubbish fire is in the location, say "[regarding the held item][They] [don't] matter."
+Instead of taking inventory when the rubbish fire is in the location, say "It doesn't matter."
+Instead of waiting when the rubbish fire is in the location, say "Every second is an eternity."
 
 The glimmer of sunlight is faraway scenery in Maze Part Four.
 The description is "It's so close."
