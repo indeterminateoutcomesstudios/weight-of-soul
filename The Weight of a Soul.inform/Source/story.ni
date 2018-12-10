@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 030818.
+The release number is 101218.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2018.
 
@@ -238,6 +238,10 @@ To say skip-commands-text:
 	say "[line break]>[bold type]skip to service lift[roman type]";
 	say "[line break]>[bold type]skip to collapsed corridor[roman type]";
 	say "[line break]>[bold type]skip to vision[roman type]";
+	say line break;
+	say "[line break][italic type]Day Three[roman type]";
+	say "[line break]>[bold type]skip to day three[roman type]";
+	say "[line break]>[bold type]skip to serpens[roman type]";
 	
 To to be continued:
 	clear the screen;
@@ -965,6 +969,8 @@ First before examining or talking to a mutant person when mutant-tutorial-shown 
 		
 Part 1.3.2 - People Block Responses
 
+[Here we add some colorful Marid-narrator-voice to replace Inform's boilerplate responses.]
+
 The sound of a person is usually "[regarding the item described][They] [are][if the item described is dead] silent.[otherwise]n't saying anything."
 		
 Instead of drinking, switching on, switching off, or wearing someone (this is the can't do that to a person rule): say "That doesn't make any sense."
@@ -1007,7 +1013,7 @@ Part 1.3.3 - Recurring Characters
 
 Chapter 1.3.3.1 - Doctor Cavala
 
-[Doctor Cavala is a mentor/parent figure to Marid. She's tough, stoic, and competent -- qualities which Marid tried to emulate as she grew up.
+[Doctor Cavala is a mentor/parent figure to Marid. She's tough, stoic, and competent -- qualities which Marid tried to emulate as she grew up. Despite her tough shell, though, she genuinely cares about her ward and has a mini breakdown in Day Three when Marid nearly dies.
 
 Initially she serves a questgiver role and gives the player direction while they're finding their feet. She's a little too active and competent for a mentor, and would usurp the story from Marid if she could, so she ends up incapacitated and forced to serve a support role halfway through the game.
 
@@ -1038,7 +1044,7 @@ To say cavala-description:
 		otherwise:
 			say "She looks frankly irritated that she's bedridden. ";
 	otherwise if Heroes Never Die is happening:
-		say "She's looking at you like you've swallowed a bee. ";
+		say "Her eyes are red from crying. ";
 	otherwise:
 		say "She seems to be at a crossroads, lost in thought. ".
 		
@@ -1060,7 +1066,7 @@ Instead of bandaging Doctor Cavala with when Doctor Cavala is wearing the hermet
 
 Chapter 1.3.3.2 - Horatio
 
-[Horatio began as a throwaway character but has evolved into a contrast to Justinian, the main villain. (Spoilers!) Unlike Justinian, whose ambition leads him to instigate the events of the game, Horatio is just this happy-go-lucky dude who takes care of Marid and reminds her that she doesn't need some big quest to find happiness in her life.
+[Horatio began as a throwaway character but has evolved into a contrast to Justinian, the main villain. (Spoilers!) Unlike Justinian, whose ambition leads him to instigate the events of the game, Horatio is just a happy-go-lucky fellow who takes care of Marid and reminds her that she doesn't need some big quest to find happiness in her life.
 
 I'd like to pretend Horatio is named after the character in Hamlet but he was actually named after Horatio Hornblower. There's no real reason for this other than I thought it sounded like a Solphosian name.]
 
@@ -1116,7 +1122,7 @@ Chapter 1.3.3.4 - Justinian
 
 [Justinian is the main antagonist of the game. He's a dark mirror to Marid: having gone through much of the same navel-gazing and agonizing over death, he's decided that he will be the master of his destiny and turn death into his own personal tool. In killing, he seeks to preserve life.
 
-Justinian has been a difficult character to write because a) we need to preserve the plot twist, and b) Marid has a raging fangirl crush on him. This means every interaction with Justinian has had like three layers of meaning.
+Justinian has been a difficult character to write because a) we need to preserve the antagonist twist reveal, and b) Marid has a raging fangirl crush on him. This means every interaction with Justinian has had like three layers of meaning.
 
 Justinian is named after Emperor Justinian of the Byzantine Empire, as befitting his ambition.]
 
@@ -1668,9 +1674,11 @@ First rule for printing a parser error (this is the swear word filter rule):
 	
 Table of Mild Swear Words
 topic
+"consarn/consarnit"
 "crap/crappy"
 "crud/cruddy"
-"darn/darned"
+"darn/darned/darnit"
+"gosh"
 
 Table of Severe Swear Words
 topic
@@ -1914,7 +1922,7 @@ The can't give to a non-person rule response (A) is "You can only do that to som
 
 Understand the command "wave" as something new. Understand "wave [something]" as swinging.
 
-Check approaching (this is the no need to hurry when you can go normally rule):
+Check approaching (this is the no need to fast travel when you can go normally rule):
 	let N be the number of moves from the location to the noun, using doors;
 	if N is 1:
 		let thataway be the best route from the location to the noun, using doors;
@@ -1934,7 +1942,7 @@ Understand "possession" as a thing enclosed by a person.
 
 Part 2.3.3 - New Actions
 
-Bandaging it with is an action applying to two things.
+Bandaging it with is an action applying to two things. [Bandaging is a special action used exclusively in the First Aid on Cavala scene.]
 Understand "bandage [something]" as bandaging it with.
 Understand "dress [something]" as bandaging it with.
 Understand "bandage [something] with [other things]" as bandaging it with.
@@ -1953,7 +1961,7 @@ Check bandaging it with (this is the block bandaging rule):
 Bed-making is an action applying to one thing. Understand "make [something]" as bed-making. [As you might have guessed, this is here for the bored player who attempts to 'make bed.']
 Check bed-making: say "That doesn't make any sense."; stop the action.
 
-Bribing is an action applying to one thing. Understand "bribe [something]" or "pay [something]" as bribing.
+Bribing is an action applying to one thing. Understand "bribe [something]" or "pay [something]" as bribing. [This is a special synonym for giving your purse to someone.]
 Check bribing:
 	if the purse is carried:
 		try giving the purse to the noun;
@@ -1977,7 +1985,7 @@ Carry out brushing your teeth (this is the standard brushing your teeth rule):
 	otherwise:
 		say "You have nothing with which to brush your teeth."
 		
-Card-playing is an action applying to one thing. Understand "play [something]" as card-playing.
+Card-playing is an action applying to one thing. Understand "play [something]" as card-playing. [This handles attempts to join in the crucible game.]
 Check card-playing: say "That doesn't make any sense."; stop the action.
 		
 Combing your hair is an action applying to nothing. Understand "comb my/-- hair" or "brush my/-- hair" as combing your hair. [The logical next step.]
@@ -1996,13 +2004,13 @@ Carry out combing your hair (this is the standard combing your hair rule):
 	otherwise:
 		say "You have nothing with which to comb your hair."
 		
-Crying is an action applying to nothing. Understand "cry" or "panic" as crying.
+Crying is an action applying to nothing. Understand "cry" or "panic" as crying. [Something referenced in the story, which players might want to do for roleplaying.]
 Check crying (this is the block crying rule): say "No. You have to stay strong."; stop the action.
 		
-Descending is an action applying to nothing. Understand "descend" as descending.
+Descending is an action applying to nothing. Understand "descend" as descending. [I used "descend" in a room description so it seems fair that it's a recognized verb.]
 Check descending: try going down instead.
 		
-Extinguishing is an action applying to one thing. Understand "blow out/on/-- [something]" or "extinguish [something]" or "put out [something]" or "snuff [something]" as extinguishing.
+Extinguishing is an action applying to one thing. Understand "blow out/on/-- [something]" or "extinguish [something]" or "put out [something]" or "snuff [something]" as extinguishing. [There are candles which the player might want to snuff.]
 Check extinguishing: say "[regarding the noun][They're] not something that can be extinguished."; stop the action.
 
 Filing your nails is an action applying to nothing. Understand "cut my/-- nails" or "file my/-- nails" or "trim my/-- nails" as filing your nails. [I hate you all.]
@@ -2018,30 +2026,30 @@ Carry out filing your nails (this is the standard filing your nails rule):
 	otherwise:
 		say "You've already filed your nails.";
 
-Going home is an action applying to nothing. Understand "go back/-- home" as going home.
+Going home is an action applying to nothing. Understand "go back/-- home" as going home. [Inexperienced IF players sometimes try this in the opening sequence.]
 Carry out going home:
 	if Marid's Room is visited:
 		try approaching Marid's Room;
 	otherwise:
 		say "That isn't a place you've visited in this game yet[if player-knows-go is false].[paragraph break](Try going in a direction instead. For example, >[bold type]go south[roman type].)[otherwise].";
 
-Knocking on is an action applying to one thing. Understand "knock on/-- [something]" or "tap [something]" as knocking on.
+Knocking on is an action applying to one thing. Understand "knock on/-- [something]" or "tap [something]" as knocking on. [Polite!]
 Check knocking on an openable door: say "There is no response."; stop the action.
 Check knocking on: say "Nothing happens."; stop the action.
 
-Scaring is an action applying to one visible thing. Understand "chase away/-- [something]" or "scare away/-- [something]" or "shoo away/-- [something]" or "frighten away-- [something]" as scaring.
+Scaring is an action applying to one visible thing. Understand "chase away/-- [something]" or "scare away/-- [something]" or "shoo away/-- [something]" or "frighten away-- [something]" as scaring. [A tactic that might be used to handle pigeons or unfriendly beggars.]
 Check scaring when the noun is not a living person: say "That is unlikely to elicit a response."; stop the action.
 Check scaring the player: say "[if time is critical]This is not the time.[otherwise]There's no need for that."; stop the action.
 Check scaring a friendly person: say "[if time is critical]This is not the time.[otherwise]That hardly seems called for."; stop the action.
 Check scaring a hostile person: say "That seems unlikely to be effective."; stop the action.
 
-Screaming is an action applying to nothing. Understand "yell" or "holler for/-- the/-- guard/guards/--" or "shout" or "scream" or "call out" or "cry out" as screaming.
+Screaming is an action applying to nothing. Understand "yell" or "holler for/-- the/-- guard/guards/--" or "shout" or "scream" or "call out" or "cry out" as screaming. [It's a horror game, and there are a few times screaming is appropriate.]
 Check screaming: say "No. You have to keep your cool."; stop the action.
 
-Singing is an action applying to nothing. Understand "sing" or "hum" as singing.
+Singing is an action applying to nothing. Understand "sing" or "hum" as singing. [For fun, since it used to be in the standard library.]
 Check singing: say "[if time is critical]This is not the time.[otherwise]You hum to yourself."; stop the action.
 
-Swimming is an action applying to nothing. Understand "swim" or "dive" as swimming.
+Swimming is an action applying to nothing. Understand "swim" or "dive" as swimming. [Some bodies of water are big enough that the player might try.]
 Check swimming (this is the block swimming rule):
 	if the fosse is in the location:
 		say "[if time is critical]It's too dangerous to swim.[otherwise]Diving into the fosse is both dangerous and illegal.";
@@ -2053,12 +2061,14 @@ Check swimming (this is the block swimming rule):
 		say "You don't see anywhere to swim here.";
 	stop the action.
 	
-Tickling is an action applying to one thing. Understand "tickle [something]" or "fondle [something]" as tickling.
+Tickling is an action applying to one thing. Understand "tickle [something]" or "fondle [something]" as tickling. [I got nothing. I can't remember why I put this in.]
 Check tickling when time is critical: say "This is not the time."; stop the action.
 Check tickling when the noun is not a living person: say "That is unlikely to elicit a response."; stop the action.
 Check tickling the player: say "It's impossible to tickle oneself. The exact reason why is one of the great mysteries of the [italic type]ars vitalis[roman type]."; stop the action.
 Check tickling a friendly person: say "You aren't [italic type]that[roman type] friendly with [the noun]."; stop the action.
 Check tickling a hostile person: say "You doubt [the noun] will let you do that."; stop the action.
+
+[...and here are all the other things that the player might type in which deserve a witty/interesting response.]
 
 Understand "blush" as a mistake ("[if time is critical]This is not the time.[otherwise]Absolutely not.").
 Understand "bow" or "curtsy" or "curtsey" as a mistake ("[if time is critical]This is not the time.[otherwise]That's a little old-fashioned, don't you think?").
@@ -2074,7 +2084,7 @@ Understand "jump in front of [text]" or "run in front of [text]" as a mistake ("
 Understand "kneel" or "kneel [text]" or "sink to my/-- knees" or "fall to my/-- knees" as a mistake ("[if marid-kneeling-in-maze is true]You are already kneeling.[otherwise if the location is Maze Part Four]You are not going to sink to your knees again.[otherwise if time is critical]This is not the time.[otherwise]You'll face the world on your feet.").
 Understand "put [other things] under [something]" as putting it on.
 Understand "pray" or "pray [text]" as a mistake ("[if the location is Maze Part Four]There is no answer.[otherwise if time is critical]Action is needed now, not prayer.[otherwise]You never took much stock in the Deist worldview.").
-Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Yup.[otherwise]You mutter an oath under your breath.").
+Understand "primes" or "oh primes" or "curse" or "cuss" or "swear an/-- oath/--" as a mistake ("[if the location is Maze Part Four]...[otherwise if time is critical]Indeed.[otherwise]You mutter an oath under your breath.").
 Understand "remember" or "remember [text]" or "recall" or "recall [text]" or "think about" or "think about [text]" as a mistake ("(Type >[bold type]journal[roman type] for a reminder of the information you've come across.)").
 Understand "roll my/-- eyes" as a mistake ("[if time is critical]This is not the time.[otherwise]You roll your eyes.").
 Understand "sigh" as a mistake ("[if the location is Maze Part Four]You choke.[otherwise if time is critical]This is not the time.[otherwise]You sigh.").
@@ -2089,6 +2099,8 @@ Understand "whistle" as a mistake ("[if time is critical]This is not the time.[o
 Understand "xyzzy" or "plugh" or "plover" as a mistake ("[if time is critical]This is not the time.[otherwise]You're a doctor's apprentice, not a wizard's apprentice.").
 
 Part 2.3.4 - New Parser Error Messages
+
+[As a general rule for parser error messages, I want them to be clear about why the command wasn't accepted, and suggest a different course of action that will be more likely to work.]
 
 look-reminder-printed is a truth state that varies.
 
@@ -2143,6 +2155,8 @@ Does the player mean entering something:
 
 Part 2.3.6 - Implicit Actions
 
+[Marid is a proper lady who closes doors behind her when she walks through them.]
+
 A door can be better kept closed or better left open. A door is usually better kept closed.
 
 After going through a door (called the traversed door) (this is the close doors after going through them rule):
@@ -2155,7 +2169,7 @@ Rule for issuing the response text of the opening doors before entering rule res
 
 Part 2.3.7 - Emptying It Into
 
-[For some reason, I implemented this for a single object in the middle of nowhere that doesn't actually provide any clues. And isn't a container, for that matter.]
+[An astute player might want to pour out the wine bottle in Sal and Piper's hideout. Since I've implemented the verb, this very lengthy code ensures that "emptying things" works as one might expect in other areas of the game.]
 
 Emptying it into is an action applying to two things.
 Understand "empty [something preferably held]" as emptying it into.
@@ -2220,14 +2234,14 @@ Report listing exits (this is the report listing exits rule):
 	otherwise:
 		say "[exit reminder of the location][line break]".
 	
-A room has some text called the going-in disambiguation.
+A room has some text called the going-in disambiguation. [When there are multiple possible "ins" the game will ask which you mean.]
 
 First instead of going when the noun is inside and the going-in disambiguation of the location is not empty (this is the provide going-in disambiguation rule):
 	say "[going-in disambiguation of the location][line break]".
 
 Part 2.3.9 - Dialogue System
 
-[In case you didn't realize, this game has a lot of talking. I decided to go with Planescape: Torment style multiple choice dialogue because let's be real, ASK/TELL is the least fun topic-guessing gameplay ever devised.]
+[This game has a lot of talking. I decided to go with Planescape: Torment style multiple choice dialogue because let's be real, ASK/TELL is the least fun topic-guessing gameplay ever devised.]
 
 Chapter 2.3.9.1 - Dialogue Branches
 
@@ -2273,6 +2287,8 @@ Instead of asking someone to try doing something, say "(Use the command >[bold t
 Instead of answering someone that something, say "(Use the command >[bold type]talk to[roman type] or >[bold type]t[roman type] to converse with other characters.)"
 
 Chapter 2.3.9.3 - Engaged in Dialogue
+
+[This is the flag that changes the way the interface is presented while you're talking to someone. I'm not sure why I made it a variable of the player but hey, if it works...]
 
 Yourself can be engaged in dialogue. Yourself is not engaged in dialogue.
 
@@ -2393,7 +2409,9 @@ Carry out talking to something (this is the standard talking to rule):
 
 Part 2.3.10 - Endoscopy
 
-[This is a minigame where we "transport" the player's perspective inside the pathway they inspect. We clear the screen and shift perspective to the endoscope-viewpoint. You can "look," "go," or "examine" a thing in the endoscopic room. Any other action ends the endoscopy.]
+[This is a minigame where we "transport" the player's perspective inside the pathway they inspect. We clear the screen and shift perspective to the endoscope-viewpoint. You can "look," "go," or "examine" a thing in the endoscopic room. Any other action ends the endoscopy.
+
+Yes, I know that reusing the same endoscope is super gross. It's fantasy magical sterilization or something.]
 
 Chapter 2.3.10.1 - Definitions
 
@@ -2610,7 +2628,7 @@ Thanks to everyone who's ever given feedback on this game: Brian, Emily, Gabriel
 
 Shanflower drew the map of the Channelworks District.
 
-Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt w, of intfiction.org, helped with some programming tricks.
+Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt W. of intfiction.org helped with some programming tricks.
 
 Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
 	say "[bold type]Licensing and Contact Information[roman type]
@@ -2619,7 +2637,9 @@ Thanks to my family, to the Inform team, to the Singaporean game development com
 
 Chapter 2.3.11.2 - Journal
 
-[The Journal shows the current quest objectives and clues that have been discovered. We show quest objectives by referencing the scenes that are happening, and clues by checking against specific flags.]
+[The Journal shows the current quest objectives and clues that have been discovered. We show quest objectives by referencing the scenes that are happening, and clues by checking against specific flags.
+
+The actual text of the journal is generated in the Journal Text section of the code.]
 
 To say journal-text:
 	say "[bold type][journal-text-date][roman type]
@@ -2630,7 +2650,7 @@ To say journal-text:
 
 Chapter 2.3.11.3 - Characters
 
-[Choosing Characters brings up a list of all the significant characters you've encountered. Each character gets a short bio about them and their relationship with Marid.]
+[Characters brings up a list of all the significant characters you've encountered. Each character gets a short bio about them and their relationship with Marid.]
 
 The list of discovered characters is a list of things that varies.
 
@@ -2668,7 +2688,7 @@ The bio-description of Doctor Arturus is "A reclusive doctor in his waning years
 
 When The Game is Afoot ends: add Justinian to the list of discovered characters.
 The bio-name of Justinian is "Doctor Justinian Volontis".
-The bio-description of Justinian is "Doctor Arturus's protégé, and your once-senior at the Physicians['] College. You have a crush on him, though you'd never admit it."
+The bio-description of Justinian is "Doctor Arturus's protégé, and your senior from the Physicians['] College. You have a crush on him, though you'd never admit it."
 
 When Meeting the Patients ends: add Creditor Nacarat to the list of discovered characters.
 The bio-description of Creditor Nacarat is "One of Doctor Arturus's patients. A well-to-do financial businessman."
@@ -3524,6 +3544,8 @@ Book 3.1 - Miscellany
 
 Part 3.1.1 - Outdoors and the Sky
 
+[You can see the sky in a lot of rooms in this game, so they're put into a region with various scenery object to examine.]
+
 Outdoors is a region.
 Instead of examining up in Outdoors, try examining the sky.
 Before listening to something that is part of the sky, try listening to the sky instead.
@@ -3602,7 +3624,7 @@ Instead of buying, entering, knocking on, or searching the shops, say "[if it is
 
 The city crowd is a backdrop. The indefinite article is "the".
 The description is "The population of the Channelworks District is only a few thousand, but at times like this it seems much more."
-The sound is "A hundred voices drown out each other."
+The sound is "A hundred voices drown each other out."
 The scent is "Perfumes, colognes, fresh groceries -- all blend together into an eclectic infinity."
 Understand "crowds" or "carriage/carriages/cabriolet/cabriolets" or "man/men/woman/women/person/people" or "human/humans" or "goblin/goblins" or "mutant/mutants" or "and" or "voice/voices" or "bustle/traffic" or "in/-- general" as the city crowd.
 After printing the name of the city crowd while asking which do you mean: say " in general".
@@ -4621,12 +4643,12 @@ Table of Reden's HND Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 reden-hnd-intro	true	false	""	"'H-Hello?'
 
-Reden twitches, as though animated by a jolt of galvanism. Again. His empty eyes pivot in their sockets. He opens his mouth, but you cannot quite make out the words...
+Reden twitches, as though animated by a jolt of galvanism. Again. His empty eyes pivot in their sockets. He opens his mouth, but you can't quite make out the words...
 
-[wait for any key]You feel a longing, a beckoning to listen closer."	{reden-hnd-hesitate, reden-hnd-listencloser}
+[wait for any key]You feel a curling in your spine -- a beckoning to listen closer."	{reden-hnd-hesitate, reden-hnd-listencloser}
 reden-hnd-hesitate	true	false	"<Hesitate.>"	"You briefly wonder if you should open your ear to a dead man.
 
-Among the laws of the universe, the separation of the living and the dead is the most sacred. Doctor Cavala's voice comes to mind, echoing in admonishment: [italic type]We are not animologists.[roman type]
+Among the laws of reality, the separation of the living and the dead is one of the most sacred. Doctor Cavala's admonishment comes to mind: [italic type]We are not animologists.[roman type]
 
 But somehow, in this place and time, you are not afraid."	{reden-hnd-listencloser}
 reden-hnd-listencloser	true	false	"<Listen closer.>"	"[reden-hnd-listencloser-text]"	{reden-hnd-hello, reden-hnd-callname}
@@ -4697,7 +4719,10 @@ reden-hnd-goodbye	true	true	"'Goodbye, Reden.'"	"'Goodbye, Reden.'
 To say reden-hnd-listencloser-text:
 	say "You close your eyes and focus. The light of the real world vanishes -- but the [italic type]other[roman type] light, that light that permeates the boundary, remains. You hold on to that light and follow it like a thread...[paragraph break]";
 	wait for any key;
-	say "And the world [italic type]shifts[roman type].";
+	say "And the world [italic type]shifts[roman type].[paragraph break]";
+	wait for any key;
+	clear the screen;
+	say line break;
 	wait for any key;
 	clear only the main screen;
 	say line break;
@@ -4724,7 +4749,7 @@ Every turn when Heroes Never Die is happening and the enabled of reden-hnd-goodb
 	wait for any key;
 	say "And yet you sense his presence. The pull of that [italic type]other[roman type] world still remains, inviting you to look beyond the curtain. Perhaps that other world was always here, and you only lacked the eyes to see it.[paragraph break]";
 	wait for any key;
-	say "'Marid? Are you okay?'[paragraph break]";
+	say "'Marid? Are you all right?'[paragraph break]";
 	wait for any key;
 	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney. ";
 	move the player to the Clinic, without printing a room description;
@@ -4763,22 +4788,22 @@ Justinian gives you a long look.
 
 [wait for any key]'All right,' he says eventually. 'In that case... you really do need to rest. You look like someone with far too much on your mind.'
 
-[wait for any key]The two of you exit the surgery room in silence. Doctor Cavala watches you closely as you take your seat.
+[wait for any key]The two of you exit the surgery room in silence. Doctor Cavala's eyes are on you as you take your seat.
 
-[wait for any key]'Marid,' she begins. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If you're--'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
-hndexposition-vision	true	false	"'I think I just had one of my visions.'"	"'I think I just had one of my... my visions.'
+hndexposition-vision	true	false	"'I think I just had one of my hallucinations.'"	"'I think I just had one of my... my hallucinations.'
 
-'Visions? What do you mean? What did you see?'
+'Hallucinations? What do you mean?'
 
-You swallow. 'I...'
+You swallow. 'I -- I see and hear things. Sometimes. Because of... because of... you know...'
 
-[wait for any key]'That's enough, Justinian,' Doctor Cavala interjects. 'There's no need to interrogate her. Let her settle down, and she'll tell you if and when she has a mind to.'
+[wait for any key]'Never mind,' Justinian says quickly. 'I think... I think I understand. I won't press any further.'
 
-[wait for any key]Justinian relents. As the two of you return to the clinic proper, you give Doctor Cavala a look of gratitude.
+[wait for any key]The two of you exit the surgery room in silence. Doctor Cavala's eyes are on you as you take your seat.
 
-[wait for any key]'Now, Marid,' she says as you take your seat. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If you're--'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
@@ -4789,18 +4814,18 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
 [wait for any key]Justinian falls silent. He opens and closes his mouth, unable to muster a reply.
 
-[wait for any key]As the two of you exit the surgery room, Doctor Cavala watches you intently. She clears her throat as you take your seat.
+[wait for any key]As the two of you exit the surgery room, Doctor Cavala's eyes are on you. She reaches for your hand as walk past.
 
-[wait for any key]'Marid,' she begins. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If you're--'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 
 Section 3.2.6.2.2 - All Rise for the Glorious Entrance of Doctor Serpens, MD
 
 To say hnd-serpens-entrance:
-	say "Doctor Cavala is interrupted by footsteps approaching the doorway. You barely have time to look before the door swings open and a gray-haired man in a grubby coat slithers in.[paragraph break]";
+	say "She's interrupted by footsteps approaching the doorway. You barely have time to look before the door swings open and a man in a gray coat barges in.[paragraph break]";
 	wait for any key;
-	say "'Justinian!' the man rasps. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost us?'[paragraph break]";
+	say "'Justinian!' he rasps. 'There you are. Just what have you been doing all morning? Do you know how much time you've cost us?'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
@@ -4816,7 +4841,7 @@ To say hnd-serpens-entrance:
 	now the conversational partner text is "Talking to Doctor Cavala";
 	if the number of characters in the conversational partner text is greater than 14, now right alignment depth is the number of characters in the conversational partner text;
 	redraw status line;
-	say "Beside you, Doctor Cavala shakes her head. 'Good old Doctor Serpens,' she mutters. 'Twenty years on and still a curmudgeon.' ";
+	say "Beside you, Doctor Cavala shakes her head. 'Doctor Serpens,' she mumbles. 'Twenty years on and still a curmudgeon.' ";
 	
 Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
@@ -4824,20 +4849,20 @@ Table of HND Exposition Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
 
-'I'm surprised you haven't heard of him,' she replies. 'He's one of the foremost experts on physiology -- a close rival of Doctor Arturus, back when they were both still practicing. I'd catch up with him, but he's never been one for pleasantries, I'm afraid.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
-hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'
+'I'm surprised you haven't heard of him,' she says. 'He's one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+hndexposition-youknowserpens	true	true	"'You know him, Doctor?'"	"'You know him, Doctor?'
 
-'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty-three years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
-[italic type]'Touché.'[roman type] A smile tugs at her lips. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+A smile tugs at her lips. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
-Doctor Cavala's demeanor grows serious. 'Right. We haven't told you. Much has changed in the district while you were out -- take a look outside.'
+Doctor Cavala's demeanor grows serious. 'Right... we haven't told you. Much has changed in the district while you were out. Take a look outside.'
 
 [wait for any key]She tilts her head at the door. You follow her gaze, and the shadows of robed soldiers can be seen through the glass.
 
-[wait for any key]'The death toll of the affliction has climbed into the hundreds,' she says. 'The entire district is in a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
+[wait for any key]'The death toll of the affliction has climbed into the hundreds,' she says. 'The entire district is in a -- a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
 
 [wait for any key]'No one can leave the district until a cure has been produced by the council, or until everyone up and down the canal is dead.'[wait for any key before prompt]"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
@@ -4863,26 +4888,26 @@ hndexposition-foodwater	true	true	"'What about food and water? Or correspondence
 [wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so. While you still have the chance.'"	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affliction?'"	"'So this inquest is to find a cure for the affliction?'
 
-'Indeed,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but I didn't want to subject you to even more stress... and as for me, well, it's a bit hard to conduct research from a stretcher.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
+'It is,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but after what happened...'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
 hndexposition-murders	true	true	"'Didn't we establish that the deaths were murders, not a result of infection?'"	"'Didn't we establish that the deaths were murders, not a result of infection?'
 
-'That was the hypothesis, yes.' Doctor Cavala frowns. 'It remains to be seen if it holds true for this new crop of dead bodies. Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of transmission.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+'The inquest seems to think otherwise.' Doctor Cavala sighs. 'Besides, even if this affliction was primarily a murder weapon, we cannot discount the possibility of infection.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
 hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'
 
-Doctor Cavala purses her lips. 'That's the question I have been pondering,' she says. 'Before all this, I was resigned to wait in the clinic until everything blew over... but now that you've woken up, Marid, there's something I need to ask you.'
+Doctor Cavala purses her lips. 'That's what I've been wondering,' she says. 'Before all this, I was resigned... I was resigned to wait in the clinic until everything blew over. But...  but now that you're awake... there's something I need to ask you.'
 
-She turns her head and regards you coolly. Her eyes are searching -- appraising.
+She turns her head and regards you with tear-stained eyes.
 
 [wait for any key]'Just what did you see back there in the surgery room?'"	{hndexposition-lie, hndexposition-truth}
 hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
 
 You fidget. There is a long silence.
 
-[wait for any key]'Marid,' Doctor Cavala eventually says, 'I trust you, but you are a very, very, very bad liar.'
+[wait for any key]'Marid,' Doctor Cavala eventually says, 'I trust you -- I really do -- but you are a very, very, very bad liar.'
 
 [wait for any key]You cringe.
 
-'Please.' Her expression softens. 'Marid, we've known each other for a long time. Tell me what happened in there.'"	{hndexposition-truth}
+'Please.' Her expression softens. 'Marid, we've known each other for a long time. I... I need to know. Tell me what happened in there.'"	{hndexposition-truth}
 hndexposition-truth	true	false	"<Tell her the truth.>"	"You tell her the truth.
 
 You tell her about the pulsating light and the curtain that shrouds the world. You tell her about the things you saw on the edge of life and death. And you tell her about how you spoke with Reden, cracks and all, and agreed to honor his final request in this realm.
@@ -4954,7 +4979,7 @@ To say clinic-description:
 
 A long shadow falls from the north, from the surgery room.
 
-Doctor Cavala and Justinian watch you with concern[first time]. Neither of them appears to have noticed anything[only]. ";
+Doctor Cavala and Justinian are staring at you in concern[first time]. Neither of them appears to have noticed anything[only]. ";
 		now Doctor Cavala is mentioned;
 		now Justinian is mentioned;
 		stop;
@@ -6320,7 +6345,7 @@ cavala-rwmq-howru	true	true	"'How are you holding up, Doctor?'"	"'How are you ho
 'I'm fine,' she says. 'It's a bit dull here, especially since Horatio's refused to play any more crucible with me, but it's nothing I haven't endured before.'"	{cavala-rwmq-horatiocrucible, cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-horatiocrucible	true	true	"'He's refusing to play crucible?'"	"'He's refusing to play crucible?'
 
-She smirks. 'Something about running out of cash on hand, as I recall.'"	{cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
+She smirks. 'Something about running out of cash on hand.'"	{cavala-rwmq-whereshoratio, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-whereshoratio	true	true	"'Where's Horatio?'"	"'Where's Horatio?'
 
 'He's popped back home for a shower,' she replies. 'Don't worry -- I told him to go home and freshen up. He'll be back soon enough.'"	{cavala-rwmq-howru, cavala-rwmq-whatreading, cavala-rwmq-aboutinvestigation}
@@ -6331,12 +6356,12 @@ cavala-rwmq-whatreading	true	true	"'...What are you reading?'"	"'...What are you
 'Oh.'
 
 There is an awkward pause."	{cavala-rwmq-anygood, cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
-cavala-rwmq-anygood	true	true	"'...Is it any good?'"	"'...Is it any good?'
+cavala-rwmq-anygood	true	true	"'Is it any good?'"	"'Is it any good?'
 
 'Not really,' she admits. 'But there are worse ways to spend an evening.'"	{cavala-rwmq-howru, cavala-rwmq-whereshoratio, cavala-rwmq-aboutinvestigation}
 cavala-rwmq-aboutinvestigation	true	false	"'About the things you told me to investigate...'"	"'About the things you told me to investigate...'
 
-Doctor Cavala's expression hardens. You settle down beside her, and she listens rapt to your account of the day's events.
+Doctor Cavala's expression hardens. You settle down beside her, and she listens raptly to your account of the day's events.
 
 You tell her about your run-in with the Turris Infinita security. The chill of Doctor Arturus's clinic, the silent stare of the departed -- the macabre sights reflected in endoscopic lenses. You tell her of the doctor's correspondence; the web of intrigue and not-quite-coincidence that bound him; the lives that labored in the shadow of black wings. And through it all, like a pervasive pathogen, the darkness seeps and drips coppery from your words.
 
@@ -6440,7 +6465,7 @@ Doctor Cavala crosses her arms. Her eyes trace the bandages around her destroyed
 
 'Suppose we assume that this is deliberate,' she says. 'That this is part of someone's larger agenda. Many things fall into place -- the attack on my clinic, the connection to the Trading Company, the fast-acting and improbably lethal affliction.
 
-'Until now, we've been operating under the assumption that this is a simple infection, one that obeys statistics and adheres to the precepts of medicine... but what if that isn't the case? What if this is, in reality, a series of murders?'
+'Until now, we've been operating under the assumption that this is a simple infection, one that obeys statistical models and adheres to the precepts of medicine... but what if that isn't the case? What if this is, in reality, a series of murders?'
 
 [wait for any key]You regard her with growing unease. 'Then... then that would be beyond us. It would be a matter for the Vigiles.'
 
@@ -6542,7 +6567,7 @@ To unveil Day Three:
 	redraw status line;
 	say "-- you jolt awake, shuddering, blinking, coughing. Everything feels heavy. A pair of hands grips your shoulders, steadies you.[paragraph break]";
 	wait for any key;
-	say "'Is she awake?' a voice asks. Doctor Cavala's voice.[paragraph break]";
+	say "'Is she awake?' a voice breathes. Doctor Cavala's voice.[paragraph break]";
 	wait for any key;
 	say "'Yes,' comes the reply. Then again, closer: 'Marid? Can you hear me?'[paragraph break]";
 	wait for any key;
@@ -6568,7 +6593,7 @@ To unveil Day Three:
 	wait for any key;
 	say "'Doctor?' you croak through parched lips.[paragraph break]";
 	wait for any key;
-	say "Marid!' a voice exclaims. 'Thank the Primes...'[paragraph break]";
+	say "'Marid!' a voice exclaims. 'Thank the Primes...'[paragraph break]";
 	say "A shadow falls across you; a hand grips your wrist close. You turn your head to see the smiling face of Doctor Justinian.[paragraph break]";
 	wait for any key;
 	say "Wha -- what --[line break]";
@@ -6581,10 +6606,10 @@ Some dialogue branches are defined by the Table of Day Three Opening Dialogue.
 
 Table of Day Three Opening Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-d3open-home	true	false	""	""	{d3open-panic, d3open-fantasize, d3open-greet}
-d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-fantasize, d3open-greet}
-d3open-fantasize	true	true	"<Fantasize.>"	"A series of entirely inappropriate images flashes through your mind."	{d3open-panic, d3open-greet}
-d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false or the enabled of d3open-fantasize is false] you finally bring yourself to say.[end if]
+d3open-home	true	false	""	""	{d3open-panic, d3open-thinkfast, d3open-greet}
+d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-thinkfast, d3open-greet}
+d3open-thinkfast	true	true	"<Think quickly.>"	"A series of entirely inappropriate images flashes through your mind."	{d3open-panic, d3open-greet}
+d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false or the enabled of d3open-thinkfast is false] you finally bring yourself to say.[end if]
 
 'Thank the Primes.' He's checking your pulse now, leaning in to check the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
 
@@ -6594,41 +6619,40 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 
 [wait for any key]'But what matters is that you're here now. You're safe.'
 
-[wait for any key]He smiles and squeezes your hand again."	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-somethingstrange}
-d3open-gladyoucame	true	true	"'I'm glad you came.'"	"'I'm... I'm glad you came,' you whisper.
+[wait for any key]There is a sound from the waiting chairs. You turn and see Doctor Cavala watching from her cot. Her throat is choked. Her eyes are red from crying.
 
-'Me too,' Doctor Justinian replies. 'Me too.'"	{d3open-wherecavala, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
-d3open-wherecavala	true	true	"'Where is Doctor Cavala? Horatio?'"	"'Where is Doctor Cavala?' you ask. 'Horatio?'
+[wait for any key]'You're safe,' she says. 'Marid, I'm so sorry. I'm so, so sorry.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-attacked, d3open-somethingstrange}
+d3open-thanks	true	true	"'...Thank you, Doctor Justinian. For saving me.'"	"'...Thank you, Doctor Justinian,' you tell him. 'For... for saving me.'
 
-'I'm right here,' Doctor Cavala answers. You crane your neck and -- yes, there she is, still confined to her makeshift cot. She turns her palms up in a shrug.
+He meets your eyes and smiles."	{d3open-notyourfault, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+d3open-notyourfault	true	true	"'I-It wasn't your fault, Doctor Cavala.'"	"'It wasn't your fault, Doctor Cavala.'
 
-'I'd have said something earlier,' she says, 'but it looked like you were having a bit of a moment there and I didn't want to interrupt.'
+She shakes her head tearfully. 'I... I should have asked for a guard. A warding glyph. [italic type]Something.[roman type] I should have...
 
-[wait for any key]'Doctor!' you protest, your cheeks burning.
+'I almost lost you, Marid. I... I let you down. I failed you.'
 
-[wait for any key]'Of course, of course.' She chuckles. 'In any case... I have been here all night. Horatio is busy filling out all the paperwork from last night and getting debriefed by his superiors. But really, it's Doctor Justinian you should thank. He's the one who kept your heart beating.'"	{d3open-thanks, d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
-d3open-thanks	true	true	"'...Thank you.'"	"'...Thank you.'
+[wait for any key]You've never seen her like this before.
 
-Doctor Justinian meets your eyes and smiles."	{d3open-gladyoucame, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+[wait for any key]'She's been like this since they brought you in,' Doctor Justinian says quietly. 'We'd best give her some time to herself.'"	{d3open-thanks, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-howlong	true	true	"'How long was I out?'"	"'How long was I out?'
 
-Doctor Justinian checks his pocket watch. 'The guards found you lying in the rain... seven hours ago? You've been fading in and out ever since. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+Doctor Justinian checks his pocket watch. 'The guards found you lying in the rain... seven hours ago? You've been fading in and out ever since. You were deathly pale then, even paler than you normally are... it's a good thing I got to you in time.'"	{d3open-notyourfault, d3open-thanks, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-attacked	true	true	"'I was attacked by a mutant woman with a sword...'"	"'I was attacked by a mutant woman with a sword. The same person who broke in here the other night...'
 
-He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
+He nods grimly. 'The Vigiles told me everything. Her name is Carnicer -- she's a hired assassin. The Greater Corindia Trading Company pays her to do its dirty work. But don't worry -- we've called in all the manpower we can muster to protect you and Doctor Cavala.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-carnicerdead	false	true	"'Carnicer is dead. I killed her in self-defense.'"	"'...Carnicer is dead,' you say. 'I killed her in self-defense.'
 
-'...Oh.' Doctor Justinian blinks. 'Well. I'm sure the captain will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-company, d3open-somethingstrange}
+'...Oh.' Doctor Justinian blinks. 'Well. I'm sure the captain will be glad to hear it. Still, you should remain here in case your enemies send someone else.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-company, d3open-somethingstrange}
 d3open-company	false	true	"'Do you think the Trading Company is behind this?'"	"'Do you think the Trading Company is behind this?'
 
-He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-wherecavala, d3open-gladyoucame, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
-d3open-somethingstrange	true	false	"'Is it just me, or is something strange about the light here?...'"	"You try to focus on the light. It's out of place somehow, both here and not here -- shimmering and scintillating in a way that makes your head spin.
+He sighs. 'Perhaps. Perhaps someone within the Company... but it's not my job to speculate. And you definitely shouldn't be doing any investigating in your current state.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-carnicerdead, d3open-somethingstrange}
+d3open-somethingstrange	true	false	"'What's wrong with the color of the light?'"	"You try to focus on the light. It's out of place somehow, both here and not here -- shimmering and scintillating in a way that makes your head spin.
 
-'Is it just me,' you mumble, 'or is something strange about the... the...'
+'What's wrong?' you mumble. 'What's wrong with the color of the... the...'
 
 [wait for any key]Your breath catches in your throat. Your brain refuses to comprehend what you are seeing.
 
-[wait for any key]'What's wrong?' Justinian asks, concerned."	{d3open-closeeyes, d3open-havetogo}
+[wait for any key]'Marid?' Justinian asks."	{d3open-closeeyes, d3open-havetogo}
 d3open-closeeyes	true	false	"<Wrench your eyes shut.>"	"You close your eyes, but the image does not fade.
 
 It lingers."	{d3open-havetogo}
@@ -6672,9 +6696,9 @@ Before going through the mortuary stairs when Heroes Never Die is happening:
 Instead of talking to Doctor Cavala when Heroes Never Die is happening:
 	say "[one of]'Doctor, do you see it?'
 
-'Marid? I don't understand. What do you see?'
+'Marid? I... I don't understand. What do you see?'
 
-You are at a loss for words.[or]'Marid? Are you all right?'[or]This isn't the time for words.[stopping]";
+You are at a loss for words.[or]'Marid? Are you all right? Please tell me...'[or]This isn't the time for words.[stopping]";
 
 Instead of talking to Justinian when Heroes Never Die is happening:
 	say "[one of]'Doctor Justinian, please, didn't you see...'
@@ -17495,11 +17519,8 @@ Last before doing anything when the location is Marid's Vision:
 	else if the current action is listening to:
 		say "Everything sounds so far away.";
 		stop the action;
-	else if the current action is touching or the current action is rubbing:
-		say "You can't seem to feel anything.";
-		stop the action;
-	else if the current action is taking or the current action is pushing or the current action is pulling or the current action is turning or the current action is swinging or the current action is jumping or the current action is knocking on:
-		say "You are unable to exert any force.";
+	else if the current action is touching or the current action is rubbing or the current action is taking or the current action is pushing or the current action is pulling or the current action is turning or the current action is swinging or the current action is jumping or the current action is knocking on:
+		say "[They] slip[s] strangely from your grasp.";
 		stop the action;
 	else if the current action is screaming or the current action is singing:
 		say "You lack the breath.";
@@ -17531,6 +17552,7 @@ Chapter 3.42.2.1 - Scenery
 Father's favorite tea is faraway scenery in Marid's Vision.
 The description is "The tea swirls in and out of perception."
 Understand "aroma" or "favourite" or "my" as Father's favorite tea.
+Instead of drinking Father's favorite tea, say "It tastes like ashes."
 
 Some ink-blotted corkboards are scenery in Marid's Vision.
 The description is "The markings writhe and change, never quite coalescing into formulae."
@@ -17548,6 +17570,7 @@ Does the player mean doing something with the soaring laboratory rafters: it is 
 The workstation decanter is scenery in Marid's Vision.
 The description is "The implements, the liquids -- they all seem to blur together."
 Understand "spirit" or "work" or "implement/implements" or "liquid/liquids" as the workstation decanter.
+Instead of drinking the workstation decanter, say "Father told you never to do such a thing."
 
 Chapter 3.42.2.2 - Father
 
@@ -17710,7 +17733,7 @@ The home dialogue branch of Father is visionp1-home.
 To say visionp1-fatherdies:
 	say "You've had this dream a thousand times. Each time, it ends the same way. Each time, you are powerless to prevent it.[paragraph break]";
 	wait for any key;
-	say "The athanor closest to your father explodes. Glass shatters. A plume of fire erupts, and both of you are thrown back from the blast. You are dimly aware of porcelain pieces, scattered across the desk, shimmering in the intense heat.[paragraph break]";
+	say "The athanor closest to your father explodes. Glass shatters. A plume of fire erupts, and both of you are thrown back from the blast -- you are dimly aware of porcelain pieces, scattered across the desk, shimmering in the intense heat.[paragraph break]";
 	wait for any key;
 	say "Your father is calling your name. You see him then: bleeding out, barely recognizable. Another beaker falls to the floor and shatters. You can't breathe -- you force yourself up, unsteady, tottering towards your father, toward the flames...[paragraph break]";
 	wait for any key;
