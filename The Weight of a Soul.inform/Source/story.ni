@@ -2,9 +2,9 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 101218.
+The release number is 040119.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
-The story creation year is 2018.
+The story creation year is 2019.
 
 [
 
