@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 040119.
+The release number is 070119.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2019.
 
@@ -70,7 +70,9 @@ Basic flowchart:
 - Heading up from Noctis Storage she encounters Doctor Serpens and has to hide to not be murdered. Soon however Justinian arrives and talks Serpens down. Marid is found by Justinian... and imprisoned. CUE VILLAIN MONOLOGUE! CUE DAY 4!
 
 - Write Day Four
-- Write Epilogue]
+- Write Epilogue
+
+Remember Luel's suggestion to make all the journal entries readable from start to finish at the end.]
 
 Book 1.1 - Miscellany
 
@@ -261,7 +263,7 @@ Part 1.2.1 - Scene Definitions
 
 ['The Weight of a Soul' uses days to demarcate the acts of the story, here implemented as overarching scenes.]
 
-start-of-day is a number that varies. [This is a silly hack.]
+start-of-day is a number that varies. [This is a silly hack used to start day 2 properly.]
 
 Chapter 1.2.1.1 - Prologue
 
@@ -2567,6 +2569,7 @@ title	subtable	description	toggle
 "Journal"	--	"[journal-text]"	--
 "Characters"	--	"[characters-text]"	--
 "Map"	--	"[map-text]"	--
+"Places"	--	"[places-text]"	--
 "Hints"	Table of the Hint Menu	--	--
 "Credits"	--	"[credits-text]"	--
 "Back"	--	--	quit rule
@@ -2583,7 +2586,7 @@ This game was written and compiled in Inform 7. More information can be found at
 To say how-to-play-text:
 	say "[bold type]How to play[roman type]
 
-This is a work of interactive fiction. It is a game about solving puzzles and investigating mysteries. You play the part of Marid, a doctor's apprentice, and your actions in the coming days could determine the fate of the Channelworks District.
+This is a work of interactive fiction. It is a game about investigating mysteries and solving puzzles. You play the part of Marid, a doctor's apprentice, and your actions in the coming days could determine the fate of the Channelworks District.
 
 The > symbol indicates a command prompt. When a > is displayed, you can type commands for Marid to follow, in the form >[bold type]go west[roman type] or >[bold type]take lantern[roman type], and she will go along as far as she is able and willing. Type >[bold type]commands[roman type] or >[bold type]c[roman type] for a list of commands.
 
@@ -2603,13 +2606,13 @@ To say useful-commands-text:
 >[bold type]talk to (someone)[roman type][line break][italic type]Strike up a conversation with someone. The command 'talk to' can be shortened to 't'.[roman type]
 
 >[bold type]take/drop (something)[roman type], >[bold type]open/close (something)[roman type], >[bold type]put (something) on/in (something else)[roman type][line break][italic type]These commands can be used to manipulate items and the world around you.[roman type][paragraph break]";
-	say ">[bold type]go (direction)[roman type][line break][italic type]Move to a new location in the world. The directions are each of the eight compass directions, plus up, down, in, and out. 'Northwest' can be abbreviated to 'NW'. You can also omit the command 'go' and just type a direction to go in.[roman type]
+	say ">[bold type]go (direction)[roman type][line break][italic type]Move to a new location in the world. The directions are each of the eight compass directions, plus up, down, in, and out. 'North' can be abbreviated to 'n', 'northwest' can be abbreviated to 'nw', and so on. You can also omit the command 'go' and just type a direction to go in.[roman type]
 
 >[bold type]sleep[roman type][line break][italic type]Sleep in your bed at the end of an in-game day, starting the next chapter of the story.[roman type]
 
 >[bold type]go to (location)[roman type][line break][italic type]Quickly travel to a location you've visited before.[roman type]
 
->[bold type]help[roman type], >[bold type]commands[roman type], >[bold type]journal[roman type], >[bold type]characters[roman type], >[bold type]map[roman type], >[bold type]hints[roman type][line break][italic type]Open the help menu, or quickly check one of its pages. 'Commands' can be shortened to 'c', 'journal' can be shortened to 'j', 'characters' can be shortened to 'ch', and 'map' can be shortened to 'm'.[roman type]
+>[bold type]help[roman type], >[bold type]commands[roman type], >[bold type]journal[roman type], >[bold type]characters[roman type], >[bold type]map[roman type], >[bold type]places[roman type], >[bold type]hints[roman type][line break][italic type]Open the help menu, or quickly check one of its pages. 'Commands' can be shortened to 'c', 'journal' can be shortened to 'j', 'characters' can be shortened to 'ch', 'map' can be shortened to 'm', and 'places' can be shortened to 'p'.[roman type]
 
 >[bold type]undo[roman type][line break][italic type]Take back your last command, rewinding the game to an earlier state.[roman type]
 
@@ -2622,16 +2625,14 @@ To say credits-text:
 
 [italic type]The Weight of a Soul[roman type] was written by Chin Kee Yong a.k.a. CKY, a Singaporean game designer. It is my first serious foray into interactive fiction.
 
-I'd like to thank Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
-
 Thanks to everyone who's ever given feedback on this game: Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!). Your time has helped to make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
-Shanflower drew the map of the Channelworks District.
+Thanks to Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
 
-Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt W. of intfiction.org helped with some programming tricks.
+Shanflower drew the map of the Channelworks District. Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt W. of intfiction.org helped with some programming tricks.[paragraph break]";
+	say "Thanks to my family, the Inform team, the Singaporean game development community, and the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.
 
-Thanks to my family, to the Inform team, to the Singaporean game development community, and to the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.[paragraph break]";
-	say "[bold type]Licensing and Contact Information[roman type]
+[bold type]Licensing and Contact Information[roman type]
 
 [italic type]The Weight of a Soul[roman type] is licensed under a Creative Commons Attribution 4.0 International License. For questions, comments, and/or criticism, feel free to email me at [bold type]chinkeeyong@gmail.com[roman type].";
 
@@ -2726,7 +2727,7 @@ To say general-hints-text:
 
 [italic type]The Weight of the Soul[roman type] is a game about investigation and problem-solving. Take your time and examine your surroundings, especially things that seem out of place or things that could be connected to the greater mystery at hand. Don't be afraid to ask around, explore, and get your hands dirty. Only look at hints if you're completely stuck and need guidance.
 
-Marid is a capable and perceptive protagonist, and she usually has a good idea of where to go next. The Journal shows your current objective, a list of clues you've found, and Marid's thoughts on the situation. You can also consult Characters to refresh your memory on important personages you've encountered, or Map for a street map of the Channelworks District.
+Marid is a capable and perceptive protagonist, and she usually has a good idea of where to go next. The Journal shows your current objective, a list of clues you've found, and Marid's thoughts on the situation. You can also consult Characters to refresh your memory on important personages you've encountered, or Map or Places for an overview of the Channelworks District.
 
 [italic type]The Weight of a Soul[roman type] is a very forgiving game. (It's rated 'Polite' on the Zarfian Cruelty Scale, if you know what that is.) Nevertheless, some sections of it have deadly time limits, and it [italic type]is[roman type] possible for the story to end badly for Marid. It is recommended to >[bold type]save[roman type] if you find yourself in a dire situation. If you get a game over, you can >[bold type]undo[roman type] a few times to retrace your steps and try again.";
 
@@ -2863,7 +2864,22 @@ hint	used
 "You can >[bold type]take[roman type] the kitchen stool and >[bold type]drop[roman type] it in the scullery to use as a step."
 "Now you can sabotage the lift, confront the assassin, and lead her to her demise."
 
-Chapter 2.3.11.6 - Summoning the Help Menu
+Chapter 2.3.11.6 - Places
+
+A room can be listed-on-directory or not-listed-on-directory. A room is usually not-listed-on-directory.
+
+To say places-text:
+	if the number of visited listed-on-directory rooms is 0:
+		say "You have not visited any notable locations in this game so far.
+
+As you explore the game world, notable locations will be added to this page.";
+	otherwise:
+		say "You have visited the following notable locations:[line break]";
+		repeat with item running through visited listed-on-directory rooms:
+			say "[line break]- [bold type][The item][roman type]";
+
+
+Chapter 2.3.11.7 - Summoning the Help Menu
 
 Asking for help is an action out of world.
 Understand "about" as asking for help.
@@ -2937,11 +2953,7 @@ Carry out asking for characters (this is the standard asking for characters rule
 	
 Asking for map is an action out of world.
 Understand "m" as asking for map.
-Understand "directory" as asking for map.
-Understand "landmarks" as asking for map.
-Understand "locations" as asking for map.
 Understand "map" as asking for map.
-Understand "places" as asking for map.
 Carry out asking for map (this is the standard asking for map rule):
 	let the temporary title be the current menu title;
 	now the current menu title is "Map";
@@ -2950,6 +2962,27 @@ Carry out asking for map (this is the standard asking for map rule):
 	now the endnode flag is 0;
 	clear only the main screen;
 	say "[variable letter spacing][map-text][paragraph break]";
+	pause the game;
+	now the current menu title is temporary title;
+	clear the screen;
+	say line break;
+	try looking.
+	
+Asking for places is an action out of world. [This is a text-only alternative to the map for blind users.]
+Understand "directory" as asking for places.
+Understand "landmarks" as asking for places.
+Understand "locations" as asking for places.
+Understand "p" as asking for places.
+Understand "place" as asking for places.
+Understand "places" as asking for places.
+Carry out asking for places (this is the standard asking for places rule):
+	let the temporary title be the current menu title;
+	now the current menu title is "Places";
+	now the endnode flag is 1;
+	redraw status line;
+	now the endnode flag is 0;
+	clear only the main screen;
+	say "[variable letter spacing][places-text][paragraph break]";
 	pause the game;
 	now the current menu title is temporary title;
 	clear the screen;
@@ -2968,7 +3001,7 @@ Carry out asking for hints (this is the standard asking for hints rule):
 	say line break;
 	try looking.
 	
-Asking for commands is menu-summoning. Asking for journal is menu-summoning. Asking for characters is menu-summoning. Asking for map is menu-summoning.
+Asking for commands is menu-summoning. Asking for journal is menu-summoning. Asking for characters is menu-summoning. Asking for map is menu-summoning. Asking for places is menu-summoning.
 
 Rule for constructing the status line while menu-summoning (this is the constructing status line while menu-summoning rule):
 	if the endnode flag is 0,
@@ -4451,7 +4484,7 @@ index	happening	spawned items	item required
 
 [wait for any key]And then it is within him.
 
-His breath is stolen away. His irises flare with the light of catharsis. He flails against the gurney straps as though puppeted by invisible hands.
+[wait for any key]His breath is stolen away. His irises flare with the light of catharsis. He flails against the gurney straps as though puppeted by invisible hands.
 
 [wait for any key]'Doctor Cavala?' you ask. You look to her, and her eyes are as wide as yours."	--	--
 
@@ -4526,13 +4559,13 @@ You glance at Reden, half expecting to see white fire in his eyes, and suppress 
 
 'The catholicon, Doctor. What [italic type]was[roman type] that?'
 
-[wait for any key]Doctor Cavala takes the empty inhaler out of her pocket. She looks pensively into the glass, and holds it up to the lights where it shines.
+[wait for any key]Doctor Cavala takes the empty inhaler out of her pocket. She looks pensively into the glass, and holds it up to the light where it shines.
 
-'The catharsis,' she says quietly. 'The purging of the soul. It is the most destructive of all remedies, and the most irreversible once administered. But remember this, Marid: sometimes a thing must be destroyed before it can be built anew.'
+[wait for any key]'The catharsis,' she says quietly. 'The purging of the soul. It is the most destructive of all remedies, and the most irreversible once administered. But remember this, Marid: sometimes a thing must be destroyed before it can be built anew.'
 
 [wait for any key]She turns to regard the body on the gurney, so frail and gentle in death, and sighs.
 
-'It was his only chance,' she says. 'He was going to die either way. But... I'm sorry you had to see that, Marid. I really am.'"	{cavala-redendead-mask2, cavala-redendead-ifonly, cavala-redendead-sawlight, cavala-redendead-whatnext}
+[wait for any key]'It was his only chance,' she says. 'He was going to die either way. But... I'm sorry you had to see that, Marid. I really am.'"	{cavala-redendead-mask2, cavala-redendead-ifonly, cavala-redendead-sawlight, cavala-redendead-whatnext}
 cavala-redendead-sawlight	true	true	"'At the moment he died, I had a strange vision...'"	 "'At the moment he died, I had a strange vision. It was... it was...'
 
 You try to recall the strange sensation you experienced, but it fragments and swims away, and lingers at the edge of your consciousness where you can find no purchase. What words could describe that weightless moment?
@@ -4543,9 +4576,9 @@ Doctor Cavala watches you intently. 'Strange sights are not uncommon at the mome
 
 [wait for any key]'This was different,' you insist.
 
-'It's been a long day,' she replies. 'Take a moment to collect your thoughts. Talk to me again tomorrow when you are certain.'
+[wait for any key]'It's been a long day,' she replies. 'Take a moment to collect your thoughts. Talk to me again tomorrow when you are certain.'
 
-You lower your eyes. 'Yes, Doctor.'"	{cavala-redendead-mask2, cavala-redendead-ifonly, cavala-redendead-catholicon, cavala-redendead-whatnext}
+[wait for any key]You lower your eyes. 'Yes, Doctor.'"	{cavala-redendead-mask2, cavala-redendead-ifonly, cavala-redendead-catholicon, cavala-redendead-whatnext}
 cavala-redendead-whatnext	true	false	"'What happens next?'"	"'What happens next?'
 
 [if the player is wearing the surgical mask]'You can begin by taking off your mask,' she reminds you. 'We won't be operating on a cadaver any time soon.'
@@ -4751,7 +4784,7 @@ Every turn when Heroes Never Die is happening and the enabled of reden-hnd-goodb
 	wait for any key;
 	say "'Marid? Are you all right?'[paragraph break]";
 	wait for any key;
-	say "You turn. Doctor Justinian's handsome brow is furrowed with worry. His eyes flicker between you and the empty gurney. ";
+	say "You turn. Doctor Justinian's brow is furrowed with worry. His eyes flicker between you and the empty gurney. ";
 	move the player to the Clinic, without printing a room description;
 	start a dialogue with Justinian using dialogue hndexposition-home.
 	
@@ -4790,7 +4823,7 @@ Justinian gives you a long look.
 
 [wait for any key]The two of you exit the surgery room in silence. Doctor Cavala's eyes are on you as you take your seat.
 
-[wait for any key]'Marid,' she murmurs. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If -- If you're --'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-vision	true	false	"'I think I just had one of my hallucinations.'"	"'I think I just had one of my... my hallucinations.'
@@ -4803,7 +4836,7 @@ You swallow. 'I -- I see and hear things. Sometimes. Because of... because of...
 
 [wait for any key]The two of you exit the surgery room in silence. Doctor Cavala's eyes are on you as you take your seat.
 
-[wait for any key]'Marid,' she murmurs. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If -- If you're --'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
@@ -4816,7 +4849,7 @@ Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
 [wait for any key]As the two of you exit the surgery room, Doctor Cavala's eyes are on you. She reaches for your hand as walk past.
 
-[wait for any key]'Marid,' she murmurs. 'If you're--'
+[wait for any key]'Marid,' she murmurs. 'If -- If you're --'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 
@@ -4852,10 +4885,12 @@ hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Se
 'I'm surprised you haven't heard of him,' she says. 'He's one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-youknowserpens	true	true	"'You know him, Doctor?'"	"'You know him, Doctor?'
 
-'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was what, twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'Before your time,' she says. 'I -- I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was... twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
-A smile tugs at her lips. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+Even as Doctor Cavala dabs at her tears, a smile tugs at her lips.
+
+'Touché,' she says. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
 Doctor Cavala's demeanor grows serious. 'Right... we haven't told you. Much has changed in the district while you were out. Take a look outside.'
@@ -4874,7 +4909,7 @@ hndexposition-checkpoints	true	true	"'What did you mean by checkpoints?'"	"'What
 
 You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
 
-'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease as much as possible while a cure is found.'
+'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease as much as possible while a... a cure is found.'
 
 [wait for any key]'And no one is allowed to move between these cells?' you ask.
 
@@ -4885,7 +4920,7 @@ hndexposition-foodwater	true	true	"'What about food and water? Or correspondence
 
 [wait for any key]She pauses.
 
-[wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so. While you still have the chance.'"	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so.'"	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affliction?'"	"'So this inquest is to find a cure for the affliction?'
 
 'It is,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but after what happened...'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
@@ -4964,7 +4999,7 @@ She nods. 'I do, Marid. I really do.'"	{}
 
 Book 3.3 - Clinic
 
-The Clinic is a proper-named room. "[clinic-description]".
+The Clinic is a proper-named listed-on-directory room. "[clinic-description]".
 Understand "dr/doctor/doctor's" or "cavala/cavala's" as the Clinic.
 Does the player mean approaching the Clinic: it is likely. [As opposed to Arturus's Clinic.]
 
@@ -6386,7 +6421,7 @@ cavala-rwmq-conclusion1a	true	true	"'It has to be airborne.'"	"'It has to be air
 Doctor Cavala frowns. 'Are you sure about that? The degeneration of the lungs suggests that, certainly, but an airborne disease would have had many more victims -- the symptoms develop in hours, not weeks. The creditor and the thugs would have spread the disease to countless citizens during the day, and we'd have heard about the epidemic much earlier.'"	{cavala-rwmq-conclusion1b, cavala-rwmq-conclusion1c, cavala-rwmq-conclusion1d}
 cavala-rwmq-conclusion1b	true	true	"'It's contracted internally, through ingestion.'"	"'It's contracted internally, through ingestion.'
 
-'A strong hypothesis,' Doctor Cavala replies. '[if clue-ingestion-vector is true]The findings of your endoscopies certainly seem to corroborate it[otherwise]It certainly seems like the creditor and the thugs met their demise that way[end if]. But consider Doctor Arturus -- did he really ingest something that was contaminated? He was a magister of the [italic type]ars vitalis[roman type], after all, and would have taken precautions to avoid such a careless mistake. From what you described, it sounds more like he was infected through his hands --'
+'A strong hypothesis,' Doctor Cavala replies. '[if clue-ingestion-vector is true]Your endoscopies certainly seem to corroborate it[otherwise]It certainly seems like the creditor and the thugs met their demise that way[end if]. But consider Doctor Arturus -- did he really ingest something that was contaminated? He was a magister of the [italic type]ars vitalis[roman type], after all, and would have taken precautions to avoid such a careless mistake. From what you described, it sounds more like he was infected through his hands --'
 
 'He couldn't have been infected through his gloves,' you say. 'Otherwise both of us would be dead.'
 
@@ -6606,10 +6641,9 @@ Some dialogue branches are defined by the Table of Day Three Opening Dialogue.
 
 Table of Day Three Opening Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
-d3open-home	true	false	""	""	{d3open-panic, d3open-thinkfast, d3open-greet}
-d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-thinkfast, d3open-greet}
-d3open-thinkfast	true	true	"<Think quickly.>"	"A series of entirely inappropriate images flashes through your mind."	{d3open-panic, d3open-greet}
-d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false or the enabled of d3open-thinkfast is false] you finally bring yourself to say.[end if]
+d3open-home	true	false	""	""	{d3open-panic, d3open-greet}
+d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-greet}
+d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false] you finally bring yourself to say.[end if]
 
 'Thank the Primes.' He's checking your pulse now, leaning in to check the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
 
@@ -6625,7 +6659,7 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 d3open-thanks	true	true	"'...Thank you, Doctor Justinian. For saving me.'"	"'...Thank you, Doctor Justinian,' you tell him. 'For... for saving me.'
 
 He meets your eyes and smiles."	{d3open-notyourfault, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
-d3open-notyourfault	true	true	"'I-It wasn't your fault, Doctor Cavala.'"	"'It wasn't your fault, Doctor Cavala.'
+d3open-notyourfault	true	true	"'It wasn't your fault, Doctor Cavala.'"	"'I-It wasn't your fault, Doctor Cavala.'
 
 She shakes her head tearfully. 'I... I should have asked for a guard. A warding glyph. [italic type]Something.[roman type] I should have...
 
@@ -7033,6 +7067,11 @@ When Day One ends: cue the sunshine.
 When Walking Home in Suspense begins: cue the rain.
 When Day Two ends: cue the sunshine.
 
+west-end-saving-tutorial-read is a truth state that varies.
+Every turn when the location is the Via Terminalis West End and west-end-saving-tutorial-read is false (this is the save game tutorial rule):
+	say "(You may wish to save the game now by typing >[bold type]save[roman type]. You can do this at any time.)";
+	now west-end-saving-tutorial-read is true.
+
 Part 3.5.4 - West End during Day One
 
 Chapter 3.5.4.1 - Blocking the Way during Nine to Five Zombie
@@ -7108,7 +7147,7 @@ Instead of approaching when Walking Home in Suspense is happening:
 
 Book 3.6 - Dormitory Block
 
-The Dormitory Block is a proper-named room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
+The Dormitory Block is a proper-named listed-on-directory room in Outdoors. "[if Cavala's Errands has not ended]You have walked the grounds of this three-storey estate long enough to know it by heart. [end if]Here is the faded arch, with its years of verdigris; here are the too-small atrium and the fountain at its center. All around above are [if it is night]the lights of [end if]innumerable domiciles, linked by crumbling stairs and divided by flimsy plaster walls.
 
 [if the public house door is locked]The public house is closed tonight. You can only[otherwise]From here, you can[end if] go up to your dormitory room[unless Nine to Five Zombie is happening or Bad News from Cavala is happening or the public house door is locked], visit the public house to the west,[end unless] or exit the building to the south."
 The Dormitory Block is north of the West End.
@@ -7447,7 +7486,11 @@ Instead of talking to the gobliness, say "[one of]'Good morning.'
 
 'Morning, miss.' She tips her cap. 'Take care you don't step on one of them pigeons. Nasty business.'
 
-You look at your feet. 'Thanks for the warning.'[or]You make some small talk, but the conversation soon peters out.[stopping]"
+You look at your feet. 'Thanks for the warning.'[or]'Excuse me,' you say. 'Would you happen to know someone in Riggertown by the name of --'
+
+'Sorry, miss,' she replies. 'I don't know anybody -- I just work here. You might be better off asking in Riggertown, I reckon.'
+
+'Oh. Sorry for the trouble.'[or]You make some small talk, but the conversation soon peters out.[stopping]"
 
 The odd-job gobliness wears a container called a simple apron.
 Instead of examining the simple apron, say "A simple apron, spotty from years of use."
@@ -8154,6 +8197,7 @@ The sound is "[if time is critical]This is not the time.[otherwise]You hear the 
 The scent is "[if time is critical]This is not the time.[otherwise]Though you can't see the condemned block from here, a trace of its ash lingers in the air."
 Understand "dorm" as the dormitory window.
 Before climbing the dormitory window, try entering the dormitory window instead.
+Instead of opening the dormitory window, say "The window is already open."
 Instead of searching the dormitory window, say "You can see little except the view of the rooftop."
 Instead of knocking on or touching the dormitory window, say "There's no pane or grille in the window."
 
@@ -9009,7 +9053,7 @@ When Day Two ends (this is the despawn the black banner rule):
 	
 Book 3.15 - Channelworks Concourse
 
-The Channelworks Concourse is a proper-named room in Outdoors. "You stand before the fortress through which all waterways flow. Enormous colonnades line the concourse, flanked by selenite sentinels; hydra-like channels snake in patterns and merge into bas-reliefs of dizzying scale. Before the fosse, the statue of Reason bears aloft the Azoth.
+The Channelworks Concourse is a proper-named listed-on-directory room in Outdoors. "You stand before the fortress through which all waterways flow. Enormous colonnades line the concourse, flanked by selenite sentinels; hydra-like channels snake in patterns and merge into bas-reliefs of dizzying scale. Before the fosse, the statue of Reason bears aloft the Azoth.
 
 [if the partition bridge is closed]The bridge is currently raised. You can only[otherwise]The bridge is lowered, providing passage across the fosse. You can go north to the Channelworks or[end if] return south to the rest of the district."
 It is north of the Junction.
@@ -9120,7 +9164,7 @@ Instead of going north in the Channelworks Concourse when the partition bridge i
 
 Book 3.16 - Turris Infinita
 
-There is a proper-named room called the Turris Infinita. "[if the Turris is in mourning]The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds.[otherwise]Mirrors cover every surface in this avant-garde tower, from the floors to the doors to the chandeliers. The porter's desk is framed in lights, while watchful gargoyles above gaze into infinity.[end if]
+There is a proper-named listed-on-directory room called the Turris Infinita. "[if the Turris is in mourning]The atmosphere within the tower is utterly still. The lights that normally circle the mirrors have been dimmed, and the chandeliers overhead brood like thunderclouds.[otherwise]Mirrors cover every surface in this avant-garde tower, from the floors to the doors to the chandeliers. The porter's desk is framed in lights, while watchful gargoyles above gaze into infinity.[end if]
 
 A hydraulic lift provides access to [if Day One is happening]the upstairs domiciles[otherwise]Doctor Arturus's upstairs domicile[end if]. Doctor Arturus's clinic is east, and the exit is to the west."
 
@@ -9646,7 +9690,7 @@ Before approaching when the ornate double doors are locked:
 
 Book 3.17 - Grand Forum
 
-There is a proper-named room in Outdoors called the Grand Forum. "[if Day One is happening]This immense paved square is alive with people of all kinds: couples, merchants, buskers. There are children flying their paper kites and old men watching the clouds drift by. A brilliant mural of Furopolis and Solphos hovers at the heart of it all[otherwise]Aside from the mural of Solphos, this immense paved square is largely deserted. There are no couples, no merchants, no buskers -- nothing except for a chilly breeze that you can feel in your bones[end if].
+There is a proper-named listed-on-directory room in Outdoors called the Grand Forum. "[if Day One is happening]This immense paved square is alive with people of all kinds: couples, merchants, buskers. There are children flying their paper kites and old men watching the clouds drift by. A brilliant mural of Furopolis and Solphos hovers at the heart of it all[otherwise]Aside from the mural of Solphos, this immense paved square is largely deserted. There are no couples, no merchants, no buskers -- nothing except for a chilly breeze that you can feel in your bones[end if].
 
 The arch of Miller's Gate rules the east, and the curving canal cradles the basilica to the west. From the northern Via Terminalis junction, the Via Mercurii splits off and travels south."
 It is south of the Junction.
@@ -11002,7 +11046,7 @@ When Cavala's Errands ends (this is the despawn the fortune-teller and his table
 
 Book 3.22 - Shanty Quarter / Shanty Maze
 
-There is a proper-named goto-impassable room in Outdoors called the Shanty Quarter. "A labyrinthine morass of concrete and claustrophobia. You know this place better now that you've seen the worst of it -- you know which paths to take, which alleys to avoid -- but there is a horror here that sinks its teeth into you, and does not lets go.
+There is a proper-named goto-impassable listed-on-directory room in Outdoors called the Shanty Quarter. "A labyrinthine morass of concrete and claustrophobia. You know this place better now that you've seen the worst of it -- you know which paths to take, which alleys to avoid -- but there is a horror here that sinks its teeth into you, and does not lets go.
 
 Tangled rope ladders lead up and down. A crumbling flophouse lies to the east. Somewhere to the north is the Via Mercurii, and to the west, Cadaver Walk."
 It is south of the Via Mercurii.
@@ -11536,7 +11580,7 @@ Book 3.24 - Riggertown Lower Level
 
 There is a region in Outdoors called Riggertown.
 
-Riggertown Lower Level is a proper-named room in Riggertown. "This peculiarly goblin neighborhood bristles with mechanical-chymical detritus. There are twisty catwalks made for childlike feet, and sheet-metal shacks you must stoop to enter. Here and there in the shadow of the upper landing, neon lamps glow and windchimes tinkle like laughter.
+Riggertown Lower Level is a proper-named listed-on-directory room in Riggertown. "This peculiarly goblin neighborhood bristles with mechanical-chymical detritus. There are twisty catwalks made for childlike feet, and sheet-metal shacks you must stoop to enter. Here and there in the shadow of the upper landing, neon lamps glow and windchimes tinkle like laughter.
 
 You can climb a ladder up to the next level, [if Reden's Shack is visited]visit Reden's shack[otherwise]wander among the shacks[end if] to the west, or cross the canal east by way of Cadaver Walk."
 It is west of Cadaver Walk.
@@ -11887,7 +11931,7 @@ Instead of dropping the drink coupons:
 
 Book 3.26 - Riggertown Upper Level
 
-Riggertown Upper Level is a proper-named room in Riggertown. "This is the more industrial part of Riggertown. The buildings here are scrap-heap spires that twist and turn around each other, with cubby-carts trundling along cables strung between them. Amidst horns honking advertisements, there is a great mess of little people shuffling about, and roads winding in ways wholly inexplicable to your human sensibilities.
+Riggertown Upper Level is a proper-named listed-on-directory room in Riggertown. "This is the more industrial part of Riggertown. The buildings here are scrap-heap spires that twist and turn around each other, with cubby-carts trundling along cables strung between them. Amidst horns honking advertisements, there is a great mess of little people shuffling about, and roads winding in ways wholly inexplicable to your human sensibilities.
 
 To the south looms [first time]an enormously noisy factory, which signage identifies as [only]the Riggertown Mechanistry[one of]. A[or], while a[stopping] quieter road leads southwest to the suburbs. You could also descend a series of ladders to Lower Riggertown, or take a footpath north along the Bilious Canal."
 It is south of Following the Canal. It is above Riggertown Lower Level.
@@ -12428,6 +12472,7 @@ The description is "The plaque on the front door informs you that this house is 
 Understand "plaque" or "koriph's" or "residence" as the front door of Zoiro's house.
 Instead of searching the front door of Zoiro's house, say "The door [if the front door of Zoiro's house is open and the location is VII Layabout Row]leads into the house.[otherwise if the front door of Zoiro's house is open]leads out of the house.[otherwise]is closed."
 Does the player mean doing something with the front door of Zoiro's house: it is unlikely. [As opposed to Zoiro's house.]
+Does the player mean knocking on the front door of Zoiro's house: it is very likely. [As opposed to Zoiro's house.]
 
 Instead of knocking on the front door of Zoiro's house:
 	if the front door of Zoiro's house is locked:
@@ -12451,7 +12496,7 @@ When Reden Investigation ends (this is the lock Zoiro's door again rule):
 
 Book 3.29 - Arturus's Clinic
 
-There is a proper-named room called Arturus's Clinic.
+There is a proper-named listed-on-directory room called Arturus's Clinic.
 The description is "This upscale clinic exudes a muted elegance. Chrome fixtures are lit by surgically placed spotlights and underscored by dizzyingly intricate sigil-work[first time]. Yet for all its technical mastery, the space seems somehow empty, somehow melancholy[only].
 
 An arch to the west leads back to the Turris Infinita foyer."
@@ -13388,13 +13433,14 @@ After examining Piper's torso when Piper's name list is nowhere: now Piper's nam
 Piper's frock is a thing worn by Piper.
 The description is "A worn black dress that has been patched to the point of unrecognizability. Midway along the thigh, a tell-tale fray of the hem shows where the dress has been shortened."
 Understand "worn" or "black dress" or "dress" or "hem" or "cut" or "off" or "cut-off" or "patch/patches" as Piper's frock.
-Instead of looking under, opening, taking, or taking off Piper's frock, say "There's nothing under there that you're interested in."
+Instead of looking under, opening, searching, taking, or taking off Piper's frock, say "There's nothing under there that you're interested in."
 
 Piper's jacket is a container worn by Piper.
 The description is "This jacket was either stolen or poorly tailored. Possibly both.
 
 [if clue-piper-namelist is false]You notice a square, flat outline[otherwise]The list of names you found is[end if] in one of the jacket pockets."
 Understand "watchwoman/watchwoman's" or "watch" or "woman/woman's" or "stain/stains" or "flap/flaps/fold/folds" as Piper's jacket.
+Instead of searching Piper's jacket, say "[if clue-piper-namelist is false]You notice a square, flat outline[otherwise]The list of names you found is[end if] in one of the jacket pockets."
 Instead of inserting something into Piper's jacket, say "This is a dead body, not your personal chest-of-drawers."
 Instead of looking under, taking, or taking off Piper's jacket, say "The jacket is a biohazard, and not terribly fashionable either."
 Instead of opening Piper's jacket, say "Piper's jacket is already open."
@@ -14007,7 +14053,7 @@ Instead of looking under, searching, or turning the painting of Doctor Arturus, 
 
 The antique cast-iron scalpel is scenery in Arturus's Domicile.
 The description is "It's hard to imagine surgeons once used these."
-Understand "stand" as the antique cast-iron scalpel.
+Understand "stand" or "cast" or "iron" as the antique cast-iron scalpel.
 Instead of looking under the antique cast-iron scalpel, say "The scalpel is displayed on a stand."
 Instead of taking the antique cast-iron scalpel, say "You feel like you should leave Doctor Arturus's things as they were."
 
@@ -15622,7 +15668,7 @@ Table of Webster Day Two Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 webster-d2-intro	true	false	""	"'Hello,' you say, rather meekly.
 
-The bouncer peers down at you and frowns. He wipes soot from his goggles; he blows on his gloved fingers.
+The bouncer peers down at you and frowns. He wipes soot from his goggles; he blows on his bandaged fingers.
 
 'You don't look like you're from around here,' he finally remarks."	{webster-d2-whatmean, webster-d2-neitheryou, webster-d2-cavalaclinic}
 webster-d2-whatmean	true	false	"'What do you mean?'"	"'What do you mean?'
@@ -15818,7 +15864,7 @@ webster-d2-youknewhim	true	false	"'You were close to Reden?'"	"'You were close t
 
 [wait for any key]He looks off into the distance.
 
-[wait for any key]'We were drinking buddies. Him and me and Crow. We all knew each other back in the day -- told jokes, comforted each other when we got laid off. I don't think he had anyone other than the two of us.
+[wait for any key]'We were drinking buddies. Him and me and Crow. We all knew each other back in the day -- told jokes, comforted each other when we had a bad run. I don't think he had anyone other than the two of us.
 
 [wait for any key]'And now he's gone. It's just the two of us left.'"	{webster-d2-crow, webster-d2-nooneelse, webster-d2-avengereden}
 webster-d2-crow	true	true	"'Who's Crow?'"	"'Who's Crow?' you ask.
@@ -15878,7 +15924,7 @@ Instead of talking to Webster when Day Two is happening and the enabled of webst
 
 Book 3.37 - Crow's Nest
 
-There is a proper-named room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; odd patrons mingle all around you, engrossed in the late-afternoon murmur.
+There is a proper-named listed-on-directory room called the Crow's Nest. "There is a strange crooked serenity here, amidst the rags that catch the wind. From discarded blocks and beams have been built tables, landings; odd patrons mingle all around you, engrossed in the late-afternoon murmur.
 
 The exit lies below."
 It is above the Gangway.
@@ -16069,7 +16115,7 @@ She rolls her eyes, but fetches another bottle from under the counter and pours 
 
 'Um. Thanks.'
 
-[wait for any key]She shakes her head and takes a long swig from her own tumbler. For a long while she is silent, absorbed in her own thoughts.
+[wait for any key]She shakes her head and takes a long swig from her own glass. For a long while she is silent, absorbed in her own thoughts.
 
 [wait for any key]'Reden,' she finally says. 'You wanted to know more about him.'"	{crow-d2-hecamehere, crow-d2-youknewhim, crow-d2-whatwashelike}
 crow-d2-hecamehere	true	true	"'I understand [if Crow is referring to Reden]he[otherwise]Reden[end if] frequented this place.'"	"'I understand he frequented this place.'
