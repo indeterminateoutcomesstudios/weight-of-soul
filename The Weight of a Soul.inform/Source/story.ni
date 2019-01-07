@@ -4109,7 +4109,7 @@ The exit reminder is "The only exit is south through the calomel curtain."
 
 To say surgery-room-description:
 	if Heroes Never Die is happening:
-		say "You are in a cold cylindrical chamber, pulsing in a thousand dimensions and illuminated from within. Dozens or hundreds of afterimages creep like specters at the edge of your vision. To the south, the exit is wreathed in calomel.
+		say "You are in a cold cylindrical chamber, pulsing in a thousand dimensions illuminated from within. Dozens or hundreds of afterimages creep like specters at the edge of your vision. To the south, the exit is wreathed in calomel.
 
 A shimmering and fractured Reden sits upon the gurney. He looks at you with eyes that run black. ";
 		now Reden's animus is mentioned;
@@ -4805,17 +4805,6 @@ After reading out reden-hnd-waytohelp:
 	
 Chapter 3.2.6.2 - HND Exposition Dialogue (aka The Part that Took Six Months to Write)
 
-[General thoughts on this awful clusterfuck of a dialogue -
-
-No need to mess with the structure anymore. It works, just push through and complete the rest of the day.
-Remove all mentions of Necromanteia, it's lame and doesn't fit with what we need for their relationship.
-Doctor Cavala is totally skeptical of Marid's vision. The player has to make a choice on whether to investigate or not.
-Choose "not" - Bad End basically, they get a montage and fast forward to Ending A.
-Choose "investigate" - They disobey Doctor Cavala and sneak out into the district. Tearful parting where Cavala says "you remind me of myself" etc
-
-Cavala incredulous, believes it's a hallucination. Marid has been working too hard and wasn't the most mentally sound from the outset.
-She doesn't want to lose Marid, now more than ever. Marid wins by appealing to her soldier side - "It's something I have to do"]
-
 Section 3.2.6.2.1 - BC (Before Cerpens)
 
 Some dialogue branches are defined by the Table of HND Exposition Dialogue.
@@ -4850,7 +4839,7 @@ You swallow. 'I -- I see and hear things. Sometimes. Because of... because of...
 [wait for any key]'Marid,' she murmurs. 'If... If you're --'
 
 [wait for any key][hnd-serpens-entrance]"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
-hndexposition-thinksawghost	true	false	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
+hndexposition-thinksawghost	true	true	"'I think I just saw a ghost.'"	"'I think I just saw a ghost.'
 
 Justinian looks at you. 'A ghost? Surely -- but you don't mean...'
 
@@ -4873,7 +4862,7 @@ To say hnd-serpens-entrance:
 	wait for any key;
 	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
-	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be many more lives lost if you don't move your damn fool behind.'[paragraph break]";
+	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And there will be much more at stake if you don't move your damn fool behind.'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll see each other again.'[paragraph break]";
 	wait for any key;
@@ -4893,24 +4882,24 @@ Table of HND Exposition Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
 
-'I'm surprised you haven't heard of him,' she says. 'He's... he's one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'I'm surprised you haven't heard of him,' she says. 'He was... is... one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-youknowserpens	true	true	"'You know him, Doctor?'"	"'You know him, Doctor?'
 
-'Before your time,' she says. 'I... I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was... twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
+'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was... twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
 Even as Doctor Cavala dabs at her tears, a smile tugs at her lips.
 
-'Touché,' she says. 'He may have rubbed off on me, more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+'Touché,' she says. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
-Doctor Cavala stiffens. 'Right... we haven't told you. Much has changed in the district while you were out. Take a look outside.'
+Doctor Cavala stiffens. 'Right. We haven't told you. Much has changed in the district while you were out. Take a look outside.'
 
 [wait for any key]She tilts her head at the door. You follow her gaze, and the shadows of robed soldiers can be seen through the glass.
 
 [wait for any key]'The death toll of the affliction has climbed into the -- the hundreds,' she says. 'The entire district is in a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
 
-[wait for any key]'No one can leave the district until a cure has been produced by the council, or until everyone up and down the canal is dead.'[wait for any key before prompt]"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'No one can leave the district until a cure has been produced by the inquest, or until everyone up and down the canal is dead.'[wait for any key before prompt]"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
 
 Doctor Cavala nods grimly."	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
@@ -4920,31 +4909,53 @@ hndexposition-checkpoints	true	true	"'What did you mean by checkpoints?'"	"'What
 
 You rack your memory. 'Now that you mention it, I -- I remember something like that. Lots of walls and calomel curtains?'
 
-'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease while a cure is found.'
+'It's the same system. Each individual section of the district has been partitioned off and quarantined. It's a way to forestall the spread of the disease until a cure is found.'
 
 [wait for any key]'And no one is allowed to move between these cells?' you ask.
 
-[wait for any key]'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here. He's needed for the inquest, which is the only reason Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
+[wait for any key]'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here. He's needed for the inquest, which is why Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-foodwater	true	true	"'What about food and water? Or correspondence?'"	"'What about food and water? Or correspondence?'
 
-'We can still receive items from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can pass along messages through the Vigiles network too, though obviously nothing material can be sent out.'
+'We can still receive packages from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can pass along messages through the Vigiles network too, though obviously nothing material can be sent out.'
 
 [wait for any key]She pauses.
 
 [wait for any key]'I... I've already asked Horatio to pass along my messages. If there's anyone outside the Channelwork District you want to contact, you should do so.'"	{hndexposition-checkpoints, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affliction?'"	"'So this inquest is to find a cure for the affliction?'
 
-'It is,' Doctor Cavala replies. 'The Court has summoned a contingent of doctors and set them up in Doctor Arturus's clinic. Doctor Serpens is managing the investigation. I'd have recommended you, but after what happened...'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
+'It is,' Doctor Cavala replies. 'The government has set up a research station in Doctor Arturus's clinic. Doctor Serpens is the head of staff. I'd have recommended you, but after what happened...'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
 hndexposition-murders	true	true	"'Didn't we establish that the deaths were murders, not a result of infection?'"	"'Didn't we establish that the deaths were murders, not a result of infection?'
 
-'The inquest seems to think otherwise.' Doctor Cavala sighs. 'Besides, even if this affliction was mainly a murder weapon, we cannot discount the possibility of infection.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+'Hypotheses can change, Marid.' She fixes you with a hard look. 'Hundreds have turned up dead. If this isn't an epidemic, it's a slaughter. Either way, measures have to be taken.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+
+Section 3.2.6.2.4 - But I Wanna Go, Mom
+
+Table of HND Exposition Dialogue (continued)
+dialogue branch	enabled	one-shot	prompt	description	choices
 hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do now?'
 
-Doctor Cavala looks down, and is quiet for a moment.
+Doctor Cavala leans her head back. She closes her eyes, and for a terrible moment she looks like a corpse bereft of life.
 
--------------------------------WORK IN PROGRESS-------------------------------
+[wait for any key]'I don't know,' she says. 'I don't know.'
 
-Something something I don't know. I'm so scared. I was so scared of losing you. Don't go."	{hndexposition-lie, hndexposition-truth}
+[wait for any key]Her voice cracks. 'There's nothing I can do. There's nothing either of us can do. It's out of our hands now, Marid. All we can do is wait.'"	{hndexposition-drruok, hndexposition-noideas}
+hndexposition-drruok	true	false	"'Doctor?'"	"'Doctor?'
+
+'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help the inquest. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+
+[wait for any key]'I know how you feel, Marid, believe me. I know it more than anyone. But people have limits, Marid. There are some things you can't fix. There are people you can't save. There are people you can't bring back.
+
+[wait for any key]'Marid, there's nothing we can do right now. It's out of our hands. Let yourself rest.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-sthihavetodo}
+hndexposition-noideas	true	false	"'You don't have any ideas?'"	"'You don't have any ideas?'
+
+'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help the inquest. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+
+[wait for any key]'I know how you feel, Marid, believe me. I know it more than anyone. But people have limits, Marid. There are some things you can't fix. There are people you can't save. There are people you can't bring back.
+
+[wait for any key]'Marid, there's nothing we can do right now. It's out of our hands. Let yourself rest.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-sthihavetodo}
+hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	""	{}
+hndexposition-cantjustgiveup	true	false	"'We can't just give up like this...'"	""	{}
+hndexposition-sthihavetodo	true	false	"'This is something I have to do...'"	""	{}
 hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
 
 You fidget. There is a long silence.
@@ -6622,7 +6633,7 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 
 [wait for any key]There is a sound from the waiting chairs. You turn and see Doctor Cavala watching from her cot. Her throat is choked. Her eyes are red from crying.
 
-[wait for any key]'You're safe,' she says. 'Marid, I'm so sorry. I'm so, so sorry.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-attacked, d3open-somethingstrange}
+[wait for any key]'You're safe,' she says. 'Marid, I'm sorry. I'm so, so sorry.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-attacked, d3open-somethingstrange}
 d3open-thanks	true	true	"'...Thank you, Doctor Justinian. For saving me.'"	"'...Thank you, Doctor Justinian,' you tell him. 'For... for saving me.'
 
 He meets your eyes and smiles."	{d3open-notyourfault, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
