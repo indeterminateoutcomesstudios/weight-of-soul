@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 070119.
+The release number is 100119.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2019.
 
@@ -4893,11 +4893,11 @@ Even as Doctor Cavala dabs at her tears, a smile tugs at her lips.
 'Touché,' she says. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
-Doctor Cavala stiffens. 'Right. We haven't told you. Much has changed in the district while you were out. Take a look outside.'
+Doctor Cavala stiffens. 'Right. We... we haven't told you. Much has changed in the district while you were out. Take a look outside.'
 
 [wait for any key]She tilts her head at the door. You follow her gaze, and the shadows of robed soldiers can be seen through the glass.
 
-[wait for any key]'The death toll of the affliction has climbed into the -- the hundreds,' she says. 'The entire district is in a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
+[wait for any key]'The death toll of the affliction has climbed into the hundreds,' she says. 'The entire district is in a -- a panic. Word has reached the higher-ups and martial law has been declared. There are Vigiles patrols, checkpoints in the streets... and the quarantine.
 
 [wait for any key]'No one can leave the district until a cure has been produced by the inquest, or until everyone up and down the canal is dead.'[wait for any key before prompt]"	{hndexposition-ohprimes, hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-ohprimes	true	true	"'Oh, Primes.'"	"'Oh, Primes.'
@@ -4938,24 +4938,56 @@ Doctor Cavala leans her head back. She closes her eyes, and for a terrible momen
 
 [wait for any key]'I don't know,' she says. 'I don't know.'
 
-[wait for any key]Her voice cracks. 'There's nothing I can do. There's nothing either of us can do. It's out of our hands now, Marid. All we can do is wait.'"	{hndexposition-drruok, hndexposition-noideas}
+[wait for any key]Her voice wavers. Cracks.
+
+[wait for any key]'There's nothing I can do. There's nothing either of us can do. It's out of our hands now, Marid. All we can do is wait.'
+
+[wait for any key]You feel a cold pit in your stomach."	{hndexposition-drruok, hndexposition-noideas}
 hndexposition-drruok	true	false	"'Doctor?'"	"'Doctor?'
 
-'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help the inquest. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
 
-[wait for any key]'I know how you feel, Marid, believe me. I know it more than anyone. But people have limits, Marid. There are some things you can't fix. There are people you can't save. There are people you can't bring back.
-
-[wait for any key]'Marid, there's nothing we can do right now. It's out of our hands. Let yourself rest.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-sthihavetodo}
+[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix. There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
 hndexposition-noideas	true	false	"'You don't have any ideas?'"	"'You don't have any ideas?'
 
-'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help the inquest. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
 
-[wait for any key]'I know how you feel, Marid, believe me. I know it more than anyone. But people have limits, Marid. There are some things you can't fix. There are people you can't save. There are people you can't bring back.
+[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix. There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
+hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	"'This isn't like you at all, Doctor. I thought... I thought you upheld the oath. I thought you could be stronger than this.'
 
-[wait for any key]'Marid, there's nothing we can do right now. It's out of our hands. Let yourself rest.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-sthihavetodo}
-hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	""	{}
-hndexposition-cantjustgiveup	true	false	"'We can't just give up like this...'"	""	{}
-hndexposition-sthihavetodo	true	false	"'This is something I have to do...'"	""	{}
+She fixes you with a terrible gaze -- the look of one who has seen death.
+
+'You don't know what you're saying,' she whispers. 'You weren't breathing. Just now, on the tarp, Justinian pronounced you clinically dead.
+
+[wait for any key]'I told him you were still in there. I told him -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+
+[wait for any key]She chokes up, and begins to sob.
+
+[wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-cantjustgiveup	true	false	"'Are you just giving up?...'"	"'Are you just giving up?' you say. 'I thought you were a soldier, Doctor. I thought you were stronger than this.'
+
+She fixes you with a terrible gaze -- the look of one who has seen death.
+
+'You don't know what you're saying,' she whispers. 'You think this is a war. War is a terrible thing, Marid. There are no victors in war.
+
+[wait for any key]'You were dead, Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+
+[wait for any key]She chokes up, and begins to sob.
+
+[wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-idontbelievethat	true	false	"'I don't believe that for a moment...'"	"'I don't believe that for a moment,' you tell her. 'I've seen things, Doctor. I've spoken to dead people. I don't care what you think. I know that we can save these people. I know we have to [italic type]try[roman type] -- we have to [italic type]do[roman type] something!'
+
+[wait for any key]She fixes you with a terrible gaze -- the look of one who has seen death.
+
+[wait for any key]'You don't know what you're saying,' she whispers. 'You want to be a hero. Heroes live short lives, Marid. This isn't a fairy tale. You can't save everyone.
+
+[wait for any key]'You were dead, Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+
+[wait for any key]She chokes up, and begins to sob.
+
+[wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	""	{}
+hndexposition-hesitate	true	false	"<Hesitate.>"	""	{}
 hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
 
 You fidget. There is a long silence.
