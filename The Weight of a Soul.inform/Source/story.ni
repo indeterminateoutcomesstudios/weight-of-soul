@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 100119.
+The release number is 140119.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2019.
 
@@ -4957,9 +4957,9 @@ hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	"'This isn
 
 She fixes you with a terrible gaze -- the look of one who has seen death.
 
-'You don't know what you're saying,' she whispers. 'You weren't breathing. Just now, on the tarp, Justinian pronounced you clinically dead.
+'You don't know what you're saying,' she whispers. 'Listen to yourself, Marid. You think -- you think that walking into the jaws of death -- you think that makes you strong?
 
-[wait for any key]'I told him you were still in there. I told him -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+[wait for any key]'You were [italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
 
 [wait for any key]She chokes up, and begins to sob.
 
@@ -4970,7 +4970,7 @@ She fixes you with a terrible gaze -- the look of one who has seen death.
 
 'You don't know what you're saying,' she whispers. 'You think this is a war. War is a terrible thing, Marid. There are no victors in war.
 
-[wait for any key]'You were dead, Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+[wait for any key]'You were[italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
 
 [wait for any key]She chokes up, and begins to sob.
 
@@ -4981,14 +4981,39 @@ hndexposition-idontbelievethat	true	false	"'I don't believe that for a moment...
 
 [wait for any key]'You don't know what you're saying,' she whispers. 'You want to be a hero. Heroes live short lives, Marid. This isn't a fairy tale. You can't save everyone.
 
-[wait for any key]'You were dead, Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+[wait for any key]'You were [italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
 
 [wait for any key]She chokes up, and begins to sob.
 
-[wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
-hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	""	{}
-hndexposition-hesitate	true	false	"<Hesitate.>"	""	{}
-hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
+[wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-hesitate, hndexposition-notafraidofdeath}
+hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	"A fire rises up in you, a bile white and furious. The words come to mind like armaments of Truth.
+
+[wait for any key]'I'm not afraid of death,' you say. 'Not anymore. I've seen beyond the curtain, Doctor. I've gone to the other side and clawed my way back. And I fought every bit of the way -- I [italic type]fought[roman type] my way back to the land of the living -- because I finally realized what I had to fight for.
+
+[wait for any key]'Maybe you've forgotten what the point of everything is. Maybe the stress of it all has broken you. But it hasn't broken [italic type]me.[roman type] And I'm going to get out there and save some lives, Doctor. With or without you.'
+
+[wait for any key]You take a deep breath.
+
+[wait for any key]Doctor Cavala has fallen silent. There are tears at the corners of her eyes."	{hndexposition-hesitate, hndexposition-imsorry}
+hndexposition-hesitate	true	false	"<Hesitate.>"	"You look into Doctor Cavala's eyes, and she is afraid.
+
+She's lost a lot of people, you realize. You've been her apprentice for a long time, but in all that time, she's never spoken of those who couldn't make it. The soldiers who died of their wounds -- the mothers who died in childbirth -- the patients who never saw another sunrise --
+
+[wait for any key]You don't know how many there have been. She has never told you.
+
+[wait for any key]Now, in this moment of weakness, in this crack in her mask, you glimpse the unthinkable burden that weighs on Doctor Cavala's soul.
+
+[wait for any key]There are too many. There always have been.
+
+[wait for any key]And you know that her deepest, darkest fear, beneath that impenetrable shell, is the fear of losing the one thing that has made it worthwhile -- the only thing that can truly make a difference -- her final legacy in service of the oath.
+
+[wait for any key]Her deepest, darkest fear is that she will lose you too.
+
+[wait for any key]'Please,' she says, in a trembling voice. 'Please.'"	{hndexposition-giveupending, hndexposition-imsorry}
+hndexposition-giveupending	true	false	"<Give up your quest and stay with Doctor Cavala.>"	""	{}
+hndexposition-imsorry	true	false	"'I'm sorry...' <Leave her.>"	""	{}
+
+[hndexposition-lie	true	false	"<Make up a story.>"	"'It... it was a trick of the light,' you tell her. '[if the enabled of hndexposition-justtrick is false]Like I said earlier[otherwise]I was mistaken[end if]. My head was in a jumble when I woke up, and... and I thought I saw something that wasn't there.'
 
 You fidget. There is a long silence.
 
@@ -5003,7 +5028,7 @@ You tell her about the pulsating light and the curtain that shrouds the world. Y
 
 [wait for any key]As you finish, Doctor Cavala takes a deep breath. She exhales.
 
-[wait for any key]'You...' she begins. 'I...'"	{}
+[wait for any key]'You...' she begins. 'I...'"	{}]
 	
 
 
