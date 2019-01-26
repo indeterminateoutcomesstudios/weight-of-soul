@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 140119.
+The release number is 260119.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2019.
 
@@ -2625,11 +2625,11 @@ To say credits-text:
 
 [italic type]The Weight of a Soul[roman type] was written by Chin Kee Yong a.k.a. CKY, a Singaporean game designer. It is my first serious foray into interactive fiction.
 
-Thanks to everyone who's ever given feedback on this game: Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!). Your time has helped to make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
+Thanks to everyone who's ever given feedback on this game: Brian, Emily, Gabriel, G_L, Lewis, Liangdeng, Luel, Mabbu, MathBrush, Miss G, Mown, Niklor, Nommy, Samuel, Sarah, Qingxiang, Wei Ling, the folks at Rotten Mage, and probably a whole host whose names escape me (sorry!). Your time has helped to make this game better. Any bugs in the game are my fault and not the fault of these amazing people.
 
 Thanks to Lieu, Gu, Wen, WY, GA, and the rest for putting up with my fits of manic inspiration. Thanks also to the co-creators and stewards of the Expanded Multiverse: your creativity and positivity are what inspire me to keep going.
 
-Shanflower drew the map of the Channelworks District. Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt W. of intfiction.org helped with some programming tricks.[paragraph break]";
+Shanflower drew the map of the Channelworks District. Emily Short wrote some extensions that do backstage work for [italic type]The Weight of a Soul[roman type]. Matt W. helped with some programming tricks.[paragraph break]";
 	say "Thanks to my family, the Inform team, the Singaporean game development community, and the IF community. And of course, thank you, dear player. I hope you enjoy the game I've made.
 
 [bold type]Licensing and Contact Information[roman type]
@@ -4803,7 +4803,7 @@ After reading out reden-hnd-pain:
 After reading out reden-hnd-waytohelp:
 	now the enabled of reden-hnd-affliction is true.
 	
-Chapter 3.2.6.2 - HND Exposition Dialogue (aka The Part that Took Six Months to Write)
+Chapter 3.2.6.2 - HND Exposition Dialogue (aka The Part that Took 10 Months to Write)
 
 Section 3.2.6.2.1 - BC (Before Cerpens)
 
@@ -4936,9 +4936,7 @@ hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do no
 
 Doctor Cavala leans her head back. She closes her eyes, and for a terrible moment she looks like a corpse bereft of life.
 
-[wait for any key]'I don't know,' she says. 'I don't know.'
-
-[wait for any key]Her voice wavers. Cracks.
+[wait for any key]'I don't know,' she says. 'I don't know.
 
 [wait for any key]'There's nothing I can do. There's nothing either of us can do. It's out of our hands now, Marid. All we can do is wait.'
 
@@ -4947,12 +4945,16 @@ hndexposition-drruok	true	false	"'Doctor?'"	"'Doctor?'
 
 'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
 
-[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix. There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
+[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix.
+
+[wait for any key]'There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
 hndexposition-noideas	true	false	"'You don't have any ideas?'"	"'You don't have any ideas?'
 
 'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
 
-[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix. There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
+[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix.
+
+[wait for any key]'There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
 hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	"'This isn't like you at all, Doctor. I thought... I thought you upheld the oath. I thought you could be stronger than this.'
 
 She fixes you with a terrible gaze -- the look of one who has seen death.
@@ -4988,14 +4990,20 @@ hndexposition-idontbelievethat	true	false	"'I don't believe that for a moment...
 [wait for any key]'Facing death doesn't make you strong,' she says. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-hesitate, hndexposition-notafraidofdeath}
 hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	"A fire rises up in you, a bile white and furious. The words come to mind like armaments of Truth.
 
-[wait for any key]'I'm not afraid of death,' you say. 'Not anymore. I've seen beyond the curtain, Doctor. I've gone to the other side and clawed my way back. And I fought every bit of the way -- I [italic type]fought[roman type] my way back to the land of the living -- because I finally realized what I had to fight for.
+[wait for any key]'I'm not afraid of death,' you say. 'I've seen beyond the curtain.'
 
-[wait for any key]'Maybe you've forgotten what the point of everything is. Maybe the stress of it all has broken you. But it hasn't broken [italic type]me.[roman type] And I'm going to get out there and save some lives, Doctor. With or without you.'
+[wait for any key]Doctor Cavala stares at you. You look her in the eye, watch her soul pulsate with each breath.
 
-[wait for any key]You take a deep breath.
+[wait for any key]'I've gone to the other side,' you say. 'I clawed my way back. And I fought every bit of the way -- I [italic type]fought[roman type] my way back to the land of the living -- because I realized what I had to fight for.
 
-[wait for any key]Doctor Cavala has fallen silent. There are tears at the corners of her eyes."	{hndexposition-hesitate, hndexposition-imsorry}
-hndexposition-hesitate	true	false	"<Hesitate.>"	"You look into Doctor Cavala's eyes, and she is afraid.
+[wait for any key]'Maybe you've forgotten what the point of everything is. Maybe the stress of it all has broken you. But it hasn't broken [italic type]me.[roman type] And I'm going to get out there and save some lives, Doctor.
+
+[wait for any key]'With or without you.'
+
+[wait for any key]You take a deep breath. You feel blood pounding in your temples.
+
+[wait for any key]Doctor Cavala has fallen silent, and there are tears at the corners of her eyes."	{hndexposition-hesitate, hndexposition-imsorry}
+hndexposition-hesitate	true	false	"<Hesitate.>"	"For a moment, the confidence buoying you dissipates, and you founder. You see in Doctor Cavala that she is afraid. More afraid than you have ever seen her.
 
 She's lost a lot of people, you realize. You've been her apprentice for a long time, but in all that time, she's never spoken of those who couldn't make it. The soldiers who died of their wounds -- the mothers who died in childbirth -- the patients who never saw another sunrise --
 
