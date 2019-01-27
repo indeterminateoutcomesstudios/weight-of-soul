@@ -69,6 +69,16 @@ Basic flowchart:
 - Marid heads north from there and ends up in the belly of the Channelworks where she finds Reden's Haunt. She realizes that this black liquid is leaking from inside, which she follows to discover Noctis Storage and Justinian's notes on the thing. She has to search around to find the key to snoop deeper inside the Channelworks complex.
 - Heading up from Noctis Storage she encounters Doctor Serpens and has to hide to not be murdered. Soon however Justinian arrives and talks Serpens down. Marid is found by Justinian... and imprisoned. CUE VILLAIN MONOLOGUE! CUE DAY 4!
 
+- Write Retirement Ending
+- Write leaving Cavala
+- Write Via Terminalis
+- Write Canalside Steps
+- Write Hidden Passage
+- Write Church of One Thousand Faces
+- Write Channelworks and Reden's Haunt
+- Write Noctis Storage
+- Write final encounter
+
 - Write Day Four
 - Write Epilogue
 
@@ -17546,7 +17556,7 @@ The printed name of the difficult-to-focus-on-scenery is "trying to focus".
 Understand "blood" or "dust" or "fog" or "footfall/footfalls" or "footstep/footsteps" or "heartbeat" or "final" or "hall" as the difficult-to-focus-on-scenery.
 Does the player mean doing something with the difficult-to-focus-on-scenery: it is very likely.
 
-The collapsed-corridor-light is scenery in the Collapsed Corridor.
+The collapsed-corridor-light is faraway scenery in the Collapsed Corridor.
 The printed name of the collapsed-corridor-light is "light ahead".
 Understand "light" or "ahead" as the collapsed-corridor-light.
 Does the player mean doing something with the collapsed-corridor-light: it is very likely.
@@ -17614,6 +17624,14 @@ Before approaching Marid's Vision:
 	say "There are some places you can't go back to.";
 	stop the action.
 	
+Before listening to when the location is Marid's Vision:
+	say "Everything sounds so far away.";
+	stop the action;
+	
+Before smelling when the location is Marid's Vision:
+	say "The air you inhale is weightless.";
+	stop the action;
+	
 Last before doing anything when the location is Marid's Vision:
 	if the current action is looking:
 		continue the action;
@@ -17623,11 +17641,11 @@ Last before doing anything when the location is Marid's Vision:
 		continue the action;
 	else if we are taking inventory:
 		continue the action;
-	else if the current action is listening to:
-		say "Everything sounds so far away.";
-		stop the action;
-	else if the current action is touching or the current action is rubbing or the current action is taking or the current action is pushing or the current action is pulling or the current action is turning or the current action is swinging or the current action is jumping or the current action is knocking on:
-		if the noun is not Father:
+	else if the current action is touching or the current action is rubbing or the current action is taking or the current action is pushing or the current action is pulling or the current action is turning or the current action is swinging or the current action is squeezing or the current action is knocking on:
+		if the noun is Father:
+			say "He ruffles your hair.";
+			stop the action;
+		else:
 			say "[regarding the noun][They] slip[s] strangely from your grasp.";
 			stop the action;
 	else if the current action is screaming or the current action is singing:
@@ -17638,9 +17656,6 @@ Last before doing anything when the location is Marid's Vision:
 		stop the action;
 	else if the current action is crying:
 		say "Tears roll down your cheeks.";
-		stop the action;
-	else if the current action is smelling:
-		say "The air you inhale is weightless.";
 		stop the action;
 	else if the current action is waking up or the current action is sleeping:
 		say "You are somewhere between sleep and consciousness.";
@@ -17654,6 +17669,9 @@ Last before doing anything when the location is Marid's Vision:
 	else:
 		say "You cannot do that now.";
 		stop the action;
+		
+Instead of talking to yourself when the location is Marid's Vision:
+	say "There is no reply but your own breathing.";
 
 Chapter 3.42.2.1 - Scenery
 
@@ -17687,7 +17705,7 @@ The description is "He's still alive. Lively. Warm."
 Understand "my" as Father.
 
 Before attacking, cutting or pushing Father, say "You could never do such a thing." instead.
-Before kissing, rubbing, squeezing, or touching Father, say "He ruffles your hair." instead.
+Before kissing Father, say "He ruffles your hair." instead.
 
 Chapter 3.42.2.3 - Vision Dialogue
 
