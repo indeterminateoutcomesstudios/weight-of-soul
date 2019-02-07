@@ -2,7 +2,7 @@
 
 The story headline is "A study of the ars vitalis".
 The story genre is "Fantasy".
-The release number is 270119.
+The release number is 070219.
 The story description is "In a world of arcane mysteries, a young doctor's apprentice unravels a conspiracy most grim."
 The story creation year is 2019.
 
@@ -1019,7 +1019,7 @@ Instead of searching a ghostly person, say "You won't find anything for the livi
 Instead of kissing a ghostly person, say "Unlikely."
 Instead of waking a ghostly person, say "[regarding the noun][Theirs] is a sleep from which there is no awakening."
 
-Part 1.3.3 - Recurring Characters
+Part 1.3.3 - Important Characters
 
 [These are important characters who show up several times in various locations throughout the game. They were originally listed in the location of their first appearance, but as the plot gets more convoluted and characters shift around more, placing these characters here makes them easier to keep track of.]
 
@@ -4840,9 +4840,9 @@ hndexposition-vision	true	false	"'I think I just had one of my hallucinations.'"
 
 'Hallucinations? What do you mean?'
 
-You swallow. 'I -- I see and hear things. Sometimes. Because of... because of... you know...'
+You swallow. 'I -- I see and hear things. Sometimes. Because of... because... you know...'
 
-[wait for any key]'Never mind,' Justinian says quickly. 'I think... I think I understand. I won't press any further.'
+[wait for any key]'Never mind,' Justinian says quickly. 'I... think I understand. I won't press any further.'
 
 [wait for any key]The two of you exit the surgery room in silence. Doctor Cavala's eyes are on you as you take your seat.
 
@@ -4872,7 +4872,7 @@ To say hnd-serpens-entrance:
 	wait for any key;
 	say "Doctor Justinian stiffens. 'Yes, of course, Doctor Serpens,' he replies. 'I wasn't aware that meetings took precedence over saving the life of a friend.'[paragraph break]";
 	wait for any key;
-	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves, and they'll have your hide strung up if you don't move your damn fool behind.'[paragraph break]";
+	say "The man called Serpens narrows his eyes. 'Don't get lippy with me, Justinian. This is not a [']meeting.['] It's an emergency inquest from the Philosophers themselves. And mark my words, they'll have your hide strung up if you don't move your damn fool behind.'[paragraph break]";
 	wait for any key;
 	say "Doctor Justinian sighs and looks to you. 'I'm sorry, Marid. We'll see each other again.'[paragraph break]";
 	wait for any key;
@@ -4890,15 +4890,17 @@ Section 3.2.6.2.3 - AD (In the year of our Serpens)
 
 Table of HND Exposition Dialogue (continued)
 dialogue branch	enabled	one-shot	prompt	description	choices
-hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
-
-'I'm surprised you haven't heard of him,' she says. 'He was... is... one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
-hndexposition-youknowserpens	true	true	"'You know him, Doctor?'"	"'You know him, Doctor?'
-
-'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was... twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-urcurmudgeon, hndexposition-aboutemergency}
 hndexposition-urcurmudgeon	true	true	"'You're a bit curmudgeonly yourself.'"	"'You're a bit curmudgeonly yourself,' you quip.
 
-Even as Doctor Cavala dabs at her tears, a smile tugs at her lips. 'Touché,' she says. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+Even as Doctor Cavala dabs at her tears, a smile tugs at her lips.
+
+'Touché,' she says. 'He may have rubbed off on me more than I'd like to admit.'"	{hndexposition-whoserpens, hndexposition-youknowserpens, hndexposition-aboutemergency}
+hndexposition-whoserpens	true	true	"'Who is Doctor Serpens?'"	"'Who is Doctor Serpens?' you ask.
+
+'I'm surprised you haven't heard of him,' she says. 'He was... is... one of the foremost experts on physiology. A close rival of Doctor Arturus, back when they were both still practicing.'"	{hndexposition-youknowserpens, hndexposition-aboutemergency}
+hndexposition-youknowserpens	true	true	"'You knew him, Doctor?'"	"'You knew him, Doctor?'
+
+'Before your time,' she says. 'I apprenticed under him at the [italic type]Valetudinarium.[roman type] That was... twenty years ago? Before I enlisted...'"	{hndexposition-whoserpens, hndexposition-aboutemergency}
 hndexposition-aboutemergency	true	false	"'What was that he said about an emergency inquest?'"	"'What was that he said about an emergency inquest?'
 
 Doctor Cavala stiffens. 'Right. We... we haven't told you. Much has changed in the district while you were out. Take a look outside.'
@@ -4924,7 +4926,7 @@ You rack your memory. 'Now that you mention it, I -- I remember something like t
 [wait for any key]'Very few can.' Doctor Cavala sighs. 'Doctor Justinian wasn't even supposed to be here. He's needed for the inquest, which is why Doctor Serpens made an exception for him. Magisterial fiat aside, not even I can pass through the checkpoints... and neither can you.'"	{hndexposition-foodwater, hndexposition-inquest, hndexposition-murders, hndexposition-whatnow}
 hndexposition-foodwater	true	true	"'What about food and water? Or correspondence?'"	"'What about food and water? Or correspondence?'
 
-'We can still receive packages from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can pass along messages through the Vigiles network too, though obviously nothing material can be sent out.'
+'We can still receive packages from the rest of the city,' Doctor Cavala explains. 'There's a crew of physickers at the tram station -- they're teleporting rations to each section of the district, to be collected and distributed by the Vigiles. We can also pass along messages through the Vigiles network, though obviously nothing material can be sent out.'
 
 [wait for any key]She pauses.
 
@@ -4934,7 +4936,7 @@ hndexposition-inquest	true	true	"'So this inquest is to find a cure for the affl
 'It is,' Doctor Cavala replies. 'A research station has been set up in Doctor Arturus's clinic. Doctor Serpens is the head of operations. I'd have recommended you, but after what happened...'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-murders, hndexposition-whatnow}
 hndexposition-murders	true	true	"'Didn't we establish that the deaths were murders, not a result of infection?'"	"'Didn't we establish that the deaths were murders, not a result of infection?'
 
-She fixes you with a hard look. 'Hypotheses can change, Marid. Hundreds have turned up dead. If this isn't an epidemic, it's a slaughter... either way, measures have to be taken.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
+She fixes you with a hard look. 'Hypotheses can change, Marid. Hundreds have turned up dead. Whether this is an epidemic or a slaughter, measures have to be taken.'"	{hndexposition-checkpoints, hndexposition-foodwater, hndexposition-inquest, hndexposition-whatnow}
 
 Section 3.2.6.2.4 - But I Wanna Go, Mom
 
@@ -4944,63 +4946,64 @@ hndexposition-whatnow	true	false	"'So what do we do now?'"	"'So what do we do no
 
 Doctor Cavala leans her head back. She closes her eyes, and for a terrible moment she looks like a corpse bereft of life.
 
-[wait for any key]'I don't know,' she says. 'I don't know.
+[wait for any key]'I don't know,' she says. 'I don't know.'
 
-[wait for any key]'There's nothing I can do. There's nothing either of us can do. There's nothing we can do other than wait.'
+[wait for any key]Her fingers twitch. Her voice cracks.
 
-[wait for any key]You feel a cold pit in your stomach."	{hndexposition-drruok, hndexposition-noideas}
-hndexposition-drruok	true	false	"'Doctor?'"	"'Doctor?'
+[wait for any key]'Honestly, Marid, there's nothing we can do. There's nothing either of us can do. All we can do is wait.'
 
-'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+[wait for any key]You feel a cold pit in your stomach."	{hndexposition-drruok, hndexposition-noideas, hndexposition-icandosth}
+hndexposition-drruok	true	false	"'Doctor? Are you all right?'"	"'Doctor? Are you --'
 
-[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix.
+'Marid,' she says quietly. 'I know what you're thinking. You want to go out there. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.'
 
-[wait for any key]'There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
+[wait for any key]She chuckles bitterly, and sinks into her makeshift cot like a wretched leaden thing.
+
+[wait for any key]'You were dead, Marid,' she says, very quietly. 'Just moments ago, you were clinically dead on the tarp.'"	{hndexposition-whatdead, hndexposition-impossibledead, hndexposition-nojoking}
 hndexposition-noideas	true	false	"'You don't have any ideas?'"	"'You don't have any ideas?'
 
-'Marid,' she says. 'I... I know what you're thinking. You want to go out there. You want to help. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.
+'Marid,' she says quietly. 'I know what you're thinking. You want to go out there. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.'
 
-[wait for any key]'I know how you feel, Marid. But people have limits. There are things you can't fix.
+[wait for any key]She chuckles bitterly, and sinks into her makeshift cot like a wretched leaden thing.
 
-[wait for any key]'There are people you can't bring back.'"	{hndexposition-notlikeyou, hndexposition-cantjustgiveup, hndexposition-idontbelievethat}
-hndexposition-notlikeyou	true	false	"'This isn't like you at all...'"	"'This isn't like you at all, Doctor. I thought... I thought you upheld the oath. I thought you could be stronger than this.'
+[wait for any key]'You were dead, Marid,' she says, very quietly. 'Just moments ago, you were clinically dead on the tarp.'"	{hndexposition-whatdead, hndexposition-impossibledead, hndexposition-nojoking}
+hndexposition-icandosth	true	false	"'I could go out there on your behalf, like last time.'"	"'I could go out there --'
 
-She fixes you with a terrible gaze -- the look of one who has seen death.
+'Marid,' she says quietly. 'I know what you're thinking. You want to help the inquest. Make a difference. Marid, you just recovered from a case of severe hypoxia. You shouldn't even be standing right now.'
 
-'You don't know what you're saying,' she whispers. 'Listen to yourself, Marid. You think -- you think that walking into the jaws of death -- you think that makes you strong?
+[wait for any key]She chuckles bitterly, and sinks into her makeshift cot like a wretched leaden thing.
 
-[wait for any key]'You were [italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+[wait for any key]'You were dead, Marid,' she says, very quietly. 'Just moments ago, you were clinically dead on the tarp.'"	{hndexposition-whatdead, hndexposition-impossibledead, hndexposition-nojoking}
+hndexposition-whatdead	true	false	"'What?'"	"You feel a chill down the back of your neck. 'What?'
 
-[wait for any key]She chokes up, and begins to sob.
+'I told Justinian you were still in there.' she says. 'I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
 
-[wait for any key]'Facing death doesn't make you strong,' she breathes. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
-hndexposition-cantjustgiveup	true	false	"'Are you just giving up?...'"	"'Are you just giving up?' you say. 'I thought you were a soldier, Doctor. I thought you were stronger than this.'
+[wait for any key]Doctor Cavala chokes up, and begins to sob.
 
-She fixes you with a terrible gaze -- the look of one who has seen death.
+[wait for any key]'Is it worth it?' she asks. 'Is it worth it to risk your life like this? To gaze into death?'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-impossibledead	true	false	"'That's impossible.'"	"You feel a chill down the back of your neck. 'That's -- that's impossible.'
 
-'You don't know what you're saying,' she whispers. 'You think this is a war. War is a terrible thing, Marid. There are no victors in war.
+Very slowly, Doctor Cavala shakes her head.
 
-[wait for any key]'You were [italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
-
-[wait for any key]She chokes up, and begins to sob.
-
-[wait for any key]'Facing death doesn't make you strong,' she breathes. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
-hndexposition-idontbelievethat	true	false	"'We have to try...'"	"'We have to try,' you say. 'I've seen things, Doctor. I've spoken to dead people. I don't care what you think. I know we can save these people. I know we have to -- we have to [italic type]do[roman type] something!'
-
-[wait for any key]She fixes you with a terrible gaze -- the look of one who has seen death.
-
-[wait for any key]'You don't know what you're saying,' she whispers. 'You want to be a hero. Heroes live short lives, Marid. You can't save everyone.
-
-[wait for any key]'You were [italic type]dead[roman type], Marid. You were clinically dead on the tarp. I told Justinian you were still in there. I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+[wait for any key]'I told Justinian you were still in there.' she says. 'I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
 
 [wait for any key]She chokes up, and begins to sob.
 
-[wait for any key]'Facing death doesn't make you strong,' she breathes. 'It makes you numb. It makes you cold. To fear death is human.'"	{hndexposition-hesitate, hndexposition-notafraidofdeath}
-hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	"A fire rises up in you, a bile white and furious. The words come to mind like armaments of Truth.
+[wait for any key]'Is it worth it?' she asks. 'Is it worth it to risk your life like this? To gaze into death?'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-nojoking	true	false	"'This isn't the time for jokes, Doctor.'"	"You feel a chill down the back of your neck. 'This isn't the time for jokes, Doctor.'
+
+Very slowly, Doctor Cavala shakes her head.
+
+[wait for any key]'I told Justinian you were still in there.' she says. 'I was so scared -- I was so scared I'd watch your animus leave your body -- and I'd lose you again --'
+
+[wait for any key]She chokes up, and begins to sob.
+
+[wait for any key]'Is it worth it?' she asks. 'Is it worth it to risk your life like this? To gaze into death?'"	{hndexposition-notafraidofdeath, hndexposition-hesitate}
+hndexposition-notafraidofdeath	true	true	"'I'm not afraid of death!'"	"A fire rises up in you, a bile white and furious. The words come to mind like armaments of Truth.
 
 [wait for any key]'I'm not afraid of death,' you tell her. 'I've seen beyond the curtain.'
 
-[wait for any key]Doctor Cavala regards you incredulously. You look her in the eye, watch her soul pulsate with each breath.
+[wait for any key]You look Doctor Cavala in the eye, watch her frightened soul pulse with every breath.
 
 [wait for any key]'I've gone to the other side,' you say. 'I clawed my way back. And I fought every bit of the way -- I [italic type]fought[roman type] my way back to the land of the living, Doctor -- because I realized what I had to fight for.
 
@@ -5008,22 +5011,22 @@ hndexposition-notafraidofdeath	true	false	"'I'm not afraid of death...'"	"A fire
 
 [wait for any key]'With or without you.'
 
-[wait for any key]You take a deep breath. Blood seethes and pounds in your temples.
+[wait for any key]You take a deep breath. You feel blood seething and pounding in your temples.
 
 [wait for any key]Doctor Cavala has fallen silent, and there are tears at the corners of her eyes."	{hndexposition-hesitate, hndexposition-imsorry}
-hndexposition-hesitate	true	false	"<Hesitate.>"	"For a moment, the confidence buoying you dissipates, and you founder. You see in Doctor Cavala that she is afraid. More afraid than you have ever seen her.
+hndexposition-hesitate	true	false	"<Hesitate.>"	"[if the enabled of hndexposition-notafraidofdeath is false]For a moment, the confidence buoying you dissipates, and you founder. [else]You are at a loss for words. [end if]
 
-She's lost a lot of people, you realize. You've been her apprentice for a long time, but in all that time, she's never spoken of those who couldn't make it.
+Doctor Cavala has lost a lot of people, you realize. You've been her apprentice for a long time, but in all that time, she's never spoken of those who couldn't make it.
 
-[wait for any key]The soldiers who died of their wounds, the mothers who died in childbirth, the patients who never saw another sunrise --
+[wait for any key]Soldiers who died of their wounds, mothers who died in childbirth, patients who never saw another sunrise...
 
 [wait for any key]You don't know how many there have been. She has never told you.
 
-[wait for any key]Now, in this moment of weakness, you glimpse the unthinkable burden that weighs on Doctor Cavala's soul. And you realize there have been too many. There always have been.
+[wait for any key]Now, in this moment of weakness, you glimpse the unthinkable burden that weighs on Doctor Cavala's soul.
 
-[wait for any key]And you know that her deepest, darkest fear, beneath that impenetrable shell, is the fear of losing the one thing that has made it worthwhile -- the only thing that will truly make a difference -- her final legacy in service of the oath.
+[wait for any key]There have been too many. There always have been.
 
-[wait for any key]Her deepest, darkest fear is that she will lose you too.
+[wait for any key]And you know that her deepest, darkest fear, beneath that impenetrable shell, is the fear of losing the one thing that has made it worthwhile. Her deepest, darkest fear is that she will lose you too.
 
 [wait for any key]'Please,' she says, in a trembling voice. 'Please.'"	{hndexposition-retirementending, hndexposition-imsorry}
 hndexposition-retirementending	true	false	"<Give up your quest and stay with Doctor Cavala.>"	""	{hndexposition-retirementending, hndexposition-imsorry}
@@ -5049,14 +5052,14 @@ You tell her about the pulsating light and the curtain that shrouds the world. Y
 Chapter 3.2.6.3 - Marid's Retirement (Ending A - de[A]d on arrival)
 
 After reading out hndexposition-retirementending (this is the Retirement Ending rule):
-	say "Are you sure you want to end the story this way?[line break]Please answer yes or no.>";
+	say "Are you sure you want to end the story this way? (You can still >[bold type]undo[roman type] afterwards.)[line break]Please answer yes or no.>";
 	if the player consents:
 		say line break;
 		say "...[paragraph break]";
 		wait for any key;
-		say "You feel a terrible crushing certainty, an upwelling of emotion surging past any attempt to contain it. The tears come, like searing pinpricks of shame, as your world collapses inward.[paragraph break]";
+		say "You feel a terrible crushing certainty, an upwelling of emotion surging past any attempt to contain it. And tears come, like searing pinpricks of shame, as your world collapses inward.[paragraph break]";
 		wait for any key;
-		say "There is no purchase in the unthinkable horror of your guilt. You fall, with bile rising in your throat, curling up on the floor crying and rocking like a wretched thing. Your pendant is icy and painful against your skin --[paragraph break]";
+		say "There is no purchase in the unthinkable horror of your guilt. You fall, with bile rising in your throat, curling up on the floor crying and rocking like a fool. Your pendant is icy and painful against your skin --[paragraph break]";
 		wait for any key;
 		say "-- as you tear yourself down, bleeding into the cracks of the tiles, as you sob for Doctor Cavala to forgive you, promise her that you will be good --[paragraph break]";
 		wait for any key;
@@ -5067,6 +5070,8 @@ After reading out hndexposition-retirementending (this is the Retirement Ending 
 		center "* * *";
 		say paragraph break;
 		wait for any key;
+		end the story saying "You never discovered the truth";
+		follow the shutdown rules. [We have to do this manual shutdown because my dialogue code doesn't play nice with ending the story.]
 
 Book 3.3 - Clinic
 
@@ -6713,7 +6718,8 @@ Some dialogue branches are defined by the Table of Day Three Opening Dialogue.
 Table of Day Three Opening Dialogue
 dialogue branch	enabled	one-shot	prompt	description	choices
 d3open-home	true	false	""	""	{d3open-panic, d3open-greet}
-d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-greet}
+d3open-panic	true	true	"<Panic.>"	"You panic."	{d3open-inappropriate, d3open-greet}
+d3open-inappropriate	true	true	"<Think inappropriate thoughts.>"	"A series of inappropriate images flash through your mind."	{d3open-panic, d3open-greet}
 d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enabled of d3open-panic is false] you finally bring yourself to say.[end if]
 
 'Thank the Primes.' He's checking your pulse now, leaning in to check the color of your eyes. Your gazes meet for a second, and his irises are fiery and alive and [italic type]close[roman type].
@@ -6726,13 +6732,13 @@ d3open-greet	true	false	"'Doctor Justinian?'"	"'D-Doctor Justinian?'[if the enab
 
 [wait for any key]There is a sound from the waiting chairs. You turn and see Doctor Cavala watching from her cot. Her throat is choked. Her eyes are red from crying.
 
-[wait for any key]'You're safe,' she says. 'Marid, I'm sorry. I'm so, so sorry.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-attacked, d3open-somethingstrange}
+[wait for any key]'You're safe,' she breathes. 'Marid, I'm sorry. I'm so, so sorry.'"	{d3open-notyourfault, d3open-thanks, d3open-howlong, d3open-attacked, d3open-somethingstrange}
 d3open-thanks	true	true	"'...Thank you, Doctor Justinian. For saving me.'"	"'...Thank you, Doctor Justinian,' you tell him. 'For... for saving me.'
 
 He meets your eyes and smiles."	{d3open-notyourfault, d3open-howlong, d3open-attacked, d3open-carnicerdead, d3open-company, d3open-somethingstrange}
 d3open-notyourfault	true	true	"'It wasn't your fault, Doctor Cavala.'"	"'I-It wasn't your fault, Doctor Cavala.'
 
-She shakes her head tearfully. 'I... I should have asked for a guard. A warding glyph. [italic type]Something.[roman type] I should have...
+She shakes her head. 'I... I should have asked for a guard. A warding glyph. [italic type]Something.[roman type] I should have...
 
 'I almost lost you, Marid. I... I let you down. I failed you.'
 
